@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { FileText } from "lucide-react";
 import { CaseFilesList } from "@/components/cases/CaseFilesList";
+import { sanitizeDemoBundleBanner } from "@/lib/criminal/demo-presentation-polish";
 import { workflowCard, workflowPilotSurfaceCard } from "./workflowUi";
 import type { CaseWorkflowDocument } from "./caseWorkflowDocuments";
 
@@ -52,7 +53,7 @@ export function PilotCaseDocumentsPanel({
           data?: { frontMatterScan?: string; combinedTextLength?: number };
         };
         if (cancelled || !json.ok || !json.data?.frontMatterScan?.trim()) return;
-        const text = json.data.frontMatterScan.trim();
+        const text = sanitizeDemoBundleBanner(json.data.frontMatterScan.trim());
         setSourceExcerpt(text.length > 2400 ? `${text.slice(0, 2400)}…` : text);
       } catch {
         /* non-fatal */

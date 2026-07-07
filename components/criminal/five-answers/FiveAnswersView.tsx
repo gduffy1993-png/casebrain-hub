@@ -26,6 +26,11 @@ import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
 import { ProofPacketPreviewPanel } from "./ProofPacketPreviewPanel";
 import { FiveAnswersCompactSection } from "./FiveAnswersCompactSection";
 import { humanizeEvidenceLabel } from "./evidence-display";
+import {
+  ensureDigitalHarassmentGapRows,
+  filterBundleFamilyWarnings,
+  polishPresentationLine,
+} from "@/lib/criminal/demo-presentation-polish";
 import type { EvidenceTraceRow, EvidenceTraceSection, FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { useMemo, useState, type ReactNode } from "react";
 
@@ -125,14 +130,33 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
   const view = useMemo(() => {
     if (!warRoom || !chase) return null;
-    return buildFiveAnswersView({
+    const bundleHay = [
+      bundleMeta?.frontMatterScan ?? "",
+      allegation ?? "",
+      ...(chase.primaryItems ?? []).map((i) => `${i.label} ${i.whyItMatters ?? ""}`),
+    ].join(" ");
+
+    const built = buildFiveAnswersView({
       allegation: allegation ?? "",
       warRoom,
       chase,
       matterConfidence,
-      doNotOverstate,
+      doNotOverstate: filterBundleFamilyWarnings(doNotOverstate, bundleHay),
+      bundleText: bundleMeta?.frontMatterScan ?? undefined,
     });
-  }, [warRoom, chase, allegation, matterConfidence, doNotOverstate]);
+
+    const gapRows = ensureDigitalHarassmentGapRows(
+      built.evidenceState.rows,
+      bundleHay,
+      allegation ?? "",
+    );
+
+    return {
+      ...built,
+      evidenceState: { ...built.evidenceState, rows: gapRows },
+      mustNotOverstate: built.mustNotOverstate.map((line) => polishPresentationLine(line, bundleHay)),
+    };
+  }, [warRoom, chase, allegation, matterConfidence, doNotOverstate, bundleMeta?.frontMatterScan]);
 
   const decisionBoard = useMemo(() => {
     if (!briefPlan || !warRoom || !chase) return null;

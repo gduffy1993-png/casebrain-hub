@@ -743,7 +743,8 @@ export function DisclosureChase({
   }, [filteredItems, selectedId]);
 
   const loading = snapshotLoading || battleboardLoading || bundleLoading;
-  const pilotEmbed = embedInShell && pilotMode;
+  const embedBlockingLoading = embedInShell ? snapshotLoading : loading;
+  const pilotEmbed = embedInShell;
   const loadingCardClass = pilotEmbed ? workflowPilotCard : workflowCard;
 
   const chaseBody = (
@@ -804,7 +805,7 @@ export function DisclosureChase({
           </p>
         )}
 
-        {loading ? (
+        {embedBlockingLoading ? (
           <div className={`${loadingCardClass} p-8 flex items-center justify-center gap-2 ${pilotEmbed ? "text-slate-400" : "text-slate-600"}`}>
             <Loader2 className="h-5 w-5 animate-spin text-violet-700" />
             Loading disclosure chase tracker…

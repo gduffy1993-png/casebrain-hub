@@ -461,6 +461,7 @@ export function HearingWarRoom({
   const stage = headerMeta.stage;
   const metadataNote = pilotDisplayMetadataNote(headerMeta.metadataNote);
   const pilotMode = isCriminalPilotMode();
+  const usePilotDeskUi = embedInShell || pilotMode;
   const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
     usePilotDemoSession();
   const hearingDateIso =
@@ -597,6 +598,7 @@ export function HearingWarRoom({
   );
 
   const loading = snapshotLoading || battleboardLoading;
+  const embedBlockingLoading = embedInShell ? snapshotLoading : loading;
   const controlRoomHref = buildControlRoomHref(caseId);
   const headerLoading = snapshotLoading || bundleLoading;
 
@@ -614,7 +616,7 @@ export function HearingWarRoom({
   );
 
   const pilotTodayView = useMemo((): PilotTodayDashboardView | null => {
-    if (!pilotMode || loading) return null;
+    if (!usePilotDeskUi || snapshotLoading) return null;
     const filteredDno = filterBundleFamilyWarnings(brief.doNotOverstate, bundleContextHay);
     const filteredRisks = filterBundleFamilyWarnings(brief.collapseRisks, bundleContextHay);
     const filteredChase = filterBundleFamilyWarnings(chaseItemsAll, bundleContextHay).map(displayChaseBulletLine);
@@ -639,8 +641,8 @@ export function HearingWarRoom({
       documentCount: Math.max(bundleSource?.documentCount ?? 0, snapshot?.analysis.docCount ?? 0),
     };
   }, [
-    pilotMode,
-    loading,
+    usePilotDeskUi,
+    snapshotLoading,
     clientLabel,
     allegation,
     courtDisplay,
@@ -654,15 +656,15 @@ export function HearingWarRoom({
     bundleContextHay,
   ]);
 
-  if (embedInShell && pilotMode) {
+  if (embedInShell && usePilotDeskUi) {
     return (
       <div className="min-h-0" data-testid="hearing-war-room">
-        {loading || !pilotTodayView ? (
+        {embedBlockingLoading ? (
           <div className={`${workflowCard} p-8 flex items-center justify-center gap-2 text-slate-600`}>
             <Loader2 className="h-5 w-5 animate-spin text-blue-700" />
             Loading matter dashboard…
           </div>
-        ) : (
+        ) : pilotTodayView ? (
           <PilotTodayDashboard
             caseId={caseId}
             view={pilotTodayView}
@@ -680,6 +682,10 @@ export function HearingWarRoom({
               </>
             }
           />
+        ) : (
+          <div className={`${workflowCard} p-6 text-sm text-slate-500`}>
+            Matter dashboard will appear once case snapshot loads.
+          </div>
         )}
       </div>
     );

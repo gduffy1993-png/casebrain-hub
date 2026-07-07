@@ -87,6 +87,11 @@ import {
   sanitizeHeaderClient,
 } from "@/lib/criminal/resolve-case-header-metadata";
 import { ClientInstructionsRecorder } from "./ClientInstructionsRecorder";
+import {
+  displayPrimaryRouteTitle,
+  filterBundleFamilyWarnings,
+  polishPresentationLine,
+} from "@/lib/criminal/demo-presentation-polish";
 
 type SavedPosition = {
   position_text: string;
@@ -679,10 +684,16 @@ export function CaseControlRoom({
       workflowContext,
     );
     const bundleText = bundleSource?.frontMatterScan ?? null;
+    const bundleHay = bundleText ?? "";
+    const polishRisk = (lines: string[]) =>
+      filterBundleFamilyWarnings(
+        lines.map((line) => polishPresentationLine(line, bundleHay)),
+        bundleHay,
+      );
     return {
-      evidentialRisks: filterTemplateSafeLines(cols.evidentialRisks, truthLedger, bundleText, 5),
-      proceduralRisks: filterTemplateSafeLines(cols.proceduralRisks, truthLedger, bundleText, 5),
-      strategicRisks: filterTemplateSafeLines(cols.strategicRisks, truthLedger, bundleText, 5),
+      evidentialRisks: polishRisk(filterTemplateSafeLines(cols.evidentialRisks, truthLedger, bundleText, 5)),
+      proceduralRisks: polishRisk(filterTemplateSafeLines(cols.proceduralRisks, truthLedger, bundleText, 5)),
+      strategicRisks: polishRisk(filterTemplateSafeLines(cols.strategicRisks, truthLedger, bundleText, 5)),
     };
   }, [
     filteredBattleboard,
@@ -715,7 +726,9 @@ export function CaseControlRoom({
         useFallbacks: false,
       }),
     );
-    const filtered = filterTemplateSafeLines(
+    const bundleHay = bundleSource?.frontMatterScan ?? "";
+    const filtered = filterBundleFamilyWarnings(
+      filterTemplateSafeLines(
       fromRoute.length
         ? fromRoute
         : filterStaleOffenceWording(
@@ -728,6 +741,8 @@ export function CaseControlRoom({
       truthLedger,
       bundleSource?.frontMatterScan ?? null,
       3,
+      ).map((line) => polishPresentationLine(line, bundleHay)),
+      bundleHay,
     );
     if (filtered.length) return filtered;
     return [
@@ -736,7 +751,9 @@ export function CaseControlRoom({
   }, [battleboard, defencePlan, workflowContext, truthLedger, bundleSource?.frontMatterScan]);
 
   const defenceRisks = useMemo(() => {
-    const items = filterTemplateSafeLines(
+    const bundleHay = bundleSource?.frontMatterScan ?? "";
+    const items = filterBundleFamilyWarnings(
+      filterTemplateSafeLines(
       stripRepeatedPositionNotice(
         filterWorkflowPilotLines(
           uniqueStrings(
@@ -755,6 +772,8 @@ export function CaseControlRoom({
       truthLedger,
       bundleSource?.frontMatterScan ?? null,
       2,
+      ).map((line) => polishPresentationLine(line, bundleHay)),
+      bundleHay,
     );
     if (items.length) return items;
     return [
@@ -772,7 +791,15 @@ export function CaseControlRoom({
     (committedStrategy?.primary
       ? String(committedStrategy.primary).replace(/_/g, " ")
       : "Provisional — commit strategy or record position");
-  const bestRouteTitle = pilotMode ? pilotCleanupVisibleText(bestRouteTitleRaw) : bestRouteTitleRaw;
+  const bestRouteTitle = pilotMode
+    ? pilotCleanupVisibleText(
+        displayPrimaryRouteTitle(
+          bestRouteTitleRaw,
+          bundleSource?.frontMatterScan ?? "",
+          allegation,
+        ),
+      )
+    : bestRouteTitleRaw;
 
   const safeCourtLine = useMemo(() => {
     const profileLine = workflowSafeCourtLine(workflowContext);

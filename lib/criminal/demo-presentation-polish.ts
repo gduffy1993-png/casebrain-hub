@@ -1,4 +1,6 @@
 import { humanizeChaseFragmentLabel } from "@/lib/criminal/disclosure-chase-finalize";
+import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
+import { evidenceRowFromSourceState } from "@/lib/criminal/five-answers/evidence-trace";
 
 /** Prod Taylor Loom demo case — presentation routing only. */
 export const DEMO_PRESENTATION_CASE_ID =
@@ -7,6 +9,76 @@ export const DEMO_PRESENTATION_CASE_ID =
 
 export function buildDemoPresentationCaseHref(): string {
   return `/cases/${DEMO_PRESENTATION_CASE_ID}?tab=overview&controlRoom=1`;
+}
+
+export function isDemoPresentationCase(caseId: string | null | undefined): boolean {
+  return Boolean(caseId?.trim() && caseId.trim() === DEMO_PRESENTATION_CASE_ID);
+}
+
+/** Phone-harassment / digital attribution bundle shape for presentation filters. */
+export function isDigitalHarassmentBundleHay(bundleHay: string, allegation = ""): boolean {
+  const hay = `${allegation} ${bundleHay}`.toLowerCase();
+  return (
+    /harassment|protection from harassment/i.test(hay) &&
+    /screenshot|phone|message|whatsapp|sms|subscriber|attribution|mg6|mg11|extraction|digital|handset/i.test(
+      hay,
+    )
+  );
+}
+
+/** Replace adversarial QA bundle banners in file preview — keeps fictional disclaimer. */
+export function sanitizeDemoBundleBanner(text: string): string {
+  return text
+    .replace(
+      /RESTRICTED\s*[—–-]\s*FICTIONAL\s+ADVERSARIAL\s+QA\s+BUNDLE/gi,
+      "RESTRICTED — Controlled fictional demo bundle",
+    )
+    .replace(/FICTIONAL\s+ADVERSARIAL\s+QA\s+BUNDLE/gi, "Controlled fictional demo bundle")
+    .replace(/FICTIONAL\s+TEST\s+BUNDLE/gi, "Controlled fictional demo bundle");
+}
+
+export function displayPrimaryRouteTitle(title: string, bundleHay: string, allegation = ""): string {
+  if (!title.trim()) return title;
+  if (isDigitalHarassmentBundleHay(bundleHay, allegation)) {
+    if (/second male|vehicle ownership|source-material pressure|bank\/device/i.test(title)) {
+      return "Digital attribution / phone harassment pressure";
+    }
+  }
+  return polishPresentationLine(title, bundleHay);
+}
+
+/** Collapse repeated outstanding phrasing in summary / court lines. */
+export function polishPresentationLine(line: string, bundleHay = ""): string {
+  let t = line.trim();
+  if (!t) return t;
+
+  if (isDigitalHarassmentBundleHay(bundleHay)) {
+    t = t.replace(
+      /attribution material,\s*phone ownership,\s*vehicle ownership,\s*and role evidence/gi,
+      "full phone download, subscriber attribution data, and complainant statement status",
+    );
+    t = t.replace(/\bvehicle ownership\b/gi, "phone attribution");
+    t = t.replace(/\bsecond male\b/gi, "sender attribution");
+    t = t.replace(
+      /\bbank\/device\b|\bbank\.device\b|served bank\/device material/gi,
+      "served message export material",
+    );
+    t = t.replace(
+      /mg6\s*\/\s*unused schedule clarification/gi,
+      "full phone download / source export",
+    );
+  }
+
+  t = t
+    .replace(
+      /(\bremains outstanding\b(?:\s+and should be disclosed on a timetable)?)(?:\s*\1)+/gi,
+      "$1",
+    )
+    .replace(/\bremains outstanding\s+and should be disclosed on a timetable\.?\s+remains outstanding/gi,
+      "remains outstanding and should be disclosed on a timetable",
+    );
+
+  return t.replace(/\s{2,}/g, " ").trim();
 }
 
 type ChaseDisplayItem = {
@@ -115,19 +187,105 @@ function lineMentionsFamily(line: string, family: BundleFamily): boolean {
   }
 }
 
+function lineMentionsWrongFamilyTemplate(line: string, hay: string): boolean {
+  const l = line.toLowerCase();
+  if (/vehicle ownership/i.test(l) && !/vehicle|registration|vrm|number plate/i.test(hay)) return true;
+  if (/second male/i.test(l) && !/second male|james carter|co-?accused|other male/i.test(hay)) return true;
+  if (
+    /bank\/device|bank\.device|generic bank|device generic|served bank\/device/i.test(l) &&
+    !/bank|cardholder|card|bank statement|atm/i.test(hay)
+  ) {
+    return true;
+  }
+  if (
+    /drugs continuity|pwits|intent to supply/i.test(l) &&
+    !/\bdrug\b|pwits|intent to supply/i.test(hay)
+  ) {
+    return true;
+  }
+  return false;
+}
+
 /** Drop wrong-family do-not-say / risk lines when bundle does not mention that material. */
 export function filterBundleFamilyWarnings(lines: string[], bundleHay: string): string[] {
   const hay = bundleHay.toLowerCase();
   const families: BundleFamily[] = ["bwv", "custody", "drugs", "cctv", "cad", "encro", "abe"];
-  return lines
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .filter((line) => {
+  const seen = new Set<string>();
+  const out: string[] = [];
+
+  for (const raw of lines) {
+    const line = polishPresentationLine(raw.trim(), hay);
+    if (!line) continue;
+    const key = line.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    if (!key || seen.has(key)) continue;
+
+    let drop = lineMentionsWrongFamilyTemplate(line, hay);
+    if (!drop) {
       for (const family of families) {
         if (lineMentionsFamily(line, family) && !bundleMentionsFamily(hay, family)) {
-          return false;
+          drop = true;
+          break;
         }
       }
-      return true;
-    });
+    }
+    if (drop) continue;
+
+    seen.add(key);
+    out.push(line);
+  }
+
+  return out;
+}
+
+/** Presentation-only truth-map rows for Taylor / phone-harassment demos when gaps collapse. */
+export function ensureDigitalHarassmentGapRows(
+  rows: FiveAnswersEvidenceRow[],
+  bundleHay: string,
+  allegation = "",
+): FiveAnswersEvidenceRow[] {
+  if (!isDigitalHarassmentBundleHay(bundleHay, allegation)) return rows;
+
+  const hasGap = (re: RegExp) =>
+    rows.some((r) => re.test(`${r.label} ${r.note ?? ""}`) && r.existence !== "served");
+
+  const extras: FiveAnswersEvidenceRow[] = [];
+  if (!hasGap(/full phone download|phone download|source export|extraction download/i)) {
+    extras.push(
+      evidenceRowFromSourceState(
+        "Full phone download",
+        "missing",
+        "Chase full extraction source before fixing attribution.",
+      ),
+    );
+  }
+  if (!hasGap(/subscriber|attribution|account data|sim\b/i)) {
+    extras.push(
+      evidenceRowFromSourceState(
+        "Subscriber / attribution data",
+        "missing",
+        "Outstanding — screenshots alone do not prove who sent messages.",
+      ),
+    );
+  }
+  if (!hasGap(/mg11|complainant|witness statement/i)) {
+    extras.push(
+      evidenceRowFromSourceState(
+        "Complainant MG11",
+        "not_safely_confirmed",
+        "Draft or unsigned on file — confirm final signed statement before reliance.",
+      ),
+    );
+  }
+
+  if (!extras.length) return rows;
+
+  const seen = new Set<string>();
+  const merged: FiveAnswersEvidenceRow[] = [];
+  for (const row of [...extras, ...rows]) {
+    const key = row.label.trim().toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    merged.push(row);
+  }
+  return merged.slice(0, 8);
 }

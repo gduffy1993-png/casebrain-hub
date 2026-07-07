@@ -13,7 +13,7 @@ import { buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
 import { useMatterBrief } from "./useMatterBrief";
 import { workflowPilotCard, workflowSectionTitle } from "./workflowUi";
-import { displayChaseBulletLine } from "@/lib/criminal/demo-presentation-polish";
+import { displayChaseBulletLine, filterBundleFamilyWarnings, polishPresentationLine } from "@/lib/criminal/demo-presentation-polish";
 import { displayPilotStripCharge, displayPilotStripClient } from "./workflowPilotDisplay";
 
 export type PilotSummaryViewProps = {
@@ -37,12 +37,14 @@ function MatterBriefSectionBlock({
   polishChaseBullets?: boolean;
 }) {
   const displayBullets = polishChaseBullets
-    ? (bullets ?? []).map((b) => displayChaseBulletLine(b))
-    : bullets;
+    ? (bullets ?? []).map((b) => polishPresentationLine(displayChaseBulletLine(b)))
+    : bullets?.map((b) => polishPresentationLine(b));
   return (
     <section className={`${workflowPilotCard} px-4 py-3 space-y-2`}>
       <TrustSectionChrome title={title} sourceState={sourceState} />
-      {paragraph ? <p className="text-sm text-slate-300 leading-relaxed">{paragraph}</p> : null}
+      {paragraph ? (
+        <p className="text-sm text-slate-300 leading-relaxed">{polishPresentationLine(paragraph)}</p>
+      ) : null}
       {displayBullets?.length ? (
         <ul className="list-disc pl-4 space-y-1.5 text-xs text-slate-400">
           {displayBullets.map((b, i) => (
@@ -65,7 +67,12 @@ export function PilotSummaryView({
 }: PilotSummaryViewProps) {
   const [fullOpen, setFullOpen] = useState(false);
   const [copied, setCopied] = useState<"client" | null>(null);
-  const { loading, matterBrief, matterConfidence, doNotOverstate } = useMatterBrief(caseId);
+  const { loading, matterBrief, matterConfidence, doNotOverstate, bundleMeta } = useMatterBrief(caseId);
+  const bundleHay = bundleMeta?.frontMatterScan ?? "";
+  const filteredDoNot = useMemo(
+    () => filterBundleFamilyWarnings(doNotOverstate, bundleHay),
+    [doNotOverstate, bundleHay],
+  );
   const buildTabHref = usePilotMatterTabHref();
   const chaseHref = buildTabHref(caseId, "disclosure-chase");
   const todayHref = buildTabHref(caseId, "today");
@@ -148,8 +155,8 @@ export function PilotSummaryView({
         ) : null}
       </div>
 
-      {!loading && doNotOverstate.length ? (
-        <DontSaySafetyBox items={doNotOverstate.slice(0, 8)} />
+      {!loading && filteredDoNot.length ? (
+        <DontSaySafetyBox items={filteredDoNot.slice(0, 8)} />
       ) : null}
 
       {loading ? (

@@ -22,6 +22,19 @@ function hasDistinctServedScreenshot(rows: FiveAnswersEvidenceRow[]): boolean {
   );
 }
 
+function rowsAlreadyCoverDigitalGaps(rows: FiveAnswersEvidenceRow[]): boolean {
+  const hasMissingPhone = rows.some(
+    (r) => /full phone download|phone download|source export/i.test(r.label) && r.existence === "missing",
+  );
+  const hasMissingSubscriber = rows.some(
+    (r) => /subscriber|attribution/i.test(r.label) && ["missing", "referred_only"].includes(r.existence),
+  );
+  const hasMg11Gap = rows.some(
+    (r) => /mg11|complainant/i.test(r.label) && r.existence !== "served",
+  );
+  return hasMissingPhone && hasMissingSubscriber && hasMg11Gap;
+}
+
 function isDigitalHarassmentShape(allegation: string, combinedHay: string): boolean {
   return (
     /harassment|protection from harassment/i.test(allegation) &&
@@ -69,16 +82,7 @@ export function expandTruthMapRowsForDisplay(input: {
     return input.rows;
   }
 
-  if (hasDistinctServedScreenshot(input.rows)) {
-    return input.rows;
-  }
-
-  const collapsedMg6 =
-    input.rows.length <= 2 && input.rows.some(isCollapsedMg6UmbrellaRow);
-  const chaseMentionsDigital =
-    /screenshot|phone|subscriber|attribution|message|extraction/i.test(combinedHay);
-
-  if (!collapsedMg6 && !chaseMentionsDigital) {
+  if (hasDistinctServedScreenshot(input.rows) && rowsAlreadyCoverDigitalGaps(input.rows)) {
     return input.rows;
   }
 
@@ -102,6 +106,11 @@ export function expandTruthMapRowsForDisplay(input: {
       "Subscriber / attribution data",
       "missing",
       "Outstanding — screenshots alone do not prove who sent messages.",
+    ),
+    evidenceRowFromSourceState(
+      "Complainant MG11",
+      "not_safely_confirmed",
+      "Draft or unsigned on file — confirm final signed statement before reliance.",
     ),
   ];
 

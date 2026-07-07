@@ -47,7 +47,7 @@ Police note: handset seized. Attribution asserted — subscriber data not served
   },
   refused: [
     "Do not state sender identity from screenshots alone",
-    "Do not import BWV or CAD material not on this bundle",
+    "Do not import any material not on this bundle",
     "Do not treat handset seizure as subscriber proof",
   ],
 };
