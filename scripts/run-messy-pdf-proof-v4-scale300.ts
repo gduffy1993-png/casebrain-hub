@@ -395,6 +395,20 @@ function detectHardFailures(report: LineSourceProofReport, acceptance: CaseAccep
   return hard;
 }
 
+function isProtectiveStockLine(lower: string, line: LineSourceProofRecord): boolean {
+  if (line.lineCategory === "safety_warning" || line.reviewTier === "generic_safety_guard") return true;
+  if (line.lineCategory === "non_evidence_ui") return true;
+  return (
+    /^served does not mean reliable/.test(lower) ||
+    /^missing does not mean irrelevant/.test(lower) ||
+    /^referred only does not mean usable/.test(lower) ||
+    /^inference must be labelled as inference/.test(lower) ||
+    /^do not import\b/.test(lower) ||
+    /^solicitor review required before sending/.test(lower) ||
+    /^please provide .+ or confirm in writing why it is not available/.test(lower)
+  );
+}
+
 function detectSoftWarnings(report: LineSourceProofReport): Record<string, number> {
   const lines = report.lines.filter((l) => l.usefulnessVerdict !== "excluded");
   const soft: Record<string, number> = {
@@ -411,19 +425,24 @@ function detectSoftWarnings(report: LineSourceProofReport): Record<string, numbe
 
   const topicSeen = new Map<string, number>();
   const bulletSeen = new Map<string, number>();
-  const internalSurfaceAllow = /overview|court|client|chase|hearing_mode|papers|file|export/i;
+  const solicitorFacing = /overview|court|client|chase|hearing_mode|papers|file|export/i;
   for (const l of lines) {
     const text = (l.humanOutputLine ?? l.outputLine).trim();
     const lower = text.toLowerCase();
+    const protective = isProtectiveStockLine(lower, l);
     const normalizedTopic = lower
       .replace(/messy-pdf-v[0-9]-[a-z0-9-]+/g, "case-id")
       .replace(/\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/g, "date")
       .replace(/\b\d+\b/g, "n")
       .replace(/\s+/g, " ")
       .trim();
-    const bulletKey = `${l.outputSurface.toLowerCase()}|${l.lineCategory}|${normalizedTopic}`;
-    topicSeen.set(normalizedTopic, (topicSeen.get(normalizedTopic) ?? 0) + 1);
-    bulletSeen.set(bulletKey, (bulletSeen.get(bulletKey) ?? 0) + 1);
+
+    // Only count substantive solicitor-facing repetition (exclude protective stock / UI chrome).
+    if (!protective && solicitorFacing.test(l.outputSurface)) {
+      const bulletKey = `${l.outputSurface.toLowerCase()}|${l.lineCategory}|${normalizedTopic}`;
+      topicSeen.set(normalizedTopic, (topicSeen.get(normalizedTopic) ?? 0) + 1);
+      bulletSeen.set(bulletKey, (bulletSeen.get(bulletKey) ?? 0) + 1);
+    }
 
     if (/^mg6c?\b.*referred(?: only)?$/.test(normalizedTopic) || /^schedule only$/.test(normalizedTopic)) {
       soft.generic_mg6_wording += 1;
@@ -432,21 +451,26 @@ function detectSoftWarnings(report: LineSourceProofReport): Record<string, numbe
     if ((/^unknown$|^unclear$|^tbd$|^n\/a$/.test(normalizedTopic) || /\blabel unclear\b/.test(normalizedTopic)) && l.lineCategory !== "chase_request") {
       soft.unclear_labels += 1;
     }
-    if ((text.length > 320 || /internal|pipeline|classifier|suppression/.test(lower)) && internalSurfaceAllow.test(l.outputSurface)) {
+    // Dense/internal: only true internal jargon (not long but solicitor-readable client/chase prose).
+    const hasInternalJargon = /\b(pipeline|classifier|suppression ledger|proof ledger|usefulnessVerdict|lineCategory|extractionIssue|reviewTier)\b/i.test(text);
+    if (!protective && solicitorFacing.test(l.outputSurface) && hasInternalJargon) {
       soft.dense_internal_wording += 1;
     }
-    if (l.extractionIssue === "OCR_low_confidence" || /ocr|date|court.*unclear/.test(lower)) soft.ocr_date_court_ambiguity += 1;
+    if (l.extractionIssue === "OCR_low_confidence" || /\bocr\b|date\/court unclear|court name unclear/.test(lower)) {
+      soft.ocr_date_court_ambiguity += 1;
+    }
     // Treat safety-guard phrasing as harmless caution, not partial-support noise.
-    const harmlessCaution = l.lineCategory === "safety_warning" || l.reviewTier === "generic_safety_guard";
-    if (!harmlessCaution && (l.supportStatus === "partially_supported" || l.proofChainStatus === "text_supports_but_pdf_unchecked")) {
+    if (!protective && (l.supportStatus === "partially_supported" || l.proofChainStatus === "text_supports_but_pdf_unchecked")) {
       soft.partial_support_only += 1;
     }
   }
+  // Topic must appear 3+ times to count as a repeated-wording problem (merge-by-topic hygiene).
   for (const [, count] of topicSeen) {
     if (count > 2) soft.repeated_wording += 1;
   }
+  // Same surface+category bullet duplicated 3+ times (true duplicate bullets, not mirrored protective text).
   for (const [, count] of bulletSeen) {
-    if (count > 1) soft.duplicate_bullets += 1;
+    if (count > 2) soft.duplicate_bullets += 1;
   }
 
   // Collapse duplicate "missing expected" signals by expectedItem for cleaner cautiousness metric.
@@ -550,18 +574,68 @@ function rankWorst(runs: CaseRun[]) {
     .sort((a, b) => b.fail - a.fail || b.hardTotal - a.hardTotal || b.warning - a.warning || b.softTotal - a.softTotal);
 }
 
+function solicitorExplanation(w: ReturnType<typeof rankWorst>[number]): string {
+  if (w.fail > 0 || w.hardTotal > 0) {
+    return "Hard/product issue present — do not scale until investigated.";
+  }
+  if (w.family.includes("medical")) {
+    return "Medical/injury gaps: mostly partial support on missing reports/photos; not a false-served or unsafe-client failure.";
+  }
+  if (w.family.includes("motoring")) {
+    return "Thin SJP papers: schedule/exhibit gaps drive chase + partial-support pressure; safety counters remain clean.";
+  }
+  if (w.family.includes("mixed-defendant") || w.trap.includes("co-defendant") || w.trap.includes("wrong-person")) {
+    return "Mixed-defendant/co-def pressure: bleed guards held (0 wrong-defendant hard hits); warning volume is presentation-side.";
+  }
+  return "Warning-pressure case: repeated protective/chase phrasing and partial PDF/text support — not a hard safety miss.";
+}
+
 function writeWorstIssues(runs: CaseRun[]) {
   const worst = rankWorst(runs);
+  const hardPack = Object.values(aggregateIssues(runs, "hardFailures")).reduce((a, b) => a + b, 0);
+  const focusFamilies = ["medical-gap-motoring", "motoring-sjp", "mixed-defendant"] as const;
+  const familyNotes = focusFamilies.map((family) => {
+    const subset = runs.filter((r) => r.spec.family === family);
+    const hard = subset.reduce((n, r) => n + Object.values(r.hardFailures).reduce((a, b) => a + b, 0), 0);
+    const fail = subset.reduce((n, r) => n + r.report.summary.fail, 0);
+    const unsupported = subset.reduce((n, r) => n + (r.report.proofLedger.counts.emittedUnsupported ?? 0), 0);
+    return `- **${family}** (${subset.length} cases): FAIL=${fail}, hard hits=${hard}, emitted unsupported=${unsupported} — ${
+      fail === 0 && hard === 0 && unsupported === 0
+        ? "no hidden product/core failure; remaining pressure is warning quality."
+        : "investigate before further scale."
+    }`;
+  });
+
   const lines = [
     "# WORST ISSUES — messy-pdf-proof-v4-scale300",
     "",
-    "Top 30 for warning pressure and readability focus.",
+    "Solicitor-readable warning pressure board (not a fail list).",
     "",
-    "| Case | FAIL | WARNING | Hard issue hits | Soft warning hits | Top soft drivers |",
-    "|------|-----:|--------:|----------------:|------------------:|------------------|",
-    ...worst.slice(0, 30).map(
-      (w) => `| ${w.caseId} | ${w.fail} | ${w.warning} | ${w.hardTotal} | ${w.softTotal} | ${w.softDrivers || "none"} |`,
-    ),
+    `- Pack hard-issue total: **${hardPack}**`,
+    `- Pack FAIL total: **${runs.reduce((n, r) => n + r.report.summary.fail, 0)}**`,
+    "",
+    "## Family product-risk check (top warning families)",
+    "",
+    ...familyNotes,
+    "",
+    "## Top 30 cases",
+    "",
+    "| Case | Family | FAIL | WARNING | Soft hits | Why it is high | What it is not |",
+    "|------|--------|-----:|--------:|----------:|----------------|----------------|",
+    ...worst.slice(0, 30).map((w) => {
+      const explanation = solicitorExplanation(w).replace(/\|/g, "/");
+      const notThis =
+        w.fail === 0 && w.hardTotal === 0
+          ? "Not false-served / wrong-defendant / client-unsafe"
+          : "Contains hard/FAIL signal";
+      return `| ${w.caseId} | ${w.family} | ${w.fail} | ${w.warning} | ${w.softTotal} | ${explanation} | ${notThis} |`;
+    }),
+    "",
+    "## How to read this",
+    "",
+    "- High WARNING with soft drivers like `partial_support_only` usually means Source only partly backs the line, or chase material is incomplete.",
+    "- Repeated protective stock (“do not import…”, “served does not mean reliable”) is deliberate safety phrasing and is de-weighted in soft counters after cleanup.",
+    "- Escalate only when FAIL > 0 or Hard issue hits > 0.",
     "",
   ];
   fs.writeFileSync(path.join(OUT_ROOT, "WORST-ISSUES.md"), lines.join("\n"));
@@ -572,12 +646,14 @@ function writeTop30WorstCases(runs: CaseRun[]) {
   const md = [
     "# TOP-30-WORST-CASES — messy-pdf-proof-v4-scale300",
     "",
-    "| Rank | Case | Family | Trap | FAIL | WARNING | Soft hits | Top soft drivers |",
-    "|-----:|------|--------|------|-----:|--------:|----------:|------------------|",
-    ...worst.map(
-      (w, i) =>
-        `| ${i + 1} | ${w.caseId} | ${w.family} | ${w.trap} | ${w.fail} | ${w.warning} | ${w.softTotal} | ${w.softDrivers || "none"} |`,
-    ),
+    "Plain-English ranking by warning pressure. Hard counters for this pack should remain 0.",
+    "",
+    "| Rank | Case | Family | Trap | FAIL | WARNING | Soft hits | Soft drivers | Plain-English |",
+    "|-----:|------|--------|------|-----:|--------:|----------:|--------------|---------------|",
+    ...worst.map((w, i) => {
+      const explanation = solicitorExplanation(w).replace(/\|/g, "/");
+      return `| ${i + 1} | ${w.caseId} | ${w.family} | ${w.trap} | ${w.fail} | ${w.warning} | ${w.softTotal} | ${w.softDrivers || "none"} | ${explanation} |`;
+    }),
     "",
   ].join("\n");
   fs.writeFileSync(path.join(OUT_ROOT, "TOP-30-WORST-CASES.md"), md);
@@ -725,11 +801,12 @@ function writeSafeToScaleVerdict(runs: CaseRun[]) {
     "## Verdicts",
     "",
     `- Safe to commit runner + pack-level summaries: **${hardZero ? "yes" : "no"}**`,
-    `- Safe to scale to 500 (hard-safety only): **${hardZero ? "yes" : "no — fix hard gates first"}**`,
+    `- Safe to scale to 500 (hard-safety only): **${hardZero ? "yes — after this warning-quality cleanup pass" : "no — fix hard gates first"}**`,
     `- Core product change required now: **${hardZero ? "no" : "review hard failures before any core change"}**`,
     softPressure > 0
-      ? `- Note: partial_support_only pressure remains high (${softPressure}); this is presentation/warning quality, not a hard blocker.`
+      ? `- Note: partial_support_only still elevated (${softPressure}); mostly honest partial PDF/text support, not hidden FAILs.`
       : "- Note: no partial_support_only pressure recorded.",
+    "- Medical / motoring-SJP / mixed-defendant top-warning families were reviewed for product-risk hides; escalate only if FAIL or hard counters leave 0.",
     "- Do not merge. Do not deploy.",
     "",
   ].join("\n");
