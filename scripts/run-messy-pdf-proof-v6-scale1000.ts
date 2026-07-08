@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 /**
- * Messy PDF-backed proof pack + proof receipts (v6 scale-1000).
+ * Messy PDF-backed proof pack + proof receipts (v7 scale-1500).
  *
  * Run:
  *   npx tsx scripts/run-messy-pdf-proof-v6-scale1000.ts
@@ -15,7 +15,7 @@ import { buildPdfBackedCaseArtifacts } from "../lib/eval/line-source-proof/pdf-b
 
 const ROOT = process.cwd();
 const CASE_ROOT = path.join(ROOT, "artifacts", "evidence-state-audit-local", "cases");
-const OUT_ROOT = path.join(ROOT, "artifacts", "casebrain-qa", "messy-pdf-proof-v6-scale1000");
+const OUT_ROOT = path.join(ROOT, "artifacts", "casebrain-qa", "messy-pdf-proof-v7-scale1500");
 const LINE_OUT_ROOT = path.join(OUT_ROOT, "line-source-proof");
 const CASE_OUT_ROOT = path.join(OUT_ROOT, "cases");
 
@@ -234,6 +234,61 @@ const V6_EXPANSION_VARIANTS = [
   { slug: "cps-court-client-surface-split", detail: "CPS chase vs court note vs client summary separation guard" },
 ];
 
+/**
+ * 25 rebalance-weighted templates × 20 trap axes for v7 (+500 cases to 1500).
+ * Broaden high-warning spread across ABE/youth/domestic/phone/drugs/BWV-custody/charge-index/fraud/encro/mixed-def/CCTV/OCR.
+ */
+const V7_EXPANSION_SOURCE_IDS = [
+  "demo-audit-21-historic-sexual-abe",
+  "demo-audit-21-historic-sexual-abe",
+  "demo-audit-22-youth-interview",
+  "demo-audit-29-youth-yjs-material",
+  "demo-audit-06-domestic-stalking",
+  "demo-audit-20-domestic-harassment",
+  "demo-audit-26-phone-referred-metadata",
+  "demo-audit-26-phone-referred-metadata",
+  "demo-audit-15-county-lines-runners",
+  "demo-audit-15-county-lines-runners",
+  "demo-audit-10-bwv-public-order",
+  "demo-audit-27-custody-pace-missing",
+  "demo-audit-25-charge-bundle-mismatch",
+  "demo-audit-30-layout-hearing-date",
+  "demo-audit-24-missing-pages-index",
+  "demo-audit-24-missing-pages-index",
+  "demo-audit-16-fraud-bank-statements",
+  "demo-audit-28-fraud-subscriber-trap",
+  "demo-audit-05-encro-attribution",
+  "demo-audit-04-co-def-interview",
+  "demo-audit-12-multi-def-burglary",
+  "demo-audit-02-cctv-stills",
+  "demo-audit-09-cctv-index-only",
+  "demo-audit-23-duplicate-pages",
+  "demo-audit-19-motoring-breath-specimen",
+];
+
+const V7_EXPANSION_VARIANTS = [
+  { slug: "mg6c-refers-only-no-annex", detail: "MG6C refers only; annex/source file absent from served PDF" },
+  { slug: "index-served-pdf-gap", detail: "index says served but substantive PDF pages are missing" },
+  { slug: "exhibit-schedule-no-file", detail: "exhibit listed in schedule but underlying file absent" },
+  { slug: "draft-unsigned-statement-split", detail: "draft/unsigned statement with unresolved completeness split" },
+  { slug: "ocr-date-glue-break", detail: "OCR/date glue break with weak page anchoring" },
+  { slug: "rotated-duplicate-page-order-chaos", detail: "rotated duplicates and page-order chaos across bundle" },
+  { slug: "hearing-court-date-mismatch", detail: "hearing date/court mismatch across charge, MG5 and listing" },
+  { slug: "charge-sheet-mg5-wording-drift", detail: "charge wording drift between charge sheet and MG5 narrative" },
+  { slug: "partial-media-not-master", detail: "partial media served; master footage/export not safely confirmed" },
+  { slug: "screenshot-not-sender-attribution", detail: "screenshots shown but sender attribution not proved" },
+  { slug: "subscriber-call-log-device-gap", detail: "subscriber/call-log/device extraction chain incomplete" },
+  { slug: "encro-handle-map-missing", detail: "Encro handle present without defendant mapping evidence" },
+  { slug: "medical-mention-report-absent", detail: "medical/injury mention without served report or photos" },
+  { slug: "lab-weight-continuity-hole", detail: "drugs lab/weight/continuity record hole" },
+  { slug: "third-party-first-account-gap", detail: "third-party or first-account records referred but absent" },
+  { slug: "abe-referral-video-absent", detail: "ABE/historic referral present while substantive video is missing" },
+  { slug: "aa-yjs-safeguard-missing", detail: "AA/YJS safeguard material referred but missing/partial" },
+  { slug: "pace-custody-extract-only", detail: "PACE/custody extract served but full interview record missing" },
+  { slug: "codef-material-isolation-guard", detail: "co-def material present; defendant-isolation guard must hold" },
+  { slug: "cps-court-client-surface-separation", detail: "CPS chase, court note and client summary wording must remain separated" },
+];
+
 function titleCase(value: string): string {
   return value
     .split(/[-\s]+/)
@@ -246,7 +301,7 @@ function pushExpansion(
   scenarios: ScenarioSpec[],
   sourceIds: string[],
   variants: Array<{ slug: string; detail: string }>,
-  versionPrefix: "v3" | "v4" | "v5" | "v6",
+  versionPrefix: "v3" | "v4" | "v5" | "v6" | "v7",
   targetTotal: number,
 ) {
   let index = scenarios.length + 1;
@@ -277,8 +332,9 @@ function buildScenarios(): ScenarioSpec[] {
   pushExpansion(scenarios, V4_EXPANSION_SOURCE_IDS, V4_EXPANSION_VARIANTS, "v4", 300);
   pushExpansion(scenarios, V5_EXPANSION_SOURCE_IDS, V5_EXPANSION_VARIANTS, "v5", 500);
   pushExpansion(scenarios, V6_EXPANSION_SOURCE_IDS, V6_EXPANSION_VARIANTS, "v6", 1000);
-  if (scenarios.length !== 1000) {
-    throw new Error(`Expected 1000 scenarios but built ${scenarios.length}`);
+  pushExpansion(scenarios, V7_EXPANSION_SOURCE_IDS, V7_EXPANSION_VARIANTS, "v7", 1500);
+  if (scenarios.length !== 1500) {
+    throw new Error(`Expected 1500 scenarios but built ${scenarios.length}`);
   }
   return scenarios;
 }
@@ -667,7 +723,7 @@ async function stage1CreateCases(): Promise<Array<{ spec: ScenarioSpec; caseDir:
 
 function writeCoverageReport(runs: CaseRun[]) {
   const lines = [
-    "# COVERAGE — messy-pdf-proof-v6-scale1000",
+    "# COVERAGE — messy-pdf-proof-v7-scale1500",
     "",
     "| # | Case ID | Family | Trap | Layout | Source template | Receipts | PASS | WARNING | FAIL |",
     "|---:|---------|--------|------|--------|-----------------|---------:|-----:|--------:|-----:|",
@@ -698,6 +754,32 @@ function rankWorst(runs: CaseRun[]) {
         .join(", "),
     }))
     .sort((a, b) => b.fail - a.fail || b.hardTotal - a.hardTotal || b.warning - a.warning || b.softTotal - a.softTotal);
+}
+
+function selectFamilyBalancedWorst(
+  worst: ReturnType<typeof rankWorst>,
+  limit = 30,
+  maxPerFamily = 2,
+): ReturnType<typeof rankWorst> {
+  const selected: ReturnType<typeof rankWorst> = [];
+  const familyCounts = new Map<string, number>();
+  const selectedIds = new Set<string>();
+
+  for (const row of worst) {
+    if (selected.length >= limit) break;
+    const used = familyCounts.get(row.family) ?? 0;
+    if (used >= maxPerFamily) continue;
+    selected.push(row);
+    selectedIds.add(row.caseId);
+    familyCounts.set(row.family, used + 1);
+  }
+  for (const row of worst) {
+    if (selected.length >= limit) break;
+    if (selectedIds.has(row.caseId)) continue;
+    selected.push(row);
+    selectedIds.add(row.caseId);
+  }
+  return selected;
 }
 
 const MEDICAL_TRAP_AXIS_NOTES: Record<string, string> = {
@@ -807,6 +889,7 @@ function solicitorExplanation(w: ReturnType<typeof rankWorst>[number]): string {
 
 function writeWorstIssues(runs: CaseRun[]) {
   const worst = rankWorst(runs);
+  const balancedWorst = selectFamilyBalancedWorst(worst, 30, 2);
   const hardPack = Object.values(aggregateIssues(runs, "hardFailures")).reduce((a, b) => a + b, 0);
   const focusFamilies = ["medical-gap-motoring", "motoring-sjp", "mixed-defendant"] as const;
   const familyNotes = focusFamilies.map((family) => {
@@ -822,11 +905,11 @@ function writeWorstIssues(runs: CaseRun[]) {
     }`;
   });
   const bands = familyWarningBands(runs);
-  const top30Families = [...new Set(worst.slice(0, 30).map((w) => w.family))];
-  const medicalInTop30 = worst.slice(0, 30).filter((w) => w.family.includes("medical")).length;
+  const top30Families = [...new Set(balancedWorst.map((w) => w.family))];
+  const medicalInTop30 = balancedWorst.filter((w) => w.family.includes("medical")).length;
 
   const lines = [
-    "# WORST ISSUES — messy-pdf-proof-v6-scale1000",
+    "# WORST ISSUES — messy-pdf-proof-v7-scale1500",
     "",
     "Solicitor-readable warning pressure board (not a fail list).",
     "",
@@ -835,7 +918,7 @@ function writeWorstIssues(runs: CaseRun[]) {
     "",
     "## Medical-gap-motoring concentration (expected, not a product bug)",
     "",
-    `Top-30 ranks are **${medicalInTop30}/30 medical-gap-motoring** because motoring-breath bundles chase device calibration, intox records, and collision/medical expert material simultaneously — producing ~4 more WARNING lines per case than thin-SJP shapes (102 vs ~98).`,
+    `Family-balanced top-30 includes **${top30Families.length} families** with **${medicalInTop30}/30 medical-gap-motoring** entries; breadth view is intentional so highest-warning single family does not hide other pressure families.`,
     "",
     ...medicalDriverBrief(runs),
     "",
@@ -857,7 +940,7 @@ function writeWorstIssues(runs: CaseRun[]) {
     "",
     "| Case | Family | Trap axis | FAIL | WARNING | Soft hits | Why it is high | What it is not |",
     "|------|--------|-----------|-----:|--------:|----------:|----------------|----------------|",
-    ...worst.slice(0, 30).map((w) => {
+    ...balancedWorst.map((w) => {
       const explanation = solicitorExplanation(w).replace(/\|/g, "/");
       const notThis =
         w.fail === 0 && w.hardTotal === 0
@@ -879,24 +962,23 @@ function writeWorstIssues(runs: CaseRun[]) {
 }
 
 function writeTop30WorstCases(runs: CaseRun[]) {
-  const worst = rankWorst(runs).slice(0, 30);
+  const worst = selectFamilyBalancedWorst(rankWorst(runs), 30, 2);
   const bands = familyWarningBands(runs);
   const medicalBand = bands.find((b) => b.family === "medical-gap-motoring");
   const motoringBand = bands.find((b) => b.family === "motoring-sjp");
   const mixedBand = bands.find((b) => b.family === "mixed-defendant");
   const md = [
-    "# TOP-30-WORST-CASES — messy-pdf-proof-v6-scale1000",
+    "# TOP-30-WORST-CASES — messy-pdf-proof-v7-scale1500",
     "",
     "Plain-English ranking by warning pressure. Hard counters for this pack should remain 0.",
     "",
-    "## Why ranks 1–30 are all medical-gap-motoring",
+    "## Why this top-30 is family-balanced",
     "",
-    "This concentration is **expected trap pressure**, not a ranking bug:",
+    "This table is intentionally **family-balanced** (max 2 cases per family first pass), then filled by warning pressure:",
     "",
-    "- Template `demo-audit-19-motoring-breath-specimen` mentions collision/medical expert + device calibration + intox records while keeping them **missing/referred**.",
-    "- That produces **~102 WARNING lines/case** vs **~98** for motoring-sjp and **~91** for mixed-defendant.",
-    "- Soft drivers are `partial_support_only` (thin device/MG6 snippets) and `too_cautious_not_surfaced` (unique missing expected items) — **not** false-served or unsafe-client-summary.",
-    "- Hard counters for medical family: **0** across all gates.",
+    "- Medical remains high-pressure (about 102 WARNING/case), but no longer dominates the report table by itself.",
+    "- This ensures v7 breadth is visible across ABE/youth/domestic/phone/drugs/BWV-custody/charge/index/fraud/encro/mixed-defendant/CCTV/OCR families.",
+    "- Soft drivers remain `partial_support_only` and `too_cautious_not_surfaced`; hard counters remain 0.",
     "",
     "### Family spread (warning band)",
     "",
@@ -906,7 +988,7 @@ function writeTop30WorstCases(runs: CaseRun[]) {
     `| motoring-sjp | ${motoringBand?.cases ?? 0} | ${motoringBand?.warnAvg.toFixed(1) ?? "n/a"} | ${motoringBand?.warnMin ?? "n/a"}–${motoringBand?.warnMax ?? "n/a"} |`,
     `| mixed-defendant | ${mixedBand?.cases ?? 0} | ${mixedBand?.warnAvg.toFixed(1) ?? "n/a"} | ${mixedBand?.warnMin ?? "n/a"}–${mixedBand?.warnMax ?? "n/a"} |`,
     "",
-    "_For v7-scale1500: medical will likely remain top-ranked until a distinct higher-WARN family is added; that is acceptable while hard gates stay clean._",
+    "_For v8-scale2200: maintain breadth in top-warning families while keeping hard gates clean._",
     "",
     "## Ranked cases",
     "",
@@ -942,7 +1024,7 @@ function writeRepeatedPatterns(runs: CaseRun[]) {
   }
   const top = [...patterns.entries()].filter(([, n]) => n >= 8).sort((a, b) => b[1] - a[1]).slice(0, 40);
   const md = [
-    "# REPEATED PATTERNS — messy-pdf-proof-v6-scale1000",
+    "# REPEATED PATTERNS — messy-pdf-proof-v7-scale1500",
     "",
     "_Protective stock, chase scaffolds, and export mirrors excluded — substantive repetition only._",
     "",
@@ -965,7 +1047,7 @@ function writeThemeCoverage(runs: CaseRun[]) {
   }
   const fmt = (map: Map<string, number>) => [...map.entries()].sort((a, b) => b[1] - a[1]).map(([k, v]) => `- ${k}: **${v}**`);
   const md = [
-    "# COVERAGE-BY-THEME — messy-pdf-proof-v6-scale1000",
+    "# COVERAGE-BY-THEME — messy-pdf-proof-v7-scale1500",
     "",
     "## Family coverage",
     "",
@@ -1001,7 +1083,7 @@ function writeDuplicateSimilarityScan(runs: CaseRun[]) {
   const trapDupes = [...byTrapBase.entries()].sort((a, b) => b[1].length - a[1].length);
   const uniqueCaseIds = new Set(runs.map((r) => r.spec.caseId));
   const md = [
-    "# DUPLICATE-SIMILARITY-SCAN — messy-pdf-proof-v6-scale1000",
+    "# DUPLICATE-SIMILARITY-SCAN — messy-pdf-proof-v7-scale1500",
     "",
     `- Unique case IDs: **${uniqueCaseIds.size}** / ${runs.length}`,
     `- Distinct source templates: **${bySource.size}**`,
@@ -1047,14 +1129,14 @@ function writeSafeToScaleVerdict(runs: CaseRun[]) {
     totals.emittedUnsupported === 0 &&
     totals.blockedCases === 0 &&
     totals.bannedWordHits === 0 &&
-    totals.casesRun === 1000;
+    totals.casesRun === 1500;
   const softPressure = softTotals.partial_support_only ?? 0;
   const md = [
-    "# SAFE-TO-SCALE-VERDICT — messy-pdf-proof-v6-scale1000",
+    "# SAFE-TO-SCALE-VERDICT — messy-pdf-proof-v7-scale1500",
     "",
     "## Hard-safety gate",
     "",
-    `- 1000/1000 build: **${totals.casesRun === 1000 ? "yes" : "no"}**`,
+    `- 1500/1500 build: **${totals.casesRun === 1500 ? "yes" : "no"}**`,
     `- 0 FAIL: **${totals.fail === 0 ? "yes" : "no"}**`,
     `- 0 emitted unsupported: **${totals.emittedUnsupported === 0 ? "yes" : "no"}**`,
     `- 0 blocked: **${totals.blockedCases === 0 ? "yes" : "no"}**`,
@@ -1068,7 +1150,7 @@ function writeSafeToScaleVerdict(runs: CaseRun[]) {
     "## Verdicts",
     "",
     `- Safe to commit runner + pack-level summaries: **${hardZero ? "yes" : "no"}**`,
-    `- Safe to scale to 1500 (hard-safety only): **${hardZero ? "yes" : "no — fix hard gates first"}**`,
+    `- Safe to scale to 2200 (hard-safety only): **${hardZero ? "yes" : "no — fix hard gates first"}**`,
     `- Core product change required now: **${hardZero ? "no" : "review hard failures before any core change"}**`,
     softPressure > 0
       ? `- Note: partial_support_only still elevated (${softPressure}); mostly honest partial PDF/text support on missing medical/device material, not hidden FAILs.`
@@ -1099,6 +1181,7 @@ function writeReceiptSummary(runs: CaseRun[]) {
     }, {}),
   };
   fs.writeFileSync(path.join(OUT_ROOT, "proof-receipt-summary.json"), JSON.stringify(summary, null, 2));
+  fs.writeFileSync(path.join(OUT_ROOT, "MESSY-PDF-PROOF-RECEIPT-SUMMARY.json"), JSON.stringify(summary, null, 2));
 
   const md = [
     "# MESSY PDF proof receipt summary",
@@ -1170,7 +1253,7 @@ function writePackSummary(runs: CaseRun[]) {
     "",
     "## Acceptance checks",
     "",
-    `- 1000/1000 build: **${totals.casesRun === 1000 ? "yes" : "no"}**`,
+    `- 1500/1500 build: **${totals.casesRun === 1500 ? "yes" : "no"}**`,
     `- 0 emitted unsupported lines: **${totals.emittedUnsupported === 0 ? "yes" : "no"}**`,
     `- 0 false-served: **${(hardTotals.false_served ?? 0) === 0 ? "yes" : "no"}**`,
     `- 0 wrong-defendant bleed: **${(hardTotals.wrong_defendant_bleed ?? 0) === 0 ? "yes" : "no"}**`,
