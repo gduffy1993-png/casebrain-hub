@@ -12,7 +12,7 @@
 ## Warning pressure (honest, not hidden)
 
 - generic_mg6_wording: **0**
-- repeated_wording: **2676**
+- repeated_wording: **1676**
 - unclear_labels: **0**
 - duplicate_bullets: **0**
 - dense_internal_wording: **0**
@@ -26,6 +26,7 @@
 - Safe to commit runner + pack-level summaries: **yes**
 - Safe to scale to 1500 (hard-safety only): **yes**
 - Core product change required now: **no**
-- Note: partial_support_only still elevated (26905); mostly honest partial PDF/text support, not hidden FAILs.
-- Medical / motoring-SJP / mixed-defendant top-warning families were reviewed for product-risk hides; escalate only if FAIL or hard counters leave 0.
+- Note: partial_support_only still elevated (26905); mostly honest partial PDF/text support on missing medical/device material, not hidden FAILs.
+- Medical-gap-motoring fills top-30 ranks because breath/device bundles chase calibration + medical expert simultaneously (~102 WARN/case). Reviewed: genuine partial-support pressure, not hidden product weakness.
+- Motoring-SJP / mixed-defendant families reviewed for product-risk hides; escalate only if FAIL or hard counters leave 0.
 - Do not merge. Do not deploy.

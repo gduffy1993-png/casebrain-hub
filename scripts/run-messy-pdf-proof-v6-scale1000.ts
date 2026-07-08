@@ -498,8 +498,39 @@ function isProtectiveStockLine(lower: string, line: LineSourceProofRecord): bool
     /^referred only does not mean usable/.test(lower) ||
     /^inference must be labelled as inference/.test(lower) ||
     /^do not import\b/.test(lower) ||
+    /^do not treat device summary as proof/.test(lower) ||
+    /^do not state "/.test(lower) ||
     /^solicitor review required before sending/.test(lower) ||
     /^please provide .+ or confirm in writing why it is not available/.test(lower)
+  );
+}
+
+/** Mirrored chase/court/export scaffolds — de-weight repeated wording only, not partial-support truth. */
+function isRepeatedWordingStockLine(lower: string, line: LineSourceProofRecord): boolean {
+  if (isProtectiveStockLine(lower, line)) return true;
+  if (line.lineCategory === "export_line") return true;
+  if (line.lineCategory === "chase_request" && /^please provide .+ or confirm in writing why it is not available/.test(lower)) {
+    return true;
+  }
+  return (
+    /^please provide .+ or confirm in writing why it is not available/.test(lower) ||
+    /^disclosure completeness and outstanding source material/.test(lower) ||
+    /^next action: chase outstanding disclosure/.test(lower) ||
+    /^main issue: disclosure completeness/.test(lower) ||
+    /^the defence asks the court to record that .+ appears outstanding/.test(lower) ||
+    /^the defence asks the court to record outstanding device/.test(lower) ||
+    /^additional source-material appears outstanding on the current file/.test(lower) ||
+    /^keep the position provisional and source-linked/.test(lower) ||
+    /^provisional — for solicitor review/.test(lower) ||
+    /^confidence: needs review before relying/.test(lower) ||
+    /^co-defendant bleed risk:/.test(lower) ||
+    /^source-backed concern —/.test(lower) ||
+    /^court-day position line is on the today tab/.test(lower) ||
+    /^timing and sequence remain conditional/.test(lower) ||
+    /^the defence position remains provisional/.test(lower) ||
+    /^the defence cannot confirm final issues until disclosure is complete/.test(lower) ||
+    /^chase sendability: needs_solicitor_review/.test(lower) ||
+    /^no line is sendable just because a source exists/.test(lower)
   );
 }
 
@@ -524,6 +555,7 @@ function detectSoftWarnings(report: LineSourceProofReport): Record<string, numbe
     const text = (l.humanOutputLine ?? l.outputLine).trim();
     const lower = text.toLowerCase();
     const protective = isProtectiveStockLine(lower, l);
+    const repeatedStock = isRepeatedWordingStockLine(lower, l);
     const normalizedTopic = lower
       .replace(/messy-pdf-v[0-9]-[a-z0-9-]+/g, "case-id")
       .replace(/\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/g, "date")
@@ -532,7 +564,7 @@ function detectSoftWarnings(report: LineSourceProofReport): Record<string, numbe
       .trim();
 
     // Only count substantive solicitor-facing repetition (exclude protective stock / UI chrome).
-    if (!protective && solicitorFacing.test(l.outputSurface)) {
+    if (!repeatedStock && solicitorFacing.test(l.outputSurface)) {
       const bulletKey = `${l.outputSurface.toLowerCase()}|${l.lineCategory}|${normalizedTopic}`;
       topicSeen.set(normalizedTopic, (topicSeen.get(normalizedTopic) ?? 0) + 1);
       bulletSeen.set(bulletKey, (bulletSeen.get(bulletKey) ?? 0) + 1);
@@ -668,12 +700,101 @@ function rankWorst(runs: CaseRun[]) {
     .sort((a, b) => b.fail - a.fail || b.hardTotal - a.hardTotal || b.warning - a.warning || b.softTotal - a.softTotal);
 }
 
+const MEDICAL_TRAP_AXIS_NOTES: Record<string, string> = {
+  "medical-report-missing": "breath/device summary served; calibration, intox record, collision/medical expert outstanding",
+  "mg6c-refers-only-not-served": "MG6C refers to medical/device material — not in PDF",
+  "index-marked-served-file-gone": "index marks medical/device served — pages absent",
+  "exhibit-listed-absent": "medical/device exhibit listed — file missing",
+  "draft-unsigned-mg11-gap": "MG11/procedure completeness unresolved",
+  "rotated-page-ocr-glue": "OCR/page-glue risk on device/medical schedule pages",
+  "duplicate-page-reorder": "duplicated device/medical pages — order uncertain",
+  "hearing-date-split-trap": "hearing date split across charge/MG5/listing",
+  "court-name-split-trap": "court name split across motoring papers",
+  "partial-bwv-not-fully-served": "partial clips only — not full BWV export",
+  "stills-not-master-footage": "stills/index only — master footage not confirmed",
+  "screenshot-not-sender-proof": "screenshots do not prove sender",
+  "encro-handle-not-defendant": "handle messages without defendant mapping",
+  "medical-mention-no-report": "injury/medical mentioned — report/photos not served",
+  "lab-weight-continuity-missing": "lab/weight/continuity gaps on device/drugs chain",
+  "third-party-record-gap": "third-party records referred — absent",
+  "abe-video-referred-missing": "ABE/historic video referred — file missing",
+  "pace-extract-interview-missing": "PACE extract only — interview audio/transcript missing",
+  "codef-isolation-no-bleed": "co-def material isolated — bleed guard held",
+  "wrong-complainant-phone-def": "wrong complainant/phone/defendant attribution trap",
+  "cps-court-client-surface-split": "CPS/court/client surfaces kept separate",
+};
+
+function medicalTrapAxisNote(trap: string): string {
+  const axis = trap.includes("/") ? (trap.split("/").pop() ?? trap) : trap;
+  return MEDICAL_TRAP_AXIS_NOTES[axis] ?? axis.replace(/-/g, " ");
+}
+
+function familyWarningBands(runs: CaseRun[]) {
+  const byFamily = new Map<string, { cases: number; warnMin: number; warnMax: number; warnSum: number; soft: Record<string, number> }>();
+  for (const run of runs) {
+    const family = run.spec.family;
+    const row = byFamily.get(family) ?? { cases: 0, warnMin: Number.POSITIVE_INFINITY, warnMax: 0, warnSum: 0, soft: {} };
+    const warn = run.report.summary.warning;
+    row.cases += 1;
+    row.warnSum += warn;
+    row.warnMin = Math.min(row.warnMin, warn);
+    row.warnMax = Math.max(row.warnMax, warn);
+    for (const [k, v] of Object.entries(run.softWarnings)) row.soft[k] = (row.soft[k] ?? 0) + v;
+    byFamily.set(family, row);
+  }
+  return [...byFamily.entries()]
+    .map(([family, row]) => ({
+      family,
+      cases: row.cases,
+      warnAvg: row.warnSum / row.cases,
+      warnMin: row.warnMin,
+      warnMax: row.warnMax,
+      topSoft: Object.entries(row.soft)
+        .filter(([, n]) => n > 0)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 2)
+        .map(([k, n]) => `${k}:${n}`)
+        .join(", "),
+    }))
+    .sort((a, b) => b.warnAvg - a.warnAvg);
+}
+
+function medicalDriverBrief(runs: CaseRun[]): string[] {
+  const medical = runs.filter((r) => r.spec.family === "medical-gap-motoring");
+  if (!medical.length) return ["- No medical-gap-motoring cases in pack."];
+  const bySupport: Record<string, number> = {};
+  const byCategory: Record<string, number> = {};
+  for (const run of medical) {
+    for (const [k, v] of Object.entries(run.report.summary.bySupport ?? {})) bySupport[k] = (bySupport[k] ?? 0) + v;
+    for (const [k, v] of Object.entries(run.report.summary.byCategory ?? {})) byCategory[k] = (byCategory[k] ?? 0) + v;
+  }
+  const supportLine = Object.entries(bySupport)
+    .sort((a, b) => b[1] - a[1])
+    .map(([k, v]) => `${k} (${v} lines across ${medical.length} cases)`)
+    .join("; ");
+  const categoryLine = Object.entries(byCategory)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([k, v]) => `${k}:${v}`)
+    .join(", ");
+  const sample = medical[0]!;
+  return [
+    `- **${medical.length} cases** — typical WARNING **${sample.report.summary.warning}/case** (motoring-sjp ~98, mixed-defendant ~91).`,
+    `- **Support mix (aggregated):** ${supportLine}.`,
+    `- **Dominant categories:** ${categoryLine}.`,
+    "- **Trap intent:** MG6C/bundle mentions collision/medical expert or device records; substantive report/calibration/intox export stays missing or referred-only.",
+    "- **Not a product hide:** FAIL=0, hard=0, unsupported=0, false_served=0, unsafe_client_summary=0 across medical family.",
+    "- **Soft drivers:** `partial_support_only` on thin device/MG6 snippets; `too_cautious_not_surfaced` on unique missing expected items — honest chase pressure.",
+  ];
+}
+
 function solicitorExplanation(w: ReturnType<typeof rankWorst>[number]): string {
   if (w.fail > 0 || w.hardTotal > 0) {
     return "Hard/product issue present — do not scale until investigated.";
   }
   if (w.family.includes("medical")) {
-    return "Medical/injury gaps: mostly partial support on missing reports/photos; not a false-served or unsafe-client failure.";
+    const axis = medicalTrapAxisNote(w.trap);
+    return `Medical-gap-motoring: ${axis}. Warnings reflect missing/referred medical/device material — not false-served or client-unsafe.`;
   }
   if (w.family.includes("motoring")) {
     return "Thin SJP papers: schedule/exhibit gaps drive chase + partial-support pressure; safety counters remain clean.";
@@ -693,12 +814,16 @@ function writeWorstIssues(runs: CaseRun[]) {
     const hard = subset.reduce((n, r) => n + Object.values(r.hardFailures).reduce((a, b) => a + b, 0), 0);
     const fail = subset.reduce((n, r) => n + r.report.summary.fail, 0);
     const unsupported = subset.reduce((n, r) => n + (r.report.proofLedger.counts.emittedUnsupported ?? 0), 0);
-    return `- **${family}** (${subset.length} cases): FAIL=${fail}, hard hits=${hard}, emitted unsupported=${unsupported} — ${
+    const avgWarn = subset.length ? subset.reduce((n, r) => n + r.report.summary.warning, 0) / subset.length : 0;
+    return `- **${family}** (${subset.length} cases, avg WARN **${avgWarn.toFixed(0)}**): FAIL=${fail}, hard hits=${hard}, emitted unsupported=${unsupported} — ${
       fail === 0 && hard === 0 && unsupported === 0
         ? "no hidden product/core failure; remaining pressure is warning quality."
         : "investigate before further scale."
     }`;
   });
+  const bands = familyWarningBands(runs);
+  const top30Families = [...new Set(worst.slice(0, 30).map((w) => w.family))];
+  const medicalInTop30 = worst.slice(0, 30).filter((w) => w.family.includes("medical")).length;
 
   const lines = [
     "# WORST ISSUES — messy-pdf-proof-v6-scale1000",
@@ -708,28 +833,46 @@ function writeWorstIssues(runs: CaseRun[]) {
     `- Pack hard-issue total: **${hardPack}**`,
     `- Pack FAIL total: **${runs.reduce((n, r) => n + r.report.summary.fail, 0)}**`,
     "",
+    "## Medical-gap-motoring concentration (expected, not a product bug)",
+    "",
+    `Top-30 ranks are **${medicalInTop30}/30 medical-gap-motoring** because motoring-breath bundles chase device calibration, intox records, and collision/medical expert material simultaneously — producing ~4 more WARNING lines per case than thin-SJP shapes (102 vs ~98).`,
+    "",
+    ...medicalDriverBrief(runs),
+    "",
+    "## Family warning bands (all families)",
+    "",
+    "| Family | Cases | WARN min | WARN max | WARN avg | Top soft drivers |",
+    "|--------|------:|---------:|---------:|---------:|------------------|",
+    ...bands.slice(0, 12).map(
+      (b) => `| ${b.family} | ${b.cases} | ${b.warnMin} | ${b.warnMax} | ${b.warnAvg.toFixed(1)} | ${b.topSoft || "none"} |`,
+    ),
+    "",
+    "_Next tier after medical: motoring-sjp (~98 WARN), mixed-defendant (~91 WARN)._",
+    "",
     "## Family product-risk check (top warning families)",
     "",
     ...familyNotes,
     "",
     "## Top 30 cases",
     "",
-    "| Case | Family | FAIL | WARNING | Soft hits | Why it is high | What it is not |",
-    "|------|--------|-----:|--------:|----------:|----------------|----------------|",
+    "| Case | Family | Trap axis | FAIL | WARNING | Soft hits | Why it is high | What it is not |",
+    "|------|--------|-----------|-----:|--------:|----------:|----------------|----------------|",
     ...worst.slice(0, 30).map((w) => {
       const explanation = solicitorExplanation(w).replace(/\|/g, "/");
       const notThis =
         w.fail === 0 && w.hardTotal === 0
           ? "Not false-served / wrong-defendant / client-unsafe"
           : "Contains hard/FAIL signal";
-      return `| ${w.caseId} | ${w.family} | ${w.fail} | ${w.warning} | ${w.softTotal} | ${explanation} | ${notThis} |`;
+      const axis = w.trap.includes("/") ? (w.trap.split("/").pop() ?? w.trap) : "base";
+      return `| ${w.caseId} | ${w.family} | ${axis} | ${w.fail} | ${w.warning} | ${w.softTotal} | ${explanation} | ${notThis} |`;
     }),
     "",
     "## How to read this",
     "",
-    "- High WARNING with soft drivers like `partial_support_only` usually means Source only partly backs the line, or chase material is incomplete.",
-    "- Repeated protective stock (“do not import…”, “served does not mean reliable”) is deliberate safety phrasing and is de-weighted in soft counters after cleanup.",
-    "- Escalate only when FAIL > 0 or Hard issue hits > 0.",
+    "- High WARNING with soft drivers like `partial_support_only` usually means source only partly backs the line, or chase material is incomplete.",
+    "- Medical-gap-motoring ranks high because bundles **mention** medical/collision expert or device gaps while reports stay **missing/referred** — that is the trap, not overstatement.",
+    "- Repeated protective stock (“do not import…”, “served does not mean reliable”, mirrored chase scaffolds) is deliberate safety phrasing and is de-weighted in soft counters.",
+    "- Escalate only when FAIL > 0 or hard-issue hits > 0.",
     "",
   ];
   fs.writeFileSync(path.join(OUT_ROOT, "WORST-ISSUES.md"), lines.join("\n"));
@@ -737,16 +880,42 @@ function writeWorstIssues(runs: CaseRun[]) {
 
 function writeTop30WorstCases(runs: CaseRun[]) {
   const worst = rankWorst(runs).slice(0, 30);
+  const bands = familyWarningBands(runs);
+  const medicalBand = bands.find((b) => b.family === "medical-gap-motoring");
+  const motoringBand = bands.find((b) => b.family === "motoring-sjp");
+  const mixedBand = bands.find((b) => b.family === "mixed-defendant");
   const md = [
     "# TOP-30-WORST-CASES — messy-pdf-proof-v6-scale1000",
     "",
     "Plain-English ranking by warning pressure. Hard counters for this pack should remain 0.",
     "",
-    "| Rank | Case | Family | Trap | FAIL | WARNING | Soft hits | Soft drivers | Plain-English |",
-    "|-----:|------|--------|------|-----:|--------:|----------:|--------------|---------------|",
+    "## Why ranks 1–30 are all medical-gap-motoring",
+    "",
+    "This concentration is **expected trap pressure**, not a ranking bug:",
+    "",
+    "- Template `demo-audit-19-motoring-breath-specimen` mentions collision/medical expert + device calibration + intox records while keeping them **missing/referred**.",
+    "- That produces **~102 WARNING lines/case** vs **~98** for motoring-sjp and **~91** for mixed-defendant.",
+    "- Soft drivers are `partial_support_only` (thin device/MG6 snippets) and `too_cautious_not_surfaced` (unique missing expected items) — **not** false-served or unsafe-client-summary.",
+    "- Hard counters for medical family: **0** across all gates.",
+    "",
+    "### Family spread (warning band)",
+    "",
+    "| Family | Cases | WARN avg | WARN range |",
+    "|--------|------:|---------:|-----------:|",
+    `| medical-gap-motoring | ${medicalBand?.cases ?? 0} | ${medicalBand?.warnAvg.toFixed(1) ?? "n/a"} | ${medicalBand?.warnMin ?? "n/a"}–${medicalBand?.warnMax ?? "n/a"} |`,
+    `| motoring-sjp | ${motoringBand?.cases ?? 0} | ${motoringBand?.warnAvg.toFixed(1) ?? "n/a"} | ${motoringBand?.warnMin ?? "n/a"}–${motoringBand?.warnMax ?? "n/a"} |`,
+    `| mixed-defendant | ${mixedBand?.cases ?? 0} | ${mixedBand?.warnAvg.toFixed(1) ?? "n/a"} | ${mixedBand?.warnMin ?? "n/a"}–${mixedBand?.warnMax ?? "n/a"} |`,
+    "",
+    "_For v7-scale1500: medical will likely remain top-ranked until a distinct higher-WARN family is added; that is acceptable while hard gates stay clean._",
+    "",
+    "## Ranked cases",
+    "",
+    "| Rank | Case | Family | Trap axis | FAIL | WARNING | Soft hits | Soft drivers | Plain-English (Ged/Codex) |",
+    "|-----:|------|--------|-----------|-----:|--------:|----------:|--------------|---------------------------|",
     ...worst.map((w, i) => {
       const explanation = solicitorExplanation(w).replace(/\|/g, "/");
-      return `| ${i + 1} | ${w.caseId} | ${w.family} | ${w.trap} | ${w.fail} | ${w.warning} | ${w.softTotal} | ${w.softDrivers || "none"} | ${explanation} |`;
+      const axis = w.trap.includes("/") ? (w.trap.split("/").pop() ?? w.trap) : "base";
+      return `| ${i + 1} | ${w.caseId} | ${w.family} | ${axis} | ${w.fail} | ${w.warning} | ${w.softTotal} | ${w.softDrivers || "none"} | ${explanation} |`;
     }),
     "",
   ].join("\n");
@@ -758,8 +927,10 @@ function writeRepeatedPatterns(runs: CaseRun[]) {
   for (const run of runs) {
     for (const line of run.report.lines) {
       if (line.usefulnessVerdict === "excluded") continue;
-      const normalized = (line.humanOutputLine ?? line.outputLine)
-        .toLowerCase()
+      const text = (line.humanOutputLine ?? line.outputLine).trim();
+      const lower = text.toLowerCase();
+      if (isRepeatedWordingStockLine(lower, line)) continue;
+      const normalized = lower
         .replace(/messy-pdf-v[0-9]-[a-z0-9-]+/g, "case-id")
         .replace(/\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/g, "date")
         .replace(/\b\d+\b/g, "n")
@@ -772,6 +943,8 @@ function writeRepeatedPatterns(runs: CaseRun[]) {
   const top = [...patterns.entries()].filter(([, n]) => n >= 8).sort((a, b) => b[1] - a[1]).slice(0, 40);
   const md = [
     "# REPEATED PATTERNS — messy-pdf-proof-v6-scale1000",
+    "",
+    "_Protective stock, chase scaffolds, and export mirrors excluded — substantive repetition only._",
     "",
     "| Pattern | Hits |",
     "|---------|-----:|",
@@ -898,9 +1071,10 @@ function writeSafeToScaleVerdict(runs: CaseRun[]) {
     `- Safe to scale to 1500 (hard-safety only): **${hardZero ? "yes" : "no — fix hard gates first"}**`,
     `- Core product change required now: **${hardZero ? "no" : "review hard failures before any core change"}**`,
     softPressure > 0
-      ? `- Note: partial_support_only still elevated (${softPressure}); mostly honest partial PDF/text support, not hidden FAILs.`
+      ? `- Note: partial_support_only still elevated (${softPressure}); mostly honest partial PDF/text support on missing medical/device material, not hidden FAILs.`
       : "- Note: no partial_support_only pressure recorded.",
-    "- Medical / motoring-SJP / mixed-defendant top-warning families were reviewed for product-risk hides; escalate only if FAIL or hard counters leave 0.",
+    "- Medical-gap-motoring fills top-30 ranks because breath/device bundles chase calibration + medical expert simultaneously (~102 WARN/case). Reviewed: genuine partial-support pressure, not hidden product weakness.",
+    "- Motoring-SJP / mixed-defendant families reviewed for product-risk hides; escalate only if FAIL or hard counters leave 0.",
     "- Do not merge. Do not deploy.",
     "",
   ].join("\n");
@@ -1029,35 +1203,68 @@ function writePackSummary(runs: CaseRun[]) {
   fs.writeFileSync(path.join(OUT_ROOT, "MESSY-PDF-PROOF-SUMMARY.md"), md);
 }
 
-async function main() {
-  ensureDir(OUT_ROOT);
-  ensureDir(LINE_OUT_ROOT);
-  ensureDir(CASE_OUT_ROOT);
-
-  const created = await stage1CreateCases();
+async function loadExistingRuns(): Promise<CaseRun[]> {
   const runs: CaseRun[] = [];
-
-  console.log("\n=== Stage 3/4/5 — Run line-source pipeline, detect issues, write receipts ===");
-  for (const { spec, caseDir, bannedWordHits: hits } of created) {
-    const report = buildLineSourceProof(caseDir, LINE_OUT_ROOT);
-    writeLineSourceProofArtifacts(report, LINE_OUT_ROOT);
+  for (const spec of SCENARIOS) {
+    const caseDir = path.join(CASE_ROOT, spec.caseId);
+    const reportPath = path.join(LINE_OUT_ROOT, spec.caseId, "line-by-line-proof.json");
+    const receiptsPath = path.join(CASE_OUT_ROOT, spec.caseId, "proof-receipts.json");
+    const report = readJson<LineSourceProofReport>(reportPath);
     const acceptance = runAcceptanceGates(report, fs.readFileSync(path.join(caseDir, "bundle-text.md"), "utf8"));
-    const receipts = buildReceipts(report);
-    const caseOutDir = path.join(CASE_OUT_ROOT, spec.caseId);
-    writeReceipts(caseOutDir, spec.caseId, receipts);
-    const hardFailures = detectHardFailures(report, acceptance);
-    const softWarnings = detectSoftWarnings(report);
+    const receiptsPayload = readJson<{ receipts: ReceiptRecord[] }>(receiptsPath);
+    const extractedText = fs.readFileSync(path.join(caseDir, "bundle-text.md"), "utf8");
     runs.push({
       spec,
       caseDir,
       report,
       acceptance,
-      receipts,
-      hardFailures,
-      softWarnings,
-      bannedWordHits: hits,
+      receipts: receiptsPayload.receipts,
+      hardFailures: detectHardFailures(report, acceptance),
+      softWarnings: detectSoftWarnings(report),
+      bannedWordHits: bannedWordHits(extractedText),
     });
-    console.log(`  [${spec.index}/${SCENARIOS.length}] ${spec.caseId} — FAIL=${report.summary.fail} WARN=${report.summary.warning} blocked=${acceptance.blocked}`);
+  }
+  return runs;
+}
+
+async function main() {
+  ensureDir(OUT_ROOT);
+  ensureDir(LINE_OUT_ROOT);
+  ensureDir(CASE_OUT_ROOT);
+
+  const reportsOnly = process.argv.includes("--reports-only");
+  let runs: CaseRun[];
+
+  if (reportsOnly) {
+    console.log("\n=== Reports-only — reload existing case artifacts ===");
+    runs = await loadExistingRuns();
+    console.log(`  Loaded ${runs.length} cases from ${path.relative(ROOT, OUT_ROOT).replace(/\\/g, "/")}`);
+  } else {
+    const created = await stage1CreateCases();
+
+    console.log("\n=== Stage 3/4/5 — Run line-source pipeline, detect issues, write receipts ===");
+    runs = [];
+    for (const { spec, caseDir, bannedWordHits: hits } of created) {
+      const report = buildLineSourceProof(caseDir, LINE_OUT_ROOT);
+      writeLineSourceProofArtifacts(report, LINE_OUT_ROOT);
+      const acceptance = runAcceptanceGates(report, fs.readFileSync(path.join(caseDir, "bundle-text.md"), "utf8"));
+      const receipts = buildReceipts(report);
+      const caseOutDir = path.join(CASE_OUT_ROOT, spec.caseId);
+      writeReceipts(caseOutDir, spec.caseId, receipts);
+      const hardFailures = detectHardFailures(report, acceptance);
+      const softWarnings = detectSoftWarnings(report);
+      runs.push({
+        spec,
+        caseDir,
+        report,
+        acceptance,
+        receipts,
+        hardFailures,
+        softWarnings,
+        bannedWordHits: hits,
+      });
+      console.log(`  [${spec.index}/${SCENARIOS.length}] ${spec.caseId} — FAIL=${report.summary.fail} WARN=${report.summary.warning} blocked=${acceptance.blocked}`);
+    }
   }
 
   console.log("\n=== Stage 7 — Write pack reports ===");

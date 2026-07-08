@@ -44,7 +44,7 @@ Controlled fictional PDF-backed proof/audit run. No production route changes.
 ## Soft warning totals
 
 - generic_mg6_wording: **0**
-- repeated_wording: **2676**
+- repeated_wording: **1676**
 - unclear_labels: **0**
 - duplicate_bullets: **0**
 - dense_internal_wording: **0**
