@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 /**
- * Messy PDF-backed proof pack + proof receipts (v7 scale-1500).
+ * Messy PDF-backed proof pack + proof receipts (v8 scale-2200).
  *
  * Run:
  *   npx tsx scripts/run-messy-pdf-proof-v6-scale1000.ts
@@ -15,7 +15,7 @@ import { buildPdfBackedCaseArtifacts } from "../lib/eval/line-source-proof/pdf-b
 
 const ROOT = process.cwd();
 const CASE_ROOT = path.join(ROOT, "artifacts", "evidence-state-audit-local", "cases");
-const OUT_ROOT = path.join(ROOT, "artifacts", "casebrain-qa", "messy-pdf-proof-v7-scale1500");
+const OUT_ROOT = path.join(ROOT, "artifacts", "casebrain-qa", "messy-pdf-proof-v8-scale2200");
 const LINE_OUT_ROOT = path.join(OUT_ROOT, "line-source-proof");
 const CASE_OUT_ROOT = path.join(OUT_ROOT, "cases");
 
@@ -289,6 +289,71 @@ const V7_EXPANSION_VARIANTS = [
   { slug: "cps-court-client-surface-separation", detail: "CPS chase, court note and client summary wording must remain separated" },
 ];
 
+/**
+ * 35 rebalance-weighted templates × 20 trap axes for v8 (+700 cases to 2200).
+ * Prioritise thinner families (BWV-custody, motoring-SJP, public-order) and breadth; no medical inflation.
+ */
+const V8_EXPANSION_SOURCE_IDS = [
+  "demo-audit-03-bwv-custody",
+  "demo-audit-11-custody-pace-ocr",
+  "demo-audit-03-bwv-custody",
+  "demo-audit-10-bwv-public-order",
+  "demo-audit-10-bwv-public-order",
+  "demo-audit-18-motoring-sjp-thin",
+  "demo-audit-18-motoring-sjp-thin",
+  "demo-audit-21-historic-sexual-abe",
+  "demo-audit-21-historic-sexual-abe",
+  "demo-audit-22-youth-interview",
+  "demo-audit-29-youth-yjs-material",
+  "demo-audit-06-domestic-stalking",
+  "demo-audit-20-domestic-harassment",
+  "demo-audit-07-phone-ocr-trap",
+  "demo-audit-26-phone-referred-metadata",
+  "demo-audit-26-phone-referred-metadata",
+  "demo-audit-15-county-lines-runners",
+  "demo-audit-15-county-lines-runners",
+  "demo-audit-04-co-def-interview",
+  "demo-audit-13-co-def-index-trap",
+  "demo-audit-12-multi-def-burglary",
+  "demo-audit-05-encro-attribution",
+  "demo-audit-14-encro-retail",
+  "demo-audit-16-fraud-bank-statements",
+  "demo-audit-17-fraud-transaction-export",
+  "demo-audit-28-fraud-subscriber-trap",
+  "demo-audit-02-cctv-stills",
+  "demo-audit-08-cctv-night-stills",
+  "demo-audit-09-cctv-index-only",
+  "demo-audit-24-missing-pages-index",
+  "demo-audit-24-missing-pages-index",
+  "demo-audit-25-charge-bundle-mismatch",
+  "demo-audit-30-layout-hearing-date",
+  "demo-audit-23-duplicate-pages",
+  "demo-audit-27-custody-pace-missing",
+];
+
+const V8_EXPANSION_VARIANTS = [
+  { slug: "mg6c-schedule-refers-no-body", detail: "MG6C schedule refers only; substantive body/annex absent" },
+  { slug: "index-row-served-pdf-absent", detail: "index row marks served but PDF pages are absent" },
+  { slug: "exhibit-tag-no-attachment", detail: "exhibit tag present; underlying attachment missing" },
+  { slug: "unsigned-draft-statement-gap", detail: "unsigned/draft statement completeness unresolved" },
+  { slug: "handwritten-redaction-fragment", detail: "handwritten note/redaction leaves material fragment only" },
+  { slug: "rotated-scan-page-anchors", detail: "rotated scan with weak/broken page anchors" },
+  { slug: "duplicate-insert-page-order", detail: "duplicate page inserts with uncertain order" },
+  { slug: "listing-hearing-date-split", detail: "hearing date split across listing/charge/MG5" },
+  { slug: "charge-mg5-court-drift", detail: "charge/MG5/court wording drift across papers" },
+  { slug: "partial-clip-not-full-export", detail: "partial clip served; full export not confirmed" },
+  { slug: "stills-not-master-chain", detail: "stills served; master footage/continuity chain missing" },
+  { slug: "screenshot-sender-not-proved", detail: "screenshots do not prove sender attribution" },
+  { slug: "subscriber-metadata-only-trap", detail: "subscriber/metadata only; device extraction incomplete" },
+  { slug: "encro-handle-defendant-unmapped", detail: "Encro handle without defendant mapping proof" },
+  { slug: "injury-note-no-medical-file", detail: "injury note present; medical report/photos not served" },
+  { slug: "drugs-seal-weight-gap", detail: "drugs seal/weight/continuity record gap" },
+  { slug: "third-party-record-referred-empty", detail: "third-party/first-account record referred but empty" },
+  { slug: "abe-first-account-video-gap", detail: "ABE/first-account video referred; file missing" },
+  { slug: "pace-sheet-interview-audio-missing", detail: "PACE sheet/extract only; interview audio/transcript missing" },
+  { slug: "cps-court-client-output-split", detail: "CPS chase, court note, client summary must stay separated" },
+];
+
 function titleCase(value: string): string {
   return value
     .split(/[-\s]+/)
@@ -301,7 +366,7 @@ function pushExpansion(
   scenarios: ScenarioSpec[],
   sourceIds: string[],
   variants: Array<{ slug: string; detail: string }>,
-  versionPrefix: "v3" | "v4" | "v5" | "v6" | "v7",
+  versionPrefix: "v3" | "v4" | "v5" | "v6" | "v7" | "v8",
   targetTotal: number,
 ) {
   let index = scenarios.length + 1;
@@ -333,8 +398,9 @@ function buildScenarios(): ScenarioSpec[] {
   pushExpansion(scenarios, V5_EXPANSION_SOURCE_IDS, V5_EXPANSION_VARIANTS, "v5", 500);
   pushExpansion(scenarios, V6_EXPANSION_SOURCE_IDS, V6_EXPANSION_VARIANTS, "v6", 1000);
   pushExpansion(scenarios, V7_EXPANSION_SOURCE_IDS, V7_EXPANSION_VARIANTS, "v7", 1500);
-  if (scenarios.length !== 1500) {
-    throw new Error(`Expected 1500 scenarios but built ${scenarios.length}`);
+  pushExpansion(scenarios, V8_EXPANSION_SOURCE_IDS, V8_EXPANSION_VARIANTS, "v8", 2200);
+  if (scenarios.length !== 2200) {
+    throw new Error(`Expected 2200 scenarios but built ${scenarios.length}`);
   }
   return scenarios;
 }
@@ -723,7 +789,7 @@ async function stage1CreateCases(): Promise<Array<{ spec: ScenarioSpec; caseDir:
 
 function writeCoverageReport(runs: CaseRun[]) {
   const lines = [
-    "# COVERAGE — messy-pdf-proof-v7-scale1500",
+    "# COVERAGE — messy-pdf-proof-v8-scale2200",
     "",
     "| # | Case ID | Family | Trap | Layout | Source template | Receipts | PASS | WARNING | FAIL |",
     "|---:|---------|--------|------|--------|-----------------|---------:|-----:|--------:|-----:|",
@@ -909,7 +975,7 @@ function writeWorstIssues(runs: CaseRun[]) {
   const medicalInTop30 = balancedWorst.filter((w) => w.family.includes("medical")).length;
 
   const lines = [
-    "# WORST ISSUES — messy-pdf-proof-v7-scale1500",
+    "# WORST ISSUES — messy-pdf-proof-v8-scale2200",
     "",
     "Solicitor-readable warning pressure board (not a fail list).",
     "",
@@ -968,7 +1034,7 @@ function writeTop30WorstCases(runs: CaseRun[]) {
   const motoringBand = bands.find((b) => b.family === "motoring-sjp");
   const mixedBand = bands.find((b) => b.family === "mixed-defendant");
   const md = [
-    "# TOP-30-WORST-CASES — messy-pdf-proof-v7-scale1500",
+    "# TOP-30-WORST-CASES — messy-pdf-proof-v8-scale2200",
     "",
     "Plain-English ranking by warning pressure. Hard counters for this pack should remain 0.",
     "",
@@ -988,7 +1054,7 @@ function writeTop30WorstCases(runs: CaseRun[]) {
     `| motoring-sjp | ${motoringBand?.cases ?? 0} | ${motoringBand?.warnAvg.toFixed(1) ?? "n/a"} | ${motoringBand?.warnMin ?? "n/a"}–${motoringBand?.warnMax ?? "n/a"} |`,
     `| mixed-defendant | ${mixedBand?.cases ?? 0} | ${mixedBand?.warnAvg.toFixed(1) ?? "n/a"} | ${mixedBand?.warnMin ?? "n/a"}–${mixedBand?.warnMax ?? "n/a"} |`,
     "",
-    "_For v8-scale2200: maintain breadth in top-warning families while keeping hard gates clean._",
+    "_For v9-scale3000: maintain breadth in top-warning families while keeping hard gates clean._",
     "",
     "## Ranked cases",
     "",
@@ -1024,7 +1090,7 @@ function writeRepeatedPatterns(runs: CaseRun[]) {
   }
   const top = [...patterns.entries()].filter(([, n]) => n >= 8).sort((a, b) => b[1] - a[1]).slice(0, 40);
   const md = [
-    "# REPEATED PATTERNS — messy-pdf-proof-v7-scale1500",
+    "# REPEATED PATTERNS — messy-pdf-proof-v8-scale2200",
     "",
     "_Protective stock, chase scaffolds, and export mirrors excluded — substantive repetition only._",
     "",
@@ -1047,7 +1113,7 @@ function writeThemeCoverage(runs: CaseRun[]) {
   }
   const fmt = (map: Map<string, number>) => [...map.entries()].sort((a, b) => b[1] - a[1]).map(([k, v]) => `- ${k}: **${v}**`);
   const md = [
-    "# COVERAGE-BY-THEME — messy-pdf-proof-v7-scale1500",
+    "# COVERAGE-BY-THEME — messy-pdf-proof-v8-scale2200",
     "",
     "## Family coverage",
     "",
@@ -1083,7 +1149,7 @@ function writeDuplicateSimilarityScan(runs: CaseRun[]) {
   const trapDupes = [...byTrapBase.entries()].sort((a, b) => b[1].length - a[1].length);
   const uniqueCaseIds = new Set(runs.map((r) => r.spec.caseId));
   const md = [
-    "# DUPLICATE-SIMILARITY-SCAN — messy-pdf-proof-v7-scale1500",
+    "# DUPLICATE-SIMILARITY-SCAN — messy-pdf-proof-v8-scale2200",
     "",
     `- Unique case IDs: **${uniqueCaseIds.size}** / ${runs.length}`,
     `- Distinct source templates: **${bySource.size}**`,
@@ -1129,14 +1195,14 @@ function writeSafeToScaleVerdict(runs: CaseRun[]) {
     totals.emittedUnsupported === 0 &&
     totals.blockedCases === 0 &&
     totals.bannedWordHits === 0 &&
-    totals.casesRun === 1500;
+    totals.casesRun === 2200;
   const softPressure = softTotals.partial_support_only ?? 0;
   const md = [
-    "# SAFE-TO-SCALE-VERDICT — messy-pdf-proof-v7-scale1500",
+    "# SAFE-TO-SCALE-VERDICT — messy-pdf-proof-v8-scale2200",
     "",
     "## Hard-safety gate",
     "",
-    `- 1500/1500 build: **${totals.casesRun === 1500 ? "yes" : "no"}**`,
+    `- 2200/2200 build: **${totals.casesRun === 2200 ? "yes" : "no"}**`,
     `- 0 FAIL: **${totals.fail === 0 ? "yes" : "no"}**`,
     `- 0 emitted unsupported: **${totals.emittedUnsupported === 0 ? "yes" : "no"}**`,
     `- 0 blocked: **${totals.blockedCases === 0 ? "yes" : "no"}**`,
@@ -1150,7 +1216,7 @@ function writeSafeToScaleVerdict(runs: CaseRun[]) {
     "## Verdicts",
     "",
     `- Safe to commit runner + pack-level summaries: **${hardZero ? "yes" : "no"}**`,
-    `- Safe to scale to 2200 (hard-safety only): **${hardZero ? "yes" : "no — fix hard gates first"}**`,
+    `- Safe to scale to 3000 (hard-safety only): **${hardZero ? "yes" : "no — fix hard gates first"}**`,
     `- Core product change required now: **${hardZero ? "no" : "review hard failures before any core change"}**`,
     softPressure > 0
       ? `- Note: partial_support_only still elevated (${softPressure}); mostly honest partial PDF/text support on missing medical/device material, not hidden FAILs.`
@@ -1253,7 +1319,7 @@ function writePackSummary(runs: CaseRun[]) {
     "",
     "## Acceptance checks",
     "",
-    `- 1500/1500 build: **${totals.casesRun === 1500 ? "yes" : "no"}**`,
+    `- 2200/2200 build: **${totals.casesRun === 2200 ? "yes" : "no"}**`,
     `- 0 emitted unsupported lines: **${totals.emittedUnsupported === 0 ? "yes" : "no"}**`,
     `- 0 false-served: **${(hardTotals.false_served ?? 0) === 0 ? "yes" : "no"}**`,
     `- 0 wrong-defendant bleed: **${(hardTotals.wrong_defendant_bleed ?? 0) === 0 ? "yes" : "no"}**`,
