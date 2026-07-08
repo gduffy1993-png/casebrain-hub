@@ -1,0 +1,1731 @@
+{
+  "generatedAt": "2026-07-08T07:53:14.112Z",
+  "totals": {
+    "casesRun": 10,
+    "pass": 517,
+    "warning": 742,
+    "fail": 0,
+    "emittedUnsupported": 0,
+    "blockedCases": 0,
+    "bannedWordHits": 0
+  },
+  "hardFailures": {
+    "false_served": 0,
+    "referred_only_treated_as_served": 0,
+    "missing_treated_as_available": 0,
+    "incomplete_treated_as_complete": 0,
+    "wrong_defendant_bleed": 0,
+    "wrong_family_bleed": 0,
+    "court_wording_in_cps_chase": 0,
+    "cps_chase_wording_in_court_note": 0,
+    "unsupported_allegation_stated_as_fact": 0,
+    "attribution_overclaim": 0,
+    "final_advice_win_loss_wording": 0,
+    "unsafe_client_summary": 0,
+    "source_page_mismatch": 0,
+    "output_with_no_source_anchor": 0
+  },
+  "softWarnings": {
+    "generic_mg6_wording": 1,
+    "repeated_wording": 192,
+    "unclear_labels": 45,
+    "duplicate_bullets": 192,
+    "dense_internal_wording": 41,
+    "possible_false_suppression": 0,
+    "ocr_date_court_ambiguity": 21,
+    "partial_support_only": 420,
+    "too_cautious_not_surfaced": 36
+  },
+  "cases": [
+    {
+      "caseId": "messy-pdf-v1-01-phone-harassment",
+      "scenario": "Phone harassment — screenshots served, download/subscriber missing, attribution disputed",
+      "sourceCaseId": "demo-audit-01-phone-harassment",
+      "summary": {
+        "totalMeaningfulLines": 125,
+        "pass": 67,
+        "warning": 58,
+        "fail": 0,
+        "excluded": 13,
+        "byCategory": {
+          "evidence_claim": 1,
+          "strategic_review": 39,
+          "confidence_status": 4,
+          "evidence_state": 18,
+          "safety_warning": 30,
+          "chase_request": 8,
+          "court_note": 5,
+          "client_summary": 1,
+          "contradiction_or_risk": 2,
+          "export_line": 17
+        },
+        "bySupport": {
+          "partially_supported": 34,
+          "source_unavailable": 42,
+          "supported": 32,
+          "referred_only": 3,
+          "missing": 13,
+          "incomplete": 1
+        },
+        "positiveCorrect": 67,
+        "gedReviewCount": 58,
+        "blockingReview": 0,
+        "unsupportedOutput": 0,
+        "sourceReviewWarnings": 42,
+        "solicitorCaution": 16,
+        "cleanSourceBacked": 27,
+        "genericSafetyGuards": 40,
+        "byTier": {
+          "blocking_review": 0,
+          "source_review": 42,
+          "solicitor_caution": 16,
+          "clean_source_backed": 27,
+          "generic_safety_guard": 40
+        },
+        "proofChainCoverage": {
+          "pdfAndTextSupportOutput": 32,
+          "textSupportsButPdfUnchecked": 18,
+          "pdfAvailableButTextMismatch": 7,
+          "sourceUnavailable": 68,
+          "outputUnsupported": 0,
+          "originalPdfAvailable": true,
+          "caseProofMode": "pdf_and_text"
+        }
+      },
+      "acceptance": {
+        "caseId": "messy-pdf-v1-01-phone-harassment",
+        "passed": true,
+        "blocked": false,
+        "gates": [
+          {
+            "gate": "zero_emitted_fail",
+            "passed": true,
+            "detail": "emitted FAIL=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_emitted_unsupported",
+            "passed": true,
+            "detail": "emittedUnsupported=0, outputUnsupported=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_wrong_family_bleed",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_court_wording_in_cps_chase",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_referred_treated_as_served",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_missing_treated_as_available",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_incomplete_treated_as_complete",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "suppressions_logged",
+            "passed": true,
+            "detail": "suppressed=32",
+            "severity": "warning"
+          },
+          {
+            "gate": "missing_expected_logged",
+            "passed": true,
+            "detail": "missingExpected=4",
+            "severity": "warning"
+          },
+          {
+            "gate": "false_suppressions_visible",
+            "passed": true,
+            "detail": "possibleFalseSuppressions=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "summary_casing_polish",
+            "passed": true,
+            "detail": "clean",
+            "severity": "warning"
+          },
+          {
+            "gate": "proof_mode_honest",
+            "passed": true,
+            "detail": "mode=pdf_and_text, pdf=true",
+            "severity": "blocking"
+          }
+        ],
+        "warningCount": 58
+      },
+      "hardFailures": {
+        "false_served": 0,
+        "referred_only_treated_as_served": 0,
+        "missing_treated_as_available": 0,
+        "incomplete_treated_as_complete": 0,
+        "wrong_defendant_bleed": 0,
+        "wrong_family_bleed": 0,
+        "court_wording_in_cps_chase": 0,
+        "cps_chase_wording_in_court_note": 0,
+        "unsupported_allegation_stated_as_fact": 0,
+        "attribution_overclaim": 0,
+        "final_advice_win_loss_wording": 0,
+        "unsafe_client_summary": 0,
+        "source_page_mismatch": 0,
+        "output_with_no_source_anchor": 0
+      },
+      "softWarnings": {
+        "generic_mg6_wording": 0,
+        "repeated_wording": 18,
+        "unclear_labels": 2,
+        "duplicate_bullets": 18,
+        "dense_internal_wording": 5,
+        "possible_false_suppression": 0,
+        "ocr_date_court_ambiguity": 3,
+        "partial_support_only": 42,
+        "too_cautious_not_surfaced": 4
+      },
+      "bannedWordHits": [],
+      "outputs": {
+        "lineSource": "line-source-proof/messy-pdf-v1-01-phone-harassment/line-by-line-proof.md",
+        "packet": "line-source-proof/messy-pdf-v1-01-phone-harassment/SOLICITOR-PROOF-PACKET.md",
+        "receiptsMd": "cases/messy-pdf-v1-01-phone-harassment/PROOF-RECEIPTS.md",
+        "receiptsJson": "cases/messy-pdf-v1-01-phone-harassment/proof-receipts.json"
+      }
+    },
+    {
+      "caseId": "messy-pdf-v1-02-bwv-custody",
+      "scenario": "BWV/custody — custody extract served, full custody missing, BWV referred, interview audio missing",
+      "sourceCaseId": "demo-audit-03-bwv-custody",
+      "summary": {
+        "totalMeaningfulLines": 134,
+        "pass": 66,
+        "warning": 68,
+        "fail": 0,
+        "excluded": 0,
+        "byCategory": {
+          "evidence_claim": 1,
+          "strategic_review": 40,
+          "confidence_status": 4,
+          "evidence_state": 19,
+          "safety_warning": 27,
+          "chase_request": 15,
+          "court_note": 7,
+          "client_summary": 1,
+          "contradiction_or_risk": 2,
+          "export_line": 18
+        },
+        "bySupport": {
+          "partially_supported": 56,
+          "source_unavailable": 32,
+          "supported": 28,
+          "missing": 18
+        },
+        "positiveCorrect": 66,
+        "gedReviewCount": 68,
+        "blockingReview": 0,
+        "unsupportedOutput": 0,
+        "sourceReviewWarnings": 32,
+        "solicitorCaution": 36,
+        "cleanSourceBacked": 32,
+        "genericSafetyGuards": 34,
+        "byTier": {
+          "blocking_review": 0,
+          "source_review": 32,
+          "solicitor_caution": 36,
+          "clean_source_backed": 32,
+          "generic_safety_guard": 34
+        },
+        "proofChainCoverage": {
+          "pdfAndTextSupportOutput": 68,
+          "textSupportsButPdfUnchecked": 21,
+          "pdfAvailableButTextMismatch": 0,
+          "sourceUnavailable": 45,
+          "outputUnsupported": 0,
+          "originalPdfAvailable": true,
+          "caseProofMode": "pdf_and_text"
+        }
+      },
+      "acceptance": {
+        "caseId": "messy-pdf-v1-02-bwv-custody",
+        "passed": true,
+        "blocked": false,
+        "gates": [
+          {
+            "gate": "zero_emitted_fail",
+            "passed": true,
+            "detail": "emitted FAIL=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_emitted_unsupported",
+            "passed": true,
+            "detail": "emittedUnsupported=0, outputUnsupported=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_wrong_family_bleed",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_court_wording_in_cps_chase",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_referred_treated_as_served",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_missing_treated_as_available",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_incomplete_treated_as_complete",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "suppressions_logged",
+            "passed": true,
+            "detail": "suppressed=23",
+            "severity": "warning"
+          },
+          {
+            "gate": "missing_expected_logged",
+            "passed": true,
+            "detail": "missingExpected=3",
+            "severity": "warning"
+          },
+          {
+            "gate": "false_suppressions_visible",
+            "passed": true,
+            "detail": "possibleFalseSuppressions=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "summary_casing_polish",
+            "passed": true,
+            "detail": "clean",
+            "severity": "warning"
+          },
+          {
+            "gate": "proof_mode_honest",
+            "passed": true,
+            "detail": "mode=pdf_and_text, pdf=true",
+            "severity": "blocking"
+          }
+        ],
+        "warningCount": 68
+      },
+      "hardFailures": {
+        "false_served": 0,
+        "referred_only_treated_as_served": 0,
+        "missing_treated_as_available": 0,
+        "incomplete_treated_as_complete": 0,
+        "wrong_defendant_bleed": 0,
+        "wrong_family_bleed": 0,
+        "court_wording_in_cps_chase": 0,
+        "cps_chase_wording_in_court_note": 0,
+        "unsupported_allegation_stated_as_fact": 0,
+        "attribution_overclaim": 0,
+        "final_advice_win_loss_wording": 0,
+        "unsafe_client_summary": 0,
+        "source_page_mismatch": 0,
+        "output_with_no_source_anchor": 0
+      },
+      "softWarnings": {
+        "generic_mg6_wording": 0,
+        "repeated_wording": 22,
+        "unclear_labels": 4,
+        "duplicate_bullets": 22,
+        "dense_internal_wording": 4,
+        "possible_false_suppression": 0,
+        "ocr_date_court_ambiguity": 2,
+        "partial_support_only": 70,
+        "too_cautious_not_surfaced": 3
+      },
+      "bannedWordHits": [],
+      "outputs": {
+        "lineSource": "line-source-proof/messy-pdf-v1-02-bwv-custody/line-by-line-proof.md",
+        "packet": "line-source-proof/messy-pdf-v1-02-bwv-custody/SOLICITOR-PROOF-PACKET.md",
+        "receiptsMd": "cases/messy-pdf-v1-02-bwv-custody/PROOF-RECEIPTS.md",
+        "receiptsJson": "cases/messy-pdf-v1-02-bwv-custody/proof-receipts.json"
+      }
+    },
+    {
+      "caseId": "messy-pdf-v1-03-cctv-stills-master-missing",
+      "scenario": "CCTV — stills served, master footage missing, continuity/hash/audit trail missing",
+      "sourceCaseId": "demo-audit-08-cctv-night-stills",
+      "summary": {
+        "totalMeaningfulLines": 137,
+        "pass": 68,
+        "warning": 69,
+        "fail": 0,
+        "excluded": 0,
+        "byCategory": {
+          "evidence_claim": 1,
+          "strategic_review": 41,
+          "confidence_status": 4,
+          "evidence_state": 19,
+          "safety_warning": 29,
+          "chase_request": 15,
+          "court_note": 7,
+          "client_summary": 1,
+          "contradiction_or_risk": 2,
+          "export_line": 18
+        },
+        "bySupport": {
+          "partially_supported": 41,
+          "source_unavailable": 51,
+          "supported": 30,
+          "missing": 13,
+          "unsupported": 2
+        },
+        "positiveCorrect": 68,
+        "gedReviewCount": 69,
+        "blockingReview": 0,
+        "unsupportedOutput": 2,
+        "sourceReviewWarnings": 49,
+        "solicitorCaution": 20,
+        "cleanSourceBacked": 29,
+        "genericSafetyGuards": 39,
+        "byTier": {
+          "blocking_review": 0,
+          "source_review": 49,
+          "solicitor_caution": 20,
+          "clean_source_backed": 29,
+          "generic_safety_guard": 39
+        },
+        "proofChainCoverage": {
+          "pdfAndTextSupportOutput": 49,
+          "textSupportsButPdfUnchecked": 19,
+          "pdfAvailableButTextMismatch": 0,
+          "sourceUnavailable": 69,
+          "outputUnsupported": 0,
+          "originalPdfAvailable": true,
+          "caseProofMode": "pdf_and_text"
+        }
+      },
+      "acceptance": {
+        "caseId": "messy-pdf-v1-03-cctv-stills-master-missing",
+        "passed": true,
+        "blocked": false,
+        "gates": [
+          {
+            "gate": "zero_emitted_fail",
+            "passed": true,
+            "detail": "emitted FAIL=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_emitted_unsupported",
+            "passed": true,
+            "detail": "emittedUnsupported=0, outputUnsupported=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_wrong_family_bleed",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_court_wording_in_cps_chase",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_referred_treated_as_served",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_missing_treated_as_available",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_incomplete_treated_as_complete",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "suppressions_logged",
+            "passed": true,
+            "detail": "suppressed=19",
+            "severity": "warning"
+          },
+          {
+            "gate": "missing_expected_logged",
+            "passed": true,
+            "detail": "missingExpected=4",
+            "severity": "warning"
+          },
+          {
+            "gate": "false_suppressions_visible",
+            "passed": true,
+            "detail": "possibleFalseSuppressions=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "summary_casing_polish",
+            "passed": true,
+            "detail": "clean",
+            "severity": "warning"
+          },
+          {
+            "gate": "proof_mode_honest",
+            "passed": true,
+            "detail": "mode=pdf_and_text, pdf=true",
+            "severity": "blocking"
+          }
+        ],
+        "warningCount": 69
+      },
+      "hardFailures": {
+        "false_served": 0,
+        "referred_only_treated_as_served": 0,
+        "missing_treated_as_available": 0,
+        "incomplete_treated_as_complete": 0,
+        "wrong_defendant_bleed": 0,
+        "wrong_family_bleed": 0,
+        "court_wording_in_cps_chase": 0,
+        "cps_chase_wording_in_court_note": 0,
+        "unsupported_allegation_stated_as_fact": 0,
+        "attribution_overclaim": 0,
+        "final_advice_win_loss_wording": 0,
+        "unsafe_client_summary": 0,
+        "source_page_mismatch": 0,
+        "output_with_no_source_anchor": 0
+      },
+      "softWarnings": {
+        "generic_mg6_wording": 0,
+        "repeated_wording": 23,
+        "unclear_labels": 8,
+        "duplicate_bullets": 23,
+        "dense_internal_wording": 4,
+        "possible_false_suppression": 0,
+        "ocr_date_court_ambiguity": 2,
+        "partial_support_only": 54,
+        "too_cautious_not_surfaced": 4
+      },
+      "bannedWordHits": [],
+      "outputs": {
+        "lineSource": "line-source-proof/messy-pdf-v1-03-cctv-stills-master-missing/line-by-line-proof.md",
+        "packet": "line-source-proof/messy-pdf-v1-03-cctv-stills-master-missing/SOLICITOR-PROOF-PACKET.md",
+        "receiptsMd": "cases/messy-pdf-v1-03-cctv-stills-master-missing/PROOF-RECEIPTS.md",
+        "receiptsJson": "cases/messy-pdf-v1-03-cctv-stills-master-missing/proof-receipts.json"
+      }
+    },
+    {
+      "caseId": "messy-pdf-v1-04-codefendant-material",
+      "scenario": "Co-defendant material — co-def interview referenced, target defendant interview missing",
+      "sourceCaseId": "demo-audit-04-co-def-interview",
+      "summary": {
+        "totalMeaningfulLines": 126,
+        "pass": 35,
+        "warning": 91,
+        "fail": 0,
+        "excluded": 0,
+        "byCategory": {
+          "evidence_claim": 1,
+          "strategic_review": 42,
+          "confidence_status": 4,
+          "evidence_state": 15,
+          "safety_warning": 25,
+          "chase_request": 12,
+          "court_note": 6,
+          "client_summary": 1,
+          "contradiction_or_risk": 2,
+          "export_line": 18
+        },
+        "bySupport": {
+          "partially_supported": 27,
+          "source_unavailable": 65,
+          "supported": 26,
+          "missing": 8
+        },
+        "positiveCorrect": 35,
+        "gedReviewCount": 91,
+        "blockingReview": 0,
+        "unsupportedOutput": 0,
+        "sourceReviewWarnings": 70,
+        "solicitorCaution": 21,
+        "cleanSourceBacked": 1,
+        "genericSafetyGuards": 34,
+        "byTier": {
+          "blocking_review": 0,
+          "source_review": 70,
+          "solicitor_caution": 21,
+          "clean_source_backed": 1,
+          "generic_safety_guard": 34
+        },
+        "proofChainCoverage": {
+          "pdfAndTextSupportOutput": 22,
+          "textSupportsButPdfUnchecked": 21,
+          "pdfAvailableButTextMismatch": 0,
+          "sourceUnavailable": 83,
+          "outputUnsupported": 0,
+          "originalPdfAvailable": true,
+          "caseProofMode": "pdf_and_text"
+        }
+      },
+      "acceptance": {
+        "caseId": "messy-pdf-v1-04-codefendant-material",
+        "passed": true,
+        "blocked": false,
+        "gates": [
+          {
+            "gate": "zero_emitted_fail",
+            "passed": true,
+            "detail": "emitted FAIL=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_emitted_unsupported",
+            "passed": true,
+            "detail": "emittedUnsupported=0, outputUnsupported=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_wrong_family_bleed",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_court_wording_in_cps_chase",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_referred_treated_as_served",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_missing_treated_as_available",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_incomplete_treated_as_complete",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "suppressions_logged",
+            "passed": true,
+            "detail": "suppressed=23",
+            "severity": "warning"
+          },
+          {
+            "gate": "missing_expected_logged",
+            "passed": true,
+            "detail": "missingExpected=1",
+            "severity": "warning"
+          },
+          {
+            "gate": "false_suppressions_visible",
+            "passed": true,
+            "detail": "possibleFalseSuppressions=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "summary_casing_polish",
+            "passed": true,
+            "detail": "clean",
+            "severity": "warning"
+          },
+          {
+            "gate": "proof_mode_honest",
+            "passed": true,
+            "detail": "mode=pdf_and_text, pdf=true",
+            "severity": "blocking"
+          }
+        ],
+        "warningCount": 91
+      },
+      "hardFailures": {
+        "false_served": 0,
+        "referred_only_treated_as_served": 0,
+        "missing_treated_as_available": 0,
+        "incomplete_treated_as_complete": 0,
+        "wrong_defendant_bleed": 0,
+        "wrong_family_bleed": 0,
+        "court_wording_in_cps_chase": 0,
+        "cps_chase_wording_in_court_note": 0,
+        "unsupported_allegation_stated_as_fact": 0,
+        "attribution_overclaim": 0,
+        "final_advice_win_loss_wording": 0,
+        "unsafe_client_summary": 0,
+        "source_page_mismatch": 0,
+        "output_with_no_source_anchor": 0
+      },
+      "softWarnings": {
+        "generic_mg6_wording": 0,
+        "repeated_wording": 20,
+        "unclear_labels": 8,
+        "duplicate_bullets": 20,
+        "dense_internal_wording": 4,
+        "possible_false_suppression": 0,
+        "ocr_date_court_ambiguity": 2,
+        "partial_support_only": 37,
+        "too_cautious_not_surfaced": 1
+      },
+      "bannedWordHits": [],
+      "outputs": {
+        "lineSource": "line-source-proof/messy-pdf-v1-04-codefendant-material/line-by-line-proof.md",
+        "packet": "line-source-proof/messy-pdf-v1-04-codefendant-material/SOLICITOR-PROOF-PACKET.md",
+        "receiptsMd": "cases/messy-pdf-v1-04-codefendant-material/PROOF-RECEIPTS.md",
+        "receiptsJson": "cases/messy-pdf-v1-04-codefendant-material/proof-receipts.json"
+      }
+    },
+    {
+      "caseId": "messy-pdf-v1-05-encro-handle-attribution",
+      "scenario": "Encro/handle attribution — messages served, handle mapping/platform extraction missing",
+      "sourceCaseId": "demo-audit-05-encro-attribution",
+      "summary": {
+        "totalMeaningfulLines": 112,
+        "pass": 43,
+        "warning": 69,
+        "fail": 0,
+        "excluded": 0,
+        "byCategory": {
+          "evidence_claim": 1,
+          "strategic_review": 40,
+          "confidence_status": 4,
+          "evidence_state": 11,
+          "safety_warning": 22,
+          "chase_request": 8,
+          "court_note": 5,
+          "client_summary": 1,
+          "contradiction_or_risk": 2,
+          "export_line": 18
+        },
+        "bySupport": {
+          "source_unavailable": 62,
+          "partially_supported": 17,
+          "supported": 22,
+          "missing": 9,
+          "referred_only": 1,
+          "blocked": 1
+        },
+        "positiveCorrect": 43,
+        "gedReviewCount": 69,
+        "blockingReview": 0,
+        "unsupportedOutput": 1,
+        "sourceReviewWarnings": 57,
+        "solicitorCaution": 12,
+        "cleanSourceBacked": 14,
+        "genericSafetyGuards": 29,
+        "byTier": {
+          "blocking_review": 0,
+          "source_review": 57,
+          "solicitor_caution": 12,
+          "clean_source_backed": 14,
+          "generic_safety_guard": 29
+        },
+        "proofChainCoverage": {
+          "pdfAndTextSupportOutput": 21,
+          "textSupportsButPdfUnchecked": 3,
+          "pdfAvailableButTextMismatch": 5,
+          "sourceUnavailable": 83,
+          "outputUnsupported": 0,
+          "originalPdfAvailable": true,
+          "caseProofMode": "pdf_and_text"
+        }
+      },
+      "acceptance": {
+        "caseId": "messy-pdf-v1-05-encro-handle-attribution",
+        "passed": true,
+        "blocked": false,
+        "gates": [
+          {
+            "gate": "zero_emitted_fail",
+            "passed": true,
+            "detail": "emitted FAIL=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_emitted_unsupported",
+            "passed": true,
+            "detail": "emittedUnsupported=0, outputUnsupported=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_wrong_family_bleed",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_court_wording_in_cps_chase",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_referred_treated_as_served",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_missing_treated_as_available",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_incomplete_treated_as_complete",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "suppressions_logged",
+            "passed": true,
+            "detail": "suppressed=23",
+            "severity": "warning"
+          },
+          {
+            "gate": "missing_expected_logged",
+            "passed": true,
+            "detail": "missingExpected=5",
+            "severity": "warning"
+          },
+          {
+            "gate": "false_suppressions_visible",
+            "passed": true,
+            "detail": "possibleFalseSuppressions=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "summary_casing_polish",
+            "passed": true,
+            "detail": "clean",
+            "severity": "warning"
+          },
+          {
+            "gate": "proof_mode_honest",
+            "passed": true,
+            "detail": "mode=pdf_and_text, pdf=true",
+            "severity": "blocking"
+          }
+        ],
+        "warningCount": 69
+      },
+      "hardFailures": {
+        "false_served": 0,
+        "referred_only_treated_as_served": 0,
+        "missing_treated_as_available": 0,
+        "incomplete_treated_as_complete": 0,
+        "wrong_defendant_bleed": 0,
+        "wrong_family_bleed": 0,
+        "court_wording_in_cps_chase": 0,
+        "cps_chase_wording_in_court_note": 0,
+        "unsupported_allegation_stated_as_fact": 0,
+        "attribution_overclaim": 0,
+        "final_advice_win_loss_wording": 0,
+        "unsafe_client_summary": 0,
+        "source_page_mismatch": 0,
+        "output_with_no_source_anchor": 0
+      },
+      "softWarnings": {
+        "generic_mg6_wording": 1,
+        "repeated_wording": 16,
+        "unclear_labels": 3,
+        "duplicate_bullets": 16,
+        "dense_internal_wording": 4,
+        "possible_false_suppression": 0,
+        "ocr_date_court_ambiguity": 2,
+        "partial_support_only": 19,
+        "too_cautious_not_surfaced": 5
+      },
+      "bannedWordHits": [],
+      "outputs": {
+        "lineSource": "line-source-proof/messy-pdf-v1-05-encro-handle-attribution/line-by-line-proof.md",
+        "packet": "line-source-proof/messy-pdf-v1-05-encro-handle-attribution/SOLICITOR-PROOF-PACKET.md",
+        "receiptsMd": "cases/messy-pdf-v1-05-encro-handle-attribution/PROOF-RECEIPTS.md",
+        "receiptsJson": "cases/messy-pdf-v1-05-encro-handle-attribution/proof-receipts.json"
+      }
+    },
+    {
+      "caseId": "messy-pdf-v1-06-index-contradiction",
+      "scenario": "Index contradiction — index says exhibit served, PDF missing, MG6C refers only",
+      "sourceCaseId": "demo-audit-24-missing-pages-index",
+      "summary": {
+        "totalMeaningfulLines": 137,
+        "pass": 68,
+        "warning": 69,
+        "fail": 0,
+        "excluded": 0,
+        "byCategory": {
+          "evidence_claim": 1,
+          "strategic_review": 41,
+          "confidence_status": 4,
+          "evidence_state": 19,
+          "safety_warning": 29,
+          "chase_request": 15,
+          "court_note": 7,
+          "client_summary": 1,
+          "contradiction_or_risk": 2,
+          "export_line": 18
+        },
+        "bySupport": {
+          "partially_supported": 41,
+          "source_unavailable": 51,
+          "supported": 30,
+          "missing": 13,
+          "unsupported": 2
+        },
+        "positiveCorrect": 68,
+        "gedReviewCount": 69,
+        "blockingReview": 0,
+        "unsupportedOutput": 2,
+        "sourceReviewWarnings": 49,
+        "solicitorCaution": 20,
+        "cleanSourceBacked": 29,
+        "genericSafetyGuards": 39,
+        "byTier": {
+          "blocking_review": 0,
+          "source_review": 49,
+          "solicitor_caution": 20,
+          "clean_source_backed": 29,
+          "generic_safety_guard": 39
+        },
+        "proofChainCoverage": {
+          "pdfAndTextSupportOutput": 49,
+          "textSupportsButPdfUnchecked": 19,
+          "pdfAvailableButTextMismatch": 0,
+          "sourceUnavailable": 69,
+          "outputUnsupported": 0,
+          "originalPdfAvailable": true,
+          "caseProofMode": "pdf_and_text"
+        }
+      },
+      "acceptance": {
+        "caseId": "messy-pdf-v1-06-index-contradiction",
+        "passed": true,
+        "blocked": false,
+        "gates": [
+          {
+            "gate": "zero_emitted_fail",
+            "passed": true,
+            "detail": "emitted FAIL=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_emitted_unsupported",
+            "passed": true,
+            "detail": "emittedUnsupported=0, outputUnsupported=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_wrong_family_bleed",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_court_wording_in_cps_chase",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_referred_treated_as_served",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_missing_treated_as_available",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_incomplete_treated_as_complete",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "suppressions_logged",
+            "passed": true,
+            "detail": "suppressed=19",
+            "severity": "warning"
+          },
+          {
+            "gate": "missing_expected_logged",
+            "passed": true,
+            "detail": "missingExpected=4",
+            "severity": "warning"
+          },
+          {
+            "gate": "false_suppressions_visible",
+            "passed": true,
+            "detail": "possibleFalseSuppressions=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "summary_casing_polish",
+            "passed": true,
+            "detail": "clean",
+            "severity": "warning"
+          },
+          {
+            "gate": "proof_mode_honest",
+            "passed": true,
+            "detail": "mode=pdf_and_text, pdf=true",
+            "severity": "blocking"
+          }
+        ],
+        "warningCount": 69
+      },
+      "hardFailures": {
+        "false_served": 0,
+        "referred_only_treated_as_served": 0,
+        "missing_treated_as_available": 0,
+        "incomplete_treated_as_complete": 0,
+        "wrong_defendant_bleed": 0,
+        "wrong_family_bleed": 0,
+        "court_wording_in_cps_chase": 0,
+        "cps_chase_wording_in_court_note": 0,
+        "unsupported_allegation_stated_as_fact": 0,
+        "attribution_overclaim": 0,
+        "final_advice_win_loss_wording": 0,
+        "unsafe_client_summary": 0,
+        "source_page_mismatch": 0,
+        "output_with_no_source_anchor": 0
+      },
+      "softWarnings": {
+        "generic_mg6_wording": 0,
+        "repeated_wording": 23,
+        "unclear_labels": 8,
+        "duplicate_bullets": 23,
+        "dense_internal_wording": 4,
+        "possible_false_suppression": 0,
+        "ocr_date_court_ambiguity": 2,
+        "partial_support_only": 54,
+        "too_cautious_not_surfaced": 4
+      },
+      "bannedWordHits": [],
+      "outputs": {
+        "lineSource": "line-source-proof/messy-pdf-v1-06-index-contradiction/line-by-line-proof.md",
+        "packet": "line-source-proof/messy-pdf-v1-06-index-contradiction/SOLICITOR-PROOF-PACKET.md",
+        "receiptsMd": "cases/messy-pdf-v1-06-index-contradiction/PROOF-RECEIPTS.md",
+        "receiptsJson": "cases/messy-pdf-v1-06-index-contradiction/proof-receipts.json"
+      }
+    },
+    {
+      "caseId": "messy-pdf-v1-07-duplicate-rotated-ocr",
+      "scenario": "Duplicate/rotated OCR bundle — duplicated pages, rotated scan text, OCR date/court risk",
+      "sourceCaseId": "demo-audit-23-duplicate-pages",
+      "summary": {
+        "totalMeaningfulLines": 125,
+        "pass": 61,
+        "warning": 64,
+        "fail": 0,
+        "excluded": 13,
+        "byCategory": {
+          "evidence_claim": 1,
+          "strategic_review": 39,
+          "confidence_status": 4,
+          "evidence_state": 18,
+          "safety_warning": 30,
+          "chase_request": 8,
+          "court_note": 5,
+          "client_summary": 1,
+          "contradiction_or_risk": 2,
+          "export_line": 17
+        },
+        "bySupport": {
+          "partially_supported": 34,
+          "source_unavailable": 42,
+          "supported": 32,
+          "referred_only": 3,
+          "missing": 13,
+          "incomplete": 1
+        },
+        "positiveCorrect": 61,
+        "gedReviewCount": 64,
+        "blockingReview": 0,
+        "unsupportedOutput": 0,
+        "sourceReviewWarnings": 42,
+        "solicitorCaution": 22,
+        "cleanSourceBacked": 21,
+        "genericSafetyGuards": 40,
+        "byTier": {
+          "blocking_review": 0,
+          "source_review": 42,
+          "solicitor_caution": 22,
+          "clean_source_backed": 21,
+          "generic_safety_guard": 40
+        },
+        "proofChainCoverage": {
+          "pdfAndTextSupportOutput": 27,
+          "textSupportsButPdfUnchecked": 30,
+          "pdfAvailableButTextMismatch": 0,
+          "sourceUnavailable": 68,
+          "outputUnsupported": 0,
+          "originalPdfAvailable": true,
+          "caseProofMode": "pdf_and_text"
+        }
+      },
+      "acceptance": {
+        "caseId": "messy-pdf-v1-07-duplicate-rotated-ocr",
+        "passed": true,
+        "blocked": false,
+        "gates": [
+          {
+            "gate": "zero_emitted_fail",
+            "passed": true,
+            "detail": "emitted FAIL=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_emitted_unsupported",
+            "passed": true,
+            "detail": "emittedUnsupported=0, outputUnsupported=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_wrong_family_bleed",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_court_wording_in_cps_chase",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_referred_treated_as_served",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_missing_treated_as_available",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_incomplete_treated_as_complete",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "suppressions_logged",
+            "passed": true,
+            "detail": "suppressed=34",
+            "severity": "warning"
+          },
+          {
+            "gate": "missing_expected_logged",
+            "passed": true,
+            "detail": "missingExpected=6",
+            "severity": "warning"
+          },
+          {
+            "gate": "false_suppressions_visible",
+            "passed": true,
+            "detail": "possibleFalseSuppressions=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "summary_casing_polish",
+            "passed": true,
+            "detail": "clean",
+            "severity": "warning"
+          },
+          {
+            "gate": "proof_mode_honest",
+            "passed": true,
+            "detail": "mode=pdf_and_text, pdf=true",
+            "severity": "blocking"
+          }
+        ],
+        "warningCount": 64
+      },
+      "hardFailures": {
+        "false_served": 0,
+        "referred_only_treated_as_served": 0,
+        "missing_treated_as_available": 0,
+        "incomplete_treated_as_complete": 0,
+        "wrong_defendant_bleed": 0,
+        "wrong_family_bleed": 0,
+        "court_wording_in_cps_chase": 0,
+        "cps_chase_wording_in_court_note": 0,
+        "unsupported_allegation_stated_as_fact": 0,
+        "attribution_overclaim": 0,
+        "final_advice_win_loss_wording": 0,
+        "unsafe_client_summary": 0,
+        "source_page_mismatch": 0,
+        "output_with_no_source_anchor": 0
+      },
+      "softWarnings": {
+        "generic_mg6_wording": 0,
+        "repeated_wording": 18,
+        "unclear_labels": 2,
+        "duplicate_bullets": 18,
+        "dense_internal_wording": 4,
+        "possible_false_suppression": 0,
+        "ocr_date_court_ambiguity": 2,
+        "partial_support_only": 47,
+        "too_cautious_not_surfaced": 6
+      },
+      "bannedWordHits": [],
+      "outputs": {
+        "lineSource": "line-source-proof/messy-pdf-v1-07-duplicate-rotated-ocr/line-by-line-proof.md",
+        "packet": "line-source-proof/messy-pdf-v1-07-duplicate-rotated-ocr/SOLICITOR-PROOF-PACKET.md",
+        "receiptsMd": "cases/messy-pdf-v1-07-duplicate-rotated-ocr/PROOF-RECEIPTS.md",
+        "receiptsJson": "cases/messy-pdf-v1-07-duplicate-rotated-ocr/proof-receipts.json"
+      }
+    },
+    {
+      "caseId": "messy-pdf-v1-08-charge-mismatch",
+      "scenario": "Charge mismatch — charge sheet wording differs from MG5/case summary",
+      "sourceCaseId": "demo-audit-25-charge-bundle-mismatch",
+      "summary": {
+        "totalMeaningfulLines": 112,
+        "pass": 42,
+        "warning": 70,
+        "fail": 0,
+        "excluded": 0,
+        "byCategory": {
+          "evidence_claim": 1,
+          "strategic_review": 40,
+          "confidence_status": 4,
+          "evidence_state": 11,
+          "safety_warning": 22,
+          "chase_request": 8,
+          "court_note": 5,
+          "client_summary": 1,
+          "contradiction_or_risk": 2,
+          "export_line": 18
+        },
+        "bySupport": {
+          "partially_supported": 21,
+          "source_unavailable": 59,
+          "supported": 22,
+          "missing": 9,
+          "blocked": 1
+        },
+        "positiveCorrect": 42,
+        "gedReviewCount": 70,
+        "blockingReview": 0,
+        "unsupportedOutput": 1,
+        "sourceReviewWarnings": 58,
+        "solicitorCaution": 12,
+        "cleanSourceBacked": 13,
+        "genericSafetyGuards": 29,
+        "byTier": {
+          "blocking_review": 0,
+          "source_review": 58,
+          "solicitor_caution": 12,
+          "clean_source_backed": 13,
+          "generic_safety_guard": 29
+        },
+        "proofChainCoverage": {
+          "pdfAndTextSupportOutput": 20,
+          "textSupportsButPdfUnchecked": 12,
+          "pdfAvailableButTextMismatch": 0,
+          "sourceUnavailable": 80,
+          "outputUnsupported": 0,
+          "originalPdfAvailable": true,
+          "caseProofMode": "pdf_and_text"
+        }
+      },
+      "acceptance": {
+        "caseId": "messy-pdf-v1-08-charge-mismatch",
+        "passed": true,
+        "blocked": false,
+        "gates": [
+          {
+            "gate": "zero_emitted_fail",
+            "passed": true,
+            "detail": "emitted FAIL=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_emitted_unsupported",
+            "passed": true,
+            "detail": "emittedUnsupported=0, outputUnsupported=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_wrong_family_bleed",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_court_wording_in_cps_chase",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_referred_treated_as_served",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_missing_treated_as_available",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_incomplete_treated_as_complete",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "suppressions_logged",
+            "passed": true,
+            "detail": "suppressed=22",
+            "severity": "warning"
+          },
+          {
+            "gate": "missing_expected_logged",
+            "passed": true,
+            "detail": "missingExpected=5",
+            "severity": "warning"
+          },
+          {
+            "gate": "false_suppressions_visible",
+            "passed": true,
+            "detail": "possibleFalseSuppressions=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "summary_casing_polish",
+            "passed": true,
+            "detail": "clean",
+            "severity": "warning"
+          },
+          {
+            "gate": "proof_mode_honest",
+            "passed": true,
+            "detail": "mode=pdf_and_text, pdf=true",
+            "severity": "blocking"
+          }
+        ],
+        "warningCount": 70
+      },
+      "hardFailures": {
+        "false_served": 0,
+        "referred_only_treated_as_served": 0,
+        "missing_treated_as_available": 0,
+        "incomplete_treated_as_complete": 0,
+        "wrong_defendant_bleed": 0,
+        "wrong_family_bleed": 0,
+        "court_wording_in_cps_chase": 0,
+        "cps_chase_wording_in_court_note": 0,
+        "unsupported_allegation_stated_as_fact": 0,
+        "attribution_overclaim": 0,
+        "final_advice_win_loss_wording": 0,
+        "unsafe_client_summary": 0,
+        "source_page_mismatch": 0,
+        "output_with_no_source_anchor": 0
+      },
+      "softWarnings": {
+        "generic_mg6_wording": 0,
+        "repeated_wording": 16,
+        "unclear_labels": 3,
+        "duplicate_bullets": 16,
+        "dense_internal_wording": 4,
+        "possible_false_suppression": 0,
+        "ocr_date_court_ambiguity": 2,
+        "partial_support_only": 24,
+        "too_cautious_not_surfaced": 5
+      },
+      "bannedWordHits": [],
+      "outputs": {
+        "lineSource": "line-source-proof/messy-pdf-v1-08-charge-mismatch/line-by-line-proof.md",
+        "packet": "line-source-proof/messy-pdf-v1-08-charge-mismatch/SOLICITOR-PROOF-PACKET.md",
+        "receiptsMd": "cases/messy-pdf-v1-08-charge-mismatch/PROOF-RECEIPTS.md",
+        "receiptsJson": "cases/messy-pdf-v1-08-charge-mismatch/proof-receipts.json"
+      }
+    },
+    {
+      "caseId": "messy-pdf-v1-09-medical-injury-evidence",
+      "scenario": "Medical/injury evidence — injury alleged, report/photos missing or partial",
+      "sourceCaseId": "demo-audit-19-motoring-breath-specimen",
+      "summary": {
+        "totalMeaningfulLines": 136,
+        "pass": 34,
+        "warning": 102,
+        "fail": 0,
+        "excluded": 0,
+        "byCategory": {
+          "evidence_claim": 1,
+          "strategic_review": 44,
+          "confidence_status": 4,
+          "evidence_state": 19,
+          "safety_warning": 24,
+          "chase_request": 15,
+          "court_note": 7,
+          "client_summary": 1,
+          "contradiction_or_risk": 3,
+          "export_line": 18
+        },
+        "bySupport": {
+          "partially_supported": 22,
+          "source_unavailable": 60,
+          "missing": 29,
+          "supported": 25
+        },
+        "positiveCorrect": 34,
+        "gedReviewCount": 102,
+        "blockingReview": 0,
+        "unsupportedOutput": 0,
+        "sourceReviewWarnings": 59,
+        "solicitorCaution": 43,
+        "cleanSourceBacked": 1,
+        "genericSafetyGuards": 33,
+        "byTier": {
+          "blocking_review": 0,
+          "source_review": 59,
+          "solicitor_caution": 43,
+          "clean_source_backed": 1,
+          "generic_safety_guard": 33
+        },
+        "proofChainCoverage": {
+          "pdfAndTextSupportOutput": 32,
+          "textSupportsButPdfUnchecked": 26,
+          "pdfAvailableButTextMismatch": 0,
+          "sourceUnavailable": 78,
+          "outputUnsupported": 0,
+          "originalPdfAvailable": true,
+          "caseProofMode": "pdf_and_text"
+        }
+      },
+      "acceptance": {
+        "caseId": "messy-pdf-v1-09-medical-injury-evidence",
+        "passed": true,
+        "blocked": false,
+        "gates": [
+          {
+            "gate": "zero_emitted_fail",
+            "passed": true,
+            "detail": "emitted FAIL=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_emitted_unsupported",
+            "passed": true,
+            "detail": "emittedUnsupported=0, outputUnsupported=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_wrong_family_bleed",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_court_wording_in_cps_chase",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_referred_treated_as_served",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_missing_treated_as_available",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_incomplete_treated_as_complete",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "suppressions_logged",
+            "passed": true,
+            "detail": "suppressed=22",
+            "severity": "warning"
+          },
+          {
+            "gate": "missing_expected_logged",
+            "passed": true,
+            "detail": "missingExpected=4",
+            "severity": "warning"
+          },
+          {
+            "gate": "false_suppressions_visible",
+            "passed": true,
+            "detail": "possibleFalseSuppressions=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "summary_casing_polish",
+            "passed": true,
+            "detail": "clean",
+            "severity": "warning"
+          },
+          {
+            "gate": "proof_mode_honest",
+            "passed": true,
+            "detail": "mode=pdf_and_text, pdf=true",
+            "severity": "blocking"
+          }
+        ],
+        "warningCount": 102
+      },
+      "hardFailures": {
+        "false_served": 0,
+        "referred_only_treated_as_served": 0,
+        "missing_treated_as_available": 0,
+        "incomplete_treated_as_complete": 0,
+        "wrong_defendant_bleed": 0,
+        "wrong_family_bleed": 0,
+        "court_wording_in_cps_chase": 0,
+        "cps_chase_wording_in_court_note": 0,
+        "unsupported_allegation_stated_as_fact": 0,
+        "attribution_overclaim": 0,
+        "final_advice_win_loss_wording": 0,
+        "unsafe_client_summary": 0,
+        "source_page_mismatch": 0,
+        "output_with_no_source_anchor": 0
+      },
+      "softWarnings": {
+        "generic_mg6_wording": 0,
+        "repeated_wording": 19,
+        "unclear_labels": 1,
+        "duplicate_bullets": 19,
+        "dense_internal_wording": 4,
+        "possible_false_suppression": 0,
+        "ocr_date_court_ambiguity": 2,
+        "partial_support_only": 37,
+        "too_cautious_not_surfaced": 4
+      },
+      "bannedWordHits": [],
+      "outputs": {
+        "lineSource": "line-source-proof/messy-pdf-v1-09-medical-injury-evidence/line-by-line-proof.md",
+        "packet": "line-source-proof/messy-pdf-v1-09-medical-injury-evidence/SOLICITOR-PROOF-PACKET.md",
+        "receiptsMd": "cases/messy-pdf-v1-09-medical-injury-evidence/PROOF-RECEIPTS.md",
+        "receiptsJson": "cases/messy-pdf-v1-09-medical-injury-evidence/proof-receipts.json"
+      }
+    },
+    {
+      "caseId": "messy-pdf-v1-10-youth-vulnerability-aa",
+      "scenario": "Youth/vulnerability/appropriate adult — safeguard referred, record missing/partial",
+      "sourceCaseId": "demo-audit-22-youth-interview",
+      "summary": {
+        "totalMeaningfulLines": 115,
+        "pass": 33,
+        "warning": 82,
+        "fail": 0,
+        "excluded": 0,
+        "byCategory": {
+          "evidence_claim": 1,
+          "strategic_review": 41,
+          "confidence_status": 4,
+          "evidence_state": 11,
+          "safety_warning": 23,
+          "chase_request": 8,
+          "court_note": 5,
+          "client_summary": 1,
+          "contradiction_or_risk": 3,
+          "export_line": 18
+        },
+        "bySupport": {
+          "partially_supported": 20,
+          "source_unavailable": 57,
+          "missing": 13,
+          "supported": 24,
+          "referred_only": 1
+        },
+        "positiveCorrect": 33,
+        "gedReviewCount": 82,
+        "blockingReview": 0,
+        "unsupportedOutput": 0,
+        "sourceReviewWarnings": 54,
+        "solicitorCaution": 28,
+        "cleanSourceBacked": 1,
+        "genericSafetyGuards": 32,
+        "byTier": {
+          "blocking_review": 0,
+          "source_review": 54,
+          "solicitor_caution": 28,
+          "clean_source_backed": 1,
+          "generic_safety_guard": 32
+        },
+        "proofChainCoverage": {
+          "pdfAndTextSupportOutput": 14,
+          "textSupportsButPdfUnchecked": 26,
+          "pdfAvailableButTextMismatch": 0,
+          "sourceUnavailable": 75,
+          "outputUnsupported": 0,
+          "originalPdfAvailable": true,
+          "caseProofMode": "pdf_and_text"
+        }
+      },
+      "acceptance": {
+        "caseId": "messy-pdf-v1-10-youth-vulnerability-aa",
+        "passed": true,
+        "blocked": false,
+        "gates": [
+          {
+            "gate": "zero_emitted_fail",
+            "passed": true,
+            "detail": "emitted FAIL=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_emitted_unsupported",
+            "passed": true,
+            "detail": "emittedUnsupported=0, outputUnsupported=0",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_wrong_family_bleed",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_court_wording_in_cps_chase",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_referred_treated_as_served",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_missing_treated_as_available",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "zero_incomplete_treated_as_complete",
+            "passed": true,
+            "detail": "none",
+            "severity": "blocking"
+          },
+          {
+            "gate": "suppressions_logged",
+            "passed": true,
+            "detail": "suppressed=23",
+            "severity": "warning"
+          },
+          {
+            "gate": "missing_expected_logged",
+            "passed": true,
+            "detail": "missingExpected=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "false_suppressions_visible",
+            "passed": true,
+            "detail": "possibleFalseSuppressions=0",
+            "severity": "warning"
+          },
+          {
+            "gate": "summary_casing_polish",
+            "passed": true,
+            "detail": "clean",
+            "severity": "warning"
+          },
+          {
+            "gate": "proof_mode_honest",
+            "passed": true,
+            "detail": "mode=pdf_and_text, pdf=true",
+            "severity": "blocking"
+          }
+        ],
+        "warningCount": 82
+      },
+      "hardFailures": {
+        "false_served": 0,
+        "referred_only_treated_as_served": 0,
+        "missing_treated_as_available": 0,
+        "incomplete_treated_as_complete": 0,
+        "wrong_defendant_bleed": 0,
+        "wrong_family_bleed": 0,
+        "court_wording_in_cps_chase": 0,
+        "cps_chase_wording_in_court_note": 0,
+        "unsupported_allegation_stated_as_fact": 0,
+        "attribution_overclaim": 0,
+        "final_advice_win_loss_wording": 0,
+        "unsafe_client_summary": 0,
+        "source_page_mismatch": 0,
+        "output_with_no_source_anchor": 0
+      },
+      "softWarnings": {
+        "generic_mg6_wording": 0,
+        "repeated_wording": 17,
+        "unclear_labels": 6,
+        "duplicate_bullets": 17,
+        "dense_internal_wording": 4,
+        "possible_false_suppression": 0,
+        "ocr_date_court_ambiguity": 2,
+        "partial_support_only": 36,
+        "too_cautious_not_surfaced": 0
+      },
+      "bannedWordHits": [],
+      "outputs": {
+        "lineSource": "line-source-proof/messy-pdf-v1-10-youth-vulnerability-aa/line-by-line-proof.md",
+        "packet": "line-source-proof/messy-pdf-v1-10-youth-vulnerability-aa/SOLICITOR-PROOF-PACKET.md",
+        "receiptsMd": "cases/messy-pdf-v1-10-youth-vulnerability-aa/PROOF-RECEIPTS.md",
+        "receiptsJson": "cases/messy-pdf-v1-10-youth-vulnerability-aa/proof-receipts.json"
+      }
+    }
+  ]
+}
