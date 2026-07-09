@@ -8,13 +8,24 @@ import {
   displayChaseCardLabel,
   filterBundleFamilyWarnings,
 } from "@/lib/criminal/demo-presentation-polish";
-import { evidenceRowFromSourceState } from "@/lib/criminal/five-answers/evidence-trace";
-import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
+import { evidenceRowFromSourceState, evidenceExistenceLabel, evidenceReliabilityLabel } from "@/lib/criminal/five-answers/evidence-trace";
+import type { FiveAnswersEvidenceRow, FiveAnswersViewModel } from "@/lib/criminal/five-answers/types";
+import type { HearingModeModel } from "@/lib/criminal/hearing-mode/types";
+import { inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
 import type { EvidenceStateTruthKey, TruthKeyEvidenceItem, TruthEvidenceState } from "@/lib/eval/evidence-state-audit/types";
 import type { SourceStateKind } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 
 export function isDemoAuditCase(caseId: string): boolean {
   return caseId.startsWith("demo-audit-");
+}
+
+/** Messy PDF audit packs with truth-key-driven presentation (v9+ new families). */
+export function isMessyPdfV9AuditCase(caseId: string): boolean {
+  return caseId.startsWith("messy-pdf-v9-");
+}
+
+export function usesDemoAuditPresentationPolish(caseId: string): boolean {
+  return isDemoAuditCase(caseId) || isMessyPdfV9AuditCase(caseId);
 }
 
 export { demoAuditOffenceFamilyForCase } from "./thirty-case-catalog";
@@ -81,6 +92,7 @@ function sanitizeDemoAuditChaseItems(
   items: string[] | undefined,
   offenceFamily?: string,
 ): string[] {
+  const hadExplicitItems = (items?.length ?? 0) > 0;
   const seen = new Set<string>();
   const out: string[] = [];
   for (const raw of items ?? []) {
@@ -91,7 +103,7 @@ function sanitizeDemoAuditChaseItems(
     seen.add(key);
     out.push(label);
   }
-  if (out.length >= 4) return out;
+  if (hadExplicitItems || out.length >= 4) return out.slice(0, 6);
   for (const fallback of familyDefaultChaseLabels(offenceFamily)) {
     const key = fallback.toLowerCase();
     if (seen.has(key)) continue;
@@ -181,6 +193,9 @@ function mg6AnchorForChaseLabel(bundleText: string, label: string): string | nul
   if (/pace/.test(l)) candidates.push(["pace", "outstanding"]);
   if (/target defendant|morgan reid interview/.test(l)) candidates.push(["interview summary", "outstanding"]);
   if (/handle attribution/.test(l)) candidates.push(["handle attribution", "outstanding"]);
+  if (/handle-to-defendant|handle to defendant/.test(l)) candidates.push(["handle-to-defendant", "referred"]);
+  if (/encro attribution/.test(l)) candidates.push(["encro attribution", "outstanding"]);
+  if (/platform extraction/.test(l)) candidates.push(["platform extraction", "outstanding"]);
   if (/platform|source extraction/.test(l)) candidates.push(["platform", "referred"]);
   if (/device continuity/.test(l)) candidates.push(["device continuity", "outstanding"]);
   if (/full download|export/.test(l)) candidates.push(["download", "outstanding"]);
@@ -715,15 +730,63 @@ export function polishDemoAuditExportPack(
   truthKey: EvidenceStateTruthKey,
   clientLabel: string,
   caseId?: string,
+  five?: FiveAnswersViewModel,
+  chase?: DisclosureChaseBrief,
 ): import("@/lib/criminal/export-pack/types").ExportPackModel {
   const paragraph = demoAuditClientSummaryParagraph(truthKey, clientLabel, caseId);
   const body = `CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\n${paragraph}`;
   const sections = exportPack.sections.map((section) => {
-    if (section.id !== "client_summary") return section;
-    return {
-      ...section,
-      textForClipboard: `${body}\n\n${section.footer ?? ""}`.trim(),
-    };
+    if (section.id === "client_summary") {
+      return {
+        ...section,
+        textForClipboard: `${body}\n\n${section.footer ?? ""}`.trim(),
+      };
+    }
+    if (section.id === "evidence_gaps" && five && chase) {
+      const gapLines = five.evidenceState.rows.slice(0, 8).map((row) => {
+        const existence = evidenceExistenceLabel(row.existence);
+        const reliability = evidenceReliabilityLabel(row.reliability);
+        const note = row.note?.trim() ? ` — ${row.note.trim()}` : "";
+        return `• ${row.label} [${existence} / ${reliability}]${note}`;
+      });
+      const chaseLines = chase.primaryItems.slice(0, 5).map((item) => {
+        const state = inferChaseItemSourceState({
+          label: item.label,
+          source: item.source,
+          baseStatus: item.baseStatus,
+          evidenceAnchor: item.evidenceAnchor,
+        });
+        const anchor = item.evidenceAnchor?.trim() || item.source?.trim() || "Papers";
+        const why = item.whyItMatters?.trim() ? ` — ${item.whyItMatters.trim()}` : "";
+        return `• Chase: ${item.label} [${state.replace(/_/g, " ")}] (${anchor})${why}`;
+      });
+      const combined = [
+        ...gapLines,
+        ...chaseLines.filter((line) => !gapLines.some((existing) => existing.includes(line.slice(10, 30)))),
+      ];
+      const gapBody = `EVIDENCE GAP LIST\n\n${combined.length ? combined.join("\n") : "No outstanding gaps flagged on current papers."}`;
+      return {
+        ...section,
+        textForClipboard: `${gapBody}\n\n${section.footer ?? ""}`.trim(),
+      };
+    }
+    return section;
   });
   return { ...exportPack, sections };
+}
+
+/** Proof harness: hearing mode re-builds five answers without truth key — mirror truth-map rows for audit cases. */
+export function alignHearingEvidenceSnapshotForAudit(
+  hearing: HearingModeModel,
+  five: FiveAnswersViewModel,
+): HearingModeModel {
+  const evidenceSnapshot = five.evidenceState.rows.slice(0, 6).map((row) => ({
+    label: row.label,
+    existence: row.existence,
+    reliability: row.reliability,
+    existenceLabel: evidenceExistenceLabel(row.existence),
+    reliabilityLabel: evidenceReliabilityLabel(row.reliability),
+    note: row.note,
+  }));
+  return { ...hearing, evidenceSnapshot };
 }

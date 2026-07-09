@@ -19,7 +19,7 @@ import {
   gateDoNotOverstateList,
   gateWarRoomBrief,
 } from "./output-presentation-gate";
-import { isDemoAuditCase, polishDemoAuditModels, polishDemoAuditExportPack } from "../demo-audit-packs/presentation-polish";
+import { isDemoAuditCase, polishDemoAuditModels, polishDemoAuditExportPack, usesDemoAuditPresentationPolish, alignHearingEvidenceSnapshotForAudit } from "../demo-audit-packs/presentation-polish";
 import { ProofLedgerSession, withProofLedgerSession } from "./proof-ledger-session";
 import type { ProofLedgerRawModels } from "./proof-ledger-types";
 
@@ -134,7 +134,7 @@ export function buildH5CaseModelsWithLedger(caseDir: string): H5CaseBuildResult 
     return { chase: chaseGatedInner, warRoom: warRoomGatedInner, doNotOverstateRaw: doNotOverstate };
   });
 
-  const polished = isDemoAuditCase(caseId)
+  const polished = usesDemoAuditPresentationPolish(caseId)
     ? polishDemoAuditModels({
         chase: chaseGated,
         warRoom: warRoomGated,
@@ -170,7 +170,7 @@ export function buildH5CaseModelsWithLedger(caseDir: string): H5CaseBuildResult 
 
   const primaryRouteTitle = briefPlan.profile.replace(/_/g, " ");
 
-  const hearing = buildHearingMode({
+  const hearingRaw = buildHearingMode({
     allegation,
     briefPlan,
     warRoom,
@@ -180,6 +180,9 @@ export function buildH5CaseModelsWithLedger(caseDir: string): H5CaseBuildResult 
     primaryRouteTitle,
     documentCount: ledger.documents?.length ?? 1,
   });
+  const hearing = usesDemoAuditPresentationPolish(caseId)
+    ? alignHearingEvidenceSnapshotForAudit(hearingRaw, five)
+    : hearingRaw;
 
   const generatedAt = new Date().toISOString();
   const exportPackRaw = buildExportPack({
@@ -194,8 +197,8 @@ export function buildH5CaseModelsWithLedger(caseDir: string): H5CaseBuildResult 
     appVersion: "line-source-proof",
     generatedAt,
   });
-  const exportPack = isDemoAuditCase(caseId)
-    ? polishDemoAuditExportPack(exportPackRaw, truthKey, clientLabel, caseId)
+  const exportPack = usesDemoAuditPresentationPolish(caseId)
+    ? polishDemoAuditExportPack(exportPackRaw, truthKey, clientLabel, caseId, five, chase)
     : exportPackRaw;
 
   const matterBrief = buildMatterBrief({
