@@ -1,0 +1,251 @@
+{
+  "$schema": "Gold manual proof pack — truth state template v1",
+  "meta": {
+    "caseId": "gm-XXX-short-label",
+    "version": "1.0",
+    "status": "draft",
+    "reviewType": "gold_manual_review",
+    "bundleType": "controlled",
+    "solicitorReviewRequired": true,
+    "solicitorReviewCompleted": false,
+    "lastReviewed": null,
+    "reviewerRole": null,
+    "notes": "Fictional or anonymised bundle only. Do not commit real client data."
+  },
+  "case": {
+    "fictionalLabel": "Defendant A",
+    "offenceFamily": "",
+    "offenceSummary": "",
+    "courtLevel": "magistrates|crown|sjp",
+    "stage": "",
+    "coDefendantPresent": false,
+    "youthCase": false
+  },
+  "bundle": {
+    "format": "bundle-text|pdf-local|mixed",
+    "pageCount": null,
+    "defects": [],
+    "defectNotes": ""
+  },
+  "materials": [
+    {
+      "id": "charge_sheet",
+      "label": "Charge sheet",
+      "category": "charge",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "charge",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial|unsigned|redacted|clip_only",
+      "reviewerNote": ""
+    },
+    {
+      "id": "mg5",
+      "label": "MG5 / case summary",
+      "category": "prosecution_summary",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "mg5",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial",
+      "reviewerNote": ""
+    },
+    {
+      "id": "mg6_schedule",
+      "label": "MG6C / MG6D schedule",
+      "category": "disclosure_schedule",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "mg6",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial",
+      "reviewerNote": ""
+    },
+    {
+      "id": "cctv",
+      "label": "CCTV / stills / master footage",
+      "category": "cctv",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "cctv_log|still|media_schedule",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full_export|partial_clip|stills_only|transcript_only|referred_only",
+      "reviewerNote": ""
+    },
+    {
+      "id": "bwv",
+      "label": "BWV / bodycam",
+      "category": "bwv",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "bwv_log|bwv_export",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial|referred_only",
+      "reviewerNote": ""
+    },
+    {
+      "id": "phone_extract",
+      "label": "Phone / device extract",
+      "category": "phone_attribution",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "phone_schedule|extract|download_report",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial|metadata_only|handle_unmapped",
+      "reviewerNote": ""
+    },
+    {
+      "id": "encro_handle",
+      "label": "Encro / handle attribution",
+      "category": "encro",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "encro_report|handle_mapping",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial|handle_unmapped",
+      "reviewerNote": ""
+    },
+    {
+      "id": "interview",
+      "label": "PACE interview (transcript / audio)",
+      "category": "custody_interview",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "interview_transcript|interview_log",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|transcript_only|audio_missing|referred_only",
+      "reviewerNote": ""
+    },
+    {
+      "id": "custody_record",
+      "label": "Custody record",
+      "category": "custody_pace",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "custody_record",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial",
+      "reviewerNote": ""
+    },
+    {
+      "id": "drugs_lab",
+      "label": "Drugs continuity / lab / weight",
+      "category": "drugs",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "lab_report|continuity|seizure_record",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial|seal_gap|weight_only|analysis_missing",
+      "reviewerNote": ""
+    },
+    {
+      "id": "expert",
+      "label": "Expert evidence (DNA / fingerprint / cell-site / medical)",
+      "category": "expert",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "expert_report",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial|summary_only|referred_only",
+      "expertType": "dna|fingerprint|cell_site|medical|other",
+      "reviewerNote": ""
+    },
+    {
+      "id": "abe_first_account",
+      "label": "ABE / first account / third-party records",
+      "category": "abe",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "abe_summary|first_account|third_party_record",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial|video_referred_missing|record_empty",
+      "reviewerNote": ""
+    },
+    {
+      "id": "motoring_device",
+      "label": "Motoring / SJP / device calibration",
+      "category": "motoring",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "calibration_cert|device_log|sjp_bundle",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial|calibration_missing",
+      "reviewerNote": ""
+    },
+    {
+      "id": "bail_orders",
+      "label": "Bail / restraining / non-mol / DVPO",
+      "category": "bail_orders",
+      "truthState": "present|partial|referred_absent|not_in_bundle|unknown",
+      "source": {
+        "documentType": "bail_sheet|restraining_order|dvpo",
+        "pageFrom": null,
+        "pageTo": null,
+        "anchor": null
+      },
+      "completeness": "full|partial",
+      "reviewerNote": ""
+    }
+  ],
+  "expectedGaps": [
+    {
+      "materialId": "",
+      "shouldFlag": true,
+      "reason": "",
+      "chasePriority": "high|medium|low"
+    }
+  ],
+  "shouldNotChase": [
+    {
+      "materialId": "",
+      "reason": "already_served|not_applicable|mg6_not_used|premature_at_stage"
+    }
+  ],
+  "unsafeToSay": [
+    {
+      "topic": "",
+      "mustNotAssert": "",
+      "safeFraming": ""
+    }
+  ],
+  "coverageTags": []
+}
