@@ -1,0 +1,116 @@
+{
+  "disclaimer": "Controlled/synthetic audit only — not solicitor-reviewed real-world audit.",
+  "milestone": "v9-scale3000",
+  "commit": "3b507ce",
+  "commitMessage": "test(audit): scale messy pdf proof receipts to 3000 cases",
+  "generatedAt": "2026-07-09T03:11:11.814Z",
+  "harness": {
+    "runner": "scripts/run-messy-pdf-proof-v6-scale1000.ts",
+    "preflightFlag": "--preflight",
+    "reportRoot": "artifacts/casebrain-qa/messy-pdf-proof-v9-scale3000"
+  },
+  "corpus": {
+    "controlledFictionalPdfBackedBundles": 3000,
+    "bundlesBuilt": 3000,
+    "bundlesBuiltRate": 1,
+    "sourceTemplates": 70,
+    "legacySourceTemplates": 30,
+    "v9NewSourceTemplates": 40,
+    "v9ExpansionCases": 800,
+    "legacyCasesV1ThroughV8": 2200,
+    "distinctAuditFamilies": 58,
+    "trapAxesPerV9Family": 20
+  },
+  "lineAudit": {
+    "meaningfulLines": 364082,
+    "pass": 133041,
+    "warning": 231041,
+    "fail": 0,
+    "emittedUnsupported": 0,
+    "blockedCases": 0,
+    "bannedWordHits": 0
+  },
+  "proofReceipts": {
+    "receiptCount": 364082,
+    "byAction": {
+      "rely": 73481,
+      "check": 239668,
+      "chase": 50064,
+      "doNotUse": 869
+    },
+    "bySurface": {
+      "overview": 229226,
+      "cpsChase": 47434,
+      "court": 55222,
+      "clientSummary": 14200,
+      "export": 18000
+    },
+    "checks": [
+      "source_anchor_and_snippet",
+      "evidence_state_vs_bundle",
+      "proof_chain_pdf_text_alignment",
+      "line_verdict_pass_warning_fail",
+      "acceptance_hard_gates",
+      "safe_action_classification"
+    ]
+  },
+  "hardSafetyFailures": {
+    "total": 0,
+    "false_served": 0,
+    "referred_only_treated_as_served": 0,
+    "missing_treated_as_available": 0,
+    "incomplete_treated_as_complete": 0,
+    "wrong_defendant_bleed": 0,
+    "wrong_family_bleed": 0,
+    "court_wording_in_cps_chase": 0,
+    "cps_chase_wording_in_court_note": 0,
+    "unsupported_allegation_stated_as_fact": 0,
+    "attribution_overclaim": 0,
+    "final_advice_win_loss_wording": 0,
+    "unsafe_client_summary": 0,
+    "source_page_mismatch": 0,
+    "output_with_no_source_anchor": 0
+  },
+  "acceptanceGates": {
+    "build3000of3000": true,
+    "failZero": true,
+    "blockedZero": true,
+    "emittedUnsupportedZero": true,
+    "bannedWordsZero": true,
+    "allHardCountersZero": true
+  },
+  "softWarnings": {
+    "generic_mg6_wording": 0,
+    "repeated_wording": 4516,
+    "unclear_labels": 0,
+    "duplicate_bullets": 0,
+    "dense_internal_wording": 0,
+    "possible_false_suppression": 0,
+    "ocr_date_court_ambiguity": 0,
+    "partial_support_only": 72205,
+    "too_cautious_not_surfaced": 6148
+  },
+  "verdicts": {
+    "safeToScaleFictionalPacksBeyond3000": false,
+    "coreProductChangeRequired": false,
+    "recommendedNext": [
+      "proof_receipt_ui_pdf_report",
+      "solicitor_reviewed_30_real_redacted_bundle_pilot"
+    ],
+    "doNotMerge": true,
+    "doNotDeploy": true
+  },
+  "priorMilestones": {
+    "controlledEvidenceStateAudit253": {
+      "commit": null,
+      "cases": 253,
+      "falseServed": 0,
+      "blockingFailures": 0
+    },
+    "messyPdfProofV8": {
+      "cases": 2200,
+      "allHardCountersZero": true
+    }
+  },
+  "nextStep": "solicitor_reviewed_real_world_audit_30_to_50_cases"
+}

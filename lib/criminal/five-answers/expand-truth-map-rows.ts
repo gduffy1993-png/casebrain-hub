@@ -2,7 +2,7 @@ import type { DisclosureChaseBrief } from "@/components/criminal/disclosure-chas
 import { evidenceRowFromSourceState } from "./evidence-trace";
 import type { FiveAnswersEvidenceRow } from "./types";
 import type { EvidenceStateTruthKey } from "@/lib/eval/evidence-state-audit/types";
-import { buildTruthMapRowsFromTruthKey, isDemoAuditCase } from "@/lib/eval/demo-audit-packs/presentation-polish";
+import { buildTruthMapRowsFromTruthKey, usesDemoAuditPresentationPolish } from "@/lib/eval/demo-audit-packs/presentation-polish";
 
 function haystack(parts: string[]): string {
   return parts.join(" ").toLowerCase();
@@ -38,7 +38,7 @@ function rowsAlreadyCoverDigitalGaps(rows: FiveAnswersEvidenceRow[]): boolean {
 function isDigitalHarassmentShape(allegation: string, combinedHay: string): boolean {
   return (
     /harassment|protection from harassment/i.test(allegation) &&
-    /screenshot|phone|message|whatsapp|sms|subscriber|attribution|mg6|mg11|extraction|digital/i.test(
+    /screenshot|phone|whatsapp|sms|message pack|message export|subscriber|attribution|mg6|mg11|extraction|digital/i.test(
       combinedHay,
     )
   );
@@ -65,7 +65,7 @@ export function expandTruthMapRowsForDisplay(input: {
   truthKey?: EvidenceStateTruthKey;
   bundleText?: string;
 }): FiveAnswersEvidenceRow[] {
-  if (input.truthKey && isDemoAuditCase(input.truthKey.caseId)) {
+  if (input.truthKey && usesDemoAuditPresentationPolish(input.truthKey.caseId)) {
     return buildTruthMapRowsFromTruthKey(input.truthKey);
   }
 

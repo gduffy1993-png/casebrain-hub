@@ -1,0 +1,34 @@
+#!/usr/bin/env npx tsx
+/**
+ * Scaffold canonical-bundle.md and truth-key.json for demo-audit cases 31–70 (v9).
+ * Run: npx tsx scripts/scaffold-demo-audit-v9-forty-cases.ts
+ */
+import fs from "node:fs";
+import path from "node:path";
+
+import { caseDirForId } from "../lib/eval/demo-audit-packs/case-specs";
+import { DEMO_AUDIT_V9_FORTY_CASES } from "../lib/eval/demo-audit-packs/v9-forty-case-catalog";
+
+const ROOT = process.cwd();
+const BANNED = /\b(synthetic|simulator|test bundle|fake bundle|ai generated|ai-generated|training data)\b/i;
+
+async function main() {
+  for (const pack of DEMO_AUDIT_V9_FORTY_CASES) {
+    const caseDir = path.join(ROOT, caseDirForId(pack.spec.id));
+    fs.mkdirSync(caseDir, { recursive: true });
+    if (BANNED.test(pack.canonicalBundle)) {
+      throw new Error(`Banned wording in bundle for ${pack.spec.id}`);
+    }
+    fs.writeFileSync(path.join(caseDir, "canonical-bundle.md"), pack.canonicalBundle);
+    fs.writeFileSync(path.join(caseDir, "truth-key.json"), JSON.stringify(pack.truthKey, null, 2));
+    // Source bundle-text mirrors canonical until PDF pipeline rebuilds per messy case.
+    fs.writeFileSync(path.join(caseDir, "bundle-text.md"), pack.canonicalBundle);
+    console.log(`Scaffolded ${pack.spec.id}`);
+  }
+  console.log(`\nDone — ${DEMO_AUDIT_V9_FORTY_CASES.length} v9 source cases scaffolded.`);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

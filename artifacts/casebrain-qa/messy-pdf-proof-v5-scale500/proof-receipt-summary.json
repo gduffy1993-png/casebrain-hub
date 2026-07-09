@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-07-08T17:29:31.464Z",
+  "caseCount": 500,
+  "receiptCount": 60682,
+  "byAction": {
+    "rely": 12741,
+    "check": 41388,
+    "chase": 6384,
+    "doNotUse": 169
+  },
+  "bySurface": {
+    "Overview": 38346,
+    "CPS Chase": 7614,
+    "Court": 9222,
+    "Client Summary": 2500,
+    "Export": 3000
+  }
+}
