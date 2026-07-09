@@ -1,14 +1,13 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import {
-  displayExistenceLabel,
   displayTruthMapAction,
   displayCanRelyLabel,
 } from "@/lib/criminal/five-answers/display-labels";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { humanizeEvidenceLabel } from "./evidence-display";
+import { EvidenceStateBadge, EvidenceStateLegend } from "./EvidenceStateBadge";
 
 function dedupeRows(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvidenceRow[] {
   const seen = new Set<string>();
@@ -37,11 +36,13 @@ export function EvidenceTruthMapPanel({ rows }: { rows: FiveAnswersEvidenceRow[]
       className={`${workflowPilotCard} px-4 py-3 space-y-3`}
       data-testid="evidence-truth-map-panel"
     >
-      <div>
+      <div className="space-y-2">
         <h2 className={workflowSectionTitle}>Evidence truth map</h2>
-        <p className="text-[11px] text-slate-500 mt-0.5">
-          Source state at a glance — check papers before reliance or sending.
+        <p className="text-[11px] text-slate-500 leading-relaxed">
+          Source-linked evidence state at a glance — colours show material status only, not case outcome.
+          Solicitor review required before reliance.
         </p>
+        <EvidenceStateLegend />
       </div>
 
       {mapRows.length === 0 ? (
@@ -54,7 +55,7 @@ export function EvidenceTruthMapPanel({ rows }: { rows: FiveAnswersEvidenceRow[]
                 <tr className="text-[10px] uppercase tracking-wider text-slate-500 border-b border-slate-800">
                   <th className="py-2 pr-3 font-semibold">Evidence</th>
                   <th className="py-2 pr-3 font-semibold">State</th>
-                  <th className="py-2 pr-3 font-semibold">Can rely?</th>
+                  <th className="py-2 pr-3 font-semibold">Support</th>
                   <th className="py-2 font-semibold">Action</th>
                 </tr>
               </thead>
@@ -62,7 +63,6 @@ export function EvidenceTruthMapPanel({ rows }: { rows: FiveAnswersEvidenceRow[]
                 {mapRows.map((row, i) => {
                   const otherDef = isOtherDefendantRow(row);
                   const displayLabel = humanizeEvidenceLabel(row.label, row.existence);
-                  const displayState = displayExistenceLabel(row.existence);
                   return (
                     <tr
                       key={`${row.label}-${i}`}
@@ -72,12 +72,12 @@ export function EvidenceTruthMapPanel({ rows }: { rows: FiveAnswersEvidenceRow[]
                       <td className="py-2.5 pr-3 text-slate-200 font-medium align-top">
                         {displayLabel}
                         {otherDef ? (
-                          <Badge variant="outline" size="sm" className="ml-1.5 text-[9px] align-middle">
-                            Other defendant
-                          </Badge>
+                          <span className="ml-1.5 text-[9px] text-slate-500 align-middle">· Other defendant</span>
                         ) : null}
                       </td>
-                      <td className="py-2.5 pr-3 text-slate-400 align-top">{displayState}</td>
+                      <td className="py-2.5 pr-3 align-top">
+                        <EvidenceStateBadge existence={row.existence} />
+                      </td>
                       <td className="py-2.5 pr-3 text-slate-400 align-top">
                         {displayCanRelyLabel(row.reliability)}
                       </td>
@@ -95,14 +95,13 @@ export function EvidenceTruthMapPanel({ rows }: { rows: FiveAnswersEvidenceRow[]
             {mapRows.map((row, i) => (
               <div
                 key={`${row.label}-m-${i}`}
-                className="rounded-md border border-slate-800/80 bg-slate-950/30 px-3 py-2.5 space-y-1"
+                className="rounded-md border border-slate-800/80 bg-slate-950/30 px-3 py-2.5 space-y-1.5"
               >
                 <p className="text-xs font-medium text-slate-200">
                   {humanizeEvidenceLabel(row.label, row.existence)}
                 </p>
-                <div className="flex flex-wrap gap-1.5 text-[10px] text-slate-400">
-                  <span>{displayExistenceLabel(row.existence)}</span>
-                  <span>·</span>
+                <div className="flex flex-wrap items-center gap-2 text-[10px] text-slate-400">
+                  <EvidenceStateBadge existence={row.existence} />
                   <span>{displayCanRelyLabel(row.reliability)}</span>
                   <span>·</span>
                   <span>{displayTruthMapAction(row.existence, row.reliability)}</span>

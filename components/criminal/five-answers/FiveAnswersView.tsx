@@ -24,6 +24,8 @@ import { CaseCockpitPanel } from "./CaseCockpitPanel";
 import { EvidenceTruthMapPanel } from "./EvidenceTruthMapPanel";
 import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
 import { ProofPacketPreviewPanel } from "./ProofPacketPreviewPanel";
+import { ProofReceiptPanel } from "./ProofReceiptPanel";
+import { buildProofReceiptView } from "@/lib/criminal/proof-receipt";
 import { FiveAnswersCompactSection } from "./FiveAnswersCompactSection";
 import { humanizeEvidenceLabel } from "./evidence-display";
 import {
@@ -229,6 +231,16 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     bundleHay,
   ]);
 
+  const proofReceipts = useMemo(() => {
+    if (!view || !chase) return null;
+    return buildProofReceiptView({
+      view,
+      chase,
+      bundleHay,
+      allegation: allegation ?? "",
+    });
+  }, [view, chase, bundleHay, allegation]);
+
   const bundleThin = (bundleMeta?.documentCount ?? 0) <= 1;
 
   if (loading && !view) {
@@ -312,6 +324,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
         <div id="overview-trust" className="space-y-3 scroll-mt-4">
           <EvidenceTruthMapPanel rows={view.evidenceState.rows} />
+          {proofReceipts ? <ProofReceiptPanel model={proofReceipts} /> : null}
           <ProofPacketPreviewPanel rows={view.evidenceState.rows} warnings={view.mustNotOverstate} />
         </div>
 

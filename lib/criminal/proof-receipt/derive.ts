@@ -1,0 +1,89 @@
+import { displayExistenceLabel } from "@/lib/criminal/five-answers/display-labels";
+import type { EvidenceExistence, EvidenceReliability } from "@/lib/criminal/five-answers/types";
+import type { ProofSafeAction, ProofSupportLevel } from "./types";
+
+export function deriveSupportLevel(
+  existence: EvidenceExistence,
+  reliability: EvidenceReliability,
+): ProofSupportLevel {
+  if (existence === "unknown") return "Not assessable";
+  if (reliability === "unsafe" || reliability === "inference_only") return "Not supported";
+  if (existence === "missing" || existence === "referred_only") return "Weak";
+  if (reliability === "contested" || reliability === "weak") return "Partial";
+  if (reliability === "needs_review") return "Partial";
+  if (reliability === "strong" && existence === "served") return "Strong";
+  return "Partial";
+}
+
+export function deriveSafeAction(
+  existence: EvidenceExistence,
+  reliability: EvidenceReliability,
+): ProofSafeAction {
+  if (reliability === "unsafe" || reliability === "inference_only") return "do-not-use";
+  if (existence === "missing" || existence === "referred_only") return "chase";
+  if (existence === "not_safely_confirmed" || existence === "unknown") {
+    return "check";
+  }
+  if (existence === "served" && (reliability === "weak" || reliability === "needs_review")) {
+    return "check";
+  }
+  if (existence === "served" && reliability === "strong") return "check";
+  return "check";
+}
+
+export function evidenceStateLabel(existence: EvidenceExistence): string {
+  return displayExistenceLabel(existence);
+}
+
+export type StateColourKey = "served" | "partial" | "referred" | "missing";
+
+export function stateColourKey(existence: EvidenceExistence): StateColourKey {
+  if (existence === "served") return "served";
+  if (existence === "referred_only") return "referred";
+  if (existence === "missing") return "missing";
+  return "partial";
+}
+
+export const STATE_COLOUR_CLASSES: Record<StateColourKey, { badge: string; dot: string; label: string }> = {
+  served: {
+    badge: "border-emerald-700/60 bg-emerald-950/40 text-emerald-200",
+    dot: "bg-emerald-400",
+    label: "Served",
+  },
+  partial: {
+    badge: "border-amber-700/60 bg-amber-950/40 text-amber-200",
+    dot: "bg-amber-400",
+    label: "Partial / needs review",
+  },
+  referred: {
+    badge: "border-slate-600/70 bg-slate-800/50 text-slate-300",
+    dot: "bg-slate-400",
+    label: "Referred only",
+  },
+  missing: {
+    badge: "border-rose-800/60 bg-rose-950/40 text-rose-200",
+    dot: "bg-rose-400",
+    label: "Missing",
+  },
+};
+
+export const SAFE_ACTION_LABELS: Record<ProofSafeAction, string> = {
+  rely: "Rely",
+  check: "Check",
+  chase: "Chase",
+  "do-not-use": "Do not use",
+};
+
+export const SAFE_ACTION_CLASSES: Record<ProofSafeAction, string> = {
+  rely: "border-blue-700/50 bg-blue-950/40 text-blue-200",
+  check: "border-amber-700/50 bg-amber-950/30 text-amber-200",
+  chase: "border-violet-700/50 bg-violet-950/30 text-violet-200",
+  "do-not-use": "border-rose-700/50 bg-rose-950/40 text-rose-200",
+};
+
+/** Guard copy — must not imply legal advice or case outcome. */
+export const PROOF_RECEIPT_GUARD =
+  "Review aid only. Source-linked proof and evidence state — not legal advice. Confirm against source material before reliance.";
+
+export const FORBIDDEN_UI_PATTERNS =
+  /\b(guilty|not guilty|will win|will lose|plead guilty|plead not guilty|legal advice|we advise you to)\b/i;

@@ -407,6 +407,27 @@ async function main(): Promise<void> {
       }
     }
 
+    if (await desktop.getByTestId("proof-receipt-panel").isVisible().catch(() => false)) {
+      steps.push({ id: "proof_receipt_panel_visible", status: "pass" });
+      const receiptBody = await desktop.getByTestId("proof-receipt-panel").innerText();
+      if (/guilty|not guilty|legal advice|will win|will lose/i.test(receiptBody)) {
+        steps.push({
+          id: "proof_receipt_forbidden_wording",
+          status: "fail",
+          detail: "Forbidden outcome/advice wording in proof receipt panel",
+        });
+      } else {
+        steps.push({ id: "proof_receipt_forbidden_wording", status: "pass" });
+      }
+      if (/evidence-state-badge-served|served/i.test(receiptBody)) {
+        steps.push({ id: "proof_receipt_state_labels", status: "pass" });
+      } else {
+        steps.push({ id: "proof_receipt_state_labels", status: "warn", detail: "State badges not detected" });
+      }
+    } else {
+      steps.push({ id: "proof_receipt_panel_visible", status: "warn", detail: "Proof receipt panel not visible" });
+    }
+
     if (await desktop.getByTestId("proof-packet-preview-panel").isVisible().catch(() => false)) {
       steps.push({ id: "proof_packet_preview_visible", status: "pass" });
       const proofBody = await desktop.getByTestId("proof-packet-preview-panel").innerText();
@@ -633,6 +654,7 @@ async function main(): Promise<void> {
       const panelIds = [
         "case-snapshot-panel",
         "evidence-truth-map-panel",
+        "proof-receipt-panel",
         "proof-packet-preview-panel",
         "five-answers-case-saying",
       ];
