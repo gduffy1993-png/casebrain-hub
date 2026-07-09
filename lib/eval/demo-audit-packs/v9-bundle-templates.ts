@@ -2,7 +2,7 @@
  * Parametric fictional bundles for demo-audit cases 31–70 (v9 new criminal families).
  * PDF-facing text only — no synthetic/simulator wording.
  */
-import type { EvidenceStateTruthKey } from "@/lib/eval/evidence-state-audit/types";
+import type { EvidenceStateTruthKey, TruthEvidenceState } from "@/lib/eval/evidence-state-audit/types";
 
 export type V9BundleSpec = {
   caseId: string;
@@ -26,7 +26,7 @@ export type V9BundleSpec = {
   extraEvidenceItems?: Array<{
     evidence_item: string;
     evidence_type: string;
-    correct_evidence_state: "served" | "incomplete" | "missing" | "referred_only" | "partial";
+    correct_evidence_state: TruthEvidenceState;
     chase_needed: boolean;
     safe_to_rely_on: boolean;
   }>;
