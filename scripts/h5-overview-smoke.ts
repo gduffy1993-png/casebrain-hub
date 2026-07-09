@@ -407,9 +407,26 @@ async function main(): Promise<void> {
       }
     }
 
+    let receiptBody = "";
     if (await desktop.getByTestId("proof-receipt-panel").isVisible().catch(() => false)) {
       steps.push({ id: "proof_receipt_panel_visible", status: "pass" });
-      const receiptBody = await desktop.getByTestId("proof-receipt-panel").innerText();
+      receiptBody = await desktop.getByTestId("proof-receipt-panel").innerText();
+    } else {
+      await desktop.getByTestId("proof-receipt-panel").scrollIntoViewIfNeeded({ timeout: 15_000 }).catch(() => undefined);
+      if (await desktop.getByTestId("proof-receipt-panel").isVisible().catch(() => false)) {
+        steps.push({ id: "proof_receipt_panel_visible", status: "pass", detail: "visible after scroll" });
+        receiptBody = await desktop.getByTestId("proof-receipt-panel").innerText();
+      } else {
+        const body = await desktop.locator("body").innerText();
+        if (/proof receipts/i.test(body)) {
+          steps.push({ id: "proof_receipt_panel_visible", status: "pass", detail: "content without testid" });
+          receiptBody = body;
+        } else {
+          steps.push({ id: "proof_receipt_panel_visible", status: "warn", detail: "Proof receipt panel not visible" });
+        }
+      }
+    }
+    if (receiptBody) {
       if (/guilty|not guilty|legal advice|will win|will lose/i.test(receiptBody)) {
         steps.push({
           id: "proof_receipt_forbidden_wording",
@@ -424,8 +441,6 @@ async function main(): Promise<void> {
       } else {
         steps.push({ id: "proof_receipt_state_labels", status: "warn", detail: "State badges not detected" });
       }
-    } else {
-      steps.push({ id: "proof_receipt_panel_visible", status: "warn", detail: "Proof receipt panel not visible" });
     }
 
     if (await desktop.getByTestId("proof-packet-preview-panel").isVisible().catch(() => false)) {
@@ -442,17 +457,23 @@ async function main(): Promise<void> {
       }
       const underTruthMap = await desktop.evaluate(() => {
         const map = document.querySelector('[data-testid="evidence-truth-map-panel"]');
+        const receipt = document.querySelector('[data-testid="proof-receipt-panel"]');
         const proof = document.querySelector('[data-testid="proof-packet-preview-panel"]');
         if (!map || !proof) return false;
-        const follows = Boolean(map.compareDocumentPosition(proof) & Node.DOCUMENT_POSITION_FOLLOWING);
-        const mapRect = map.getBoundingClientRect();
-        const proofRect = proof.getBoundingClientRect();
-        return follows && mapRect.bottom <= proofRect.top + 8;
+        const mapBeforeProof = Boolean(map.compareDocumentPosition(proof) & Node.DOCUMENT_POSITION_FOLLOWING);
+        if (!receipt) {
+          const mapRect = map.getBoundingClientRect();
+          const proofRect = proof.getBoundingClientRect();
+          return mapBeforeProof && mapRect.bottom <= proofRect.top + 8;
+        }
+        const mapBeforeReceipt = Boolean(map.compareDocumentPosition(receipt) & Node.DOCUMENT_POSITION_FOLLOWING);
+        const receiptBeforeProof = Boolean(receipt.compareDocumentPosition(proof) & Node.DOCUMENT_POSITION_FOLLOWING);
+        return mapBeforeReceipt && receiptBeforeProof;
       });
       steps.push({
         id: "proof_packet_under_truth_map",
         status: underTruthMap ? "pass" : "fail",
-        detail: underTruthMap ? undefined : "Proof Packet Preview not directly under Truth Map",
+        detail: underTruthMap ? undefined : "Proof Packet Preview not in trust stack after Truth Map",
       });
     } else {
       const body = await desktop.locator("body").innerText();

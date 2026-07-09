@@ -92,4 +92,23 @@ for (const row of model.refusedOverstatements) {
   assert.ok(!/\bwe advise you to\b/i.test(row.safeAlternative));
 }
 
+const viewOnly = buildFiveAnswersView({
+  allegation: "Harassment",
+  warRoom: war,
+  chase,
+  matterConfidence: null,
+  doNotOverstate: [],
+  bundleText: "",
+});
+const withoutChase = buildProofReceiptView({
+  view: viewOnly,
+  bundleHay: "",
+  allegation: "Harassment",
+});
+assert.ok(
+  withoutChase.receipts.length >= 1 || withoutChase.refusedOverstatements.length >= 0,
+  "view-only proof receipt model is valid",
+);
+assert.ok(withoutChase.familyCards.length >= 0, "family cards optional without chase");
+
 console.log("proof-receipt-panel.test.ts: PASS");

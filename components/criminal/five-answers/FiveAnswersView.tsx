@@ -232,10 +232,10 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
   ]);
 
   const proofReceipts = useMemo(() => {
-    if (!view || !chase) return null;
+    if (!view) return null;
     return buildProofReceiptView({
       view,
-      chase,
+      chase: chase ?? null,
       bundleHay,
       allegation: allegation ?? "",
     });
@@ -324,7 +324,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
         <div id="overview-trust" className="space-y-3 scroll-mt-4">
           <EvidenceTruthMapPanel rows={view.evidenceState.rows} />
-          {proofReceipts ? <ProofReceiptPanel model={proofReceipts} /> : null}
+          <ProofReceiptPanel model={proofReceipts!} />
           <ProofPacketPreviewPanel rows={view.evidenceState.rows} warnings={view.mustNotOverstate} />
         </div>
 
