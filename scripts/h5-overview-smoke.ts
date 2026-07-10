@@ -471,8 +471,11 @@ async function main(): Promise<void> {
           return mapBeforeProof && mapRect.bottom <= proofRect.top + 8;
         }
         const mapBeforeReceipt = Boolean(map.compareDocumentPosition(receipt) & Node.DOCUMENT_POSITION_FOLLOWING);
-        const receiptBeforeProof = Boolean(receipt.compareDocumentPosition(proof) & Node.DOCUMENT_POSITION_FOLLOWING);
-        return mapBeforeReceipt && receiptBeforeProof;
+        // Packet summary may be nested inside proof receipts (merged presentation).
+        const nestedOrAfter =
+          receipt.contains(proof) ||
+          Boolean(receipt.compareDocumentPosition(proof) & Node.DOCUMENT_POSITION_FOLLOWING);
+        return mapBeforeReceipt && nestedOrAfter;
       });
       steps.push({
         id: "proof_packet_under_truth_map",
@@ -685,11 +688,11 @@ async function main(): Promise<void> {
       ];
       const rects = panelIds
         .map((id) => {
-          const el = document.querySelector(`[data-testid="${id}"]`);
+          const el = document.querySelector(`[data-testid="${id}"]`) as HTMLElement | null;
           if (!el) return null;
           const r = el.getBoundingClientRect();
           if (r.height < 4 || r.width < 4) return null;
-          return { id, top: r.top, bottom: r.bottom, left: r.left, right: r.right };
+          return { id, el, top: r.top, bottom: r.bottom, left: r.left, right: r.right };
         })
         .filter((r): r is NonNullable<typeof r> => r !== null);
 
@@ -701,6 +704,8 @@ async function main(): Promise<void> {
         for (let j = i + 1; j < rects.length; j++) {
           const a = rects[i];
           const b = rects[j];
+          // Nested packet summary inside proof receipts is intentional — not a layout collision.
+          if (a.el.contains(b.el) || b.el.contains(a.el)) continue;
           const hOverlap = a.left < b.right - 8 && b.left < a.right - 8;
           const vOverlap = a.top < b.bottom - 8 && b.top < a.bottom - 8;
           if (hOverlap && vOverlap) {
