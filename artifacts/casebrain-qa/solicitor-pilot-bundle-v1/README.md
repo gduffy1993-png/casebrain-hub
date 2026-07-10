@@ -35,10 +35,13 @@ It does **not** include bulky source folders, internal QA junk, or live client d
 ## What to open first
 
 1. **[PILOT-START-HERE.md](./PILOT-START-HERE.md)** — 10- or 30-minute path  
-2. **[WAVE-A-B-CASE-INDEX.md](./WAVE-A-B-CASE-INDEX.md)** — pick cases  
-3. Case packet under `cases/CASE-XX/` (`CASE-REVIEW.md` + checklist)  
+2. **[WAVE-A-B-CASE-INDEX.md](./WAVE-A-B-CASE-INDEX.md)** — then **CASE-01** (recommended first look)  
+3. `cases/CASE-01/CASE-REVIEW.md` + checklist  
 4. **[REVIEWER-FEEDBACK-FORM.md](./REVIEWER-FEEDBACK-FORM.md)** — one per case (or sample)  
-5. Optional: [TRUST-AND-SAFETY-SUMMARY.md](./TRUST-AND-SAFETY-SUMMARY.md) · [PILOT-OFFER-SUMMARY.md](./PILOT-OFFER-SUMMARY.md)
+5. Optional second case: **CASE-08** · then [TRUST-AND-SAFETY-SUMMARY.md](./TRUST-AND-SAFETY-SUMMARY.md) · [PILOT-OFFER-SUMMARY.md](./PILOT-OFFER-SUMMARY.md)
+
+**Chase drafts** are conservative templates — lightly edit before any CPS send.  
+**Thin proof anchors** may say `source verification required` on purpose.
 
 Full trust pack detail (if you have the repo): `docs/pilot-trust-pack/`.  
 In this zip: short summary above + `references/TRUST-PACK-INDEX.md`.

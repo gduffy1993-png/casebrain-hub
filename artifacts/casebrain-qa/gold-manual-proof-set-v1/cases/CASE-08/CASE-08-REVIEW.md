@@ -19,7 +19,7 @@
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** Thin/mismatched anchors labelled source verification required (honest review aid)
-- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
+- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — solicitor must complete checklist
 
 ---
 
@@ -95,9 +95,10 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Allegation:** Battery, contrary to section 39 of the Criminal Justice Act 1988
 - **Client label:** Jordan Hale
 - **Court line:** The defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.
-- **Chase items:** corrected charge sheet; updated mg5; court listing confirmation
+- **Client summary:** Present (provisional) — charge wording / MG5 / listing alignment in plain English; not for court or CPS
+- **Chase items:** corrected charge sheet; updated mg5; court listing confirmation *(conservative drafts — lightly edit before send)*
 - **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not treat draft/unsigned MG11 as a final served statement.
-- **Proof receipts (sample):** 7 rows; first: corrected charge sheet
+- **Proof receipts (sample):** 7 rows; first: corrected charge sheet *(thin anchors may say source verification required)*
 
 
 

@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-01",
   "sourceCaseId": "demo-audit-01-phone-harassment",
-  "builtAt": "2026-07-10T18:39:59.048Z",
+  "builtAt": "2026-07-10T21:28:25.971Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
   "clientLabel": "Riley Moss",

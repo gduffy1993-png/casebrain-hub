@@ -42,6 +42,8 @@ Notes: _______________________________________________
 
 ☐ Accept as-is ☐ Light edit ☐ Heavy rewrite ☐ Not usable  
 
+*(Chase drafts in this pack are intentionally conservative — light solicitor edit before send is expected.)*
+
 Notes: _______________________________________________
 
 ---

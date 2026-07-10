@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-19",
   "sourceCaseId": "demo-audit-47-social-media-handles",
-  "builtAt": "2026-07-10T18:40:04.713Z",
+  "builtAt": "2026-07-10T21:28:32.642Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
   "clientLabel": "Nadia Pike",

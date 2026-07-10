@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-09",
   "sourceCaseId": "demo-audit-32-restraining-order-breach",
-  "builtAt": "2026-07-10T18:40:01.882Z",
+  "builtAt": "2026-07-10T21:28:29.177Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997",
   "clientLabel": "Lena Ortiz",

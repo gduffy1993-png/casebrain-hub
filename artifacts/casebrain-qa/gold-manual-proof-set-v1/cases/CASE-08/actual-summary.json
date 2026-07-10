@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-08",
   "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
-  "builtAt": "2026-07-10T18:40:01.671Z",
+  "builtAt": "2026-07-10T21:28:28.877Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
   "clientLabel": "Jordan Hale",
@@ -47,7 +47,7 @@
     }
   ],
   "courtLine": "The defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.",
-  "clientSummaryPreview": null,
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Jordan Hale). This is early-stage — nothing is final until we have full disclosure and your instructions. The live issue is whether the charge wording, the MG5 offence summary, and the court listing/hearing position line up. Until those are aligned and confirmed, treat the charge/listing position as provisional — do not assume the papers already fix the offence wording or hearing date.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
     "Do not treat draft/unsigned MG11 as a final served statement."

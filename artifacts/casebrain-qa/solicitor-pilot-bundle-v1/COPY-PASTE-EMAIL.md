@@ -21,7 +21,7 @@ Start with the attached **solicitor pilot bundle** (Waves A+B gold cases only â€
 **Limits**  
 Limited users and matters. Drafts only. You sign off before anything is used externally. Not legal advice. Not autonomous court/CPS sending.
 
-Happy to book a 20-minute walkthrough after you have tried one case (CASE-01 or CASE-08 is a good start).
+Happy to book a 20-minute walkthrough after you have tried **CASE-01** (recommended first look).
 
 Kind regards,  
 [Your name]  

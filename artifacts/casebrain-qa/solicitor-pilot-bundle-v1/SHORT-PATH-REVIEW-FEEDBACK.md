@@ -25,21 +25,21 @@
 
 ---
 
-## CASE-08 — charge mismatch — **PASS**
+## CASE-08 — charge mismatch — **PASS** (after client-summary polish)
 
 | Question | Mark |
 |----------|------|
 | Useful before court? | **Yes** — charge / MG5 / listing alignment is the live risk |
 | Unsafe / misleading? | **No material issue** |
 | Court wording realistic? | **Yes** — alignment before position fixed; no plea language |
-| CPS chase usable? | **Accept as-is / light edit** — corrected charge, updated MG5, listing confirmation |
-| Client summary clear? | **N/A / thin** — null client on this v9 packet (court/chase carry it) |
+| CPS chase usable? | **Light edit expected** — conservative drafts by design |
+| Client summary clear? | **Clear and provisional** — charge/MG5/listing plain-English summary present |
 | Proof / source receipts useful? | **Partly** — mostly SVR; honest, not fake certainty |
 | Time saved? | **Saved meaningful time** for spotting the mismatch family |
-| Blockers? | Soft: missing client summary; lowercase “updated mg5” label |
+| Blockers? | Soft only: chase template tone (edit before send) |
 
 **Trap surfaced:** Charge wording vs MG5 vs listing not safe to treat as aligned.  
-**Overall:** **PASS** — usable supervised; client text would be a polish, not a fail.
+**Overall:** **PASS** — null-client gap closed for supervised short path.
 
 ---
 
@@ -51,7 +51,7 @@
 | Unsafe wording? | **No** hard safety issue on short path |
 | CPS chase / court realistic? | **Yes** with light edit on chase drafts |
 | Proof/source help trust? | **Yes, when SVR** — trust comes from not inventing anchors |
-| What would stop supervised pilot use? | Hard safety fail, false “served”, or systematic wrong-defendant bleed — **not seen here**. Soft stoppers: null client on some v9 cases, stiff chase templates, thin anchors if a firm expects page-perfect cites on day one |
+| What would stop supervised pilot use? | Hard safety fail, false “served”, or systematic wrong-defendant bleed — **not seen here**. Soft stoppers: stiff chase templates (edit before send), thin anchors if a firm expects page-perfect cites on day one |
 
 ---
 

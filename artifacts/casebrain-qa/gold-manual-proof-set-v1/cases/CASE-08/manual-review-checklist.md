@@ -43,6 +43,6 @@
 - [ ] **FAIL** — must not promote
 - [ ] **HOLD** — needs more papers / clarification
 
-**Solicitor / Ged sign-off:** ______________________  
+**Solicitor sign-off:** ______________________  
 **Sign-off date:** __________  
 **Solicitor review completed:** ☐ Yes ☐ No (default: No — pack is pre-validation)

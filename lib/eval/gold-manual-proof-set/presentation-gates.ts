@@ -591,6 +591,11 @@ export function presentClientSummaryForFamily(
       `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. A call-log summary may be on the papers, but prison call recordings, PIN attribution material, and telecom export remain outstanding. A summary alone does not prove who spoke or what was said.`,
     );
   }
+  if (/charge mismatch/.test(f)) {
+    return wrap(
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. The live issue is whether the charge wording, the MG5 offence summary, and the court listing/hearing position line up. Until those are aligned and confirmed, treat the charge/listing position as provisional — do not assume the papers already fix the offence wording or hearing date.`,
+    );
+  }
   if (/social handle|subscriber gap/.test(f)) {
     return wrap(
       `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. Social/handle material may be on the papers, but platform disclosure, handle-to-defendant mapping, and IP/subscriber data remain outstanding. A handle alone does not prove account attribution.`,

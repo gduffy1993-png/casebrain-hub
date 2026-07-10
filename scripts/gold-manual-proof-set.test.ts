@@ -360,6 +360,10 @@ const orderClient = presentClientSummaryForFamily("domestic order / restraining 
 assert.ok(orderClient && /sealed order|service/i.test(orderClient));
 assert.ok(!/sent the messages/i.test(orderClient));
 
+const chargeClient = presentClientSummaryForFamily("charge mismatch", "Jordan Hale", null);
+assert.ok(chargeClient && /charge wording|MG5|listing/i.test(chargeClient));
+assert.ok(!/legal advice|plead|guilty/i.test(chargeClient));
+
 const redactionCourt = resolveFamilyCourtLine("bad redaction");
 assert.ok(redactionCourt && /unredacted MG11|redaction schedule/i.test(redactionCourt));
 
