@@ -1,5 +1,7 @@
 # Trust pack review
 
+> **Optional background.** Solicitor reviewers: use `TRUST-AND-SAFETY-SUMMARY.md` first. This file is the internal claim/security review record for the trust pack.
+
 **Date:** 2026-07-10  
 **Branch:** `feature/gold-manual-proof-set-v1`  
 **Scope:** Review of all docs in `docs/pilot-trust-pack/` — docs only  

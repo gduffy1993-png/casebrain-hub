@@ -3,8 +3,8 @@
 **Date:** 2026-07-10  
 **Branch:** `feature/gold-manual-proof-set-v1`  
 **Pack:** `artifacts/casebrain-qa/gold-manual-proof-set-v1/`  
-**Audience:** Ged / product — human-review gate  
-**Scope:** Reporting / presentation review only. No Brain, chase core, export, Supabase, UI, or deploy changes.
+**Audience:** CaseBrain pilot operator (background). Solicitor reviewers: start with PILOT-START-HERE.md  
+**Scope:** Reporting / presentation review only. Reporting / presentation review only.
 
 ---
 

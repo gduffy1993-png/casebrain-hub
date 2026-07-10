@@ -40,7 +40,8 @@ It does **not** include bulky source folders, internal QA junk, or live client d
 4. **[REVIEWER-FEEDBACK-FORM.md](./REVIEWER-FEEDBACK-FORM.md)** — one per case (or sample)  
 5. Optional: [TRUST-AND-SAFETY-SUMMARY.md](./TRUST-AND-SAFETY-SUMMARY.md) · [PILOT-OFFER-SUMMARY.md](./PILOT-OFFER-SUMMARY.md)
 
-Full trust pack (repo): `docs/pilot-trust-pack/` — index copy in `references/TRUST-PACK-INDEX.md`.
+Full trust pack detail (if you have the repo): `docs/pilot-trust-pack/`.  
+In this zip: short summary above + `references/TRUST-PACK-INDEX.md`.
 
 ---
 
@@ -67,7 +68,9 @@ Safe line:
 | [PILOT-OFFER-SUMMARY.md](./PILOT-OFFER-SUMMARY.md) | 30-day offer snapshot |
 | [COPY-PASTE-EMAIL.md](./COPY-PASTE-EMAIL.md) | Outreach email |
 | [PATHS-AND-REFERENCES.md](./PATHS-AND-REFERENCES.md) | Clean zip + report paths |
+| [SEND-READINESS-CHECK.md](./SEND-READINESS-CHECK.md) | Pre-send review verdict |
 | `cases/` | Waves A+B review packets (no `_source`) |
 | `references/` | Readiness, Waves A+B summary, trust index/review |
 
-Machine gold pack (full 20): `artifacts/casebrain-qa/gold-manual-proof-set-v1/` — **20 pass / 0 warn / 0 fail**.
+Machine gold pack (full 20, in repo): `artifacts/casebrain-qa/gold-manual-proof-set-v1/` — **20 pass / 0 warn / 0 fail**.  
+Zip-only reviewers: Waves A+B in `cases/` is enough for the first look.

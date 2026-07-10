@@ -45,7 +45,7 @@ Short version of `docs/pilot-trust-pack/` for solicitor reviewers.
 - Firm workspace isolation; named pilot users.  
 - HTTPS in transit; provider encryption at rest (confirm host/region at kick-off).  
 - Support access to your pilot matters: notify firm lead (break-glass → notify ASAP).  
-- Full detail: repo `docs/pilot-trust-pack/` · copies under `references/`.
+- Full detail: `references/TRUST-PACK-INDEX.md` (and live `docs/pilot-trust-pack/` if you have the repo).
 
 ---
 

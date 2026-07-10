@@ -2,7 +2,7 @@
 
 **Source case:** `demo-audit-18-motoring-sjp-thin`  
 **Source kind:** `evidence_state_local`  
-**Risk focus:** Thin SJP file; device / CCTV export outstanding  
+**Risk focus:** Thin SJP / s172 file — notice, service, keeper/nomination; do not lead on device/CCTV  
 **Target review time:** ≤ 7 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
 **Claim discipline:** Not real-world solicitor validation. Solicitor review required before gold promotion.
@@ -16,7 +16,7 @@
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** Thin/mismatched anchors labelled source verification required (honest review aid)
-- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
+- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — solicitor must complete checklist
 
 ---
 

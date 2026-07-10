@@ -3,8 +3,8 @@
 **Date:** 2026-07-10  
 **Branch:** `feature/gold-manual-proof-set-v1`  
 **Pack:** `artifacts/casebrain-qa/gold-manual-proof-set-v1/`  
-**Audience:** Ged / product — pilot go/no-go  
-**Scope:** Reporting / presentation review only. No Brain, chase core, export, Supabase, UI, or deploy changes in this readiness path.
+**Audience:** CaseBrain pilot operator (background). Solicitor reviewers: start with PILOT-START-HERE.md  
+**Scope:** Reporting / presentation review only. Reporting / presentation review only.
 
 ---
 
@@ -95,7 +95,7 @@ Reporting / presentation only (`presentation-gates.ts`, pack builder, review doc
 | Wave A chase/court polish | Drop soft call logs; collapse BWV interview stack; name CCTV audit trail; preserve source metadata after remap |
 | CASE-15 family court/chase force | s172 notice · service · keeper/DVLA · nomination · SJP procedure; demote intoxilyser/calibration lead; drop CCTV-stills do-not |
 | CASE-20 family court/chase force | Listing/hearing/OCR/date verification lead; CCTV not the lead; OCR listing-date do-not instead of stills ID stock |
-| Pack rebuild + clean-review zip | Fresh review artifacts for Downloads / Documents\\Codex |
+| Pack rebuild + clean-review zip | Fresh review artifacts for the clean-review zip |
 
 Key commits on this path include Wave A do-not/chase polish and Wave B S172/OCR presentation fixes (see branch log on `feature/gold-manual-proof-set-v1`).
 
@@ -105,7 +105,7 @@ Key commits on this path include Wave A do-not/chase polish and Wave B S172/OCR 
 
 1. **Not solicitor-validated** until per-case `manual-review-checklist.md` is signed.
 2. **Controlled fictional / PDF-backed bundles only** — not a live-client performance claim.
-3. **Provisional PASS ≠ gold promotion** — promotion still requires solicitor/Ged sign-off.
+3. **Provisional PASS ≠ gold promotion** — promotion still requires solicitor sign-off.
 4. **Secondary surfaces may still show bundle-native detail** (e.g. CASE-15/20 truth-map or client summary mentioning device/CCTV) while court/chase/do-not correctly lead the family risk.
 5. **v9 catalog cases** may lack page anchors (flagged N/A) — confirm against bundle text in review.
 6. **Source anchors** remain review aids; some chase rows may need source verification.

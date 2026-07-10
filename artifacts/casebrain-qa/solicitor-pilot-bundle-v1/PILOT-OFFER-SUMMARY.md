@@ -2,7 +2,7 @@
 
 **Type:** Controlled **30-day supervised** pilot — not a firm-wide rollout  
 **Proof baseline:** Controlled fictional + gold pack PASS · not solicitor-validated on live files yet  
-**Full offer:** `docs/pilot-trust-pack/CONTROLLED-PILOT-OFFER.md`
+**Full offer (repo / on request):** `docs/pilot-trust-pack/CONTROLLED-PILOT-OFFER.md` · short form is this file
 
 ---
 
@@ -36,7 +36,7 @@ Limited named users review gold packets (Waves A+B / full 20) and, only after ki
 - False positives / over-warning tracked  
 - **Hard safety failures: 0**
 
-Detail: `docs/pilot-trust-pack/PILOT-SUCCESS-CRITERIA.md`
+Detail (repo / on request): `docs/pilot-trust-pack/PILOT-SUCCESS-CRITERIA.md`
 
 ---
 

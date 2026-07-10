@@ -19,7 +19,7 @@
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** Thin/mismatched anchors labelled source verification required (honest review aid)
-- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
+- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — solicitor must complete checklist
 
 ---
 
