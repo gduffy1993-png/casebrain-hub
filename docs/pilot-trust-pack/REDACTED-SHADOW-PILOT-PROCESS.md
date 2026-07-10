@@ -1,7 +1,8 @@
 # Redacted shadow pilot process
 
 **Purpose:** Let a firm test CaseBrain on **redacted real-shaped** bundles without treating the run as solicitor-validated product proof.  
-**Order of preference:** (1) gold fictional packets → (2) firm-redacted shadows → (3) any fuller live data only under separate written agreement.
+**Order of preference:** (1) gold fictional packets (Waves A+B warm-up) → (2) firm-redacted shadows → (3) any fuller live data only under separate written agreement.  
+**Gate:** confirm subprocessors + no-training terms before step (2) or (3).
 
 ---
 
@@ -75,7 +76,7 @@ Confirm backup lag in writing. Process: `INCIDENT-AND-DELETION-PROCESS.md`.
 2. Triage: hard safety → immediate; presentation → scheduled polish; product-core → separate change control (not silent mid-pilot).  
 3. Firm told what will change vs what is expected solicitor caution (e.g. `source verification required`).  
 4. Re-test on gold pack and/or a fresh redacted sample before claiming the issue closed.  
-5. No claim of “solicitor-validated real-world performance” until enough signed reviews exist and CaseBrain chooses to publish that bar honestly.
+5. A completed shadow pilot does **not** by itself authorise “solicitor-validated real-world performance” claims. That bar needs a separate, honest publication decision after enough signed reviews — default remains under-claim.
 
 ---
 

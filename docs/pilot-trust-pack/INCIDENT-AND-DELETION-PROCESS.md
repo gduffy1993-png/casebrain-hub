@@ -22,8 +22,8 @@
 
 1. Disable access to listed matters if still open.  
 2. Delete uploaded files and case records for those matters from the live workspace.  
-3. Note backup / replica lag and expected expiry window.  
-4. Confirm completion in writing (what was deleted; what may remain briefly in backups).  
+3. Note backup / replica lag and expected expiry window (**operational target ≤ 30 days** after live delete; host-dependent — confirm at kick-off; not a guarantee).  
+4. Confirm completion in writing (what was deleted from live; expected backup expiry).  
 5. Record the request in the pilot log.
 
 ### What the firm should do

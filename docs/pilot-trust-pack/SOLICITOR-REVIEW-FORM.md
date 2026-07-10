@@ -101,4 +101,4 @@ _______________________________________________
 ---
 
 **Signature / initials:** _____________  
-**May CaseBrain use anonymised feedback to improve the product?** ☐ Yes ☐ No
+**May CaseBrain use anonymised feedback (form ticks / short notes / themes — not your uploaded bundle text for model training) to improve the product process?** ☐ Yes ☐ No

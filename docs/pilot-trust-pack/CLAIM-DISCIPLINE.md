@@ -68,6 +68,13 @@
 
 ---
 
+## Feedback vs training
+
+Anonymised solicitor **form themes** (what worked / what did not) may inform product process.  
+That is **not** permission to train public models on firm uploads or redacted bundle text.
+
+---
+
 ## Internal reminder
 
 If a sentence would still be true after removing “AI”, keep it.  

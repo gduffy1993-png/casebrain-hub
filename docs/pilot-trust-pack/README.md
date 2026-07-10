@@ -72,6 +72,18 @@ In plain terms: CaseBrain can surface **served / referred / missing / unsafe-to-
 | [SUBPROCESSORS-AND-AI-PROCESSING.md](./SUBPROCESSORS-AND-AI-PROCESSING.md) | AI / vendor notes (confirm before live client data) |
 | [INCIDENT-AND-DELETION-PROCESS.md](./INCIDENT-AND-DELETION-PROCESS.md) | Deletion requests and incident steps |
 | [PILOT-EMAIL-TEMPLATE.md](./PILOT-EMAIL-TEMPLATE.md) | Short outreach email |
+| [TRUST-PACK-REVIEW.md](./TRUST-PACK-REVIEW.md) | Internal review: overclaims, gaps, fixes |
+
+### Clear answers (one line each)
+
+| Topic | Where |
+|-------|--------|
+| Data handling | `SECURITY-AND-DATA-HANDLING.md` |
+| Deletion | `INCIDENT-AND-DELETION-PROCESS.md` |
+| No training on firm uploads | Security + `SUBPROCESSORS-AND-AI-PROCESSING.md` (gate before firm upload) |
+| Subprocessors | Placeholder until written schedule; required before firm upload |
+| Redacted pilot | `REDACTED-SHADOW-PILOT-PROCESS.md` (gold first) |
+| Solicitor sign-off | `CONTROLLED-PILOT-OFFER.md` |
 
 ---
 

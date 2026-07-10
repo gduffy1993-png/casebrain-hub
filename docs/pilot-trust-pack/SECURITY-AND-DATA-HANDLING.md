@@ -8,9 +8,9 @@
 
 ## Purpose
 
-Describe how CaseBrain is intended to handle pilot and production workspace data so a firm can decide whether a supervised pilot is acceptable.
+Describe how CaseBrain is intended to handle **pilot workspace** data so a firm can decide whether a supervised pilot is acceptable. This is an operational description for the pilot — not a production certification pack.
 
-Final vendor / subprocessor confirmation is required **before** live client data — see `SUBPROCESSORS-AND-AI-PROCESSING.md`.
+Final vendor / subprocessor confirmation is required **before any firm-uploaded matter** (including redacted shadows) — see `SUBPROCESSORS-AND-AI-PROCESSING.md`. A gold-only review using CaseBrain’s own fictional packets can start earlier.
 
 ---
 
@@ -19,7 +19,7 @@ Final vendor / subprocessor confirmation is required **before** live client data
 - Cases and documents sit in a **firm (organisation) workspace**.  
 - Users should only see matters for their own workspace.  
 - Access is gated by authentication and organisation membership.  
-- Pilot workspaces can be limited to named users and a capped matter list.
+- Pilot workspaces are limited to **named users** and a **capped matter list** agreed at kick-off.
 
 Firms should not share login credentials across people outside the agreed pilot set.
 
@@ -30,9 +30,9 @@ Firms should not share login credentials across people outside the agreed pilot 
 | Path | Practice |
 |------|----------|
 | In transit | HTTPS / TLS for app and API traffic |
-| At rest | Database and object storage use provider-managed encryption at rest (hosting platform defaults) |
+| At rest | Database and object storage use the hosting provider’s encryption at rest |
 
-Exact hosting region and provider names for a live pilot must be confirmed in writing at kick-off.
+**Confirm in writing at kick-off:** hosting provider name(s) and region(s). Do not treat “encryption” as a substitute for SOC 2 / ISO claims (none made here).
 
 ---
 
@@ -40,49 +40,55 @@ Exact hosting region and provider names for a live pilot must be confirmed in wr
 
 - Named user accounts (no shared “office” password for pilot).  
 - Role-appropriate access within the firm workspace.  
-- Admin / service access is **restricted** and should be **logged** when used for support.  
-- CaseBrain staff do not browse client matters by default; support access only when needed for the pilot and with firm awareness where practical.
+- Admin / service access is **restricted** and **logged** when used for support.  
+- CaseBrain staff do not browse firm pilot matters by default.
+
+**Support access rule:** if CaseBrain support needs to open a firm’s pilot matter, **notify the firm lead** first when practicable; if break-glass access is required, notify the firm lead **as soon as practicable** the same day and record what was accessed.
 
 ---
 
 ## Audit logging
 
-Operational logs may include:
+Honest baseline: **not every action is guaranteed to be logged.**
+
+At kick-off, CaseBrain confirms which of the following are available in the pilot environment:
 
 - Sign-in / authentication events  
-- Matter create / upload / delete events (where instrumented)  
+- Matter create / upload / delete events  
 - Support / admin access events  
 
-Logs are for security and incident response — not for marketing. Retention of logs should be time-bounded; confirm period at kick-off.
+Logs are for security and incident response — not for marketing. Confirm log retention period at kick-off (time-bounded).
 
 ---
 
 ## Deletion and retention
 
 - Pilot matters can be deleted on firm request (see `INCIDENT-AND-DELETION-PROCESS.md`).  
-- Default pilot retention: keep only for the pilot period + short wind-down unless the firm asks to keep or delete earlier.  
-- Backups may lag deletion briefly; deletion requests should note when backup expiry completes.  
+- **Default retention:** pilot period + **14 days** wind-down, unless the firm asks to keep or delete earlier.  
+- **Backup lag:** after live deletion, copies may remain in provider backups for a short period — **operational target ≤ 30 days** (host-dependent; confirm at kick-off; not a legal guarantee).  
+- Deletion confirmations state what was removed from the live workspace and the expected backup expiry window.  
 - Gold / fictional packets are CaseBrain-controlled test material, not firm client data.
 
 ---
 
 ## No training on client data
 
-CaseBrain’s pilot position:
+**Pilot policy:**
 
-- **Do not** use firm client or redacted shadow matter content to train public foundation models.  
-- AI features (where used) should run under API / enterprise terms that do **not** permit training on customer content for public models.  
-- Controlled fictional eval packs are CaseBrain’s own test material and are separate from firm client data.
+- Do **not** use firm client or redacted shadow matter content to train public foundation models.  
+- Do **not** upload firm matters until AI vendor / API terms that **exclude training on customer content** are confirmed in writing for the vendors in use.  
+- Controlled fictional eval packs are CaseBrain’s own test material and are separate from firm uploads.  
+- Anonymised solicitor **feedback form themes** (tick-boxes / short notes) may be used to improve the product process; that is not the same as training models on uploaded bundle text.
 
-If a vendor’s terms change, the pilot must be re-checked before further uploads.
+If a vendor’s terms change, pause firm uploads and re-confirm before continuing.
 
 ---
 
 ## Admin access — restricted and logged
 
-- Production admin / service-role tools are for break-glass support and operations.  
-- Use should be limited, purposeful, and logged.  
-- Pilot firms may ask what was accessed if an incident or support ticket requires it.
+- Admin / service-role tools are for break-glass support and operations.  
+- Use must be limited, purposeful, and logged.  
+- On request after support access or an incident, CaseBrain tells the firm lead **what was accessed and when** (as far as logs allow).
 
 ---
 

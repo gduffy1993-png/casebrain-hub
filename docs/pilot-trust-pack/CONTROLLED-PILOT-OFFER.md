@@ -66,7 +66,7 @@ Full detail: `PILOT-SUCCESS-CRITERIA.md`.
 
 At a minimum, the pilot is a success if, on agreed sample matters:
 
-- Material disclosure gaps are spotted that a busy fee-earner might miss  
+- Material disclosure gaps are spotted that are worth putting on the record  
 - Unsafe assumptions (served vs referred vs missing) are blocked or caveated  
 - CPS chase drafts are accepted or lightly edited  
 - Court notes are usable after solicitor review  
@@ -92,8 +92,8 @@ Failure modes that stop promotion: hard safety issues (plea/outcome/advice overc
 1. Named users and matter cap agreed  
 2. Claim discipline acknowledged (`CLAIM-DISCIPLINE.md`)  
 3. Data handling / deletion process acknowledged  
-4. Subprocessor list confirmed **before** any live client data (`SUBPROCESSORS-AND-AI-PROCESSING.md`)  
-5. Start with Waves A+B gold review **or** one redacted shadow under process rules  
+4. Subprocessor list + no-training terms confirmed **before any firm-uploaded matter** (`SUBPROCESSORS-AND-AI-PROCESSING.md`) — gold-only Waves A+B can start on CaseBrain packets first  
+5. **Default start:** Waves A+B gold review; redacted shadow only after that warm-up (written exception if the firm insists on shadow-first)  
 6. Schedule mid-pilot check-in and end debrief  
 
 ---

@@ -10,7 +10,7 @@ Hello [Name],
 We are inviting a small number of criminal defence firms to a **30-day supervised pilot** of CaseBrain.
 
 **What it is for**  
-Helping fee-earners spot disclosure traps on the papers: what is **served**, **referred only**, **missing**, or **unsafe to say** — before court or a CPS chase goes out on a weak footing.
+Helping fee-earners spot disclosure traps on the papers: what is **served**, **referred only**, **missing**, or **unsafe to say** — before relying on incomplete disclosure in court prep or a CPS chase draft.
 
 **What we have already done**  
 Controlled fictional proof on messy PDF-backed bundles at scale, plus a 20-case gold manual pack (20 pass / 0 warn / 0 fail, hard safety clean). Reviewer-style Waves A+B passed. This is **not** a claim of solicitor-validated real-world performance yet.
