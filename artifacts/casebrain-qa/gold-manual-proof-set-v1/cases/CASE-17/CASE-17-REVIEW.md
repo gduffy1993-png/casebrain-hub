@@ -1,0 +1,119 @@
+# CASE-17 — medical injury report missing
+
+**Source case:** `demo-audit-61-medical-triage-partial`  
+**Risk focus:** Triage / injury note partial; consultant medical report referred missing  
+**Target review time:** ≤ 8 minutes  
+**Review type:** gold manual review on controlled/PDF-backed bundle  
+**Claim discipline:** Not real-world solicitor validation. Solicitor review required before gold promotion.
+
+---
+
+## Pass / warn / fail (provisional)
+
+- [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
+- [WARN] **CPS chase coverage:** Builder chase labels do not clearly match truth-key chase list — manual check
+- [PASS] **Court line present:** Safe court / position line generated
+- [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
+- [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
+- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
+
+---
+
+## Input bundle
+
+`catalog:demo-audit-61-medical-triage-partial (materialized from v9_catalog)`
+
+---
+
+## Truth states (from truth key)
+
+| Evidence | Truth state | Chase? | Safe to rely? | Page/anchor |
+|----------|-------------|--------|---------------|-------------|
+| charge sheet | served | N | Y | — |
+| mg5 | served | N | Y | — |
+| mg6 | served | N | Y | — |
+| witness MG11 | incomplete | Y | N | — |
+| custody extract | incomplete | Y | N | — |
+| hospital records | missing | Y | N | — |
+| consultant medical report | missing | Y | N | — |
+| injury photographs | missing | Y | N | — |
+
+---
+
+## Expected missing material
+
+- witness MG11
+- custody extract
+- hospital records
+- consultant medical report
+- injury photographs
+
+## Expected unsafe-to-say
+
+- fully proved on current disclosure
+- safely confirms guilt
+
+## Expected CPS chase
+
+- hospital records
+- consultant medical report
+- injury photographs
+
+## Expected court line (intent)
+
+Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).
+
+## Expected client summary points
+
+- Controlled matter: DA-061 Owen Pike — Medical triage note — full report missing
+- Served on papers (examples): charge sheet; mg5; mg6
+- Outstanding / chase candidates: witness MG11; custody extract; hospital records; consultant medical report
+- Plain English only — solicitor review required before client use
+
+## Expected proof receipt / source anchors
+
+| Label | State | Anchor | Chase |
+|-------|-------|--------|-------|
+| charge sheet | served | — | N |
+| mg5 | served | — | N |
+| mg6 | served | — | N |
+| witness MG11 | incomplete | — | Y |
+| custody extract | incomplete | — | Y |
+| hospital records | missing | — | Y |
+| consultant medical report | missing | — | Y |
+| injury photographs | missing | — | Y |
+
+---
+
+## Actual builder snapshot
+
+- **Allegation:** Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861
+- **Client label:** Owen Pike
+- **Court line:** The defence asks the court to record outstanding medical, video and sequence material.
+- **Chase items:** MG6 / unused schedule clarification; Medical / expert source report
+- **Do-not-overstate (sample):** fully proved on current disclosure · safely confirms guilt · Do not import BWV unless the papers support it. · Do not import custody safeguards unless the papers support it.
+- **Proof receipts (sample):** 10 rows; first: MG6 / unused schedule clarification
+
+
+
+---
+
+## Adversarial review questions
+
+Complete in `manual-review-checklist.md`. Focus:
+
+1. Did CaseBrain **over-warn**?
+2. Did it **suppress useful wording**?
+3. Did it call **served material missing**?
+4. Did it create **unnecessary chase**?
+5. Did it cite **wrong source/page**?
+6. Did it **repeat or clutter** output?
+
+---
+
+## Files in this packet
+
+- `expected.json`
+- `actual-summary.json`
+- `manual-review-checklist.md`
+- `_source/` (working bundle + truth key copy for rebuild)

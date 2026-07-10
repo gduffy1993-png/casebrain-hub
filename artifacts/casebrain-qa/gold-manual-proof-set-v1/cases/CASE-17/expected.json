@@ -1,0 +1,146 @@
+{
+  "goldId": "CASE-17",
+  "sourceCaseId": "demo-audit-61-medical-triage-partial",
+  "familyLabel": "medical injury report missing",
+  "inputBundlePath": "catalog:demo-audit-61-medical-triage-partial (materialized from v9_catalog)",
+  "truthStates": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "witness MG11",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "custody extract",
+      "evidence_type": "custody",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "hospital records",
+      "evidence_type": "disclosure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "consultant medical report",
+      "evidence_type": "disclosure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "injury photographs",
+      "evidence_type": "disclosure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    }
+  ],
+  "expectedMissingMaterial": [
+    "witness MG11",
+    "custody extract",
+    "hospital records",
+    "consultant medical report",
+    "injury photographs"
+  ],
+  "unsafeToSayWarnings": [
+    "fully proved on current disclosure",
+    "safely confirms guilt"
+  ],
+  "expectedCpsChase": [
+    "hospital records",
+    "consultant medical report",
+    "injury photographs"
+  ],
+  "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
+  "expectedClientSummaryPoints": [
+    "Controlled matter: DA-061 Owen Pike — Medical triage note — full report missing",
+    "Served on papers (examples): charge sheet; mg5; mg6",
+    "Outstanding / chase candidates: witness MG11; custody extract; hospital records; consultant medical report",
+    "Plain English only — solicitor review required before client use"
+  ],
+  "expectedProofReceiptAnchors": [
+    {
+      "label": "charge sheet",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg5",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg6",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "witness MG11",
+      "state": "incomplete",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "custody extract",
+      "state": "incomplete",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "hospital records",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "consultant medical report",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "injury photographs",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    }
+  ],
+  "claimDiscipline": "Gold manual review on a controlled/PDF-backed bundle. Not real-world solicitor validation. Solicitor review required before gold promotion."
+}

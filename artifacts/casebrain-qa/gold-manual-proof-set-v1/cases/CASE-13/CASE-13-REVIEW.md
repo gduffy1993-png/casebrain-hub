@@ -1,0 +1,119 @@
+# CASE-13 — drugs lab / continuity
+
+**Source case:** `demo-audit-50-lab-continuity-conflict`  
+**Risk focus:** Drugs schedule served; lab intake / continuity / SFR outstanding  
+**Target review time:** ≤ 8 minutes  
+**Review type:** gold manual review on controlled/PDF-backed bundle  
+**Claim discipline:** Not real-world solicitor validation. Solicitor review required before gold promotion.
+
+---
+
+## Pass / warn / fail (provisional)
+
+- [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
+- [WARN] **CPS chase coverage:** Builder chase labels do not clearly match truth-key chase list — manual check
+- [PASS] **Court line present:** Safe court / position line generated
+- [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
+- [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
+- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
+
+---
+
+## Input bundle
+
+`catalog:demo-audit-50-lab-continuity-conflict (materialized from v9_catalog)`
+
+---
+
+## Truth states (from truth key)
+
+| Evidence | Truth state | Chase? | Safe to rely? | Page/anchor |
+|----------|-------------|--------|---------------|-------------|
+| charge sheet | served | N | Y | — |
+| mg5 | served | N | Y | — |
+| mg6 | served | N | Y | — |
+| witness MG11 | incomplete | Y | N | — |
+| custody extract | incomplete | Y | N | — |
+| lab intake sheet | missing | Y | N | — |
+| full continuity chain | missing | Y | N | — |
+| sfr drugs analysis | missing | Y | N | — |
+
+---
+
+## Expected missing material
+
+- witness MG11
+- custody extract
+- lab intake sheet
+- full continuity chain
+- sfr drugs analysis
+
+## Expected unsafe-to-say
+
+- fully proved on current disclosure
+- safely confirms guilt
+
+## Expected CPS chase
+
+- lab intake sheet
+- full continuity chain
+- sfr drugs analysis
+
+## Expected court line (intent)
+
+Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).
+
+## Expected client summary points
+
+- Controlled matter: DA-050 Holly Reed — Lab continuity conflict
+- Served on papers (examples): charge sheet; mg5; mg6
+- Outstanding / chase candidates: witness MG11; custody extract; lab intake sheet; full continuity chain
+- Plain English only — solicitor review required before client use
+
+## Expected proof receipt / source anchors
+
+| Label | State | Anchor | Chase |
+|-------|-------|--------|-------|
+| charge sheet | served | — | N |
+| mg5 | served | — | N |
+| mg6 | served | — | N |
+| witness MG11 | incomplete | — | Y |
+| custody extract | incomplete | — | Y |
+| lab intake sheet | missing | — | Y |
+| full continuity chain | missing | — | Y |
+| sfr drugs analysis | missing | — | Y |
+
+---
+
+## Actual builder snapshot
+
+- **Allegation:** Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971
+- **Client label:** Holly Reed
+- **Court line:** Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.
+- **Chase items:** MG6 / unused schedule clarification; Exhibit mapping / provenance
+- **Do-not-overstate (sample):** fully proved on current disclosure · safely confirms guilt · Do not import BWV unless the papers support it. · Do not import custody safeguards unless the papers support it.
+- **Proof receipts (sample):** 10 rows; first: MG6 / unused schedule clarification
+
+
+
+---
+
+## Adversarial review questions
+
+Complete in `manual-review-checklist.md`. Focus:
+
+1. Did CaseBrain **over-warn**?
+2. Did it **suppress useful wording**?
+3. Did it call **served material missing**?
+4. Did it create **unnecessary chase**?
+5. Did it cite **wrong source/page**?
+6. Did it **repeat or clutter** output?
+
+---
+
+## Files in this packet
+
+- `expected.json`
+- `actual-summary.json`
+- `manual-review-checklist.md`
+- `_source/` (working bundle + truth key copy for rebuild)

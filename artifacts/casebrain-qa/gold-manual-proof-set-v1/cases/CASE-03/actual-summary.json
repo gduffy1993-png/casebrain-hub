@@ -1,0 +1,151 @@
+{
+  "goldId": "CASE-03",
+  "sourceCaseId": "demo-audit-27-custody-pace-missing",
+  "builtAt": "2026-07-10T10:12:43.566Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+  "clientLabel": "Sam Okonkwo",
+  "truthMapRows": [
+    {
+      "label": "Body-worn video (BWV)",
+      "existence": "referred_only",
+      "reliability": "weak"
+    },
+    {
+      "label": "Officer statement",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Custody record extract",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Full custody record",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Interview audio",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "PACE safeguards detail",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "Full BWV export",
+      "draft": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Full custody record",
+      "draft": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Interview audio",
+      "draft": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available."
+    },
+    {
+      "label": "PACE safeguards detail",
+      "draft": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Sam Okonkwo). This is early-stage — nothing is final until we have full disclosure and your instructions. A custody record extract is on the papers, but the full body-worn video export, complete custody record, and interview/PACE material are still outstanding.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "BWV shows the assault",
+    "full video proves",
+    "phone extraction",
+    "Do not rely on full BWV sequence unless export is served.",
+    "Assumed position may conflict with interview or served evidence.",
+    "BWV shows the assault",
+    "full video proves",
+    "phone extraction"
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "Full custody record",
+      "surface": "Overview",
+      "sourceDocument": "MG6/MG6C disclosure schedule",
+      "sourcePage": "MG6 / unused schedule clarification",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Interview audio",
+      "surface": "Overview",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "Interview audio",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "PACE safeguards detail",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Full BWV export",
+      "surface": "Overview",
+      "sourceDocument": "MG6/MG6C disclosure schedule",
+      "sourcePage": "Officer account and custody extract are serve…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "Officer account and custody extract are serve…",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "MG6/MG6C disclosure schedule",
+      "sourcePage": "Officer account and custody extract are serve…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "MG6/MG6C disclosure schedule",
+      "sourcePage": "MG6 / unused schedule clarification",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "Interview audio",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    }
+  ],
+  "hardSafetyFailures": [],
+  "precomputedArtifactHints": {
+    "cps-chase.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-27-custody-pace-missing/cps-chase.json",
+    "court-tab.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-27-custody-pace-missing/court-tab.json",
+    "client-summary.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-27-custody-pace-missing/client-summary.json",
+    "overview-truth-map.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-27-custody-pace-missing/overview-truth-map.json"
+  }
+}

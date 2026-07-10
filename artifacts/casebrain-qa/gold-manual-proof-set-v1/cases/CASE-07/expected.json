@@ -1,0 +1,146 @@
+{
+  "goldId": "CASE-07",
+  "sourceCaseId": "demo-audit-44-bad-redaction",
+  "familyLabel": "bad redaction",
+  "inputBundlePath": "catalog:demo-audit-44-bad-redaction (materialized from v9_catalog)",
+  "truthStates": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "witness MG11",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "custody extract",
+      "evidence_type": "custody",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "unredacted mg11",
+      "evidence_type": "disclosure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "redaction schedule",
+      "evidence_type": "disclosure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "full police note",
+      "evidence_type": "disclosure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    }
+  ],
+  "expectedMissingMaterial": [
+    "witness MG11",
+    "custody extract",
+    "unredacted mg11",
+    "redaction schedule",
+    "full police note"
+  ],
+  "unsafeToSayWarnings": [
+    "fully proved on current disclosure",
+    "safely confirms guilt"
+  ],
+  "expectedCpsChase": [
+    "unredacted mg11",
+    "redaction schedule",
+    "full police note"
+  ],
+  "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
+  "expectedClientSummaryPoints": [
+    "Controlled matter: DA-044 Farah Kent — Bad redaction hiding names/dates",
+    "Served on papers (examples): charge sheet; mg5; mg6",
+    "Outstanding / chase candidates: witness MG11; custody extract; unredacted mg11; redaction schedule",
+    "Plain English only — solicitor review required before client use"
+  ],
+  "expectedProofReceiptAnchors": [
+    {
+      "label": "charge sheet",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg5",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg6",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "witness MG11",
+      "state": "incomplete",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "custody extract",
+      "state": "incomplete",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "unredacted mg11",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "redaction schedule",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "full police note",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    }
+  ],
+  "claimDiscipline": "Gold manual review on a controlled/PDF-backed bundle. Not real-world solicitor validation. Solicitor review required before gold promotion."
+}

@@ -1,0 +1,171 @@
+{
+  "goldId": "CASE-01",
+  "sourceCaseId": "demo-audit-01-phone-harassment",
+  "builtAt": "2026-07-10T10:12:42.509Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+  "clientLabel": "Riley Moss",
+  "truthMapRows": [
+    {
+      "label": "Screenshot / message pack",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Phone extraction summary",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Device metadata export",
+      "existence": "referred_only",
+      "reliability": "weak"
+    },
+    {
+      "label": "Complainant MG11 (draft)",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Attribution / subscriber material",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "Full phone download",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Subscriber / account data",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Full message export",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "Full phone download",
+      "draft": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Subscriber / account data",
+      "draft": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Full message export",
+      "draft": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Call logs",
+      "draft": "Please provide Call logs (see MG6C/005) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Final signed MG11",
+      "draft": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available."
+    },
+    {
+      "label": "MG6C clarification on unused material",
+      "draft": "Please provide MG6C clarification on unused material (see MG6C) or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full disclosure and your instructions. Screenshots of messages are on the papers, but the full phone download, subscriber/account data, and final signed statement are still outstanding. We cannot yet confirm who sent each message from the served material alone.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "defendant sent the messages",
+    "Riley Moss sent",
+    "attribution is proved",
+    "BWV shows",
+    "CCTV proves",
+    "Do not state the defendant sent messages unless attribution is served and safe.",
+    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers",
+    "defendant sent the messages"
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "Full phone download",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Subscriber / account data",
+      "surface": "Overview",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": "15/01/2026 — Complainant provides screenshots…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Full message export",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Call logs",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": null,
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": "15/01/2026 — Complainant provides screenshots…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    }
+  ],
+  "hardSafetyFailures": [],
+  "precomputedArtifactHints": {
+    "cps-chase.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-01-phone-harassment/cps-chase.json",
+    "court-tab.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-01-phone-harassment/court-tab.json",
+    "client-summary.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-01-phone-harassment/client-summary.json",
+    "overview-truth-map.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-01-phone-harassment/overview-truth-map.json"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "goldId": "CASE-14",
+  "sourceCaseId": "demo-audit-16-fraud-bank-statements",
+  "familyLabel": "fraud bank/device attribution",
+  "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-16-fraud-bank-statements/bundle-text.md",
+  "truthStates": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "bank statement summaries",
+      "evidence_type": "financial",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "source_page_anchor": "6"
+    },
+    {
+      "evidence_item": "officer statement",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "full transaction export",
+      "evidence_type": "financial",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "source banking records",
+      "evidence_type": "financial",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "beneficiary tracing report",
+      "evidence_type": "financial",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    }
+  ],
+  "expectedMissingMaterial": [
+    "full transaction export",
+    "source banking records",
+    "beneficiary tracing report"
+  ],
+  "unsafeToSayWarnings": [
+    "fraud proved from summaries alone",
+    "BWV shows",
+    "CCTV proves"
+  ],
+  "expectedCpsChase": [
+    "full transaction export",
+    "source banking records",
+    "beneficiary tracing report"
+  ],
+  "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
+  "expectedClientSummaryPoints": [
+    "Controlled matter: DA-16 Isla Grant — fraud / bank summaries served",
+    "Served on papers (examples): charge sheet; mg5; mg6",
+    "Outstanding / chase candidates: full transaction export; source banking records; beneficiary tracing report",
+    "Plain English only — solicitor review required before client use"
+  ],
+  "expectedProofReceiptAnchors": [
+    {
+      "label": "charge sheet",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg5",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg6",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "bank statement summaries",
+      "state": "served",
+      "sourcePageAnchor": "6",
+      "chaseNeeded": false
+    },
+    {
+      "label": "officer statement",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "full transaction export",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "source banking records",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "beneficiary tracing report",
+      "state": "referred_only",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    }
+  ],
+  "claimDiscipline": "Gold manual review on a controlled/PDF-backed bundle. Not real-world solicitor validation. Solicitor review required before gold promotion."
+}

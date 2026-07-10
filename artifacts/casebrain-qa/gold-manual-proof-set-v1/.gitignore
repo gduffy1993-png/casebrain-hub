@@ -1,0 +1,3 @@
+# Working copies of bundle-text + truth-key rematerialized by the builder.
+# Safe to delete; regenerate with: npx tsx scripts/build-gold-manual-proof-set-v1.ts
+_source/

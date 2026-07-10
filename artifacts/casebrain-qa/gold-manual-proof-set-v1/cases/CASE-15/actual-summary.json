@@ -1,0 +1,124 @@
+{
+  "goldId": "CASE-15",
+  "sourceCaseId": "demo-audit-18-motoring-sjp-thin",
+  "builtAt": "2026-07-10T10:12:48.327Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988",
+  "clientLabel": "Ella Shaw",
+  "truthMapRows": [
+    {
+      "label": "Officer statement",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Breath / device procedure summary",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "CCTV / dashcam export",
+      "existence": "referred_only",
+      "reliability": "weak"
+    },
+    {
+      "label": "Device calibration certificate",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Full intoxilyser record",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "Device calibration certificate",
+      "draft": "Please provide Device calibration certificate (see MG6C/MOT/02) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Full intoxilyser record",
+      "draft": "Please provide Full intoxilyser record (see MG6C/MOT/04) or confirm in writing why it is not available."
+    },
+    {
+      "label": "CCTV / dashcam export",
+      "draft": "Please provide CCTV / dashcam export (see MG6C/MOT/05) or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record per MG6C that procedure summary is served but device calibration, full intoxilyser record, and CCTV/dashcam export remain outstanding.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Ella Shaw). This is early-stage — nothing is final until we have full disclosure and your instructions. A breath/device procedure summary is on the papers, but calibration certificates, the full intoxilyser record, and any CCTV/dashcam export are still outstanding. Device reliability remains provisional.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "Do not treat device summary as proof of reliability",
+    "BWV shows",
+    "Do not treat procedure summary alone as proof of device reliability or identity.",
+    "Do not state \"CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
+    "Do not state \"Full CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
+    "Do not treat device summary as proof of reliability"
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "Device calibration certificate",
+      "surface": "Overview",
+      "sourceDocument": "Police / CCTV unit",
+      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Full intoxilyser record",
+      "surface": "Overview",
+      "sourceDocument": "Police / CCTV unit",
+      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "CCTV / dashcam export",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that procedure summary is served but device calibration, full intoxilyser record, and CCTV/dashcam export remain outstanding.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Device calibration certificate (see MG6C/MOT/02) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Police / CCTV unit",
+      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Full intoxilyser record (see MG6C/MOT/04) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Police / CCTV unit",
+      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide CCTV / dashcam export (see MG6C/MOT/05) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    }
+  ],
+  "hardSafetyFailures": [],
+  "precomputedArtifactHints": {
+    "cps-chase.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-18-motoring-sjp-thin/cps-chase.json",
+    "court-tab.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-18-motoring-sjp-thin/court-tab.json",
+    "client-summary.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-18-motoring-sjp-thin/client-summary.json",
+    "overview-truth-map.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-18-motoring-sjp-thin/overview-truth-map.json"
+  }
+}

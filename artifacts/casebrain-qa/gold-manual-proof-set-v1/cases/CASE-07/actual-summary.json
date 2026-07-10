@@ -1,0 +1,122 @@
+{
+  "goldId": "CASE-07",
+  "sourceCaseId": "demo-audit-44-bad-redaction",
+  "builtAt": "2026-07-10T10:12:45.679Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
+  "clientLabel": "Farah Kent",
+  "truthMapRows": [
+    {
+      "label": "witness MG11",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "custody extract",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "unredacted mg11",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "redaction schedule",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "full police note",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "MG6 / unused schedule clarification",
+      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
+  "clientSummaryPreview": null,
+  "doNotOverstate": [
+    "fully proved on current disclosure",
+    "safely confirms guilt",
+    "Do not import BWV unless the papers support it.",
+    "Do not import custody safeguards unless the papers support it.",
+    "Do not import drugs continuity unless the papers support it.",
+    "Do not import ABE unless the papers support it.",
+    "Do not import phone extraction/metadata unless the papers support it.",
+    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "MG6 / unused schedule clarification",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": null,
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "witness MG11",
+      "surface": "Overview",
+      "sourceDocument": "MG6C / bundle schedule",
+      "sourcePage": null,
+      "evidenceState": "Incomplete",
+      "safeAction": "do-not-use"
+    },
+    {
+      "outputLine": "Custody record extract only — Extract only — full custody record outstanding.",
+      "surface": "Overview",
+      "sourceDocument": "MG6C / bundle schedule",
+      "sourcePage": null,
+      "evidenceState": "Incomplete",
+      "safeAction": "do-not-use"
+    },
+    {
+      "outputLine": "unredacted mg11 — Outstanding on current disclosure.",
+      "surface": "Overview",
+      "sourceDocument": "MG6C / bundle schedule",
+      "sourcePage": null,
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "redaction schedule — Outstanding on current disclosure.",
+      "surface": "Overview",
+      "sourceDocument": "MG6C / bundle schedule",
+      "sourcePage": null,
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "full police note — Outstanding on current disclosure.",
+      "surface": "Overview",
+      "sourceDocument": "MG6C / bundle schedule",
+      "sourcePage": null,
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    }
+  ],
+  "hardSafetyFailures": []
+}

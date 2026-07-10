@@ -1,0 +1,186 @@
+{
+  "goldId": "CASE-02",
+  "sourceCaseId": "demo-audit-03-bwv-custody",
+  "familyLabel": "BWV referred-only",
+  "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-03-bwv-custody/bundle-text.md",
+  "truthStates": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "officer MG11",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "custody record extract",
+      "evidence_type": "custody_pace",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": "6"
+    },
+    {
+      "evidence_item": "body-worn video",
+      "evidence_type": "bwv",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null,
+      "must_not_say": [
+        "BWV shows",
+        "BWV confirms"
+      ]
+    },
+    {
+      "evidence_item": "full custody record",
+      "evidence_type": "custody_pace",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "interview audio",
+      "evidence_type": "interview",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "interview transcript",
+      "evidence_type": "interview",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "PACE safeguards detail",
+      "evidence_type": "custody_pace",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    }
+  ],
+  "expectedMissingMaterial": [
+    "officer MG11",
+    "custody record extract",
+    "body-worn video",
+    "full custody record",
+    "interview audio",
+    "interview transcript",
+    "PACE safeguards detail"
+  ],
+  "unsafeToSayWarnings": [
+    "BWV shows",
+    "BWV confirms",
+    "PACE safeguards were followed",
+    "full custody record served",
+    "phone extraction",
+    "CCTV proves"
+  ],
+  "expectedCpsChase": [
+    "full BWV export",
+    "full custody record",
+    "interview audio",
+    "interview transcript",
+    "PACE safeguards detail"
+  ],
+  "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
+  "expectedClientSummaryPoints": [
+    "Controlled matter: DA-03 Casey Fry — BWV referred / custody extract only",
+    "Served on papers (examples): charge sheet; mg5; mg6",
+    "Outstanding / chase candidates: officer MG11; custody record extract; body-worn video; full custody record",
+    "Plain English only — solicitor review required before client use"
+  ],
+  "expectedProofReceiptAnchors": [
+    {
+      "label": "charge sheet",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg5",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg6",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "officer MG11",
+      "state": "incomplete",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "custody record extract",
+      "state": "incomplete",
+      "sourcePageAnchor": "6",
+      "chaseNeeded": true
+    },
+    {
+      "label": "body-worn video",
+      "state": "referred_only",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "full custody record",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "interview audio",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "interview transcript",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "PACE safeguards detail",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    }
+  ],
+  "claimDiscipline": "Gold manual review on a controlled/PDF-backed bundle. Not real-world solicitor validation. Solicitor review required before gold promotion."
+}

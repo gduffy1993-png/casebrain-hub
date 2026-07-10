@@ -1,0 +1,146 @@
+{
+  "goldId": "CASE-18",
+  "sourceCaseId": "demo-audit-46-prison-calls",
+  "familyLabel": "prison calls / call logs",
+  "inputBundlePath": "catalog:demo-audit-46-prison-calls (materialized from v9_catalog)",
+  "truthStates": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "witness MG11",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "custody extract",
+      "evidence_type": "custody",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "prison call recordings",
+      "evidence_type": "disclosure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "pin attribution report",
+      "evidence_type": "disclosure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "full prison telecom export",
+      "evidence_type": "disclosure",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    }
+  ],
+  "expectedMissingMaterial": [
+    "witness MG11",
+    "custody extract",
+    "prison call recordings",
+    "pin attribution report",
+    "full prison telecom export"
+  ],
+  "unsafeToSayWarnings": [
+    "fully proved on current disclosure",
+    "safely confirms guilt"
+  ],
+  "expectedCpsChase": [
+    "prison call recordings",
+    "pin attribution report",
+    "full prison telecom export"
+  ],
+  "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
+  "expectedClientSummaryPoints": [
+    "Controlled matter: DA-046 Reece Nolan — Prison calls attribution",
+    "Served on papers (examples): charge sheet; mg5; mg6",
+    "Outstanding / chase candidates: witness MG11; custody extract; prison call recordings; pin attribution report",
+    "Plain English only — solicitor review required before client use"
+  ],
+  "expectedProofReceiptAnchors": [
+    {
+      "label": "charge sheet",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg5",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg6",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "witness MG11",
+      "state": "incomplete",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "custody extract",
+      "state": "incomplete",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "prison call recordings",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "pin attribution report",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "full prison telecom export",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    }
+  ],
+  "claimDiscipline": "Gold manual review on a controlled/PDF-backed bundle. Not real-world solicitor validation. Solicitor review required before gold promotion."
+}

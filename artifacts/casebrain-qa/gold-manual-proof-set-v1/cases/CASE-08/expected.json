@@ -1,0 +1,198 @@
+{
+  "goldId": "CASE-08",
+  "sourceCaseId": "demo-audit-25-charge-bundle-mismatch",
+  "familyLabel": "charge mismatch",
+  "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-25-charge-bundle-mismatch/bundle-text.md",
+  "truthStates": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "message extracts",
+      "evidence_type": "encro",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "source_page_anchor": "6"
+    },
+    {
+      "evidence_item": "officer statement",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "platform/source extraction",
+      "evidence_type": "encro",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "handle attribution report",
+      "evidence_type": "encro",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "subscriber/account data",
+      "evidence_type": "encro",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "device continuity",
+      "evidence_type": "encro",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "co-defendant material",
+      "evidence_type": "encro",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "handle/phone attribution",
+      "evidence_type": "encro",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null,
+      "must_not_say": [
+        "Jordan Clarke is the handle",
+        "handle proves"
+      ]
+    }
+  ],
+  "expectedMissingMaterial": [
+    "platform/source extraction",
+    "handle attribution report",
+    "subscriber/account data",
+    "device continuity",
+    "co-defendant material",
+    "handle/phone attribution"
+  ],
+  "unsafeToSayWarnings": [
+    "handle proves defendant",
+    "Jordan Clarke is the handle",
+    "phone proves role",
+    "BWV shows",
+    "CCTV proves",
+    "handle proves"
+  ],
+  "expectedCpsChase": [
+    "platform/source extraction",
+    "handle attribution report",
+    "subscriber/account data",
+    "device continuity"
+  ],
+  "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
+  "expectedClientSummaryPoints": [
+    "Controlled matter: DA-25 Jordan Clarke — Encro charge / bundle alignment",
+    "Served on papers (examples): charge sheet; mg5; mg6",
+    "Outstanding / chase candidates: platform/source extraction; handle attribution report; subscriber/account data; device continuity",
+    "Plain English only — solicitor review required before client use"
+  ],
+  "expectedProofReceiptAnchors": [
+    {
+      "label": "charge sheet",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg5",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg6",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "message extracts",
+      "state": "served",
+      "sourcePageAnchor": "6",
+      "chaseNeeded": false
+    },
+    {
+      "label": "officer statement",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "platform/source extraction",
+      "state": "referred_only",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "handle attribution report",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "subscriber/account data",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "device continuity",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "co-defendant material",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "handle/phone attribution",
+      "state": "not_safely_confirmed",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    }
+  ],
+  "claimDiscipline": "Gold manual review on a controlled/PDF-backed bundle. Not real-world solicitor validation. Solicitor review required before gold promotion."
+}

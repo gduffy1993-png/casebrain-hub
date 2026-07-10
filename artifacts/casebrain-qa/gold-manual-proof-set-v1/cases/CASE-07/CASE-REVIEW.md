@@ -1,0 +1,119 @@
+# CASE-07 — bad redaction
+
+**Source case:** `demo-audit-44-bad-redaction`  
+**Risk focus:** Heavy redaction obscuring names/dates; unredacted MG11 outstanding  
+**Target review time:** ≤ 8 minutes  
+**Review type:** gold manual review on controlled/PDF-backed bundle  
+**Claim discipline:** Not real-world solicitor validation. Solicitor review required before gold promotion.
+
+---
+
+## Pass / warn / fail (provisional)
+
+- [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
+- [WARN] **CPS chase coverage:** Builder chase labels do not clearly match truth-key chase list — manual check
+- [PASS] **Court line present:** Safe court / position line generated
+- [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
+- [WARN] **Source/page anchors:** No page anchors on sampled receipts — confirm against truth-key anchors
+- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
+
+---
+
+## Input bundle
+
+`catalog:demo-audit-44-bad-redaction (materialized from v9_catalog)`
+
+---
+
+## Truth states (from truth key)
+
+| Evidence | Truth state | Chase? | Safe to rely? | Page/anchor |
+|----------|-------------|--------|---------------|-------------|
+| charge sheet | served | N | Y | — |
+| mg5 | served | N | Y | — |
+| mg6 | served | N | Y | — |
+| witness MG11 | incomplete | Y | N | — |
+| custody extract | incomplete | Y | N | — |
+| unredacted mg11 | missing | Y | N | — |
+| redaction schedule | missing | Y | N | — |
+| full police note | missing | Y | N | — |
+
+---
+
+## Expected missing material
+
+- witness MG11
+- custody extract
+- unredacted mg11
+- redaction schedule
+- full police note
+
+## Expected unsafe-to-say
+
+- fully proved on current disclosure
+- safely confirms guilt
+
+## Expected CPS chase
+
+- unredacted mg11
+- redaction schedule
+- full police note
+
+## Expected court line (intent)
+
+Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).
+
+## Expected client summary points
+
+- Controlled matter: DA-044 Farah Kent — Bad redaction hiding names/dates
+- Served on papers (examples): charge sheet; mg5; mg6
+- Outstanding / chase candidates: witness MG11; custody extract; unredacted mg11; redaction schedule
+- Plain English only — solicitor review required before client use
+
+## Expected proof receipt / source anchors
+
+| Label | State | Anchor | Chase |
+|-------|-------|--------|-------|
+| charge sheet | served | — | N |
+| mg5 | served | — | N |
+| mg6 | served | — | N |
+| witness MG11 | incomplete | — | Y |
+| custody extract | incomplete | — | Y |
+| unredacted mg11 | missing | — | Y |
+| redaction schedule | missing | — | Y |
+| full police note | missing | — | Y |
+
+---
+
+## Actual builder snapshot
+
+- **Allegation:** Stalking, contrary to section 2A of the Protection from Harassment Act 1997
+- **Client label:** Farah Kent
+- **Court line:** The defence asks the court to record outstanding message/account source material and complainant statement gaps.
+- **Chase items:** MG6 / unused schedule clarification
+- **Do-not-overstate (sample):** fully proved on current disclosure · safely confirms guilt · Do not import BWV unless the papers support it. · Do not import custody safeguards unless the papers support it.
+- **Proof receipts (sample):** 8 rows; first: MG6 / unused schedule clarification
+
+
+
+---
+
+## Adversarial review questions
+
+Complete in `manual-review-checklist.md`. Focus:
+
+1. Did CaseBrain **over-warn**?
+2. Did it **suppress useful wording**?
+3. Did it call **served material missing**?
+4. Did it create **unnecessary chase**?
+5. Did it cite **wrong source/page**?
+6. Did it **repeat or clutter** output?
+
+---
+
+## Files in this packet
+
+- `expected.json`
+- `actual-summary.json`
+- `manual-review-checklist.md`
+- `_source/` (working bundle + truth key copy for rebuild)

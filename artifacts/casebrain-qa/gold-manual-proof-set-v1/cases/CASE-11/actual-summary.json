@@ -1,0 +1,150 @@
+{
+  "goldId": "CASE-11",
+  "sourceCaseId": "demo-audit-22-youth-interview",
+  "builtAt": "2026-07-10T10:12:47.150Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+  "clientLabel": "Kian Doyle (youth — 17 years)",
+  "truthMapRows": [
+    {
+      "label": "Officer statement",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "YJS report extract",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Full YJS pre-sentence report",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Vulnerability assessment",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Youth interview audio",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Appropriate adult continuity",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "Full YJS pre-sentence report",
+      "draft": "Please provide Full YJS pre-sentence report (see MG6C/YTH/03) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Vulnerability assessment",
+      "draft": "Please provide Vulnerability assessment (see MG6C/YTH/04) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Youth interview audio",
+      "draft": "Please provide Youth interview audio (see MG6C/YTH/05) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Appropriate adult continuity",
+      "draft": "Please provide Appropriate adult continuity (see MG6C/YTH/06) or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record per MG6C that YJS extract is served but full pre-sentence report, vulnerability assessment, and youth interview audio remain outstanding.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Kian Doyle (youth — 17 years)). This is early-stage — nothing is final until we have full disclosure and your instructions. A YJS report extract is on the papers, but the full pre-sentence report, vulnerability assessment, and youth interview audio are still outstanding. Your case is in the youth court and needs age-appropriate disclosure before we fix strategy.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "youth guilt proved",
+    "BWV shows",
+    "full interview shows",
+    "Do not import adult-court assumptions — youth interview and YJS material remain provisional.",
+    "Do not state \"interview confirms\" — Interview material is not fully served",
+    "youth guilt proved",
+    "full interview shows"
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "Vulnerability assessment",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Youth interview audio",
+      "surface": "Overview",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Full YJS pre-sentence report",
+      "surface": "Overview",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "Youth defendant. YJS report extract served. F…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "Appropriate adult continuity",
+      "surface": "Overview",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "Youth defendant. YJS report extract served. F…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that YJS extract is served but full pre-sentence report, vulnerability assessment, and youth interview audio remain outstanding.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "Youth defendant. YJS report extract served. F…",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Full YJS pre-sentence report (see MG6C/YTH/03) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "Youth defendant. YJS report extract served. F…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "Please provide Vulnerability assessment (see MG6C/YTH/04) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Youth interview audio (see MG6C/YTH/05) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Appropriate adult continuity (see MG6C/YTH/06) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "Youth defendant. YJS report extract served. F…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    }
+  ],
+  "hardSafetyFailures": [],
+  "precomputedArtifactHints": {
+    "cps-chase.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-22-youth-interview/cps-chase.json",
+    "court-tab.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-22-youth-interview/court-tab.json",
+    "client-summary.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-22-youth-interview/client-summary.json",
+    "overview-truth-map.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-22-youth-interview/overview-truth-map.json"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "goldId": "CASE-19",
+  "sourceCaseId": "demo-audit-47-social-media-handles",
+  "builtAt": "2026-07-10T10:12:49.169Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
+  "clientLabel": "Nadia Pike",
+  "truthMapRows": [
+    {
+      "label": "witness MG11",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "custody extract",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "platform disclosure response",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "handle mapping report",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "ip/subscriber data",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "MG6 / unused schedule clarification",
+      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
+    },
+    {
+      "label": "Exhibit mapping / provenance",
+      "draft": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record that the full extraction/source material remains outstanding.",
+  "clientSummaryPreview": null,
+  "doNotOverstate": [
+    "fully proved on current disclosure",
+    "safely confirms guilt",
+    "Do not import BWV unless the papers support it.",
+    "Do not import custody safeguards unless the papers support it.",
+    "Do not import drugs continuity unless the papers support it.",
+    "Do not import ABE unless the papers support it.",
+    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
+    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "MG6 / unused schedule clarification",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Exhibit mapping / provenance",
+      "surface": "Overview",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": "Screenshot pack served; platform disclosure a…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "The defence asks the court to record that the full extraction/source material remains outstanding.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": null,
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide exhibit mapping / provenance or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": "Screenshot pack served; platform disclosure a…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "witness MG11",
+      "surface": "Overview",
+      "sourceDocument": "MG6C / bundle schedule",
+      "sourcePage": null,
+      "evidenceState": "Incomplete",
+      "safeAction": "do-not-use"
+    },
+    {
+      "outputLine": "Custody record extract only — Extract only — full custody record outstanding.",
+      "surface": "Overview",
+      "sourceDocument": "MG6C / bundle schedule",
+      "sourcePage": null,
+      "evidenceState": "Incomplete",
+      "safeAction": "do-not-use"
+    },
+    {
+      "outputLine": "platform disclosure response — Outstanding on current disclosure.",
+      "surface": "Overview",
+      "sourceDocument": "MG6C / bundle schedule",
+      "sourcePage": null,
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "handle mapping report — Outstanding on current disclosure.",
+      "surface": "Overview",
+      "sourceDocument": "MG6C / bundle schedule",
+      "sourcePage": null,
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "Subscriber / attribution data outstanding — Outstanding — cannot safely fix sender identity without this material.",
+      "surface": "Overview",
+      "sourceDocument": "MG6C / bundle schedule",
+      "sourcePage": null,
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    }
+  ],
+  "hardSafetyFailures": []
+}
