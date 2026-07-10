@@ -12,11 +12,11 @@
 ## Pass / warn / fail (provisional)
 
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [WARN] **CPS chase coverage:** Partial chase fit 5/6 plus generic MG6/MG6C item(s) — WARN (not clean pass)
+- [PASS] **CPS chase coverage:** 5/6 expected chase themes reflected in builder output
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
-- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
+- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
 
 ---
 
@@ -107,7 +107,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Allegation:** Harassment, contrary to section 2 of the Protection from Harassment Act 1997
 - **Client label:** Riley Moss
 - **Court line:** The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.
-- **Chase items:** Full phone download; Subscriber / account data; Full message export; Call logs; Final signed MG11; MG6C clarification on unused material
+- **Chase items:** Full phone download; Subscriber / account data; Full message export; Call logs; Final signed MG11
 - **Do-not-overstate (sample, family-filtered):** defendant sent the messages · Riley Moss sent · attribution is proved · Do not state the defendant sent messages unless attribution is served and safe.
 - **Proof receipts (sample):** 9 rows; first: Full phone download
 

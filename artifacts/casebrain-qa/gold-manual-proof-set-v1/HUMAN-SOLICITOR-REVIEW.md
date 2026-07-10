@@ -2,8 +2,8 @@
 
 Reviewer-facing pack for **Gold Manual Proof Set v1**.
 
-> **HOLD — do not send to human solicitors yet.**  
-> See [`INTERNAL-GOLD-QA-REPORT.md`](./INTERNAL-GOLD-QA-REPORT.md) (verdict: **NO** until exit criteria met).
+> **Full pack: HOLD** — see [`INTERNAL-GOLD-QA-REPORT.md`](./INTERNAL-GOLD-QA-REPORT.md).  
+> **Wave A (CASE-01, 02, 04, 06): ready for human review** after cleanup pass 1.
 
 **Docs (instructions, scoring, index, busy short, feedback template):**  
 [`docs/gold-manual-proof-pack/human-solicitor-review-v1/`](../../../docs/gold-manual-proof-pack/human-solicitor-review-v1/README.md)

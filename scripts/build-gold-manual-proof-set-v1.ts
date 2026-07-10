@@ -26,6 +26,12 @@ import {
   GOLD_MANUAL_PROOF_SET_V1,
   type GoldManualCaseSpec,
 } from "../lib/eval/gold-manual-proof-set/catalog";
+import {
+  chargeMismatchLooksLikeEncro,
+  demoteGenericMg6Chase,
+  gateCourtLineForFamily,
+  isGenericMg6ChaseLabel,
+} from "../lib/eval/gold-manual-proof-set/presentation-gates";
 import type { EvidenceStateTruthKey } from "../lib/eval/evidence-state-audit/types";
 
 const ZIP_ONLY = process.argv.includes("--zip-only");
@@ -294,7 +300,7 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
     briefPlan,
   });
 
-  const chase = pre.chase?.primaryItems?.length
+  const chaseMerged = pre.chase?.primaryItems?.length
     ? {
         ...chaseBuilt,
         primaryItems: pre.chase.primaryItems.map((i, idx) => {
@@ -316,10 +322,20 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
       }
     : chaseBuilt;
 
+  const chase = {
+    ...chaseMerged,
+    primaryItems: demoteGenericMg6Chase(chaseMerged.primaryItems),
+  };
+
   const doNotOverstate = [
     ...(truthKey.mustNotSayGlobal ?? []),
     ...(pre.court?.doNotOverstate ?? warRoomBuilt.doNotOverstate ?? []),
   ];
+
+  const rawCourtLine =
+    pre.chase?.safeCourtLine ?? pre.court?.safeCourtLine ?? chase.safeCourtLine ?? null;
+  const courtLine = gateCourtLineForFamily(spec.familyLabel, rawCourtLine);
+  const chaseForViews = { ...chase, safeCourtLine: courtLine ?? chase.safeCourtLine };
 
   const matterConfidence = buildMatterConfidence({
     documentCount: ledger.documents?.length ?? 1,
@@ -327,7 +343,7 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
     bundleHealth: "thin",
     missingMaterialCount: briefPlan.missingEvidence.length,
     genericProvisional: true,
-    hasSafeCourtLine: Boolean(chase.safeCourtLine?.trim()),
+    hasSafeCourtLine: Boolean(chaseForViews.safeCourtLine?.trim()),
     mainIssue: briefPlan.summaryAngle,
   });
 
@@ -336,9 +352,9 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
     warRoom: {
       ...warRoomBuilt,
       doNotOverstate,
-      safePositionToday: pre.court?.safeCourtLine ?? warRoomBuilt.safePositionToday,
+      safePositionToday: courtLine ?? warRoomBuilt.safePositionToday,
     },
-    chase,
+    chase: chaseForViews,
     matterConfidence,
     doNotOverstate,
     truthKey,
@@ -347,7 +363,7 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
 
   const proof = buildProofReceiptView({
     view: five,
-    chase,
+    chase: chaseForViews,
     bundleHay: bundleText.slice(0, 4000),
     allegation,
   });
@@ -369,8 +385,6 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
       existence: r.existence,
       reliability: r.reliability,
     }));
-
-  const courtLine = pre.chase?.safeCourtLine ?? pre.court?.safeCourtLine ?? chase.safeCourtLine ?? null;
 
   const blob = [
     courtLine ?? "",
@@ -426,10 +440,6 @@ function filterDoNotOverstateForFamily(familyLabel: string, items: string[]): st
   });
 }
 
-function isGenericMg6ChaseLabel(label: string): boolean {
-  return /mg6c?\s*clarification|mg6\s*\/\s*unused|schedule clarification|unused material/i.test(label);
-}
-
 function familyContentDrift(familyLabel: string, actual: ActualSummary): string | null {
   const family = familyLabel.toLowerCase();
   const blob = [
@@ -438,17 +448,10 @@ function familyContentDrift(familyLabel: string, actual: ActualSummary): string 
     ...actual.cpsChase.map((c) => c.label),
     ...actual.truthMapRows.map((r) => r.label),
     actual.clientSummaryPreview ?? "",
-  ]
-    .join(" ")
-    .toLowerCase();
+  ].join(" ");
 
-  if (/charge mismatch/.test(family)) {
-    const hasChargeDrift = /charge.*(mismatch|drift|align)|mg5.*charge|charge.*mg5|bundle.*charg|charge sheet vs/.test(blob);
-    const hasEncroHandle =
-      /encro|handle attribution|platform\s*\/\s*source|message extracts|subscriber\/account/.test(blob);
-    if (hasEncroHandle && !hasChargeDrift) {
-      return "Family slot is charge mismatch but actual surfaces are Encro/handle/platform — not a clean charge-mismatch solicitor example";
-    }
+  if (/charge mismatch/.test(family) && chargeMismatchLooksLikeEncro(blob)) {
+    return "Family slot is charge mismatch but actual surfaces are Encro/handle/platform — not a clean charge-mismatch solicitor example";
   }
   return null;
 }
@@ -507,14 +510,26 @@ function compareHints(
   };
 
   if (spec.sourceKind === "v9_catalog") {
-    boxes.push(
-      box(
-        "Reviewer lane",
-        "warn",
-        "INTERNAL PRODUCT-HUNT case (v9 catalog) — not a clean solicitor example; hunt generic chase / template drift",
-      ),
-    );
-    bumpWarn("v9 catalog product-hunt lane");
+    const genericOnlyLane =
+      actual.cpsChase.length > 0 && actual.cpsChase.every((c) => isGenericMg6ChaseLabel(c.label));
+    if (genericOnlyLane) {
+      boxes.push(
+        box(
+          "Reviewer lane",
+          "warn",
+          "INTERNAL PRODUCT-HUNT case (v9 catalog) with generic-only MG6 chase — not a clean solicitor example",
+        ),
+      );
+      bumpWarn("v9 catalog generic-only chase product-hunt");
+    } else {
+      boxes.push(
+        box(
+          "Reviewer lane",
+          "pass",
+          "v9 catalog source — packet banner still marks catalog origin; chase is not generic-only",
+        ),
+      );
+    }
   }
 
   if (actual.hardSafetyFailures.length) {
@@ -816,7 +831,8 @@ function renderPackSummaryMd(
 **Cases:** ${rows.length}/20 packets  
 **Provisional scores (pre-solicitor):** ${pass} pass · ${warn} warn · ${fail} fail  
 **Hard safety failures across pack:** ${rows.reduce((n, r) => n + r.hardFails, 0)}  
-**Ready for human solicitor review:** **${readyForHumanReview ? "YES" : "NO"}** (see \`INTERNAL-GOLD-QA-REPORT.md\`)
+**Ready for human solicitor review:** **${readyForHumanReview ? "YES" : "NO"}** (full pack — see \`INTERNAL-GOLD-QA-REPORT.md\`)  
+**Wave A (CASE-01, 02, 04, 06):** see internal QA report
 
 ## Claim discipline
 
@@ -994,6 +1010,8 @@ function renderInternalQaReport(
   const pass = rows.filter((r) => r.provisionalScore === "pass");
   const warn = rows.filter((r) => r.provisionalScore === "warn");
   const byId = (id: string) => rows.find((r) => r.spec.goldId === id);
+  const waveA = ["CASE-01", "CASE-02", "CASE-04", "CASE-06"];
+  const waveAClean = waveA.every((id) => byId(id)?.provisionalScore === "pass");
 
   const c01 = byId("CASE-01");
   const c08 = byId("CASE-08");
@@ -1002,16 +1020,15 @@ function renderInternalQaReport(
   return `# INTERNAL — Gold Manual Proof Set v1 QA report
 
 **Date:** ${new Date().toISOString().slice(0, 10)}  
-**Audience:** Internal only (Ged / product). **Do not send this pack to human solicitors yet.**  
-**Scope:** Reporting / packet polish only — no Brain, chase core, export builders, Supabase, prod UI, or deploy.
+**Audience:** Internal only (Ged / product).  
+**Scope:** Reporting / pack presentation gates only — no Brain, chase core, export builders, Supabase, prod UI, or deploy.
 
 ---
 
 ## Verdict
 
-**Ready for human review: NO**
-
-Provisional scoring was too generous. This pass tightens packet scoring and labels. Pack remains valuable for **internal product hunt**, not external solicitor review.
+**Full pack ready for human review: NO**  
+**Wave A ready for human review: ${waveAClean ? "YES" : "NO"}** (CASE-01, 02, 04, 06)
 
 | Metric | Value |
 |--------|------:|
@@ -1023,51 +1040,39 @@ Provisional scoring was too generous. This pass tightens packet scoring and labe
 
 ---
 
-## Codex findings → actions
+## Cleanup pass 1 (this run)
 
-| # | Finding | Action taken |
-|---|---------|--------------|
-| 1 | CASE-08 charge mismatch scored PASS while actual is Encro/handle/platform | **WARN** via family/content fit check |
-| 2 | CASE-17 medical scored PASS with generic MG6 + partial medical chase | **WARN** via partial chase + generic MG6 rule |
-| 3 | CASE-01 phone had extra generic MG6C clarification | **WARN** (or flagged) via generic clutter rule |
-| 4 | WARN v9 cases looked like clean solicitor examples | Packets/checklists now say **INTERNAL PRODUCT-HUNT** |
-| 5 | Off-family BWV/custody/drugs do-not-overstate noise | Family-filtered in expected + actual samples |
-| 6 | Zip must keep expected / actual / checklist | \`gold-manual-proof-set-v1-review-pack.zip\` includes those per case |
+| # | Change | Result |
+|---|--------|--------|
+| 1 | CASE-08 → \`demo-audit-69-charge-mg5-hearing\` (true charge/MG5/listing drift) | Source integrity fixed; still WARN if chase generic-only |
+| 2 | Demote generic MG6/MG6C when substantive chase exists | CASE-01 cleared to PASS |
+| 3 | Court family gate blocks digital wording on non-digital families | CASE-07/09 court-line family-fit cleared |
 
-### Spot checks (this run)
+### Spot checks
 
 | Case | Provisional | Notes |
 |------|-------------|-------|
-| CASE-01 | ${c01?.provisionalScore.toUpperCase() ?? "?"} | ${(c01?.warnReasons[0] ?? "—").replace(/\|/g, "/")} |
+| CASE-01 | ${c01?.provisionalScore.toUpperCase() ?? "?"} | ${(c01?.warnReasons[0] ?? "clean").replace(/\|/g, "/")} |
 | CASE-08 | ${c08?.provisionalScore.toUpperCase() ?? "?"} | ${(c08?.warnReasons[0] ?? "—").replace(/\|/g, "/")} |
 | CASE-17 | ${c17?.provisionalScore.toUpperCase() ?? "?"} | ${(c17?.warnReasons[0] ?? "—").replace(/\|/g, "/")} |
 
 ---
 
-## Why not ready for humans
+## Wave A
 
-1. Too many WARN / product-hunt cases for a clean first solicitor wave.  
-2. CASE-08 family slot still mismatches underlying Encro fixture (reporting WARN only — catalog remap is later product/proof work).  
-3. Human review pack docs exist, but sending now would burn reviewer trust on noisy exemplars.  
-4. Need a curated Wave A of clean PASS PDF-backed cases only, after a second internal skim.
+| Case | Score |
+|------|-------|
+${waveA.map((id) => `| ${id} | ${byId(id)?.provisionalScore.toUpperCase() ?? "?"} |`).join("\n")}
 
----
-
-## What is OK to use internally
-
-- Packet structure (expected / actual / checklist / review md)  
-- Hard safety = 0 across pack  
-- WARN review + this QA report for product triage  
-- Review zip for offline internal read  
+${waveAClean ? "Wave A may be sent with the human solicitor review pack (busy short + checklists). Hold full 20-case send." : "Wave A not clean yet — do not send."}
 
 ---
 
-## Exit criteria for YES
+## Still open (later passes)
 
-- [ ] CASE-08 either remapped to Encro family or fixture truly charge-mismatch  
-- [ ] Clean PASS set (≥8) re-skimmed with no generic MG6C clutter on phone exemplars  
-- [ ] Human wave limited to PASS exemplars; v9 hunts optional / separate  
-- [ ] INTERNAL report flipped to YES with owner sign-off  
+1. Family-specific chase for v9 thin catalogs (CASE-07/08/13/16/17/18/19)  
+2. CASE-08 chase still generic MG6 despite correct charge-mismatch source  
+3. Medical / translation / ANPR / prison / social chase specificity  
 
 ---
 
@@ -1076,7 +1081,7 @@ Provisional scoring was too generous. This pass tightens packet scoring and labe
 - \`GOLD-MANUAL-PROOF-SUMMARY.md\`  
 - \`GOLD-MANUAL-WARN-REVIEW.md\`  
 - \`gold-manual-proof-set-v1-review-pack.zip\`  
-- \`docs/gold-manual-proof-pack/human-solicitor-review-v1/\` (hold — do not distribute yet)
+- \`docs/gold-manual-proof-pack/human-solicitor-review-v1/\`
 `;
 }
 

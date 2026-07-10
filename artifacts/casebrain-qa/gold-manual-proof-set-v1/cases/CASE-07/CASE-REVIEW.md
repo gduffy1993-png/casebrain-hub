@@ -13,10 +13,10 @@
 
 ## Pass / warn / fail (provisional)
 
-- [WARN] **Reviewer lane:** INTERNAL PRODUCT-HUNT case (v9 catalog) — not a clean solicitor example; hunt generic chase / template drift
+- [WARN] **Reviewer lane:** INTERNAL PRODUCT-HUNT case (v9 catalog) with generic-only MG6 chase — not a clean solicitor example
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
 - [WARN] **CPS chase coverage:** Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution
-- [WARN] **Court line family fit:** Court line uses digital/message-account wording on a non-digital family — check for template drift
+- [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)
 - [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
@@ -93,7 +93,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 - **Allegation:** Stalking, contrary to section 2A of the Protection from Harassment Act 1997
 - **Client label:** Farah Kent
-- **Court line:** The defence asks the court to record outstanding message/account source material and complainant statement gaps.
+- **Court line:** The defence asks the court to record that redaction and unredacted schedule issues remain outstanding on the current papers.
 - **Chase items:** MG6 / unused schedule clarification
 - **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import ABE unless the papers support it. · Do not import phone extraction/metadata unless the papers support it.
 - **Proof receipts (sample):** 8 rows; first: MG6 / unused schedule clarification

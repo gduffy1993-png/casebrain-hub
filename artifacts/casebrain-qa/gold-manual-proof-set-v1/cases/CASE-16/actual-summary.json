@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-16",
   "sourceCaseId": "demo-audit-49-anpr-trap",
-  "builtAt": "2026-07-10T11:35:06.421Z",
+  "builtAt": "2026-07-10T12:25:45.309Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Taking a vehicle without consent, contrary to section 12 of the Theft Act 1968",
   "clientLabel": "Maya Singh",

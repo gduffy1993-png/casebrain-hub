@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-13",
   "sourceCaseId": "demo-audit-50-lab-continuity-conflict",
-  "builtAt": "2026-07-10T11:35:05.827Z",
+  "builtAt": "2026-07-10T12:25:44.614Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971",
   "clientLabel": "Holly Reed",
@@ -34,10 +34,6 @@
   ],
   "cpsChase": [
     {
-      "label": "MG6 / unused schedule clarification",
-      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
-    },
-    {
       "label": "Exhibit mapping / provenance",
       "draft": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
     }
@@ -56,14 +52,6 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "MG6 / unused schedule clarification",
-      "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
-      "safeAction": "check"
-    },
-    {
       "outputLine": "Exhibit mapping / provenance",
       "surface": "Overview",
       "sourceDocument": "MG6/MG6C disclosure schedule",
@@ -75,16 +63,8 @@
       "outputLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
-      "sourcePage": null,
+      "sourcePage": "Family theme: Lab continuity conflict",
       "evidenceState": "Incomplete",
-      "safeAction": "check"
-    },
-    {
-      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
-      "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {

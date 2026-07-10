@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-19",
   "sourceCaseId": "demo-audit-47-social-media-handles",
-  "builtAt": "2026-07-10T11:35:06.978Z",
+  "builtAt": "2026-07-10T12:25:46.047Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
   "clientLabel": "Nadia Pike",
@@ -34,10 +34,6 @@
   ],
   "cpsChase": [
     {
-      "label": "MG6 / unused schedule clarification",
-      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
-    },
-    {
       "label": "Exhibit mapping / provenance",
       "draft": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
     }
@@ -54,14 +50,6 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "MG6 / unused schedule clarification",
-      "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
-      "safeAction": "check"
-    },
-    {
       "outputLine": "Exhibit mapping / provenance",
       "surface": "Overview",
       "sourceDocument": "Crown / disclosure officer",
@@ -73,16 +61,8 @@
       "outputLine": "The defence asks the court to record that the full extraction/source material remains outstanding.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
-      "sourcePage": null,
+      "sourcePage": "Screenshot pack served; platform disclosure a…",
       "evidenceState": "Incomplete",
-      "safeAction": "check"
-    },
-    {
-      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
-      "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {

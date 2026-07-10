@@ -13,9 +13,9 @@
 
 ## Pass / warn / fail (provisional)
 
-- [WARN] **Reviewer lane:** INTERNAL PRODUCT-HUNT case (v9 catalog) — not a clean solicitor example; hunt generic chase / template drift
+- [PASS] **Reviewer lane:** v9 catalog source — packet banner still marks catalog origin; chase is not generic-only
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [WARN] **CPS chase coverage:** Partial chase fit 1/3 plus generic MG6/MG6C item(s) — WARN (not clean pass)
+- [WARN] **CPS chase coverage:** Partial chase fit only 1/3 expected themes — WARN
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
@@ -94,9 +94,9 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Allegation:** Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861
 - **Client label:** Owen Pike
 - **Court line:** The defence asks the court to record outstanding medical, video and sequence material.
-- **Chase items:** MG6 / unused schedule clarification; Medical / expert source report
+- **Chase items:** Medical / expert source report
 - **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import ABE unless the papers support it. · Do not import phone extraction/metadata unless the papers support it.
-- **Proof receipts (sample):** 10 rows; first: MG6 / unused schedule clarification
+- **Proof receipts (sample):** 8 rows; first: Medical / expert source report
 
 
 

@@ -13,7 +13,7 @@
 
 ## Pass / warn / fail (provisional)
 
-- [WARN] **Reviewer lane:** INTERNAL PRODUCT-HUNT case (v9 catalog) — not a clean solicitor example; hunt generic chase / template drift
+- [WARN] **Reviewer lane:** INTERNAL PRODUCT-HUNT case (v9 catalog) with generic-only MG6 chase — not a clean solicitor example
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
 - [WARN] **CPS chase coverage:** Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution
 - [PASS] **Court line present:** Safe court / position line generated

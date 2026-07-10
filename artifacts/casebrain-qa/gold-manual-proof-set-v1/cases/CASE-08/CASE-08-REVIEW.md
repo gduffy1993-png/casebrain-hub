@@ -1,29 +1,31 @@
 # CASE-08 — charge mismatch
 
-**Source case:** `demo-audit-25-charge-bundle-mismatch`  
-**Source kind:** `evidence_state_local`  
-**Risk focus:** Charge sheet vs MG5 / bundle narrative drift  
+**Source case:** `demo-audit-69-charge-mg5-hearing`  
+**Source kind:** `v9_catalog`  
+**Risk focus:** Charge wording vs MG5 offence summary vs listing/hearing date drift  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
 **Claim discipline:** Not real-world solicitor validation. Solicitor review required before gold promotion.
+
+> **INTERNAL PRODUCT-HUNT CASE (v9 catalog)** — Not a clean solicitor example. Use to hunt generic MG6 chase, off-family court templates, and thin-catalog gaps. Do **not** present as a polished gold exemplar for external solicitor review.
 
 ---
 
 ## Pass / warn / fail (provisional)
 
+- [WARN] **Reviewer lane:** INTERNAL PRODUCT-HUNT case (v9 catalog) with generic-only MG6 chase — not a clean solicitor example
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [WARN] **Family / content fit:** Family slot is charge mismatch but actual surfaces are Encro/handle/platform — not a clean charge-mismatch solicitor example
-- [PASS] **CPS chase coverage:** 4/4 expected chase themes reflected in builder output
+- [WARN] **CPS chase coverage:** Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution
 - [PASS] **Court line present:** Safe court / position line generated
-- [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
-- [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
+- [WARN] **False-missing risk:** 2 row(s) look served-in-truth but missing/referred in builder — check
+- [PASS] **Source/page anchors:** N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)
 - [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
 
 ---
 
 ## Input bundle
 
-`artifacts/evidence-state-audit-local/cases/demo-audit-25-charge-bundle-mismatch/bundle-text.md`
+`catalog:demo-audit-69-charge-mg5-hearing (materialized from v9_catalog)`
 
 ---
 
@@ -34,39 +36,32 @@
 | charge sheet | served | N | Y | — |
 | mg5 | served | N | Y | — |
 | mg6 | served | N | Y | — |
-| message extracts | served | N | N | 6 |
-| officer statement | served | N | Y | — |
-| platform/source extraction | referred_only | Y | N | — |
-| handle attribution report | missing | Y | N | — |
-| subscriber/account data | missing | Y | N | — |
-| device continuity | missing | Y | N | — |
-| co-defendant material | missing | Y | N | — |
-| handle/phone attribution | not_safely_confirmed | Y | N | — |
+| witness MG11 | incomplete | Y | N | — |
+| custody extract | incomplete | Y | N | — |
+| corrected charge sheet | missing | Y | N | — |
+| updated mg5 | missing | Y | N | — |
+| court listing confirmation | missing | Y | N | — |
 
 ---
 
 ## Expected missing material
 
-- platform/source extraction
-- handle attribution report
-- subscriber/account data
-- device continuity
-- co-defendant material
-- handle/phone attribution
+- witness MG11
+- custody extract
+- corrected charge sheet
+- updated mg5
+- court listing confirmation
 
 ## Expected unsafe-to-say (family-filtered)
 
-- handle proves defendant
-- Jordan Clarke is the handle
-- phone proves role
-- handle proves
+- fully proved on current disclosure
+- safely confirms guilt
 
 ## Expected CPS chase
 
-- platform/source extraction
-- handle attribution report
-- subscriber/account data
-- device continuity
+- corrected charge sheet
+- updated mg5
+- court listing confirmation
 
 ## Expected court line (intent)
 
@@ -74,9 +69,9 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 ## Expected client summary points
 
-- Controlled matter: DA-25 Jordan Clarke — Encro charge / bundle alignment
+- Controlled matter: DA-069 Jordan Hale — Charge MG5 hearing contradiction
 - Served on papers (examples): charge sheet; mg5; mg6
-- Outstanding / chase candidates: platform/source extraction; handle attribution report; subscriber/account data; device continuity
+- Outstanding / chase candidates: witness MG11; custody extract; corrected charge sheet; updated mg5
 - Plain English only — solicitor review required before client use
 
 ## Expected proof receipt / source anchors
@@ -86,31 +81,24 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 | charge sheet | served | — | N |
 | mg5 | served | — | N |
 | mg6 | served | — | N |
-| message extracts | served | 6 | N |
-| officer statement | served | — | N |
-| platform/source extraction | referred_only | — | Y |
-| handle attribution report | missing | — | Y |
-| subscriber/account data | missing | — | Y |
-| device continuity | missing | — | Y |
-| co-defendant material | missing | — | Y |
-| handle/phone attribution | not_safely_confirmed | — | Y |
+| witness MG11 | incomplete | — | Y |
+| custody extract | incomplete | — | Y |
+| corrected charge sheet | missing | — | Y |
+| updated mg5 | missing | — | Y |
+| court listing confirmation | missing | — | Y |
 
 ---
 
 ## Actual builder snapshot
 
-- **Allegation:** Being concerned in the supply of a controlled drug of Class A, contrary to section 4(2)(b) of the Misuse of Drugs Act 1971
-- **Client label:** Jordan Clarke
-- **Court line:** The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.
-- **Chase items:** Platform / source extraction; Handle attribution report; Subscriber / account data; Device continuity
-- **Do-not-overstate (sample, family-filtered):** handle proves defendant · Jordan Clarke is the handle · phone proves role · Do not treat handle or phone reference as proof of the defendant role without served attribution.
-- **Proof receipts (sample):** 9 rows; first: Platform / source extraction
+- **Allegation:** Battery, contrary to section 39 of the Criminal Justice Act 1988
+- **Client label:** Jordan Hale
+- **Court line:** Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.
+- **Chase items:** MG6 / unused schedule clarification
+- **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import ABE unless the papers support it. · Do not import phone extraction/metadata unless the papers support it.
+- **Proof receipts (sample):** 8 rows; first: MG6 / unused schedule clarification
 
-### Precomputed demo-audit artifacts
-- cps-chase.json: `artifacts/casebrain-qa/demo-audit-thirty/demo-audit-25-charge-bundle-mismatch/cps-chase.json`
-- court-tab.json: `artifacts/casebrain-qa/demo-audit-thirty/demo-audit-25-charge-bundle-mismatch/court-tab.json`
-- client-summary.json: `artifacts/casebrain-qa/demo-audit-thirty/demo-audit-25-charge-bundle-mismatch/client-summary.json`
-- overview-truth-map.json: `artifacts/casebrain-qa/demo-audit-thirty/demo-audit-25-charge-bundle-mismatch/overview-truth-map.json`
+
 
 ---
 

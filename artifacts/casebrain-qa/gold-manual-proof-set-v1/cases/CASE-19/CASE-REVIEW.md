@@ -13,7 +13,7 @@
 
 ## Pass / warn / fail (provisional)
 
-- [WARN] **Reviewer lane:** INTERNAL PRODUCT-HUNT case (v9 catalog) — not a clean solicitor example; hunt generic chase / template drift
+- [PASS] **Reviewer lane:** v9 catalog source — packet banner still marks catalog origin; chase is not generic-only
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
 - [WARN] **CPS chase coverage:** Builder chase labels do not clearly match truth-key chase list — manual check
 - [PASS] **Court line present:** Safe court / position line generated
@@ -94,9 +94,9 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Allegation:** Malicious communications, contrary to section 1 of the Malicious Communications Act 1988
 - **Client label:** Nadia Pike
 - **Court line:** The defence asks the court to record that the full extraction/source material remains outstanding.
-- **Chase items:** MG6 / unused schedule clarification; Exhibit mapping / provenance
+- **Chase items:** Exhibit mapping / provenance
 - **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import ABE unless the papers support it. · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers
-- **Proof receipts (sample):** 10 rows; first: MG6 / unused schedule clarification
+- **Proof receipts (sample):** 8 rows; first: Exhibit mapping / provenance
 
 
 

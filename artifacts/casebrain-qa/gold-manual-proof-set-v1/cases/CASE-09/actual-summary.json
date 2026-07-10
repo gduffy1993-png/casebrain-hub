@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-09",
   "sourceCaseId": "demo-audit-32-restraining-order-breach",
-  "builtAt": "2026-07-10T11:35:04.687Z",
+  "builtAt": "2026-07-10T12:25:43.593Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997",
   "clientLabel": "Lena Ortiz",
@@ -36,13 +36,9 @@
     {
       "label": "Full custody record / PACE material",
       "draft": "Please provide full custody record / PACE material or confirm in writing why it is not available."
-    },
-    {
-      "label": "MG6 / unused schedule clarification",
-      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
     }
   ],
-  "courtLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
+  "courtLine": "The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
     "fully proved on current disclosure",
@@ -64,15 +60,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "MG6 / unused schedule clarification",
-      "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
-      "safeAction": "check"
-    },
-    {
-      "outputLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
+      "outputLine": "The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
       "sourcePage": null,
@@ -83,14 +71,6 @@
       "outputLine": "Please provide full custody record / PACE material or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "Custody / police interview unit",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
-      "safeAction": "check"
-    },
-    {
-      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
-      "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"

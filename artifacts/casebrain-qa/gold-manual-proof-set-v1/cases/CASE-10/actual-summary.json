@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-10",
   "sourceCaseId": "demo-audit-41-translated-messages",
-  "builtAt": "2026-07-10T11:35:05.043Z",
+  "builtAt": "2026-07-10T12:25:43.825Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
   "clientLabel": "Aiden Cole",
@@ -36,10 +36,6 @@
     {
       "label": "Interview recording / transcript",
       "draft": "Please provide interview recording / transcript or confirm in writing why it is not available."
-    },
-    {
-      "label": "MG6 / unused schedule clarification",
-      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
     }
   ],
   "courtLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
@@ -63,14 +59,6 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "MG6 / unused schedule clarification",
-      "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
-      "safeAction": "check"
-    },
-    {
       "outputLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
@@ -83,14 +71,6 @@
       "surface": "CPS Chase",
       "sourceDocument": "Custody / police interview unit",
       "sourcePage": "Complainant interview 15/05/2026 — interprete…",
-      "evidenceState": "Not safely confirmed",
-      "safeAction": "check"
-    },
-    {
-      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
-      "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },

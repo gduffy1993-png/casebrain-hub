@@ -87,9 +87,9 @@ export const GOLD_MANUAL_PROOF_SET_V1: GoldManualCaseSpec[] = [
     goldId: "CASE-08",
     familySlot: 8,
     familyLabel: "charge mismatch",
-    sourceCaseId: "demo-audit-25-charge-bundle-mismatch",
-    sourceKind: "evidence_state_local",
-    riskFocus: "Charge sheet vs MG5 / bundle narrative drift",
+    sourceCaseId: "demo-audit-69-charge-mg5-hearing",
+    sourceKind: "v9_catalog",
+    riskFocus: "Charge wording vs MG5 offence summary vs listing/hearing date drift",
     reviewMinutesTarget: 8,
   },
   {

@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-18",
   "sourceCaseId": "demo-audit-46-prison-calls",
-  "builtAt": "2026-07-10T11:35:06.820Z",
+  "builtAt": "2026-07-10T12:25:45.803Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Conspiracy to import a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
   "clientLabel": "Reece Nolan",

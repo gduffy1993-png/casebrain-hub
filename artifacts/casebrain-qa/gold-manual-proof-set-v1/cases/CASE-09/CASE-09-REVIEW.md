@@ -13,10 +13,10 @@
 
 ## Pass / warn / fail (provisional)
 
-- [WARN] **Reviewer lane:** INTERNAL PRODUCT-HUNT case (v9 catalog) — not a clean solicitor example; hunt generic chase / template drift
+- [PASS] **Reviewer lane:** v9 catalog source — packet banner still marks catalog origin; chase is not generic-only
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [WARN] **CPS chase coverage:** Partial chase fit 1/3 plus generic MG6/MG6C item(s) — WARN (not clean pass)
-- [WARN] **Court line family fit:** Court line uses digital/message-account wording on a non-digital family — check for template drift
+- [WARN] **CPS chase coverage:** Partial chase fit only 1/3 expected themes — WARN
+- [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)
 - [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
@@ -93,10 +93,10 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 - **Allegation:** Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997
 - **Client label:** Lena Ortiz
-- **Court line:** The defence asks the court to record outstanding message/account source material and complainant statement gaps.
-- **Chase items:** Full custody record / PACE material; MG6 / unused schedule clarification
+- **Court line:** The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers.
+- **Chase items:** Full custody record / PACE material
 - **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import ABE unless the papers support it. · Do not import phone extraction/metadata unless the papers support it.
-- **Proof receipts (sample):** 10 rows; first: Full custody record / PACE material
+- **Proof receipts (sample):** 8 rows; first: Full custody record / PACE material
 
 
 

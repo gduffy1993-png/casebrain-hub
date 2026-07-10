@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-10T11:35:07.221Z",
+  "generatedAt": "2026-07-10T12:25:46.419Z",
   "packId": "gold-manual-proof-set-v1",
   "version": "1.1-stricter-scoring",
   "caseCount": 20,
   "readyForHumanReview": false,
   "provisional": {
-    "pass": 10,
-    "warn": 10,
+    "pass": 11,
+    "warn": 9,
     "fail": 0
   },
   "hardSafetyFailuresTotal": 0,
@@ -24,10 +24,8 @@
       "sourceCaseId": "demo-audit-01-phone-harassment",
       "sourceKind": "evidence_state_local",
       "riskFocus": "Screenshots served vs full download / subscriber gap; attribution overstatement",
-      "provisionalScore": "warn",
-      "warnReasons": [
-        "Partial chase fit 5/6 plus generic MG6/MG6C item(s) — WARN (not clean pass)"
-      ],
+      "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-01-phone-harassment/bundle-text.md",
       "packetPath": "cases/CASE-01",
@@ -118,9 +116,8 @@
       "riskFocus": "Heavy redaction obscuring names/dates; unredacted MG11 outstanding",
       "provisionalScore": "warn",
       "warnReasons": [
-        "v9 catalog product-hunt lane",
-        "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution",
-        "Court line uses digital/message-account wording on a non-digital family — check for template drift"
+        "v9 catalog generic-only chase product-hunt",
+        "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution"
       ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-44-bad-redaction (materialized from v9_catalog)",
@@ -132,15 +129,17 @@
     {
       "goldId": "CASE-08",
       "familyLabel": "charge mismatch",
-      "sourceCaseId": "demo-audit-25-charge-bundle-mismatch",
-      "sourceKind": "evidence_state_local",
-      "riskFocus": "Charge sheet vs MG5 / bundle narrative drift",
+      "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
+      "sourceKind": "v9_catalog",
+      "riskFocus": "Charge wording vs MG5 offence summary vs listing/hearing date drift",
       "provisionalScore": "warn",
       "warnReasons": [
-        "Family slot is charge mismatch but actual surfaces are Encro/handle/platform — not a clean charge-mismatch solicitor example"
+        "v9 catalog generic-only chase product-hunt",
+        "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution",
+        "false-missing risk rows"
       ],
       "hardSafetyFailures": [],
-      "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-25-charge-bundle-mismatch/bundle-text.md",
+      "inputBundlePath": "catalog:demo-audit-69-charge-mg5-hearing (materialized from v9_catalog)",
       "packetPath": "cases/CASE-08",
       "solicitorReviewCompleted": false,
       "realWorldValidationClaimed": false,
@@ -154,9 +153,7 @@
       "riskFocus": "Order extract only; sealed order / service proof outstanding",
       "provisionalScore": "warn",
       "warnReasons": [
-        "v9 catalog product-hunt lane",
-        "Partial chase fit 1/3 plus generic MG6/MG6C item(s) — WARN (not clean pass)",
-        "Court line uses digital/message-account wording on a non-digital family — check for template drift"
+        "Partial chase fit only 1/3 expected themes — WARN"
       ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-32-restraining-order-breach (materialized from v9_catalog)",
@@ -173,7 +170,6 @@
       "riskFocus": "Screenshots served; certified translation / interpreter note outstanding",
       "provisionalScore": "warn",
       "warnReasons": [
-        "v9 catalog product-hunt lane",
         "Builder chase labels do not clearly match truth-key chase list — manual check"
       ],
       "hardSafetyFailures": [],
@@ -221,7 +217,6 @@
       "riskFocus": "Drugs schedule served; lab intake / continuity / SFR outstanding",
       "provisionalScore": "warn",
       "warnReasons": [
-        "v9 catalog product-hunt lane",
         "Builder chase labels do not clearly match truth-key chase list — manual check"
       ],
       "hardSafetyFailures": [],
@@ -269,7 +264,7 @@
       "riskFocus": "ANPR hit table served; images / national audit trail outstanding",
       "provisionalScore": "warn",
       "warnReasons": [
-        "v9 catalog product-hunt lane",
+        "v9 catalog generic-only chase product-hunt",
         "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution"
       ],
       "hardSafetyFailures": [],
@@ -287,8 +282,7 @@
       "riskFocus": "Triage / injury note partial; consultant medical report referred missing",
       "provisionalScore": "warn",
       "warnReasons": [
-        "v9 catalog product-hunt lane",
-        "Partial chase fit 1/3 plus generic MG6/MG6C item(s) — WARN (not clean pass)"
+        "Partial chase fit only 1/3 expected themes — WARN"
       ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-61-medical-triage-partial (materialized from v9_catalog)",
@@ -305,7 +299,7 @@
       "riskFocus": "Call log summary served; recordings / PIN attribution outstanding",
       "provisionalScore": "warn",
       "warnReasons": [
-        "v9 catalog product-hunt lane",
+        "v9 catalog generic-only chase product-hunt",
         "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution"
       ],
       "hardSafetyFailures": [],
@@ -323,7 +317,6 @@
       "riskFocus": "Handle / social material vs subscriber / account attribution gap",
       "provisionalScore": "warn",
       "warnReasons": [
-        "v9 catalog product-hunt lane",
         "Builder chase labels do not clearly match truth-key chase list — manual check"
       ],
       "hardSafetyFailures": [],

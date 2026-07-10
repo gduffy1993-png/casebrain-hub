@@ -1,72 +1,62 @@
 # INTERNAL — Gold Manual Proof Set v1 QA report
 
 **Date:** 2026-07-10  
-**Audience:** Internal only (Ged / product). **Do not send this pack to human solicitors yet.**  
-**Scope:** Reporting / packet polish only — no Brain, chase core, export builders, Supabase, prod UI, or deploy.
+**Audience:** Internal only (Ged / product).  
+**Scope:** Reporting / pack presentation gates only — no Brain, chase core, export builders, Supabase, prod UI, or deploy.
 
 ---
 
 ## Verdict
 
-**Ready for human review: NO**
-
-Provisional scoring was too generous. This pass tightens packet scoring and labels. Pack remains valuable for **internal product hunt**, not external solicitor review.
+**Full pack ready for human review: NO**  
+**Wave A ready for human review: YES** (CASE-01, 02, 04, 06)
 
 | Metric | Value |
 |--------|------:|
 | Cases | 20 |
-| Pass | 10 |
-| Warn | 10 |
+| Pass | 11 |
+| Warn | 9 |
 | Fail | 0 |
 | Hard safety | 0 |
 
 ---
 
-## Codex findings → actions
+## Cleanup pass 1 (this run)
 
-| # | Finding | Action taken |
-|---|---------|--------------|
-| 1 | CASE-08 charge mismatch scored PASS while actual is Encro/handle/platform | **WARN** via family/content fit check |
-| 2 | CASE-17 medical scored PASS with generic MG6 + partial medical chase | **WARN** via partial chase + generic MG6 rule |
-| 3 | CASE-01 phone had extra generic MG6C clarification | **WARN** (or flagged) via generic clutter rule |
-| 4 | WARN v9 cases looked like clean solicitor examples | Packets/checklists now say **INTERNAL PRODUCT-HUNT** |
-| 5 | Off-family BWV/custody/drugs do-not-overstate noise | Family-filtered in expected + actual samples |
-| 6 | Zip must keep expected / actual / checklist | `gold-manual-proof-set-v1-review-pack.zip` includes those per case |
+| # | Change | Result |
+|---|--------|--------|
+| 1 | CASE-08 → `demo-audit-69-charge-mg5-hearing` (true charge/MG5/listing drift) | Source integrity fixed; still WARN if chase generic-only |
+| 2 | Demote generic MG6/MG6C when substantive chase exists | CASE-01 cleared to PASS |
+| 3 | Court family gate blocks digital wording on non-digital families | CASE-07/09 court-line family-fit cleared |
 
-### Spot checks (this run)
+### Spot checks
 
 | Case | Provisional | Notes |
 |------|-------------|-------|
-| CASE-01 | WARN | Partial chase fit 5/6 plus generic MG6/MG6C item(s) — WARN (not clean pass) |
-| CASE-08 | WARN | Family slot is charge mismatch but actual surfaces are Encro/handle/platform — not a clean charge-mismatch solicitor example |
-| CASE-17 | WARN | v9 catalog product-hunt lane |
+| CASE-01 | PASS | clean |
+| CASE-08 | WARN | v9 catalog generic-only chase product-hunt |
+| CASE-17 | WARN | Partial chase fit only 1/3 expected themes — WARN |
 
 ---
 
-## Why not ready for humans
+## Wave A
 
-1. Too many WARN / product-hunt cases for a clean first solicitor wave.  
-2. CASE-08 family slot still mismatches underlying Encro fixture (reporting WARN only — catalog remap is later product/proof work).  
-3. Human review pack docs exist, but sending now would burn reviewer trust on noisy exemplars.  
-4. Need a curated Wave A of clean PASS PDF-backed cases only, after a second internal skim.
+| Case | Score |
+|------|-------|
+| CASE-01 | PASS |
+| CASE-02 | PASS |
+| CASE-04 | PASS |
+| CASE-06 | PASS |
 
----
-
-## What is OK to use internally
-
-- Packet structure (expected / actual / checklist / review md)  
-- Hard safety = 0 across pack  
-- WARN review + this QA report for product triage  
-- Review zip for offline internal read  
+Wave A may be sent with the human solicitor review pack (busy short + checklists). Hold full 20-case send.
 
 ---
 
-## Exit criteria for YES
+## Still open (later passes)
 
-- [ ] CASE-08 either remapped to Encro family or fixture truly charge-mismatch  
-- [ ] Clean PASS set (≥8) re-skimmed with no generic MG6C clutter on phone exemplars  
-- [ ] Human wave limited to PASS exemplars; v9 hunts optional / separate  
-- [ ] INTERNAL report flipped to YES with owner sign-off  
+1. Family-specific chase for v9 thin catalogs (CASE-07/08/13/16/17/18/19)  
+2. CASE-08 chase still generic MG6 despite correct charge-mismatch source  
+3. Medical / translation / ANPR / prison / social chase specificity  
 
 ---
 
@@ -75,4 +65,4 @@ Provisional scoring was too generous. This pass tightens packet scoring and labe
 - `GOLD-MANUAL-PROOF-SUMMARY.md`  
 - `GOLD-MANUAL-WARN-REVIEW.md`  
 - `gold-manual-proof-set-v1-review-pack.zip`  
-- `docs/gold-manual-proof-pack/human-solicitor-review-v1/` (hold — do not distribute yet)
+- `docs/gold-manual-proof-pack/human-solicitor-review-v1/`

@@ -1,11 +1,12 @@
 # Gold Manual Proof Set v1 — Summary
 
-**Generated:** 2026-07-10T11:35:07.223Z  
+**Generated:** 2026-07-10T12:25:46.421Z  
 **Branch intent:** `feature/gold-manual-proof-set-v1`  
 **Cases:** 20/20 packets  
-**Provisional scores (pre-solicitor):** 10 pass · 10 warn · 0 fail  
+**Provisional scores (pre-solicitor):** 11 pass · 9 warn · 0 fail  
 **Hard safety failures across pack:** 0  
-**Ready for human solicitor review:** **NO** (see `INTERNAL-GOLD-QA-REPORT.md`)
+**Ready for human solicitor review:** **NO** (full pack — see `INTERNAL-GOLD-QA-REPORT.md`)  
+**Wave A (CASE-01, 02, 04, 06):** see internal QA report
 
 ## Claim discipline
 
@@ -17,14 +18,14 @@ It does **not** claim real-world solicitor validation. Each case remains **solic
 
 | Gold ID | Family | Source case | Provisional | Packet |
 |---------|--------|-------------|-------------|--------|
-| CASE-01 | phone harassment / attribution | `demo-audit-01-phone-harassment` | WARN | [CASE-01](./cases/CASE-01/CASE-REVIEW.md) |
+| CASE-01 | phone harassment / attribution | `demo-audit-01-phone-harassment` | PASS | [CASE-01](./cases/CASE-01/CASE-REVIEW.md) |
 | CASE-02 | BWV referred-only | `demo-audit-03-bwv-custody` | PASS | [CASE-02](./cases/CASE-02/CASE-REVIEW.md) |
 | CASE-03 | custody extract vs full custody | `demo-audit-27-custody-pace-missing` | PASS | [CASE-03](./cases/CASE-03/CASE-REVIEW.md) |
 | CASE-04 | CCTV stills vs master footage | `demo-audit-02-cctv-stills` | PASS | [CASE-04](./cases/CASE-04/CASE-REVIEW.md) |
 | CASE-05 | Encro handle attribution | `demo-audit-05-encro-attribution` | PASS | [CASE-05](./cases/CASE-05/CASE-REVIEW.md) |
 | CASE-06 | mixed-defendant material | `demo-audit-04-co-def-interview` | PASS | [CASE-06](./cases/CASE-06/CASE-REVIEW.md) |
 | CASE-07 | bad redaction | `demo-audit-44-bad-redaction` | WARN | [CASE-07](./cases/CASE-07/CASE-REVIEW.md) |
-| CASE-08 | charge mismatch | `demo-audit-25-charge-bundle-mismatch` | WARN | [CASE-08](./cases/CASE-08/CASE-REVIEW.md) |
+| CASE-08 | charge mismatch | `demo-audit-69-charge-mg5-hearing` | WARN | [CASE-08](./cases/CASE-08/CASE-REVIEW.md) |
 | CASE-09 | domestic order / restraining order breach | `demo-audit-32-restraining-order-breach` | WARN | [CASE-09](./cases/CASE-09/CASE-REVIEW.md) |
 | CASE-10 | translated messages | `demo-audit-41-translated-messages` | WARN | [CASE-10](./cases/CASE-10/CASE-REVIEW.md) |
 | CASE-11 | youth / appropriate adult / intermediary | `demo-audit-22-youth-interview` | PASS | [CASE-11](./cases/CASE-11/CASE-REVIEW.md) |

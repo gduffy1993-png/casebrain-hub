@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-17",
   "sourceCaseId": "demo-audit-61-medical-triage-partial",
-  "builtAt": "2026-07-10T11:35:06.637Z",
+  "builtAt": "2026-07-10T12:25:45.624Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
   "clientLabel": "Owen Pike",
@@ -34,10 +34,6 @@
   ],
   "cpsChase": [
     {
-      "label": "MG6 / unused schedule clarification",
-      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
-    },
-    {
       "label": "Medical / expert source report",
       "draft": "Please provide medical / expert source report or confirm in writing why it is not available."
     }
@@ -55,14 +51,6 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "MG6 / unused schedule clarification",
-      "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
-      "safeAction": "check"
-    },
-    {
       "outputLine": "Medical / expert source report",
       "surface": "Overview",
       "sourceDocument": "CPS / expert source (confirm on file)",
@@ -74,16 +62,8 @@
       "outputLine": "The defence asks the court to record outstanding medical, video and sequence material.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
-      "sourcePage": null,
+      "sourcePage": "Family theme: Medical triage note — full repo…",
       "evidenceState": "Incomplete",
-      "safeAction": "check"
-    },
-    {
-      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
-      "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {

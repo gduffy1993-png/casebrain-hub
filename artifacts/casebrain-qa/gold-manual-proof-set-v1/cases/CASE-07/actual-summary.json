@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-07",
   "sourceCaseId": "demo-audit-44-bad-redaction",
-  "builtAt": "2026-07-10T11:35:04.183Z",
+  "builtAt": "2026-07-10T12:25:43.118Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
   "clientLabel": "Farah Kent",
@@ -38,7 +38,7 @@
       "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
     }
   ],
-  "courtLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
+  "courtLine": "The defence asks the court to record that redaction and unredacted schedule issues remain outstanding on the current papers.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
     "fully proved on current disclosure",
@@ -59,7 +59,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
+      "outputLine": "The defence asks the court to record that redaction and unredacted schedule issues remain outstanding on the current papers.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
       "sourcePage": null,
