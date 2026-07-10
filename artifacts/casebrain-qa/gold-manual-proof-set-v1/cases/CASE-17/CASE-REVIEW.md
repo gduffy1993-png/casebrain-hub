@@ -18,7 +18,7 @@
 - [PASS] **CPS chase coverage:** 3/3 expected chase themes reflected in builder output
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
-- [PASS] **Source/page anchors:** N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)
+- [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
 - [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
 
 ---

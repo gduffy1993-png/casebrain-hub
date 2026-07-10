@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-10",
   "sourceCaseId": "demo-audit-41-translated-messages",
-  "builtAt": "2026-07-10T13:34:17.784Z",
+  "builtAt": "2026-07-10T15:02:13.861Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
   "clientLabel": "Aiden Cole",
@@ -59,7 +59,7 @@
     {
       "outputLine": "certified translation",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "Custody / police interview unit",
       "sourcePage": "Complainant interview 15/05/2026 — interprete…",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -67,7 +67,7 @@
     {
       "outputLine": "interpreter contemporaneous note",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "Custody / police interview unit",
       "sourcePage": "Complainant interview 15/05/2026 — interprete…",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -75,7 +75,7 @@
     {
       "outputLine": "original language export",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "Custody / police interview unit",
       "sourcePage": "Complainant interview 15/05/2026 — interprete…",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -91,7 +91,7 @@
     {
       "outputLine": "Please provide certified translation or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "Custody / police interview unit",
       "sourcePage": "Complainant interview 15/05/2026 — interprete…",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -99,7 +99,7 @@
     {
       "outputLine": "Please provide interpreter contemporaneous note or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "Custody / police interview unit",
       "sourcePage": "Complainant interview 15/05/2026 — interprete…",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -107,7 +107,7 @@
     {
       "outputLine": "Please provide original language export or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "Custody / police interview unit",
       "sourcePage": "Complainant interview 15/05/2026 — interprete…",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"

@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-17",
   "sourceCaseId": "demo-audit-61-medical-triage-partial",
-  "builtAt": "2026-07-10T13:34:19.720Z",
+  "builtAt": "2026-07-10T15:02:15.381Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
   "clientLabel": "Owen Pike",
@@ -58,15 +58,7 @@
     {
       "outputLine": "hospital records",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
-      "safeAction": "check"
-    },
-    {
-      "outputLine": "consultant medical report",
-      "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -74,10 +66,18 @@
     {
       "outputLine": "injury photographs",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
+    },
+    {
+      "outputLine": "consultant medical report",
+      "surface": "Overview",
+      "sourceDocument": "CPS / expert source (confirm on file)",
+      "sourcePage": "Family theme: Medical triage note — full repo…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
     },
     {
       "outputLine": "The defence asks the court to record that hospital records, consultant report, and injury photographs remain outstanding before injury causation or extent is treated as fixed.",
@@ -90,7 +90,7 @@
     {
       "outputLine": "Please provide hospital records or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -98,15 +98,15 @@
     {
       "outputLine": "Please provide consultant medical report or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
-      "sourcePage": null,
-      "evidenceState": "Not safely confirmed",
-      "safeAction": "check"
+      "sourceDocument": "CPS / expert source (confirm on file)",
+      "sourcePage": "Family theme: Medical triage note — full repo…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
     },
     {
       "outputLine": "Please provide injury photographs or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"

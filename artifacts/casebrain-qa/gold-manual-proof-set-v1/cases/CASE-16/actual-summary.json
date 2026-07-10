@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-16",
   "sourceCaseId": "demo-audit-49-anpr-trap",
-  "builtAt": "2026-07-10T13:34:19.471Z",
+  "builtAt": "2026-07-10T15:02:15.205Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Taking a vehicle without consent, contrary to section 12 of the Theft Act 1968",
   "clientLabel": "Maya Singh",
@@ -59,7 +59,7 @@
     {
       "outputLine": "anpr image export",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -67,7 +67,7 @@
     {
       "outputLine": "national anpr audit trail",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -75,7 +75,7 @@
     {
       "outputLine": "vehicle keeper response",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -91,7 +91,7 @@
     {
       "outputLine": "Please provide anpr image export or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -99,7 +99,7 @@
     {
       "outputLine": "Please provide national anpr audit trail or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -107,7 +107,7 @@
     {
       "outputLine": "Please provide vehicle keeper response or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"

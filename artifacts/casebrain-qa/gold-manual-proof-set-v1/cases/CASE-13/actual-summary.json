@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-13",
   "sourceCaseId": "demo-audit-50-lab-continuity-conflict",
-  "builtAt": "2026-07-10T13:34:18.664Z",
+  "builtAt": "2026-07-10T15:02:14.675Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971",
   "clientLabel": "Holly Reed",
@@ -59,7 +59,7 @@
     {
       "outputLine": "lab intake sheet",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -67,7 +67,7 @@
     {
       "outputLine": "full continuity chain",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -75,7 +75,7 @@
     {
       "outputLine": "sfr drugs analysis",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -91,7 +91,7 @@
     {
       "outputLine": "Please provide lab intake sheet or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -99,7 +99,7 @@
     {
       "outputLine": "Please provide full continuity chain or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -107,7 +107,7 @@
     {
       "outputLine": "Please provide sfr drugs analysis or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"

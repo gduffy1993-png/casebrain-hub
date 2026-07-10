@@ -147,4 +147,51 @@ const cctvOverstate = presentDoNotOverstateForFamily("CCTV stills vs master foot
 assert.ok(cctvOverstate.every((s) => !/\bencro\b|\bbwv\b/i.test(s)));
 assert.ok(cctvOverstate.some((s) => /\bcctv\b/i.test(s)));
 
+const phoneChase = enrichChasePresentation(
+  "phone harassment / attribution",
+  [
+    { label: "Full phone download" },
+    { label: "Subscriber / account data" },
+    { label: "Full message export" },
+    { label: "Call logs" },
+    { label: "Final signed MG11" },
+  ],
+  ["full phone download", "subscriber/account data", "full message export", "call logs", "final signed MG11"],
+);
+assert.ok(!phoneChase.some((c) => /call logs/i.test(c.label)));
+assert.ok(phoneChase.some((c) => /phone download/i.test(c.label)));
+
+const bwvChase = enrichChasePresentation(
+  "BWV referred-only",
+  [
+    { label: "Full BWV export" },
+    { label: "Full custody record" },
+    { label: "Interview audio" },
+    { label: "Interview transcript" },
+    { label: "PACE safeguards detail" },
+  ],
+  ["full BWV export", "full custody record", "interview audio", "interview transcript", "PACE safeguards detail"],
+);
+assert.ok(bwvChase.some((c) => /Interview audio \/ transcript/i.test(c.label)));
+assert.ok(!bwvChase.some((c) => /^Interview audio$/i.test(c.label) || /PACE/i.test(c.label)));
+
+const cctvChase = enrichChasePresentation(
+  "CCTV stills vs master footage",
+  [
+    { label: "Master CCTV footage" },
+    { label: "Full CCTV export" },
+    { label: "CCTV Continuity / provenance" },
+    { label: "audit trail" },
+  ],
+  ["master CCTV footage", "full CCTV export", "continuity/provenance", "audit trail"],
+);
+assert.ok(cctvChase.some((c) => /CCTV audit trail \/ source hash/i.test(c.label)));
+assert.ok(!cctvChase.some((c) => /^audit trail$/i.test(c.label)));
+
+const cctvCourt = gateCourtLineForFamily(
+  "CCTV stills vs master footage",
+  "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
+);
+assert.ok(cctvCourt && /full export/i.test(cctvCourt));
+
 console.log("gold-manual-proof-set.test.ts: PASS");

@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-07",
   "sourceCaseId": "demo-audit-44-bad-redaction",
-  "builtAt": "2026-07-10T13:34:16.695Z",
+  "builtAt": "2026-07-10T15:02:12.855Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
   "clientLabel": "Farah Kent",
@@ -58,7 +58,7 @@
     {
       "outputLine": "unredacted mg11",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -66,7 +66,7 @@
     {
       "outputLine": "redaction schedule",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -74,7 +74,7 @@
     {
       "outputLine": "full police note",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -90,7 +90,7 @@
     {
       "outputLine": "Please provide unredacted mg11 or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -98,7 +98,7 @@
     {
       "outputLine": "Please provide redaction schedule or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -106,7 +106,7 @@
     {
       "outputLine": "Please provide full police note or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"

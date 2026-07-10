@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-01",
   "sourceCaseId": "demo-audit-01-phone-harassment",
-  "builtAt": "2026-07-10T13:34:14.023Z",
+  "builtAt": "2026-07-10T15:02:09.859Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
   "clientLabel": "Riley Moss",
@@ -61,10 +61,6 @@
       "draft": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available."
     },
     {
-      "label": "Call logs",
-      "draft": "Please provide Call logs (see MG6C/005) or confirm in writing why it is not available."
-    },
-    {
       "label": "Final signed MG11",
       "draft": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available."
     }
@@ -106,7 +102,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Call logs",
+      "outputLine": "Final signed MG11",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
@@ -146,7 +142,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide Call logs (see MG6C/005) or confirm in writing why it is not available.",
+      "outputLine": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,

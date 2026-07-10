@@ -96,8 +96,8 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 - **Allegation:** Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968
 - **Client label:** Devon Walsh
-- **Court line:** The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.
-- **Chase items:** Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; audit trail
+- **Court line:** The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage, full export, and continuity/provenance remain outstanding.
+- **Chase items:** Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; CCTV audit trail / source hash
 - **Do-not-overstate (sample, family-filtered):** CCTV proves identity · CCTV proves offence · positive identification from stills · Do not treat stills alone as proof of identity or offence.
 - **Proof receipts (sample):** 9 rows; first: Master CCTV footage
 

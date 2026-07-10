@@ -58,6 +58,18 @@ export function resolveFamilyCourtLine(familyLabel: string): string | null {
   if (/restraining|domestic order|order breach/.test(family)) {
     return "The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers.";
   }
+  if (/phone|harassment/.test(family) && /attribution|harassment/.test(family)) {
+    return "The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.";
+  }
+  if (/\bbwv\b/.test(family)) {
+    return "The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.";
+  }
+  if (/\bcctv\b/.test(family)) {
+    return "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage, full export, and continuity/provenance remain outstanding.";
+  }
+  if (/mixed-defendant|co-def/.test(family)) {
+    return "The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant interview summary/audio remain outstanding.";
+  }
   return null;
 }
 
@@ -219,6 +231,71 @@ export type PresentedChaseItem = {
   draftChaseWording: string;
 };
 
+function defaultChaseDraft(label: string, existing?: string | null): string {
+  const trimmed = existing?.trim();
+  if (trimmed) return trimmed;
+  return `Please provide ${label} or confirm in writing why it is not available.`;
+}
+
+/**
+ * Wave A solicitor polish: drop soft/stacked chase and rename weak labels.
+ * Presentation only — does not change chase core.
+ */
+export function polishChasePresentationForFamily(
+  familyLabel: string,
+  items: PresentedChaseItem[],
+): PresentedChaseItem[] {
+  const f = familyLabel.toLowerCase();
+  let out = items.map((i) => ({ ...i }));
+
+  // Phone / harassment: call logs are soft when attribution core is already chased.
+  if (/phone|harassment/.test(f)) {
+    const hasAttributionCore = out.some((i) =>
+      /phone download|subscriber|message export|mg11/i.test(i.label),
+    );
+    if (hasAttributionCore) {
+      out = out.filter((i) => !/^call logs?$/i.test(i.label.trim()));
+    }
+  }
+
+  // BWV: collapse audio + transcript; drop separate PACE when interview is already chased.
+  if (/\bbwv\b/.test(f)) {
+    const hasAudio = out.some((i) => /interview audio/i.test(i.label));
+    const hasTranscript = out.some((i) => /interview transcript/i.test(i.label));
+    if (hasAudio && hasTranscript) {
+      const audio = out.find((i) => /interview audio/i.test(i.label));
+      out = out.filter((i) => !/interview (audio|transcript)|pace safeguards/i.test(i.label));
+      const insertAt = Math.min(out.length, 2);
+      out.splice(insertAt, 0, {
+        label: "Interview audio / transcript",
+        draftChaseWording: defaultChaseDraft(
+          "Interview audio / transcript",
+          audio?.draftChaseWording?.replace(/Interview audio/i, "Interview audio / transcript"),
+        ),
+      });
+    } else if (out.some((i) => /interview/i.test(i.label))) {
+      out = out.filter((i) => !/pace safeguards/i.test(i.label));
+    }
+  }
+
+  // CCTV: bare "audit trail" reads generic — name the family.
+  if (/\bcctv\b/.test(f)) {
+    out = out.map((i) => {
+      if (!/^audit trail$/i.test(i.label.trim())) return i;
+      const label = "CCTV audit trail / source hash";
+      return {
+        label,
+        draftChaseWording: defaultChaseDraft(
+          label,
+          i.draftChaseWording?.replace(/audit trail/i, label),
+        ),
+      };
+    });
+  }
+
+  return out.slice(0, 5);
+}
+
 /**
  * Prefer builder substantive chase when it already covers family themes;
  * otherwise present family-specific / truth-key expected chase for the gold packet.
@@ -244,34 +321,30 @@ export function enrichChasePresentation(
       ? substantive.length > 0
       : hitCount >= Math.max(1, Math.ceil(preferred.length / 2));
 
+  let presented: PresentedChaseItem[];
+
   if (substantive.length > 0 && enoughCoverage) {
-    return substantive.map((i) => ({
+    presented = substantive.map((i) => ({
       label: i.label,
-      draftChaseWording:
-        i.draftChaseWording?.trim() ||
-        `Please provide ${i.label} or confirm in writing why it is not available.`,
+      draftChaseWording: defaultChaseDraft(i.label, i.draftChaseWording),
     }));
-  }
-
-  if (preferred.length > 0) {
-    return preferred.map((label) => ({
+  } else if (preferred.length > 0) {
+    presented = preferred.map((label) => ({
       label,
-      draftChaseWording: `Please provide ${label} or confirm in writing why it is not available.`,
+      draftChaseWording: defaultChaseDraft(label),
     }));
-  }
-
-  if (familyLabels.length > 0) {
-    return familyLabels.slice(0, 4).map((label) => ({
+  } else if (familyLabels.length > 0) {
+    presented = familyLabels.slice(0, 4).map((label) => ({
       label,
-      draftChaseWording: `Please provide ${label} or confirm in writing why it is not available.`,
+      draftChaseWording: defaultChaseDraft(label),
+    }));
+  } else {
+    // Last resort: single generic MG6 if that is all we have
+    presented = demoted.slice(0, 1).map((i) => ({
+      label: i.label,
+      draftChaseWording: defaultChaseDraft(i.label, i.draftChaseWording),
     }));
   }
 
-  // Last resort: single generic MG6 if that is all we have
-  return demoted.slice(0, 1).map((i) => ({
-    label: i.label,
-    draftChaseWording:
-      i.draftChaseWording?.trim() ||
-      `Please provide ${i.label} or confirm in writing why it is not available.`,
-  }));
+  return polishChasePresentationForFamily(familyLabel, presented);
 }

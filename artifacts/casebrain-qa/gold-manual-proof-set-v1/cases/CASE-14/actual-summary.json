@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-14",
   "sourceCaseId": "demo-audit-16-fraud-bank-statements",
-  "builtAt": "2026-07-10T13:34:19.022Z",
+  "builtAt": "2026-07-10T15:02:14.893Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
   "clientLabel": "Isla Grant",

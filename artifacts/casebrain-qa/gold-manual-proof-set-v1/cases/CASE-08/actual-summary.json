@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-08",
   "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
-  "builtAt": "2026-07-10T13:34:16.836Z",
+  "builtAt": "2026-07-10T15:02:13.228Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
   "clientLabel": "Jordan Hale",
@@ -58,7 +58,7 @@
     {
       "outputLine": "corrected charge sheet",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -66,7 +66,7 @@
     {
       "outputLine": "updated mg5",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -74,7 +74,7 @@
     {
       "outputLine": "court listing confirmation",
       "surface": "Overview",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -90,7 +90,7 @@
     {
       "outputLine": "Please provide corrected charge sheet or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -98,7 +98,7 @@
     {
       "outputLine": "Please provide updated mg5 or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -106,7 +106,7 @@
     {
       "outputLine": "Please provide court listing confirmation or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "gold-family-presentation",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"

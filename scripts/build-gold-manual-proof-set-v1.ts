@@ -336,29 +336,46 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
   );
 
   const demotedOriginal = demoteGenericMg6Chase(chaseMerged.primaryItems);
-  const canReuseOriginal =
-    demotedOriginal.length === presentedChase.length &&
-    demotedOriginal.every((o, i) => o.label === presentedChase[i]?.label) &&
-    demotedOriginal.some((o) => !isGenericMg6ChaseLabel(o.label));
-
   const chaseTemplate = chaseMerged.primaryItems[0] ?? chaseBuilt.primaryItems[0];
+  const usedOriginal = new Set<number>();
+  const mapPresentedToOriginal = (p: (typeof presentedChase)[number], idx: number) => {
+    const find = (pred: (label: string) => boolean) =>
+      demotedOriginal.findIndex((o, i) => !usedOriginal.has(i) && pred(o.label));
+    let matchIdx = find((lab) => lab === p.label);
+    if (matchIdx < 0) matchIdx = find((lab) => chaseThemeHit(p.label, lab));
+    if (matchIdx < 0 && /interview audio\s*\/\s*transcript/i.test(p.label)) {
+      matchIdx = find((lab) => /interview audio/i.test(lab));
+    }
+    if (matchIdx < 0 && /cctv audit trail/i.test(p.label)) {
+      matchIdx = find((lab) => /audit trail/i.test(lab));
+    }
+    if (matchIdx >= 0) {
+      usedOriginal.add(matchIdx);
+      const o = demotedOriginal[matchIdx]!;
+      return {
+        ...o,
+        label: p.label,
+        draftChaseWording: p.draftChaseWording,
+      };
+    }
+    return {
+      ...(chaseTemplate ?? {
+        id: `fam-${idx}`,
+        label: p.label,
+        source: "gold-family-presentation",
+        baseStatus: "Outstanding" as const,
+        whyItMatters: "Family-specific gold pack presentation",
+      }),
+      id: `fam-chase-${idx}`,
+      label: p.label,
+      draftChaseWording: p.draftChaseWording,
+      source: chaseTemplate?.source ?? "gold-family-presentation",
+    };
+  };
+
   const chase = {
     ...chaseMerged,
-    primaryItems: canReuseOriginal
-      ? demotedOriginal
-      : presentedChase.map((p, idx) => ({
-          ...(chaseTemplate ?? {
-            id: `fam-${idx}`,
-            label: p.label,
-            source: "gold-family-presentation",
-            baseStatus: "Outstanding" as const,
-            whyItMatters: "Family-specific gold pack presentation",
-          }),
-          id: `fam-chase-${idx}`,
-          label: p.label,
-          draftChaseWording: p.draftChaseWording,
-          source: "gold-family-presentation",
-        })),
+    primaryItems: presentedChase.map(mapPresentedToOriginal),
   };
 
   const doNotOverstate = [

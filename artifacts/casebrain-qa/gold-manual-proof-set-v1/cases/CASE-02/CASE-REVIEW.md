@@ -12,7 +12,7 @@
 ## Pass / warn / fail (provisional)
 
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [PASS] **CPS chase coverage:** 5/5 expected chase themes reflected in builder output
+- [PASS] **CPS chase coverage:** 4/5 expected chase themes reflected in builder output
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
@@ -102,9 +102,9 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Allegation:** Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018
 - **Client label:** Casey Fry
 - **Court line:** The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.
-- **Chase items:** Full BWV export; Full custody record; Interview audio; Interview transcript; PACE safeguards detail
+- **Chase items:** Full BWV export; Full custody record; Interview audio / transcript
 - **Do-not-overstate (sample, family-filtered):** BWV shows · BWV confirms · PACE safeguards were followed · Do not rely on full BWV sequence unless export is served.
-- **Proof receipts (sample):** 10 rows; first: Full custody record
+- **Proof receipts (sample):** 7 rows; first: Full custody record
 
 ### Precomputed demo-audit artifacts
 - cps-chase.json: `artifacts/casebrain-qa/demo-audit-five/demo-audit-03-bwv-custody/cps-chase.json`
