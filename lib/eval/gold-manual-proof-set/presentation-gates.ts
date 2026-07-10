@@ -127,8 +127,9 @@ export function filterDoNotOverstateForFamily(familyLabel: string, items: string
   const allowMedical = /medical|injury|triage/.test(family);
   const allowOrder = /restraining|domestic order|order breach|bail/.test(family);
   const isS172Motoring = /motoring|sjp/.test(family);
+  const isOcrDate = /ocr|date\/court|layout|hearing date|court mismatch/.test(family);
 
-  return [...new Set(items)].filter((raw) => {
+  const filtered = [...new Set(items)].filter((raw) => {
     const s = raw.toLowerCase();
     if (!allowBwv && /\bbwv\b/.test(s)) return false;
     if (!allowCustody && /\bcustody\b/.test(s)) return false;
@@ -136,6 +137,8 @@ export function filterDoNotOverstateForFamily(familyLabel: string, items: string
     if (!allowCctv && /\bcctv\b/.test(s)) return false;
     // S172 / SJP packets must not carry CCTV-stills ID do-not samples
     if (isS172Motoring && /stills|master footage|positive identification from stills/.test(s)) return false;
+    // OCR/date slot must not lead with CCTV-stills do-not samples (CASE-04 shape)
+    if (isOcrDate && /stills|master footage|positive identification|cctv proves/.test(s)) return false;
     if (!allowAbe && /\babe\b/.test(s)) return false;
     if (!allowEncro && /\bencro\b/.test(s)) return false;
     if (!allowPhoneExtraction && /phone extraction|phone download|message export|handle attribution|platform extraction/.test(s)) {
@@ -153,6 +156,11 @@ export function filterDoNotOverstateForFamily(familyLabel: string, items: string
     }
     return true;
   });
+
+  if (isOcrDate && filtered.length === 0) {
+    return ["Do not treat an OCR-corrupted listing date as confirmed without court verification."];
+  }
+  return filtered;
 }
 
 /** Replace ugly repeated unsafe phrases with cleaner display wording (meaning preserved). */

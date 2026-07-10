@@ -244,6 +244,13 @@ const ocrCourt = gateCourtLineForFamily(
 assert.ok(ocrCourt && /OCR|listing|hearing/i.test(ocrCourt));
 assert.ok(!/CCTV still|master CCTV/i.test(ocrCourt!));
 
+const ocrOverstate = presentDoNotOverstateForFamily("OCR/date/court mismatch", [
+  "positive identification from stills",
+  "Do not treat stills alone as proof of identity or offence.",
+]);
+assert.ok(ocrOverstate.every((s) => !/stills|cctv/i.test(s)));
+assert.ok(ocrOverstate.some((s) => /OCR|listing date/i.test(s)));
+
 const chargeStill = enrichChasePresentation(
   "charge mismatch",
   [

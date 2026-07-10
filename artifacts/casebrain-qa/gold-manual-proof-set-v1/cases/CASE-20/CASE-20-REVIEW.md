@@ -52,7 +52,7 @@
 
 ## Expected unsafe-to-say (family-filtered)
 
-- positive identification from stills
+- Do not treat an OCR-corrupted listing date as confirmed without court verification.
 
 ## Expected CPS chase
 
@@ -96,7 +96,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Devon Walsh
 - **Court line:** The defence asks the court to record that the hearing/listing date and court venue require confirmation because of OCR/layout conflict on the current papers, before the defence relies on any listed date.
 - **Chase items:** Court listing confirmation; Hearing / date notice; Corrected schedule / index (OCR conflict); Source page / date verification
-- **Do-not-overstate (sample, family-filtered):** positive identification from stills · Do not treat stills alone as proof of identity or offence.
+- **Do-not-overstate (sample, family-filtered):** Do not treat an OCR-corrupted listing date as confirmed without court verification.
 - **Proof receipts (sample):** 9 rows; first: Court listing confirmation
 
 ### Precomputed demo-audit artifacts
