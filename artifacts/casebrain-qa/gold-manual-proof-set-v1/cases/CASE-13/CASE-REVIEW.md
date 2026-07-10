@@ -92,7 +92,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 - **Allegation:** Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971
 - **Client label:** Holly Reed
-- **Court line:** Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.
+- **Court line:** The defence asks the court to record that lab intake, continuity chain, and SFR/drugs analysis material remain outstanding before the exhibit position is fixed.
 - **Chase items:** lab intake sheet; full continuity chain; sfr drugs analysis
 - **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not rely on drug continuity unless lab/continuity material is served. · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers · Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers
 - **Proof receipts (sample):** 7 rows; first: lab intake sheet

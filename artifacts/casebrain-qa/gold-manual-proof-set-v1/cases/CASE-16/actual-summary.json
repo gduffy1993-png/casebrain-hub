@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-16",
   "sourceCaseId": "demo-audit-49-anpr-trap",
-  "builtAt": "2026-07-10T13:04:34.165Z",
+  "builtAt": "2026-07-10T13:21:12.672Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Taking a vehicle without consent, contrary to section 12 of the Theft Act 1968",
   "clientLabel": "Maya Singh",
@@ -46,7 +46,7 @@
       "draft": "Please provide vehicle keeper response or confirm in writing why it is not available."
     }
   ],
-  "courtLine": "The defence asks the court to record outstanding device, calibration and procedure records.",
+  "courtLine": "The defence asks the court to record that ANPR image export, audit trail, and keeper/vehicle attribution material remain outstanding.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
@@ -81,7 +81,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "The defence asks the court to record outstanding device, calibration and procedure records.",
+      "outputLine": "The defence asks the court to record that ANPR image export, audit trail, and keeper/vehicle attribution material remain outstanding.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
       "sourcePage": null,

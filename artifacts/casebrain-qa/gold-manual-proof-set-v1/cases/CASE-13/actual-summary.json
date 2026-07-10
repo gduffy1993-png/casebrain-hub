@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-13",
   "sourceCaseId": "demo-audit-50-lab-continuity-conflict",
-  "builtAt": "2026-07-10T13:04:33.530Z",
+  "builtAt": "2026-07-10T13:21:12.014Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971",
   "clientLabel": "Holly Reed",
@@ -46,7 +46,7 @@
       "draft": "Please provide sfr drugs analysis or confirm in writing why it is not available."
     }
   ],
-  "courtLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
+  "courtLine": "The defence asks the court to record that lab intake, continuity chain, and SFR/drugs analysis material remain outstanding before the exhibit position is fixed.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
@@ -81,7 +81,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
+      "outputLine": "The defence asks the court to record that lab intake, continuity chain, and SFR/drugs analysis material remain outstanding before the exhibit position is fixed.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
       "sourcePage": null,

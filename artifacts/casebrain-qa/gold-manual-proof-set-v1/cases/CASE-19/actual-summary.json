@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-19",
   "sourceCaseId": "demo-audit-47-social-media-handles",
-  "builtAt": "2026-07-10T13:04:34.770Z",
+  "builtAt": "2026-07-10T13:21:13.866Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
   "clientLabel": "Nadia Pike",
@@ -46,7 +46,7 @@
       "draft": "Please provide ip/subscriber data or confirm in writing why it is not available."
     }
   ],
-  "courtLine": "The defence asks the court to record that the full extraction/source material remains outstanding.",
+  "courtLine": "The defence asks the court to record that platform disclosure, handle mapping, and IP/subscriber attribution remain outstanding before account attribution is treated as fixed.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
@@ -80,7 +80,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "The defence asks the court to record that the full extraction/source material remains outstanding.",
+      "outputLine": "The defence asks the court to record that platform disclosure, handle mapping, and IP/subscriber attribution remain outstanding before account attribution is treated as fixed.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
       "sourcePage": null,

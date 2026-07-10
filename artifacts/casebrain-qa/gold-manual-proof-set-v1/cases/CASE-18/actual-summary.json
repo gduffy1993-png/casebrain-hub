@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-18",
   "sourceCaseId": "demo-audit-46-prison-calls",
-  "builtAt": "2026-07-10T13:04:34.557Z",
+  "builtAt": "2026-07-10T13:21:13.640Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Conspiracy to import a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
   "clientLabel": "Reece Nolan",
@@ -46,7 +46,7 @@
       "draft": "Please provide full prison telecom export or confirm in writing why it is not available."
     }
   ],
-  "courtLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
+  "courtLine": "The defence asks the court to record that prison call recordings, PIN attribution, and telecom export material remain outstanding.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
@@ -80,7 +80,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
+      "outputLine": "The defence asks the court to record that prison call recordings, PIN attribution, and telecom export material remain outstanding.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
       "sourcePage": null,

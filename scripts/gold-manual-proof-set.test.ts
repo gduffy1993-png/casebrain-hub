@@ -9,6 +9,7 @@ import {
   isGenericMg6ChaseLabel,
   presentDoNotOverstateForFamily,
   resolveFamilyChaseLabels,
+  resolveFamilyCourtLine,
 } from "../lib/eval/gold-manual-proof-set/presentation-gates";
 
 assert.equal(GOLD_MANUAL_PROOF_SET_V1.length, 20, "20 gold cases");
@@ -60,6 +61,20 @@ const phoneOk = gateCourtLineForFamily(
   "The defence asks the court to record per MG6C that screenshot/message material is served.",
 );
 assert.equal(phoneOk?.includes("screenshot"), true);
+
+const chargeCourt = resolveFamilyCourtLine("charge mismatch");
+assert.ok(chargeCourt && /charge wording, MG5 summary, and hearing\/listing/i.test(chargeCourt));
+assert.equal(
+  gateCourtLineForFamily("charge mismatch", "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet."),
+  chargeCourt,
+);
+
+const medicalCourt = gateCourtLineForFamily(
+  "medical injury report missing",
+  "The defence asks the court to record outstanding medical, video and sequence material.",
+);
+assert.ok(medicalCourt && /hospital records, consultant report, and injury photographs/i.test(medicalCourt));
+assert.ok(!/listed material families/i.test(medicalCourt!));
 
 assert.equal(
   chargeMismatchLooksLikeEncro("Encro message extracts handle attribution platform/source"),

@@ -25,31 +25,61 @@ export function isDigitalFamily(familyLabel: string): boolean {
 const DIGITAL_COURT_WORDING =
   /message\/account|screenshot|subscriber attribution|phone download|handle attribution|platform extraction|message extracts|encro/i;
 
-/** Replace digital/message/account court wording on non-digital families. */
-export function gateCourtLineForFamily(familyLabel: string, courtLine: string | null): string | null {
-  if (!courtLine?.trim()) return courtLine;
-  if (isDigitalFamily(familyLabel)) return courtLine;
-  if (!DIGITAL_COURT_WORDING.test(courtLine)) return courtLine;
+const GENERIC_COURT_LINE =
+  /listed material families are not safely confirmed|outstanding disclosure items on the current papers \(provisional|outstanding device, calibration|outstanding medical, video and sequence|outstanding message\/account source material|full extraction\/source material remains outstanding/i;
 
+/** Family-specific court-safe lines for gold pack presentation. */
+export function resolveFamilyCourtLine(familyLabel: string): string | null {
   const family = familyLabel.toLowerCase();
+  if (/charge mismatch/.test(family)) {
+    return "The defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.";
+  }
+  if (/translated|translation/.test(family)) {
+    return "The defence asks the court to record that certified translations, interpreter notes, and the original-language export remain outstanding, so any message interpretation remains provisional.";
+  }
+  if (/lab|continuity|drug/.test(family)) {
+    return "The defence asks the court to record that lab intake, continuity chain, and SFR/drugs analysis material remain outstanding before the exhibit position is fixed.";
+  }
+  if (/anpr|vehicle id/.test(family)) {
+    return "The defence asks the court to record that ANPR image export, audit trail, and keeper/vehicle attribution material remain outstanding.";
+  }
+  if (/medical|injury/.test(family)) {
+    return "The defence asks the court to record that hospital records, consultant report, and injury photographs remain outstanding before injury causation or extent is treated as fixed.";
+  }
+  if (/prison call|call log/.test(family)) {
+    return "The defence asks the court to record that prison call recordings, PIN attribution, and telecom export material remain outstanding.";
+  }
+  if (/social handle|subscriber gap/.test(family)) {
+    return "The defence asks the court to record that platform disclosure, handle mapping, and IP/subscriber attribution remain outstanding before account attribution is treated as fixed.";
+  }
   if (/redaction/.test(family)) {
     return "The defence asks the court to record that redaction and unredacted schedule issues remain outstanding on the current papers.";
   }
   if (/restraining|domestic order|order breach/.test(family)) {
     return "The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers.";
   }
-  if (/lab|continuity|drug/.test(family)) {
-    return "The defence asks the court to record that lab continuity / SFR material remains outstanding on the current papers.";
+  return null;
+}
+
+/**
+ * Prefer family-specific court lines for gold packets.
+ * Also block digital/message/account wording on non-digital families.
+ */
+export function gateCourtLineForFamily(familyLabel: string, courtLine: string | null): string | null {
+  const preferred = resolveFamilyCourtLine(familyLabel);
+  if (preferred) {
+    if (!courtLine?.trim() || GENERIC_COURT_LINE.test(courtLine) || DIGITAL_COURT_WORDING.test(courtLine)) {
+      return preferred;
+    }
+    // Builder line exists and is not the known-generic stock — still prefer family gold wording
+    // for the target solicitor-grade families above.
+    return preferred;
   }
-  if (/medical|injury/.test(family)) {
-    return "The defence asks the court to record outstanding medical report material on the current papers.";
-  }
-  if (/charge mismatch/.test(family)) {
-    return "The defence asks the court to record that charge wording, MG5 summary, and listing dates require alignment on the current papers.";
-  }
-  if (/custody|pace|youth|abe|cctv|bwv|motoring|ocr|layout/.test(family)) {
-    return "The defence asks the court to record outstanding disclosure items on the current papers (provisional — solicitor review required).";
-  }
+
+  if (!courtLine?.trim()) return courtLine;
+  if (isDigitalFamily(familyLabel)) return courtLine;
+  if (!DIGITAL_COURT_WORDING.test(courtLine)) return courtLine;
+
   return "The defence asks the court to record outstanding disclosure items on the current papers (provisional — solicitor review required).";
 }
 

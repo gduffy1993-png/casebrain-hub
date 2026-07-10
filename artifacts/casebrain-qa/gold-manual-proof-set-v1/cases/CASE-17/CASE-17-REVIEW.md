@@ -92,7 +92,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 - **Allegation:** Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861
 - **Client label:** Owen Pike
-- **Court line:** The defence asks the court to record outstanding medical, video and sequence material.
+- **Court line:** The defence asks the court to record that hospital records, consultant report, and injury photographs remain outstanding before injury causation or extent is treated as fixed.
 - **Chase items:** hospital records; consultant medical report; injury photographs
 - **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not state "final medical report" — Medical material is absent, draft, or outstanding · Do not state "medical report proves" — Medical material is absent, draft, or outstanding · Do not state "medical is consistent" — Medical material is absent, draft, or outstanding
 - **Proof receipts (sample):** 7 rows; first: hospital records

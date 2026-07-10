@@ -92,7 +92,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 - **Allegation:** Battery, contrary to section 39 of the Criminal Justice Act 1988
 - **Client label:** Jordan Hale
-- **Court line:** Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.
+- **Court line:** The defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.
 - **Chase items:** corrected charge sheet; updated mg5; court listing confirmation
 - **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers · Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers · Do not state "MG11 served" — Witness statement is draft or unsigned on papers
 - **Proof receipts (sample):** 7 rows; first: corrected charge sheet

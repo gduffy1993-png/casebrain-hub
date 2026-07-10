@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-04",
   "sourceCaseId": "demo-audit-02-cctv-stills",
-  "builtAt": "2026-07-10T13:04:31.306Z",
+  "builtAt": "2026-07-10T13:21:09.832Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
   "clientLabel": "Devon Walsh",

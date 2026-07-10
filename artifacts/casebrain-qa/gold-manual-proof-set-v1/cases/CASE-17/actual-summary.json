@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-17",
   "sourceCaseId": "demo-audit-61-medical-triage-partial",
-  "builtAt": "2026-07-10T13:04:34.359Z",
+  "builtAt": "2026-07-10T13:21:13.220Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
   "clientLabel": "Owen Pike",
@@ -46,7 +46,7 @@
       "draft": "Please provide injury photographs or confirm in writing why it is not available."
     }
   ],
-  "courtLine": "The defence asks the court to record outstanding medical, video and sequence material.",
+  "courtLine": "The defence asks the court to record that hospital records, consultant report, and injury photographs remain outstanding before injury causation or extent is treated as fixed.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
@@ -80,7 +80,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "The defence asks the court to record outstanding medical, video and sequence material.",
+      "outputLine": "The defence asks the court to record that hospital records, consultant report, and injury photographs remain outstanding before injury causation or extent is treated as fixed.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
       "sourcePage": null,

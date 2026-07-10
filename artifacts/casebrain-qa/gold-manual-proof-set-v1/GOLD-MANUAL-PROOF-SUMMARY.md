@@ -1,6 +1,6 @@
 # Gold Manual Proof Set v1 — Summary
 
-**Generated:** 2026-07-10T13:04:35.028Z  
+**Generated:** 2026-07-10T13:21:14.389Z  
 **Branch intent:** `feature/gold-manual-proof-set-v1`  
 **Cases:** 20/20 packets  
 **Provisional scores (pre-solicitor):** 20 pass · 0 warn · 0 fail  

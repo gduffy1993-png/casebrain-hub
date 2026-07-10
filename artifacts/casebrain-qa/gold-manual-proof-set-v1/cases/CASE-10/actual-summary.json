@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-10",
   "sourceCaseId": "demo-audit-41-translated-messages",
-  "builtAt": "2026-07-10T13:04:32.727Z",
+  "builtAt": "2026-07-10T13:21:11.315Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
   "clientLabel": "Aiden Cole",
@@ -46,7 +46,7 @@
       "draft": "Please provide original language export or confirm in writing why it is not available."
     }
   ],
-  "courtLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
+  "courtLine": "The defence asks the court to record that certified translations, interpreter notes, and the original-language export remain outstanding, so any message interpretation remains provisional.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
@@ -81,7 +81,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
+      "outputLine": "The defence asks the court to record that certified translations, interpreter notes, and the original-language export remain outstanding, so any message interpretation remains provisional.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
       "sourcePage": "Complainant interview 15/05/2026 — interprete…",

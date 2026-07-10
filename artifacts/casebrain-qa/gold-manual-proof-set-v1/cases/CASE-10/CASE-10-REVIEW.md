@@ -92,7 +92,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 - **Allegation:** Harassment, contrary to section 2 of the Protection from Harassment Act 1997
 - **Client label:** Aiden Cole
-- **Court line:** The defence asks the court to record outstanding message/account source material and complainant statement gaps.
+- **Court line:** The defence asks the court to record that certified translations, interpreter notes, and the original-language export remain outstanding, so any message interpretation remains provisional.
 - **Chase items:** certified translation; interpreter contemporaneous note; original language export
 - **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not state the defendant sent messages unless attribution is served and safe. · Do not state "interview confirms" — Interview material is not fully served · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers
 - **Proof receipts (sample):** 7 rows; first: certified translation

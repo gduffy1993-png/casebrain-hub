@@ -32,7 +32,8 @@ No open provisional WARN cases. Packets are cleared for **human gold-manual revi
 
 1. Cleanup passes 1–2 applied family chase presentation, MG6 demotion, and court family gates.  
 2. Off-family do-not-overstate samples filtered; ugly guilt/proof phrases display as `unsafe proof/outcome wording blocked`.  
-3. v9 catalog packets note catalog origin without “not a clean solicitor example” language when included for human review.  
+3. v9 catalog packets note catalog origin only; included for human review when provisional scores are clean.  
+4. Family-specific court lines applied for charge / translation / lab / ANPR / medical / prison / social families.
 
 ---
 

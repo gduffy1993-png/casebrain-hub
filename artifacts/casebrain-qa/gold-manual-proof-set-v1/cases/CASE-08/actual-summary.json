@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-08",
   "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
-  "builtAt": "2026-07-10T13:04:32.354Z",
+  "builtAt": "2026-07-10T13:21:10.954Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
   "clientLabel": "Jordan Hale",
@@ -46,7 +46,7 @@
       "draft": "Please provide court listing confirmation or confirm in writing why it is not available."
     }
   ],
-  "courtLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
+  "courtLine": "The defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
@@ -80,7 +80,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
+      "outputLine": "The defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
       "sourcePage": null,
