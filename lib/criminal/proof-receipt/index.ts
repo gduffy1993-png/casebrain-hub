@@ -10,7 +10,9 @@ export {
   SAFE_ACTION_LABELS,
   SAFE_ACTION_CLASSES,
   PROOF_RECEIPT_GUARD,
+  PROOF_RECEIPT_SMOKE_FORBIDDEN,
   FORBIDDEN_UI_PATTERNS,
+  sanitizeProofReceiptPanelCopy,
 } from "./derive";
 export type {
   FamilyProofCard,

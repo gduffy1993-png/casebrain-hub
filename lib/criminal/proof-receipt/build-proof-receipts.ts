@@ -6,7 +6,12 @@ import type {
   FiveAnswersViewModel,
 } from "@/lib/criminal/five-answers/types";
 import { buildFamilyProofCards } from "./build-family-cards";
-import { deriveSafeAction, deriveSupportLevel, evidenceStateLabel } from "./derive";
+import {
+  deriveSafeAction,
+  deriveSupportLevel,
+  evidenceStateLabel,
+  sanitizeProofReceiptPanelCopy,
+} from "./derive";
 import type {
   ProofReceiptRow,
   ProofReceiptSurface,
@@ -134,7 +139,7 @@ function parseRefusedOverstatements(lines: string[]): RefusedOverstatementRow[] 
     if (!blockedLine) continue;
     out.push({
       id: `refused-${i}`,
-      blockedLine,
+      blockedLine: sanitizeProofReceiptPanelCopy(blockedLine),
       reason: "Unsafe on current papers — copy gate blocked this wording.",
       safeAlternative: "Describe only what source material supports; mark gaps for chase where material is outstanding.",
     });
@@ -162,10 +167,23 @@ export function buildProofReceiptView(input: BuildProofReceiptsInput): ProofRece
   const seen = new Set<string>();
 
   const pushReceipt = (receipt: ProofReceiptRow) => {
-    const key = `${receipt.surface}::${receipt.outputLine.slice(0, 80).toLowerCase()}`;
+    const sanitized: ProofReceiptRow = {
+      ...receipt,
+      outputLine: sanitizeProofReceiptPanelCopy(receipt.outputLine),
+      solicitorReviewNote: receipt.solicitorReviewNote
+        ? sanitizeProofReceiptPanelCopy(receipt.solicitorReviewNote)
+        : null,
+      sourceSnippet: receipt.sourceSnippet
+        ? sanitizeProofReceiptPanelCopy(receipt.sourceSnippet)
+        : null,
+      blockedUnsafeWording: receipt.blockedUnsafeWording
+        ? sanitizeProofReceiptPanelCopy(receipt.blockedUnsafeWording)
+        : null,
+    };
+    const key = `${sanitized.surface}::${sanitized.outputLine.slice(0, 80).toLowerCase()}`;
     if (seen.has(key)) return;
     seen.add(key);
-    receipts.push(receipt);
+    receipts.push(sanitized);
   };
 
   for (const row of view.evidenceTrace.bySection.key_evidence.slice(0, 4)) {

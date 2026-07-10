@@ -7,11 +7,16 @@ import {
   PROOF_RECEIPT_GUARD,
   SAFE_ACTION_CLASSES,
   SAFE_ACTION_LABELS,
+  sanitizeProofReceiptPanelCopy,
   type ProofReceiptViewModel,
   type ProofReceiptRow,
   type FamilyProofCard,
 } from "@/lib/criminal/proof-receipt";
 import { EvidenceStateBadge } from "./EvidenceStateBadge";
+
+function safePanelCopy(text: string): string {
+  return sanitizeProofReceiptPanelCopy(text);
+}
 
 function SafeActionBadge({ action }: { action: ProofReceiptRow["safeAction"] }) {
   return (
@@ -31,7 +36,7 @@ function ReceiptRowCard({ receipt }: { receipt: ProofReceiptRow }) {
       data-testid={`proof-receipt-row-${receipt.id}`}
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <p className="text-xs text-slate-200 leading-relaxed flex-1 min-w-0">{receipt.outputLine}</p>
+        <p className="text-xs text-slate-200 leading-relaxed flex-1 min-w-0">{safePanelCopy(receipt.outputLine)}</p>
         <span className="shrink-0 rounded border border-slate-700/80 bg-slate-900/60 px-1.5 py-0.5 text-[9px] uppercase tracking-wide text-slate-400">
           {receipt.surface}
         </span>
@@ -47,7 +52,7 @@ function ReceiptRowCard({ receipt }: { receipt: ProofReceiptRow }) {
       </div>
       {receipt.sourceSnippet ? (
         <p className="rounded border border-slate-800/60 bg-slate-900/50 px-2 py-1.5 text-[10px] text-slate-400 line-clamp-3">
-          {receipt.sourceSnippet}
+          {safePanelCopy(receipt.sourceSnippet)}
         </p>
       ) : null}
       <div className="flex flex-wrap items-center gap-2">
@@ -55,7 +60,7 @@ function ReceiptRowCard({ receipt }: { receipt: ProofReceiptRow }) {
         <SafeActionBadge action={receipt.safeAction} />
       </div>
       {receipt.solicitorReviewNote ? (
-        <p className="text-[10px] text-slate-500 italic">{receipt.solicitorReviewNote}</p>
+        <p className="text-[10px] text-slate-500 italic">{safePanelCopy(receipt.solicitorReviewNote)}</p>
       ) : null}
     </article>
   );
@@ -122,11 +127,11 @@ export function ProofReceiptPanel({ model }: { model: ProofReceiptViewModel }) {
             {model.refusedOverstatements.map((row) => (
               <li key={row.id} className="text-xs text-slate-300 space-y-0.5" data-testid={`refused-overstate-${row.id}`}>
                 <p>
-                  <span className="text-slate-500">Blocked:</span> {row.blockedLine}
+                  <span className="text-slate-500">Blocked:</span> {safePanelCopy(row.blockedLine)}
                 </p>
                 <p className="text-[10px] text-slate-500">{row.reason}</p>
                 <p className="text-[10px] text-emerald-400/90">
-                  <span className="text-slate-600">Safer:</span> {row.safeAlternative}
+                  <span className="text-slate-600">Safer:</span> {safePanelCopy(row.safeAlternative)}
                 </p>
               </li>
             ))}

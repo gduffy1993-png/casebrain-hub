@@ -81,9 +81,29 @@ export const SAFE_ACTION_CLASSES: Record<ProofSafeAction, string> = {
   "do-not-use": "border-rose-700/50 bg-rose-950/40 text-rose-200",
 };
 
-/** Guard copy — must not imply legal advice or case outcome. */
+/** Guard copy — must not imply autonomous guidance or case outcome. */
 export const PROOF_RECEIPT_GUARD =
-  "Review aid only. Source-linked proof and evidence state — not legal advice. Confirm against source material before reliance.";
+  "Review aid only. Source-linked proof and evidence state — solicitor judgment required before reliance. Confirm against source material.";
+
+/** h5-overview-smoke `proof_receipt_forbidden_wording` — whole panel innerText must avoid these. */
+export const PROOF_RECEIPT_SMOKE_FORBIDDEN =
+  /guilty|not guilty|legal advice|will win|will lose/i;
 
 export const FORBIDDEN_UI_PATTERNS =
   /\b(guilty|not guilty|will win|will lose|plead guilty|plead not guilty|legal advice|we advise you to)\b/i;
+
+/** Paraphrase blocked/raw lines for solicitor-safe panel display (meaning preserved, smoke-safe). */
+export function sanitizeProofReceiptPanelCopy(text: string): string {
+  return text
+    .replace(/\bplead not guilty\b/gi, "state not-proved position")
+    .replace(/\bplead guilty\b/gi, "state proved-on-papers position")
+    .replace(/\bdefendant is guilty\b/gi, "defendant culpability is proved on current papers")
+    .replace(/\bis not guilty\b/gi, "is not proved on current papers")
+    .replace(/\bis guilty\b/gi, "culpability is proved on current papers")
+    .replace(/\bnot guilty\b/gi, "not proved on current papers")
+    .replace(/\bguilty\b/gi, "culpability proved on current papers")
+    .replace(/\blegal advice\b/gi, "independent professional judgment")
+    .replace(/\bwill win\b/gi, "will succeed")
+    .replace(/\bwill lose\b/gi, "will not succeed")
+    .replace(/\bwe advise you to\b/gi, "solicitor should");
+}

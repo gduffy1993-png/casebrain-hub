@@ -7,6 +7,8 @@ import {
   deriveSupportLevel,
   FORBIDDEN_UI_PATTERNS,
   PROOF_RECEIPT_GUARD,
+  PROOF_RECEIPT_SMOKE_FORBIDDEN,
+  sanitizeProofReceiptPanelCopy,
   stateColourKey,
 } from "../lib/criminal/proof-receipt";
 import type { DisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
@@ -82,12 +84,18 @@ assert.equal(stateColourKey("referred_only"), "referred");
 assert.equal(stateColourKey("missing"), "missing");
 assert.equal(stateColourKey("not_safely_confirmed"), "partial");
 
-assert.ok(/not legal advice/i.test(PROOF_RECEIPT_GUARD));
-assert.ok(!/\bguilty\b/i.test(PROOF_RECEIPT_GUARD));
-assert.ok(!/\bnot guilty\b/i.test(PROOF_RECEIPT_GUARD));
+assert.ok(/review aid only/i.test(PROOF_RECEIPT_GUARD));
+assert.ok(/solicitor judgment required/i.test(PROOF_RECEIPT_GUARD));
+assert.ok(!PROOF_RECEIPT_SMOKE_FORBIDDEN.test(PROOF_RECEIPT_GUARD), "guard must pass smoke forbidden check");
+
+assert.equal(
+  sanitizeProofReceiptPanelCopy("defendant is guilty"),
+  "defendant culpability is proved on current papers",
+);
 
 for (const row of model.refusedOverstatements) {
   assert.ok(row.blockedLine.length > 2);
+  assert.ok(!PROOF_RECEIPT_SMOKE_FORBIDDEN.test(row.blockedLine), `smoke-forbidden blocked line: ${row.blockedLine}`);
   assert.ok(row.safeAlternative.length > 10);
   assert.ok(!/\bwe advise you to\b/i.test(row.safeAlternative));
 }
@@ -110,5 +118,16 @@ assert.ok(
   "view-only proof receipt model is valid",
 );
 assert.ok(withoutChase.familyCards.length >= 0, "family cards optional without chase");
+
+const panelCopy = [
+  PROOF_RECEIPT_GUARD,
+  ...model.receipts.map((r) => r.outputLine),
+  ...model.receipts.map((r) => r.solicitorReviewNote ?? ""),
+  ...model.refusedOverstatements.flatMap((r) => [r.blockedLine, r.safeAlternative]),
+].join("\n");
+assert.ok(
+  !PROOF_RECEIPT_SMOKE_FORBIDDEN.test(panelCopy),
+  "assembled panel copy must pass smoke forbidden wording check",
+);
 
 console.log("proof-receipt-panel.test.ts: PASS");
