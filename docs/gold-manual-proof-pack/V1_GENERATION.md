@@ -22,6 +22,14 @@ Spec templates: this folder (`GOLD_CASE_TEMPLATE.md`, etc.)
 - **Not** real-world solicitor validation
 - Solicitor review required per case before gold promotion
 
+## Human solicitor review pack
+
+Reviewer-facing docs (instructions, scoring form, 20-case index, busy short, feedback template):
+
+[`docs/gold-manual-proof-pack/human-solicitor-review-v1/`](./human-solicitor-review-v1/README.md)
+
+Pointer from pack outputs: `artifacts/casebrain-qa/gold-manual-proof-set-v1/HUMAN-SOLICITOR-REVIEW.md`
+
 ## Scope boundary
 
 Evaluation / reporting only. Does not modify Brain 1, chase core, export builders, Supabase, auth, or production UI.

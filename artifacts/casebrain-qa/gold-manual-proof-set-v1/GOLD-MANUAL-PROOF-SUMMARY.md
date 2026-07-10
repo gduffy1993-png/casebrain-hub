@@ -38,11 +38,16 @@ It does **not** claim real-world solicitor validation. Each case remains **solic
 
 ## How to review
 
-1. Open a case folder under `cases/CASE-XX/`.
-2. Read `CASE-REVIEW.md` (≤10 minutes).
-3. Complete `manual-review-checklist.md`.
-4. Compare `expected.json` vs `actual-summary.json`.
-5. Promote to gold only after solicitor/Ged sign-off.
+**Human solicitor review pack:** [HUMAN-SOLICITOR-REVIEW.md](./HUMAN-SOLICITOR-REVIEW.md) → `docs/gold-manual-proof-pack/human-solicitor-review-v1/`
+
+1. Start with busy short or full reviewer instructions.
+2. Open a case folder under `cases/CASE-XX/`.
+3. Read `CASE-REVIEW.md` (≤10 minutes).
+4. Complete `manual-review-checklist.md` (+ scoring form if full review).
+5. Compare `expected.json` vs `actual-summary.json` if needed.
+6. Promote to gold only after solicitor/Ged sign-off.
+
+Controlled fictional / PDF-backed bundles only. **Not** real client data. **Not** solicitor-validated until signed.
 
 ## Rebuild
 
@@ -52,6 +57,7 @@ npx tsx scripts/build-gold-manual-proof-set-v1.ts
 
 ## Spec references
 
+- `docs/gold-manual-proof-pack/human-solicitor-review-v1/` — reviewer pack
 - `docs/gold-manual-proof-pack/README.md`
 - `docs/gold-manual-proof-pack/GOLD_PACK_COVERAGE_TARGETS.md`
 - `lib/eval/gold-manual-proof-set/catalog.ts`
