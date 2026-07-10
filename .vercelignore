@@ -1,0 +1,9 @@
+artifacts/
+docs/
+*.mp4
+*.mov
+*.zip
+*.pdf
+scripts/.tmp-*
+.next/
+node_modules/
