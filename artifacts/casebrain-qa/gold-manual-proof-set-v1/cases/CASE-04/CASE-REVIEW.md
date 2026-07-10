@@ -55,7 +55,6 @@
 - CCTV proves identity
 - CCTV proves offence
 - positive identification from stills
-- Encro handle
 
 ## Expected CPS chase
 
@@ -77,6 +76,8 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 ## Expected proof receipt / source anchors
 
+> Some chase rows may require source verification; page/source anchors are review aids, not solicitor sign-off.
+
 | Label | State | Anchor | Chase |
 |-------|-------|--------|-------|
 | charge sheet | served | — | N |
@@ -97,7 +98,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Devon Walsh
 - **Court line:** The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.
 - **Chase items:** Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; audit trail
-- **Do-not-overstate (sample, family-filtered):** CCTV proves identity · CCTV proves offence · positive identification from stills · Encro handle
+- **Do-not-overstate (sample, family-filtered):** CCTV proves identity · CCTV proves offence · positive identification from stills · Do not treat stills alone as proof of identity or offence.
 - **Proof receipts (sample):** 9 rows; first: Master CCTV footage
 
 ### Precomputed demo-audit artifacts

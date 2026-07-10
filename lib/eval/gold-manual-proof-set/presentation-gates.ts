@@ -96,11 +96,13 @@ export function chargeMismatchLooksLikeEncro(blob: string): boolean {
 /** Drop stock off-family do-not-overstate lines unless the family makes them relevant. */
 export function filterDoNotOverstateForFamily(familyLabel: string, items: string[]): string[] {
   const family = familyLabel.toLowerCase();
-  const allowBwv = /bwv|video|cctv|custody|abe|sexual|youth/.test(family);
+  // Strict family gates: do not cross-pollinate CCTV ↔ BWV ↔ Encro samples.
+  const allowBwv = /\bbwv\b|body.?worn/.test(family);
   const allowCustody = /custody|pace|youth|bail|appropriate adult|intermediary/.test(family);
-  const allowDrugs = /drug|lab|continuity|encro|supply|anpr|vehicle/.test(family);
-  const allowCctv = /cctv|video|bwv|anpr|motoring/.test(family);
+  const allowDrugs = /drug|lab|continuity|supply|anpr|vehicle/.test(family);
+  const allowCctv = /\bcctv\b|anpr|motoring/.test(family);
   const allowAbe = /abe|sexual|historic|first account|third-party/.test(family);
+  const allowEncro = /\bencro\b/.test(family);
   const allowPhoneExtraction = /phone|harassment|social|subscriber|translated|message|encro|fraud|attribution/.test(
     family,
   );
@@ -114,6 +116,7 @@ export function filterDoNotOverstateForFamily(familyLabel: string, items: string
     if (!allowDrugs && /\bdrugs?\b|\bclass a\b|\bmisuse of drugs\b/.test(s)) return false;
     if (!allowCctv && /\bcctv\b/.test(s)) return false;
     if (!allowAbe && /\babe\b/.test(s)) return false;
+    if (!allowEncro && /\bencro\b/.test(s)) return false;
     if (!allowPhoneExtraction && /phone extraction|phone download|message export|handle attribution|platform extraction/.test(s)) {
       return false;
     }

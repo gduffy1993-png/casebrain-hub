@@ -75,6 +75,8 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 ## Expected proof receipt / source anchors
 
+> Some chase rows may require source verification; page/source anchors are review aids, not solicitor sign-off.
+
 | Label | State | Anchor | Chase |
 |-------|-------|--------|-------|
 | charge sheet | served | — | N |

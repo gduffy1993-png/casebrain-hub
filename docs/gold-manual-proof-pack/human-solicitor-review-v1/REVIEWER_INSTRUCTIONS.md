@@ -103,6 +103,8 @@ Plain English; calibrated confidence; no advice; no CPS/court leakage.
 ### Proof / source trust
 Receipts and anchors usable; partial / referred / not-in-bundle not shown as fully present; wrong document = fail on that surface.
 
+> Some chase rows may require source verification; page/source anchors are review aids, not solicitor sign-off.
+
 ---
 
 ## 6. Adversarial questions (always ask)

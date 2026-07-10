@@ -743,6 +743,8 @@ ${expected.expectedClientSummaryPoints.map((m) => `- ${m}`).join("\n")}
 
 ## Expected proof receipt / source anchors
 
+> Some chase rows may require source verification; page/source anchors are review aids, not solicitor sign-off.
+
 | Label | State | Anchor | Chase |
 |-------|-------|--------|-------|
 ${expected.expectedProofReceiptAnchors
@@ -803,6 +805,8 @@ function renderChecklist(spec: GoldManualCaseSpec): string {
 **Time spent (target ≤ ${spec.reviewMinutesTarget} min):** ______
 
 > Controlled/PDF-backed gold manual review only. **Not** real-world solicitor validation until signed below.
+>
+> Some chase rows may require source verification; page/source anchors are review aids, not solicitor sign-off.
 ${huntNote}
 ## Verdict boxes (tick one per row)
 

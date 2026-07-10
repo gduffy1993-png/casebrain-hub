@@ -12,6 +12,7 @@
 - **Not** real client data.  
 - **Not** solicitor-validated yet — your sign-off is the validation step.  
 - You are judging **usefulness, safety, clarity, court wording, CPS chase, client summary, proof/source trust**.
+- Some chase rows may require source verification; page/source anchors are review aids, not solicitor sign-off.
 
 ---
 

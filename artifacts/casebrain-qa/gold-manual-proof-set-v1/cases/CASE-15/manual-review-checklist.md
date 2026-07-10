@@ -7,6 +7,8 @@
 **Time spent (target ≤ 7 min):** ______
 
 > Controlled/PDF-backed gold manual review only. **Not** real-world solicitor validation until signed below.
+>
+> Some chase rows may require source verification; page/source anchors are review aids, not solicitor sign-off.
 
 ## Verdict boxes (tick one per row)
 

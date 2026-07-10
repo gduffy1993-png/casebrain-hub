@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-07",
   "sourceCaseId": "demo-audit-44-bad-redaction",
-  "builtAt": "2026-07-10T13:21:10.852Z",
+  "builtAt": "2026-07-10T13:34:16.695Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
   "clientLabel": "Farah Kent",

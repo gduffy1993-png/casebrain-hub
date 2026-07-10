@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-05",
   "sourceCaseId": "demo-audit-05-encro-attribution",
-  "builtAt": "2026-07-10T13:21:10.302Z",
+  "builtAt": "2026-07-10T13:34:16.083Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Being concerned in the supply of a controlled drug of Class A, namely cocaine",
   "clientLabel": "Liam Craft",
@@ -65,8 +65,7 @@
     "handle proves defendant",
     "NIGHTLINE-77 is Liam Craft",
     "phone proves role",
-    "Do not treat handle or phone reference as proof of the defendant role without served attribution.",
-    "Do not rely on drug continuity unless lab/continuity material is served."
+    "Do not treat handle or phone reference as proof of the defendant role without served attribution."
   ],
   "proofReceipts": [
     {

@@ -51,6 +51,8 @@ For each case, judge:
 6. **Client summary** — plain English; calibrated; not advice
 7. **Proof / source trust** — anchors usable; partial/referred not shown as fully present
 
+> Some chase rows may require source verification; page/source anchors are review aids, not solicitor sign-off.
+
 ---
 
 ## Suggested start order

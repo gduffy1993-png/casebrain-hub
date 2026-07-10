@@ -52,7 +52,6 @@
 ## Expected unsafe-to-say (family-filtered)
 
 - youth guilt proved
-- BWV shows
 - full interview shows
 
 ## Expected CPS chase
@@ -75,6 +74,8 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 ## Expected proof receipt / source anchors
 
+> Some chase rows may require source verification; page/source anchors are review aids, not solicitor sign-off.
+
 | Label | State | Anchor | Chase |
 |-------|-------|--------|-------|
 | charge sheet | served | — | N |
@@ -95,7 +96,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Kian Doyle (youth — 17 years)
 - **Court line:** The defence asks the court to record per MG6C that YJS extract is served but full pre-sentence report, vulnerability assessment, and youth interview audio remain outstanding.
 - **Chase items:** Full YJS pre-sentence report; Vulnerability assessment; Youth interview audio; Appropriate adult continuity
-- **Do-not-overstate (sample, family-filtered):** youth guilt proved · BWV shows · full interview shows · Do not import adult-court assumptions — youth interview and YJS material remain provisional.
+- **Do-not-overstate (sample, family-filtered):** youth guilt proved · full interview shows · Do not import adult-court assumptions — youth interview and YJS material remain provisional. · Do not state "interview confirms" — Interview material is not fully served
 - **Proof receipts (sample):** 9 rows; first: Vulnerability assessment
 
 ### Precomputed demo-audit artifacts

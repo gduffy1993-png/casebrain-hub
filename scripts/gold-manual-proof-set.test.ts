@@ -127,4 +127,24 @@ const prisonOverstate = presentDoNotOverstateForFamily("prison calls / call logs
 ]);
 assert.deepEqual(prisonOverstate, ["unsafe proof/outcome wording blocked"]);
 
+const bwvOverstate = presentDoNotOverstateForFamily("BWV referred-only", [
+  "BWV shows",
+  "BWV confirms",
+  "PACE safeguards were followed",
+  "CCTV proves",
+  "Encro handle",
+]);
+assert.ok(bwvOverstate.some((s) => /\bbwv\b/i.test(s)));
+assert.ok(!bwvOverstate.some((s) => /\bcctv\b|\bencro\b/i.test(s)));
+
+const cctvOverstate = presentDoNotOverstateForFamily("CCTV stills vs master footage", [
+  "CCTV proves identity",
+  "CCTV proves offence",
+  "positive identification from stills",
+  "Encro handle",
+  "BWV shows",
+]);
+assert.ok(cctvOverstate.every((s) => !/\bencro\b|\bbwv\b/i.test(s)));
+assert.ok(cctvOverstate.some((s) => /\bcctv\b/i.test(s)));
+
 console.log("gold-manual-proof-set.test.ts: PASS");
