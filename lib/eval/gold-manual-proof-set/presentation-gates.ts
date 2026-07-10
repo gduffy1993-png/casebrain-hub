@@ -53,7 +53,7 @@ export function resolveFamilyCourtLine(familyLabel: string): string | null {
     return "The defence asks the court to record that platform disclosure, handle mapping, and IP/subscriber attribution remain outstanding before account attribution is treated as fixed.";
   }
   if (/redaction/.test(family)) {
-    return "The defence asks the court to record that redaction and unredacted schedule issues remain outstanding on the current papers.";
+    return "The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and full police note remain outstanding before the defence relies on the redacted text.";
   }
   if (/restraining|domestic order|order breach/.test(family)) {
     return "The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers.";
@@ -117,34 +117,52 @@ export function filterDoNotOverstateForFamily(familyLabel: string, items: string
   // Strict family gates: do not cross-pollinate CCTV ↔ BWV ↔ Encro samples.
   const allowBwv = /\bbwv\b|body.?worn/.test(family);
   const allowCustody = /custody|pace|youth|bail|appropriate adult|intermediary/.test(family);
-  const allowDrugs = /drug|lab|continuity|supply|anpr|vehicle/.test(family);
-  const allowCctv = /\bcctv\b|anpr/.test(family);
+  // Drugs continuity only on drugs/lab families — not ANPR/vehicle alone (CASE-16).
+  const allowDrugs = /drug|lab|continuity|supply/.test(family) && !/anpr|vehicle id|motoring|sjp/.test(family);
+  const allowCctv = /\bcctv\b/.test(family);
   const allowAbe = /abe|sexual|historic|first account|third-party/.test(family);
   const allowEncro = /\bencro\b/.test(family);
   const allowPhoneExtraction = /phone|harassment|social|subscriber|translated|message|encro|fraud|attribution/.test(
     family,
   );
   const allowMedical = /medical|injury|triage/.test(family);
-  const allowOrder = /restraining|domestic order|order breach|bail/.test(family);
+  const allowOrder = /restraining|domestic order|order breach/.test(family);
   const isS172Motoring = /motoring|sjp/.test(family);
   const isOcrDate = /ocr|date\/court|layout|hearing date|court mismatch/.test(family);
+  const isAnpr = /anpr|vehicle id/.test(family);
+  const isPrison = /prison call|call log/.test(family);
+  const isSocial = /social handle|subscriber gap/.test(family);
+  const isRedaction = /redaction/.test(family);
+  const isLab = /lab|continuity|drug/.test(family) && !isAnpr;
+  const isTranslation = /translated|translation/.test(family);
 
   const filtered = [...new Set(items)].filter((raw) => {
     const s = raw.toLowerCase();
     if (!allowBwv && /\bbwv\b/.test(s)) return false;
     if (!allowCustody && /\bcustody\b/.test(s)) return false;
-    if (!allowDrugs && /\bdrugs?\b|\bclass a\b|\bmisuse of drugs\b/.test(s)) return false;
+    if (!allowDrugs && /\bdrugs?\b|\bclass a\b|\bmisuse of drugs\b|drugs continuity|drug continuity/.test(s)) {
+      return false;
+    }
     if (!allowCctv && /\bcctv\b/.test(s)) return false;
-    // S172 / SJP packets must not carry CCTV-stills ID do-not samples
     if (isS172Motoring && /stills|master footage|positive identification from stills/.test(s)) return false;
-    // OCR/date slot must not lead with CCTV-stills do-not samples (CASE-04 shape)
     if (isOcrDate && /stills|master footage|positive identification|cctv proves/.test(s)) return false;
     if (!allowAbe && /\babe\b/.test(s)) return false;
     if (!allowEncro && /\bencro\b/.test(s)) return false;
-    if (!allowPhoneExtraction && /phone extraction|phone download|message export|handle attribution|platform extraction/.test(s)) {
+    if (
+      !allowPhoneExtraction &&
+      /phone extraction|phone download|message export|handle attribution|platform extraction|sent the messages|unless attribution is served|attribution is proved/.test(
+        s,
+      )
+    ) {
       return false;
     }
-    // Subscriber stock lines only on digital/account families (not prison/ANPR alone)
+    // Order / redaction / ANPR / prison / lab: no message-attribution stock
+    if (
+      (allowOrder || isRedaction || isAnpr || isPrison || isLab) &&
+      /sent the messages|unless attribution is served|phone download|message export/.test(s)
+    ) {
+      return false;
+    }
     if (!allowPhoneExtraction && !/social|subscriber|fraud|phone|harassment|encro|attribution/.test(family) && /subscriber/.test(s) && /import|do not/.test(s)) {
       return false;
     }
@@ -157,8 +175,53 @@ export function filterDoNotOverstateForFamily(familyLabel: string, items: string
     return true;
   });
 
+  const withFamilyFallback = (kept: string[], fallback: string): string[] =>
+    kept.length > 0 ? kept : [fallback];
+
   if (isOcrDate && filtered.length === 0) {
     return ["Do not treat an OCR-corrupted listing date as confirmed without court verification."];
+  }
+  if (allowOrder) {
+    return withFamilyFallback(
+      filtered.filter((s) => !/sent the messages|attribution is served/i.test(s)),
+      "Do not treat an order extract alone as proof of sealed order or service.",
+    );
+  }
+  if (isRedaction) {
+    return withFamilyFallback(
+      filtered,
+      "Do not rely on redacted text as if the unredacted MG11 and schedule were served.",
+    );
+  }
+  if (isAnpr) {
+    return withFamilyFallback(
+      filtered.filter((s) => !/drug/i.test(s)),
+      "Do not treat an ANPR hit table alone as proof of vehicle attribution or keeper identity.",
+    );
+  }
+  if (isPrison) {
+    return withFamilyFallback(
+      filtered,
+      "Do not treat a call-log summary alone as proof of PIN attribution or call content.",
+    );
+  }
+  if (isSocial) {
+    return withFamilyFallback(
+      filtered,
+      "Do not treat a social handle alone as proof of subscriber or account attribution.",
+    );
+  }
+  if (isLab) {
+    return withFamilyFallback(
+      filtered,
+      "Do not treat a drugs schedule alone as proof of lab intake or continuity.",
+    );
+  }
+  if (isTranslation) {
+    return withFamilyFallback(
+      filtered,
+      "Do not treat uncertified message screenshots as a final translation of meaning.",
+    );
   }
   return filtered;
 }
@@ -167,6 +230,7 @@ export function filterDoNotOverstateForFamily(familyLabel: string, items: string
 export function sanitizeUnsafeDisplayWording(items: string[]): string[] {
   const out: string[] = [];
   let blockedProofOutcome = false;
+  let collapsedMg11 = false;
   for (const raw of items) {
     const s = raw.toLowerCase();
     if (
@@ -178,13 +242,65 @@ export function sanitizeUnsafeDisplayWording(items: string[]): string[] {
       }
       continue;
     }
+    // Collapse repeated draft/unsigned MG11 stock lines to one clean caution.
+    if (
+      /witness statement is final|mg11 is consistent and served|\"mg11 served\"|mg11 served/.test(s) &&
+      /do not state|draft or unsigned/.test(s)
+    ) {
+      if (!collapsedMg11) {
+        out.push("Do not treat draft/unsigned MG11 as a final served statement.");
+        collapsedMg11 = true;
+      }
+      continue;
+    }
     out.push(raw);
   }
   return out;
 }
 
 export function presentDoNotOverstateForFamily(familyLabel: string, items: string[]): string[] {
-  return sanitizeUnsafeDisplayWording(filterDoNotOverstateForFamily(familyLabel, items));
+  const family = familyLabel.toLowerCase();
+  let out = sanitizeUnsafeDisplayWording(filterDoNotOverstateForFamily(familyLabel, items));
+
+  const familyFallback = (() => {
+    if (/restraining|domestic order|order breach/.test(family)) {
+      return "Do not treat an order extract alone as proof of sealed order or service.";
+    }
+    if (/redaction/.test(family)) {
+      return "Do not rely on redacted text as if the unredacted MG11 and schedule were served.";
+    }
+    if (/anpr|vehicle id/.test(family)) {
+      return "Do not treat an ANPR hit table alone as proof of vehicle attribution or keeper identity.";
+    }
+    if (/prison call|call log/.test(family)) {
+      return "Do not treat a call-log summary alone as proof of PIN attribution or call content.";
+    }
+    if (/social handle|subscriber gap/.test(family)) {
+      return "Do not treat a social handle alone as proof of subscriber or account attribution.";
+    }
+    if (/translated|translation/.test(family)) {
+      return "Do not treat uncertified message screenshots as a final translation of meaning.";
+    }
+    if (/lab|continuity|drug/.test(family) && !/anpr|vehicle id/.test(family)) {
+      return "Do not treat a drugs schedule alone as proof of lab intake or continuity.";
+    }
+    return null;
+  })();
+
+  if (familyFallback) {
+    // Prefer family-specific caution over stock MG11 triples on v9 WARN families.
+    out = out.filter((s) => !/draft\/unsigned MG11|witness statement is final|mg11 is consistent/i.test(s));
+    const hasFamilyLine = out.some(
+      (s) =>
+        s === familyFallback ||
+        /order extract|redacted text|ANPR hit|call-log summary|social handle|uncertified message|drugs schedule|drug continuity|lab\/continuity/i.test(
+          s,
+        ),
+    );
+    if (!hasFamilyLine) out.push(familyFallback);
+  }
+
+  return [...new Set(out)];
 }
 
 /** Family-specific chase labels for gold pack presentation (not product-core chase). */
@@ -418,33 +534,69 @@ export type PresentedProofReceipt = {
 
 const SOURCE_VERIFICATION_REQUIRED = "source verification required";
 
-/** Wave B secondary-surface client summary — lead family risk, demote off-lead stacks. */
+/** Family-led client summaries for gold presentation (esp. v9 null/thin packets). */
 export function presentClientSummaryForFamily(
   familyLabel: string,
   clientLabel: string,
   existing: string | null,
 ): string | null {
   const f = familyLabel.toLowerCase();
-  if (/motoring|sjp/.test(f)) {
-    return [
+  const wrap = (body: string) =>
+    [
       "CLIENT-SAFE SUMMARY",
       "(not for court or CPS)",
       "",
-      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. The live issue is the s172 notice/requirement to identify the driver: service/posting proof, keeper/DVLA position, nomination/response, and the SJP procedure bundle. Device calibration, intoxilyser, or CCTV/dashcam material on the papers is secondary and not the lead for driver-identification.`,
+      body,
       "",
       "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
     ].join("\n");
+
+  if (/motoring|sjp/.test(f)) {
+    return wrap(
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. The live issue is the s172 notice/requirement to identify the driver: service/posting proof, keeper/DVLA position, nomination/response, and the SJP procedure bundle. Device calibration, intoxilyser, or CCTV/dashcam material on the papers is secondary and not the lead for driver-identification.`,
+    );
   }
   if (/ocr|date\/court|layout|hearing date|court mismatch/.test(f)) {
-    return [
-      "CLIENT-SAFE SUMMARY",
-      "(not for court or CPS)",
-      "",
+    return wrap(
       `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. The listing date and court venue on the papers may be OCR-corrupted or inconsistent — confirm the correct hearing date and venue with the court before relying on any listed date. CCTV stills/master material may also be incomplete, but that is secondary to confirming the listing/date position.`,
-      "",
-      "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
-    ].join("\n");
+    );
   }
+  if (/redaction/.test(f)) {
+    return wrap(
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. Redacted papers are on the bundle, but the unredacted MG11, redaction schedule, and full police note remain outstanding. Do not treat redacted text as if the full unredacted material were served.`,
+    );
+  }
+  if (/restraining|domestic order|order breach/.test(f)) {
+    return wrap(
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. The live issue is the restraining/domestic order position: sealed order, proof of service, and breach location material. An order extract alone is not enough to treat sealed order or service as proved.`,
+    );
+  }
+  if (/translated|translation/.test(f)) {
+    return wrap(
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. Message screenshots may be on the papers, but certified translation, interpreter notes, and the original-language export remain outstanding. Any reading of meaning from screenshots alone is provisional.`,
+    );
+  }
+  if (/lab|continuity|drug/.test(f) && !/anpr|vehicle id/.test(f)) {
+    return wrap(
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. A drugs schedule may be on the papers, but lab intake, continuity/chain of custody, and SFR/drugs analysis remain outstanding before the exhibit position is fixed.`,
+    );
+  }
+  if (/anpr|vehicle id/.test(f)) {
+    return wrap(
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. An ANPR hit table may be on the papers, but ANPR image export, national audit trail, and keeper/vehicle attribution responses remain outstanding. A hit table alone does not prove keeper identity.`,
+    );
+  }
+  if (/prison call|call log/.test(f)) {
+    return wrap(
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. A call-log summary may be on the papers, but prison call recordings, PIN attribution material, and telecom export remain outstanding. A summary alone does not prove who spoke or what was said.`,
+    );
+  }
+  if (/social handle|subscriber gap/.test(f)) {
+    return wrap(
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. Social/handle material may be on the papers, but platform disclosure, handle-to-defendant mapping, and IP/subscriber data remain outstanding. A handle alone does not prove account attribution.`,
+    );
+  }
+  // Prefer existing non-empty summaries for other families (Wave A local packs).
   return existing;
 }
 
@@ -509,6 +661,18 @@ function proofAnchorMismatched(outputLine: string, page: string | null | undefin
   return false;
 }
 
+function proofDocumentMismatched(outputLine: string, sourceDocument: string | null | undefined): boolean {
+  if (!sourceDocument?.trim()) return false;
+  const line = outputLine.toLowerCase();
+  const doc = sourceDocument.toLowerCase();
+  if (/sealed|restraining|order|service proof|breach location/i.test(line) && /custody|interview unit|cctv unit/i.test(doc)) {
+    return true;
+  }
+  if (/anpr|keeper|vehicle/i.test(line) && /custody|interview unit/i.test(doc)) return true;
+  if (/redaction|unredacted|schedule/i.test(line) && /cctv unit/i.test(doc)) return true;
+  return false;
+}
+
 function proofAnchorWeakForLine(outputLine: string, page: string | null | undefined): boolean {
   if (proofAnchorIsThin(page)) return true;
   if (proofAnchorMismatched(outputLine, page)) return true;
@@ -540,21 +704,19 @@ export function presentProofReceiptsForFamily(
 ): PresentedProofReceipt[] {
   const f = familyLabel.toLowerCase();
   let out = receipts.map((r) => {
-    if (!proofAnchorWeakForLine(r.outputLine, r.sourcePage)) return r;
-    const listingOrS172 = /listing|hearing|date|ocr|schedule|verification|notice|keeper|nomination|sjp|service|identify driver|dvla/i.test(
-      r.outputLine,
-    );
+    const weakPage = proofAnchorWeakForLine(r.outputLine, r.sourcePage);
+    const weakDoc = proofDocumentMismatched(r.outputLine, r.sourceDocument);
+    if (!weakPage && !weakDoc && r.sourcePage?.trim() && r.sourceDocument?.trim()) return r;
+    const forceDoc =
+      weakDoc ||
+      !r.sourceDocument?.trim() ||
+      (weakPage &&
+        /cctv unit|custody \/ police interview/i.test(r.sourceDocument ?? "") &&
+        !/cctv|still|master|footage|continuity|audit trail/i.test(r.outputLine));
     return {
       ...r,
-      sourcePage: SOURCE_VERIFICATION_REQUIRED,
-      sourceDocument:
-        listingOrS172 && (/cctv/i.test(r.sourceDocument ?? "") || !r.sourceDocument?.trim())
-          ? SOURCE_VERIFICATION_REQUIRED
-          : listingOrS172
-            ? SOURCE_VERIFICATION_REQUIRED
-            : r.sourceDocument?.trim()
-              ? r.sourceDocument
-              : SOURCE_VERIFICATION_REQUIRED,
+      sourcePage: weakPage || !r.sourcePage?.trim() ? SOURCE_VERIFICATION_REQUIRED : r.sourcePage,
+      sourceDocument: forceDoc ? SOURCE_VERIFICATION_REQUIRED : r.sourceDocument,
     };
   });
 

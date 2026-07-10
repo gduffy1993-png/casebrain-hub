@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-15",
   "sourceCaseId": "demo-audit-18-motoring-sjp-thin",
-  "builtAt": "2026-07-10T17:46:29.402Z",
+  "builtAt": "2026-07-10T18:40:03.878Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988",
   "clientLabel": "Ella Shaw",
@@ -106,7 +106,7 @@
     {
       "outputLine": "The defence asks the court to record that the s172 notice/requirement to identify the driver, keeper position, and service/nomination records require confirmation before the defence position on driver identification is fixed.",
       "surface": "Court",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "Disclosure chase brief",
       "sourcePage": "source verification required",
       "evidenceState": "Incomplete",
       "safeAction": "check"

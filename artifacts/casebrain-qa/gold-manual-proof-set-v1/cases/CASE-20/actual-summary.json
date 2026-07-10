@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-20",
   "sourceCaseId": "demo-audit-30-layout-hearing-date",
-  "builtAt": "2026-07-10T17:46:31.040Z",
+  "builtAt": "2026-07-10T18:40:04.928Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
   "clientLabel": "Devon Walsh",
@@ -93,7 +93,7 @@
     {
       "outputLine": "Source page / date verification",
       "surface": "Overview",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "Crown / disclosure officer",
       "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -101,7 +101,7 @@
     {
       "outputLine": "The defence asks the court to record that the hearing/listing date and court venue require confirmation because of OCR/layout conflict on the current papers, before the defence relies on any listed date.",
       "surface": "Court",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "Disclosure chase brief",
       "sourcePage": "source verification required",
       "evidenceState": "Incomplete",
       "safeAction": "check"
@@ -133,7 +133,7 @@
     {
       "outputLine": "Please provide Source page / date verification or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "Crown / disclosure officer",
       "sourcePage": "source verification required",
       "evidenceState": "Missing",
       "safeAction": "chase"

@@ -55,6 +55,7 @@
 ## Expected unsafe-to-say (family-filtered)
 
 - unsafe proof/outcome wording blocked
+- Do not treat an ANPR hit table alone as proof of vehicle attribution or keeper identity.
 
 ## Expected CPS chase
 
@@ -96,7 +97,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Maya Singh
 - **Court line:** The defence asks the court to record that ANPR image export, audit trail, and keeper/vehicle attribution material remain outstanding.
 - **Chase items:** anpr image export; national anpr audit trail; vehicle keeper response
-- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not import drugs continuity unless the papers support it. · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers · Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers
+- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not treat an ANPR hit table alone as proof of vehicle attribution or keeper identity.
 - **Proof receipts (sample):** 7 rows; first: anpr image export
 
 

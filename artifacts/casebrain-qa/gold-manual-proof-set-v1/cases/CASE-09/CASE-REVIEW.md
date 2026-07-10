@@ -55,6 +55,7 @@
 ## Expected unsafe-to-say (family-filtered)
 
 - unsafe proof/outcome wording blocked
+- Do not treat an order extract alone as proof of sealed order or service.
 
 ## Expected CPS chase
 
@@ -96,7 +97,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Lena Ortiz
 - **Court line:** The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers.
 - **Chase items:** full sealed restraining order; service proof; breach location map
-- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not state the defendant sent messages unless attribution is served and safe. · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers · Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers
+- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not treat an order extract alone as proof of sealed order or service.
 - **Proof receipts (sample):** 7 rows; first: full sealed restraining order
 
 

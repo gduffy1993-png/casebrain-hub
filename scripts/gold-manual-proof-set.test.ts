@@ -129,7 +129,11 @@ const prisonOverstate = presentDoNotOverstateForFamily("prison calls / call logs
   "Do not import phone extraction/metadata unless the papers support it.",
   "Do not import ABE unless the papers support it.",
 ]);
-assert.deepEqual(prisonOverstate, ["unsafe proof/outcome wording blocked"]);
+assert.ok(prisonOverstate.includes("unsafe proof/outcome wording blocked"));
+assert.ok(
+  prisonOverstate.some((s) => /call-log summary alone as proof of PIN attribution/i.test(s)),
+);
+assert.ok(!prisonOverstate.some((s) => /phone extraction|ABE/i.test(s)));
 
 const bwvOverstate = presentDoNotOverstateForFamily("BWV referred-only", [
   "BWV shows",
@@ -330,5 +334,33 @@ const s172ThinProof = presentProofReceiptsForFamily("motoring SJP thin evidence"
   },
 ]);
 assert.match(String(s172ThinProof[0]?.sourcePage ?? ""), /source verification required/i);
+
+const orderOverstate = presentDoNotOverstateForFamily("domestic order / restraining order breach", [
+  "unsafe proof/outcome wording blocked",
+  "Do not state the defendant sent messages unless attribution is served and safe.",
+  'Do not state "witness statement is final" — Witness statement is draft or unsigned on papers',
+  'Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers',
+  'Do not state "MG11 served" — Witness statement is draft or unsigned on papers',
+]);
+assert.ok(!orderOverstate.some((s) => /sent the messages|attribution is served/i.test(s)));
+assert.ok(orderOverstate.some((s) => /order extract|sealed order|service|MG11|unsafe proof/i.test(s)));
+
+const anprOverstate = presentDoNotOverstateForFamily("ANPR / vehicle ID", [
+  "unsafe proof/outcome wording blocked",
+  "Do not import drugs continuity unless the papers support it.",
+  'Do not state "MG11 served" — Witness statement is draft or unsigned on papers',
+]);
+assert.ok(!anprOverstate.some((s) => /drugs continuity/i.test(s)));
+assert.ok(anprOverstate.some((s) => /ANPR|keeper|unsafe proof|MG11/i.test(s)));
+
+const redactionClient = presentClientSummaryForFamily("bad redaction", "Client", null);
+assert.ok(redactionClient && /unredacted MG11|redaction schedule/i.test(redactionClient));
+
+const orderClient = presentClientSummaryForFamily("domestic order / restraining order breach", "Client", null);
+assert.ok(orderClient && /sealed order|service/i.test(orderClient));
+assert.ok(!/sent the messages/i.test(orderClient));
+
+const redactionCourt = resolveFamilyCourtLine("bad redaction");
+assert.ok(redactionCourt && /unredacted MG11|redaction schedule/i.test(redactionCourt));
 
 console.log("gold-manual-proof-set.test.ts: PASS");

@@ -55,6 +55,7 @@
 ## Expected unsafe-to-say (family-filtered)
 
 - unsafe proof/outcome wording blocked
+- Do not treat uncertified message screenshots as a final translation of meaning.
 
 ## Expected CPS chase
 
@@ -96,7 +97,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Aiden Cole
 - **Court line:** The defence asks the court to record that certified translations, interpreter notes, and the original-language export remain outstanding, so any message interpretation remains provisional.
 - **Chase items:** certified translation; interpreter contemporaneous note; original language export
-- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not state the defendant sent messages unless attribution is served and safe. · Do not state "interview confirms" — Interview material is not fully served · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers
+- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not state the defendant sent messages unless attribution is served and safe. · Do not state "interview confirms" — Interview material is not fully served · Do not treat uncertified message screenshots as a final translation of meaning.
 - **Proof receipts (sample):** 7 rows; first: certified translation
 
 

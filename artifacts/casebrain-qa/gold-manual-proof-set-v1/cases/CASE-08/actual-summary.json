@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-08",
   "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
-  "builtAt": "2026-07-10T17:46:27.671Z",
+  "builtAt": "2026-07-10T18:40:01.671Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
   "clientLabel": "Jordan Hale",
@@ -50,9 +50,7 @@
   "clientSummaryPreview": null,
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
-    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
-    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
-    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"
+    "Do not treat draft/unsigned MG11 as a final served statement."
   ],
   "proofReceipts": [
     {
@@ -66,7 +64,7 @@
     {
       "outputLine": "updated mg5",
       "surface": "Overview",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -74,7 +72,7 @@
     {
       "outputLine": "court listing confirmation",
       "surface": "Overview",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -82,7 +80,7 @@
     {
       "outputLine": "The defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.",
       "surface": "Court",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "Disclosure chase brief",
       "sourcePage": "source verification required",
       "evidenceState": "Incomplete",
       "safeAction": "check"
@@ -98,7 +96,7 @@
     {
       "outputLine": "Please provide updated mg5 or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -106,7 +104,7 @@
     {
       "outputLine": "Please provide court listing confirmation or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"

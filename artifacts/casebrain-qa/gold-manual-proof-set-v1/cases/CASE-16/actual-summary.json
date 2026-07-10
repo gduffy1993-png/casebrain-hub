@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-16",
   "sourceCaseId": "demo-audit-49-anpr-trap",
-  "builtAt": "2026-07-10T17:46:29.551Z",
+  "builtAt": "2026-07-10T18:40:04.032Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Taking a vehicle without consent, contrary to section 12 of the Theft Act 1968",
   "clientLabel": "Maya Singh",
@@ -47,13 +47,10 @@
     }
   ],
   "courtLine": "The defence asks the court to record that ANPR image export, audit trail, and keeper/vehicle attribution material remain outstanding.",
-  "clientSummaryPreview": null,
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Maya Singh). This is early-stage — nothing is final until we have full disclosure and your instructions. An ANPR hit table may be on the papers, but ANPR image export, national audit trail, and keeper/vehicle attribution responses remain outstanding. A hit table alone does not prove keeper identity.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
-    "Do not import drugs continuity unless the papers support it.",
-    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
-    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
-    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"
+    "Do not treat an ANPR hit table alone as proof of vehicle attribution or keeper identity."
   ],
   "proofReceipts": [
     {
@@ -75,7 +72,7 @@
     {
       "outputLine": "vehicle keeper response",
       "surface": "Overview",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -83,7 +80,7 @@
     {
       "outputLine": "The defence asks the court to record that ANPR image export, audit trail, and keeper/vehicle attribution material remain outstanding.",
       "surface": "Court",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "Disclosure chase brief",
       "sourcePage": "source verification required",
       "evidenceState": "Incomplete",
       "safeAction": "check"
@@ -107,7 +104,7 @@
     {
       "outputLine": "Please provide vehicle keeper response or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "source verification required",
+      "sourceDocument": "CPS / disclosure officer",
       "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"

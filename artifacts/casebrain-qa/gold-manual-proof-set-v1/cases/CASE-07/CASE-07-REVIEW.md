@@ -55,6 +55,7 @@
 ## Expected unsafe-to-say (family-filtered)
 
 - unsafe proof/outcome wording blocked
+- Do not rely on redacted text as if the unredacted MG11 and schedule were served.
 
 ## Expected CPS chase
 
@@ -94,9 +95,9 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 - **Allegation:** Stalking, contrary to section 2A of the Protection from Harassment Act 1997
 - **Client label:** Farah Kent
-- **Court line:** The defence asks the court to record that redaction and unredacted schedule issues remain outstanding on the current papers.
+- **Court line:** The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and full police note remain outstanding before the defence relies on the redacted text.
 - **Chase items:** unredacted mg11; redaction schedule; full police note
-- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers · Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers · Do not state "MG11 served" — Witness statement is draft or unsigned on papers
+- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not rely on redacted text as if the unredacted MG11 and schedule were served.
 - **Proof receipts (sample):** 7 rows; first: unredacted mg11
 
 

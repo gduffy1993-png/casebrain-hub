@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-18",
   "sourceCaseId": "demo-audit-46-prison-calls",
-  "builtAt": "2026-07-10T17:46:30.243Z",
+  "builtAt": "2026-07-10T18:40:04.455Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Conspiracy to import a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
   "clientLabel": "Reece Nolan",
@@ -47,12 +47,10 @@
     }
   ],
   "courtLine": "The defence asks the court to record that prison call recordings, PIN attribution, and telecom export material remain outstanding.",
-  "clientSummaryPreview": null,
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Reece Nolan). This is early-stage — nothing is final until we have full disclosure and your instructions. A call-log summary may be on the papers, but prison call recordings, PIN attribution material, and telecom export remain outstanding. A summary alone does not prove who spoke or what was said.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
-    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
-    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
-    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"
+    "Do not treat a call-log summary alone as proof of PIN attribution or call content."
   ],
   "proofReceipts": [
     {

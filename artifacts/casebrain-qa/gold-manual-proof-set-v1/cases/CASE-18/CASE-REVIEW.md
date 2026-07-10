@@ -55,6 +55,7 @@
 ## Expected unsafe-to-say (family-filtered)
 
 - unsafe proof/outcome wording blocked
+- Do not treat a call-log summary alone as proof of PIN attribution or call content.
 
 ## Expected CPS chase
 
@@ -96,7 +97,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Reece Nolan
 - **Court line:** The defence asks the court to record that prison call recordings, PIN attribution, and telecom export material remain outstanding.
 - **Chase items:** prison call recordings; pin attribution report; full prison telecom export
-- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers · Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers · Do not state "MG11 served" — Witness statement is draft or unsigned on papers
+- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not treat a call-log summary alone as proof of PIN attribution or call content.
 - **Proof receipts (sample):** 7 rows; first: prison call recordings
 
 

@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-10",
   "sourceCaseId": "demo-audit-41-translated-messages",
-  "builtAt": "2026-07-10T17:46:28.079Z",
+  "builtAt": "2026-07-10T18:40:02.132Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
   "clientLabel": "Aiden Cole",
@@ -47,13 +47,12 @@
     }
   ],
   "courtLine": "The defence asks the court to record that certified translations, interpreter notes, and the original-language export remain outstanding, so any message interpretation remains provisional.",
-  "clientSummaryPreview": null,
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Aiden Cole). This is early-stage — nothing is final until we have full disclosure and your instructions. Message screenshots may be on the papers, but certified translation, interpreter notes, and the original-language export remain outstanding. Any reading of meaning from screenshots alone is provisional.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
     "Do not state the defendant sent messages unless attribution is served and safe.",
     "Do not state \"interview confirms\" — Interview material is not fully served",
-    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
-    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers"
+    "Do not treat uncertified message screenshots as a final translation of meaning."
   ],
   "proofReceipts": [
     {

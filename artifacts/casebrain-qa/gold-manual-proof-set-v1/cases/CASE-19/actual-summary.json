@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-19",
   "sourceCaseId": "demo-audit-47-social-media-handles",
-  "builtAt": "2026-07-10T17:46:30.663Z",
+  "builtAt": "2026-07-10T18:40:04.713Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
   "clientLabel": "Nadia Pike",
@@ -47,12 +47,10 @@
     }
   ],
   "courtLine": "The defence asks the court to record that platform disclosure, handle mapping, and IP/subscriber attribution remain outstanding before account attribution is treated as fixed.",
-  "clientSummaryPreview": null,
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Nadia Pike). This is early-stage — nothing is final until we have full disclosure and your instructions. Social/handle material may be on the papers, but platform disclosure, handle-to-defendant mapping, and IP/subscriber data remain outstanding. A handle alone does not prove account attribution.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
   "doNotOverstate": [
     "unsafe proof/outcome wording blocked",
-    "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
-    "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
-    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"
+    "Do not treat a social handle alone as proof of subscriber or account attribution."
   ],
   "proofReceipts": [
     {

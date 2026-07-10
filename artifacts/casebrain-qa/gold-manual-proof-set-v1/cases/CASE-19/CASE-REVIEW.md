@@ -55,6 +55,7 @@
 ## Expected unsafe-to-say (family-filtered)
 
 - unsafe proof/outcome wording blocked
+- Do not treat a social handle alone as proof of subscriber or account attribution.
 
 ## Expected CPS chase
 
@@ -96,7 +97,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Nadia Pike
 - **Court line:** The defence asks the court to record that platform disclosure, handle mapping, and IP/subscriber attribution remain outstanding before account attribution is treated as fixed.
 - **Chase items:** platform disclosure response; handle mapping report; ip/subscriber data
-- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers · Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers · Do not state "MG11 served" — Witness statement is draft or unsigned on papers
+- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not treat a social handle alone as proof of subscriber or account attribution.
 - **Proof receipts (sample):** 7 rows; first: platform disclosure response
 
 

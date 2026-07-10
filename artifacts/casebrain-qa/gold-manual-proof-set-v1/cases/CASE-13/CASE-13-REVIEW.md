@@ -55,6 +55,7 @@
 ## Expected unsafe-to-say (family-filtered)
 
 - unsafe proof/outcome wording blocked
+- Do not treat a drugs schedule alone as proof of lab intake or continuity.
 
 ## Expected CPS chase
 
@@ -96,7 +97,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Holly Reed
 - **Court line:** The defence asks the court to record that lab intake, continuity chain, and SFR/drugs analysis material remain outstanding before the exhibit position is fixed.
 - **Chase items:** lab intake sheet; full continuity chain; sfr drugs analysis
-- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not rely on drug continuity unless lab/continuity material is served. · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers · Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers
+- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not rely on drug continuity unless lab/continuity material is served.
 - **Proof receipts (sample):** 7 rows; first: lab intake sheet
 
 
