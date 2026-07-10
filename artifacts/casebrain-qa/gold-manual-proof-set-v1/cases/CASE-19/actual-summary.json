@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-19",
   "sourceCaseId": "demo-audit-47-social-media-handles",
-  "builtAt": "2026-07-10T12:25:46.047Z",
+  "builtAt": "2026-07-10T12:41:45.072Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
   "clientLabel": "Nadia Pike",
@@ -34,8 +34,16 @@
   ],
   "cpsChase": [
     {
-      "label": "Exhibit mapping / provenance",
-      "draft": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
+      "label": "platform disclosure response",
+      "draft": "Please provide platform disclosure response or confirm in writing why it is not available."
+    },
+    {
+      "label": "handle mapping report",
+      "draft": "Please provide handle mapping report or confirm in writing why it is not available."
+    },
+    {
+      "label": "ip/subscriber data",
+      "draft": "Please provide ip/subscriber data or confirm in writing why it is not available."
     }
   ],
   "courtLine": "The defence asks the court to record that the full extraction/source material remains outstanding.",
@@ -50,68 +58,60 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "Exhibit mapping / provenance",
+      "outputLine": "platform disclosure response",
       "surface": "Overview",
-      "sourceDocument": "Crown / disclosure officer",
-      "sourcePage": "Screenshot pack served; platform disclosure a…",
-      "evidenceState": "Missing",
-      "safeAction": "chase"
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "handle mapping report",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "ip/subscriber data",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     },
     {
       "outputLine": "The defence asks the court to record that the full extraction/source material remains outstanding.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
-      "sourcePage": "Screenshot pack served; platform disclosure a…",
+      "sourcePage": null,
       "evidenceState": "Incomplete",
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide exhibit mapping / provenance or confirm in writing why it is not available.",
+      "outputLine": "Please provide platform disclosure response or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "Crown / disclosure officer",
-      "sourcePage": "Screenshot pack served; platform disclosure a…",
-      "evidenceState": "Missing",
-      "safeAction": "chase"
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     },
     {
-      "outputLine": "witness MG11",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide handle mapping report or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     },
     {
-      "outputLine": "Custody record extract only — Extract only — full custody record outstanding.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide ip/subscriber data or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
-    },
-    {
-      "outputLine": "platform disclosure response — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "handle mapping report — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "Subscriber / attribution data outstanding — Outstanding — cannot safely fix sender identity without this material.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     }
   ],
   "hardSafetyFailures": []

@@ -4,8 +4,10 @@ import { GOLD_MANUAL_PROOF_SET_V1 } from "../lib/eval/gold-manual-proof-set/cata
 import {
   chargeMismatchLooksLikeEncro,
   demoteGenericMg6Chase,
+  enrichChasePresentation,
   gateCourtLineForFamily,
   isGenericMg6ChaseLabel,
+  resolveFamilyChaseLabels,
 } from "../lib/eval/gold-manual-proof-set/presentation-gates";
 
 assert.equal(GOLD_MANUAL_PROOF_SET_V1.length, 20, "20 gold cases");
@@ -66,5 +68,29 @@ assert.equal(
   chargeMismatchLooksLikeEncro("Charge wording MG5 offence summary listing date conflict"),
   false,
 );
+
+assert.ok(resolveFamilyChaseLabels("bad redaction").some((l) => /unredacted/i.test(l)));
+assert.ok(resolveFamilyChaseLabels("charge mismatch").some((l) => /charge sheet|MG5/i.test(l)));
+
+const enriched = enrichChasePresentation(
+  "medical injury report missing",
+  [{ label: "MG6 / unused schedule clarification" }],
+  ["hospital records", "consultant medical report", "injury photographs"],
+);
+assert.equal(enriched.length, 3);
+assert.ok(!enriched.some((e) => /mg6/i.test(e.label)));
+assert.ok(enriched.some((e) => /hospital/i.test(e.label)));
+
+const keepSubstantive = enrichChasePresentation(
+  "phone harassment / attribution",
+  [
+    { label: "Full phone download" },
+    { label: "Subscriber / account data" },
+    { label: "MG6C clarification on unused material" },
+  ],
+  ["full phone download", "subscriber/account data", "full message export"],
+);
+assert.ok(keepSubstantive.every((e) => !/mg6c clarification/i.test(e.label)));
+assert.ok(keepSubstantive.some((e) => /phone download/i.test(e.label)));
 
 console.log("gold-manual-proof-set.test.ts: PASS");

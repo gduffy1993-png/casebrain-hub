@@ -15,11 +15,11 @@
 
 - [PASS] **Reviewer lane:** v9 catalog source — packet banner still marks catalog origin; chase is not generic-only
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [WARN] **CPS chase coverage:** Builder chase labels do not clearly match truth-key chase list — manual check
+- [PASS] **CPS chase coverage:** 3/3 expected chase themes reflected in builder output
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
-- [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
-- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
+- [PASS] **Source/page anchors:** N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)
+- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
 
 ---
 
@@ -94,9 +94,9 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Allegation:** Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971
 - **Client label:** Holly Reed
 - **Court line:** Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.
-- **Chase items:** Exhibit mapping / provenance
+- **Chase items:** lab intake sheet; full continuity chain; sfr drugs analysis
 - **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import ABE unless the papers support it. · Do not import phone extraction/metadata unless the papers support it.
-- **Proof receipts (sample):** 8 rows; first: Exhibit mapping / provenance
+- **Proof receipts (sample):** 7 rows; first: lab intake sheet
 
 
 

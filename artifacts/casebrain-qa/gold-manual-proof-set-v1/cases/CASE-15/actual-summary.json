@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-15",
   "sourceCaseId": "demo-audit-18-motoring-sjp-thin",
-  "builtAt": "2026-07-10T12:25:45.119Z",
+  "builtAt": "2026-07-10T12:41:44.380Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988",
   "clientLabel": "Ella Shaw",

@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-07",
   "sourceCaseId": "demo-audit-44-bad-redaction",
-  "builtAt": "2026-07-10T12:25:43.118Z",
+  "builtAt": "2026-07-10T12:41:42.299Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
   "clientLabel": "Farah Kent",
@@ -34,8 +34,16 @@
   ],
   "cpsChase": [
     {
-      "label": "MG6 / unused schedule clarification",
-      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
+      "label": "unredacted mg11",
+      "draft": "Please provide unredacted mg11 or confirm in writing why it is not available."
+    },
+    {
+      "label": "redaction schedule",
+      "draft": "Please provide redaction schedule or confirm in writing why it is not available."
+    },
+    {
+      "label": "full police note",
+      "draft": "Please provide full police note or confirm in writing why it is not available."
     }
   ],
   "courtLine": "The defence asks the court to record that redaction and unredacted schedule issues remain outstanding on the current papers.",
@@ -51,9 +59,25 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "MG6 / unused schedule clarification",
+      "outputLine": "unredacted mg11",
       "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "redaction schedule",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "full police note",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -67,52 +91,28 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
+      "outputLine": "Please provide unredacted mg11 or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
-      "outputLine": "witness MG11",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide redaction schedule or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     },
     {
-      "outputLine": "Custody record extract only — Extract only — full custody record outstanding.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide full police note or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
-    },
-    {
-      "outputLine": "unredacted mg11 — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "redaction schedule — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "full police note — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     }
   ],
   "hardSafetyFailures": []

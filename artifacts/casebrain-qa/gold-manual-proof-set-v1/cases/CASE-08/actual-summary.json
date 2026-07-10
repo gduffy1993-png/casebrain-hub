@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-08",
   "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
-  "builtAt": "2026-07-10T12:25:43.373Z",
+  "builtAt": "2026-07-10T12:41:42.450Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
   "clientLabel": "Jordan Hale",
@@ -34,8 +34,16 @@
   ],
   "cpsChase": [
     {
-      "label": "MG6 / unused schedule clarification",
-      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
+      "label": "corrected charge sheet",
+      "draft": "Please provide corrected charge sheet or confirm in writing why it is not available."
+    },
+    {
+      "label": "updated mg5",
+      "draft": "Please provide updated mg5 or confirm in writing why it is not available."
+    },
+    {
+      "label": "court listing confirmation",
+      "draft": "Please provide court listing confirmation or confirm in writing why it is not available."
     }
   ],
   "courtLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
@@ -51,9 +59,25 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "MG6 / unused schedule clarification",
+      "outputLine": "corrected charge sheet",
       "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "updated mg5",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "court listing confirmation",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -67,52 +91,28 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
+      "outputLine": "Please provide corrected charge sheet or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
-      "outputLine": "witness MG11",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide updated mg5 or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     },
     {
-      "outputLine": "Custody record extract only — Extract only — full custody record outstanding.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide court listing confirmation or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
-    },
-    {
-      "outputLine": "corrected charge sheet — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "updated mg5 — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "court listing confirmation — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     }
   ],
   "hardSafetyFailures": []

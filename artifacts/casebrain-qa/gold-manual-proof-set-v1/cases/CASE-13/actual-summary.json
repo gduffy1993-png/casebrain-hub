@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-13",
   "sourceCaseId": "demo-audit-50-lab-continuity-conflict",
-  "builtAt": "2026-07-10T12:25:44.614Z",
+  "builtAt": "2026-07-10T12:41:43.919Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971",
   "clientLabel": "Holly Reed",
@@ -34,8 +34,16 @@
   ],
   "cpsChase": [
     {
-      "label": "Exhibit mapping / provenance",
-      "draft": "Please provide exhibit mapping / provenance or confirm in writing why it is not available."
+      "label": "lab intake sheet",
+      "draft": "Please provide lab intake sheet or confirm in writing why it is not available."
+    },
+    {
+      "label": "full continuity chain",
+      "draft": "Please provide full continuity chain or confirm in writing why it is not available."
+    },
+    {
+      "label": "sfr drugs analysis",
+      "draft": "Please provide sfr drugs analysis or confirm in writing why it is not available."
     }
   ],
   "courtLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
@@ -52,10 +60,26 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "Exhibit mapping / provenance",
+      "outputLine": "lab intake sheet",
       "surface": "Overview",
-      "sourceDocument": "MG6/MG6C disclosure schedule",
-      "sourcePage": "Family theme: Lab continuity conflict",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "full continuity chain",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "sfr drugs analysis",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -63,57 +87,33 @@
       "outputLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
-      "sourcePage": "Family theme: Lab continuity conflict",
+      "sourcePage": null,
       "evidenceState": "Incomplete",
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide exhibit mapping / provenance or confirm in writing why it is not available.",
+      "outputLine": "Please provide lab intake sheet or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "MG6/MG6C disclosure schedule",
-      "sourcePage": "Family theme: Lab continuity conflict",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
-      "outputLine": "witness MG11",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide full continuity chain or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     },
     {
-      "outputLine": "Custody record extract only — Extract only — full custody record outstanding.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide sfr drugs analysis or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
-    },
-    {
-      "outputLine": "lab intake sheet — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "full continuity chain — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "sfr drugs analysis — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     }
   ],
   "hardSafetyFailures": []

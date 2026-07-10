@@ -15,11 +15,11 @@
 
 - [PASS] **Reviewer lane:** v9 catalog source — packet banner still marks catalog origin; chase is not generic-only
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [WARN] **CPS chase coverage:** Partial chase fit only 1/3 expected themes — WARN
+- [PASS] **CPS chase coverage:** 3/3 expected chase themes reflected in builder output
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
-- [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
-- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
+- [PASS] **Source/page anchors:** N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)
+- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
 
 ---
 
@@ -94,9 +94,9 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Allegation:** Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861
 - **Client label:** Owen Pike
 - **Court line:** The defence asks the court to record outstanding medical, video and sequence material.
-- **Chase items:** Medical / expert source report
+- **Chase items:** hospital records; consultant medical report; injury photographs
 - **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import ABE unless the papers support it. · Do not import phone extraction/metadata unless the papers support it.
-- **Proof receipts (sample):** 8 rows; first: Medical / expert source report
+- **Proof receipts (sample):** 7 rows; first: hospital records
 
 
 

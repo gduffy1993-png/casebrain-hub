@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-16",
   "sourceCaseId": "demo-audit-49-anpr-trap",
-  "builtAt": "2026-07-10T12:25:45.309Z",
+  "builtAt": "2026-07-10T12:41:44.559Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Taking a vehicle without consent, contrary to section 12 of the Theft Act 1968",
   "clientLabel": "Maya Singh",
@@ -34,8 +34,16 @@
   ],
   "cpsChase": [
     {
-      "label": "MG6 / unused schedule clarification",
-      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
+      "label": "anpr image export",
+      "draft": "Please provide anpr image export or confirm in writing why it is not available."
+    },
+    {
+      "label": "national anpr audit trail",
+      "draft": "Please provide national anpr audit trail or confirm in writing why it is not available."
+    },
+    {
+      "label": "vehicle keeper response",
+      "draft": "Please provide vehicle keeper response or confirm in writing why it is not available."
     }
   ],
   "courtLine": "The defence asks the court to record outstanding device, calibration and procedure records.",
@@ -52,9 +60,25 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "MG6 / unused schedule clarification",
+      "outputLine": "anpr image export",
       "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "national anpr audit trail",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "vehicle keeper response",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -68,52 +92,28 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
+      "outputLine": "Please provide anpr image export or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
-      "outputLine": "witness MG11",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide national anpr audit trail or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     },
     {
-      "outputLine": "Custody record extract only — Extract only — full custody record outstanding.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide vehicle keeper response or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
-    },
-    {
-      "outputLine": "anpr image export — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "national anpr audit trail — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "vehicle keeper response — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     }
   ],
   "hardSafetyFailures": []

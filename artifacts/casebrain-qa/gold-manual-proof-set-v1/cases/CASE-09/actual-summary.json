@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-09",
   "sourceCaseId": "demo-audit-32-restraining-order-breach",
-  "builtAt": "2026-07-10T12:25:43.593Z",
+  "builtAt": "2026-07-10T12:41:42.708Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997",
   "clientLabel": "Lena Ortiz",
@@ -34,8 +34,16 @@
   ],
   "cpsChase": [
     {
-      "label": "Full custody record / PACE material",
-      "draft": "Please provide full custody record / PACE material or confirm in writing why it is not available."
+      "label": "full sealed restraining order",
+      "draft": "Please provide full sealed restraining order or confirm in writing why it is not available."
+    },
+    {
+      "label": "service proof",
+      "draft": "Please provide service proof or confirm in writing why it is not available."
+    },
+    {
+      "label": "breach location map",
+      "draft": "Please provide breach location map or confirm in writing why it is not available."
     }
   ],
   "courtLine": "The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers.",
@@ -52,9 +60,25 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "Full custody record / PACE material",
+      "outputLine": "full sealed restraining order",
       "surface": "Overview",
-      "sourceDocument": "Custody / police interview unit",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "service proof",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "breach location map",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -68,52 +92,28 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide full custody record / PACE material or confirm in writing why it is not available.",
+      "outputLine": "Please provide full sealed restraining order or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "Custody / police interview unit",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
-      "outputLine": "witness MG11",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide service proof or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     },
     {
-      "outputLine": "Custody record extract only — Extract only — full custody record outstanding.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide breach location map or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
-    },
-    {
-      "outputLine": "full sealed restraining order — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "service proof — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "breach location map — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     }
   ],
   "hardSafetyFailures": []

@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-10",
   "sourceCaseId": "demo-audit-41-translated-messages",
-  "builtAt": "2026-07-10T12:25:43.825Z",
+  "builtAt": "2026-07-10T12:41:43.083Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
   "clientLabel": "Aiden Cole",
@@ -34,8 +34,16 @@
   ],
   "cpsChase": [
     {
-      "label": "Interview recording / transcript",
-      "draft": "Please provide interview recording / transcript or confirm in writing why it is not available."
+      "label": "certified translation",
+      "draft": "Please provide certified translation or confirm in writing why it is not available."
+    },
+    {
+      "label": "interpreter contemporaneous note",
+      "draft": "Please provide interpreter contemporaneous note or confirm in writing why it is not available."
+    },
+    {
+      "label": "original language export",
+      "draft": "Please provide original language export or confirm in writing why it is not available."
     }
   ],
   "courtLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
@@ -51,9 +59,25 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "Interview recording / transcript",
+      "outputLine": "certified translation",
       "surface": "Overview",
-      "sourceDocument": "Custody / police interview unit",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": "Complainant interview 15/05/2026 — interprete…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "interpreter contemporaneous note",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": "Complainant interview 15/05/2026 — interprete…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "original language export",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": "Complainant interview 15/05/2026 — interprete…",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -67,52 +91,28 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide interview recording / transcript or confirm in writing why it is not available.",
+      "outputLine": "Please provide certified translation or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "Custody / police interview unit",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": "Complainant interview 15/05/2026 — interprete…",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
-      "outputLine": "witness MG11",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
+      "outputLine": "Please provide interpreter contemporaneous note or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": "Complainant interview 15/05/2026 — interprete…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     },
     {
-      "outputLine": "Custody record extract only — Extract only — full custody record outstanding.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
-    },
-    {
-      "outputLine": "certified translation — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "interpreter contemporaneous note — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "original language export — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
+      "outputLine": "Please provide original language export or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": "Complainant interview 15/05/2026 — interprete…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     }
   ],
   "hardSafetyFailures": []

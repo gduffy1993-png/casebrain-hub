@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-20",
   "sourceCaseId": "demo-audit-30-layout-hearing-date",
-  "builtAt": "2026-07-10T12:25:46.409Z",
+  "builtAt": "2026-07-10T12:41:45.334Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
   "clientLabel": "Devon Walsh",

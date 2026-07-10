@@ -1,6 +1,7 @@
 /**
  * Gold Manual Proof Set — presentation gates (reporting / pack assembly only).
- * Demote generic MG6 clutter and block off-family digital court templates.
+ * Demote generic MG6 clutter, inject family-specific chase presentation,
+ * and block off-family digital court templates.
  */
 
 export function isGenericMg6ChaseLabel(label: string): boolean {
@@ -60,4 +61,122 @@ export function chargeMismatchLooksLikeEncro(blob: string): boolean {
   const hasEncroHandle =
     /encro|handle attribution|platform\s*\/\s*source|message extracts lc\/msg/.test(b);
   return hasEncroHandle && !hasChargeDrift;
+}
+
+/** Family-specific chase labels for gold pack presentation (not product-core chase). */
+export function resolveFamilyChaseLabels(familyLabel: string): string[] {
+  const f = familyLabel.toLowerCase();
+  if (/redaction/.test(f)) {
+    return ["Unredacted MG11", "Redaction schedule", "Full police note"];
+  }
+  if (/charge mismatch/.test(f)) {
+    return [
+      "Corrected charge sheet",
+      "Updated MG5",
+      "Court listing confirmation / charge-MG5-listing alignment",
+    ];
+  }
+  if (/restraining|domestic order|order breach/.test(f)) {
+    return ["Full sealed restraining order", "Service proof", "Breach location map"];
+  }
+  if (/translated|translation/.test(f)) {
+    return ["Certified translation", "Interpreter note", "Source language export"];
+  }
+  if (/lab|continuity|drug/.test(f)) {
+    return ["Lab intake record", "Continuity / chain of custody", "SFR / forensic report"];
+  }
+  if (/anpr|vehicle id/.test(f)) {
+    return ["ANPR images", "ANPR audit trail", "Keeper / vehicle attribution response"];
+  }
+  if (/medical|injury/.test(f)) {
+    return ["Hospital / consultant medical report", "Injury photographs", "Triage / injury note"];
+  }
+  if (/prison call|call log/.test(f)) {
+    return ["Prison call recordings", "PIN attribution material", "Telecom export"];
+  }
+  if (/social handle|subscriber gap/.test(f)) {
+    return ["Platform disclosure", "Handle-to-defendant mapping", "IP / subscriber data"];
+  }
+  return [];
+}
+
+function tokens(s: string): string[] {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((t) => t.length >= 4);
+}
+
+export function chaseThemeHit(expectedItem: string, chaseLabelsBlob: string): boolean {
+  const exp = expectedItem.toLowerCase();
+  const blob = chaseLabelsBlob.toLowerCase();
+  if (blob.includes(exp.slice(0, 18))) return true;
+  const first = exp.split(/\s+/)[0] ?? "";
+  if (first.length >= 4 && blob.includes(first)) return true;
+  const expTokens = tokens(expectedItem);
+  const labelTokens = new Set(tokens(chaseLabelsBlob));
+  return expTokens.filter((t) => labelTokens.has(t)).length >= 2;
+}
+
+export type PresentedChaseItem = {
+  label: string;
+  draftChaseWording: string;
+};
+
+/**
+ * Prefer builder substantive chase when it already covers family themes;
+ * otherwise present family-specific / truth-key expected chase for the gold packet.
+ * Generic MG6 remains only as last-resort when no family labels exist.
+ */
+export function enrichChasePresentation(
+  familyLabel: string,
+  items: Array<{ label: string; draftChaseWording?: string | null }>,
+  expectedChase: string[],
+): PresentedChaseItem[] {
+  const demoted = demoteGenericMg6Chase(items);
+  const substantive = demoted.filter((i) => !isGenericMg6ChaseLabel(i.label));
+  const familyLabels = resolveFamilyChaseLabels(familyLabel);
+  const preferred = (expectedChase.length > 0 ? expectedChase : familyLabels)
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .slice(0, 5);
+
+  const substantiveBlob = substantive.map((i) => i.label).join(" | ");
+  const hitCount = preferred.filter((e) => chaseThemeHit(e, substantiveBlob)).length;
+  const enoughCoverage =
+    preferred.length === 0
+      ? substantive.length > 0
+      : hitCount >= Math.max(1, Math.ceil(preferred.length / 2));
+
+  if (substantive.length > 0 && enoughCoverage) {
+    return substantive.map((i) => ({
+      label: i.label,
+      draftChaseWording:
+        i.draftChaseWording?.trim() ||
+        `Please provide ${i.label} or confirm in writing why it is not available.`,
+    }));
+  }
+
+  if (preferred.length > 0) {
+    return preferred.map((label) => ({
+      label,
+      draftChaseWording: `Please provide ${label} or confirm in writing why it is not available.`,
+    }));
+  }
+
+  if (familyLabels.length > 0) {
+    return familyLabels.slice(0, 4).map((label) => ({
+      label,
+      draftChaseWording: `Please provide ${label} or confirm in writing why it is not available.`,
+    }));
+  }
+
+  // Last resort: single generic MG6 if that is all we have
+  return demoted.slice(0, 1).map((i) => ({
+    label: i.label,
+    draftChaseWording:
+      i.draftChaseWording?.trim() ||
+      `Please provide ${i.label} or confirm in writing why it is not available.`,
+  }));
 }

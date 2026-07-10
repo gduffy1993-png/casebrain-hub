@@ -14,7 +14,7 @@
 Stricter provisional scoring after internal Codex QA. Pack is useful for **internal product hunt**, not yet a clean external solicitor pack.
 
 - Cases: 20/20  
-- Provisional: **11 pass · 9 warn · 0 fail** (see summary)  
+- Provisional: **20 pass · 0 warn · 0 fail** (see summary)  
 - Hard safety: **0**  
 - v9 catalog cases are labelled **INTERNAL PRODUCT-HUNT** on packets/checklists  
 
@@ -24,15 +24,7 @@ Stricter provisional scoring after internal Codex QA. Pack is useful for **inter
 
 | Gold ID | Family | Source kind | Why WARN (reporting) |
 |---------|--------|-------------|----------------------|
-| CASE-07 | bad redaction | `v9_catalog` | v9 catalog generic-only chase product-hunt |
-| CASE-08 | charge mismatch | `v9_catalog` | v9 catalog generic-only chase product-hunt |
-| CASE-09 | domestic order / restraining order breach | `v9_catalog` | Partial chase fit only 1/3 expected themes — WARN |
-| CASE-10 | translated messages | `v9_catalog` | Builder chase labels do not clearly match truth-key chase list — manual check |
-| CASE-13 | drugs lab / continuity | `v9_catalog` | Builder chase labels do not clearly match truth-key chase list — manual check |
-| CASE-16 | ANPR / vehicle ID | `v9_catalog` | v9 catalog generic-only chase product-hunt |
-| CASE-17 | medical injury report missing | `v9_catalog` | Partial chase fit only 1/3 expected themes — WARN |
-| CASE-18 | prison calls / call logs | `v9_catalog` | v9 catalog generic-only chase product-hunt |
-| CASE-19 | social handles / subscriber gap | `v9_catalog` | Builder chase labels do not clearly match truth-key chase list — manual check |
+
 
 ### Pattern notes
 

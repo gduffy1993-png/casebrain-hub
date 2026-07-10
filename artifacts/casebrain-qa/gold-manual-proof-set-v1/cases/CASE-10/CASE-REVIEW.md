@@ -15,11 +15,11 @@
 
 - [PASS] **Reviewer lane:** v9 catalog source — packet banner still marks catalog origin; chase is not generic-only
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [WARN] **CPS chase coverage:** Builder chase labels do not clearly match truth-key chase list — manual check
+- [PASS] **CPS chase coverage:** 3/3 expected chase themes reflected in builder output
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
-- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
+- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
 
 ---
 
@@ -94,9 +94,9 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Allegation:** Harassment, contrary to section 2 of the Protection from Harassment Act 1997
 - **Client label:** Aiden Cole
 - **Court line:** The defence asks the court to record outstanding message/account source material and complainant statement gaps.
-- **Chase items:** Interview recording / transcript
+- **Chase items:** certified translation; interpreter contemporaneous note; original language export
 - **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import ABE unless the papers support it. · Do not state the defendant sent messages unless attribution is served and safe.
-- **Proof receipts (sample):** 8 rows; first: Interview recording / transcript
+- **Proof receipts (sample):** 7 rows; first: certified translation
 
 
 

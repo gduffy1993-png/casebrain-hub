@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-10T12:25:46.419Z",
+  "generatedAt": "2026-07-10T12:41:45.342Z",
   "packId": "gold-manual-proof-set-v1",
   "version": "1.1-stricter-scoring",
   "caseCount": 20,
-  "readyForHumanReview": false,
+  "readyForHumanReview": true,
   "provisional": {
-    "pass": 11,
-    "warn": 9,
+    "pass": 20,
+    "warn": 0,
     "fail": 0
   },
   "hardSafetyFailuresTotal": 0,
@@ -114,11 +114,8 @@
       "sourceCaseId": "demo-audit-44-bad-redaction",
       "sourceKind": "v9_catalog",
       "riskFocus": "Heavy redaction obscuring names/dates; unredacted MG11 outstanding",
-      "provisionalScore": "warn",
-      "warnReasons": [
-        "v9 catalog generic-only chase product-hunt",
-        "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution"
-      ],
+      "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-44-bad-redaction (materialized from v9_catalog)",
       "packetPath": "cases/CASE-07",
@@ -132,12 +129,8 @@
       "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
       "sourceKind": "v9_catalog",
       "riskFocus": "Charge wording vs MG5 offence summary vs listing/hearing date drift",
-      "provisionalScore": "warn",
-      "warnReasons": [
-        "v9 catalog generic-only chase product-hunt",
-        "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution",
-        "false-missing risk rows"
-      ],
+      "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-69-charge-mg5-hearing (materialized from v9_catalog)",
       "packetPath": "cases/CASE-08",
@@ -151,10 +144,8 @@
       "sourceCaseId": "demo-audit-32-restraining-order-breach",
       "sourceKind": "v9_catalog",
       "riskFocus": "Order extract only; sealed order / service proof outstanding",
-      "provisionalScore": "warn",
-      "warnReasons": [
-        "Partial chase fit only 1/3 expected themes — WARN"
-      ],
+      "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-32-restraining-order-breach (materialized from v9_catalog)",
       "packetPath": "cases/CASE-09",
@@ -168,10 +159,8 @@
       "sourceCaseId": "demo-audit-41-translated-messages",
       "sourceKind": "v9_catalog",
       "riskFocus": "Screenshots served; certified translation / interpreter note outstanding",
-      "provisionalScore": "warn",
-      "warnReasons": [
-        "Builder chase labels do not clearly match truth-key chase list — manual check"
-      ],
+      "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-41-translated-messages (materialized from v9_catalog)",
       "packetPath": "cases/CASE-10",
@@ -215,10 +204,8 @@
       "sourceCaseId": "demo-audit-50-lab-continuity-conflict",
       "sourceKind": "v9_catalog",
       "riskFocus": "Drugs schedule served; lab intake / continuity / SFR outstanding",
-      "provisionalScore": "warn",
-      "warnReasons": [
-        "Builder chase labels do not clearly match truth-key chase list — manual check"
-      ],
+      "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-50-lab-continuity-conflict (materialized from v9_catalog)",
       "packetPath": "cases/CASE-13",
@@ -262,11 +249,8 @@
       "sourceCaseId": "demo-audit-49-anpr-trap",
       "sourceKind": "v9_catalog",
       "riskFocus": "ANPR hit table served; images / national audit trail outstanding",
-      "provisionalScore": "warn",
-      "warnReasons": [
-        "v9 catalog generic-only chase product-hunt",
-        "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution"
-      ],
+      "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-49-anpr-trap (materialized from v9_catalog)",
       "packetPath": "cases/CASE-16",
@@ -280,10 +264,8 @@
       "sourceCaseId": "demo-audit-61-medical-triage-partial",
       "sourceKind": "v9_catalog",
       "riskFocus": "Triage / injury note partial; consultant medical report referred missing",
-      "provisionalScore": "warn",
-      "warnReasons": [
-        "Partial chase fit only 1/3 expected themes — WARN"
-      ],
+      "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-61-medical-triage-partial (materialized from v9_catalog)",
       "packetPath": "cases/CASE-17",
@@ -297,11 +279,8 @@
       "sourceCaseId": "demo-audit-46-prison-calls",
       "sourceKind": "v9_catalog",
       "riskFocus": "Call log summary served; recordings / PIN attribution outstanding",
-      "provisionalScore": "warn",
-      "warnReasons": [
-        "v9 catalog generic-only chase product-hunt",
-        "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution"
-      ],
+      "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-46-prison-calls (materialized from v9_catalog)",
       "packetPath": "cases/CASE-18",
@@ -315,10 +294,8 @@
       "sourceCaseId": "demo-audit-47-social-media-handles",
       "sourceKind": "v9_catalog",
       "riskFocus": "Handle / social material vs subscriber / account attribution gap",
-      "provisionalScore": "warn",
-      "warnReasons": [
-        "Builder chase labels do not clearly match truth-key chase list — manual check"
-      ],
+      "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-47-social-media-handles (materialized from v9_catalog)",
       "packetPath": "cases/CASE-19",

@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-18",
   "sourceCaseId": "demo-audit-46-prison-calls",
-  "builtAt": "2026-07-10T12:25:45.803Z",
+  "builtAt": "2026-07-10T12:41:44.887Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Conspiracy to import a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
   "clientLabel": "Reece Nolan",
@@ -34,8 +34,16 @@
   ],
   "cpsChase": [
     {
-      "label": "MG6 / unused schedule clarification",
-      "draft": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available."
+      "label": "prison call recordings",
+      "draft": "Please provide prison call recordings or confirm in writing why it is not available."
+    },
+    {
+      "label": "pin attribution report",
+      "draft": "Please provide pin attribution report or confirm in writing why it is not available."
+    },
+    {
+      "label": "full prison telecom export",
+      "draft": "Please provide full prison telecom export or confirm in writing why it is not available."
     }
   ],
   "courtLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
@@ -51,9 +59,25 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "MG6 / unused schedule clarification",
+      "outputLine": "prison call recordings",
       "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "pin attribution report",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
+      "sourcePage": null,
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "full prison telecom export",
+      "surface": "Overview",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
@@ -67,52 +91,28 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide mG6 / unused schedule clarification or confirm in writing why it is not available.",
+      "outputLine": "Please provide prison call recordings or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
-      "outputLine": "witness MG11",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide pin attribution report or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     },
     {
-      "outputLine": "Custody record extract only — Extract only — full custody record outstanding.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
+      "outputLine": "Please provide full prison telecom export or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "gold-family-presentation",
       "sourcePage": null,
-      "evidenceState": "Incomplete",
-      "safeAction": "do-not-use"
-    },
-    {
-      "outputLine": "Interview recording outstanding — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "Subscriber / attribution data outstanding — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
-    },
-    {
-      "outputLine": "full prison telecom export — Outstanding on current disclosure.",
-      "surface": "Overview",
-      "sourceDocument": "MG6C / bundle schedule",
-      "sourcePage": null,
-      "evidenceState": "Missing",
-      "safeAction": "chase"
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
     }
   ],
   "hardSafetyFailures": []

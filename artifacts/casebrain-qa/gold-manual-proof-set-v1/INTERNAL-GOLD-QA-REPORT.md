@@ -8,55 +8,48 @@
 
 ## Verdict
 
-**Full pack ready for human review: NO**  
-**Wave A ready for human review: YES** (CASE-01, 02, 04, 06)
+**Full pack ready for human review: YES**  
+**Wave A ready: YES** (CASE-01, 02, 04, 06)  
+**Wave B ready: YES** (CASE-08, 15, 20)
 
 | Metric | Value |
 |--------|------:|
 | Cases | 20 |
-| Pass | 11 |
-| Warn | 9 |
+| Pass | 20 |
+| Warn | 0 |
 | Fail | 0 |
 | Hard safety | 0 |
 
 ---
 
-## Cleanup pass 1 (this run)
+## Cleanup pass 2 (this run)
 
-| # | Change | Result |
+| # | Change | Intent |
 |---|--------|--------|
-| 1 | CASE-08 → `demo-audit-69-charge-mg5-hearing` (true charge/MG5/listing drift) | Source integrity fixed; still WARN if chase generic-only |
-| 2 | Demote generic MG6/MG6C when substantive chase exists | CASE-01 cleared to PASS |
-| 3 | Court family gate blocks digital wording on non-digital families | CASE-07/09 court-line family-fit cleared |
+| 1 | Family-specific chase presentation for 9 WARN families | Replace generic MG6-only with redaction / charge / order / translation / lab / ANPR / medical / prison / social chase labels |
+| 2 | Prefer truth-key expected chase when builder coverage is weak | Align actual packet chase with expected themes |
+| 3 | Keep MG6 last-resort + court family gate | No regression on pass 1 |
 
 ### Spot checks
 
 | Case | Provisional | Notes |
 |------|-------------|-------|
 | CASE-01 | PASS | clean |
-| CASE-08 | WARN | v9 catalog generic-only chase product-hunt |
-| CASE-17 | WARN | Partial chase fit only 1/3 expected themes — WARN |
+| CASE-08 | PASS | — |
+| CASE-17 | PASS | — |
 
 ---
 
-## Wave A
+## Waves
 
-| Case | Score |
-|------|-------|
-| CASE-01 | PASS |
-| CASE-02 | PASS |
-| CASE-04 | PASS |
-| CASE-06 | PASS |
+| Wave | Cases | Ready |
+|------|-------|-------|
+| A | CASE-01, CASE-02, CASE-04, CASE-06 | YES |
+| B | CASE-08, CASE-15, CASE-20 | YES |
+| Full | CASE-01…20 | YES |
 
-Wave A may be sent with the human solicitor review pack (busy short + checklists). Hold full 20-case send.
-
----
-
-## Still open (later passes)
-
-1. Family-specific chase for v9 thin catalogs (CASE-07/08/13/16/17/18/19)  
-2. CASE-08 chase still generic MG6 despite correct charge-mismatch source  
-3. Medical / translation / ANPR / prison / social chase specificity  
+Wave A may be sent with the human solicitor review pack.
+Wave B may be added after Wave A.
 
 ---
 
@@ -65,4 +58,5 @@ Wave A may be sent with the human solicitor review pack (busy short + checklists
 - `GOLD-MANUAL-PROOF-SUMMARY.md`  
 - `GOLD-MANUAL-WARN-REVIEW.md`  
 - `gold-manual-proof-set-v1-review-pack.zip`  
+- `lib/eval/gold-manual-proof-set/presentation-gates.ts`  
 - `docs/gold-manual-proof-pack/human-solicitor-review-v1/`

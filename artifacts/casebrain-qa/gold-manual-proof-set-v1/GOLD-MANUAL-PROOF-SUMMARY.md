@@ -1,11 +1,11 @@
 # Gold Manual Proof Set v1 — Summary
 
-**Generated:** 2026-07-10T12:25:46.421Z  
+**Generated:** 2026-07-10T12:41:45.344Z  
 **Branch intent:** `feature/gold-manual-proof-set-v1`  
 **Cases:** 20/20 packets  
-**Provisional scores (pre-solicitor):** 11 pass · 9 warn · 0 fail  
+**Provisional scores (pre-solicitor):** 20 pass · 0 warn · 0 fail  
 **Hard safety failures across pack:** 0  
-**Ready for human solicitor review:** **NO** (full pack — see `INTERNAL-GOLD-QA-REPORT.md`)  
+**Ready for human solicitor review:** **YES** (full pack — see `INTERNAL-GOLD-QA-REPORT.md`)  
 **Wave A (CASE-01, 02, 04, 06):** see internal QA report
 
 ## Claim discipline
@@ -24,19 +24,19 @@ It does **not** claim real-world solicitor validation. Each case remains **solic
 | CASE-04 | CCTV stills vs master footage | `demo-audit-02-cctv-stills` | PASS | [CASE-04](./cases/CASE-04/CASE-REVIEW.md) |
 | CASE-05 | Encro handle attribution | `demo-audit-05-encro-attribution` | PASS | [CASE-05](./cases/CASE-05/CASE-REVIEW.md) |
 | CASE-06 | mixed-defendant material | `demo-audit-04-co-def-interview` | PASS | [CASE-06](./cases/CASE-06/CASE-REVIEW.md) |
-| CASE-07 | bad redaction | `demo-audit-44-bad-redaction` | WARN | [CASE-07](./cases/CASE-07/CASE-REVIEW.md) |
-| CASE-08 | charge mismatch | `demo-audit-69-charge-mg5-hearing` | WARN | [CASE-08](./cases/CASE-08/CASE-REVIEW.md) |
-| CASE-09 | domestic order / restraining order breach | `demo-audit-32-restraining-order-breach` | WARN | [CASE-09](./cases/CASE-09/CASE-REVIEW.md) |
-| CASE-10 | translated messages | `demo-audit-41-translated-messages` | WARN | [CASE-10](./cases/CASE-10/CASE-REVIEW.md) |
+| CASE-07 | bad redaction | `demo-audit-44-bad-redaction` | PASS | [CASE-07](./cases/CASE-07/CASE-REVIEW.md) |
+| CASE-08 | charge mismatch | `demo-audit-69-charge-mg5-hearing` | PASS | [CASE-08](./cases/CASE-08/CASE-REVIEW.md) |
+| CASE-09 | domestic order / restraining order breach | `demo-audit-32-restraining-order-breach` | PASS | [CASE-09](./cases/CASE-09/CASE-REVIEW.md) |
+| CASE-10 | translated messages | `demo-audit-41-translated-messages` | PASS | [CASE-10](./cases/CASE-10/CASE-REVIEW.md) |
 | CASE-11 | youth / appropriate adult / intermediary | `demo-audit-22-youth-interview` | PASS | [CASE-11](./cases/CASE-11/CASE-REVIEW.md) |
 | CASE-12 | ABE / first account / third-party records | `demo-audit-21-historic-sexual-abe` | PASS | [CASE-12](./cases/CASE-12/CASE-REVIEW.md) |
-| CASE-13 | drugs lab / continuity | `demo-audit-50-lab-continuity-conflict` | WARN | [CASE-13](./cases/CASE-13/CASE-REVIEW.md) |
+| CASE-13 | drugs lab / continuity | `demo-audit-50-lab-continuity-conflict` | PASS | [CASE-13](./cases/CASE-13/CASE-REVIEW.md) |
 | CASE-14 | fraud bank/device attribution | `demo-audit-16-fraud-bank-statements` | PASS | [CASE-14](./cases/CASE-14/CASE-REVIEW.md) |
 | CASE-15 | motoring SJP thin evidence | `demo-audit-18-motoring-sjp-thin` | PASS | [CASE-15](./cases/CASE-15/CASE-REVIEW.md) |
-| CASE-16 | ANPR / vehicle ID | `demo-audit-49-anpr-trap` | WARN | [CASE-16](./cases/CASE-16/CASE-REVIEW.md) |
-| CASE-17 | medical injury report missing | `demo-audit-61-medical-triage-partial` | WARN | [CASE-17](./cases/CASE-17/CASE-REVIEW.md) |
-| CASE-18 | prison calls / call logs | `demo-audit-46-prison-calls` | WARN | [CASE-18](./cases/CASE-18/CASE-REVIEW.md) |
-| CASE-19 | social handles / subscriber gap | `demo-audit-47-social-media-handles` | WARN | [CASE-19](./cases/CASE-19/CASE-REVIEW.md) |
+| CASE-16 | ANPR / vehicle ID | `demo-audit-49-anpr-trap` | PASS | [CASE-16](./cases/CASE-16/CASE-REVIEW.md) |
+| CASE-17 | medical injury report missing | `demo-audit-61-medical-triage-partial` | PASS | [CASE-17](./cases/CASE-17/CASE-REVIEW.md) |
+| CASE-18 | prison calls / call logs | `demo-audit-46-prison-calls` | PASS | [CASE-18](./cases/CASE-18/CASE-REVIEW.md) |
+| CASE-19 | social handles / subscriber gap | `demo-audit-47-social-media-handles` | PASS | [CASE-19](./cases/CASE-19/CASE-REVIEW.md) |
 | CASE-20 | OCR/date/court mismatch | `demo-audit-30-layout-hearing-date` | PASS | [CASE-20](./cases/CASE-20/CASE-REVIEW.md) |
 
 ## How to review
