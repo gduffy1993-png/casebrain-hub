@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-06",
   "sourceCaseId": "demo-audit-04-co-def-interview",
-  "builtAt": "2026-07-10T10:28:41.486Z",
+  "builtAt": "2026-07-10T11:35:03.975Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
   "clientLabel": "Morgan Reid",
@@ -51,13 +51,9 @@
     "Morgan Reid admitted",
     "defendant's interview shows",
     "import co-defendant interview",
-    "BWV shows",
     "phone extraction",
     "Do not import co-defendant interview into the target defendant account.",
-    "Do not state \"interview confirms\" — Interview material is not fully served",
-    "Morgan Reid admitted",
-    "defendant's interview shows",
-    "import co-defendant interview"
+    "Do not state \"interview confirms\" — Interview material is not fully served"
   ],
   "proofReceipts": [
     {

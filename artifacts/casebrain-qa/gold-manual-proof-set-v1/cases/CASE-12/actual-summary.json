@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-12",
   "sourceCaseId": "demo-audit-21-historic-sexual-abe",
-  "builtAt": "2026-07-10T10:28:42.842Z",
+  "builtAt": "2026-07-10T11:35:05.656Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Sexual assault, contrary to section 3 of the Sexual Offences Act 2003",
   "clientLabel": "Daniel Pike",
@@ -57,9 +57,7 @@
     "complainant proved",
     "BWV shows",
     "Do not rely on ABE or complainant account as final proof without served interview material.",
-    "Do not summarise ABE as fact unless the served record is reviewed.",
-    "ABE proves guilt",
-    "complainant proved"
+    "Do not summarise ABE as fact unless the served record is reviewed."
   ],
   "proofReceipts": [
     {

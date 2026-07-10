@@ -1,12 +1,14 @@
 # Manual review checklist — CASE-13
 
 **Family:** drugs lab / continuity  
-**Source:** `demo-audit-50-lab-continuity-conflict`  
+**Source:** `demo-audit-50-lab-continuity-conflict` (`v9_catalog`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______
 
 > Controlled/PDF-backed gold manual review only. **Not** real-world solicitor validation until signed below.
+
+> **INTERNAL PRODUCT-HUNT** (v9 catalog) — not a clean solicitor example. Hunt generic MG6 / template drift.
 
 ## Verdict boxes (tick one per row)
 

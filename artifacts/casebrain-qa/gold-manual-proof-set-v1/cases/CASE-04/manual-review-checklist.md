@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-04
 
 **Family:** CCTV stills vs master footage  
-**Source:** `demo-audit-02-cctv-stills`  
+**Source:** `demo-audit-02-cctv-stills` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______

@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-01
 
 **Family:** phone harassment / attribution  
-**Source:** `demo-audit-01-phone-harassment`  
+**Source:** `demo-audit-01-phone-harassment` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______

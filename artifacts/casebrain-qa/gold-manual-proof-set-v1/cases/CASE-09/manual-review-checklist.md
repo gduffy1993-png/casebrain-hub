@@ -1,12 +1,14 @@
 # Manual review checklist — CASE-09
 
 **Family:** domestic order / restraining order breach  
-**Source:** `demo-audit-32-restraining-order-breach`  
+**Source:** `demo-audit-32-restraining-order-breach` (`v9_catalog`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______
 
 > Controlled/PDF-backed gold manual review only. **Not** real-world solicitor validation until signed below.
+
+> **INTERNAL PRODUCT-HUNT** (v9 catalog) — not a clean solicitor example. Hunt generic MG6 / template drift.
 
 ## Verdict boxes (tick one per row)
 

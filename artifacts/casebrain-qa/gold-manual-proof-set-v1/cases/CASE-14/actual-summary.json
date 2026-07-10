@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-14",
   "sourceCaseId": "demo-audit-16-fraud-bank-statements",
-  "builtAt": "2026-07-10T10:28:43.298Z",
+  "builtAt": "2026-07-10T11:35:06.053Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
   "clientLabel": "Isla Grant",
@@ -50,10 +50,7 @@
   "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Isla Grant). This is early-stage — nothing is final until we have full disclosure and your instructions. Bank statement summaries are on the papers, but the full transaction export, source banking records, and beneficiary tracing material are still outstanding. Summaries alone do not show the full account picture.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
   "doNotOverstate": [
     "fraud proved from summaries alone",
-    "BWV shows",
-    "CCTV proves",
-    "Do not treat bank summaries alone as proof of fraud or account attribution.",
-    "fraud proved from summaries alone"
+    "Do not treat bank summaries alone as proof of fraud or account attribution."
   ],
   "proofReceipts": [
     {

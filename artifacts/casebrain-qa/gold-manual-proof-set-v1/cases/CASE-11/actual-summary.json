@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-11",
   "sourceCaseId": "demo-audit-22-youth-interview",
-  "builtAt": "2026-07-10T10:28:42.555Z",
+  "builtAt": "2026-07-10T11:35:05.417Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
   "clientLabel": "Kian Doyle (youth — 17 years)",
@@ -62,9 +62,7 @@
     "BWV shows",
     "full interview shows",
     "Do not import adult-court assumptions — youth interview and YJS material remain provisional.",
-    "Do not state \"interview confirms\" — Interview material is not fully served",
-    "youth guilt proved",
-    "full interview shows"
+    "Do not state \"interview confirms\" — Interview material is not fully served"
   ],
   "proofReceipts": [
     {

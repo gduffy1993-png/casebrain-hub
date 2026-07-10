@@ -1,6 +1,7 @@
 # CASE-14 — fraud bank/device attribution
 
 **Source case:** `demo-audit-16-fraud-bank-statements`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** Bank summaries served; full transaction export / device ownership gap  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -46,11 +47,9 @@
 - source banking records
 - beneficiary tracing report
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - fraud proved from summaries alone
-- BWV shows
-- CCTV proves
 
 ## Expected CPS chase
 
@@ -90,7 +89,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Isla Grant
 - **Court line:** The defence asks the court to record per MG6C that bank statement summaries are served but full transaction export, source banking records, and tracing material remain outstanding.
 - **Chase items:** Full transaction export; Source banking records; Beneficiary tracing report
-- **Do-not-overstate (sample):** fraud proved from summaries alone · BWV shows · CCTV proves · Do not treat bank summaries alone as proof of fraud or account attribution.
+- **Do-not-overstate (sample, family-filtered):** fraud proved from summaries alone · Do not treat bank summaries alone as proof of fraud or account attribution.
 - **Proof receipts (sample):** 7 rows; first: Full transaction export
 
 ### Precomputed demo-audit artifacts

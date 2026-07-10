@@ -1,6 +1,7 @@
 # CASE-08 — charge mismatch
 
 **Source case:** `demo-audit-25-charge-bundle-mismatch`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** Charge sheet vs MG5 / bundle narrative drift  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -11,11 +12,12 @@
 ## Pass / warn / fail (provisional)
 
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
+- [WARN] **Family / content fit:** Family slot is charge mismatch but actual surfaces are Encro/handle/platform — not a clean charge-mismatch solicitor example
 - [PASS] **CPS chase coverage:** 4/4 expected chase themes reflected in builder output
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
-- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
+- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
 
 ---
 
@@ -52,13 +54,11 @@
 - co-defendant material
 - handle/phone attribution
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - handle proves defendant
 - Jordan Clarke is the handle
 - phone proves role
-- BWV shows
-- CCTV proves
 - handle proves
 
 ## Expected CPS chase
@@ -103,7 +103,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Jordan Clarke
 - **Court line:** The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.
 - **Chase items:** Platform / source extraction; Handle attribution report; Subscriber / account data; Device continuity
-- **Do-not-overstate (sample):** handle proves defendant · Jordan Clarke is the handle · phone proves role · BWV shows
+- **Do-not-overstate (sample, family-filtered):** handle proves defendant · Jordan Clarke is the handle · phone proves role · Do not treat handle or phone reference as proof of the defendant role without served attribution.
 - **Proof receipts (sample):** 9 rows; first: Platform / source extraction
 
 ### Precomputed demo-audit artifacts

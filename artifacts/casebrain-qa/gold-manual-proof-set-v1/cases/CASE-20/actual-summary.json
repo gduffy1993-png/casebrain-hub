@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-20",
   "sourceCaseId": "demo-audit-30-layout-hearing-date",
-  "builtAt": "2026-07-10T10:28:44.583Z",
+  "builtAt": "2026-07-10T11:35:07.216Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
   "clientLabel": "Devon Walsh",
@@ -62,15 +62,10 @@
   "courtLine": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
   "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full disclosure and your instructions. CCTV still images are on the papers, but the master CCTV footage, full export, continuity/provenance, and audit trail material are still outstanding. Stills alone do not show the full recording. The listing date on the papers may be OCR-corrupted — we will confirm the correct hearing date with the court.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
   "doNotOverstate": [
-    "CCTV proves identity",
-    "CCTV proves offence",
     "positive identification from stills",
     "phone download",
     "Encro handle",
-    "Do not treat stills alone as proof of identity or offence.",
-    "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers",
-    "positive identification from stills",
-    "phone download"
+    "Do not treat stills alone as proof of identity or offence."
   ],
   "proofReceipts": [
     {

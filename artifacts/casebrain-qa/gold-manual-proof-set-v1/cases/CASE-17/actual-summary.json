@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-17",
   "sourceCaseId": "demo-audit-61-medical-triage-partial",
-  "builtAt": "2026-07-10T10:28:43.899Z",
+  "builtAt": "2026-07-10T11:35:06.637Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
   "clientLabel": "Owen Pike",
@@ -47,9 +47,6 @@
   "doNotOverstate": [
     "fully proved on current disclosure",
     "safely confirms guilt",
-    "Do not import BWV unless the papers support it.",
-    "Do not import custody safeguards unless the papers support it.",
-    "Do not import drugs continuity unless the papers support it.",
     "Do not import ABE unless the papers support it.",
     "Do not import phone extraction/metadata unless the papers support it.",
     "Do not state \"final medical report\" — Medical material is absent, draft, or outstanding",

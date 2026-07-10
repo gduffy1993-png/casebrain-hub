@@ -1,6 +1,7 @@
 # CASE-01 — phone harassment / attribution
 
 **Source case:** `demo-audit-01-phone-harassment`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** Screenshots served vs full download / subscriber gap; attribution overstatement  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -11,11 +12,11 @@
 ## Pass / warn / fail (provisional)
 
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [PASS] **CPS chase coverage:** 5/6 expected chase themes reflected in builder output
+- [WARN] **CPS chase coverage:** Partial chase fit 5/6 plus generic MG6/MG6C item(s) — WARN (not clean pass)
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
-- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
+- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
 
 ---
 
@@ -54,13 +55,11 @@
 - complainant MG11
 - attribution material
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - defendant sent the messages
 - Riley Moss sent
 - attribution is proved
-- BWV shows
-- CCTV proves
 - full phone download served
 - defendant sent
 
@@ -109,7 +108,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Riley Moss
 - **Court line:** The defence asks the court to record per MG6C that screenshot/message material is served but full phone download, subscriber/account data, and final MG11 remain outstanding.
 - **Chase items:** Full phone download; Subscriber / account data; Full message export; Call logs; Final signed MG11; MG6C clarification on unused material
-- **Do-not-overstate (sample):** defendant sent the messages · Riley Moss sent · attribution is proved · BWV shows
+- **Do-not-overstate (sample, family-filtered):** defendant sent the messages · Riley Moss sent · attribution is proved · Do not state the defendant sent messages unless attribution is served and safe.
 - **Proof receipts (sample):** 9 rows; first: Full phone download
 
 ### Precomputed demo-audit artifacts

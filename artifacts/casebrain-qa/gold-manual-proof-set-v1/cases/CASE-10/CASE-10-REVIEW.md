@@ -1,21 +1,25 @@
 # CASE-10 — translated messages
 
 **Source case:** `demo-audit-41-translated-messages`  
+**Source kind:** `v9_catalog`  
 **Risk focus:** Screenshots served; certified translation / interpreter note outstanding  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
 **Claim discipline:** Not real-world solicitor validation. Solicitor review required before gold promotion.
 
+> **INTERNAL PRODUCT-HUNT CASE (v9 catalog)** — Not a clean solicitor example. Use to hunt generic MG6 chase, off-family court templates, and thin-catalog gaps. Do **not** present as a polished gold exemplar for external solicitor review.
+
 ---
 
 ## Pass / warn / fail (provisional)
 
+- [WARN] **Reviewer lane:** INTERNAL PRODUCT-HUNT case (v9 catalog) — not a clean solicitor example; hunt generic chase / template drift
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
 - [WARN] **CPS chase coverage:** Builder chase labels do not clearly match truth-key chase list — manual check
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
-- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
+- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
 
 ---
 
@@ -48,7 +52,7 @@
 - interpreter contemporaneous note
 - original language export
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - fully proved on current disclosure
 - safely confirms guilt
@@ -91,7 +95,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Aiden Cole
 - **Court line:** The defence asks the court to record outstanding message/account source material and complainant statement gaps.
 - **Chase items:** Interview recording / transcript; MG6 / unused schedule clarification
-- **Do-not-overstate (sample):** fully proved on current disclosure · safely confirms guilt · Do not import BWV unless the papers support it. · Do not import custody safeguards unless the papers support it.
+- **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import ABE unless the papers support it. · Do not state the defendant sent messages unless attribution is served and safe.
 - **Proof receipts (sample):** 10 rows; first: Interview recording / transcript
 
 

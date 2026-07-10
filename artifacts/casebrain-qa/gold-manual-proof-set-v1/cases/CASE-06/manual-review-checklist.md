@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-06
 
 **Family:** mixed-defendant material  
-**Source:** `demo-audit-04-co-def-interview`  
+**Source:** `demo-audit-04-co-def-interview` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______

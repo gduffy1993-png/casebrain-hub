@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-12
 
 **Family:** ABE / first account / third-party records  
-**Source:** `demo-audit-21-historic-sexual-abe`  
+**Source:** `demo-audit-21-historic-sexual-abe` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 9 min):** ______

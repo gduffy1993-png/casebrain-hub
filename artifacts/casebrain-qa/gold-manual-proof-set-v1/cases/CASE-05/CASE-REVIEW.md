@@ -1,6 +1,7 @@
 # CASE-05 — Encro handle attribution
 
 **Source case:** `demo-audit-05-encro-attribution`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** Message extracts vs handle-to-defendant mapping not proved  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -53,13 +54,11 @@
 - full download/export
 - handle/phone attribution
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - handle proves defendant
 - NIGHTLINE-77 is Liam Craft
 - phone proves role
-- BWV shows
-- CCTV proves
 - handle proves
 - phone proves defendant's role
 
@@ -106,7 +105,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Liam Craft
 - **Court line:** The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.
 - **Chase items:** Platform / source extraction; Handle attribution report; Subscriber / account data; Device continuity; Full download / export
-- **Do-not-overstate (sample):** handle proves defendant · NIGHTLINE-77 is Liam Craft · phone proves role · BWV shows
+- **Do-not-overstate (sample, family-filtered):** handle proves defendant · NIGHTLINE-77 is Liam Craft · phone proves role · Do not treat handle or phone reference as proof of the defendant role without served attribution.
 - **Proof receipts (sample):** 9 rows; first: Platform / source extraction
 
 ### Precomputed demo-audit artifacts

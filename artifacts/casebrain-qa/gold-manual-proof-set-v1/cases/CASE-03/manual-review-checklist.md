@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-03
 
 **Family:** custody extract vs full custody  
-**Source:** `demo-audit-27-custody-pace-missing`  
+**Source:** `demo-audit-27-custody-pace-missing` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______

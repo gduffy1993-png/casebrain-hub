@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-07",
   "sourceCaseId": "demo-audit-44-bad-redaction",
-  "builtAt": "2026-07-10T10:28:41.627Z",
+  "builtAt": "2026-07-10T11:35:04.183Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
   "clientLabel": "Farah Kent",
@@ -43,9 +43,6 @@
   "doNotOverstate": [
     "fully proved on current disclosure",
     "safely confirms guilt",
-    "Do not import BWV unless the papers support it.",
-    "Do not import custody safeguards unless the papers support it.",
-    "Do not import drugs continuity unless the papers support it.",
     "Do not import ABE unless the papers support it.",
     "Do not import phone extraction/metadata unless the papers support it.",
     "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",

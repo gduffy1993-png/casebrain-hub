@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-14
 
 **Family:** fraud bank/device attribution  
-**Source:** `demo-audit-16-fraud-bank-statements`  
+**Source:** `demo-audit-16-fraud-bank-statements` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______

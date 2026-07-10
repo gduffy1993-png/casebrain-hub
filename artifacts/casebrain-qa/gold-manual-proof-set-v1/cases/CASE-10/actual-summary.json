@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-10",
   "sourceCaseId": "demo-audit-41-translated-messages",
-  "builtAt": "2026-07-10T10:28:42.291Z",
+  "builtAt": "2026-07-10T11:35:05.043Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
   "clientLabel": "Aiden Cole",
@@ -47,9 +47,6 @@
   "doNotOverstate": [
     "fully proved on current disclosure",
     "safely confirms guilt",
-    "Do not import BWV unless the papers support it.",
-    "Do not import custody safeguards unless the papers support it.",
-    "Do not import drugs continuity unless the papers support it.",
     "Do not import ABE unless the papers support it.",
     "Do not state the defendant sent messages unless attribution is served and safe.",
     "Do not state \"interview confirms\" — Interview material is not fully served",

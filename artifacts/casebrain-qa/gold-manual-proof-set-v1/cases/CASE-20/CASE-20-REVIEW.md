@@ -1,6 +1,7 @@
 # CASE-20 — OCR/date/court mismatch
 
 **Source case:** `demo-audit-30-layout-hearing-date`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** Layout / hearing date / court listing drift across papers  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -49,10 +50,8 @@
 - audit trail
 - recognition/ID basis
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
-- CCTV proves identity
-- CCTV proves offence
 - positive identification from stills
 - phone download
 - Encro handle
@@ -98,7 +97,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Devon Walsh
 - **Court line:** The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.
 - **Chase items:** Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; CCTV audit trail / source hash record; Recognition / ID basis
-- **Do-not-overstate (sample):** CCTV proves identity · CCTV proves offence · positive identification from stills · phone download
+- **Do-not-overstate (sample, family-filtered):** positive identification from stills · phone download · Encro handle · Do not treat stills alone as proof of identity or offence.
 - **Proof receipts (sample):** 9 rows; first: Master CCTV footage
 
 ### Precomputed demo-audit artifacts

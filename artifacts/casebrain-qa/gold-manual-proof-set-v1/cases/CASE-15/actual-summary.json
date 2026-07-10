@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-15",
   "sourceCaseId": "demo-audit-18-motoring-sjp-thin",
-  "builtAt": "2026-07-10T10:28:43.493Z",
+  "builtAt": "2026-07-10T11:35:06.286Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988",
   "clientLabel": "Ella Shaw",
@@ -50,11 +50,9 @@
   "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Ella Shaw). This is early-stage — nothing is final until we have full disclosure and your instructions. A breath/device procedure summary is on the papers, but calibration certificates, the full intoxilyser record, and any CCTV/dashcam export are still outstanding. Device reliability remains provisional.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
   "doNotOverstate": [
     "Do not treat device summary as proof of reliability",
-    "BWV shows",
     "Do not treat procedure summary alone as proof of device reliability or identity.",
     "Do not state \"CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
-    "Do not state \"Full CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.",
-    "Do not treat device summary as proof of reliability"
+    "Do not state \"Full CCTV stills served — master footage outstanding; ID not safely confirmed from current papers."
   ],
   "proofReceipts": [
     {

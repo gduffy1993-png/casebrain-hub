@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-05
 
 **Family:** Encro handle attribution  
-**Source:** `demo-audit-05-encro-attribution`  
+**Source:** `demo-audit-05-encro-attribution` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______

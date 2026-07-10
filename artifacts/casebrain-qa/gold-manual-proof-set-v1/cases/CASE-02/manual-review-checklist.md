@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-02
 
 **Family:** BWV referred-only  
-**Source:** `demo-audit-03-bwv-custody`  
+**Source:** `demo-audit-03-bwv-custody` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______

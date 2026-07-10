@@ -1,6 +1,7 @@
 # CASE-02 — BWV referred-only
 
 **Source case:** `demo-audit-03-bwv-custody`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** BWV referred on schedule but not served; custody extract only  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -52,12 +53,11 @@
 - interview transcript
 - PACE safeguards detail
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - BWV shows
 - BWV confirms
 - PACE safeguards were followed
-- full custody record served
 - phone extraction
 - CCTV proves
 
@@ -103,7 +103,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Casey Fry
 - **Court line:** The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.
 - **Chase items:** Full BWV export; Full custody record; Interview audio; Interview transcript; PACE safeguards detail
-- **Do-not-overstate (sample):** BWV shows · BWV confirms · PACE safeguards were followed · full custody record served
+- **Do-not-overstate (sample, family-filtered):** BWV shows · BWV confirms · PACE safeguards were followed · phone extraction
 - **Proof receipts (sample):** 10 rows; first: Full custody record
 
 ### Precomputed demo-audit artifacts

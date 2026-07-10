@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-11
 
 **Family:** youth / appropriate adult / intermediary  
-**Source:** `demo-audit-22-youth-interview`  
+**Source:** `demo-audit-22-youth-interview` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______

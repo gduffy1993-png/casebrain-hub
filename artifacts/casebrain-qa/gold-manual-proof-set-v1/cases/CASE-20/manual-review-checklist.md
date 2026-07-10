@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-20
 
 **Family:** OCR/date/court mismatch  
-**Source:** `demo-audit-30-layout-hearing-date`  
+**Source:** `demo-audit-30-layout-hearing-date` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______

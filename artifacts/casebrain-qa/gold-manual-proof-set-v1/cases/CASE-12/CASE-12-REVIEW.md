@@ -1,6 +1,7 @@
 # CASE-12 — ABE / first account / third-party records
 
 **Source case:** `demo-audit-21-historic-sexual-abe`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** Draft MG11 served; ABE video / transcript referred missing  
 **Target review time:** ≤ 9 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -48,7 +49,7 @@
 - third-party counselling notes
 - final signed MG11
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - ABE proves guilt
 - complainant proved
@@ -93,7 +94,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Daniel Pike
 - **Court line:** The defence asks the court to record per MG6C that draft complainant material is served but ABE interview video, transcript, and final signed MG11 remain outstanding.
 - **Chase items:** ABE interview video; ABE interview transcript; Final signed MG11; Third-party counselling notes
-- **Do-not-overstate (sample):** ABE proves guilt · complainant proved · BWV shows · Do not rely on ABE or complainant account as final proof without served interview material.
+- **Do-not-overstate (sample, family-filtered):** ABE proves guilt · complainant proved · BWV shows · Do not rely on ABE or complainant account as final proof without served interview material.
 - **Proof receipts (sample):** 9 rows; first: ABE interview transcript
 
 ### Precomputed demo-audit artifacts

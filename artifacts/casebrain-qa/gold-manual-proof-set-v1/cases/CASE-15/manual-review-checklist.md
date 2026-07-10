@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-15
 
 **Family:** motoring SJP thin evidence  
-**Source:** `demo-audit-18-motoring-sjp-thin`  
+**Source:** `demo-audit-18-motoring-sjp-thin` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 7 min):** ______

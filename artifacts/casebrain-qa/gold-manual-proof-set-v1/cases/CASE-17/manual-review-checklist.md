@@ -1,12 +1,14 @@
 # Manual review checklist — CASE-17
 
 **Family:** medical injury report missing  
-**Source:** `demo-audit-61-medical-triage-partial`  
+**Source:** `demo-audit-61-medical-triage-partial` (`v9_catalog`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______
 
 > Controlled/PDF-backed gold manual review only. **Not** real-world solicitor validation until signed below.
+
+> **INTERNAL PRODUCT-HUNT** (v9 catalog) — not a clean solicitor example. Hunt generic MG6 / template drift.
 
 ## Verdict boxes (tick one per row)
 

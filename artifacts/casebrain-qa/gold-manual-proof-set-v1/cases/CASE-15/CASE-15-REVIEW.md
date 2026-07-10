@@ -1,6 +1,7 @@
 # CASE-15 — motoring SJP thin evidence
 
 **Source case:** `demo-audit-18-motoring-sjp-thin`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** Thin SJP file; device / CCTV export outstanding  
 **Target review time:** ≤ 7 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -46,10 +47,9 @@
 - full intoxilyser record
 - cctv/dashcam export
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - Do not treat device summary as proof of reliability
-- BWV shows
 
 ## Expected CPS chase
 
@@ -89,7 +89,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Ella Shaw
 - **Court line:** The defence asks the court to record per MG6C that procedure summary is served but device calibration, full intoxilyser record, and CCTV/dashcam export remain outstanding.
 - **Chase items:** Device calibration certificate; Full intoxilyser record; CCTV / dashcam export
-- **Do-not-overstate (sample):** Do not treat device summary as proof of reliability · BWV shows · Do not treat procedure summary alone as proof of device reliability or identity. · Do not state "CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.
+- **Do-not-overstate (sample, family-filtered):** Do not treat device summary as proof of reliability · Do not treat procedure summary alone as proof of device reliability or identity. · Do not state "CCTV stills served — master footage outstanding; ID not safely confirmed from current papers. · Do not state "Full CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.
 - **Proof receipts (sample):** 7 rows; first: Device calibration certificate
 
 ### Precomputed demo-audit artifacts

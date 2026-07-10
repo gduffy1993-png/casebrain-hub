@@ -1,6 +1,7 @@
 # CASE-11 — youth / appropriate adult / intermediary
 
 **Source case:** `demo-audit-22-youth-interview`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** YJS extract served; youth interview / AA safeguards incomplete  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -48,7 +49,7 @@
 - youth interview audio
 - appropriate adult continuity
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - youth guilt proved
 - BWV shows
@@ -94,7 +95,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Kian Doyle (youth — 17 years)
 - **Court line:** The defence asks the court to record per MG6C that YJS extract is served but full pre-sentence report, vulnerability assessment, and youth interview audio remain outstanding.
 - **Chase items:** Full YJS pre-sentence report; Vulnerability assessment; Youth interview audio; Appropriate adult continuity
-- **Do-not-overstate (sample):** youth guilt proved · BWV shows · full interview shows · Do not import adult-court assumptions — youth interview and YJS material remain provisional.
+- **Do-not-overstate (sample, family-filtered):** youth guilt proved · BWV shows · full interview shows · Do not import adult-court assumptions — youth interview and YJS material remain provisional.
 - **Proof receipts (sample):** 9 rows; first: Vulnerability assessment
 
 ### Precomputed demo-audit artifacts

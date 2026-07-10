@@ -3,11 +3,14 @@
  * Gold Manual Proof Set v1 — generate 20 solicitor-review packets from controlled demo-audit families.
  *
  * Run: npx tsx scripts/build-gold-manual-proof-set-v1.ts
+ * Zip only: npx tsx scripts/build-gold-manual-proof-set-v1.ts --zip-only
  *
  * Scope: evaluation/reporting only. Does not mutate Brain 1 / chase core / export / Supabase / UI.
  */
 import fs from "node:fs";
 import path from "node:path";
+
+import JSZip from "jszip";
 
 import { buildDisclosureChaseBrief } from "../components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import { buildHearingWarRoomBrief } from "../components/criminal/hearing-war-room/buildHearingWarRoomBrief";
@@ -24,6 +27,8 @@ import {
   type GoldManualCaseSpec,
 } from "../lib/eval/gold-manual-proof-set/catalog";
 import type { EvidenceStateTruthKey } from "../lib/eval/evidence-state-audit/types";
+
+const ZIP_ONLY = process.argv.includes("--zip-only");
 
 const ROOT = process.cwd();
 const OUT_ROOT = path.join(ROOT, "artifacts", "casebrain-qa", "gold-manual-proof-set-v1");
@@ -389,7 +394,7 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
     })),
     courtLine,
     clientSummaryPreview: clientPreview ? clientPreview.slice(0, 600) : null,
-    doNotOverstate: doNotOverstate.slice(0, 10),
+    doNotOverstate: filterDoNotOverstateForFamily(spec.familyLabel, doNotOverstate).slice(0, 10),
     proofReceipts: proof.receipts.slice(0, 10).map((r) => ({
       outputLine: r.outputLine,
       surface: r.surface,
@@ -401,6 +406,51 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
     hardSafetyFailures: hardSafetyScan(blob),
     precomputedArtifactHints: Object.keys(pre.hints).length ? pre.hints : undefined,
   };
+}
+
+/** Drop stock off-family do-not-overstate lines unless the family makes them relevant. */
+function filterDoNotOverstateForFamily(familyLabel: string, items: string[]): string[] {
+  const family = familyLabel.toLowerCase();
+  const allowBwv = /bwv|video|cctv|custody|abe|sexual|youth/.test(family);
+  const allowCustody = /custody|pace|youth|bail|appropriate adult|intermediary/.test(family);
+  const allowDrugs = /drug|lab|continuity|encro|supply|anpr|vehicle/.test(family);
+  const allowCctv = /cctv|video|bwv|anpr|motoring/.test(family);
+
+  return [...new Set(items)].filter((raw) => {
+    const s = raw.toLowerCase();
+    if (!allowBwv && /\bbwv\b/.test(s)) return false;
+    if (!allowCustody && /\bcustody\b/.test(s)) return false;
+    if (!allowDrugs && /\bdrugs?\b|\bclass a\b|\bmisuse of drugs\b/.test(s)) return false;
+    if (!allowCctv && /\bcctv\b/.test(s)) return false;
+    return true;
+  });
+}
+
+function isGenericMg6ChaseLabel(label: string): boolean {
+  return /mg6c?\s*clarification|mg6\s*\/\s*unused|schedule clarification|unused material/i.test(label);
+}
+
+function familyContentDrift(familyLabel: string, actual: ActualSummary): string | null {
+  const family = familyLabel.toLowerCase();
+  const blob = [
+    actual.allegation ?? "",
+    actual.courtLine ?? "",
+    ...actual.cpsChase.map((c) => c.label),
+    ...actual.truthMapRows.map((r) => r.label),
+    actual.clientSummaryPreview ?? "",
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  if (/charge mismatch/.test(family)) {
+    const hasChargeDrift = /charge.*(mismatch|drift|align)|mg5.*charge|charge.*mg5|bundle.*charg|charge sheet vs/.test(blob);
+    const hasEncroHandle =
+      /encro|handle attribution|platform\s*\/\s*source|message extracts|subscriber\/account/.test(blob);
+    if (hasEncroHandle && !hasChargeDrift) {
+      return "Family slot is charge mismatch but actual surfaces are Encro/handle/platform — not a clean charge-mismatch solicitor example";
+    }
+  }
+  return null;
 }
 
 function box(label: string, value: Box, note: string): string {
@@ -442,9 +492,30 @@ function courtLineLooksOffFamily(familyLabel: string, courtLine: string | null):
   return null;
 }
 
-function compareHints(expected: ExpectedPacket, actual: ActualSummary): { boxes: string[]; provisionalScore: Box } {
+function compareHints(
+  expected: ExpectedPacket,
+  actual: ActualSummary,
+  spec: GoldManualCaseSpec,
+): { boxes: string[]; provisionalScore: Box; warnReasons: string[] } {
   const boxes: string[] = [];
+  const warnReasons: string[] = [];
   let score: Box = "hold";
+
+  const bumpWarn = (reason: string) => {
+    warnReasons.push(reason);
+    if (score !== "fail") score = "warn";
+  };
+
+  if (spec.sourceKind === "v9_catalog") {
+    boxes.push(
+      box(
+        "Reviewer lane",
+        "warn",
+        "INTERNAL PRODUCT-HUNT case (v9 catalog) — not a clean solicitor example; hunt generic chase / template drift",
+      ),
+    );
+    bumpWarn("v9 catalog product-hunt lane");
+  }
 
   if (actual.hardSafetyFailures.length) {
     boxes.push(box("Hard safety", "fail", actual.hardSafetyFailures.join("; ")));
@@ -453,21 +524,45 @@ function compareHints(expected: ExpectedPacket, actual: ActualSummary): { boxes:
     boxes.push(box("Hard safety", "pass", "No outcome/plea/legal-advice claim patterns in assembled surfaces"));
   }
 
+  const contentDrift = familyContentDrift(expected.familyLabel, actual);
+  if (contentDrift) {
+    boxes.push(box("Family / content fit", "warn", contentDrift));
+    bumpWarn(contentDrift);
+  }
+
   const chaseLabels = actual.cpsChase.map((c) => c.label.toLowerCase()).join(" | ");
   const expectedChaseHit = expected.expectedCpsChase.filter((e) => chaseThemeHit(e, chaseLabels));
-  const genericOnly =
-    actual.cpsChase.length > 0 &&
-    actual.cpsChase.every((c) => /mg6\s*\/\s*unused|schedule clarification/i.test(c.label));
+  const genericItems = actual.cpsChase.filter((c) => isGenericMg6ChaseLabel(c.label));
+  const substantiveItems = actual.cpsChase.filter((c) => !isGenericMg6ChaseLabel(c.label));
+  const genericOnly = actual.cpsChase.length > 0 && substantiveItems.length === 0;
+  const genericClutter = genericItems.length > 0 && substantiveItems.length > 0;
+  const hitRatio =
+    expected.expectedCpsChase.length === 0 ? 1 : expectedChaseHit.length / expected.expectedCpsChase.length;
 
   if (expected.expectedCpsChase.length === 0) {
     boxes.push(box("CPS chase coverage", "warn", "Truth key listed no chase items"));
-    if (score === "hold") score = "warn";
+    bumpWarn("no expected chase items");
   } else if (expectedChaseHit.length === 0) {
     const detail = genericOnly
-      ? "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution for human review"
+      ? "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution"
       : "Builder chase labels do not clearly match truth-key chase list — manual check";
     boxes.push(box("CPS chase coverage", "warn", detail));
-    if (score === "hold") score = "warn";
+    bumpWarn(detail);
+  } else if (hitRatio < 0.5 || (genericItems.length > 0 && hitRatio < 1)) {
+    const detail = genericItems.length
+      ? `Partial chase fit ${expectedChaseHit.length}/${expected.expectedCpsChase.length} plus generic MG6/MG6C item(s) — WARN (not clean pass)`
+      : `Partial chase fit only ${expectedChaseHit.length}/${expected.expectedCpsChase.length} expected themes — WARN`;
+    boxes.push(box("CPS chase coverage", "warn", detail));
+    bumpWarn(detail);
+  } else if (genericClutter) {
+    boxes.push(
+      box(
+        "CPS chase coverage",
+        "warn",
+        `${expectedChaseHit.length}/${expected.expectedCpsChase.length} themes hit, but extra generic MG6/MG6C clarification remains — flag clutter`,
+      ),
+    );
+    bumpWarn("extra generic MG6/MG6C clarification clutter");
   } else {
     boxes.push(
       box(
@@ -482,13 +577,13 @@ function compareHints(expected: ExpectedPacket, actual: ActualSummary): { boxes:
     const drift = courtLineLooksOffFamily(expected.familyLabel, actual.courtLine);
     if (drift) {
       boxes.push(box("Court line family fit", "warn", drift));
-      if (score !== "fail") score = "warn";
+      bumpWarn(drift);
     } else {
       boxes.push(box("Court line present", "pass", "Safe court / position line generated"));
     }
   } else {
     boxes.push(box("Court line present", "warn", "No court line in builder output"));
-    if (score === "hold") score = "warn";
+    bumpWarn("missing court line");
   }
 
   const servedAsMissing = actual.truthMapRows.filter((r) => {
@@ -497,7 +592,7 @@ function compareHints(expected: ExpectedPacket, actual: ActualSummary): { boxes:
   });
   if (servedAsMissing.length) {
     boxes.push(box("False-missing risk", "warn", `${servedAsMissing.length} row(s) look served-in-truth but missing/referred in builder — check`));
-    if (score !== "fail") score = "warn";
+    bumpWarn("false-missing risk rows");
   } else {
     boxes.push(box("False-missing risk", "pass", "No obvious served→missing inversion in sampled truth-map rows"));
   }
@@ -515,23 +610,46 @@ function compareHints(expected: ExpectedPacket, actual: ActualSummary): { boxes:
     );
   } else {
     boxes.push(box("Source/page anchors", "warn", "Truth key has anchors but sampled receipts show none — manual check"));
-    if (score === "hold") score = "warn";
+    bumpWarn("missing page anchors vs truth key");
   }
 
   if (score === "hold") score = "pass";
-  boxes.push(box("Provisional pack score (pre-solicitor)", score, "Not solicitor-validated — Ged/solicitor must complete checklist"));
-  return { boxes, provisionalScore: score };
+  boxes.push(
+    box(
+      "Provisional pack score (pre-solicitor)",
+      score,
+      score === "pass"
+        ? "Not solicitor-validated — Ged/solicitor must complete checklist"
+        : "Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar",
+    ),
+  );
+  return { boxes, provisionalScore: score, warnReasons };
 }
 
-function renderReviewMd(spec: GoldManualCaseSpec, expected: ExpectedPacket, actual: ActualSummary, compare: ReturnType<typeof compareHints>): string {
+function renderReviewMd(
+  spec: GoldManualCaseSpec,
+  expected: ExpectedPacket,
+  actual: ActualSummary,
+  compare: ReturnType<typeof compareHints>,
+): string {
+  const v9Banner =
+    spec.sourceKind === "v9_catalog"
+      ? `
+> **INTERNAL PRODUCT-HUNT CASE (v9 catalog)** — Not a clean solicitor example. Use to hunt generic MG6 chase, off-family court templates, and thin-catalog gaps. Do **not** present as a polished gold exemplar for external solicitor review.
+`
+      : "";
+
+  const filteredUnsafe = filterDoNotOverstateForFamily(spec.familyLabel, expected.unsafeToSayWarnings);
+
   return `# ${spec.goldId} — ${spec.familyLabel}
 
 **Source case:** \`${spec.sourceCaseId}\`  
+**Source kind:** \`${spec.sourceKind}\`  
 **Risk focus:** ${spec.riskFocus}  
 **Target review time:** ≤ ${spec.reviewMinutesTarget} minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
 **Claim discipline:** Not real-world solicitor validation. Solicitor review required before gold promotion.
-
+${v9Banner}
 ---
 
 ## Pass / warn / fail (provisional)
@@ -563,9 +681,9 @@ ${expected.truthStates
 
 ${expected.expectedMissingMaterial.map((m) => `- ${m}`).join("\n") || "_None listed_"}
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
-${expected.unsafeToSayWarnings.map((m) => `- ${m}`).join("\n") || "_None listed in truth key_"}
+${filteredUnsafe.map((m) => `- ${m}`).join("\n") || "_None listed in truth key (after off-family filter)_"}
 
 ## Expected CPS chase
 
@@ -595,7 +713,7 @@ ${expected.expectedProofReceiptAnchors
 - **Client label:** ${actual.clientLabel}
 - **Court line:** ${actual.courtLine ?? "_none_"}
 - **Chase items:** ${actual.cpsChase.map((c) => c.label).join("; ") || "_none_"}
-- **Do-not-overstate (sample):** ${actual.doNotOverstate.slice(0, 4).join(" · ") || "_none_"}
+- **Do-not-overstate (sample, family-filtered):** ${actual.doNotOverstate.slice(0, 4).join(" · ") || "_none_"}
 - **Proof receipts (sample):** ${actual.proofReceipts.length} rows; first: ${actual.proofReceipts[0]?.outputLine ?? "_none_"}
 
 ${actual.precomputedArtifactHints ? `### Precomputed demo-audit artifacts\n${Object.entries(actual.precomputedArtifactHints)
@@ -627,16 +745,21 @@ Complete in \`manual-review-checklist.md\`. Focus:
 }
 
 function renderChecklist(spec: GoldManualCaseSpec): string {
+  const huntNote =
+    spec.sourceKind === "v9_catalog"
+      ? `\n> **INTERNAL PRODUCT-HUNT** (v9 catalog) — not a clean solicitor example. Hunt generic MG6 / template drift.\n`
+      : "";
+
   return `# Manual review checklist — ${spec.goldId}
 
 **Family:** ${spec.familyLabel}  
-**Source:** \`${spec.sourceCaseId}\`  
+**Source:** \`${spec.sourceCaseId}\` (\`${spec.sourceKind}\`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ ${spec.reviewMinutesTarget} min):** ______
 
 > Controlled/PDF-backed gold manual review only. **Not** real-world solicitor validation until signed below.
-
+${huntNote}
 ## Verdict boxes (tick one per row)
 
 | Check | Pass | Warn | Fail | Notes |
@@ -674,12 +797,15 @@ function renderChecklist(spec: GoldManualCaseSpec): string {
 `;
 }
 
-function renderPackSummaryMd(rows: Array<{
-  spec: GoldManualCaseSpec;
-  provisionalScore: Box;
-  hardFails: number;
-  packetRel: string;
-}>): string {
+function renderPackSummaryMd(
+  rows: Array<{
+    spec: GoldManualCaseSpec;
+    provisionalScore: Box;
+    hardFails: number;
+    packetRel: string;
+  }>,
+  readyForHumanReview: boolean,
+): string {
   const pass = rows.filter((r) => r.provisionalScore === "pass").length;
   const warn = rows.filter((r) => r.provisionalScore === "warn").length;
   const fail = rows.filter((r) => r.provisionalScore === "fail").length;
@@ -689,12 +815,14 @@ function renderPackSummaryMd(rows: Array<{
 **Branch intent:** \`feature/gold-manual-proof-set-v1\`  
 **Cases:** ${rows.length}/20 packets  
 **Provisional scores (pre-solicitor):** ${pass} pass · ${warn} warn · ${fail} fail  
-**Hard safety failures across pack:** ${rows.reduce((n, r) => n + r.hardFails, 0)}
+**Hard safety failures across pack:** ${rows.reduce((n, r) => n + r.hardFails, 0)}  
+**Ready for human solicitor review:** **${readyForHumanReview ? "YES" : "NO"}** (see \`INTERNAL-GOLD-QA-REPORT.md\`)
 
 ## Claim discipline
 
 This pack is a **gold manual review** framework on **controlled/PDF-backed** demo-audit families.  
-It does **not** claim real-world solicitor validation. Each case remains **solicitor review required** until the checklist is signed.
+It does **not** claim real-world solicitor validation. Each case remains **solicitor review required** until the checklist is signed.  
+**v9 catalog WARN cases** are **internal product-hunt** stress cases — not clean solicitor examples.
 
 ## Case index
 
@@ -709,33 +837,264 @@ ${rows
 
 ## How to review
 
+**Do not send to external human reviewers until INTERNAL-GOLD-QA-REPORT says YES.**
+
+Human solicitor review pack (when cleared): [HUMAN-SOLICITOR-REVIEW.md](./HUMAN-SOLICITOR-REVIEW.md) → \`docs/gold-manual-proof-pack/human-solicitor-review-v1/\`
+
 1. Open a case folder under \`cases/CASE-XX/\`.
 2. Read \`CASE-REVIEW.md\` (≤10 minutes).
 3. Complete \`manual-review-checklist.md\`.
 4. Compare \`expected.json\` vs \`actual-summary.json\`.
 5. Promote to gold only after solicitor/Ged sign-off.
 
-## Rebuild
+## Rebuild / zip
 
 \`\`\`bash
 npx tsx scripts/build-gold-manual-proof-set-v1.ts
+npx tsx scripts/build-gold-manual-proof-set-v1.ts --zip-only
 \`\`\`
+
+Review zip: \`gold-manual-proof-set-v1-review-pack.zip\` (per-case \`expected.json\`, \`actual-summary.json\`, checklist, review md; excludes \`_source/\`).
 
 ## Spec references
 
+- \`docs/gold-manual-proof-pack/human-solicitor-review-v1/\`
 - \`docs/gold-manual-proof-pack/README.md\`
 - \`docs/gold-manual-proof-pack/GOLD_PACK_COVERAGE_TARGETS.md\`
 - \`lib/eval/gold-manual-proof-set/catalog.ts\`
 `;
 }
 
+async function writePackZip(): Promise<string> {
+  const zip = new JSZip();
+  const casesDir = path.join(OUT_ROOT, "cases");
+  if (!fs.existsSync(casesDir)) {
+    throw new Error(`Missing cases dir: ${casesDir}`);
+  }
+
+  for (const goldId of fs.readdirSync(casesDir).sort()) {
+    const caseDir = path.join(casesDir, goldId);
+    if (!fs.statSync(caseDir).isDirectory()) continue;
+    const keep = [
+      "expected.json",
+      "actual-summary.json",
+      "manual-review-checklist.md",
+      "CASE-REVIEW.md",
+      `${goldId}-REVIEW.md`,
+    ];
+    for (const name of keep) {
+      const p = path.join(caseDir, name);
+      if (fs.existsSync(p)) {
+        zip.file(`gold-manual-proof-set-v1/cases/${goldId}/${name}`, fs.readFileSync(p));
+      }
+    }
+  }
+
+  for (const name of [
+    "GOLD-MANUAL-PROOF-SUMMARY.md",
+    "gold-manual-proof-summary.json",
+    "GOLD-MANUAL-WARN-REVIEW.md",
+    "INTERNAL-GOLD-QA-REPORT.md",
+    "HUMAN-SOLICITOR-REVIEW.md",
+  ]) {
+    const p = path.join(OUT_ROOT, name);
+    if (fs.existsSync(p)) {
+      zip.file(`gold-manual-proof-set-v1/${name}`, fs.readFileSync(p));
+    }
+  }
+
+  const outPath = path.join(OUT_ROOT, "gold-manual-proof-set-v1-review-pack.zip");
+  const buf = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
+  fs.writeFileSync(outPath, buf);
+  return outPath;
+}
+
+function renderWarnReviewMd(
+  rows: Array<{
+    spec: GoldManualCaseSpec;
+    provisionalScore: Box;
+    warnReasons: string[];
+  }>,
+): string {
+  const warns = rows.filter((r) => r.provisionalScore === "warn");
+  const passes = rows.filter((r) => r.provisionalScore === "pass");
+  return `# Gold Manual Proof Set v1 — WARN review (revised)
+
+**Reviewed:** ${new Date().toISOString().slice(0, 10)}  
+**Pack:** \`artifacts/casebrain-qa/gold-manual-proof-set-v1/\`  
+**Scope:** Reporting / packet polish only — no Brain, chase core, export, Supabase, or UI changes.  
+**Claim discipline:** Not real-world solicitor validation. **Do not send to human reviewers yet** (see \`INTERNAL-GOLD-QA-REPORT.md\`).
+
+---
+
+## Verdict
+
+**Ready for human solicitor review: NO**
+
+Stricter provisional scoring after internal Codex QA. Pack is useful for **internal product hunt**, not yet a clean external solicitor pack.
+
+- Cases: 20/20  
+- Provisional: **${passes.length} pass · ${warns.length} warn · 0 fail** (see summary)  
+- Hard safety: **0**  
+- v9 catalog cases are labelled **INTERNAL PRODUCT-HUNT** on packets/checklists  
+
+---
+
+## Current WARN cases
+
+| Gold ID | Family | Source kind | Why WARN (reporting) |
+|---------|--------|-------------|----------------------|
+${warns
+  .map(
+    (r) =>
+      `| ${r.spec.goldId} | ${r.spec.familyLabel} | \`${r.spec.sourceKind}\` | ${(r.warnReasons[0] ?? "see packet boxes").replace(/\|/g, "/")} |`,
+  )
+  .join("\n")}
+
+### Pattern notes
+
+1. **v9 catalog** cases auto-WARN as internal product-hunt (generic MG6 / thin catalog risk) — not clean solicitor examples.  
+2. **CASE-08** charge-mismatch slot vs Encro/handle actual → family/content fit WARN.  
+3. **CASE-01** (if WARN): extra generic MG6C clarification clutter alongside substantive chase.  
+4. **CASE-17** (if WARN): partial medical chase + generic MG6 — not a clean pass.  
+5. Off-family stock do-not-overstate (BWV/custody/drugs/CCTV) filtered unless family-relevant.
+
+---
+
+## What changed in this reporting pass
+
+1. Reclassified generous PASSes where family/content or chase clutter failed the bar.  
+2. Partial chase coverage (\`<50%\` or generic MG6 with incomplete theme hit) → WARN.  
+3. Extra generic MG6/MG6C clarification with substantive chase → WARN.  
+4. v9 packets/checklists: explicit **INTERNAL PRODUCT-HUNT** banner.  
+5. Family-filtered do-not-overstate samples.  
+6. Review zip preserves per-case \`expected.json\`, \`actual-summary.json\`, checklist, review md.
+
+---
+
+## Before any human send
+
+- [ ] INTERNAL-GOLD-QA-REPORT verdict = YES  
+- [ ] Clean PASS exemplars identified for Wave A  
+- [ ] WARN set framed as optional stress hunt only (or held back)  
+- [ ] Human review pack docs still accurate  
+
+**Do not** treat WARN as “skip forever” for product work — they remain valuable internal hunts.
+`;
+}
+
+
+function renderInternalQaReport(
+  rows: Array<{
+    spec: GoldManualCaseSpec;
+    provisionalScore: Box;
+    warnReasons: string[];
+  }>,
+): string {
+  const pass = rows.filter((r) => r.provisionalScore === "pass");
+  const warn = rows.filter((r) => r.provisionalScore === "warn");
+  const byId = (id: string) => rows.find((r) => r.spec.goldId === id);
+
+  const c01 = byId("CASE-01");
+  const c08 = byId("CASE-08");
+  const c17 = byId("CASE-17");
+
+  return `# INTERNAL — Gold Manual Proof Set v1 QA report
+
+**Date:** ${new Date().toISOString().slice(0, 10)}  
+**Audience:** Internal only (Ged / product). **Do not send this pack to human solicitors yet.**  
+**Scope:** Reporting / packet polish only — no Brain, chase core, export builders, Supabase, prod UI, or deploy.
+
+---
+
+## Verdict
+
+**Ready for human review: NO**
+
+Provisional scoring was too generous. This pass tightens packet scoring and labels. Pack remains valuable for **internal product hunt**, not external solicitor review.
+
+| Metric | Value |
+|--------|------:|
+| Cases | 20 |
+| Pass | ${pass.length} |
+| Warn | ${warn.length} |
+| Fail | 0 |
+| Hard safety | 0 |
+
+---
+
+## Codex findings → actions
+
+| # | Finding | Action taken |
+|---|---------|--------------|
+| 1 | CASE-08 charge mismatch scored PASS while actual is Encro/handle/platform | **WARN** via family/content fit check |
+| 2 | CASE-17 medical scored PASS with generic MG6 + partial medical chase | **WARN** via partial chase + generic MG6 rule |
+| 3 | CASE-01 phone had extra generic MG6C clarification | **WARN** (or flagged) via generic clutter rule |
+| 4 | WARN v9 cases looked like clean solicitor examples | Packets/checklists now say **INTERNAL PRODUCT-HUNT** |
+| 5 | Off-family BWV/custody/drugs do-not-overstate noise | Family-filtered in expected + actual samples |
+| 6 | Zip must keep expected / actual / checklist | \`gold-manual-proof-set-v1-review-pack.zip\` includes those per case |
+
+### Spot checks (this run)
+
+| Case | Provisional | Notes |
+|------|-------------|-------|
+| CASE-01 | ${c01?.provisionalScore.toUpperCase() ?? "?"} | ${(c01?.warnReasons[0] ?? "—").replace(/\|/g, "/")} |
+| CASE-08 | ${c08?.provisionalScore.toUpperCase() ?? "?"} | ${(c08?.warnReasons[0] ?? "—").replace(/\|/g, "/")} |
+| CASE-17 | ${c17?.provisionalScore.toUpperCase() ?? "?"} | ${(c17?.warnReasons[0] ?? "—").replace(/\|/g, "/")} |
+
+---
+
+## Why not ready for humans
+
+1. Too many WARN / product-hunt cases for a clean first solicitor wave.  
+2. CASE-08 family slot still mismatches underlying Encro fixture (reporting WARN only — catalog remap is later product/proof work).  
+3. Human review pack docs exist, but sending now would burn reviewer trust on noisy exemplars.  
+4. Need a curated Wave A of clean PASS PDF-backed cases only, after a second internal skim.
+
+---
+
+## What is OK to use internally
+
+- Packet structure (expected / actual / checklist / review md)  
+- Hard safety = 0 across pack  
+- WARN review + this QA report for product triage  
+- Review zip for offline internal read  
+
+---
+
+## Exit criteria for YES
+
+- [ ] CASE-08 either remapped to Encro family or fixture truly charge-mismatch  
+- [ ] Clean PASS set (≥8) re-skimmed with no generic MG6C clutter on phone exemplars  
+- [ ] Human wave limited to PASS exemplars; v9 hunts optional / separate  
+- [ ] INTERNAL report flipped to YES with owner sign-off  
+
+---
+
+## Related files
+
+- \`GOLD-MANUAL-PROOF-SUMMARY.md\`  
+- \`GOLD-MANUAL-WARN-REVIEW.md\`  
+- \`gold-manual-proof-set-v1-review-pack.zip\`  
+- \`docs/gold-manual-proof-pack/human-solicitor-review-v1/\` (hold — do not distribute yet)
+`;
+}
+
 async function main(): Promise<void> {
   ensureDir(OUT_ROOT);
+
+  if (ZIP_ONLY) {
+    const zipPath = await writePackZip();
+    console.log(`Zip only → ${zipPath}`);
+    return;
+  }
+
   const caseRows: Array<{
     spec: GoldManualCaseSpec;
     provisionalScore: Box;
     hardFails: number;
     packetRel: string;
+    warnReasons: string[];
   }> = [];
   const summaryCases: unknown[] = [];
 
@@ -750,9 +1109,8 @@ async function main(): Promise<void> {
     const { bundlePath, truthKey } = materializeSource(spec, workDir);
     const expected = buildExpected(spec, truthKey, bundlePath);
     const actual = buildActual(spec, workDir, truthKey);
-    const compare = compareHints(expected, actual);
+    const compare = compareHints(expected, actual, spec);
 
-    // Keep filename CASE-REVIEW.md for readability; acceptance also allows CASE-XX-REVIEW.md alias.
     fs.writeFileSync(path.join(caseDir, "expected.json"), JSON.stringify(expected, null, 2));
     fs.writeFileSync(path.join(caseDir, "actual-summary.json"), JSON.stringify(actual, null, 2));
     fs.writeFileSync(path.join(caseDir, "CASE-REVIEW.md"), renderReviewMd(spec, expected, actual, compare));
@@ -764,6 +1122,7 @@ async function main(): Promise<void> {
       provisionalScore: compare.provisionalScore,
       hardFails: actual.hardSafetyFailures.length,
       packetRel: `cases/${spec.goldId}`,
+      warnReasons: compare.warnReasons,
     });
     summaryCases.push({
       goldId: spec.goldId,
@@ -772,19 +1131,23 @@ async function main(): Promise<void> {
       sourceKind: spec.sourceKind,
       riskFocus: spec.riskFocus,
       provisionalScore: compare.provisionalScore,
+      warnReasons: compare.warnReasons,
       hardSafetyFailures: actual.hardSafetyFailures,
       inputBundlePath: expected.inputBundlePath,
       packetPath: `cases/${spec.goldId}`,
       solicitorReviewCompleted: false,
       realWorldValidationClaimed: false,
+      readyForHumanReview: false,
     });
   }
 
+  const readyForHumanReview = false;
   const summaryJson = {
     generatedAt: new Date().toISOString(),
     packId: "gold-manual-proof-set-v1",
-    version: "1.0",
+    version: "1.1-stricter-scoring",
     caseCount: caseRows.length,
+    readyForHumanReview,
     provisional: {
       pass: caseRows.filter((r) => r.provisionalScore === "pass").length,
       warn: caseRows.filter((r) => r.provisionalScore === "warn").length,
@@ -796,16 +1159,25 @@ async function main(): Promise<void> {
       controlledPdfBacked: true,
       realWorldSolicitorValidation: false,
       solicitorReviewRequiredPerCase: true,
+      doNotSendToHumanReviewersYet: true,
     },
     cases: summaryCases,
   };
 
   fs.writeFileSync(path.join(OUT_ROOT, "gold-manual-proof-summary.json"), JSON.stringify(summaryJson, null, 2));
-  fs.writeFileSync(path.join(OUT_ROOT, "GOLD-MANUAL-PROOF-SUMMARY.md"), renderPackSummaryMd(caseRows));
+  fs.writeFileSync(path.join(OUT_ROOT, "GOLD-MANUAL-PROOF-SUMMARY.md"), renderPackSummaryMd(caseRows, readyForHumanReview));
+  fs.writeFileSync(path.join(OUT_ROOT, "GOLD-MANUAL-WARN-REVIEW.md"), renderWarnReviewMd(caseRows));
+  fs.writeFileSync(path.join(OUT_ROOT, "INTERNAL-GOLD-QA-REPORT.md"), renderInternalQaReport(caseRows));
+
+  const zipPath = await writePackZip();
 
   console.log(`\nDone: ${caseRows.length}/20 packets`);
+  console.log(`Provisional: ${summaryJson.provisional.pass} pass · ${summaryJson.provisional.warn} warn · ${summaryJson.provisional.fail} fail`);
+  console.log(`Ready for human review: NO`);
   console.log(`Hard safety failures: ${summaryJson.hardSafetyFailuresTotal}`);
   console.log(`Summary: ${path.join(OUT_ROOT, "GOLD-MANUAL-PROOF-SUMMARY.md")}`);
+  console.log(`Internal QA: ${path.join(OUT_ROOT, "INTERNAL-GOLD-QA-REPORT.md")}`);
+  console.log(`Zip: ${zipPath}`);
 
   if (caseRows.length !== 20) process.exit(1);
   if (summaryJson.hardSafetyFailuresTotal > 0) {

@@ -1,11 +1,12 @@
 {
-  "generatedAt": "2026-07-10T10:28:44.609Z",
+  "generatedAt": "2026-07-10T11:35:07.221Z",
   "packId": "gold-manual-proof-set-v1",
-  "version": "1.0",
+  "version": "1.1-stricter-scoring",
   "caseCount": 20,
+  "readyForHumanReview": false,
   "provisional": {
-    "pass": 13,
-    "warn": 7,
+    "pass": 10,
+    "warn": 10,
     "fail": 0
   },
   "hardSafetyFailuresTotal": 0,
@@ -13,7 +14,8 @@
     "goldManualReview": true,
     "controlledPdfBacked": true,
     "realWorldSolicitorValidation": false,
-    "solicitorReviewRequiredPerCase": true
+    "solicitorReviewRequiredPerCase": true,
+    "doNotSendToHumanReviewersYet": true
   },
   "cases": [
     {
@@ -22,12 +24,16 @@
       "sourceCaseId": "demo-audit-01-phone-harassment",
       "sourceKind": "evidence_state_local",
       "riskFocus": "Screenshots served vs full download / subscriber gap; attribution overstatement",
-      "provisionalScore": "pass",
+      "provisionalScore": "warn",
+      "warnReasons": [
+        "Partial chase fit 5/6 plus generic MG6/MG6C item(s) — WARN (not clean pass)"
+      ],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-01-phone-harassment/bundle-text.md",
       "packetPath": "cases/CASE-01",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-02",
@@ -36,11 +42,13 @@
       "sourceKind": "evidence_state_local",
       "riskFocus": "BWV referred on schedule but not served; custody extract only",
       "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-03-bwv-custody/bundle-text.md",
       "packetPath": "cases/CASE-02",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-03",
@@ -49,11 +57,13 @@
       "sourceKind": "evidence_state_local",
       "riskFocus": "Partial custody / PACE record vs full custody outstanding",
       "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-27-custody-pace-missing/bundle-text.md",
       "packetPath": "cases/CASE-03",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-04",
@@ -62,11 +72,13 @@
       "sourceKind": "evidence_state_local",
       "riskFocus": "Stills served; master export / continuity outstanding",
       "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-02-cctv-stills/bundle-text.md",
       "packetPath": "cases/CASE-04",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-05",
@@ -75,11 +87,13 @@
       "sourceKind": "evidence_state_local",
       "riskFocus": "Message extracts vs handle-to-defendant mapping not proved",
       "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-05-encro-attribution/bundle-text.md",
       "packetPath": "cases/CASE-05",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-06",
@@ -88,11 +102,13 @@
       "sourceKind": "evidence_state_local",
       "riskFocus": "Co-defendant interview served; target defendant interview missing",
       "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-04-co-def-interview/bundle-text.md",
       "packetPath": "cases/CASE-06",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-07",
@@ -101,11 +117,17 @@
       "sourceKind": "v9_catalog",
       "riskFocus": "Heavy redaction obscuring names/dates; unredacted MG11 outstanding",
       "provisionalScore": "warn",
+      "warnReasons": [
+        "v9 catalog product-hunt lane",
+        "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution",
+        "Court line uses digital/message-account wording on a non-digital family — check for template drift"
+      ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-44-bad-redaction (materialized from v9_catalog)",
       "packetPath": "cases/CASE-07",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-08",
@@ -113,12 +135,16 @@
       "sourceCaseId": "demo-audit-25-charge-bundle-mismatch",
       "sourceKind": "evidence_state_local",
       "riskFocus": "Charge sheet vs MG5 / bundle narrative drift",
-      "provisionalScore": "pass",
+      "provisionalScore": "warn",
+      "warnReasons": [
+        "Family slot is charge mismatch but actual surfaces are Encro/handle/platform — not a clean charge-mismatch solicitor example"
+      ],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-25-charge-bundle-mismatch/bundle-text.md",
       "packetPath": "cases/CASE-08",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-09",
@@ -127,11 +153,17 @@
       "sourceKind": "v9_catalog",
       "riskFocus": "Order extract only; sealed order / service proof outstanding",
       "provisionalScore": "warn",
+      "warnReasons": [
+        "v9 catalog product-hunt lane",
+        "Partial chase fit 1/3 plus generic MG6/MG6C item(s) — WARN (not clean pass)",
+        "Court line uses digital/message-account wording on a non-digital family — check for template drift"
+      ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-32-restraining-order-breach (materialized from v9_catalog)",
       "packetPath": "cases/CASE-09",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-10",
@@ -140,11 +172,16 @@
       "sourceKind": "v9_catalog",
       "riskFocus": "Screenshots served; certified translation / interpreter note outstanding",
       "provisionalScore": "warn",
+      "warnReasons": [
+        "v9 catalog product-hunt lane",
+        "Builder chase labels do not clearly match truth-key chase list — manual check"
+      ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-41-translated-messages (materialized from v9_catalog)",
       "packetPath": "cases/CASE-10",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-11",
@@ -153,11 +190,13 @@
       "sourceKind": "evidence_state_local",
       "riskFocus": "YJS extract served; youth interview / AA safeguards incomplete",
       "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-22-youth-interview/bundle-text.md",
       "packetPath": "cases/CASE-11",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-12",
@@ -166,11 +205,13 @@
       "sourceKind": "evidence_state_local",
       "riskFocus": "Draft MG11 served; ABE video / transcript referred missing",
       "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-21-historic-sexual-abe/bundle-text.md",
       "packetPath": "cases/CASE-12",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-13",
@@ -179,11 +220,16 @@
       "sourceKind": "v9_catalog",
       "riskFocus": "Drugs schedule served; lab intake / continuity / SFR outstanding",
       "provisionalScore": "warn",
+      "warnReasons": [
+        "v9 catalog product-hunt lane",
+        "Builder chase labels do not clearly match truth-key chase list — manual check"
+      ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-50-lab-continuity-conflict (materialized from v9_catalog)",
       "packetPath": "cases/CASE-13",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-14",
@@ -192,11 +238,13 @@
       "sourceKind": "evidence_state_local",
       "riskFocus": "Bank summaries served; full transaction export / device ownership gap",
       "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-16-fraud-bank-statements/bundle-text.md",
       "packetPath": "cases/CASE-14",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-15",
@@ -205,11 +253,13 @@
       "sourceKind": "evidence_state_local",
       "riskFocus": "Thin SJP file; device / CCTV export outstanding",
       "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-18-motoring-sjp-thin/bundle-text.md",
       "packetPath": "cases/CASE-15",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-16",
@@ -218,11 +268,16 @@
       "sourceKind": "v9_catalog",
       "riskFocus": "ANPR hit table served; images / national audit trail outstanding",
       "provisionalScore": "warn",
+      "warnReasons": [
+        "v9 catalog product-hunt lane",
+        "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution"
+      ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-49-anpr-trap (materialized from v9_catalog)",
       "packetPath": "cases/CASE-16",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-17",
@@ -230,12 +285,17 @@
       "sourceCaseId": "demo-audit-61-medical-triage-partial",
       "sourceKind": "v9_catalog",
       "riskFocus": "Triage / injury note partial; consultant medical report referred missing",
-      "provisionalScore": "pass",
+      "provisionalScore": "warn",
+      "warnReasons": [
+        "v9 catalog product-hunt lane",
+        "Partial chase fit 1/3 plus generic MG6/MG6C item(s) — WARN (not clean pass)"
+      ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-61-medical-triage-partial (materialized from v9_catalog)",
       "packetPath": "cases/CASE-17",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-18",
@@ -244,11 +304,16 @@
       "sourceKind": "v9_catalog",
       "riskFocus": "Call log summary served; recordings / PIN attribution outstanding",
       "provisionalScore": "warn",
+      "warnReasons": [
+        "v9 catalog product-hunt lane",
+        "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution"
+      ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-46-prison-calls (materialized from v9_catalog)",
       "packetPath": "cases/CASE-18",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-19",
@@ -257,11 +322,16 @@
       "sourceKind": "v9_catalog",
       "riskFocus": "Handle / social material vs subscriber / account attribution gap",
       "provisionalScore": "warn",
+      "warnReasons": [
+        "v9 catalog product-hunt lane",
+        "Builder chase labels do not clearly match truth-key chase list — manual check"
+      ],
       "hardSafetyFailures": [],
       "inputBundlePath": "catalog:demo-audit-47-social-media-handles (materialized from v9_catalog)",
       "packetPath": "cases/CASE-19",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     },
     {
       "goldId": "CASE-20",
@@ -270,11 +340,13 @@
       "sourceKind": "evidence_state_local",
       "riskFocus": "Layout / hearing date / court listing drift across papers",
       "provisionalScore": "pass",
+      "warnReasons": [],
       "hardSafetyFailures": [],
       "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-30-layout-hearing-date/bundle-text.md",
       "packetPath": "cases/CASE-20",
       "solicitorReviewCompleted": false,
-      "realWorldValidationClaimed": false
+      "realWorldValidationClaimed": false,
+      "readyForHumanReview": false
     }
   ]
 }

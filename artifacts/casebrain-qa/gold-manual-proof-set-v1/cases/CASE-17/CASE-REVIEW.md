@@ -1,21 +1,25 @@
 # CASE-17 — medical injury report missing
 
 **Source case:** `demo-audit-61-medical-triage-partial`  
+**Source kind:** `v9_catalog`  
 **Risk focus:** Triage / injury note partial; consultant medical report referred missing  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
 **Claim discipline:** Not real-world solicitor validation. Solicitor review required before gold promotion.
 
+> **INTERNAL PRODUCT-HUNT CASE (v9 catalog)** — Not a clean solicitor example. Use to hunt generic MG6 chase, off-family court templates, and thin-catalog gaps. Do **not** present as a polished gold exemplar for external solicitor review.
+
 ---
 
 ## Pass / warn / fail (provisional)
 
+- [WARN] **Reviewer lane:** INTERNAL PRODUCT-HUNT case (v9 catalog) — not a clean solicitor example; hunt generic chase / template drift
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [PASS] **CPS chase coverage:** 1/3 expected chase themes reflected in builder output
+- [WARN] **CPS chase coverage:** Partial chase fit 1/3 plus generic MG6/MG6C item(s) — WARN (not clean pass)
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
-- [PASS] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
+- [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar
 
 ---
 
@@ -48,7 +52,7 @@
 - consultant medical report
 - injury photographs
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - fully proved on current disclosure
 - safely confirms guilt
@@ -91,7 +95,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Owen Pike
 - **Court line:** The defence asks the court to record outstanding medical, video and sequence material.
 - **Chase items:** MG6 / unused schedule clarification; Medical / expert source report
-- **Do-not-overstate (sample):** fully proved on current disclosure · safely confirms guilt · Do not import BWV unless the papers support it. · Do not import custody safeguards unless the papers support it.
+- **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import ABE unless the papers support it. · Do not import phone extraction/metadata unless the papers support it.
 - **Proof receipts (sample):** 10 rows; first: MG6 / unused schedule clarification
 
 

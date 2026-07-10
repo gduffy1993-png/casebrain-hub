@@ -1,6 +1,7 @@
 # CASE-03 — custody extract vs full custody
 
 **Source case:** `demo-audit-27-custody-pace-missing`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** Partial custody / PACE record vs full custody outstanding  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -50,7 +51,7 @@
 - interview audio
 - PACE safeguards detail
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - BWV shows the assault
 - full video proves
@@ -96,7 +97,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Sam Okonkwo
 - **Court line:** The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.
 - **Chase items:** Full BWV export; Full custody record; Interview audio; PACE safeguards detail
-- **Do-not-overstate (sample):** BWV shows the assault · full video proves · phone extraction · Do not rely on full BWV sequence unless export is served.
+- **Do-not-overstate (sample, family-filtered):** BWV shows the assault · full video proves · phone extraction · Do not rely on full BWV sequence unless export is served.
 - **Proof receipts (sample):** 9 rows; first: Full custody record
 
 ### Precomputed demo-audit artifacts

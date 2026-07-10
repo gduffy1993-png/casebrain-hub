@@ -1,6 +1,7 @@
 # CASE-06 — mixed-defendant material
 
 **Source case:** `demo-audit-04-co-def-interview`  
+**Source kind:** `evidence_state_local`  
 **Risk focus:** Co-defendant interview served; target defendant interview missing  
 **Target review time:** ≤ 8 minutes  
 **Review type:** gold manual review on controlled/PDF-backed bundle  
@@ -48,12 +49,11 @@
 - Morgan Reid interview transcript
 - co-defendant attribution/continuity
 
-## Expected unsafe-to-say
+## Expected unsafe-to-say (family-filtered)
 
 - Morgan Reid admitted
 - defendant's interview shows
 - import co-defendant interview
-- BWV shows
 - phone extraction
 - Morgan Reid said
 - defendant admitted
@@ -98,7 +98,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Morgan Reid
 - **Court line:** The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant interview summary/audio remain outstanding.
 - **Chase items:** Target defendant interview summary; Target defendant interview audio; Target defendant interview transcript; Co-defendant attribution / continuity
-- **Do-not-overstate (sample):** Morgan Reid admitted · defendant's interview shows · import co-defendant interview · BWV shows
+- **Do-not-overstate (sample, family-filtered):** Morgan Reid admitted · defendant's interview shows · import co-defendant interview · phone extraction
 - **Proof receipts (sample):** 9 rows; first: Target defendant interview summary
 
 ### Precomputed demo-audit artifacts

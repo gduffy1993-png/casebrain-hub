@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-01",
   "sourceCaseId": "demo-audit-01-phone-harassment",
-  "builtAt": "2026-07-10T10:28:39.318Z",
+  "builtAt": "2026-07-10T11:35:02.068Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
   "clientLabel": "Riley Moss",
@@ -79,13 +79,10 @@
     "defendant sent the messages",
     "Riley Moss sent",
     "attribution is proved",
-    "BWV shows",
-    "CCTV proves",
     "Do not state the defendant sent messages unless attribution is served and safe.",
     "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
     "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
-    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers",
-    "defendant sent the messages"
+    "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"
   ],
   "proofReceipts": [
     {

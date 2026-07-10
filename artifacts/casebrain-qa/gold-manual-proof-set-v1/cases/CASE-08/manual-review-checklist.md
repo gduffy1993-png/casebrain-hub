@@ -1,7 +1,7 @@
 # Manual review checklist — CASE-08
 
 **Family:** charge mismatch  
-**Source:** `demo-audit-25-charge-bundle-mismatch`  
+**Source:** `demo-audit-25-charge-bundle-mismatch` (`evidence_state_local`)  
 **Reviewer:** ______________________  
 **Date:** __________  
 **Time spent (target ≤ 8 min):** ______
