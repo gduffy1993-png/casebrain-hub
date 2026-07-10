@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-17",
   "sourceCaseId": "demo-audit-61-medical-triage-partial",
-  "builtAt": "2026-07-10T15:30:54.376Z",
+  "builtAt": "2026-07-10T17:46:29.854Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
   "clientLabel": "Owen Pike",
@@ -59,7 +59,7 @@
       "outputLine": "hospital records",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -67,7 +67,7 @@
       "outputLine": "injury photographs",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -83,7 +83,7 @@
       "outputLine": "The defence asks the court to record that hospital records, consultant report, and injury photographs remain outstanding before injury causation or extent is treated as fixed.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Incomplete",
       "safeAction": "check"
     },
@@ -91,7 +91,7 @@
       "outputLine": "Please provide hospital records or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -107,7 +107,7 @@
       "outputLine": "Please provide injury photographs or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     }

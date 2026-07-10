@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-08",
   "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
-  "builtAt": "2026-07-10T15:30:51.724Z",
+  "builtAt": "2026-07-10T17:46:27.671Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
   "clientLabel": "Jordan Hale",
@@ -59,31 +59,31 @@
       "outputLine": "corrected charge sheet",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "updated mg5",
       "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "court listing confirmation",
       "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "The defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.",
       "surface": "Court",
-      "sourceDocument": "Disclosure chase brief",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Incomplete",
       "safeAction": "check"
     },
@@ -91,23 +91,23 @@
       "outputLine": "Please provide corrected charge sheet or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "Please provide updated mg5 or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "Please provide court listing confirmation or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     }

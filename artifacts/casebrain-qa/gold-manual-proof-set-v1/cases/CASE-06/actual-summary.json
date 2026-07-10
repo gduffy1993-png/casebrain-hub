@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-06",
   "sourceCaseId": "demo-audit-04-co-def-interview",
-  "builtAt": "2026-07-10T15:30:51.340Z",
+  "builtAt": "2026-07-10T17:46:27.356Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
   "clientLabel": "Morgan Reid",
@@ -67,7 +67,7 @@
       "outputLine": "Target defendant interview audio",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -107,7 +107,7 @@
       "outputLine": "Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },

@@ -1,35 +1,45 @@
 {
   "goldId": "CASE-15",
   "sourceCaseId": "demo-audit-18-motoring-sjp-thin",
-  "builtAt": "2026-07-10T15:30:53.905Z",
+  "builtAt": "2026-07-10T17:46:29.402Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988",
   "clientLabel": "Ella Shaw",
   "truthMapRows": [
     {
-      "label": "Officer statement",
-      "existence": "served",
+      "label": "Notice / requirement to identify driver",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Proof of service / posting",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Keeper / DVLA record",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Nomination / response record",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Procedure bundle / SJP notice",
+      "existence": "missing",
       "reliability": "needs_review"
     },
     {
       "label": "Breath / device procedure summary",
       "existence": "served",
-      "reliability": "needs_review"
+      "reliability": "weak"
     },
     {
       "label": "CCTV / dashcam export",
       "existence": "referred_only",
       "reliability": "weak"
-    },
-    {
-      "label": "Device calibration certificate",
-      "existence": "missing",
-      "reliability": "needs_review"
-    },
-    {
-      "label": "Full intoxilyser record",
-      "existence": "missing",
-      "reliability": "needs_review"
     }
   ],
   "cpsChase": [
@@ -55,7 +65,7 @@
     }
   ],
   "courtLine": "The defence asks the court to record that the s172 notice/requirement to identify the driver, keeper position, and service/nomination records require confirmation before the defence position on driver identification is fixed.",
-  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Ella Shaw). This is early-stage — nothing is final until we have full disclosure and your instructions. A breath/device procedure summary is on the papers, but calibration certificates, the full intoxilyser record, and any CCTV/dashcam export are still outstanding. Device reliability remains provisional.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Ella Shaw). This is early-stage — nothing is final until we have full disclosure and your instructions. The live issue is the s172 notice/requirement to identify the driver: service/posting proof, keeper/DVLA position, nomination/response, and the SJP procedure bundle. Device calibration, intoxilyser, or CCTV/dashcam material on the papers is secondary and not the lead for driver-identification.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
   "doNotOverstate": [
     "Do not treat device summary as proof of reliability",
     "Do not treat procedure summary alone as proof of device reliability or identity."
@@ -64,72 +74,72 @@
     {
       "outputLine": "Notice / requirement to identify driver",
       "surface": "Overview",
-      "sourceDocument": "Police / CCTV unit",
-      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "Proof of service / posting",
       "surface": "Overview",
-      "sourceDocument": "Police / CCTV unit",
-      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "Keeper / DVLA record",
       "surface": "Overview",
-      "sourceDocument": "Police / CCTV unit",
-      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "Nomination / response record",
       "surface": "Overview",
-      "sourceDocument": "Police / CCTV unit",
-      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "The defence asks the court to record that the s172 notice/requirement to identify the driver, keeper position, and service/nomination records require confirmation before the defence position on driver identification is fixed.",
       "surface": "Court",
-      "sourceDocument": "Disclosure chase brief",
-      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Incomplete",
       "safeAction": "check"
     },
     {
       "outputLine": "Please provide Notice / requirement to identify driver or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "Police / CCTV unit",
-      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "Please provide Proof of service / posting or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "Police / CCTV unit",
-      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "Please provide Keeper / DVLA record or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "Police / CCTV unit",
-      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "Please provide Nomination / response record or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "Police / CCTV unit",
-      "sourcePage": "Thin SJP file: charge and officer account ser…",
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Missing",
       "safeAction": "chase"
     }

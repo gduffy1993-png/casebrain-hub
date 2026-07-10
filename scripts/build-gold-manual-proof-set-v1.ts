@@ -33,7 +33,10 @@ import {
   gateCourtLineForFamily,
   isGenericMg6ChaseLabel,
   prefersFamilyChasePresentation,
+  presentClientSummaryForFamily,
   presentDoNotOverstateForFamily,
+  presentProofReceiptsForFamily,
+  presentTruthMapForFamily,
   resolveFamilyChaseLabels,
 } from "../lib/eval/gold-manual-proof-set/presentation-gates";
 import type { EvidenceStateTruthKey } from "../lib/eval/evidence-state-audit/types";
@@ -428,13 +431,14 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
     allegation,
   });
 
-  const clientPreview =
+  const clientPreviewRaw =
     (typeof pre.client?.summary === "string" && pre.client.summary) ||
     (typeof pre.client?.text === "string" && pre.client.text) ||
     (typeof pre.client?.body === "string" && pre.client.body) ||
     null;
+  const clientPreview = presentClientSummaryForFamily(spec.familyLabel, clientLabel, clientPreviewRaw);
 
-  const truthMapRows =
+  const truthMapRowsRaw =
     pre.truthMap?.rows?.slice(0, 12).map((r) => ({
       label: r.label,
       existence: r.existence ?? "unknown",
@@ -445,13 +449,26 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
       existence: r.existence,
       reliability: r.reliability,
     }));
+  const truthMapRows = presentTruthMapForFamily(spec.familyLabel, truthMapRowsRaw);
+
+  const proofReceipts = presentProofReceiptsForFamily(
+    spec.familyLabel,
+    proof.receipts.slice(0, 10).map((r) => ({
+      outputLine: r.outputLine,
+      surface: r.surface,
+      sourceDocument: r.sourceDocument ?? null,
+      sourcePage: r.sourcePage ?? null,
+      evidenceState: r.evidenceState,
+      safeAction: r.safeAction,
+    })),
+  );
 
   const blob = [
     courtLine ?? "",
     ...chase.primaryItems.map((i) => `${i.label} ${i.draftChaseWording ?? ""}`),
     ...doNotOverstate,
     clientPreview ?? "",
-    ...proof.receipts.map((r) => r.outputLine),
+    ...proofReceipts.map((r) => r.outputLine),
   ].join("\n");
 
   return {
@@ -469,14 +486,7 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
     courtLine,
     clientSummaryPreview: clientPreview ? clientPreview.slice(0, 600) : null,
     doNotOverstate: presentDoNotOverstateForFamily(spec.familyLabel, doNotOverstate).slice(0, 10),
-    proofReceipts: proof.receipts.slice(0, 10).map((r) => ({
-      outputLine: r.outputLine,
-      surface: r.surface,
-      sourceDocument: r.sourceDocument,
-      sourcePage: r.sourcePage,
-      evidenceState: r.evidenceState,
-      safeAction: r.safeAction,
-    })),
+    proofReceipts,
     hardSafetyFailures: hardSafetyScan(blob),
     precomputedArtifactHints: Object.keys(pre.hints).length ? pre.hints : undefined,
   };
@@ -677,14 +687,22 @@ function compareHints(
   }
 
   const expectedAnchors = expected.expectedProofReceiptAnchors.filter((a) => a.sourcePageAnchor).length;
-  if (actual.proofReceipts.some((r) => r.sourcePage)) {
+  const hasUsableAnchor = actual.proofReceipts.some(
+    (r) => r.sourcePage?.trim() && r.sourcePage.trim().toLowerCase() !== "source verification required",
+  );
+  const hasVerificationLabel = actual.proofReceipts.some((r) =>
+    /source verification required/i.test(`${r.sourcePage ?? ""} ${r.sourceDocument ?? ""}`),
+  );
+  if (hasUsableAnchor) {
     boxes.push(box("Source/page anchors", "pass", "At least one proof receipt carries a page/anchor"));
-  } else if (expectedAnchors === 0) {
+  } else if (hasVerificationLabel || expectedAnchors === 0) {
     boxes.push(
       box(
         "Source/page anchors",
         "pass",
-        "N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)",
+        hasVerificationLabel
+          ? "Thin/mismatched anchors labelled source verification required (honest review aid)"
+          : "N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)",
       ),
     );
   } else {

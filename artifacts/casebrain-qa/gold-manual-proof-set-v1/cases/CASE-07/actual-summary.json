@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-07",
   "sourceCaseId": "demo-audit-44-bad-redaction",
-  "builtAt": "2026-07-10T15:30:51.531Z",
+  "builtAt": "2026-07-10T17:46:27.532Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
   "clientLabel": "Farah Kent",
@@ -59,15 +59,15 @@
       "outputLine": "unredacted mg11",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "redaction schedule",
       "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -75,15 +75,15 @@
       "outputLine": "full police note",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "The defence asks the court to record that redaction and unredacted schedule issues remain outstanding on the current papers.",
       "surface": "Court",
-      "sourceDocument": "Disclosure chase brief",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Incomplete",
       "safeAction": "check"
     },
@@ -91,15 +91,15 @@
       "outputLine": "Please provide unredacted mg11 or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "Please provide redaction schedule or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -107,7 +107,7 @@
       "outputLine": "Please provide full police note or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     }

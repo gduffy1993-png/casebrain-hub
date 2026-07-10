@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-09",
   "sourceCaseId": "demo-audit-32-restraining-order-breach",
-  "builtAt": "2026-07-10T15:30:51.916Z",
+  "builtAt": "2026-07-10T17:46:27.836Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997",
   "clientLabel": "Lena Ortiz",
@@ -60,15 +60,15 @@
       "outputLine": "full sealed restraining order",
       "surface": "Overview",
       "sourceDocument": "Custody / police interview unit",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "service proof",
       "surface": "Overview",
-      "sourceDocument": "Custody / police interview unit",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -76,15 +76,15 @@
       "outputLine": "breach location map",
       "surface": "Overview",
       "sourceDocument": "Custody / police interview unit",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers.",
       "surface": "Court",
-      "sourceDocument": "Disclosure chase brief",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Incomplete",
       "safeAction": "check"
     },
@@ -92,15 +92,15 @@
       "outputLine": "Please provide full sealed restraining order or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "Custody / police interview unit",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
       "outputLine": "Please provide service proof or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "Custody / police interview unit",
-      "sourcePage": null,
+      "sourceDocument": "source verification required",
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -108,7 +108,7 @@
       "outputLine": "Please provide breach location map or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "Custody / police interview unit",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     }

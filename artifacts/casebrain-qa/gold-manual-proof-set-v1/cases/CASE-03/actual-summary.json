@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-03",
   "sourceCaseId": "demo-audit-27-custody-pace-missing",
-  "builtAt": "2026-07-10T15:30:49.466Z",
+  "builtAt": "2026-07-10T17:46:26.287Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
   "clientLabel": "Sam Okonkwo",
@@ -82,7 +82,7 @@
       "outputLine": "PACE safeguards detail",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -130,7 +130,7 @@
       "outputLine": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Missing",
       "safeAction": "chase"
     }

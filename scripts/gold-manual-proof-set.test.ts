@@ -9,6 +9,9 @@ import {
   isGenericMg6ChaseLabel,
   presentDoNotOverstateForFamily,
   prefersFamilyChasePresentation,
+  presentClientSummaryForFamily,
+  presentProofReceiptsForFamily,
+  presentTruthMapForFamily,
   resolveFamilyChaseLabels,
   resolveFamilyCourtLine,
 } from "../lib/eval/gold-manual-proof-set/presentation-gates";
@@ -261,5 +264,71 @@ const chargeStill = enrichChasePresentation(
   ["corrected charge sheet", "updated mg5", "court listing confirmation"],
 );
 assert.ok(chargeStill.some((c) => /charge sheet|MG5|listing/i.test(c.label)));
+
+const s172Client = presentClientSummaryForFamily(
+  "motoring SJP thin evidence",
+  "Ella Shaw",
+  "calibration certificates, the full intoxilyser record, and any CCTV/dashcam export",
+);
+assert.ok(s172Client && /s172|keeper|nomination|SJP/i.test(s172Client));
+assert.ok(/secondary/i.test(s172Client));
+assert.ok(/live issue is the s172/i.test(s172Client));
+
+const s172Truth = presentTruthMapForFamily("motoring SJP thin evidence", [
+  { label: "Device calibration certificate", existence: "missing", reliability: "needs_review" },
+  { label: "Full intoxilyser record", existence: "missing", reliability: "needs_review" },
+  { label: "CCTV / dashcam export", existence: "referred_only", reliability: "weak" },
+]);
+assert.ok(/Notice|Keeper|Nomination|SJP/i.test(s172Truth[0]?.label ?? ""));
+assert.ok(s172Truth.some((r) => /calibration|intoxilyser|cctv/i.test(r.label)));
+
+const ocrClient = presentClientSummaryForFamily(
+  "OCR/date/court mismatch",
+  "Devon Walsh",
+  "CCTV still images are on the papers, but the master CCTV footage",
+);
+assert.ok(ocrClient && /OCR|listing date|hearing date/i.test(ocrClient));
+assert.match(ocrClient!, /secondary/i);
+
+const ocrTruth = presentTruthMapForFamily("OCR/date/court mismatch", [
+  { label: "CCTV still images", existence: "served", reliability: "needs_review" },
+  { label: "Master CCTV footage", existence: "missing", reliability: "needs_review" },
+]);
+assert.ok(/listing|hearing|OCR|date/i.test(ocrTruth[0]?.label ?? ""));
+assert.ok(ocrTruth.some((r) => /CCTV/i.test(r.label)));
+
+const thinProof = presentProofReceiptsForFamily("OCR/date/court mismatch", [
+  {
+    outputLine: "Court listing confirmation",
+    surface: "Overview",
+    sourceDocument: "Police / CCTV unit",
+    sourcePage: "CCTV still images | 6-7 |",
+    evidenceState: "Not safely confirmed",
+    safeAction: "check",
+  },
+  {
+    outputLine: "Master CCTV footage",
+    surface: "Overview",
+    sourceDocument: "Police / CCTV unit",
+    sourcePage: "CCTV still images | 6-7 |",
+    evidenceState: "Not safely confirmed",
+    safeAction: "check",
+  },
+]);
+assert.equal(thinProof[0]?.outputLine, "Court listing confirmation");
+assert.match(String(thinProof[0]?.sourcePage ?? ""), /source verification required/i);
+assert.match(String(thinProof[0]?.sourceDocument ?? ""), /source verification required/i);
+
+const s172ThinProof = presentProofReceiptsForFamily("motoring SJP thin evidence", [
+  {
+    outputLine: "Notice / requirement to identify driver",
+    surface: "Overview",
+    sourceDocument: "Police / CCTV unit",
+    sourcePage: "Thin SJP file: charge and officer account ser…",
+    evidenceState: "Not safely confirmed",
+    safeAction: "check",
+  },
+]);
+assert.match(String(s172ThinProof[0]?.sourcePage ?? ""), /source verification required/i);
 
 console.log("gold-manual-proof-set.test.ts: PASS");

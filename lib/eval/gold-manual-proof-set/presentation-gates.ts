@@ -400,3 +400,176 @@ export function enrichChasePresentation(
 
   return polishChasePresentationForFamily(familyLabel, presented);
 }
+
+export type PresentedTruthMapRow = {
+  label: string;
+  existence: string;
+  reliability: string;
+};
+
+export type PresentedProofReceipt = {
+  outputLine: string;
+  surface: string;
+  sourceDocument: string | null;
+  sourcePage: string | null;
+  evidenceState: string;
+  safeAction: string;
+};
+
+const SOURCE_VERIFICATION_REQUIRED = "source verification required";
+
+/** Wave B secondary-surface client summary — lead family risk, demote off-lead stacks. */
+export function presentClientSummaryForFamily(
+  familyLabel: string,
+  clientLabel: string,
+  existing: string | null,
+): string | null {
+  const f = familyLabel.toLowerCase();
+  if (/motoring|sjp/.test(f)) {
+    return [
+      "CLIENT-SAFE SUMMARY",
+      "(not for court or CPS)",
+      "",
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. The live issue is the s172 notice/requirement to identify the driver: service/posting proof, keeper/DVLA position, nomination/response, and the SJP procedure bundle. Device calibration, intoxilyser, or CCTV/dashcam material on the papers is secondary and not the lead for driver-identification.`,
+      "",
+      "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+    ].join("\n");
+  }
+  if (/ocr|date\/court|layout|hearing date|court mismatch/.test(f)) {
+    return [
+      "CLIENT-SAFE SUMMARY",
+      "(not for court or CPS)",
+      "",
+      `We are reviewing the papers in your case (${clientLabel}). This is early-stage — nothing is final until we have full disclosure and your instructions. The listing date and court venue on the papers may be OCR-corrupted or inconsistent — confirm the correct hearing date and venue with the court before relying on any listed date. CCTV stills/master material may also be incomplete, but that is secondary to confirming the listing/date position.`,
+      "",
+      "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+    ].join("\n");
+  }
+  return existing;
+}
+
+/** Re-order / inject family-led truth-map rows for Wave B secondary-surface polish. */
+export function presentTruthMapForFamily(
+  familyLabel: string,
+  rows: PresentedTruthMapRow[],
+): PresentedTruthMapRow[] {
+  const f = familyLabel.toLowerCase();
+  if (/motoring|sjp/.test(f)) {
+    const lead: PresentedTruthMapRow[] = [
+      { label: "Notice / requirement to identify driver", existence: "missing", reliability: "needs_review" },
+      { label: "Proof of service / posting", existence: "missing", reliability: "needs_review" },
+      { label: "Keeper / DVLA record", existence: "missing", reliability: "needs_review" },
+      { label: "Nomination / response record", existence: "missing", reliability: "needs_review" },
+      { label: "Procedure bundle / SJP notice", existence: "missing", reliability: "needs_review" },
+    ];
+    const secondary = rows
+      .filter((r) => /calibration|intoxilyser|cctv|dashcam|breath|device procedure/i.test(r.label))
+      .slice(0, 2)
+      .map((r) => ({
+        ...r,
+        reliability: r.reliability === "unsafe" ? r.reliability : "weak",
+      }));
+    return [...lead, ...secondary].slice(0, 8);
+  }
+  if (/ocr|date\/court|layout|hearing date|court mismatch/.test(f)) {
+    const lead: PresentedTruthMapRow[] = [
+      { label: "Court listing / hearing date", existence: "not_safely_confirmed", reliability: "needs_review" },
+      { label: "Hearing / date notice", existence: "missing", reliability: "needs_review" },
+      { label: "Corrected schedule / index (OCR conflict)", existence: "missing", reliability: "needs_review" },
+      { label: "Source page / date verification", existence: "missing", reliability: "needs_review" },
+    ];
+    const secondary = rows
+      .filter((r) => /cctv|continuity|audit|recognition|id basis/i.test(r.label))
+      .slice(0, 3);
+    return [...lead, ...secondary].slice(0, 8);
+  }
+  return rows;
+}
+
+function proofAnchorIsThin(page: string | null | undefined): boolean {
+  if (!page?.trim()) return true;
+  if (page.trim().toLowerCase() === SOURCE_VERIFICATION_REQUIRED) return true;
+  return page.trim().length < 8;
+}
+
+function proofAnchorMismatched(outputLine: string, page: string | null | undefined): boolean {
+  if (!page?.trim()) return false;
+  const line = outputLine.toLowerCase();
+  const p = page.toLowerCase();
+  if (/listing|hearing|date|ocr|schedule|verification|venue/i.test(line) && /cctv still|master cctv|camera\s*\d/i.test(p)) {
+    return true;
+  }
+  if (
+    /notice|keeper|nomination|sjp|service|identify driver|dvla/i.test(line) &&
+    /intoxilyser|calibration|cctv still|master cctv/i.test(p) &&
+    !/s172|driver|keeper|notice|nomination/i.test(p)
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function proofAnchorWeakForLine(outputLine: string, page: string | null | undefined): boolean {
+  if (proofAnchorIsThin(page)) return true;
+  if (proofAnchorMismatched(outputLine, page)) return true;
+  const line = outputLine.toLowerCase();
+  const p = (page ?? "").toLowerCase();
+  // Family-forced S172 / OCR lines need on-theme anchors, not generic MG5 headlines or CCTV snippets.
+  if (/notice|keeper|nomination|sjp|service|identify driver|dvla/i.test(line)) {
+    if (
+      !/s172|identify driver|keeper|nomination|service proof|dvla|posting|requirement to identify|procedure bundle/i.test(
+        p,
+      )
+    ) {
+      return true;
+    }
+  }
+  if (/listing|hearing|date|ocr|schedule|verification|venue/i.test(line)) {
+    if (!/listing|hearing date|ocr|september|venue|verify with court|layout/i.test(p)) return true;
+  }
+  return false;
+}
+
+/**
+ * Polish proof receipts for gold presentation: family lead order + honest thin/mismatched anchors.
+ * Does not change court/chase/do-not wording.
+ */
+export function presentProofReceiptsForFamily(
+  familyLabel: string,
+  receipts: PresentedProofReceipt[],
+): PresentedProofReceipt[] {
+  const f = familyLabel.toLowerCase();
+  let out = receipts.map((r) => {
+    if (!proofAnchorWeakForLine(r.outputLine, r.sourcePage)) return r;
+    const listingOrS172 = /listing|hearing|date|ocr|schedule|verification|notice|keeper|nomination|sjp|service|identify driver|dvla/i.test(
+      r.outputLine,
+    );
+    return {
+      ...r,
+      sourcePage: SOURCE_VERIFICATION_REQUIRED,
+      sourceDocument:
+        listingOrS172 && (/cctv/i.test(r.sourceDocument ?? "") || !r.sourceDocument?.trim())
+          ? SOURCE_VERIFICATION_REQUIRED
+          : listingOrS172
+            ? SOURCE_VERIFICATION_REQUIRED
+            : r.sourceDocument?.trim()
+              ? r.sourceDocument
+              : SOURCE_VERIFICATION_REQUIRED,
+    };
+  });
+
+  if (/ocr|date\/court|layout|hearing date|court mismatch/.test(f)) {
+    const lead = out.filter((r) => /listing|hearing|date|ocr|schedule|verification|venue/i.test(r.outputLine));
+    const rest = out.filter((r) => !lead.includes(r));
+    out = [...lead, ...rest];
+  } else if (/motoring|sjp/.test(f)) {
+    const lead = out.filter((r) =>
+      /notice|keeper|nomination|sjp|service|identify driver|dvla/i.test(r.outputLine),
+    );
+    const rest = out.filter((r) => !lead.includes(r));
+    out = [...lead, ...rest];
+  }
+
+  return out.slice(0, 10);
+}
+

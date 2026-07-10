@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-05",
   "sourceCaseId": "demo-audit-05-encro-attribution",
-  "builtAt": "2026-07-10T15:30:50.768Z",
+  "builtAt": "2026-07-10T17:46:27.009Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Being concerned in the supply of a controlled drug of Class A, namely cocaine",
   "clientLabel": "Liam Craft",
@@ -72,7 +72,7 @@
       "outputLine": "Platform / source extraction",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -88,7 +88,7 @@
       "outputLine": "Subscriber / account data",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -96,7 +96,7 @@
       "outputLine": "Device continuity",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -104,7 +104,7 @@
       "outputLine": "The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Incomplete",
       "safeAction": "check"
     },
@@ -112,7 +112,7 @@
       "outputLine": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -128,7 +128,7 @@
       "outputLine": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -136,7 +136,7 @@
       "outputLine": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Missing",
       "safeAction": "chase"
     }

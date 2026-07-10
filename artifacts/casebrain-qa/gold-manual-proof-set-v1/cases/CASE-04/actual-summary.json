@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-04",
   "sourceCaseId": "demo-audit-02-cctv-stills",
-  "builtAt": "2026-07-10T15:30:50.210Z",
+  "builtAt": "2026-07-10T17:46:26.665Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
   "clientLabel": "Devon Walsh",
@@ -85,7 +85,7 @@
       "outputLine": "CCTV Continuity / provenance",
       "surface": "Overview",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
@@ -125,7 +125,7 @@
       "outputLine": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourcePage": "source verification required",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
