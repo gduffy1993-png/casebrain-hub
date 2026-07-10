@@ -7,6 +7,7 @@ import {
   enrichChasePresentation,
   gateCourtLineForFamily,
   isGenericMg6ChaseLabel,
+  presentDoNotOverstateForFamily,
   resolveFamilyChaseLabels,
 } from "../lib/eval/gold-manual-proof-set/presentation-gates";
 
@@ -92,5 +93,23 @@ const keepSubstantive = enrichChasePresentation(
 );
 assert.ok(keepSubstantive.every((e) => !/mg6c clarification/i.test(e.label)));
 assert.ok(keepSubstantive.some((e) => /phone download/i.test(e.label)));
+
+const chargeOverstate = presentDoNotOverstateForFamily("charge mismatch", [
+  "safely confirms guilt",
+  "fully proved on current disclosure",
+  "Do not import ABE unless the papers support it.",
+  "Do not import phone extraction/metadata unless the papers support it.",
+  "Do not overstate charge alignment on current papers",
+]);
+assert.ok(chargeOverstate.includes("unsafe proof/outcome wording blocked"));
+assert.ok(!chargeOverstate.some((s) => /safely confirms guilt|ABE|phone extraction/i.test(s)));
+assert.ok(chargeOverstate.some((s) => /charge alignment/i.test(s)));
+
+const prisonOverstate = presentDoNotOverstateForFamily("prison calls / call logs", [
+  "safely confirms guilt",
+  "Do not import phone extraction/metadata unless the papers support it.",
+  "Do not import ABE unless the papers support it.",
+]);
+assert.deepEqual(prisonOverstate, ["unsafe proof/outcome wording blocked"]);
 
 console.log("gold-manual-proof-set.test.ts: PASS");

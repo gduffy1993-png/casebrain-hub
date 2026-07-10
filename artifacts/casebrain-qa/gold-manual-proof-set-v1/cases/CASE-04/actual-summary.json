@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-04",
   "sourceCaseId": "demo-audit-02-cctv-stills",
-  "builtAt": "2026-07-10T12:41:41.356Z",
+  "builtAt": "2026-07-10T13:04:31.306Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
   "clientLabel": "Devon Walsh",
@@ -61,7 +61,6 @@
     "CCTV proves identity",
     "CCTV proves offence",
     "positive identification from stills",
-    "phone download",
     "Encro handle",
     "Do not treat stills alone as proof of identity or offence.",
     "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers"

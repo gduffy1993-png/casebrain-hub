@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-16",
   "sourceCaseId": "demo-audit-49-anpr-trap",
-  "builtAt": "2026-07-10T12:41:44.559Z",
+  "builtAt": "2026-07-10T13:04:34.165Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Taking a vehicle without consent, contrary to section 12 of the Theft Act 1968",
   "clientLabel": "Maya Singh",
@@ -49,11 +49,8 @@
   "courtLine": "The defence asks the court to record outstanding device, calibration and procedure records.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
-    "fully proved on current disclosure",
-    "safely confirms guilt",
+    "unsafe proof/outcome wording blocked",
     "Do not import drugs continuity unless the papers support it.",
-    "Do not import ABE unless the papers support it.",
-    "Do not import phone extraction/metadata unless the papers support it.",
     "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
     "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
     "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"

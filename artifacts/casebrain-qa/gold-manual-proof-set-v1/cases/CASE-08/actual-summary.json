@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-08",
   "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
-  "builtAt": "2026-07-10T12:41:42.450Z",
+  "builtAt": "2026-07-10T13:04:32.354Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
   "clientLabel": "Jordan Hale",
@@ -49,10 +49,7 @@
   "courtLine": "Position remains provisional on the current papers — listed material families are not safely confirmed in the bundle yet.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
-    "fully proved on current disclosure",
-    "safely confirms guilt",
-    "Do not import ABE unless the papers support it.",
-    "Do not import phone extraction/metadata unless the papers support it.",
+    "unsafe proof/outcome wording blocked",
     "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
     "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
     "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"

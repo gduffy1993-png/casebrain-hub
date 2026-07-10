@@ -22,11 +22,19 @@
 
 ---
 
-## Cleanup pass 2 (this run)
+## Cleanup pass 3 (final polish)
 
 | # | Change | Intent |
 |---|--------|--------|
-| 1 | Family-specific chase presentation for 9 WARN families | Replace generic MG6-only with redaction / charge / order / translation / lab / ANPR / medical / prison / social chase labels |
+| 1 | Align SUMMARY / WARN review / INTERNAL readiness | No contradictory YES/NO |
+| 2 | Reword v9 banners for human-review inclusion | Catalog origin only — not “unclean solicitor example” |
+| 3 | Tighten off-family do-not-overstate + sanitize guilt phrases | No ABE/phone noise on redaction/charge/prison; display `unsafe proof/outcome wording blocked` |
+
+## Cleanup pass 2 (prior)
+
+| # | Change | Intent |
+|---|--------|--------|
+| 1 | Family-specific chase presentation for 9 WARN families | Replace generic MG6-only with family chase labels |
 | 2 | Prefer truth-key expected chase when builder coverage is weak | Align actual packet chase with expected themes |
 | 3 | Keep MG6 last-resort + court family gate | No regression on pass 1 |
 

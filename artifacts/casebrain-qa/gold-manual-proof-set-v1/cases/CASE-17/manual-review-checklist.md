@@ -8,7 +8,7 @@
 
 > Controlled/PDF-backed gold manual review only. **Not** real-world solicitor validation until signed below.
 
-> **INTERNAL PRODUCT-HUNT** (v9 catalog) — not a clean solicitor example. Hunt generic MG6 / template drift.
+> **Source:** v9 catalog controlled bundle — included for human review. Not solicitor-validated until signed.
 
 ## Verdict boxes (tick one per row)
 

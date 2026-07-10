@@ -58,7 +58,6 @@
 - BWV shows
 - BWV confirms
 - PACE safeguards were followed
-- phone extraction
 - CCTV proves
 
 ## Expected CPS chase
@@ -103,7 +102,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Casey Fry
 - **Court line:** The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.
 - **Chase items:** Full BWV export; Full custody record; Interview audio; Interview transcript; PACE safeguards detail
-- **Do-not-overstate (sample, family-filtered):** BWV shows · BWV confirms · PACE safeguards were followed · phone extraction
+- **Do-not-overstate (sample, family-filtered):** BWV shows · BWV confirms · PACE safeguards were followed · CCTV proves
 - **Proof receipts (sample):** 10 rows; first: Full custody record
 
 ### Precomputed demo-audit artifacts

@@ -55,7 +55,6 @@
 
 - BWV shows the assault
 - full video proves
-- phone extraction
 
 ## Expected CPS chase
 
@@ -97,7 +96,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Sam Okonkwo
 - **Court line:** The defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.
 - **Chase items:** Full BWV export; Full custody record; Interview audio; PACE safeguards detail
-- **Do-not-overstate (sample, family-filtered):** BWV shows the assault · full video proves · phone extraction · Do not rely on full BWV sequence unless export is served.
+- **Do-not-overstate (sample, family-filtered):** BWV shows the assault · full video proves · Do not rely on full BWV sequence unless export is served. · Assumed position may conflict with interview or served evidence.
 - **Proof receipts (sample):** 9 rows; first: Full custody record
 
 ### Precomputed demo-audit artifacts

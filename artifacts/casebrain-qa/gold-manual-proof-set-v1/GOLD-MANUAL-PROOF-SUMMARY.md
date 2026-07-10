@@ -1,6 +1,6 @@
 # Gold Manual Proof Set v1 — Summary
 
-**Generated:** 2026-07-10T12:41:45.344Z  
+**Generated:** 2026-07-10T13:04:35.028Z  
 **Branch intent:** `feature/gold-manual-proof-set-v1`  
 **Cases:** 20/20 packets  
 **Provisional scores (pre-solicitor):** 20 pass · 0 warn · 0 fail  
@@ -12,7 +12,7 @@
 
 This pack is a **gold manual review** framework on **controlled/PDF-backed** demo-audit families.  
 It does **not** claim real-world solicitor validation. Each case remains **solicitor review required** until the checklist is signed.  
-**v9 catalog WARN cases** are **internal product-hunt** stress cases — not clean solicitor examples.
+v9 catalog cases are controlled fictional bundles included in this human-review set (catalog origin noted on packets).
 
 ## Case index
 
@@ -41,9 +41,9 @@ It does **not** claim real-world solicitor validation. Each case remains **solic
 
 ## How to review
 
-**Do not send to external human reviewers until INTERNAL-GOLD-QA-REPORT says YES.**
+**Provisional pack cleared for human gold-manual review.** Still not solicitor-validated until per-case checklists are signed.
 
-Human solicitor review pack (when cleared): [HUMAN-SOLICITOR-REVIEW.md](./HUMAN-SOLICITOR-REVIEW.md) → `docs/gold-manual-proof-pack/human-solicitor-review-v1/`
+Human solicitor review pack: [HUMAN-SOLICITOR-REVIEW.md](./HUMAN-SOLICITOR-REVIEW.md) → `docs/gold-manual-proof-pack/human-solicitor-review-v1/`
 
 1. Open a case folder under `cases/CASE-XX/`.
 2. Read `CASE-REVIEW.md` (≤10 minutes).

@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-07",
   "sourceCaseId": "demo-audit-44-bad-redaction",
-  "builtAt": "2026-07-10T12:41:42.299Z",
+  "builtAt": "2026-07-10T13:04:32.216Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
   "clientLabel": "Farah Kent",
@@ -49,10 +49,7 @@
   "courtLine": "The defence asks the court to record that redaction and unredacted schedule issues remain outstanding on the current papers.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
-    "fully proved on current disclosure",
-    "safely confirms guilt",
-    "Do not import ABE unless the papers support it.",
-    "Do not import phone extraction/metadata unless the papers support it.",
+    "unsafe proof/outcome wording blocked",
     "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",
     "Do not state \"MG11 is consistent and served\" — Witness statement is draft or unsigned on papers",
     "Do not state \"MG11 served\" — Witness statement is draft or unsigned on papers"

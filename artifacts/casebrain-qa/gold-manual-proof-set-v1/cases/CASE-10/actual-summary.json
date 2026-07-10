@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-10",
   "sourceCaseId": "demo-audit-41-translated-messages",
-  "builtAt": "2026-07-10T12:41:43.083Z",
+  "builtAt": "2026-07-10T13:04:32.727Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
   "clientLabel": "Aiden Cole",
@@ -49,9 +49,7 @@
   "courtLine": "The defence asks the court to record outstanding message/account source material and complainant statement gaps.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
-    "fully proved on current disclosure",
-    "safely confirms guilt",
-    "Do not import ABE unless the papers support it.",
+    "unsafe proof/outcome wording blocked",
     "Do not state the defendant sent messages unless attribution is served and safe.",
     "Do not state \"interview confirms\" — Interview material is not fully served",
     "Do not state \"witness statement is final\" — Witness statement is draft or unsigned on papers",

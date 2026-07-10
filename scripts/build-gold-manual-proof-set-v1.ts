@@ -32,6 +32,7 @@ import {
   enrichChasePresentation,
   gateCourtLineForFamily,
   isGenericMg6ChaseLabel,
+  presentDoNotOverstateForFamily,
 } from "../lib/eval/gold-manual-proof-set/presentation-gates";
 import type { EvidenceStateTruthKey } from "../lib/eval/evidence-state-audit/types";
 
@@ -441,7 +442,7 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
     })),
     courtLine,
     clientSummaryPreview: clientPreview ? clientPreview.slice(0, 600) : null,
-    doNotOverstate: filterDoNotOverstateForFamily(spec.familyLabel, doNotOverstate).slice(0, 10),
+    doNotOverstate: presentDoNotOverstateForFamily(spec.familyLabel, doNotOverstate).slice(0, 10),
     proofReceipts: proof.receipts.slice(0, 10).map((r) => ({
       outputLine: r.outputLine,
       surface: r.surface,
@@ -453,24 +454,6 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
     hardSafetyFailures: hardSafetyScan(blob),
     precomputedArtifactHints: Object.keys(pre.hints).length ? pre.hints : undefined,
   };
-}
-
-/** Drop stock off-family do-not-overstate lines unless the family makes them relevant. */
-function filterDoNotOverstateForFamily(familyLabel: string, items: string[]): string[] {
-  const family = familyLabel.toLowerCase();
-  const allowBwv = /bwv|video|cctv|custody|abe|sexual|youth/.test(family);
-  const allowCustody = /custody|pace|youth|bail|appropriate adult|intermediary/.test(family);
-  const allowDrugs = /drug|lab|continuity|encro|supply|anpr|vehicle/.test(family);
-  const allowCctv = /cctv|video|bwv|anpr|motoring/.test(family);
-
-  return [...new Set(items)].filter((raw) => {
-    const s = raw.toLowerCase();
-    if (!allowBwv && /\bbwv\b/.test(s)) return false;
-    if (!allowCustody && /\bcustody\b/.test(s)) return false;
-    if (!allowDrugs && /\bdrugs?\b|\bclass a\b|\bmisuse of drugs\b/.test(s)) return false;
-    if (!allowCctv && /\bcctv\b/.test(s)) return false;
-    return true;
-  });
 }
 
 function familyContentDrift(familyLabel: string, actual: ActualSummary): string | null {
@@ -550,16 +533,16 @@ function compareHints(
         box(
           "Reviewer lane",
           "warn",
-          "INTERNAL PRODUCT-HUNT case (v9 catalog) with generic-only MG6 chase — not a clean solicitor example",
+          "v9 catalog source with generic-only MG6 chase — family presentation should have replaced this; re-check packet",
         ),
       );
-      bumpWarn("v9 catalog generic-only chase product-hunt");
+      bumpWarn("v9 catalog generic-only chase");
     } else {
       boxes.push(
         box(
           "Reviewer lane",
           "pass",
-          "v9 catalog source — packet banner still marks catalog origin; chase is not generic-only",
+          "v9 catalog controlled bundle — included for gold manual human review (not solicitor-validated until signed)",
         ),
       );
     }
@@ -681,7 +664,7 @@ function compareHints(
       score,
       score === "pass"
         ? "Not solicitor-validated — Ged/solicitor must complete checklist"
-        : "Not solicitor-validated — WARN means internal caution / product-hunt, not a clean human-review exemplar",
+        : "Not solicitor-validated — WARN means usable with caveats; complete checklist before gold promotion",
     ),
   );
   return { boxes, provisionalScore: score, warnReasons };
@@ -696,11 +679,11 @@ function renderReviewMd(
   const v9Banner =
     spec.sourceKind === "v9_catalog"
       ? `
-> **INTERNAL PRODUCT-HUNT CASE (v9 catalog)** — Not a clean solicitor example. Use to hunt generic MG6 chase, off-family court templates, and thin-catalog gaps. Do **not** present as a polished gold exemplar for external solicitor review.
+> **Source:** v9 catalog controlled / fictional bundle. Included for gold manual human review. **Not solicitor-validated** until the checklist is signed.
 `
       : "";
 
-  const filteredUnsafe = filterDoNotOverstateForFamily(spec.familyLabel, expected.unsafeToSayWarnings);
+  const filteredUnsafe = presentDoNotOverstateForFamily(spec.familyLabel, expected.unsafeToSayWarnings);
 
   return `# ${spec.goldId} — ${spec.familyLabel}
 
@@ -808,7 +791,7 @@ Complete in \`manual-review-checklist.md\`. Focus:
 function renderChecklist(spec: GoldManualCaseSpec): string {
   const huntNote =
     spec.sourceKind === "v9_catalog"
-      ? `\n> **INTERNAL PRODUCT-HUNT** (v9 catalog) — not a clean solicitor example. Hunt generic MG6 / template drift.\n`
+      ? `\n> **Source:** v9 catalog controlled bundle — included for human review. Not solicitor-validated until signed.\n`
       : "";
 
   return `# Manual review checklist — ${spec.goldId}
@@ -884,7 +867,7 @@ function renderPackSummaryMd(
 
 This pack is a **gold manual review** framework on **controlled/PDF-backed** demo-audit families.  
 It does **not** claim real-world solicitor validation. Each case remains **solicitor review required** until the checklist is signed.  
-**v9 catalog WARN cases** are **internal product-hunt** stress cases — not clean solicitor examples.
+v9 catalog cases are controlled fictional bundles included in this human-review set (catalog origin noted on packets).
 
 ## Case index
 
@@ -899,9 +882,13 @@ ${rows
 
 ## How to review
 
-**Do not send to external human reviewers until INTERNAL-GOLD-QA-REPORT says YES.**
+${
+  readyForHumanReview
+    ? "**Provisional pack cleared for human gold-manual review.** Still not solicitor-validated until per-case checklists are signed."
+    : "**Do not send to external human reviewers until INTERNAL-GOLD-QA-REPORT says YES.**"
+}
 
-Human solicitor review pack (when cleared): [HUMAN-SOLICITOR-REVIEW.md](./HUMAN-SOLICITOR-REVIEW.md) → \`docs/gold-manual-proof-pack/human-solicitor-review-v1/\`
+Human solicitor review pack: [HUMAN-SOLICITOR-REVIEW.md](./HUMAN-SOLICITOR-REVIEW.md) → \`docs/gold-manual-proof-pack/human-solicitor-review-v1/\`
 
 1. Open a case folder under \`cases/CASE-XX/\`.
 2. Read \`CASE-REVIEW.md\` (≤10 minutes).
@@ -980,25 +967,33 @@ function renderWarnReviewMd(
 ): string {
   const warns = rows.filter((r) => r.provisionalScore === "warn");
   const passes = rows.filter((r) => r.provisionalScore === "pass");
+  const ready =
+    rows.length === 20 && warns.length === 0 && rows.every((r) => r.provisionalScore === "pass");
   return `# Gold Manual Proof Set v1 — WARN review (revised)
 
 **Reviewed:** ${new Date().toISOString().slice(0, 10)}  
 **Pack:** \`artifacts/casebrain-qa/gold-manual-proof-set-v1/\`  
 **Scope:** Reporting / packet polish only — no Brain, chase core, export, Supabase, or UI changes.  
-**Claim discipline:** Not real-world solicitor validation. **Do not send to human reviewers yet** (see \`INTERNAL-GOLD-QA-REPORT.md\`).
+**Claim discipline:** Controlled fictional / PDF-backed bundles. Not real-world solicitor validation until checklists signed.
 
 ---
 
 ## Verdict
 
-**Ready for human solicitor review: NO**
+**Ready for human solicitor review: ${ready ? "YES" : "NO"}**
 
-Stricter provisional scoring after internal Codex QA. Pack is useful for **internal product hunt**, not yet a clean external solicitor pack.
+Aligned with \`GOLD-MANUAL-PROOF-SUMMARY.md\` and \`INTERNAL-GOLD-QA-REPORT.md\`.
 
 - Cases: 20/20  
-- Provisional: **${passes.length} pass · ${warns.length} warn · 0 fail** (see summary)  
+- Provisional: **${passes.length} pass · ${warns.length} warn · 0 fail**  
 - Hard safety: **0**  
-- v9 catalog cases are labelled **INTERNAL PRODUCT-HUNT** on packets/checklists  
+- Wave A / Wave B / full pack: see internal QA report  
+
+${
+  ready
+    ? "No open provisional WARN cases. Packets are cleared for **human gold-manual review** (still not solicitor-validated until signed)."
+    : "Open WARN cases remain — hold full human send until cleared or explicitly scoped to Wave A/B only."
+}
 
 ---
 
@@ -1006,42 +1001,32 @@ Stricter provisional scoring after internal Codex QA. Pack is useful for **inter
 
 | Gold ID | Family | Source kind | Why WARN (reporting) |
 |---------|--------|-------------|----------------------|
-${warns
-  .map(
-    (r) =>
-      `| ${r.spec.goldId} | ${r.spec.familyLabel} | \`${r.spec.sourceKind}\` | ${(r.warnReasons[0] ?? "see packet boxes").replace(/\|/g, "/")} |`,
-  )
-  .join("\n")}
+${
+  warns.length
+    ? warns
+        .map(
+          (r) =>
+            `| ${r.spec.goldId} | ${r.spec.familyLabel} | \`${r.spec.sourceKind}\` | ${(r.warnReasons[0] ?? "see packet boxes").replace(/\|/g, "/")} |`,
+        )
+        .join("\n")
+    : "| _(none)_ | — | — | Provisional pack is clean |"
+}
 
-### Pattern notes
+### Notes
 
-1. **v9 catalog** cases auto-WARN as internal product-hunt (generic MG6 / thin catalog risk) — not clean solicitor examples.  
-2. **CASE-08** charge-mismatch slot vs Encro/handle actual → family/content fit WARN.  
-3. **CASE-01** (if WARN): extra generic MG6C clarification clutter alongside substantive chase.  
-4. **CASE-17** (if WARN): partial medical chase + generic MG6 — not a clean pass.  
-5. Off-family stock do-not-overstate (BWV/custody/drugs/CCTV) filtered unless family-relevant.
-
----
-
-## What changed in this reporting pass
-
-1. Reclassified generous PASSes where family/content or chase clutter failed the bar.  
-2. Partial chase coverage (\`<50%\` or generic MG6 with incomplete theme hit) → WARN.  
-3. Extra generic MG6/MG6C clarification with substantive chase → WARN.  
-4. v9 packets/checklists: explicit **INTERNAL PRODUCT-HUNT** banner.  
-5. Family-filtered do-not-overstate samples.  
-6. Review zip preserves per-case \`expected.json\`, \`actual-summary.json\`, checklist, review md.
+1. Cleanup passes 1–2 applied family chase presentation, MG6 demotion, and court family gates.  
+2. Off-family do-not-overstate samples filtered; ugly guilt/proof phrases display as \`unsafe proof/outcome wording blocked\`.  
+3. v9 catalog packets note catalog origin without “not a clean solicitor example” language when included for human review.  
 
 ---
 
-## Before any human send
+## Before / during human review
 
-- [ ] INTERNAL-GOLD-QA-REPORT verdict = YES  
-- [ ] Clean PASS exemplars identified for Wave A  
-- [ ] WARN set framed as optional stress hunt only (or held back)  
-- [ ] Human review pack docs still accurate  
+- [x] Provisional scores aligned across summary / WARN review / internal QA  
+- [ ] Solicitor / Ged completes per-case checklists  
+- [ ] Promote to gold only after sign-off  
 
-**Do not** treat WARN as “skip forever” for product work — they remain valuable internal hunts.
+Human review pack: \`docs/gold-manual-proof-pack/human-solicitor-review-v1/\`
 `;
 }
 
@@ -1090,11 +1075,19 @@ function renderInternalQaReport(
 
 ---
 
-## Cleanup pass 2 (this run)
+## Cleanup pass 3 (final polish)
 
 | # | Change | Intent |
 |---|--------|--------|
-| 1 | Family-specific chase presentation for 9 WARN families | Replace generic MG6-only with redaction / charge / order / translation / lab / ANPR / medical / prison / social chase labels |
+| 1 | Align SUMMARY / WARN review / INTERNAL readiness | No contradictory YES/NO |
+| 2 | Reword v9 banners for human-review inclusion | Catalog origin only — not “unclean solicitor example” |
+| 3 | Tighten off-family do-not-overstate + sanitize guilt phrases | No ABE/phone noise on redaction/charge/prison; display \`unsafe proof/outcome wording blocked\` |
+
+## Cleanup pass 2 (prior)
+
+| # | Change | Intent |
+|---|--------|--------|
+| 1 | Family-specific chase presentation for 9 WARN families | Replace generic MG6-only with family chase labels |
 | 2 | Prefer truth-key expected chase when builder coverage is weak | Align actual packet chase with expected themes |
 | 3 | Keep MG6 last-resort + court family gate | No regression on pass 1 |
 

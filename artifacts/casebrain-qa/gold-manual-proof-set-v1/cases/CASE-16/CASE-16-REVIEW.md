@@ -7,13 +7,13 @@
 **Review type:** gold manual review on controlled/PDF-backed bundle  
 **Claim discipline:** Not real-world solicitor validation. Solicitor review required before gold promotion.
 
-> **INTERNAL PRODUCT-HUNT CASE (v9 catalog)** — Not a clean solicitor example. Use to hunt generic MG6 chase, off-family court templates, and thin-catalog gaps. Do **not** present as a polished gold exemplar for external solicitor review.
+> **Source:** v9 catalog controlled / fictional bundle. Included for gold manual human review. **Not solicitor-validated** until the checklist is signed.
 
 ---
 
 ## Pass / warn / fail (provisional)
 
-- [PASS] **Reviewer lane:** v9 catalog source — packet banner still marks catalog origin; chase is not generic-only
+- [PASS] **Reviewer lane:** v9 catalog controlled bundle — included for gold manual human review (not solicitor-validated until signed)
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
 - [PASS] **CPS chase coverage:** 3/3 expected chase themes reflected in builder output
 - [PASS] **Court line present:** Safe court / position line generated
@@ -54,8 +54,7 @@
 
 ## Expected unsafe-to-say (family-filtered)
 
-- fully proved on current disclosure
-- safely confirms guilt
+- unsafe proof/outcome wording blocked
 
 ## Expected CPS chase
 
@@ -95,7 +94,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Maya Singh
 - **Court line:** The defence asks the court to record outstanding device, calibration and procedure records.
 - **Chase items:** anpr image export; national anpr audit trail; vehicle keeper response
-- **Do-not-overstate (sample, family-filtered):** fully proved on current disclosure · safely confirms guilt · Do not import drugs continuity unless the papers support it. · Do not import ABE unless the papers support it.
+- **Do-not-overstate (sample, family-filtered):** unsafe proof/outcome wording blocked · Do not import drugs continuity unless the papers support it. · Do not state "witness statement is final" — Witness statement is draft or unsigned on papers · Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers
 - **Proof receipts (sample):** 7 rows; first: anpr image export
 
 

@@ -63,6 +63,68 @@ export function chargeMismatchLooksLikeEncro(blob: string): boolean {
   return hasEncroHandle && !hasChargeDrift;
 }
 
+/** Drop stock off-family do-not-overstate lines unless the family makes them relevant. */
+export function filterDoNotOverstateForFamily(familyLabel: string, items: string[]): string[] {
+  const family = familyLabel.toLowerCase();
+  const allowBwv = /bwv|video|cctv|custody|abe|sexual|youth/.test(family);
+  const allowCustody = /custody|pace|youth|bail|appropriate adult|intermediary/.test(family);
+  const allowDrugs = /drug|lab|continuity|encro|supply|anpr|vehicle/.test(family);
+  const allowCctv = /cctv|video|bwv|anpr|motoring/.test(family);
+  const allowAbe = /abe|sexual|historic|first account|third-party/.test(family);
+  const allowPhoneExtraction = /phone|harassment|social|subscriber|translated|message|encro|fraud|attribution/.test(
+    family,
+  );
+  const allowMedical = /medical|injury|triage/.test(family);
+  const allowOrder = /restraining|domestic order|order breach|bail/.test(family);
+
+  return [...new Set(items)].filter((raw) => {
+    const s = raw.toLowerCase();
+    if (!allowBwv && /\bbwv\b/.test(s)) return false;
+    if (!allowCustody && /\bcustody\b/.test(s)) return false;
+    if (!allowDrugs && /\bdrugs?\b|\bclass a\b|\bmisuse of drugs\b/.test(s)) return false;
+    if (!allowCctv && /\bcctv\b/.test(s)) return false;
+    if (!allowAbe && /\babe\b/.test(s)) return false;
+    if (!allowPhoneExtraction && /phone extraction|phone download|message export|handle attribution|platform extraction/.test(s)) {
+      return false;
+    }
+    // Subscriber stock lines only on digital/account families (not prison/ANPR alone)
+    if (!allowPhoneExtraction && !/social|subscriber|fraud|phone|harassment|encro|attribution/.test(family) && /subscriber/.test(s) && /import|do not/.test(s)) {
+      return false;
+    }
+    if (!allowMedical && /hospital|consultant medical|injury photo|triage/.test(s) && /import|do not/.test(s)) {
+      return false;
+    }
+    if (!allowOrder && /sealed order|service proof|restraining/.test(s) && /import|do not/.test(s)) {
+      return false;
+    }
+    return true;
+  });
+}
+
+/** Replace ugly repeated unsafe phrases with cleaner display wording (meaning preserved). */
+export function sanitizeUnsafeDisplayWording(items: string[]): string[] {
+  const out: string[] = [];
+  let blockedProofOutcome = false;
+  for (const raw of items) {
+    const s = raw.toLowerCase();
+    if (
+      /safely confirms guilt|fully proved on current disclosure|guilt is proved|will be convicted|outcome is certain/.test(s)
+    ) {
+      if (!blockedProofOutcome) {
+        out.push("unsafe proof/outcome wording blocked");
+        blockedProofOutcome = true;
+      }
+      continue;
+    }
+    out.push(raw);
+  }
+  return out;
+}
+
+export function presentDoNotOverstateForFamily(familyLabel: string, items: string[]): string[] {
+  return sanitizeUnsafeDisplayWording(filterDoNotOverstateForFamily(familyLabel, items));
+}
+
 /** Family-specific chase labels for gold pack presentation (not product-core chase). */
 export function resolveFamilyChaseLabels(familyLabel: string): string[] {
   const f = familyLabel.toLowerCase();

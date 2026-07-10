@@ -54,7 +54,6 @@
 - Morgan Reid admitted
 - defendant's interview shows
 - import co-defendant interview
-- phone extraction
 - Morgan Reid said
 - defendant admitted
 
@@ -98,7 +97,7 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 - **Client label:** Morgan Reid
 - **Court line:** The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant interview summary/audio remain outstanding.
 - **Chase items:** Target defendant interview summary; Target defendant interview audio; Target defendant interview transcript; Co-defendant attribution / continuity
-- **Do-not-overstate (sample, family-filtered):** Morgan Reid admitted · defendant's interview shows · import co-defendant interview · phone extraction
+- **Do-not-overstate (sample, family-filtered):** Morgan Reid admitted · defendant's interview shows · import co-defendant interview · Do not import co-defendant interview into the target defendant account.
 - **Proof receipts (sample):** 9 rows; first: Target defendant interview summary
 
 ### Precomputed demo-audit artifacts

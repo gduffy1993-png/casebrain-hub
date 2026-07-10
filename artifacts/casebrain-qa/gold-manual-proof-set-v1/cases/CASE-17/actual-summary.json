@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-17",
   "sourceCaseId": "demo-audit-61-medical-triage-partial",
-  "builtAt": "2026-07-10T12:41:44.717Z",
+  "builtAt": "2026-07-10T13:04:34.359Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
   "clientLabel": "Owen Pike",
@@ -49,10 +49,7 @@
   "courtLine": "The defence asks the court to record outstanding medical, video and sequence material.",
   "clientSummaryPreview": null,
   "doNotOverstate": [
-    "fully proved on current disclosure",
-    "safely confirms guilt",
-    "Do not import ABE unless the papers support it.",
-    "Do not import phone extraction/metadata unless the papers support it.",
+    "unsafe proof/outcome wording blocked",
     "Do not state \"final medical report\" — Medical material is absent, draft, or outstanding",
     "Do not state \"medical report proves\" — Medical material is absent, draft, or outstanding",
     "Do not state \"medical is consistent\" — Medical material is absent, draft, or outstanding"
