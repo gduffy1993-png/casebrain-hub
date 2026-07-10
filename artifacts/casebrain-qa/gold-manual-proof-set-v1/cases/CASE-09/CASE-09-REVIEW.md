@@ -12,9 +12,9 @@
 
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
 - [PASS] **CPS chase coverage:** 1/3 expected chase themes reflected in builder output
-- [PASS] **Court line present:** Safe court / position line generated
+- [WARN] **Court line family fit:** Court line uses digital/message-account wording on a non-digital family — check for template drift
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
-- [WARN] **Source/page anchors:** No page anchors on sampled receipts — confirm against truth-key anchors
+- [PASS] **Source/page anchors:** N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)
 - [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
 
 ---

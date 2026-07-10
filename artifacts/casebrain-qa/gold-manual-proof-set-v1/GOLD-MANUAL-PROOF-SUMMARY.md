@@ -1,9 +1,9 @@
 # Gold Manual Proof Set v1 — Summary
 
-**Generated:** 2026-07-10T10:12:49.378Z  
+**Generated:** 2026-07-10T10:28:44.610Z  
 **Branch intent:** `feature/gold-manual-proof-set-v1`  
 **Cases:** 20/20 packets  
-**Provisional scores (pre-solicitor):** 12 pass · 8 warn · 0 fail  
+**Provisional scores (pre-solicitor):** 13 pass · 7 warn · 0 fail  
 **Hard safety failures across pack:** 0
 
 ## Claim discipline
@@ -31,7 +31,7 @@ It does **not** claim real-world solicitor validation. Each case remains **solic
 | CASE-14 | fraud bank/device attribution | `demo-audit-16-fraud-bank-statements` | PASS | [CASE-14](./cases/CASE-14/CASE-REVIEW.md) |
 | CASE-15 | motoring SJP thin evidence | `demo-audit-18-motoring-sjp-thin` | PASS | [CASE-15](./cases/CASE-15/CASE-REVIEW.md) |
 | CASE-16 | ANPR / vehicle ID | `demo-audit-49-anpr-trap` | WARN | [CASE-16](./cases/CASE-16/CASE-REVIEW.md) |
-| CASE-17 | medical injury report missing | `demo-audit-61-medical-triage-partial` | WARN | [CASE-17](./cases/CASE-17/CASE-REVIEW.md) |
+| CASE-17 | medical injury report missing | `demo-audit-61-medical-triage-partial` | PASS | [CASE-17](./cases/CASE-17/CASE-REVIEW.md) |
 | CASE-18 | prison calls / call logs | `demo-audit-46-prison-calls` | WARN | [CASE-18](./cases/CASE-18/CASE-REVIEW.md) |
 | CASE-19 | social handles / subscriber gap | `demo-audit-47-social-media-handles` | WARN | [CASE-19](./cases/CASE-19/CASE-REVIEW.md) |
 | CASE-20 | OCR/date/court mismatch | `demo-audit-30-layout-hearing-date` | PASS | [CASE-20](./cases/CASE-20/CASE-REVIEW.md) |

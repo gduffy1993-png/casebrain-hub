@@ -11,10 +11,10 @@
 ## Pass / warn / fail (provisional)
 
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [WARN] **CPS chase coverage:** Builder chase labels do not clearly match truth-key chase list — manual check
-- [PASS] **Court line present:** Safe court / position line generated
+- [WARN] **CPS chase coverage:** Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution for human review
+- [WARN] **Court line family fit:** Court line uses digital/message-account wording on a non-digital family — check for template drift
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
-- [WARN] **Source/page anchors:** No page anchors on sampled receipts — confirm against truth-key anchors
+- [PASS] **Source/page anchors:** N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)
 - [WARN] **Provisional pack score (pre-solicitor):** Not solicitor-validated — Ged/solicitor must complete checklist
 
 ---

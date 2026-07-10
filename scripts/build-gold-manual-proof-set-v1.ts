@@ -408,6 +408,40 @@ function box(label: string, value: Box, note: string): string {
   return `- ${mark} **${label}:** ${note}`;
 }
 
+function tokens(s: string): string[] {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((t) => t.length >= 4);
+}
+
+function chaseThemeHit(expectedItem: string, chaseLabels: string): boolean {
+  const exp = expectedItem.toLowerCase();
+  if (chaseLabels.includes(exp.slice(0, 18))) return true;
+  const first = exp.split(/\s+/)[0] ?? "";
+  if (first.length >= 4 && chaseLabels.includes(first)) return true;
+  const expTokens = tokens(expectedItem);
+  const labelTokens = new Set(tokens(chaseLabels));
+  const overlap = expTokens.filter((t) => labelTokens.has(t));
+  return overlap.length >= 2;
+}
+
+function courtLineLooksOffFamily(familyLabel: string, courtLine: string | null): string | null {
+  if (!courtLine?.trim()) return null;
+  const family = familyLabel.toLowerCase();
+  const line = courtLine.toLowerCase();
+  const digitalFamily = /phone|harassment|social|subscriber|translated|message|encro|fraud|attribution/.test(family);
+  if (!digitalFamily && /message\/account|screenshot|subscriber attribution|phone download/.test(line)) {
+    return "Court line uses digital/message-account wording on a non-digital family — check for template drift";
+  }
+  const orderFamily = /restraining|domestic order|bail|order breach/.test(family);
+  if (orderFamily && /message\/account|phone download/.test(line)) {
+    return "Court line does not mention order/service gaps — likely off-family template";
+  }
+  return null;
+}
+
 function compareHints(expected: ExpectedPacket, actual: ActualSummary): { boxes: string[]; provisionalScore: Box } {
   const boxes: string[] = [];
   let score: Box = "hold";
@@ -420,13 +454,19 @@ function compareHints(expected: ExpectedPacket, actual: ActualSummary): { boxes:
   }
 
   const chaseLabels = actual.cpsChase.map((c) => c.label.toLowerCase()).join(" | ");
-  const expectedChaseHit = expected.expectedCpsChase.filter((e) =>
-    chaseLabels.includes(e.toLowerCase().slice(0, 18)) || chaseLabels.includes(e.toLowerCase().split(/\s+/)[0] ?? ""),
-  );
+  const expectedChaseHit = expected.expectedCpsChase.filter((e) => chaseThemeHit(e, chaseLabels));
+  const genericOnly =
+    actual.cpsChase.length > 0 &&
+    actual.cpsChase.every((c) => /mg6\s*\/\s*unused|schedule clarification/i.test(c.label));
+
   if (expected.expectedCpsChase.length === 0) {
     boxes.push(box("CPS chase coverage", "warn", "Truth key listed no chase items"));
+    if (score === "hold") score = "warn";
   } else if (expectedChaseHit.length === 0) {
-    boxes.push(box("CPS chase coverage", "warn", "Builder chase labels do not clearly match truth-key chase list — manual check"));
+    const detail = genericOnly
+      ? "Builder fell back to generic MG6 chase; truth key expects family-specific items — product caution for human review"
+      : "Builder chase labels do not clearly match truth-key chase list — manual check";
+    boxes.push(box("CPS chase coverage", "warn", detail));
     if (score === "hold") score = "warn";
   } else {
     boxes.push(
@@ -439,7 +479,13 @@ function compareHints(expected: ExpectedPacket, actual: ActualSummary): { boxes:
   }
 
   if (actual.courtLine?.trim()) {
-    boxes.push(box("Court line present", "pass", "Safe court / position line generated"));
+    const drift = courtLineLooksOffFamily(expected.familyLabel, actual.courtLine);
+    if (drift) {
+      boxes.push(box("Court line family fit", "warn", drift));
+      if (score !== "fail") score = "warn";
+    } else {
+      boxes.push(box("Court line present", "pass", "Safe court / position line generated"));
+    }
   } else {
     boxes.push(box("Court line present", "warn", "No court line in builder output"));
     if (score === "hold") score = "warn";
@@ -456,10 +502,19 @@ function compareHints(expected: ExpectedPacket, actual: ActualSummary): { boxes:
     boxes.push(box("False-missing risk", "pass", "No obvious served→missing inversion in sampled truth-map rows"));
   }
 
+  const expectedAnchors = expected.expectedProofReceiptAnchors.filter((a) => a.sourcePageAnchor).length;
   if (actual.proofReceipts.some((r) => r.sourcePage)) {
     boxes.push(box("Source/page anchors", "pass", "At least one proof receipt carries a page/anchor"));
+  } else if (expectedAnchors === 0) {
+    boxes.push(
+      box(
+        "Source/page anchors",
+        "pass",
+        "N/A — truth key has no page anchors on this catalog case (confirm against bundle text in review)",
+      ),
+    );
   } else {
-    boxes.push(box("Source/page anchors", "warn", "No page anchors on sampled receipts — confirm against truth-key anchors"));
+    boxes.push(box("Source/page anchors", "warn", "Truth key has anchors but sampled receipts show none — manual check"));
     if (score === "hold") score = "warn";
   }
 

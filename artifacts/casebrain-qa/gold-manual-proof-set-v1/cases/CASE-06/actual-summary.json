@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-06",
   "sourceCaseId": "demo-audit-04-co-def-interview",
-  "builtAt": "2026-07-10T10:12:45.238Z",
+  "builtAt": "2026-07-10T10:28:41.486Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
   "clientLabel": "Morgan Reid",

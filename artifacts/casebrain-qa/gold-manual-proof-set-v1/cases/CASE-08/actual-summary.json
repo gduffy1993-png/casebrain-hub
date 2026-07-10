@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-08",
   "sourceCaseId": "demo-audit-25-charge-bundle-mismatch",
-  "builtAt": "2026-07-10T10:12:46.187Z",
+  "builtAt": "2026-07-10T10:28:41.850Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Being concerned in the supply of a controlled drug of Class A, contrary to section 4(2)(b) of the Misuse of Drugs Act 1971",
   "clientLabel": "Jordan Clarke",
