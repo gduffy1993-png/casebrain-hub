@@ -79,6 +79,8 @@ for (const receipt of model.receipts) {
 assert.equal(deriveSafeAction("missing", "needs_review"), "chase");
 assert.equal(deriveSafeAction("served", "unsafe"), "do-not-use");
 assert.equal(deriveSupportLevel("served", "strong"), "Strong");
+assert.equal(deriveSupportLevel("missing", "needs_review"), "Limited on papers");
+assert.equal(deriveSupportLevel("unknown", "needs_review"), "Not confirmed on papers");
 assert.equal(stateColourKey("served"), "served");
 assert.equal(stateColourKey("referred_only"), "referred");
 assert.equal(stateColourKey("missing"), "missing");
@@ -123,7 +125,9 @@ const panelCopy = [
   PROOF_RECEIPT_GUARD,
   ...model.receipts.map((r) => r.outputLine),
   ...model.receipts.map((r) => r.solicitorReviewNote ?? ""),
+  ...model.receipts.map((r) => r.sourceSnippet ?? ""),
   ...model.refusedOverstatements.flatMap((r) => [r.blockedLine, r.safeAlternative]),
+  ...model.familyCards.flatMap((c) => [c.whyShown, c.safeSummary, ...c.linkedLabels]),
 ].join("\n");
 assert.ok(
   !PROOF_RECEIPT_SMOKE_FORBIDDEN.test(panelCopy),

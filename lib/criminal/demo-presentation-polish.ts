@@ -1,6 +1,7 @@
 import { humanizeChaseFragmentLabel } from "@/lib/criminal/disclosure-chase-finalize";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { evidenceRowFromSourceState } from "@/lib/criminal/five-answers/evidence-trace";
+import { sanitizeSolicitorVisibleText } from "@/lib/criminal/overview-presentation";
 
 /** Prod Taylor Loom demo case — presentation routing only. */
 export const DEMO_PRESENTATION_CASE_ID =
@@ -175,10 +176,12 @@ export function polishPresentationBlock(text: string, bundleHay = ""): string {
     .map((line) => polishPresentationLine(line, context))
     .filter((line) => line && !/No key gaps listed/i.test(line));
 
-  return filtered
-    .join("\n")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
+  return sanitizeSolicitorVisibleText(
+    filtered
+      .join("\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim(),
+  );
 }
 
 type ChaseDisplayItem = {

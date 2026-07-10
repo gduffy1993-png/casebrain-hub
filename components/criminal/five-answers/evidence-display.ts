@@ -1,5 +1,6 @@
 import type { EvidenceExistence } from "@/lib/criminal/five-answers/types";
 import { displayExistenceLabel } from "@/lib/criminal/five-answers/display-labels";
+import { sanitizeSolicitorVisibleText } from "@/lib/criminal/overview-presentation";
 
 /** UI-only human labels for evidence rows — does not change classification. */
 export function humanizeEvidenceLabel(label: string, existence: EvidenceExistence): string {
@@ -71,12 +72,14 @@ export function humanizeEvidenceLabel(label: string, existence: EvidenceExistenc
 }
 
 export function sanitizeProofLine(line: string): string {
-  return line
-    .replace(/^Unknown\s*[—–-]\s*/i, "")
-    .replace(/\bsolicitor review required\b/gi, "")
-    .replace(/\bdo not say\b/gi, "Do not overstate:")
-    .replace(/\s{2,}/g, " ")
-    .trim();
+  return sanitizeSolicitorVisibleText(
+    line
+      .replace(/^Unknown\s*[—–-]\s*/i, "")
+      .replace(/\bsolicitor review required\b/gi, "")
+      .replace(/\bdo not say\b/gi, "Do not overstate:")
+      .replace(/\s{2,}/g, " ")
+      .trim(),
+  );
 }
 
 export type GotRightPreviewItem = {

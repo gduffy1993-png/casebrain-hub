@@ -10,9 +10,9 @@ export type ProofReceiptSurface =
 export type ProofSupportLevel =
   | "Strong"
   | "Partial"
-  | "Weak"
+  | "Limited on papers"
   | "Not supported"
-  | "Not assessable";
+  | "Not confirmed on papers";
 
 export type ProofSafeAction = "rely" | "check" | "chase" | "do-not-use";
 

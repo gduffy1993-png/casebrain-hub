@@ -192,7 +192,7 @@ export function ConfidenceDashboardPanel({
               <li>Missing: {counts.missing}</li>
               <li>Incomplete: {counts.incomplete}</li>
               <li>Not safely confirmed: {counts.not_safely_confirmed}</li>
-              <li>Provisional / needs review: {counts.provisional_or_needs_review}</li>
+              <li>Provisional / solicitor review: {counts.provisional_or_needs_review}</li>
             </ul>
           ) : (
             <p className="text-[11px] text-slate-500 mt-1">Not enough source-state data yet</p>

@@ -6,9 +6,9 @@ export function deriveSupportLevel(
   existence: EvidenceExistence,
   reliability: EvidenceReliability,
 ): ProofSupportLevel {
-  if (existence === "unknown") return "Not assessable";
+  if (existence === "unknown") return "Not confirmed on papers";
   if (reliability === "unsafe" || reliability === "inference_only") return "Not supported";
-  if (existence === "missing" || existence === "referred_only") return "Weak";
+  if (existence === "missing" || existence === "referred_only") return "Limited on papers";
   if (reliability === "contested" || reliability === "weak") return "Partial";
   if (reliability === "needs_review") return "Partial";
   if (reliability === "strong" && existence === "served") return "Strong";
@@ -53,7 +53,7 @@ export const STATE_COLOUR_CLASSES: Record<StateColourKey, { badge: string; dot: 
   partial: {
     badge: "border-amber-700/60 bg-amber-950/40 text-amber-200",
     dot: "bg-amber-400",
-    label: "Partial / needs review",
+    label: "Partial / check first",
   },
   referred: {
     badge: "border-slate-600/70 bg-slate-800/50 text-slate-300",

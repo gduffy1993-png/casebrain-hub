@@ -7,7 +7,7 @@ const LABELS: Record<SourceStateKind, string> = {
   missing: "Missing",
   not_safely_confirmed: "Not safely confirmed",
   provisional: "Provisional",
-  needs_review: "Needs review",
+  needs_review: "Solicitor review",
 };
 
 const VARIANTS: Record<

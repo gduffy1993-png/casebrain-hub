@@ -23,7 +23,6 @@ import { EvidenceTracePanel } from "./EvidenceTracePanel";
 import { CaseCockpitPanel } from "./CaseCockpitPanel";
 import { EvidenceTruthMapPanel } from "./EvidenceTruthMapPanel";
 import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
-import { ProofPacketPreviewPanel } from "./ProofPacketPreviewPanel";
 import { ProofReceiptPanel } from "./ProofReceiptPanel";
 import { buildProofReceiptView } from "@/lib/criminal/proof-receipt";
 import { FiveAnswersCompactSection } from "./FiveAnswersCompactSection";
@@ -33,6 +32,13 @@ import {
   filterBundleFamilyWarnings,
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
+import {
+  dedupeEvidenceRowsByLabel,
+  dedupePresentationLines,
+  filterFamilyProofCardsForBundle,
+  gapEvidenceRows,
+  servedEvidenceRows,
+} from "@/lib/criminal/overview-presentation";
 import type { EvidenceTraceRow, EvidenceTraceSection, FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { useMemo, useState, type ReactNode } from "react";
 
@@ -89,13 +95,11 @@ function AnswerCard({
 }
 
 function servedRows(rows: FiveAnswersEvidenceRow[]) {
-  return rows.filter((r) => r.existence === "served");
+  return servedEvidenceRows(rows);
 }
 
 function gapRows(rows: FiveAnswersEvidenceRow[]) {
-  return rows.filter((r) =>
-    ["referred_only", "missing", "unknown", "not_safely_confirmed"].includes(r.existence),
-  );
+  return gapEvidenceRows(rows);
 }
 
 function sourcePositionText(rows: FiveAnswersEvidenceRow[], bundleThin: boolean): string {
@@ -154,7 +158,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       bundleText: bundleMeta?.frontMatterScan ?? undefined,
     });
 
-    const gapRows = ensureDigitalHarassmentGapRows(
+    const gapRowsPolished = ensureDigitalHarassmentGapRows(
       built.evidenceState.rows,
       bundleHay,
       allegation ?? "",
@@ -162,8 +166,10 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
     return {
       ...built,
-      evidenceState: { ...built.evidenceState, rows: gapRows },
-      mustNotOverstate: built.mustNotOverstate.map((line) => polishPresentationLine(line, bundleHay)),
+      evidenceState: { ...built.evidenceState, rows: dedupeEvidenceRowsByLabel(gapRowsPolished) },
+      mustNotOverstate: dedupePresentationLines(
+        built.mustNotOverstate.map((line) => polishPresentationLine(line, bundleHay)),
+      ),
     };
   }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, bundleMeta?.frontMatterScan, bundleHay]);
 
@@ -233,12 +239,16 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
   const proofReceipts = useMemo(() => {
     if (!view) return null;
-    return buildProofReceiptView({
+    const model = buildProofReceiptView({
       view,
       chase: chase ?? null,
       bundleHay,
       allegation: allegation ?? "",
     });
+    return {
+      ...model,
+      familyCards: filterFamilyProofCardsForBundle(model.familyCards, bundleHay, allegation ?? ""),
+    };
   }, [view, chase, bundleHay, allegation]);
 
   const bundleThin = (bundleMeta?.documentCount ?? 0) <= 1;
@@ -324,8 +334,11 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
         <div id="overview-trust" className="space-y-3 scroll-mt-4">
           <EvidenceTruthMapPanel rows={view.evidenceState.rows} />
-          <ProofReceiptPanel model={proofReceipts!} />
-          <ProofPacketPreviewPanel rows={view.evidenceState.rows} warnings={view.mustNotOverstate} />
+          <ProofReceiptPanel
+            model={proofReceipts!}
+            evidenceRows={view.evidenceState.rows}
+            warnings={view.mustNotOverstate}
+          />
         </div>
 
         <FiveAnswersCompactSection summaries={answerSummaries}>
@@ -358,7 +371,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
             {served.length ? (
               <ul className="space-y-1.5 text-sm text-slate-300">
                 {served.map((row, i) => (
-                  <li key={i}>{row.label}</li>
+                  <li key={i}>{humanizeEvidenceLabel(row.label, row.existence)}</li>
                 ))}
               </ul>
             ) : (
@@ -377,7 +390,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
               <ul className="space-y-2">
                 {gaps.slice(0, 6).map((row, i) => (
                   <li key={i} className="text-sm text-slate-300 flex flex-wrap items-center gap-2">
-                    <span>{row.label}</span>
+                    <span>{humanizeEvidenceLabel(row.label, row.existence)}</span>
                     <Badge variant="secondary" size="sm" className="text-[9px]">
                       {displayExistenceLabel(row.existence)}
                     </Badge>
@@ -420,7 +433,13 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
             traceSection="do_not_overstate"
             traceRows={view.evidenceTrace.bySection.do_not_overstate}
           >
-            <DontSaySafetyBox items={view.mustNotOverstate.slice(0, 5)} compact />
+            {hasWarningsAbove ? (
+              <p className="text-sm text-slate-400">
+                Warnings are shown in Proof receipts above — expand Five answers trace for source detail.
+              </p>
+            ) : (
+              <DontSaySafetyBox items={view.mustNotOverstate.slice(0, 5)} compact />
+            )}
           </AnswerCard>
         </FiveAnswersCompactSection>
       </div>

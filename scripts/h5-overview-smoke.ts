@@ -427,11 +427,15 @@ async function main(): Promise<void> {
       }
     }
     if (receiptBody) {
-      if (/guilty|not guilty|legal advice|will win|will lose/i.test(receiptBody)) {
+      const forbiddenReceiptPattern = /guilty|not guilty|legal advice|will win|will lose/gi;
+      const forbiddenReceiptMatches = [...receiptBody.matchAll(forbiddenReceiptPattern)].map((m) => m[0]);
+      if (forbiddenReceiptMatches.length) {
+        const snippetStart = Math.max(0, (receiptBody.search(forbiddenReceiptPattern) ?? 0) - 40);
+        const snippet = receiptBody.slice(snippetStart, snippetStart + 120).replace(/\s+/g, " ").trim();
         steps.push({
           id: "proof_receipt_forbidden_wording",
           status: "fail",
-          detail: "Forbidden outcome/advice wording in proof receipt panel",
+          detail: `Forbidden outcome/advice wording in proof receipt panel: ${[...new Set(forbiddenReceiptMatches)].join(", ")} · …${snippet}…`,
         });
       } else {
         steps.push({ id: "proof_receipt_forbidden_wording", status: "pass" });
@@ -477,7 +481,7 @@ async function main(): Promise<void> {
       });
     } else {
       const body = await desktop.locator("body").innerText();
-      if (/proof packet preview/i.test(body)) {
+      if (/proof packet (preview|summary)/i.test(body)) {
         steps.push({ id: "proof_packet_preview_visible", status: "pass", detail: "content without testid" });
         steps.push({ id: "proof_packet_under_truth_map", status: "warn", detail: "text present but testid missing" });
       } else {

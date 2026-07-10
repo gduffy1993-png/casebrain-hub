@@ -4,21 +4,15 @@ import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import {
   displayTruthMapAction,
   displayCanRelyLabel,
+  displayReliabilityLabel,
 } from "@/lib/criminal/five-answers/display-labels";
+import { dedupeEvidenceRowsByLabel } from "@/lib/criminal/overview-presentation";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { humanizeEvidenceLabel } from "./evidence-display";
 import { EvidenceStateBadge, EvidenceStateLegend } from "./EvidenceStateBadge";
 
 function dedupeRows(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvidenceRow[] {
-  const seen = new Set<string>();
-  const out: FiveAnswersEvidenceRow[] = [];
-  for (const row of rows) {
-    const key = row.label.trim().toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(row);
-  }
-  return out;
+  return dedupeEvidenceRowsByLabel(rows);
 }
 
 function isOtherDefendantRow(row: FiveAnswersEvidenceRow): boolean {

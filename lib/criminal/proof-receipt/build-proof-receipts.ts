@@ -140,7 +140,7 @@ function parseRefusedOverstatements(lines: string[]): RefusedOverstatementRow[] 
     out.push({
       id: `refused-${i}`,
       blockedLine: sanitizeProofReceiptPanelCopy(blockedLine),
-      reason: "Unsafe on current papers — copy gate blocked this wording.",
+      reason: "Unsafe on current papers — wording blocked pending solicitor review.",
       safeAlternative: "Describe only what source material supports; mark gaps for chase where material is outstanding.",
     });
   }
