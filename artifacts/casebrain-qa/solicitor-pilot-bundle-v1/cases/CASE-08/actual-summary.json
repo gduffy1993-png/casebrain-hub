@@ -1,0 +1,114 @@
+{
+  "goldId": "CASE-08",
+  "sourceCaseId": "demo-audit-69-charge-mg5-hearing",
+  "builtAt": "2026-07-10T18:40:01.671Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
+  "clientLabel": "Jordan Hale",
+  "truthMapRows": [
+    {
+      "label": "witness MG11",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "custody extract",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "corrected charge sheet",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "updated mg5",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "court listing confirmation",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "corrected charge sheet",
+      "draft": "Please provide corrected charge sheet or confirm in writing why it is not available."
+    },
+    {
+      "label": "updated mg5",
+      "draft": "Please provide updated mg5 or confirm in writing why it is not available."
+    },
+    {
+      "label": "court listing confirmation",
+      "draft": "Please provide court listing confirmation or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.",
+  "clientSummaryPreview": null,
+  "doNotOverstate": [
+    "unsafe proof/outcome wording blocked",
+    "Do not treat draft/unsigned MG11 as a final served statement."
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "corrected charge sheet",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "updated mg5",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "court listing confirmation",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record that the charge wording, MG5 summary, and hearing/listing position require alignment before the defence position is fixed.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "source verification required",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide corrected charge sheet or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide updated mg5 or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide court listing confirmation or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    }
+  ],
+  "hardSafetyFailures": []
+}

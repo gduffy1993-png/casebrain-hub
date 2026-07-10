@@ -1,0 +1,168 @@
+{
+  "goldId": "CASE-20",
+  "sourceCaseId": "demo-audit-30-layout-hearing-date",
+  "familyLabel": "OCR/date/court mismatch",
+  "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-30-layout-hearing-date/bundle-text.md",
+  "truthStates": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "cctv still images",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "source_page_anchor": "6"
+    },
+    {
+      "evidence_item": "master cctv footage",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "full cctv export",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "continuity/provenance",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "audit trail",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "recognition/ID basis",
+      "evidence_type": "cctv",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null,
+      "must_not_say": [
+        "CCTV proves identity",
+        "CCTV proves offence"
+      ]
+    }
+  ],
+  "expectedMissingMaterial": [
+    "master cctv footage",
+    "full cctv export",
+    "continuity/provenance",
+    "audit trail",
+    "recognition/ID basis"
+  ],
+  "unsafeToSayWarnings": [
+    "CCTV proves identity",
+    "CCTV proves offence",
+    "positive identification from stills",
+    "phone download",
+    "Encro handle"
+  ],
+  "expectedCpsChase": [
+    "Court listing confirmation",
+    "Hearing / date notice",
+    "Corrected schedule / index (OCR conflict)",
+    "Source page / date verification"
+  ],
+  "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
+  "expectedClientSummaryPoints": [
+    "Controlled matter: DA-30 Devon Walsh — layout/OCR hearing date trap",
+    "Served on papers (examples): charge sheet; mg5; mg6",
+    "Outstanding / chase candidates: master cctv footage; full cctv export; continuity/provenance; audit trail",
+    "Plain English only — solicitor review required before client use"
+  ],
+  "expectedProofReceiptAnchors": [
+    {
+      "label": "charge sheet",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg5",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg6",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "cctv still images",
+      "state": "served",
+      "sourcePageAnchor": "6",
+      "chaseNeeded": false
+    },
+    {
+      "label": "master cctv footage",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "full cctv export",
+      "state": "referred_only",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "continuity/provenance",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "audit trail",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "recognition/ID basis",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    }
+  ],
+  "claimDiscipline": "Gold manual review on a controlled/PDF-backed bundle. Not real-world solicitor validation. Solicitor review required before gold promotion."
+}
