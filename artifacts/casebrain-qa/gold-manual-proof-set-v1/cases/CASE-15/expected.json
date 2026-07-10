@@ -79,9 +79,11 @@
     "BWV shows"
   ],
   "expectedCpsChase": [
-    "device calibration certificate",
-    "full intoxilyser record",
-    "cctv/dashcam export"
+    "Notice / requirement to identify driver",
+    "Proof of service / posting",
+    "Keeper / DVLA record",
+    "Nomination / response record",
+    "Procedure bundle / SJP notice"
   ],
   "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
   "expectedClientSummaryPoints": [

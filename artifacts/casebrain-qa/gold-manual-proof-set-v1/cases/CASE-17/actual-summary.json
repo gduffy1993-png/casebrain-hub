@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-17",
   "sourceCaseId": "demo-audit-61-medical-triage-partial",
-  "builtAt": "2026-07-10T15:02:15.381Z",
+  "builtAt": "2026-07-10T15:28:11.242Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
   "clientLabel": "Owen Pike",

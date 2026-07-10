@@ -70,6 +70,12 @@ export function resolveFamilyCourtLine(familyLabel: string): string | null {
   if (/mixed-defendant|co-def/.test(family)) {
     return "The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant interview summary/audio remain outstanding.";
   }
+  if (/motoring|sjp/.test(family)) {
+    return "The defence asks the court to record that the s172 notice/requirement to identify the driver, keeper position, and service/nomination records require confirmation before the defence position on driver identification is fixed.";
+  }
+  if (/ocr|date\/court|layout|hearing date|court mismatch/.test(family)) {
+    return "The defence asks the court to record that the hearing/listing date and court venue require confirmation because of OCR/layout conflict on the current papers, before the defence relies on any listed date.";
+  }
   return null;
 }
 
@@ -112,7 +118,7 @@ export function filterDoNotOverstateForFamily(familyLabel: string, items: string
   const allowBwv = /\bbwv\b|body.?worn/.test(family);
   const allowCustody = /custody|pace|youth|bail|appropriate adult|intermediary/.test(family);
   const allowDrugs = /drug|lab|continuity|supply|anpr|vehicle/.test(family);
-  const allowCctv = /\bcctv\b|anpr|motoring/.test(family);
+  const allowCctv = /\bcctv\b|anpr/.test(family);
   const allowAbe = /abe|sexual|historic|first account|third-party/.test(family);
   const allowEncro = /\bencro\b/.test(family);
   const allowPhoneExtraction = /phone|harassment|social|subscriber|translated|message|encro|fraud|attribution/.test(
@@ -120,6 +126,7 @@ export function filterDoNotOverstateForFamily(familyLabel: string, items: string
   );
   const allowMedical = /medical|injury|triage/.test(family);
   const allowOrder = /restraining|domestic order|order breach|bail/.test(family);
+  const isS172Motoring = /motoring|sjp/.test(family);
 
   return [...new Set(items)].filter((raw) => {
     const s = raw.toLowerCase();
@@ -127,6 +134,8 @@ export function filterDoNotOverstateForFamily(familyLabel: string, items: string
     if (!allowCustody && /\bcustody\b/.test(s)) return false;
     if (!allowDrugs && /\bdrugs?\b|\bclass a\b|\bmisuse of drugs\b/.test(s)) return false;
     if (!allowCctv && /\bcctv\b/.test(s)) return false;
+    // S172 / SJP packets must not carry CCTV-stills ID do-not samples
+    if (isS172Motoring && /stills|master footage|positive identification from stills/.test(s)) return false;
     if (!allowAbe && /\babe\b/.test(s)) return false;
     if (!allowEncro && /\bencro\b/.test(s)) return false;
     if (!allowPhoneExtraction && /phone extraction|phone download|message export|handle attribution|platform extraction/.test(s)) {
@@ -204,7 +213,30 @@ export function resolveFamilyChaseLabels(familyLabel: string): string[] {
   if (/social handle|subscriber gap/.test(f)) {
     return ["Platform disclosure", "Handle-to-defendant mapping", "IP / subscriber data"];
   }
+  if (/motoring|sjp/.test(f)) {
+    return [
+      "Notice / requirement to identify driver",
+      "Proof of service / posting",
+      "Keeper / DVLA record",
+      "Nomination / response record",
+      "Procedure bundle / SJP notice",
+    ];
+  }
+  if (/ocr|date\/court|layout|hearing date|court mismatch/.test(f)) {
+    return [
+      "Court listing confirmation",
+      "Hearing / date notice",
+      "Corrected schedule / index (OCR conflict)",
+      "Source page / date verification",
+    ];
+  }
   return [];
+}
+
+/** Wave B families where gold presentation must lead with family chase, not builder device/CCTV stack. */
+export function prefersFamilyChasePresentation(familyLabel: string): boolean {
+  const f = familyLabel.toLowerCase();
+  return /motoring|sjp|ocr|date\/court|layout|hearing date|court mismatch/.test(f);
 }
 
 function tokens(s: string): string[] {
@@ -306,9 +338,21 @@ export function enrichChasePresentation(
   items: Array<{ label: string; draftChaseWording?: string | null }>,
   expectedChase: string[],
 ): PresentedChaseItem[] {
+  const familyLabels = resolveFamilyChaseLabels(familyLabel);
+
+  // Wave B: force S172 / OCR-date family chase so packets do not lead with device or CCTV stacks.
+  if (prefersFamilyChasePresentation(familyLabel) && familyLabels.length > 0) {
+    return polishChasePresentationForFamily(
+      familyLabel,
+      familyLabels.map((label) => ({
+        label,
+        draftChaseWording: defaultChaseDraft(label),
+      })),
+    );
+  }
+
   const demoted = demoteGenericMg6Chase(items);
   const substantive = demoted.filter((i) => !isGenericMg6ChaseLabel(i.label));
-  const familyLabels = resolveFamilyChaseLabels(familyLabel);
   const preferred = (expectedChase.length > 0 ? expectedChase : familyLabels)
     .map((s) => s.trim())
     .filter(Boolean)

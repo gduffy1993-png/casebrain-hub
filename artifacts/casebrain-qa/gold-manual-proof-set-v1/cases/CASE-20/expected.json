@@ -96,11 +96,10 @@
     "Encro handle"
   ],
   "expectedCpsChase": [
-    "master cctv footage",
-    "full cctv export",
-    "continuity/provenance",
-    "CCTV audit trail / source hash record",
-    "recognition/ID basis"
+    "Court listing confirmation",
+    "Hearing / date notice",
+    "Corrected schedule / index (OCR conflict)",
+    "Source page / date verification"
   ],
   "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
   "expectedClientSummaryPoints": [

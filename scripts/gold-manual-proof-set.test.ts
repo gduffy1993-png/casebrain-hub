@@ -8,6 +8,7 @@ import {
   gateCourtLineForFamily,
   isGenericMg6ChaseLabel,
   presentDoNotOverstateForFamily,
+  prefersFamilyChasePresentation,
   resolveFamilyChaseLabels,
   resolveFamilyCourtLine,
 } from "../lib/eval/gold-manual-proof-set/presentation-gates";
@@ -193,5 +194,65 @@ const cctvCourt = gateCourtLineForFamily(
   "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
 );
 assert.ok(cctvCourt && /full export/i.test(cctvCourt));
+
+assert.equal(prefersFamilyChasePresentation("motoring SJP thin evidence"), true);
+assert.equal(prefersFamilyChasePresentation("OCR/date/court mismatch"), true);
+assert.equal(prefersFamilyChasePresentation("charge mismatch"), false);
+
+const s172Chase = enrichChasePresentation(
+  "motoring SJP thin evidence",
+  [
+    { label: "Device calibration certificate" },
+    { label: "Full intoxilyser record" },
+    { label: "CCTV / dashcam export" },
+  ],
+  ["device calibration certificate", "full intoxilyser record", "cctv/dashcam export"],
+);
+assert.ok(s172Chase.some((c) => /s172|identify driver|keeper|nomination|SJP/i.test(c.label)));
+assert.ok(!s172Chase.some((c) => /intoxilyser|calibration/i.test(c.label)));
+
+const s172Court = gateCourtLineForFamily(
+  "motoring SJP thin evidence",
+  "The defence asks the court to record per MG6C that procedure summary is served but device calibration remains outstanding.",
+);
+assert.ok(s172Court && /s172|keeper|nomination|driver identification/i.test(s172Court));
+assert.ok(!/intoxilyser|calibration/i.test(s172Court!));
+
+const s172Overstate = presentDoNotOverstateForFamily("motoring SJP thin evidence", [
+  "Do not treat device summary as proof of reliability",
+  'Do not state "CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.',
+]);
+assert.ok(s172Overstate.some((s) => /device summary|reliability/i.test(s)));
+assert.ok(!s172Overstate.some((s) => /cctv stills|master footage/i.test(s)));
+
+const ocrChase = enrichChasePresentation(
+  "OCR/date/court mismatch",
+  [
+    { label: "Master CCTV footage" },
+    { label: "Full CCTV export" },
+    { label: "CCTV Continuity / provenance" },
+  ],
+  ["master cctv footage", "full cctv export"],
+);
+assert.ok(ocrChase.some((c) => /listing|hearing|OCR|date verification/i.test(c.label)));
+assert.ok(!ocrChase.some((c) => /master cctv|cctv export/i.test(c.label)));
+
+const ocrCourt = gateCourtLineForFamily(
+  "OCR/date/court mismatch",
+  "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
+);
+assert.ok(ocrCourt && /OCR|listing|hearing/i.test(ocrCourt));
+assert.ok(!/CCTV still|master CCTV/i.test(ocrCourt!));
+
+const chargeStill = enrichChasePresentation(
+  "charge mismatch",
+  [
+    { label: "Corrected charge sheet" },
+    { label: "Updated MG5" },
+    { label: "Court listing confirmation / charge-MG5-listing alignment" },
+  ],
+  ["corrected charge sheet", "updated mg5", "court listing confirmation"],
+);
+assert.ok(chargeStill.some((c) => /charge sheet|MG5|listing/i.test(c.label)));
 
 console.log("gold-manual-proof-set.test.ts: PASS");

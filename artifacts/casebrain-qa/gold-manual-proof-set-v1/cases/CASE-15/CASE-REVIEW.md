@@ -12,7 +12,7 @@
 ## Pass / warn / fail (provisional)
 
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [PASS] **CPS chase coverage:** 3/3 expected chase themes reflected in builder output
+- [PASS] **CPS chase coverage:** 5/5 expected chase themes reflected in builder output
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
@@ -53,9 +53,11 @@
 
 ## Expected CPS chase
 
-- device calibration certificate
-- full intoxilyser record
-- cctv/dashcam export
+- Notice / requirement to identify driver
+- Proof of service / posting
+- Keeper / DVLA record
+- Nomination / response record
+- Procedure bundle / SJP notice
 
 ## Expected court line (intent)
 
@@ -89,10 +91,10 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 - **Allegation:** Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988
 - **Client label:** Ella Shaw
-- **Court line:** The defence asks the court to record per MG6C that procedure summary is served but device calibration, full intoxilyser record, and CCTV/dashcam export remain outstanding.
-- **Chase items:** Device calibration certificate; Full intoxilyser record; CCTV / dashcam export
-- **Do-not-overstate (sample, family-filtered):** Do not treat device summary as proof of reliability · Do not treat procedure summary alone as proof of device reliability or identity. · Do not state "CCTV stills served — master footage outstanding; ID not safely confirmed from current papers. · Do not state "Full CCTV stills served — master footage outstanding; ID not safely confirmed from current papers.
-- **Proof receipts (sample):** 7 rows; first: Device calibration certificate
+- **Court line:** The defence asks the court to record that the s172 notice/requirement to identify the driver, keeper position, and service/nomination records require confirmation before the defence position on driver identification is fixed.
+- **Chase items:** Notice / requirement to identify driver; Proof of service / posting; Keeper / DVLA record; Nomination / response record; Procedure bundle / SJP notice
+- **Do-not-overstate (sample, family-filtered):** Do not treat device summary as proof of reliability · Do not treat procedure summary alone as proof of device reliability or identity.
+- **Proof receipts (sample):** 9 rows; first: Notice / requirement to identify driver
 
 ### Precomputed demo-audit artifacts
 - cps-chase.json: `artifacts/casebrain-qa/demo-audit-thirty/demo-audit-18-motoring-sjp-thin/cps-chase.json`

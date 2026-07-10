@@ -1,7 +1,7 @@
 {
   "goldId": "CASE-20",
   "sourceCaseId": "demo-audit-30-layout-hearing-date",
-  "builtAt": "2026-07-10T15:02:15.992Z",
+  "builtAt": "2026-07-10T15:28:11.785Z",
   "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
   "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
   "clientLabel": "Devon Walsh",
@@ -39,27 +39,23 @@
   ],
   "cpsChase": [
     {
-      "label": "Master CCTV footage",
-      "draft": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available."
+      "label": "Court listing confirmation",
+      "draft": "Please provide Court listing confirmation or confirm in writing why it is not available."
     },
     {
-      "label": "Full CCTV export",
-      "draft": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available."
+      "label": "Hearing / date notice",
+      "draft": "Please provide Hearing / date notice or confirm in writing why it is not available."
     },
     {
-      "label": "CCTV Continuity / provenance",
-      "draft": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available."
+      "label": "Corrected schedule / index (OCR conflict)",
+      "draft": "Please provide Corrected schedule / index (OCR conflict) or confirm in writing why it is not available."
     },
     {
-      "label": "CCTV audit trail / source hash record",
-      "draft": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available."
-    },
-    {
-      "label": "Recognition / ID basis",
-      "draft": "Please provide Recognition / ID basis (see MG6C/CCTV/06) or confirm in writing why it is not available."
+      "label": "Source page / date verification",
+      "draft": "Please provide Source page / date verification or confirm in writing why it is not available."
     }
   ],
-  "courtLine": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
+  "courtLine": "The defence asks the court to record that the hearing/listing date and court venue require confirmation because of OCR/layout conflict on the current papers, before the defence relies on any listed date.",
   "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full disclosure and your instructions. CCTV still images are on the papers, but the master CCTV footage, full export, continuity/provenance, and audit trail material are still outstanding. Stills alone do not show the full recording. The listing date on the papers may be OCR-corrupted — we will confirm the correct hearing date with the court.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
   "doNotOverstate": [
     "positive identification from stills",
@@ -67,7 +63,7 @@
   ],
   "proofReceipts": [
     {
-      "outputLine": "Master CCTV footage",
+      "outputLine": "Court listing confirmation",
       "surface": "Overview",
       "sourceDocument": "Police / CCTV unit",
       "sourcePage": "CCTV still images | 6-7 |",
@@ -75,7 +71,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Full CCTV export",
+      "outputLine": "Hearing / date notice",
       "surface": "Overview",
       "sourceDocument": "Police / CCTV unit",
       "sourcePage": "CCTV still images | 6-7 |",
@@ -83,15 +79,15 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "CCTV Continuity / provenance",
+      "outputLine": "Corrected schedule / index (OCR conflict)",
       "surface": "Overview",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourceDocument": "Police / CCTV unit",
+      "sourcePage": "CCTV still images | 6-7 |",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
-      "outputLine": "CCTV audit trail / source hash record",
+      "outputLine": "Source page / date verification",
       "surface": "Overview",
       "sourceDocument": "Crown / disclosure officer",
       "sourcePage": null,
@@ -99,7 +95,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.",
+      "outputLine": "The defence asks the court to record that the hearing/listing date and court venue require confirmation because of OCR/layout conflict on the current papers, before the defence relies on any listed date.",
       "surface": "Court",
       "sourceDocument": "Disclosure chase brief",
       "sourcePage": "CCTV still images | 6-7 |",
@@ -107,7 +103,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.",
+      "outputLine": "Please provide Court listing confirmation or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "Police / CCTV unit",
       "sourcePage": "CCTV still images | 6-7 |",
@@ -115,7 +111,7 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available.",
+      "outputLine": "Please provide Hearing / date notice or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "Police / CCTV unit",
       "sourcePage": "CCTV still images | 6-7 |",
@@ -123,15 +119,15 @@
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available.",
+      "outputLine": "Please provide Corrected schedule / index (OCR conflict) or confirm in writing why it is not available.",
       "surface": "CPS Chase",
-      "sourceDocument": "CPS / disclosure officer",
-      "sourcePage": null,
+      "sourceDocument": "Police / CCTV unit",
+      "sourcePage": "CCTV still images | 6-7 |",
       "evidenceState": "Not safely confirmed",
       "safeAction": "check"
     },
     {
-      "outputLine": "Please provide CCTV audit trail / source hash record (see MG6C/CCTV/01) or confirm in writing why it is not available.",
+      "outputLine": "Please provide Source page / date verification or confirm in writing why it is not available.",
       "surface": "CPS Chase",
       "sourceDocument": "Crown / disclosure officer",
       "sourcePage": null,

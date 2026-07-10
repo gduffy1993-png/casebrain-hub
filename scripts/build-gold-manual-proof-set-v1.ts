@@ -32,7 +32,9 @@ import {
   enrichChasePresentation,
   gateCourtLineForFamily,
   isGenericMg6ChaseLabel,
+  prefersFamilyChasePresentation,
   presentDoNotOverstateForFamily,
+  resolveFamilyChaseLabels,
 } from "../lib/eval/gold-manual-proof-set/presentation-gates";
 import type { EvidenceStateTruthKey } from "../lib/eval/evidence-state-audit/types";
 
@@ -153,9 +155,13 @@ function buildExpected(spec: GoldManualCaseSpec, truthKey: EvidenceStateTruthKey
     ...truthKey.evidenceItems.flatMap((i) => i.must_not_say ?? []),
   ].filter(Boolean);
 
-  const chase = truthKey.expectedChaseItems?.length
-    ? truthKey.expectedChaseItems
-    : truthKey.evidenceItems.filter((i) => i.chase_needed).map((i) => i.evidence_item);
+  const familyChase = resolveFamilyChaseLabels(spec.familyLabel);
+  const chase =
+    prefersFamilyChasePresentation(spec.familyLabel) && familyChase.length > 0
+      ? familyChase
+      : truthKey.expectedChaseItems?.length
+        ? truthKey.expectedChaseItems
+        : truthKey.evidenceItems.filter((i) => i.chase_needed).map((i) => i.evidence_item);
 
   const served = truthKey.evidenceItems.filter((i) => i.correct_evidence_state === "served").map((i) => i.evidence_item);
 
@@ -324,10 +330,13 @@ function buildActual(spec: GoldManualCaseSpec, workDir: string, truthKey: Eviden
       }
     : chaseBuilt;
 
+  const familyChaseForPresentation = resolveFamilyChaseLabels(spec.familyLabel);
   const expectedChaseForPresentation =
-    truthKey.expectedChaseItems?.length
-      ? truthKey.expectedChaseItems
-      : truthKey.evidenceItems.filter((i) => i.chase_needed).map((i) => i.evidence_item);
+    prefersFamilyChasePresentation(spec.familyLabel) && familyChaseForPresentation.length > 0
+      ? familyChaseForPresentation
+      : truthKey.expectedChaseItems?.length
+        ? truthKey.expectedChaseItems
+        : truthKey.evidenceItems.filter((i) => i.chase_needed).map((i) => i.evidence_item);
 
   const presentedChase = enrichChasePresentation(
     spec.familyLabel,
@@ -485,6 +494,15 @@ function familyContentDrift(familyLabel: string, actual: ActualSummary): string 
 
   if (/charge mismatch/.test(family) && chargeMismatchLooksLikeEncro(blob)) {
     return "Family slot is charge mismatch but actual surfaces are Encro/handle/platform — not a clean charge-mismatch solicitor example";
+  }
+  if (/ocr|date\/court|layout|hearing date|court mismatch/.test(family)) {
+    const court = (actual.courtLine ?? "").toLowerCase();
+    const chaseBlob = actual.cpsChase.map((c) => c.label).join(" ").toLowerCase();
+    const listingLed = /listing|hearing|ocr|date|venue/.test(court) || /listing|hearing|ocr|date verification/.test(chaseBlob);
+    const cctvLed = /cctv still|master cctv|continuity\/provenance/.test(court) && !/listing|ocr|hearing date/.test(court);
+    if (cctvLed || (!listingLed && /master cctv|cctv still/.test(chaseBlob))) {
+      return "OCR/date/court mismatch slot still leads with CCTV stills/master chase — listing/OCR confirmation should lead";
+    }
   }
   return null;
 }

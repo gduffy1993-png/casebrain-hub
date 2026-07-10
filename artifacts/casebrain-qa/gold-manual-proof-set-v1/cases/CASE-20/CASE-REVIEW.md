@@ -12,7 +12,7 @@
 ## Pass / warn / fail (provisional)
 
 - [PASS] **Hard safety:** No outcome/plea/legal-advice claim patterns in assembled surfaces
-- [PASS] **CPS chase coverage:** 5/5 expected chase themes reflected in builder output
+- [PASS] **CPS chase coverage:** 4/4 expected chase themes reflected in builder output
 - [PASS] **Court line present:** Safe court / position line generated
 - [PASS] **False-missing risk:** No obvious served→missing inversion in sampled truth-map rows
 - [PASS] **Source/page anchors:** At least one proof receipt carries a page/anchor
@@ -56,11 +56,10 @@
 
 ## Expected CPS chase
 
-- master cctv footage
-- full cctv export
-- continuity/provenance
-- CCTV audit trail / source hash record
-- recognition/ID basis
+- Court listing confirmation
+- Hearing / date notice
+- Corrected schedule / index (OCR conflict)
+- Source page / date verification
 
 ## Expected court line (intent)
 
@@ -95,10 +94,10 @@ Provisional hearing-safe line recording what is served vs outstanding on current
 
 - **Allegation:** Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968
 - **Client label:** Devon Walsh
-- **Court line:** The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage and continuity/provenance remain outstanding.
-- **Chase items:** Master CCTV footage; Full CCTV export; CCTV Continuity / provenance; CCTV audit trail / source hash record; Recognition / ID basis
+- **Court line:** The defence asks the court to record that the hearing/listing date and court venue require confirmation because of OCR/layout conflict on the current papers, before the defence relies on any listed date.
+- **Chase items:** Court listing confirmation; Hearing / date notice; Corrected schedule / index (OCR conflict); Source page / date verification
 - **Do-not-overstate (sample, family-filtered):** positive identification from stills · Do not treat stills alone as proof of identity or offence.
-- **Proof receipts (sample):** 9 rows; first: Master CCTV footage
+- **Proof receipts (sample):** 9 rows; first: Court listing confirmation
 
 ### Precomputed demo-audit artifacts
 - cps-chase.json: `artifacts/casebrain-qa/demo-audit-thirty/demo-audit-30-layout-hearing-date/cps-chase.json`
