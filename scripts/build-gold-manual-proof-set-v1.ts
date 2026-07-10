@@ -1235,7 +1235,7 @@ async function main(): Promise<void> {
 
   console.log(`\nDone: ${caseRows.length}/20 packets`);
   console.log(`Provisional: ${summaryJson.provisional.pass} pass · ${summaryJson.provisional.warn} warn · ${summaryJson.provisional.fail} fail`);
-  console.log(`Ready for human review: NO`);
+  console.log(`Ready for human review: ${readyForHumanReview ? "YES" : "NO"}`);
   console.log(`Hard safety failures: ${summaryJson.hardSafetyFailuresTotal}`);
   console.log(`Summary: ${path.join(OUT_ROOT, "GOLD-MANUAL-PROOF-SUMMARY.md")}`);
   console.log(`Internal QA: ${path.join(OUT_ROOT, "INTERNAL-GOLD-QA-REPORT.md")}`);
