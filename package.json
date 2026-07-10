@@ -58,6 +58,7 @@
     "@stripe/stripe-js": "^4.10.0",
     "@supabase/ssr": "^0.5.1",
     "@supabase/supabase-js": "^2.48.0",
+    "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
