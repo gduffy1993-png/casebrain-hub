@@ -42,6 +42,10 @@ import {
   overviewStatusLabel,
   servedEvidenceRows,
 } from "@/lib/criminal/overview-presentation";
+import {
+  polishChasePreviewLabel,
+  solicitorLinesNearlyEqual,
+} from "@/lib/criminal/solicitor-display-dedupe";
 import { useMemo } from "react";
 
 export function FiveAnswersView({ caseId }: { caseId: string }) {
@@ -198,7 +202,12 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
   const served = servedEvidenceRows(view.evidenceState.rows);
   const gaps = gapEvidenceRows(view.evidenceState.rows);
   const stateCounts = countEvidenceStates(view.evidenceState.rows);
-  const topChase = view.chase.slice(0, 5).map((c) => polishPresentationLine(c.label, bundleHay));
+  const topChase = dedupePresentationLines(
+    view.chase
+      .slice(0, 5)
+      .map((c) => polishChasePreviewLabel(polishPresentationLine(c.label, bundleHay)))
+      .filter((label): label is string => Boolean(label)),
+  );
   const riskFlags = overviewBlockedExamples(view.mustNotOverstate, 3);
   const blockedExamples = overviewBlockedExamples(view.mustNotOverstate, 2);
   const status = overviewStatusLabel(matterConfidence.level);
@@ -207,18 +216,26 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     ? polishPresentationBlock(displayCopyBody(clientSummarySection.textForClipboard), bundleHay)
     : null;
 
-  const safeToSay = [
-    view.caseSaying.mainIssue ? polishPresentationLine(view.caseSaying.mainIssue, bundleHay) : "",
-    served.length
-      ? `${served
-          .slice(0, 2)
-          .map((r) => humanizeEvidenceLabel(r.label, r.existence))
-          .join("; ")} on papers (check before reliance).`
-      : "Limited papers — keep the position provisional.",
-  ].filter(Boolean);
+  const courtLineText = hearingMode
+    ? polishPresentationLine(
+        displayCopyBody(hearingMode.safeCourtLine.text, hearingMode.safeCourtLine.footer ?? undefined),
+        bundleHay,
+      )
+    : "";
+  const mainIssueText = polishPresentationLine(view.caseSaying.mainIssue, bundleHay);
+  const mainIssueDistinct = !courtLineText || !solicitorLinesNearlyEqual(mainIssueText, courtLineText);
 
-  const courtChaseLabels =
-    hearingMode?.topChaseItems.map((i) => polishPresentationLine(i.label, bundleHay)) ?? topChase;
+  const safeToSay = dedupePresentationLines(
+    [
+      mainIssueDistinct ? mainIssueText : "",
+      served.length
+        ? `${served
+            .slice(0, 2)
+            .map((r) => humanizeEvidenceLabel(r.label, r.existence))
+            .join("; ")} on papers (check before reliance).`
+        : "Limited papers — keep the position provisional.",
+    ].filter(Boolean),
+  );
 
   return (
     <div className="space-y-3" data-testid="five-answers-view">
@@ -230,14 +247,15 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
           hearing={hearingLabel?.trim() || "Hearing not confirmed"}
           statusLabel={status.label}
           statusVariant={status.variant}
+          hideCourtHearing
         />
 
-        <section className={`${workflowPilotCard} px-3 py-2.5 sm:px-4`} data-testid="five-answers-case-saying">
-          <p className={`${workflowSectionTitle} mb-1`}>Main issue</p>
-          <p className="text-sm text-slate-200 leading-relaxed line-clamp-4">
-            {polishPresentationLine(view.caseSaying.mainIssue, bundleHay)}
-          </p>
-        </section>
+        {mainIssueDistinct ? (
+          <section className={`${workflowPilotCard} px-3 py-2.5 sm:px-4`} data-testid="five-answers-case-saying">
+            <p className={`${workflowSectionTitle} mb-1`}>Main issue</p>
+            <p className="text-sm text-slate-200 leading-relaxed line-clamp-4">{mainIssueText}</p>
+          </section>
+        ) : null}
 
         <OverviewSnapshotBoxes
           servedCount={stateCounts.served}
@@ -254,7 +272,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
             courtLine={hearingMode.safeCourtLine.text}
             courtFooter={hearingMode.safeCourtLine.footer}
             sendabilityLabel={hearingMode.safeCourtLine.sendabilityLabel}
-            topChaseLabels={courtChaseLabels}
+            topChaseLabels={topChase}
+            hideChasePreview
             courtHref={buildTabHref(caseId, "today")}
             chaseHref={buildTabHref(caseId, "disclosure-chase")}
           />
@@ -273,6 +292,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
             model={proofReceipts!}
             evidenceRows={view.evidenceState.rows}
             warnings={view.mustNotOverstate}
+            depthOnly
           />
         </OverviewProofDepthDrawer>
       </div>

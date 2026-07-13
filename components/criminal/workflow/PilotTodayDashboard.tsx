@@ -26,6 +26,8 @@ import {
   resolvePilotChargeDisplay,
   pilotListCap,
 } from "./workflowPilotDisplay";
+import { dedupePilotCourtRecordLines } from "@/lib/criminal/pilot-matter-display-polish";
+import { polishChasePreviewLabel } from "@/lib/criminal/solicitor-display-dedupe";
 
 function CockpitCard({
   title,
@@ -118,9 +120,18 @@ export function PilotTodayDashboard({
   const listCap = pilotListCap(view.documentCount);
   const sayThisItems = dedupePilotLines(view.sayThis, view.safeCourtLine).slice(0, listCap);
   const doNotItems = dedupePilotLines(view.doNotOverstate).slice(0, listCap);
-  const chaseItems = dedupePilotLines(view.chaseItems).slice(0, listCap);
-  const askCourtItems = dedupePilotLines(view.askCourtToRecord, view.safeCourtLine).slice(0, listCap);
-  const nextMoves = dedupePilotLines(view.nextHearingMoves).slice(0, 3);
+  const chaseItems = dedupePilotLines(
+    view.chaseItems
+      .map((line) => polishChasePreviewLabel(line) ?? "")
+      .filter(Boolean),
+    view.safeCourtLine,
+  ).slice(0, listCap);
+  const askCourtItems = dedupePilotCourtRecordLines(
+    dedupePilotLines(view.askCourtToRecord, view.safeCourtLine),
+  ).slice(0, listCap);
+  const nextMoves = dedupePilotLines(view.nextHearingMoves, view.safeCourtLine)
+    .filter((line) => !/^(open\s+chase|chase\s+outstanding\s+disclosure)/i.test(line.trim()))
+    .slice(0, 3);
 
   const topIssue = chaseItems[0] ?? view.collapseRisks[1] ?? "—";
   const nextStep = nextMoves[0] ?? "—";
@@ -172,13 +183,14 @@ export function PilotTodayDashboard({
           accentClass="border-blue-700/50"
         >
           <TrustSectionChrome title="Source-backed court line" sourceState="provisional" />
-          <p className="text-xs text-slate-200 leading-relaxed line-clamp-5">{safeLine}</p>
+          {/* KPI already shows the safe court line — body owns say-this only. */}
           {sayThisItems.length ? (
-            <div className="mt-3 border-t border-slate-700/60 pt-2">
-              <p className={`text-[10px] ${workflowMuted} mb-1.5`}>Say this</p>
-              <BulletList items={sayThisItems} emptyLabel="No solicitor lines on the current brief." />
-            </div>
-          ) : null}
+            <BulletList items={sayThisItems} emptyLabel="No solicitor lines on the current brief." />
+          ) : (
+            <p className="text-xs text-slate-400 leading-relaxed">
+              See the safe court line in the strip above — keep the position provisional until papers confirm.
+            </p>
+          )}
         </CockpitCard>
 
         <CockpitCard
@@ -191,6 +203,7 @@ export function PilotTodayDashboard({
           <Link
             href={chaseHref}
             className="mt-3 inline-flex text-xs font-semibold text-amber-300 hover:text-amber-100"
+            data-testid="pilot-today-open-chase"
           >
             Open Chase ({view.chaseItems.length}) →
           </Link>

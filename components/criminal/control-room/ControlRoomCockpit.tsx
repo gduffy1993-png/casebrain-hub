@@ -158,19 +158,26 @@ export function ControlRoomCockpit({
           ) : null}
         </div>
         <p className={`px-4 pb-3 text-xs flex flex-wrap gap-x-4 gap-y-1 ${pilotDark ? "text-slate-400" : "text-slate-500"}`}>
-          <span>
-            <span className={`font-medium ${metaClass}`}>Court:</span>{" "}
-            {loading ? "—" : courtLabel ?? "Court not safely extracted"}
-          </span>
-          <span>
-            <span className={`font-medium ${metaClass}`}>Stage:</span> {loading ? "—" : stage}
-          </span>
-          <span>
-            <span className={`font-medium ${metaClass}`}>
-              {hideClassicWorkspace ? "Hearing:" : "Next hearing:"}
-            </span>{" "}
-            {loading ? "—" : nextHearing}
-          </span>
+          {/* Pilot shell strip already owns court/hearing — omit duplicate meta when classic workspace is hidden. */}
+          {!hideClassicWorkspace ? (
+            <>
+              <span>
+                <span className={`font-medium ${metaClass}`}>Court:</span>{" "}
+                {loading ? "—" : courtLabel ?? "Court not safely extracted"}
+              </span>
+              <span>
+                <span className={`font-medium ${metaClass}`}>Stage:</span> {loading ? "—" : stage}
+              </span>
+              <span>
+                <span className={`font-medium ${metaClass}`}>Next hearing:</span>{" "}
+                {loading ? "—" : nextHearing}
+              </span>
+            </>
+          ) : (
+            <span>
+              <span className={`font-medium ${metaClass}`}>Stage:</span> {loading ? "—" : stage}
+            </span>
+          )}
         </p>
         {metadataNote ? (
           <p className={`px-4 pb-2 text-[10px] border-t ${pilotDark ? "text-slate-500 border-slate-700/60" : "text-slate-400 border-slate-100"}`}>

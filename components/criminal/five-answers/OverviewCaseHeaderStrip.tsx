@@ -10,6 +10,8 @@ export function OverviewCaseHeaderStrip({
   hearing,
   statusLabel,
   statusVariant = "secondary",
+  /** When shell strip already shows court/hearing, omit them here. */
+  hideCourtHearing = false,
 }: {
   defendant: string;
   offence: string;
@@ -17,6 +19,7 @@ export function OverviewCaseHeaderStrip({
   hearing: string;
   statusLabel: string;
   statusVariant?: "success" | "warning" | "secondary" | "danger";
+  hideCourtHearing?: boolean;
 }) {
   return (
     <section
@@ -28,9 +31,11 @@ export function OverviewCaseHeaderStrip({
         <div className="min-w-0 flex-1 space-y-0.5">
           <p className="text-sm font-semibold text-slate-100 truncate">{defendant || "Client"}</p>
           <p className="text-xs text-slate-300 leading-snug line-clamp-2">{offence || "Offence not confirmed on papers"}</p>
-          <p className="text-[11px] text-slate-500 truncate">
-            {[court || "Court not confirmed", hearing || "Hearing not confirmed"].join(" · ")}
-          </p>
+          {!hideCourtHearing ? (
+            <p className="text-[11px] text-slate-500 truncate">
+              {[court || "Court not confirmed", hearing || "Hearing not confirmed"].join(" · ")}
+            </p>
+          ) : null}
         </div>
         <Badge variant={statusVariant} size="sm" className="shrink-0 text-[10px]">
           {statusLabel}

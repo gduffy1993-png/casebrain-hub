@@ -1,5 +1,10 @@
 /** Layout-only display guards — do not change extraction or brief builders. */
 
+import {
+  collapseHeaderCellDuplicates,
+  dedupeSolicitorLines,
+} from "@/lib/criminal/solicitor-display-dedupe";
+
 const INTERNAL_CLIENT_RES =
   /unless document|not safely extracted|offence wording not|add charge sheet|unknown offence|allegation not recorded/i;
 
@@ -53,7 +58,7 @@ export function displayPilotStripCharge(raw: string | null | undefined): string 
 export function displayPilotStripCourt(raw: string | null | undefined): string {
   let t = raw?.trim() ?? "";
   if (!t || /not safely extracted/i.test(t)) return "";
-  t = t
+  t = collapseHeaderCellDuplicates(t)
     .replace(/\bCrown\s+Court\s+Crown\b/gi, "Crown Court")
     .replace(/\bCrown\s+Crown\b/gi, "Crown Court")
     .replace(/\s{2,}/g, " ")
@@ -63,8 +68,14 @@ export function displayPilotStripCourt(raw: string | null | undefined): string {
 }
 
 export function displayPilotStripHearing(raw: string | null | undefined): string {
-  const t = raw?.trim() ?? "";
+  const t = collapseHeaderCellDuplicates(raw);
   if (!t || /not safely extracted|not on papers/i.test(t)) return "";
+  return t;
+}
+
+export function displayPilotStripStage(raw: string | null | undefined): string {
+  const t = collapseHeaderCellDuplicates(raw);
+  if (!t || /not recorded|unknown/i.test(t)) return t;
   return t;
 }
 
@@ -77,17 +88,5 @@ export function pilotListCap(documentCount: number, combinedTextLength = 0): num
 }
 
 export function dedupePilotLines(lines: string[], exclude?: string | null): string[] {
-  const skip = exclude?.trim().toLowerCase();
-  const seen = new Set<string>();
-  const out: string[] = [];
-  for (const line of lines) {
-    const t = line?.trim();
-    if (!t) continue;
-    const key = t.toLowerCase();
-    if (skip && (key === skip || key.includes(skip.slice(0, 48)))) continue;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(t);
-  }
-  return out;
+  return dedupeSolicitorLines(lines, { exclude });
 }

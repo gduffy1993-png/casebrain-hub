@@ -34,7 +34,12 @@ import { useExportsEnabled } from "@/lib/criminal/disclosure-export/export-flag"
 import { useSupervisorQAEnabled } from "@/lib/criminal/supervisor-qa/supervisor-qa-flag";
 import { useClientExplainEnabled } from "@/lib/criminal/client-explanation/client-explanation-flag";
 import { CaseWorkflowShell } from "./workflow/CaseWorkflowShell";
-import { isThickPilotBundle } from "./workflow/workflowPilotDisplay";
+import {
+  displayPilotStripCourt,
+  displayPilotStripHearing,
+  displayPilotStripStage,
+  isThickPilotBundle,
+} from "./workflow/workflowPilotDisplay";
 import { pilotPapersDeepScope, workflowPilotCard, workflowSectionTitle } from "./workflow/workflowUi";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -486,16 +491,20 @@ export function CaseControlRoom({
   const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
     usePilotDemoSession();
   const offenceWordingUnknown = useMemo(() => isUnknownOffenceLabel(allegation), [allegation]);
-  const stage = headerMeta.stage;
+  const stage = pilotMode
+    ? displayPilotStripStage(headerMeta.stage) || headerMeta.stage
+    : headerMeta.stage;
   const nextHearing = headerMeta.nextHearing;
   const metadataNote = headerMeta.metadataNote;
   const hearingDateIso =
     bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
   const courtLabelDisplay = pilotMode
-    ? cleanPilotCourtHeaderCell(headerMeta.court)
+    ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
+      cleanPilotCourtHeaderCell(headerMeta.court)
     : headerMeta.court?.trim() || undefined;
   const hearingLabelDisplay = pilotMode
-    ? cleanPilotHearingHeaderCell(nextHearing, hearingDateIso)
+    ? displayPilotStripHearing(cleanPilotHearingHeaderCell(nextHearing, hearingDateIso)) ||
+      cleanPilotHearingHeaderCell(nextHearing, hearingDateIso)
     : nextHearing;
 
   const filteredBattleboard = useMemo(

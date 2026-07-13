@@ -14,6 +14,8 @@ export function OverviewCourtPrepCard({
   topChaseLabels,
   courtHref,
   chaseHref,
+  /** When true, omit chase list (already shown in snapshot). */
+  hideChasePreview = false,
 }: {
   courtLine: string;
   courtFooter?: string | null;
@@ -21,6 +23,7 @@ export function OverviewCourtPrepCard({
   topChaseLabels: string[];
   courtHref: string;
   chaseHref: string;
+  hideChasePreview?: boolean;
 }) {
   const courtBody = displayCopyBody(courtLine, courtFooter ?? undefined);
 
@@ -46,7 +49,7 @@ export function OverviewCourtPrepCard({
         <p className="text-sm text-slate-200 leading-relaxed">{courtBody}</p>
       </div>
 
-      {topChaseLabels.length ? (
+      {!hideChasePreview && topChaseLabels.length ? (
         <div className="space-y-1.5" data-testid="hearing-mode-top-chase">
           <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Top chase points</p>
           <ol className="list-decimal pl-4 space-y-1 text-sm text-slate-300">

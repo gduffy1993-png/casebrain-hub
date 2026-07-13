@@ -54,6 +54,14 @@ assert.equal(
 );
 
 assert.equal(dedupePresentationLines(["Line A", "line a", "Line B"]).length, 2);
+assert.equal(
+  dedupePresentationLines([
+    "Additional MG11 warning — do not rely.",
+    "additional mg11 warning do not rely",
+    "Distinct CCTV gap remains.",
+  ]).length,
+  2,
+);
 
 const countRows: FiveAnswersEvidenceRow[] = [
   { label: "A", existence: "served", reliability: "needs_review" },

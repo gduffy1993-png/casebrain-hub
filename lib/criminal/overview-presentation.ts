@@ -1,5 +1,11 @@
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import type { FamilyProofCard, FamilyProofCardId } from "@/lib/criminal/proof-receipt/types";
+import {
+  dedupeSolicitorLines,
+  sanitizeSolicitorVisibleText,
+} from "@/lib/criminal/solicitor-display-dedupe";
+
+export { sanitizeSolicitorVisibleText } from "@/lib/criminal/solicitor-display-dedupe";
 
 function isDigitalHarassmentContext(bundleHay: string, allegation: string): boolean {
   const hay = `${allegation} ${bundleHay}`.toLowerCase();
@@ -11,32 +17,8 @@ function isDigitalHarassmentContext(bundleHay: string, allegation: string): bool
   );
 }
 
-/** Normalize visible copy — strips dev/eval tokens from solicitor-facing surfaces. */
-export function sanitizeSolicitorVisibleText(text: string): string {
-  if (!text.trim()) return text;
-  return text
-    .replace(/\bsource_unavailable\b/gi, "source not on file")
-    .replace(/\bneeds_review\b/gi, "solicitor review")
-    .replace(/\bcopy gate\b/gi, "wording guard")
-    .replace(/\bNot assessable\b/g, "Not confirmed on papers")
-    .replace(/\bWeak\b/g, "Limited on papers")
-    .replace(/\bNeeds review\b/g, "Solicitor review")
-    .replace(/\s{2,}/g, " ")
-    .trim();
-}
-
 export function dedupePresentationLines(lines: string[]): string[] {
-  const seen = new Set<string>();
-  const out: string[] = [];
-  for (const raw of lines) {
-    const line = sanitizeSolicitorVisibleText(raw.trim());
-    if (!line || line.length < 4) continue;
-    const key = line.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-    if (!key || seen.has(key)) continue;
-    seen.add(key);
-    out.push(line);
-  }
-  return out;
+  return dedupeSolicitorLines(lines);
 }
 
 export function dedupeEvidenceRowsByLabel(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvidenceRow[] {
