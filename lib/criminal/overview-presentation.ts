@@ -120,3 +120,45 @@ export function gapEvidenceRows(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvid
 export function servedEvidenceRows(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvidenceRow[] {
   return rows.filter((r) => r.existence === "served");
 }
+
+export function countEvidenceStates(rows: FiveAnswersEvidenceRow[]): {
+  served: number;
+  referred: number;
+  missing: number;
+} {
+  let served = 0;
+  let referred = 0;
+  let missing = 0;
+  for (const row of rows) {
+    if (row.existence === "served") served += 1;
+    else if (row.existence === "referred_only") referred += 1;
+    else if (row.existence === "missing" || row.existence === "unknown" || row.existence === "not_safely_confirmed") {
+      missing += 1;
+    }
+  }
+  return { served, referred, missing };
+}
+
+/** Short solicitor-facing status for the Overview header strip. */
+export function overviewStatusLabel(level: string | null | undefined): {
+  label: string;
+  variant: "success" | "warning" | "secondary" | "danger";
+} {
+  switch (level) {
+    case "safe":
+      return { label: "Source-linked", variant: "success" };
+    case "provisional":
+      return { label: "Provisional / source-linked", variant: "secondary" };
+    case "needs_review":
+      return { label: "Needs review", variant: "warning" };
+    case "blocked":
+      return { label: "Blocked — review required", variant: "danger" };
+    default:
+      return { label: "Provisional / source-linked", variant: "secondary" };
+  }
+}
+
+/** Cap blocked wording examples for the Overview safe-wording card. */
+export function overviewBlockedExamples(lines: string[], max = 2): string[] {
+  return dedupePresentationLines(lines).slice(0, max);
+}

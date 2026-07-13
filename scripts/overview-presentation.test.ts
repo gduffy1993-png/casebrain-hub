@@ -2,8 +2,11 @@
 import assert from "node:assert/strict";
 import { buildFamilyProofCards } from "../lib/criminal/proof-receipt/build-family-cards";
 import {
+  countEvidenceStates,
   dedupePresentationLines,
   filterFamilyProofCardsForBundle,
+  overviewBlockedExamples,
+  overviewStatusLabel,
   sanitizeSolicitorVisibleText,
 } from "../lib/criminal/overview-presentation";
 import type { FiveAnswersEvidenceRow } from "../lib/criminal/five-answers/types";
@@ -51,5 +54,15 @@ assert.equal(
 );
 
 assert.equal(dedupePresentationLines(["Line A", "line a", "Line B"]).length, 2);
+
+const countRows: FiveAnswersEvidenceRow[] = [
+  { label: "A", existence: "served", reliability: "needs_review" },
+  { label: "B", existence: "referred_only", reliability: "weak" },
+  { label: "C", existence: "missing", reliability: "needs_review" },
+  { label: "D", existence: "not_safely_confirmed", reliability: "unsafe" },
+];
+assert.deepEqual(countEvidenceStates(countRows), { served: 1, referred: 1, missing: 2 });
+assert.equal(overviewBlockedExamples(["Do not say X", "Do not say X", "Do not say Y"], 2).length, 2);
+assert.equal(overviewStatusLabel("provisional").label.includes("Provisional"), true);
 
 console.log("overview-presentation.test.ts: PASS");
