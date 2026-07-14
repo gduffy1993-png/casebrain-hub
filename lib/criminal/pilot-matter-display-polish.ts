@@ -15,7 +15,7 @@ function normKey(text: string): string {
 function normalizeClunkyCourtCore(core: string): string | null {
   const c = core.trim().replace(/\.$/, "");
   if (/^prepare hearing line on outstanding disclosure|^hearing line on outstanding disclosure/i.test(c)) {
-    return "outstanding disclosure should be timetabled and the defence position remains provisional pending service";
+    return "the defence position remains provisional pending service of the outstanding material";
   }
   if (/^ask for full mg11\/source material/i.test(c)) {
     return "full MG11/source material and unused schedule detail remain outstanding and should be disclosed on a timetable";
@@ -38,6 +38,16 @@ export function sanitizePilotCourtRecordLine(line: string): string | null {
     .replace(/^Ask the court to record that ask for /i, "Ask the court to record that ")
     .replace(/\bremains outstanding and should be disclosed on a timetable\.?\s*$/i, "")
     .trim();
+
+  // Fix garbled "…provisional pending service. remains outstanding…" hybrids.
+  if (
+    /defence position remains provisional pending service/i.test(t) &&
+    !/\bremains outstanding\b/i.test(t)
+  ) {
+    return formatDisplayLabelCasing(
+      "Ask the court to record that the defence position remains provisional pending service of the outstanding material.",
+    );
+  }
 
   if (/mg6c?\/\d+/i.test(t)) {
     const human = humanizeChaseFragmentLabel(t);
@@ -63,8 +73,19 @@ export function sanitizePilotCourtRecordLine(line: string): string | null {
 
   if (COURT_RECORD_RE.test(t) && !/\bremains outstanding\b/i.test(t)) {
     const core = t.replace(COURT_RECORD_RE, "").trim();
+    // Already a clean provisional-position ask — do not append "remains outstanding…".
+    if (/defence position remains provisional pending service/i.test(core)) {
+      return formatDisplayLabelCasing(
+        "Ask the court to record that the defence position remains provisional pending service of the outstanding material.",
+      );
+    }
     const normalized = normalizeClunkyCourtCore(core);
     if (normalized) {
+      if (/defence position remains provisional pending service/i.test(normalized)) {
+        return formatDisplayLabelCasing(
+          "Ask the court to record that the defence position remains provisional pending service of the outstanding material.",
+        );
+      }
       return formatDisplayLabelCasing(
         `Ask the court to record that ${normalized}.`,
       );

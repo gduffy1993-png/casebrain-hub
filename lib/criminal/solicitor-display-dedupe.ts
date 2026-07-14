@@ -152,3 +152,35 @@ export function excludeSolicitorLinesMatching(
 export function groupIdenticalWarningLines(lines: string[]): string[] {
   return dedupeSolicitorLines(lines);
 }
+
+const COLLAPSED_MG11_WITNESS_DONT_SAY =
+  "Do not state MG11 / witness statement is served or final — draft or unsigned on papers.";
+
+function isMg11OrWitnessServedFinalWarning(line: string): boolean {
+  const t = line.toLowerCase();
+  if (!/\bmg11\b|witness statement/.test(t)) return false;
+  return (
+    /do not state/.test(t) ||
+    /draft or unsigned/.test(t) ||
+    /is final/.test(t) ||
+    /\bserved\b/.test(t) ||
+    /consistent and served/.test(t)
+  );
+}
+
+/** Collapse repeated MG11 / witness don’t-say lines into one solicitor-facing warning. */
+export function collapseDontSayMg11WitnessLines(lines: string[]): string[] {
+  const out: string[] = [];
+  let collapsed = false;
+  for (const line of dedupeSolicitorLines(lines)) {
+    if (isMg11OrWitnessServedFinalWarning(line)) {
+      if (!collapsed) {
+        out.push(COLLAPSED_MG11_WITNESS_DONT_SAY);
+        collapsed = true;
+      }
+      continue;
+    }
+    out.push(line);
+  }
+  return out;
+}

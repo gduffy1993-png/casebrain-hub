@@ -121,7 +121,7 @@ export function countEvidenceStates(rows: FiveAnswersEvidenceRow[]): {
   return { served, referred, missing };
 }
 
-/** Short solicitor-facing status for the Overview header strip. */
+/** Short solicitor-facing status — prefer one provisional badge; do not surface "Needs review" stack. */
 export function overviewStatusLabel(level: string | null | undefined): {
   label: string;
   variant: "success" | "warning" | "secondary" | "danger";
@@ -130,17 +130,28 @@ export function overviewStatusLabel(level: string | null | undefined): {
     case "safe":
       return { label: "Source-linked", variant: "success" };
     case "provisional":
-      return { label: "Provisional / source-linked", variant: "secondary" };
     case "needs_review":
-      return { label: "Needs review", variant: "warning" };
+      return { label: "Provisional — source-linked", variant: "secondary" };
     case "blocked":
       return { label: "Blocked — review required", variant: "danger" };
     default:
-      return { label: "Provisional / source-linked", variant: "secondary" };
+      return { label: "Provisional — source-linked", variant: "secondary" };
   }
 }
 
 /** Cap blocked wording examples for the Overview safe-wording card. */
 export function overviewBlockedExamples(lines: string[], max = 2): string[] {
   return dedupePresentationLines(lines).slice(0, max);
+}
+
+/**
+ * Risk Flags pointer — keep Not Safe to Say as the detailed block; avoid repeating those lines.
+ */
+export function overviewRiskFlagPointers(notSafeLines: string[]): string[] {
+  if (!notSafeLines.length) return [];
+  const hay = notSafeLines.join(" ").toLowerCase();
+  if (/attribution|mg11|witness statement|message/i.test(hay)) {
+    return ["Attribution and MG11 status need review — see Not safe to say."];
+  }
+  return ["Wording risks need review — see Not safe to say."];
 }

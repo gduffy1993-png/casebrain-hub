@@ -6,6 +6,7 @@ import {
   dedupePresentationLines,
   filterFamilyProofCardsForBundle,
   overviewBlockedExamples,
+  overviewRiskFlagPointers,
   overviewStatusLabel,
   sanitizeSolicitorVisibleText,
 } from "../lib/criminal/overview-presentation";
@@ -71,6 +72,13 @@ const countRows: FiveAnswersEvidenceRow[] = [
 ];
 assert.deepEqual(countEvidenceStates(countRows), { served: 1, referred: 1, missing: 2 });
 assert.equal(overviewBlockedExamples(["Do not say X", "Do not say X", "Do not say Y"], 2).length, 2);
-assert.equal(overviewStatusLabel("provisional").label.includes("Provisional"), true);
+assert.equal(overviewStatusLabel("provisional").label, "Provisional — source-linked");
+assert.equal(overviewStatusLabel("needs_review").label, "Provisional — source-linked");
+assert.deepEqual(
+  overviewRiskFlagPointers([
+    "Do not state the defendant sent messages unless attribution is served and safe.",
+  ]),
+  ["Attribution and MG11 status need review — see Not safe to say."],
+);
 
 console.log("overview-presentation.test.ts: PASS");

@@ -9,7 +9,11 @@ import {
   similarityRatio,
   stripReqAndInternalCodes,
 } from "./matterBriefAssembly";
-import { polishChasePreviewLabel } from "@/lib/criminal/solicitor-display-dedupe";
+import {
+  excludeSolicitorLinesMatching,
+  polishChasePreviewLabel,
+  solicitorLinesNearlyEqual,
+} from "@/lib/criminal/solicitor-display-dedupe";
 import { buildClientSafeExplanation } from "@/lib/criminal/build-client-safe-explanation";
 import { isBundleClientSafeSurfacingEnabled } from "@/lib/criminal/bundle-client-safe-surfacing";
 import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan";
@@ -169,7 +173,8 @@ export function buildMatterBrief(input: {
     6,
   );
 
-  const opportunities = dedupeSimilarSummaryLines(
+  const ATTRIBUTION_ACTION = "Test attribution before any position is fixed.";
+  const rawOpportunities = dedupeSimilarSummaryLines(
     [
       ...(briefPlan?.requiredOutputItems.summary ?? []),
       ...contradictionActions.map((a) => a.todayCourtLine),
@@ -178,6 +183,18 @@ export function buildMatterBrief(input: {
     ],
     8,
   );
+  // Drop theory restatements; keep action wording for attribution-led matters.
+  let opportunities = excludeSolicitorLinesMatching(
+    rawOpportunities.filter((l) => !/\bthe case turns on\b/i.test(l)),
+    caseTheory.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean),
+  ).map((l) => (/test attribution/i.test(l) ? ATTRIBUTION_ACTION : l));
+  if (
+    /attribution/i.test(`${caseTheory} ${rawOpportunities.join(" ")}`) &&
+    !opportunities.some((l) => solicitorLinesNearlyEqual(l, ATTRIBUTION_ACTION))
+  ) {
+    opportunities = [ATTRIBUTION_ACTION, ...opportunities];
+  }
+  opportunities = dedupeSimilarSummaryLines(opportunities, 6);
 
   const clientParagraph = isBundleClientSafeSurfacingEnabled()
     ? buildClientSafeExplanation({

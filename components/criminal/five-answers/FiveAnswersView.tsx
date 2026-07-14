@@ -15,7 +15,6 @@ import { useMatterBrief } from "@/components/criminal/workflow/useMatterBrief";
 import { usePilotMatterTabHref } from "@/components/criminal/workflow/pilotDeskNavContext";
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { OverviewAdvancedPanel } from "./OverviewAdvancedPanel";
-import { OverviewCaseHeaderStrip } from "./OverviewCaseHeaderStrip";
 import { OverviewClientSummaryCard } from "./OverviewClientSummaryCard";
 import { OverviewCourtPrepCard } from "./OverviewCourtPrepCard";
 import { OverviewEvidenceGapsCard } from "./OverviewEvidenceGapsCard";
@@ -39,10 +38,11 @@ import {
   filterFamilyProofCardsForBundle,
   gapEvidenceRows,
   overviewBlockedExamples,
-  overviewStatusLabel,
+  overviewRiskFlagPointers,
   servedEvidenceRows,
 } from "@/lib/criminal/overview-presentation";
 import {
+  collapseDontSayMg11WitnessLines,
   polishChasePreviewLabel,
   solicitorLinesNearlyEqual,
 } from "@/lib/criminal/solicitor-display-dedupe";
@@ -56,9 +56,6 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     warRoom,
     chase,
     allegation,
-    clientLabel,
-    courtLabel,
-    hearingLabel,
     briefPlan,
     primaryRouteTitle,
     bundleMeta,
@@ -208,9 +205,10 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       .map((c) => polishChasePreviewLabel(polishPresentationLine(c.label, bundleHay)))
       .filter((label): label is string => Boolean(label)),
   );
-  const riskFlags = overviewBlockedExamples(view.mustNotOverstate, 3);
-  const blockedExamples = overviewBlockedExamples(view.mustNotOverstate, 2);
-  const status = overviewStatusLabel(matterConfidence.level);
+  const blockedExamples = collapseDontSayMg11WitnessLines(
+    overviewBlockedExamples(view.mustNotOverstate, 4),
+  ).slice(0, 2);
+  const riskFlags = overviewRiskFlagPointers(blockedExamples);
   const clientSummarySection = exportPack?.sections.find((s) => s.id === "client_summary");
   const clientSummaryText = clientSummarySection
     ? polishPresentationBlock(displayCopyBody(clientSummarySection.textForClipboard), bundleHay)
@@ -240,15 +238,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
   return (
     <div className="space-y-3" data-testid="five-answers-view">
       <div id="overview-understand" className="space-y-3 scroll-mt-4">
-        <OverviewCaseHeaderStrip
-          defendant={clientLabel?.trim() || "Client"}
-          offence={allegation?.trim() || view.caseSaying.allegation || "Offence not confirmed"}
-          court={courtLabel?.trim() || "Court not confirmed"}
-          hearing={hearingLabel?.trim() || "Hearing not confirmed"}
-          statusLabel={status.label}
-          statusVariant={status.variant}
-          hideCourtHearing
-        />
+        {/* Shell strip owns defendant / charge / court / provisional badge — no inner repeat. */}
 
         {mainIssueDistinct ? (
           <section className={`${workflowPilotCard} px-3 py-2.5 sm:px-4`} data-testid="five-answers-case-saying">

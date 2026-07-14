@@ -1,6 +1,7 @@
 #!/usr/bin/env npx tsx
 import assert from "node:assert/strict";
 import {
+  collapseDontSayMg11WitnessLines,
   collapseHeaderCellDuplicates,
   collapseRepeatedPhrase,
   dedupeSolicitorLines,
@@ -45,5 +46,18 @@ assert.equal(
   dedupePilotLines(["Line A", "line a", "Line B"], "Line A").length,
   1,
 );
+
+const collapsedDontSay = collapseDontSayMg11WitnessLines([
+  'Do not state "witness statement is final" — Witness statement is draft or unsigned on papers.',
+  'Do not state "MG11 is consistent and served" — Witness statement is draft or unsigned on papers.',
+  'Do not state "MG11 served" — Witness statement is draft or unsigned on papers.',
+  "Do not state the defendant sent messages unless attribution is served and safe.",
+]);
+assert.equal(collapsedDontSay.length, 2);
+assert.equal(
+  collapsedDontSay[0],
+  "Do not state MG11 / witness statement is served or final — draft or unsigned on papers.",
+);
+assert.match(collapsedDontSay[1]!, /attribution/i);
 
 console.log("solicitor-display-dedupe.test.ts: PASS");
