@@ -10,6 +10,7 @@ import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPan
 import { TrustSectionChrome } from "@/components/criminal/trust/MatterConfidenceHeader";
 import { SourceStateBadge } from "@/components/criminal/trust/SourceStateBadge";
 import { buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
+import { SolicitorDeepDetailGate } from "@/components/criminal/trust/SolicitorDeepDetailGate";
 import { usePilotMatterTabHref } from "./pilotDeskNavContext";
 import { useMatterBrief } from "./useMatterBrief";
 import { workflowPilotCard, workflowSectionTitle } from "./workflowUi";
@@ -91,7 +92,8 @@ export function PilotSummaryView({
 }: PilotSummaryViewProps) {
   const [fullOpen, setFullOpen] = useState(false);
   const [copied, setCopied] = useState<"client" | null>(null);
-  const { loading, matterBrief, matterConfidence, doNotOverstate, bundleMeta } = useMatterBrief(caseId);
+  const { loading, matterBrief, matterConfidence, doNotOverstate, bundleMeta, outputIntegrity, allegation } =
+    useMatterBrief(caseId);
   const bundleHay = bundleMeta?.frontMatterScan ?? "";
   const filteredDoNot = useMemo(
     () =>
@@ -129,8 +131,11 @@ export function PilotSummaryView({
         kind: "client_summary",
         sourceState: "provisional",
         matterLevel: matterConfidence?.summarySendability,
+        integrity: outputIntegrity,
+        allegation,
+        bundleHay,
       }),
-    [clientSafeText, matterConfidence?.summarySendability],
+    [clientSafeText, matterConfidence?.summarySendability, outputIntegrity, allegation, bundleHay],
   );
 
   const copyClientSafe = async () => {
@@ -258,13 +263,20 @@ export function PilotSummaryView({
       <div className={`${workflowPilotCard} px-4 py-3`}>
         <button
           type="button"
-          className="w-full flex items-center justify-between gap-2 text-left"
-          onClick={() => setFullOpen((v) => !v)}
+          className="w-full flex items-center justify-between gap-2 text-left disabled:opacity-70"
+          onClick={() => {
+            if (outputIntegrity && !outputIntegrity.deepDetailAvailable) return;
+            setFullOpen((v) => !v);
+          }}
+          disabled={Boolean(outputIntegrity && !outputIntegrity.deepDetailAvailable)}
+          data-testid="summary-full-workspace-toggle"
         >
           <div>
             <p className={workflowSectionTitle}>Full summary workspace</p>
             <p className="text-xs text-slate-400 mt-1">
-              Agreed summary editor, solicitor buckets, and rating — expand when you need the full tools.
+              {outputIntegrity && !outputIntegrity.deepDetailAvailable
+                ? "Full workspace unavailable until integrity checks pass."
+                : "Agreed summary editor, solicitor buckets, and rating — expand when you need the full tools."}
             </p>
           </div>
           {fullOpen ? (
@@ -275,7 +287,11 @@ export function PilotSummaryView({
         </button>
       </div>
 
-      {fullOpen ? (
+      {outputIntegrity && !outputIntegrity.deepDetailAvailable ? (
+        <SolicitorDeepDetailGate integrity={outputIntegrity} label="Full summary workspace">
+          {null}
+        </SolicitorDeepDetailGate>
+      ) : fullOpen ? (
         <CaseSummaryPanel
           caseId={caseId}
           caseTitle={heading}

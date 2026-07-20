@@ -59,6 +59,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     briefPlan,
     primaryRouteTitle,
     bundleMeta,
+    outputIntegrity,
   } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
   const bundleHay = useMemo(
@@ -274,7 +275,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
         <OverviewEvidenceGapsCard gaps={gaps} />
 
-        <OverviewProofDepthDrawer>
+        <OverviewProofDepthDrawer integrity={outputIntegrity}>
           <EvidenceTruthMapPanel rows={view.evidenceState.rows} />
           <ProofReceiptPanel
             model={proofReceipts!}

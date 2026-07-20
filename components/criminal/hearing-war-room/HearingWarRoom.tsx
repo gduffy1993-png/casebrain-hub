@@ -78,6 +78,8 @@ import {
   filterBundleFamilyWarnings,
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
+import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
+import { SolicitorDeepDetailGate } from "@/components/criminal/trust/SolicitorDeepDetailGate";
 
 const ABOVE_FOLD_LIST_CAP = 5;
 
@@ -223,9 +225,20 @@ function BriefListCard({
   );
 }
 
-function DraftBlock({ title, text }: { title: string; text: string }) {
+function DraftBlock({
+  title,
+  text,
+  canCopy = true,
+  blockedReason = null,
+}: {
+  title: string;
+  text: string;
+  canCopy?: boolean;
+  blockedReason?: string | null;
+}) {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
+    if (!canCopy) return;
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -241,18 +254,35 @@ function DraftBlock({ title, text }: { title: string; text: string }) {
         <button
           type="button"
           onClick={() => void copy()}
-          className="shrink-0 inline-flex items-center gap-1 text-[10px] font-medium text-slate-600 hover:text-slate-900"
+          disabled={!canCopy}
+          className="shrink-0 inline-flex items-center gap-1 text-[10px] font-medium text-slate-600 hover:text-slate-900 disabled:opacity-40 disabled:cursor-not-allowed"
+          data-testid="war-room-draft-copy"
         >
           <Copy className="h-3 w-3" />
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
       <p className="mt-2 text-sm text-slate-800 leading-relaxed italic">{text}</p>
+      {!canCopy && blockedReason ? (
+        <p className="mt-1.5 text-[10px] text-amber-700" data-testid="war-room-draft-copy-blocked">
+          {blockedReason}
+        </p>
+      ) : null}
     </div>
   );
 }
 
-function PilotWarRoomMoreDetail({ brief, bundleHay = "" }: { brief: HearingWarRoomBrief; bundleHay?: string }) {
+function PilotWarRoomMoreDetail({
+  brief,
+  bundleHay = "",
+  canCopyDrafts = true,
+  copyBlockedReason = null,
+}: {
+  brief: HearingWarRoomBrief;
+  bundleHay?: string;
+  canCopyDrafts?: boolean;
+  copyBlockedReason?: string | null;
+}) {
   const sayThis = filterBundleFamilyWarnings(brief.sayThis, bundleHay).map((line) =>
     polishPresentationLine(line, bundleHay),
   );
@@ -288,9 +318,24 @@ function PilotWarRoomMoreDetail({ brief, bundleHay = "" }: { brief: HearingWarRo
         ) : null}
         <div className="space-y-3">
           <p className={workflowSectionTitle}>Draft wording blocks</p>
-          <DraftBlock title="Disclosure timetable request" text={brief.draftWording.disclosureTimetable} />
-          <DraftBlock title="Adjournment / provisional position" text={brief.draftWording.adjournment} />
-          <DraftBlock title="Client explanation (plain language)" text={brief.draftWording.clientExplanation} />
+          <DraftBlock
+            title="Disclosure timetable request"
+            text={brief.draftWording.disclosureTimetable}
+            canCopy={canCopyDrafts}
+            blockedReason={copyBlockedReason}
+          />
+          <DraftBlock
+            title="Adjournment / provisional position"
+            text={brief.draftWording.adjournment}
+            canCopy={canCopyDrafts}
+            blockedReason={copyBlockedReason}
+          />
+          <DraftBlock
+            title="Client explanation (plain language)"
+            text={brief.draftWording.clientExplanation}
+            canCopy={canCopyDrafts}
+            blockedReason={copyBlockedReason}
+          />
         </div>
       </div>
     </section>
@@ -640,6 +685,24 @@ export function HearingWarRoom({
     [bundleSource, allegation, brief.bundleHealth],
   );
 
+  const outputIntegrity = useMemo(
+    () =>
+      evaluateMatterIntegrity({
+        allegation,
+        bundleHay: bundleContextHay,
+        sampleTexts: [
+          brief.safePositionToday,
+          ...brief.sayThis.slice(0, 3),
+          brief.draftWording.disclosureTimetable,
+          brief.draftWording.adjournment,
+          brief.draftWording.clientExplanation,
+        ],
+      }),
+    [allegation, bundleContextHay, brief],
+  );
+  const canCopyDrafts = outputIntegrity.canCopy;
+  const copyBlockedReason = outputIntegrity.banner;
+
   const pilotTodayView = useMemo((): PilotTodayDashboardView | null => {
     if (!usePilotDeskUi || snapshotLoading) return null;
     const filteredDno = filterBundleFamilyWarnings(brief.doNotOverstate, bundleContextHay);
@@ -704,9 +767,14 @@ export function HearingWarRoom({
             view={pilotTodayView}
             deskChargeLine={deskChargeLine}
             moreDetail={
-              <>
-                <PilotWarRoomMoreDetail brief={brief} bundleHay={bundleContextHay} />
-              </>
+              <SolicitorDeepDetailGate integrity={outputIntegrity} label="Court more detail">
+                <PilotWarRoomMoreDetail
+                  brief={brief}
+                  bundleHay={bundleContextHay}
+                  canCopyDrafts={canCopyDrafts}
+                  copyBlockedReason={copyBlockedReason}
+                />
+              </SolicitorDeepDetailGate>
             }
           />
         ) : (
@@ -806,9 +874,14 @@ export function HearingWarRoom({
               caseId={caseId}
               view={pilotTodayView}
               moreDetail={
-                <>
-                  <PilotWarRoomMoreDetail brief={brief} bundleHay={bundleContextHay} />
-                </>
+                <SolicitorDeepDetailGate integrity={outputIntegrity} label="Court more detail">
+                  <PilotWarRoomMoreDetail
+                    brief={brief}
+                    bundleHay={bundleContextHay}
+                    canCopyDrafts={canCopyDrafts}
+                    copyBlockedReason={copyBlockedReason}
+                  />
+                </SolicitorDeepDetailGate>
               }
             />
           )
@@ -909,6 +982,8 @@ export function HearingWarRoom({
                 workflowProfileHint: pilotHeader?.profile ?? null,
               }}
               loading={bundleLoading}
+              canCopyExport={canCopyDrafts}
+              copyBlockedReason={copyBlockedReason}
             />
 
             {reasoningV2Enabled && reasoningV2Result?.available ? (
@@ -998,9 +1073,24 @@ export function HearingWarRoom({
                 )}
                 <div className="space-y-3">
                   <p className={workflowSectionTitle}>Draft wording blocks</p>
-                  <DraftBlock title="Disclosure timetable request" text={brief.draftWording.disclosureTimetable} />
-                  <DraftBlock title="Adjournment / provisional position" text={brief.draftWording.adjournment} />
-                  <DraftBlock title="Client explanation (plain language)" text={brief.draftWording.clientExplanation} />
+                  <DraftBlock
+                    title="Disclosure timetable request"
+                    text={brief.draftWording.disclosureTimetable}
+                    canCopy={canCopyDrafts}
+                    blockedReason={copyBlockedReason}
+                  />
+                  <DraftBlock
+                    title="Adjournment / provisional position"
+                    text={brief.draftWording.adjournment}
+                    canCopy={canCopyDrafts}
+                    blockedReason={copyBlockedReason}
+                  />
+                  <DraftBlock
+                    title="Client explanation (plain language)"
+                    text={brief.draftWording.clientExplanation}
+                    canCopy={canCopyDrafts}
+                    blockedReason={copyBlockedReason}
+                  />
                 </div>
               </div>
             </section>
