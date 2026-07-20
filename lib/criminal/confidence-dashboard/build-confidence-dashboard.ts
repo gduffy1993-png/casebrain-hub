@@ -399,7 +399,6 @@ export function buildConfidenceDashboardInputFromH5(props: {
   const stateRows = props.view.evidenceState.rows.map((r) => ({
     existence: r.existence,
     reliability: r.reliability,
-    sourceAnchor: r.sourceAnchor,
   }));
 
   const rerunLines = props.rerunDiff?.groups.flatMap((g) => g.lines) ?? [];
