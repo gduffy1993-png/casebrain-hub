@@ -9,8 +9,8 @@ Authoritative scope: user programme brief (Workstream A then B).
 | Checkpoint | Status | Artefacts |
 |------------|--------|-----------|
 | Phase 0 — discovery & baseline | COMPLETE (not PASS) | `docs/integrity-programme/phase-0-checkpoint.md` |
-| Phase 1 — surface inventory | PENDING | |
-| Phase 2 — fail-closed containment | PARTIAL (preserved from integrity gate) | `lib/criminal/solicitor-output-integrity.ts` |
+| Phase 1 — surface inventory | COMPLETE (not PASS) | `docs/integrity-programme/phase-1-checkpoint.md` |
+| Phase 2 — fail-closed containment | PARTIAL (preserved + next) | `lib/criminal/solicitor-output-integrity.ts` |
 | Phases 3–11 | PENDING | |
 | Workstream B | BLOCKED until A gates pass | |
 
