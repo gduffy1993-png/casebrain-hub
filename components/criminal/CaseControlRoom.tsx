@@ -40,6 +40,10 @@ import {
   displayPilotStripStage,
   isThickPilotBundle,
 } from "./workflow/workflowPilotDisplay";
+import {
+  displaySolicitorStage,
+  resolveSolicitorHearingDateIso,
+} from "@/lib/criminal/solicitor-hearing-display";
 import { pilotPapersDeepScope, workflowPilotCard, workflowSectionTitle } from "./workflow/workflowUi";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -367,9 +371,15 @@ export function CaseControlRoom({
 
   const readinessHearingMeta = useMemo(
     () => ({
-      hearingDateIso:
-        bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null,
-      stage: bundleSource?.header?.stage ?? snapshot?.caseMeta?.caseStage ?? null,
+      hearingDateIso: resolveSolicitorHearingDateIso({
+        bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
+        snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+        nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
+        bundleHay: bundleSource?.frontMatterScan,
+      }),
+      stage: displaySolicitorStage(
+        bundleSource?.header?.stage ?? snapshot?.caseMeta?.caseStage ?? null,
+      ) || null,
     }),
     [bundleSource, snapshot],
   );
@@ -491,13 +501,18 @@ export function CaseControlRoom({
   const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
     usePilotDemoSession();
   const offenceWordingUnknown = useMemo(() => isUnknownOffenceLabel(allegation), [allegation]);
-  const stage = pilotMode
-    ? displayPilotStripStage(headerMeta.stage) || headerMeta.stage
-    : headerMeta.stage;
+  const stage =
+    displayPilotStripStage(headerMeta.stage) ||
+    displaySolicitorStage(headerMeta.stage) ||
+    headerMeta.stage;
   const nextHearing = headerMeta.nextHearing;
   const metadataNote = headerMeta.metadataNote;
-  const hearingDateIso =
-    bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
+  const hearingDateIso = resolveSolicitorHearingDateIso({
+    bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
+    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
+    bundleHay: bundleSource?.frontMatterScan,
+  });
   const courtLabelDisplay = pilotMode
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
       cleanPilotCourtHeaderCell(headerMeta.court)

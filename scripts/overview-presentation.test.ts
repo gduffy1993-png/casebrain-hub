@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { buildFamilyProofCards } from "../lib/criminal/proof-receipt/build-family-cards";
 import {
   countEvidenceStates,
+  countEvidenceStatesForDisplay,
   dedupePresentationLines,
   filterFamilyProofCardsForBundle,
   overviewBlockedExamples,
@@ -71,6 +72,13 @@ const countRows: FiveAnswersEvidenceRow[] = [
   { label: "D", existence: "not_safely_confirmed", reliability: "unsafe" },
 ];
 assert.deepEqual(countEvidenceStates(countRows), { served: 1, referred: 1, missing: 2 });
+assert.deepEqual(countEvidenceStatesForDisplay(countRows), {
+  served: 1,
+  referred: 1,
+  missing: 1,
+  incomplete: 1,
+  notSafelyConfirmed: 0,
+});
 assert.equal(overviewBlockedExamples(["Do not say X", "Do not say X", "Do not say Y"], 2).length, 2);
 assert.equal(overviewStatusLabel("provisional").label, "Provisional — source-linked");
 assert.equal(overviewStatusLabel("needs_review").label, "Provisional — source-linked");

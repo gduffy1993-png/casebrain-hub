@@ -10,6 +10,7 @@ import {
   SERIOUS_VIOLENCE_PROVISIONAL_COURT_LINE,
 } from "@/lib/eval/casebrain-auditor/provisional-offence-policy";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { isPlaceholderHearingIso } from "@/lib/criminal/solicitor-hearing-display";
 import type { BattleboardOutput, BattleboardRoute } from "@/lib/criminal/strategy-battleboard";
 
 /** Shared workflow profile ids for pilot case workflow surfaces. */
@@ -647,7 +648,8 @@ export function cleanPilotHearingHeaderCell(
   hearingDateIso?: string | null,
 ): string {
   const raw = (nextHearing ?? "").trim();
-  if (hearingDateIso) {
+  // Prefer ISO only when it is a real listing date — never seed placeholders like 2026-01-01.
+  if (hearingDateIso && !isPlaceholderHearingIso(hearingDateIso)) {
     try {
       const d = new Date(hearingDateIso);
       if (!Number.isNaN(d.getTime())) {

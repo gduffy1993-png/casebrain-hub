@@ -1,6 +1,7 @@
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import { gateMaterialLines } from "@/lib/criminal/chase-source-gate";
 import { scrubDevRefs } from "@/lib/criminal/dev-ref-scrub";
+import { displaySolicitorStage } from "@/lib/criminal/solicitor-hearing-display";
 
 export const SUGGESTED_PROMPTS = [
   "What would CPS argue?",
@@ -81,6 +82,7 @@ function cleanStageLabel(stage: string): string {
   let s = sanitizeSolicitorText(stage);
   const beforePipe = s.split("|")[0]?.trim();
   if (beforePipe) s = beforePipe;
+  s = displaySolicitorStage(s);
   return s || "Stage not confirmed on file — check bundle header.";
 }
 

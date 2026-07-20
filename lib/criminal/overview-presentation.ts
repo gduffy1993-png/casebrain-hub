@@ -121,6 +121,46 @@ export function countEvidenceStates(rows: FiveAnswersEvidenceRow[]): {
   return { served, referred, missing };
 }
 
+/**
+ * Evidence-state counts aligned with gap-table badges (`displayExistenceLabel`).
+ * Do not collapse incomplete / not-safely-confirmed into “missing”.
+ */
+export function countEvidenceStatesForDisplay(rows: FiveAnswersEvidenceRow[]): {
+  served: number;
+  referred: number;
+  missing: number;
+  incomplete: number;
+  notSafelyConfirmed: number;
+} {
+  let served = 0;
+  let referred = 0;
+  let missing = 0;
+  let incomplete = 0;
+  let notSafelyConfirmed = 0;
+  for (const row of rows) {
+    switch (row.existence) {
+      case "served":
+        served += 1;
+        break;
+      case "referred_only":
+        referred += 1;
+        break;
+      case "missing":
+        missing += 1;
+        break;
+      case "not_safely_confirmed":
+        incomplete += 1;
+        break;
+      case "unknown":
+        notSafelyConfirmed += 1;
+        break;
+      default:
+        break;
+    }
+  }
+  return { served, referred, missing, incomplete, notSafelyConfirmed };
+}
+
 /** Short solicitor-facing status — prefer one provisional badge; do not surface "Needs review" stack. */
 export function overviewStatusLabel(level: string | null | undefined): {
   label: string;

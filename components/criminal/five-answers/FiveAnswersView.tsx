@@ -32,7 +32,7 @@ import {
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
 import {
-  countEvidenceStates,
+  countEvidenceStatesForDisplay,
   dedupeEvidenceRowsByLabel,
   dedupePresentationLines,
   filterFamilyProofCardsForBundle,
@@ -198,7 +198,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
 
   const served = servedEvidenceRows(view.evidenceState.rows);
   const gaps = gapEvidenceRows(view.evidenceState.rows);
-  const stateCounts = countEvidenceStates(view.evidenceState.rows);
+  const stateCounts = countEvidenceStatesForDisplay(view.evidenceState.rows);
   const topChase = dedupePresentationLines(
     view.chase
       .slice(0, 5)
@@ -248,9 +248,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
         ) : null}
 
         <OverviewSnapshotBoxes
-          servedCount={stateCounts.served}
-          referredCount={stateCounts.referred}
-          missingCount={stateCounts.missing}
+          evidenceCounts={stateCounts}
           topChaseLabels={topChase.map((label) => humanizeEvidenceLabel(label, "missing"))}
           riskFlags={riskFlags}
         />
