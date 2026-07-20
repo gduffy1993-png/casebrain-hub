@@ -23,16 +23,49 @@ function SnapshotBox({
   );
 }
 
+function formatEvidenceStateLine(counts: {
+  served: number;
+  referred: number;
+  missing: number;
+  incomplete: number;
+  notSafelyConfirmed: number;
+}): ReactNode {
+  const parts: { n: number; label: string; className: string }[] = [
+    { n: counts.served, label: "served", className: "text-emerald-300/90" },
+    { n: counts.referred, label: "referred", className: "text-amber-300/90" },
+    { n: counts.missing, label: "missing", className: "text-rose-300/90" },
+    { n: counts.incomplete, label: "incomplete", className: "text-orange-300/90" },
+    { n: counts.notSafelyConfirmed, label: "not safely confirmed", className: "text-slate-300" },
+  ].filter((p) => p.n > 0);
+
+  if (!parts.length) {
+    return <p className="text-xs text-slate-400">No evidence states on this preview.</p>;
+  }
+
+  return (
+    <p>
+      {parts.map((p, i) => (
+        <span key={p.label}>
+          {i > 0 ? " · " : null}
+          <span className={p.className}>{p.n}</span> {p.label}
+        </span>
+      ))}
+    </p>
+  );
+}
+
 export function OverviewSnapshotBoxes({
-  servedCount,
-  referredCount,
-  missingCount,
+  evidenceCounts,
   topChaseLabels,
   riskFlags,
 }: {
-  servedCount: number;
-  referredCount: number;
-  missingCount: number;
+  evidenceCounts: {
+    served: number;
+    referred: number;
+    missing: number;
+    incomplete: number;
+    notSafelyConfirmed: number;
+  };
   topChaseLabels: string[];
   riskFlags: string[];
 }) {
@@ -41,13 +74,7 @@ export function OverviewSnapshotBoxes({
       <h2 className={workflowSectionTitle}>Case snapshot</h2>
       <div className="grid gap-2 sm:grid-cols-3">
         <SnapshotBox title="Evidence state" testId="five-answers-evidence-state">
-          <p>
-            <span className="text-emerald-300/90">{servedCount}</span> served
-            {" · "}
-            <span className="text-amber-300/90">{referredCount}</span> referred
-            {" · "}
-            <span className="text-rose-300/90">{missingCount}</span> missing
-          </p>
+          {formatEvidenceStateLine(evidenceCounts)}
         </SnapshotBox>
         <SnapshotBox title="Disclosure gaps" testId="five-answers-chase">
           {topChaseLabels.length ? (

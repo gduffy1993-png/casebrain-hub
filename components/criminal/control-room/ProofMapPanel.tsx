@@ -18,6 +18,7 @@ import {
   REASONING_V2_SOURCE_BASIS_MAX,
   truncateSourceBasis,
 } from "./reasoningV2Ui";
+import { displaySolicitorStage } from "@/lib/criminal/solicitor-hearing-display";
 
 export type ProofMapPanelProps = {
   result: ProductProofMapResult | null;
@@ -182,7 +183,7 @@ export function ProofMapPanel({ result, loading, proofMapEnabled = true }: Proof
             <h2 className="text-sm font-semibold text-slate-900">Proof map</h2>
             <p className={`${workflowMuted} text-xs mt-0.5 break-words`}>
               {result.charge}
-              {result.stage ? ` · ${result.stage}` : ""}
+              {result.stage ? ` · ${displaySolicitorStage(result.stage)}` : ""}
             </p>
           </div>
         </div>

@@ -47,29 +47,34 @@ function countEvidenceStates(
 
   counts.available = rows.length > 0 || chaseItems.length > 0;
 
-  for (const row of rows) {
-    switch (row.existence) {
-      case "served":
-        counts.served++;
-        break;
-      case "referred_only":
-        counts.referred_only++;
-        break;
-      case "missing":
-        counts.missing++;
-        break;
-      case "not_safely_confirmed":
-        counts.not_safely_confirmed++;
-        break;
-      case "unknown":
+  // Prefer truth-map / evidence-state rows so Overview counts match gap badges.
+  if (rows.length > 0) {
+    for (const row of rows) {
+      switch (row.existence) {
+        case "served":
+          counts.served++;
+          break;
+        case "referred_only":
+          counts.referred_only++;
+          break;
+        case "missing":
+          counts.missing++;
+          break;
+        case "not_safely_confirmed":
+          // Align with displayExistenceLabel → "Incomplete"
+          counts.incomplete++;
+          break;
+        case "unknown":
+          counts.not_safely_confirmed++;
+          break;
+        default:
+          break;
+      }
+      if (row.reliability === "needs_review" || row.reliability === "inference_only") {
         counts.provisional_or_needs_review++;
-        break;
-      default:
-        break;
+      }
     }
-    if (row.reliability === "needs_review" || row.reliability === "inference_only") {
-      counts.provisional_or_needs_review++;
-    }
+    return counts;
   }
 
   for (const item of chaseItems) {
@@ -84,6 +89,7 @@ function countEvidenceStates(
     const ex = mapSourceStateToExistence(state);
     if (ex === "missing") counts.missing++;
     if (ex === "referred_only") counts.referred_only++;
+    if (ex === "not_safely_confirmed") counts.incomplete++;
   }
 
   return counts;
@@ -390,7 +396,7 @@ export function buildConfidenceDashboardInputFromH5(props: {
   adviceRadar: AdviceChangeRadarModel | null;
   auditConcernCount?: number;
 }): BuildConfidenceDashboardInput {
-  const traceRows = props.view.evidenceTrace.rows.map((r) => ({
+  const stateRows = props.view.evidenceState.rows.map((r) => ({
     existence: r.existence,
     reliability: r.reliability,
     sourceAnchor: r.sourceAnchor,
@@ -400,7 +406,7 @@ export function buildConfidenceDashboardInputFromH5(props: {
 
   return {
     documentCount: props.documentCount,
-    evidenceRows: traceRows,
+    evidenceRows: stateRows,
     chaseItems: props.chase.primaryItems.map((i) => ({
       label: i.label,
       baseStatus: i.baseStatus,

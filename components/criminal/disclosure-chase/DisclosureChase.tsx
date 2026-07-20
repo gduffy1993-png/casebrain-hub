@@ -52,6 +52,10 @@ import {
   displayPilotStripHearing,
   displayPilotStripStage,
 } from "@/components/criminal/workflow/workflowPilotDisplay";
+import {
+  displaySolicitorStage,
+  resolveSolicitorHearingDateIso,
+} from "@/lib/criminal/solicitor-hearing-display";
 import { solicitorLinesNearlyEqual } from "@/lib/criminal/solicitor-display-dedupe";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import {
@@ -654,11 +658,16 @@ export function DisclosureChase({
   );
   const headerLoading = snapshotLoading || bundleLoading;
   const pilotMode = isCriminalPilotMode();
-  const stage = pilotMode
-    ? displayPilotStripStage(headerMeta.stage) || headerMeta.stage
-    : headerMeta.stage;
-  const hearingDateIso =
-    bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
+  const stage =
+    displayPilotStripStage(headerMeta.stage) ||
+    displaySolicitorStage(headerMeta.stage) ||
+    headerMeta.stage;
+  const hearingDateIso = resolveSolicitorHearingDateIso({
+    bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
+    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
+    bundleHay: bundleSource?.frontMatterScan,
+  });
   const courtDisplay = pilotMode
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
       cleanPilotCourtHeaderCell(headerMeta.court)

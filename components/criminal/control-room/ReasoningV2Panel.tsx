@@ -24,6 +24,7 @@ import {
   REASONING_V2_SOURCE_BASIS_MAX,
   truncateSourceBasis,
 } from "./reasoningV2Ui";
+import { displaySolicitorStage } from "@/lib/criminal/solicitor-hearing-display";
 import { ReasoningFeedbackCard } from "./ReasoningFeedbackCard";
 
 export type ReasoningV2PanelProps = {
@@ -253,7 +254,7 @@ export function ReasoningV2Panel({
                 {result.charge ? (
                   <p className={`text-[11px] ${workflowMuted} mt-1 break-words`}>
                     {result.charge}
-                    {result.stage ? ` · ${result.stage}` : ""}
+                    {result.stage ? ` · ${displaySolicitorStage(result.stage)}` : ""}
                   </p>
                 ) : null}
               </SectionBlock>

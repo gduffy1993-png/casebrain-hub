@@ -1,11 +1,12 @@
 import type { ClientStressResult } from "@/lib/criminal/client-stress-test/client-stress-types";
 import type { ReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
+import { isPlaceholderHearingIso } from "@/lib/criminal/solicitor-hearing-display";
 import { sanitizeExportLine, truncateExportBasis } from "./export-sanitize";
 import type { DisclosureChaseDraft, DisclosureChaseDraftItem, SolicitorExportContext } from "./export-types";
 import { SOLICITOR_REVIEW_FOOTER } from "./export-types";
 
 function deadlineWording(hearingDateIso: string | null | undefined): string {
-  if (!hearingDateIso) {
+  if (!hearingDateIso || isPlaceholderHearingIso(hearingDateIso)) {
     return "Service requested in accordance with disclosure timetable and before next hearing where practicable.";
   }
   const d = new Date(hearingDateIso);
