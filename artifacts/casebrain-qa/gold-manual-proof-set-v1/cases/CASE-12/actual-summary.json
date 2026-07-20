@@ -1,0 +1,142 @@
+{
+  "goldId": "CASE-12",
+  "sourceCaseId": "demo-audit-21-historic-sexual-abe",
+  "builtAt": "2026-07-10T21:28:30.323Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Sexual assault, contrary to section 3 of the Sexual Offences Act 2003",
+  "clientLabel": "Daniel Pike",
+  "truthMapRows": [
+    {
+      "label": "ABE interview video",
+      "existence": "referred_only",
+      "reliability": "weak"
+    },
+    {
+      "label": "Complainant MG11 (draft)",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "ABE interview transcript",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Third-party counselling notes",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Final signed MG11",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "ABE interview video",
+      "draft": "Please provide ABE interview video (see MG6C/SX/02) or confirm in writing why it is not available."
+    },
+    {
+      "label": "ABE interview transcript",
+      "draft": "Please provide ABE interview transcript (see MG6C/SX/03) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Final signed MG11",
+      "draft": "Please provide Final signed MG11 (see MG6C/SX/05) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Third-party counselling notes",
+      "draft": "Please provide Third-party counselling notes (see MG6C/SX/04) or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record per MG6C that draft complainant material is served but ABE interview video, transcript, and final signed MG11 remain outstanding.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Daniel Pike). This is early-stage — nothing is final until we have full disclosure and your instructions. A draft complainant statement is on the papers, but the ABE interview video, transcript, and final signed MG11 are still outstanding. We cannot rely on the served draft alone for hearing position. This is a historic allegation — the ABE interview video is referred on the schedule but not on the bundle we have reviewed.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS us",
+  "doNotOverstate": [
+    "ABE proves guilt",
+    "complainant proved",
+    "Do not rely on ABE or complainant account as final proof without served interview material.",
+    "Do not summarise ABE as fact unless the served record is reviewed."
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "ABE interview transcript",
+      "surface": "Overview",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "ABE interview note",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Final signed MG11",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "ABE interview video",
+      "surface": "Overview",
+      "sourceDocument": "MG6/MG6C disclosure schedule",
+      "sourcePage": "Historic allegation. Draft complainant MG11 s…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "Third-party counselling notes",
+      "surface": "Overview",
+      "sourceDocument": "MG6/MG6C disclosure schedule",
+      "sourcePage": "Historic allegation. Draft complainant MG11 s…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that draft complainant material is served but ABE interview video, transcript, and final signed MG11 remain outstanding.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "Historic allegation. Draft complainant MG11 s…",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide ABE interview video (see MG6C/SX/02) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "MG6/MG6C disclosure schedule",
+      "sourcePage": "Historic allegation. Draft complainant MG11 s…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "Please provide ABE interview transcript (see MG6C/SX/03) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "ABE interview note",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Final signed MG11 (see MG6C/SX/05) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Third-party counselling notes (see MG6C/SX/04) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "MG6/MG6C disclosure schedule",
+      "sourcePage": "Historic allegation. Draft complainant MG11 s…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    }
+  ],
+  "hardSafetyFailures": [],
+  "precomputedArtifactHints": {
+    "cps-chase.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-21-historic-sexual-abe/cps-chase.json",
+    "court-tab.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-21-historic-sexual-abe/court-tab.json",
+    "client-summary.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-21-historic-sexual-abe/client-summary.json",
+    "overview-truth-map.json": "artifacts/casebrain-qa/demo-audit-thirty/demo-audit-21-historic-sexual-abe/overview-truth-map.json"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "goldId": "CASE-07",
+  "sourceCaseId": "demo-audit-44-bad-redaction",
+  "builtAt": "2026-07-10T21:28:28.633Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
+  "clientLabel": "Farah Kent",
+  "truthMapRows": [
+    {
+      "label": "witness MG11",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "custody extract",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "unredacted mg11",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "redaction schedule",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "full police note",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "unredacted mg11",
+      "draft": "Please provide unredacted mg11 or confirm in writing why it is not available."
+    },
+    {
+      "label": "redaction schedule",
+      "draft": "Please provide redaction schedule or confirm in writing why it is not available."
+    },
+    {
+      "label": "full police note",
+      "draft": "Please provide full police note or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and full police note remain outstanding before the defence relies on the redacted text.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Farah Kent). This is early-stage — nothing is final until we have full disclosure and your instructions. Redacted papers are on the bundle, but the unredacted MG11, redaction schedule, and full police note remain outstanding. Do not treat redacted text as if the full unredacted material were served.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "unsafe proof/outcome wording blocked",
+    "Do not rely on redacted text as if the unredacted MG11 and schedule were served."
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "unredacted mg11",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "redaction schedule",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "full police note",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and full police note remain outstanding before the defence relies on the redacted text.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "source verification required",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide unredacted mg11 or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide redaction schedule or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide full police note or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    }
+  ],
+  "hardSafetyFailures": []
+}

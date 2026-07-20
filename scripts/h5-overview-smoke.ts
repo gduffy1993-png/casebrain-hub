@@ -380,6 +380,23 @@ async function main(): Promise<void> {
       }
     }
 
+    // Proof depth is collapsed by default on Overview — expand before receipt/packet checks.
+    const proofDepthToggle = desktop.getByTestId("overview-proof-depth-toggle");
+    if (await proofDepthToggle.isVisible().catch(() => false)) {
+      const expanded = await proofDepthToggle.getAttribute("aria-expanded");
+      if (expanded !== "true") {
+        await proofDepthToggle.click().catch(() => undefined);
+        await desktop.waitForTimeout(300);
+      }
+      steps.push({ id: "overview_proof_depth_expandable", status: "pass" });
+    } else {
+      steps.push({
+        id: "overview_proof_depth_expandable",
+        status: "warn",
+        detail: "Proof depth drawer toggle not found",
+      });
+    }
+
     if (await desktop.getByTestId("evidence-truth-map-panel").isVisible().catch(() => false)) {
       steps.push({ id: "evidence_truth_map_visible", status: "pass" });
       const mapBody = await desktop.getByTestId("evidence-truth-map-panel").innerText();
@@ -681,10 +698,10 @@ async function main(): Promise<void> {
       const vw = window.innerWidth;
       const panelIds = [
         "case-snapshot-panel",
-        "evidence-truth-map-panel",
-        "proof-receipt-panel",
-        "proof-packet-preview-panel",
+        "overview-snapshot-boxes",
         "five-answers-case-saying",
+        "hearing-mode-panel",
+        "export-pack-panel",
       ];
       const rects = panelIds
         .map((id) => {
@@ -704,7 +721,6 @@ async function main(): Promise<void> {
         for (let j = i + 1; j < rects.length; j++) {
           const a = rects[i];
           const b = rects[j];
-          // Nested packet summary inside proof receipts is intentional — not a layout collision.
           if (a.el.contains(b.el) || b.el.contains(a.el)) continue;
           const hOverlap = a.left < b.right - 8 && b.left < a.right - 8;
           const vOverlap = a.top < b.bottom - 8 && b.top < a.bottom - 8;

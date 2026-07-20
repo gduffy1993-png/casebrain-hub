@@ -9,6 +9,11 @@ import {
   similarityRatio,
   stripReqAndInternalCodes,
 } from "./matterBriefAssembly";
+import {
+  excludeSolicitorLinesMatching,
+  polishChasePreviewLabel,
+  solicitorLinesNearlyEqual,
+} from "@/lib/criminal/solicitor-display-dedupe";
 import { buildClientSafeExplanation } from "@/lib/criminal/build-client-safe-explanation";
 import { isBundleClientSafeSurfacingEnabled } from "@/lib/criminal/bundle-client-safe-surfacing";
 import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan";
@@ -120,18 +125,29 @@ export function buildMatterBrief(input: {
     [
       ...chase.primaryItems.map((i) => stripReqAndInternalCodes(i.label)),
       ...chase.items.slice(0, 8).map((i) => stripReqAndInternalCodes(i.label)),
-    ].filter(Boolean),
+    ]
+      .filter(Boolean)
+      .map((l) => polishChasePreviewLabel(l) ?? "")
+      .filter(Boolean),
   ).slice(0, 8);
 
   const safeLine = safeLineForTheory(warRoom.safePositionToday, contradictions);
 
+  const ptphBullets = dedupePilotCourtRecordLines(
+    dedupePilotLines([
+      safeLine ?? firstSafeSentence(warRoom.safePositionToday),
+      ...warRoom.askCourtToRecord.slice(0, 6),
+      "The defence cannot confirm final issues until disclosure is complete.",
+    ]),
+  ).slice(0, 10);
+
+  // Court note lives in PTPH section — keep theory free of the same safe line.
   const caseTheory = dedupeTheorySentences([
     briefPlan?.summaryAngle,
     briefPlan?.mainIssue ? `Main issue: ${briefPlan.mainIssue}` : null,
     "The defence case remains provisional pending disclosure.",
     primaryRoute ? `Primary route on file: ${primaryRoute}.` : null,
     ...contradictions.map((c) => c.theoryLine),
-    safeLine,
   ]);
 
   const prosecutionRisks = dedupeSimilarSummaryLines(
@@ -152,13 +168,13 @@ export function buildMatterBrief(input: {
     [
       ...contradictionActions.map((a) => a.summaryRisk),
       ...contradictions.map((c) => c.riskLine),
-      ...warRoom.doNotOverstate,
       ...warRoom.collapseRisks.filter((r) => !isOpportunityShapedLine(r) && !opportunityLines.has(r)),
     ],
     6,
   );
 
-  const opportunities = dedupeSimilarSummaryLines(
+  const ATTRIBUTION_ACTION = "Test attribution before any position is fixed.";
+  const rawOpportunities = dedupeSimilarSummaryLines(
     [
       ...(briefPlan?.requiredOutputItems.summary ?? []),
       ...contradictionActions.map((a) => a.todayCourtLine),
@@ -167,14 +183,18 @@ export function buildMatterBrief(input: {
     ],
     8,
   );
-
-  const ptphBullets = dedupePilotCourtRecordLines(
-    dedupePilotLines([
-      safeLine ?? firstSafeSentence(warRoom.safePositionToday),
-      ...warRoom.askCourtToRecord.slice(0, 6),
-      "The defence cannot confirm final issues until disclosure is complete.",
-    ]),
-  ).slice(0, 10);
+  // Drop theory restatements; keep action wording for attribution-led matters.
+  let opportunities = excludeSolicitorLinesMatching(
+    rawOpportunities.filter((l) => !/\bthe case turns on\b/i.test(l)),
+    caseTheory.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean),
+  ).map((l) => (/test attribution/i.test(l) ? ATTRIBUTION_ACTION : l));
+  if (
+    /attribution/i.test(`${caseTheory} ${rawOpportunities.join(" ")}`) &&
+    !opportunities.some((l) => solicitorLinesNearlyEqual(l, ATTRIBUTION_ACTION))
+  ) {
+    opportunities = [ATTRIBUTION_ACTION, ...opportunities];
+  }
+  opportunities = dedupeSimilarSummaryLines(opportunities, 6);
 
   const clientParagraph = isBundleClientSafeSurfacingEnabled()
     ? buildClientSafeExplanation({

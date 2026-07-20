@@ -1,0 +1,114 @@
+{
+  "goldId": "CASE-19",
+  "sourceCaseId": "demo-audit-47-social-media-handles",
+  "builtAt": "2026-07-10T21:28:32.642Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
+  "clientLabel": "Nadia Pike",
+  "truthMapRows": [
+    {
+      "label": "witness MG11",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "custody extract",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "platform disclosure response",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "handle mapping report",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "ip/subscriber data",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "platform disclosure response",
+      "draft": "Please provide platform disclosure response or confirm in writing why it is not available."
+    },
+    {
+      "label": "handle mapping report",
+      "draft": "Please provide handle mapping report or confirm in writing why it is not available."
+    },
+    {
+      "label": "ip/subscriber data",
+      "draft": "Please provide ip/subscriber data or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record that platform disclosure, handle mapping, and IP/subscriber attribution remain outstanding before account attribution is treated as fixed.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Nadia Pike). This is early-stage — nothing is final until we have full disclosure and your instructions. Social/handle material may be on the papers, but platform disclosure, handle-to-defendant mapping, and IP/subscriber data remain outstanding. A handle alone does not prove account attribution.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "unsafe proof/outcome wording blocked",
+    "Do not treat a social handle alone as proof of subscriber or account attribution."
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "platform disclosure response",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "handle mapping report",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "ip/subscriber data",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record that platform disclosure, handle mapping, and IP/subscriber attribution remain outstanding before account attribution is treated as fixed.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "source verification required",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide platform disclosure response or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide handle mapping report or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide ip/subscriber data or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    }
+  ],
+  "hardSafetyFailures": []
+}

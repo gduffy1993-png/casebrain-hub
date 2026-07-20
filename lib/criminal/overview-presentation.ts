@@ -1,5 +1,11 @@
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import type { FamilyProofCard, FamilyProofCardId } from "@/lib/criminal/proof-receipt/types";
+import {
+  dedupeSolicitorLines,
+  sanitizeSolicitorVisibleText,
+} from "@/lib/criminal/solicitor-display-dedupe";
+
+export { sanitizeSolicitorVisibleText } from "@/lib/criminal/solicitor-display-dedupe";
 
 function isDigitalHarassmentContext(bundleHay: string, allegation: string): boolean {
   const hay = `${allegation} ${bundleHay}`.toLowerCase();
@@ -11,32 +17,8 @@ function isDigitalHarassmentContext(bundleHay: string, allegation: string): bool
   );
 }
 
-/** Normalize visible copy — strips dev/eval tokens from solicitor-facing surfaces. */
-export function sanitizeSolicitorVisibleText(text: string): string {
-  if (!text.trim()) return text;
-  return text
-    .replace(/\bsource_unavailable\b/gi, "source not on file")
-    .replace(/\bneeds_review\b/gi, "solicitor review")
-    .replace(/\bcopy gate\b/gi, "wording guard")
-    .replace(/\bNot assessable\b/g, "Not confirmed on papers")
-    .replace(/\bWeak\b/g, "Limited on papers")
-    .replace(/\bNeeds review\b/g, "Solicitor review")
-    .replace(/\s{2,}/g, " ")
-    .trim();
-}
-
 export function dedupePresentationLines(lines: string[]): string[] {
-  const seen = new Set<string>();
-  const out: string[] = [];
-  for (const raw of lines) {
-    const line = sanitizeSolicitorVisibleText(raw.trim());
-    if (!line || line.length < 4) continue;
-    const key = line.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-    if (!key || seen.has(key)) continue;
-    seen.add(key);
-    out.push(line);
-  }
-  return out;
+  return dedupeSolicitorLines(lines);
 }
 
 export function dedupeEvidenceRowsByLabel(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvidenceRow[] {
@@ -119,4 +101,57 @@ export function gapEvidenceRows(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvid
 
 export function servedEvidenceRows(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvidenceRow[] {
   return rows.filter((r) => r.existence === "served");
+}
+
+export function countEvidenceStates(rows: FiveAnswersEvidenceRow[]): {
+  served: number;
+  referred: number;
+  missing: number;
+} {
+  let served = 0;
+  let referred = 0;
+  let missing = 0;
+  for (const row of rows) {
+    if (row.existence === "served") served += 1;
+    else if (row.existence === "referred_only") referred += 1;
+    else if (row.existence === "missing" || row.existence === "unknown" || row.existence === "not_safely_confirmed") {
+      missing += 1;
+    }
+  }
+  return { served, referred, missing };
+}
+
+/** Short solicitor-facing status — prefer one provisional badge; do not surface "Needs review" stack. */
+export function overviewStatusLabel(level: string | null | undefined): {
+  label: string;
+  variant: "success" | "warning" | "secondary" | "danger";
+} {
+  switch (level) {
+    case "safe":
+      return { label: "Source-linked", variant: "success" };
+    case "provisional":
+    case "needs_review":
+      return { label: "Provisional — source-linked", variant: "secondary" };
+    case "blocked":
+      return { label: "Blocked — review required", variant: "danger" };
+    default:
+      return { label: "Provisional — source-linked", variant: "secondary" };
+  }
+}
+
+/** Cap blocked wording examples for the Overview safe-wording card. */
+export function overviewBlockedExamples(lines: string[], max = 2): string[] {
+  return dedupePresentationLines(lines).slice(0, max);
+}
+
+/**
+ * Risk Flags pointer — keep Not Safe to Say as the detailed block; avoid repeating those lines.
+ */
+export function overviewRiskFlagPointers(notSafeLines: string[]): string[] {
+  if (!notSafeLines.length) return [];
+  const hay = notSafeLines.join(" ").toLowerCase();
+  if (/attribution|mg11|witness statement|message/i.test(hay)) {
+    return ["Attribution and MG11 status need review — see Not safe to say."];
+  }
+  return ["Wording risks need review — see Not safe to say."];
 }

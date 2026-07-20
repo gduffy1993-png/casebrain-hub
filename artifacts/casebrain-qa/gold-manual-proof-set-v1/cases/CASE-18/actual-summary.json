@@ -1,0 +1,114 @@
+{
+  "goldId": "CASE-18",
+  "sourceCaseId": "demo-audit-46-prison-calls",
+  "builtAt": "2026-07-10T21:28:32.410Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Conspiracy to import a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
+  "clientLabel": "Reece Nolan",
+  "truthMapRows": [
+    {
+      "label": "witness MG11",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "custody extract",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "prison call recordings",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "pin attribution report",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "full prison telecom export",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "prison call recordings",
+      "draft": "Please provide prison call recordings or confirm in writing why it is not available."
+    },
+    {
+      "label": "pin attribution report",
+      "draft": "Please provide pin attribution report or confirm in writing why it is not available."
+    },
+    {
+      "label": "full prison telecom export",
+      "draft": "Please provide full prison telecom export or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record that prison call recordings, PIN attribution, and telecom export material remain outstanding.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Reece Nolan). This is early-stage — nothing is final until we have full disclosure and your instructions. A call-log summary may be on the papers, but prison call recordings, PIN attribution material, and telecom export remain outstanding. A summary alone does not prove who spoke or what was said.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "unsafe proof/outcome wording blocked",
+    "Do not treat a call-log summary alone as proof of PIN attribution or call content."
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "prison call recordings",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "pin attribution report",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "full prison telecom export",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record that prison call recordings, PIN attribution, and telecom export material remain outstanding.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "source verification required",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide prison call recordings or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide pin attribution report or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide full prison telecom export or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    }
+  ],
+  "hardSafetyFailures": []
+}

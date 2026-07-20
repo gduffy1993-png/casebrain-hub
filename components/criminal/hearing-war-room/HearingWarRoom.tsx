@@ -61,6 +61,11 @@ import { EvidenceChangeDetectorPanel } from "@/components/criminal/control-room/
 import { SolicitorExportBuilderPanel } from "@/components/criminal/control-room/SolicitorExportBuilderPanel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
 import { PilotTodayDashboard, type PilotTodayDashboardView } from "@/components/criminal/workflow/PilotTodayDashboard";
+import {
+  displayPilotStripCourt,
+  displayPilotStripHearing,
+  displayPilotStripStage,
+} from "@/components/criminal/workflow/workflowPilotDisplay";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
 import { useEvidenceChangesEnabled } from "@/lib/criminal/evidence-change-detector/evidence-change-flag";
@@ -468,19 +473,28 @@ export function HearingWarRoom({
     }),
     [caseTitle, allegation, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan, pilotHeader?.profile],
   );
-  const stage = headerMeta.stage;
-  const metadataNote = pilotDisplayMetadataNote(headerMeta.metadataNote);
   const pilotMode = isCriminalPilotMode();
+  const stage = pilotMode
+    ? displayPilotStripStage(headerMeta.stage) || headerMeta.stage
+    : headerMeta.stage;
+  const metadataNote = pilotDisplayMetadataNote(headerMeta.metadataNote);
   const usePilotDeskUi = embedInShell || pilotMode;
   const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
     usePilotDemoSession();
   const hearingDateIso =
     bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
   const courtDisplay = pilotMode
-    ? cleanPilotCourtHeaderCell(headerMeta.court)
+    ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
+      cleanPilotCourtHeaderCell(headerMeta.court)
     : headerMeta.court?.trim() || "Court not safely extracted";
   const hearingDisplay = pilotMode
-    ? cleanPilotHearingHeaderCell(
+    ? displayPilotStripHearing(
+        cleanPilotHearingHeaderCell(
+          snapshotLoading || bundleLoading ? "…" : headerMeta.nextHearing,
+          hearingDateIso,
+        ),
+      ) ||
+      cleanPilotHearingHeaderCell(
         snapshotLoading || bundleLoading ? "…" : headerMeta.nextHearing,
         hearingDateIso,
       )
@@ -690,13 +704,6 @@ export function HearingWarRoom({
             deskChargeLine={deskChargeLine}
             moreDetail={
               <>
-                <BriefListCard
-                  title="Ask court to record"
-                  icon={<Scale className="h-4 w-4 text-blue-700" />}
-                  items={pilotTodayView.askCourtToRecord}
-                  tone="court"
-                  previewCount={3}
-                />
                 <PilotWarRoomMoreDetail brief={brief} bundleHay={bundleContextHay} />
               </>
             }
@@ -799,13 +806,6 @@ export function HearingWarRoom({
               view={pilotTodayView}
               moreDetail={
                 <>
-                  <BriefListCard
-                    title="Ask court to record"
-                    icon={<Scale className="h-4 w-4 text-blue-700" />}
-                    items={brief.askCourtToRecord}
-                    tone="court"
-                    previewCount={3}
-                  />
                   <PilotWarRoomMoreDetail brief={brief} bundleHay={bundleContextHay} />
                 </>
               }

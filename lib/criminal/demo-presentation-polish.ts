@@ -223,6 +223,20 @@ export function displayChaseCardLabel(item: ChaseDisplayItem): string {
   const hay = digitalHay(item);
   const normalized = item.label.replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
 
+  if (/^additional\s+source[- ]material\s+issues?\b/i.test(normalized)) {
+    const fromMerged = (item.mergedFrom ?? [])
+      .map((m) => m.trim())
+      .find((m) => m && !/^additional\s+source[- ]material/i.test(m));
+    if (fromMerged) {
+      const digital = digitalChaseLabel(`${fromMerged} ${hay}`);
+      if (digital) return digital;
+      return humanizeChaseFragmentLabel(fromMerged).replace(/\bmG6C\b/gi, "MG6C").replace(/\bmG6\b/gi, "MG6");
+    }
+    const digital = digitalChaseLabel(hay);
+    if (digital) return digital;
+    return "Other source-material item";
+  }
+
   if (mg6GenericLabel(normalized)) {
     const digital = digitalChaseLabel(hay);
     if (digital) return digital;

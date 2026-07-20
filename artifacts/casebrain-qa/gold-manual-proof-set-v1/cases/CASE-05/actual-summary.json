@@ -1,0 +1,151 @@
+{
+  "goldId": "CASE-05",
+  "sourceCaseId": "demo-audit-05-encro-attribution",
+  "builtAt": "2026-07-10T21:28:27.967Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Being concerned in the supply of a controlled drug of Class A, namely cocaine",
+  "clientLabel": "Liam Craft",
+  "truthMapRows": [
+    {
+      "label": "Encro message extracts LC/MSG/01",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Platform / source extraction",
+      "existence": "referred_only",
+      "reliability": "weak"
+    },
+    {
+      "label": "Handle attribution report",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Subscriber / account data",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Device continuity",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "co-defendant material",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "Platform / source extraction",
+      "draft": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Handle attribution report",
+      "draft": "Please provide Handle attribution report (see MG6C/ENC/03) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Subscriber / account data",
+      "draft": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Device continuity",
+      "draft": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Full download / export",
+      "draft": "Please provide Full download / export (see MG6C/ENC/07) or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Liam Craft). This is early-stage — nothing is final until we have full disclosure and your instructions. Message extracts are on the papers, but the handle attribution report, platform/source extraction, and subscriber continuity material are still outstanding. The extracts alone do not prove your role or identity on the account.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "handle proves defendant",
+    "NIGHTLINE-77 is Liam Craft",
+    "phone proves role",
+    "Do not treat handle or phone reference as proof of the defendant role without served attribution."
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "Platform / source extraction",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Handle attribution report",
+      "surface": "Overview",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": "Charge sheet; MG5; MG6C; officer statement; m…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Subscriber / account data",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Device continuity",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that message extracts are served and handle attribution report and platform extraction remain outstanding.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "source verification required",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Handle attribution report (see MG6C/ENC/03) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": "Charge sheet; MG5; MG6C; officer statement; m…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    }
+  ],
+  "hardSafetyFailures": [],
+  "precomputedArtifactHints": {
+    "cps-chase.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-05-encro-attribution/cps-chase.json",
+    "court-tab.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-05-encro-attribution/court-tab.json",
+    "client-summary.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-05-encro-attribution/client-summary.json",
+    "overview-truth-map.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-05-encro-attribution/overview-truth-map.json"
+  }
+}

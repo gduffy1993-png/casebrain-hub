@@ -1,0 +1,116 @@
+{
+  "goldId": "CASE-17",
+  "sourceCaseId": "demo-audit-61-medical-triage-partial",
+  "builtAt": "2026-07-10T21:28:32.046Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
+  "clientLabel": "Owen Pike",
+  "truthMapRows": [
+    {
+      "label": "witness MG11",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "custody extract",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "hospital records",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "consultant medical report",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "injury photographs",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "hospital records",
+      "draft": "Please provide hospital records or confirm in writing why it is not available."
+    },
+    {
+      "label": "consultant medical report",
+      "draft": "Please provide consultant medical report or confirm in writing why it is not available."
+    },
+    {
+      "label": "injury photographs",
+      "draft": "Please provide injury photographs or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record that hospital records, consultant report, and injury photographs remain outstanding before injury causation or extent is treated as fixed.",
+  "clientSummaryPreview": null,
+  "doNotOverstate": [
+    "unsafe proof/outcome wording blocked",
+    "Do not state \"final medical report\" — Medical material is absent, draft, or outstanding",
+    "Do not state \"medical report proves\" — Medical material is absent, draft, or outstanding",
+    "Do not state \"medical is consistent\" — Medical material is absent, draft, or outstanding"
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "hospital records",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "injury photographs",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "consultant medical report",
+      "surface": "Overview",
+      "sourceDocument": "CPS / expert source (confirm on file)",
+      "sourcePage": "Family theme: Medical triage note — full repo…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "The defence asks the court to record that hospital records, consultant report, and injury photographs remain outstanding before injury causation or extent is treated as fixed.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "source verification required",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide hospital records or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide consultant medical report or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / expert source (confirm on file)",
+      "sourcePage": "Family theme: Medical triage note — full repo…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    },
+    {
+      "outputLine": "Please provide injury photographs or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    }
+  ],
+  "hardSafetyFailures": []
+}

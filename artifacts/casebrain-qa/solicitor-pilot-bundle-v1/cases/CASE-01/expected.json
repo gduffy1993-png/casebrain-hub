@@ -1,0 +1,219 @@
+{
+  "goldId": "CASE-01",
+  "sourceCaseId": "demo-audit-01-phone-harassment",
+  "familyLabel": "phone harassment / attribution",
+  "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-01-phone-harassment/bundle-text.md",
+  "truthStates": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "screenshot and message pack",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": "7"
+    },
+    {
+      "evidence_item": "phone extraction summary",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null,
+      "must_not_say": [
+        "full phone download served"
+      ]
+    },
+    {
+      "evidence_item": "full phone download",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "subscriber/account data",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "full message export",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "call logs",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "device metadata",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "referred_only",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "complainant MG11",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "incomplete",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "attribution material",
+      "evidence_type": "phone_digital",
+      "correct_evidence_state": "not_safely_confirmed",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null,
+      "must_not_say": [
+        "defendant sent",
+        "Riley Moss sent"
+      ]
+    }
+  ],
+  "expectedMissingMaterial": [
+    "full phone download",
+    "subscriber/account data",
+    "full message export",
+    "call logs",
+    "device metadata",
+    "complainant MG11",
+    "attribution material"
+  ],
+  "unsafeToSayWarnings": [
+    "defendant sent the messages",
+    "Riley Moss sent",
+    "attribution is proved",
+    "BWV shows",
+    "CCTV proves",
+    "full phone download served",
+    "defendant sent"
+  ],
+  "expectedCpsChase": [
+    "full phone download",
+    "subscriber/account data",
+    "full message export",
+    "call logs",
+    "device metadata export",
+    "final signed MG11"
+  ],
+  "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
+  "expectedClientSummaryPoints": [
+    "Controlled matter: DA-01 Riley Moss — phone harassment / screenshots served",
+    "Served on papers (examples): charge sheet; mg5; mg6",
+    "Outstanding / chase candidates: full phone download; subscriber/account data; full message export; call logs",
+    "Plain English only — solicitor review required before client use"
+  ],
+  "expectedProofReceiptAnchors": [
+    {
+      "label": "charge sheet",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg5",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg6",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "screenshot and message pack",
+      "state": "served",
+      "sourcePageAnchor": "7",
+      "chaseNeeded": false
+    },
+    {
+      "label": "phone extraction summary",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "full phone download",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "subscriber/account data",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "full message export",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "call logs",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "device metadata",
+      "state": "referred_only",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "complainant MG11",
+      "state": "incomplete",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "attribution material",
+      "state": "not_safely_confirmed",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    }
+  ],
+  "claimDiscipline": "Gold manual review on a controlled/PDF-backed bundle. Not real-world solicitor validation. Solicitor review required before gold promotion."
+}

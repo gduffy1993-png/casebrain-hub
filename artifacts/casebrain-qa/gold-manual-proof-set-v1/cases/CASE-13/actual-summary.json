@@ -1,0 +1,114 @@
+{
+  "goldId": "CASE-13",
+  "sourceCaseId": "demo-audit-50-lab-continuity-conflict",
+  "builtAt": "2026-07-10T21:28:30.760Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971",
+  "clientLabel": "Holly Reed",
+  "truthMapRows": [
+    {
+      "label": "witness MG11",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "custody extract",
+      "existence": "not_safely_confirmed",
+      "reliability": "unsafe"
+    },
+    {
+      "label": "lab intake sheet",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "full continuity chain",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "sfr drugs analysis",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "lab intake sheet",
+      "draft": "Please provide lab intake sheet or confirm in writing why it is not available."
+    },
+    {
+      "label": "full continuity chain",
+      "draft": "Please provide full continuity chain or confirm in writing why it is not available."
+    },
+    {
+      "label": "sfr drugs analysis",
+      "draft": "Please provide sfr drugs analysis or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record that lab intake, continuity chain, and SFR/drugs analysis material remain outstanding before the exhibit position is fixed.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Holly Reed). This is early-stage — nothing is final until we have full disclosure and your instructions. A drugs schedule may be on the papers, but lab intake, continuity/chain of custody, and SFR/drugs analysis remain outstanding before the exhibit position is fixed.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "unsafe proof/outcome wording blocked",
+    "Do not rely on drug continuity unless lab/continuity material is served."
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "lab intake sheet",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "full continuity chain",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "sfr drugs analysis",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record that lab intake, continuity chain, and SFR/drugs analysis material remain outstanding before the exhibit position is fixed.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "source verification required",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide lab intake sheet or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide full continuity chain or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide sfr drugs analysis or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    }
+  ],
+  "hardSafetyFailures": []
+}

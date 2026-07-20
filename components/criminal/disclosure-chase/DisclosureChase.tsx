@@ -47,6 +47,12 @@ import {
   pilotDisplayMetadataNote,
   workflowHeaderOverrides,
 } from "@/lib/criminal/pilot-workflow";
+import {
+  displayPilotStripCourt,
+  displayPilotStripHearing,
+  displayPilotStripStage,
+} from "@/components/criminal/workflow/workflowPilotDisplay";
+import { solicitorLinesNearlyEqual } from "@/lib/criminal/solicitor-display-dedupe";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import {
   clearLegacyDisclosureChaseStorage,
@@ -429,9 +435,21 @@ function DetailPanel({
             </Button>
           </div>
         ) : null}
-        <p className={`text-[10px] border-t pt-3 ${pilotEmbed ? "text-slate-500 border-slate-700/60" : "text-slate-500 border-slate-100"}`}>
-          Case-wide court line (provisional): {displaySafeCourtLine || brief.safeCourtLine}
-        </p>
+        {!(
+          (displayCourt || item.courtLine) &&
+          solicitorLinesNearlyEqual(
+            displayCourt || item.courtLine,
+            displaySafeCourtLine || brief.safeCourtLine,
+          )
+        ) ? (
+          <p
+            className={`text-[10px] border-t pt-3 ${
+              pilotEmbed ? "text-slate-500 border-slate-700/60" : "text-slate-500 border-slate-100"
+            }`}
+          >
+            Case-wide court line (provisional): {displaySafeCourtLine || brief.safeCourtLine}
+          </p>
+        ) : null}
       </div>
     </aside>
   );
@@ -634,19 +652,21 @@ export function DisclosureChase({
     }),
     [caseTitle, allegation, clientLabel, battleboard?.primary_route?.title, bundleSource?.frontMatterScan, pilotHeader?.profile],
   );
-  const stage = headerMeta.stage;
   const headerLoading = snapshotLoading || bundleLoading;
   const pilotMode = isCriminalPilotMode();
+  const stage = pilotMode
+    ? displayPilotStripStage(headerMeta.stage) || headerMeta.stage
+    : headerMeta.stage;
   const hearingDateIso =
     bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
   const courtDisplay = pilotMode
-    ? cleanPilotCourtHeaderCell(headerMeta.court)
+    ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
+      cleanPilotCourtHeaderCell(headerMeta.court)
     : headerMeta.court?.trim() || "Court not safely extracted";
   const hearingDisplay = pilotMode
-    ? cleanPilotHearingHeaderCell(
-        headerLoading ? "…" : headerMeta.nextHearing,
-        hearingDateIso,
-      )
+    ? displayPilotStripHearing(
+        cleanPilotHearingHeaderCell(headerLoading ? "…" : headerMeta.nextHearing, hearingDateIso),
+      ) || cleanPilotHearingHeaderCell(headerLoading ? "…" : headerMeta.nextHearing, hearingDateIso)
     : headerLoading && /not safely extracted/i.test(headerMeta.nextHearing)
       ? "…"
       : headerMeta.nextHearing;
@@ -821,7 +841,7 @@ export function DisclosureChase({
         </header>
         ) : (
           <p className={`${workflowSectionTitle} px-1`}>
-            Disclosure chase · {loading ? "…" : `${counters.total} on file`}
+            Disclosure chase
           </p>
         )}
 
@@ -911,7 +931,7 @@ export function DisclosureChase({
                         onClick={() => setShowAdditional((v) => !v)}
                       >
                         <span className={`text-sm font-medium ${pilotEmbed ? "text-slate-100" : "text-slate-900"}`}>
-                          Additional source-material issues ({filteredAdditional.length})
+                          Other source-material items ({filteredAdditional.length})
                         </span>
                         <span className="text-xs text-violet-400 font-medium">
                           {showAdditional ? "Hide" : "Show"}

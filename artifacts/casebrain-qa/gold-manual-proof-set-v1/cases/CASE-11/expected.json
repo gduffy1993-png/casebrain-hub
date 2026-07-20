@@ -1,0 +1,161 @@
+{
+  "goldId": "CASE-11",
+  "sourceCaseId": "demo-audit-22-youth-interview",
+  "familyLabel": "youth / appropriate adult / intermediary",
+  "inputBundlePath": "artifacts/evidence-state-audit-local/cases/demo-audit-22-youth-interview/bundle-text.md",
+  "truthStates": [
+    {
+      "evidence_item": "charge sheet",
+      "evidence_type": "charge",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg5",
+      "evidence_type": "mg5",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "mg6",
+      "evidence_type": "mg6",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "officer statement",
+      "evidence_type": "mg11",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": true,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "YJS report extract",
+      "evidence_type": "yjs",
+      "correct_evidence_state": "served",
+      "chase_needed": false,
+      "safe_to_rely_on": false,
+      "source_page_anchor": "6"
+    },
+    {
+      "evidence_item": "full YJS pre-sentence report",
+      "evidence_type": "yjs",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "vulnerability assessment",
+      "evidence_type": "yjs",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "youth interview audio",
+      "evidence_type": "interview",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    },
+    {
+      "evidence_item": "appropriate adult continuity",
+      "evidence_type": "yjs",
+      "correct_evidence_state": "missing",
+      "chase_needed": true,
+      "safe_to_rely_on": false,
+      "source_page_anchor": null
+    }
+  ],
+  "expectedMissingMaterial": [
+    "full YJS pre-sentence report",
+    "vulnerability assessment",
+    "youth interview audio",
+    "appropriate adult continuity"
+  ],
+  "unsafeToSayWarnings": [
+    "youth guilt proved",
+    "BWV shows",
+    "full interview shows"
+  ],
+  "expectedCpsChase": [
+    "full YJS pre-sentence report",
+    "vulnerability assessment",
+    "youth interview audio",
+    "appropriate adult continuity"
+  ],
+  "expectedCourtLine": "Provisional hearing-safe line recording what is served vs outstanding on current papers (no plea / outcome language).",
+  "expectedClientSummaryPoints": [
+    "Controlled matter: DA-22 Kian Doyle — youth court / interview outstanding",
+    "Served on papers (examples): charge sheet; mg5; mg6",
+    "Outstanding / chase candidates: full YJS pre-sentence report; vulnerability assessment; youth interview audio; appropriate adult continuity",
+    "Plain English only — solicitor review required before client use"
+  ],
+  "expectedProofReceiptAnchors": [
+    {
+      "label": "charge sheet",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg5",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "mg6",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "officer statement",
+      "state": "served",
+      "sourcePageAnchor": null,
+      "chaseNeeded": false
+    },
+    {
+      "label": "YJS report extract",
+      "state": "served",
+      "sourcePageAnchor": "6",
+      "chaseNeeded": false
+    },
+    {
+      "label": "full YJS pre-sentence report",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "vulnerability assessment",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "youth interview audio",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    },
+    {
+      "label": "appropriate adult continuity",
+      "state": "missing",
+      "sourcePageAnchor": null,
+      "chaseNeeded": true
+    }
+  ],
+  "claimDiscipline": "Gold manual review on a controlled/PDF-backed bundle. Not real-world solicitor validation. Solicitor review required before gold promotion."
+}

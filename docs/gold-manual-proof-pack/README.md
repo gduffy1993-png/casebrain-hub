@@ -46,6 +46,7 @@ This is **not** automated audit output, **not** solicitor-reviewed proof in prod
 | [FALSE_POSITIVE_REVIEW_FORM.md](./FALSE_POSITIVE_REVIEW_FORM.md) | Structured false-positive and quality review |
 | [GOLD_PACK_SCORING.md](./GOLD_PACK_SCORING.md) | How to score pass, partial, fail, and hold |
 | [GOLD_PACK_COVERAGE_TARGETS.md](./GOLD_PACK_COVERAGE_TARGETS.md) | Minimum coverage across offence and evidence families |
+| [human-solicitor-review-v1/](./human-solicitor-review-v1/README.md) | **v1 human review pack** — instructions, scoring form, 20-case index, busy short, feedback template |
 
 ---
 

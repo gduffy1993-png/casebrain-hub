@@ -19,6 +19,13 @@ import {
   polishPresentationBlock,
   polishPresentationLine,
 } from "@/lib/criminal/demo-presentation-polish";
+import {
+  collapseDontSayMg11WitnessLines,
+  dedupeSolicitorLines,
+  excludeSolicitorLinesMatching,
+  polishChasePreviewLabel,
+  solicitorLinesNearlyEqual,
+} from "@/lib/criminal/solicitor-display-dedupe";
 import { displayPilotStripCharge, displayPilotStripClient } from "./workflowPilotDisplay";
 
 export type PilotSummaryViewProps = {
@@ -44,10 +51,17 @@ function MatterBriefSectionBlock({
   bundleHay?: string;
 }) {
   const displayBullets = polishChaseBullets
-    ? filterBundleFamilyWarnings(bullets ?? [], bundleHay).map((b) =>
-        polishPresentationLine(displayChaseBulletLine(b), bundleHay),
+    ? dedupeSolicitorLines(
+        filterBundleFamilyWarnings(bullets ?? [], bundleHay)
+          .map((b) => polishPresentationLine(displayChaseBulletLine(b), bundleHay))
+          .map((b) => polishChasePreviewLabel(b) ?? "")
+          .filter(Boolean),
       )
-    : filterBundleFamilyWarnings(bullets ?? [], bundleHay).map((b) => polishPresentationLine(b, bundleHay));
+    : dedupeSolicitorLines(
+        filterBundleFamilyWarnings(bullets ?? [], bundleHay).map((b) =>
+          polishPresentationLine(b, bundleHay),
+        ),
+      );
   const displayParagraph = paragraph ? polishPresentationBlock(paragraph, bundleHay) : "";
   return (
     <section className={`${workflowPilotCard} px-4 py-3 space-y-2`}>
@@ -80,7 +94,10 @@ export function PilotSummaryView({
   const { loading, matterBrief, matterConfidence, doNotOverstate, bundleMeta } = useMatterBrief(caseId);
   const bundleHay = bundleMeta?.frontMatterScan ?? "";
   const filteredDoNot = useMemo(
-    () => filterBundleFamilyWarnings(doNotOverstate, bundleHay),
+    () =>
+      collapseDontSayMg11WitnessLines(
+        dedupeSolicitorLines(filterBundleFamilyWarnings(doNotOverstate, bundleHay)),
+      ),
     [doNotOverstate, bundleHay],
   );
   const buildTabHref = usePilotMatterTabHref();
@@ -178,17 +195,36 @@ export function PilotSummaryView({
         <>
           {orderedSections
             .filter((section) => section.id !== "client")
-            .map((section) => (
+            .map((section) => {
+              const theory =
+                matterBrief.sections.find((s) => s.id === "theory")?.paragraph?.trim() ?? "";
+              let bullets = section.bullets;
+              if (section.id === "risks") {
+                bullets = excludeSolicitorLinesMatching(section.bullets ?? [], filteredDoNot);
+              } else if (section.id === "opportunities") {
+                const attributionAction = "Test attribution before any position is fixed.";
+                bullets = excludeSolicitorLinesMatching(section.bullets ?? [], [theory])
+                  .filter((l) => !/\bthe case turns on\b/i.test(l))
+                  .map((l) => (/test attribution/i.test(l) ? attributionAction : l));
+                if (
+                  /attribution/i.test(`${theory} ${(section.bullets ?? []).join(" ")}`) &&
+                  !(bullets ?? []).some((l) => solicitorLinesNearlyEqual(l, attributionAction))
+                ) {
+                  bullets = [attributionAction, ...(bullets ?? [])];
+                }
+              }
+              return (
             <MatterBriefSectionBlock
               key={section.id}
               title={section.title}
               paragraph={section.paragraph}
-              bullets={section.bullets}
+              bullets={bullets}
               sourceState={section.id === "client" ? "provisional" : "needs_review"}
               polishChaseBullets={section.id === "chase"}
               bundleHay={bundleHay}
             />
-          ))}
+              );
+            })}
 
           {matterBrief.sections.find((s) => s.id === "chase") ? (
             <div className="flex justify-end">

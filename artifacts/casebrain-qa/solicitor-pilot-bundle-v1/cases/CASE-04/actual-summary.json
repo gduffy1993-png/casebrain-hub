@@ -1,0 +1,148 @@
+{
+  "goldId": "CASE-04",
+  "sourceCaseId": "demo-audit-02-cctv-stills",
+  "builtAt": "2026-07-10T18:40:00.294Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+  "clientLabel": "Devon Walsh",
+  "truthMapRows": [
+    {
+      "label": "CCTV still images",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Full CCTV export",
+      "existence": "referred_only",
+      "reliability": "weak"
+    },
+    {
+      "label": "Master CCTV footage",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "CCTV continuity / provenance",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "CCTV audit trail / source hash record",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Recognition / ID basis",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "Master CCTV footage",
+      "draft": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Full CCTV export",
+      "draft": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available."
+    },
+    {
+      "label": "CCTV Continuity / provenance",
+      "draft": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available."
+    },
+    {
+      "label": "CCTV audit trail / source hash",
+      "draft": "Please provide CCTV audit trail / source hash (see MG6C/CCTV/05) or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage, full export, and continuity/provenance remain outstanding.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full disclosure and your instructions. CCTV still images are on the papers, but the master CCTV footage, full export, and continuity/provenance material are still outstanding. Stills alone do not show the full recording.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "CCTV proves identity",
+    "CCTV proves offence",
+    "positive identification from stills",
+    "Do not treat stills alone as proof of identity or offence.",
+    "Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers"
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "Master CCTV footage",
+      "surface": "Overview",
+      "sourceDocument": "Police / CCTV unit",
+      "sourcePage": "CCTV still images | 6-7 |",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Full CCTV export",
+      "surface": "Overview",
+      "sourceDocument": "Police / CCTV unit",
+      "sourcePage": "CCTV still images | 6-7 |",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "CCTV Continuity / provenance",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "CCTV audit trail / source hash",
+      "surface": "Overview",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": "Charge sheet; MG5; MG6C; officer MG11; CCTV s…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage, full export, and continuity/provenance remain outstanding.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "CCTV still images | 6-7 |",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Police / CCTV unit",
+      "sourcePage": "CCTV still images | 6-7 |",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Police / CCTV unit",
+      "sourcePage": "CCTV still images | 6-7 |",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide CCTV audit trail / source hash (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": "Charge sheet; MG5; MG6C; officer MG11; CCTV s…",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    }
+  ],
+  "hardSafetyFailures": [],
+  "precomputedArtifactHints": {
+    "cps-chase.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-02-cctv-stills/cps-chase.json",
+    "court-tab.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-02-cctv-stills/court-tab.json",
+    "client-summary.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-02-cctv-stills/client-summary.json",
+    "overview-truth-map.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-02-cctv-stills/overview-truth-map.json"
+  }
+}

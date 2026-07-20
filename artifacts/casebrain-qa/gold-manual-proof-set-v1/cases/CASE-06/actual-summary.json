@@ -1,0 +1,138 @@
+{
+  "goldId": "CASE-06",
+  "sourceCaseId": "demo-audit-04-co-def-interview",
+  "builtAt": "2026-07-10T21:28:28.369Z",
+  "builder": "direct-h5-builders+precomputed-artifacts+buildProofReceiptView",
+  "allegation": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
+  "clientLabel": "Morgan Reid",
+  "truthMapRows": [
+    {
+      "label": "Officer statement",
+      "existence": "served",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Co-defendant interview summary",
+      "existence": "referred_only",
+      "reliability": "weak"
+    },
+    {
+      "label": "Target defendant interview summary",
+      "existence": "missing",
+      "reliability": "needs_review"
+    },
+    {
+      "label": "Co-defendant attribution / continuity",
+      "existence": "missing",
+      "reliability": "needs_review"
+    }
+  ],
+  "cpsChase": [
+    {
+      "label": "Target defendant interview summary",
+      "draft": "Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Target defendant interview audio",
+      "draft": "Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Target defendant interview transcript",
+      "draft": "Please provide Target defendant interview transcript (see MG6C/INT/04) or confirm in writing why it is not available."
+    },
+    {
+      "label": "Co-defendant attribution / continuity",
+      "draft": "Please provide Co-defendant attribution / continuity (see MG6C/CO/01) or confirm in writing why it is not available."
+    }
+  ],
+  "courtLine": "The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant interview summary/audio remain outstanding.",
+  "clientSummaryPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Morgan Reid). This is early-stage — nothing is final until we have full disclosure and your instructions. A co-defendant interview summary is on the papers for segregation only. Your interview summary, audio, and transcript are still outstanding and must not be confused with the co-defendant material.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+  "doNotOverstate": [
+    "Morgan Reid admitted",
+    "defendant's interview shows",
+    "import co-defendant interview",
+    "Do not import co-defendant interview into the target defendant account.",
+    "Do not state \"interview confirms\" — Interview material is not fully served"
+  ],
+  "proofReceipts": [
+    {
+      "outputLine": "Target defendant interview summary",
+      "surface": "Overview",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "Co-defendant interview summary (Tara Vale)",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Target defendant interview audio",
+      "surface": "Overview",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Target defendant interview transcript",
+      "surface": "Overview",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": "Charge sheet; MG5; MG6C; officer statement; c…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Co-defendant attribution / continuity",
+      "surface": "Overview",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "Co-defendant interview summary (Tara Vale)",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "The defence asks the court to record per MG6C that co-defendant interview material is segregated and target defendant interview summary/audio remain outstanding.",
+      "surface": "Court",
+      "sourceDocument": "Disclosure chase brief",
+      "sourcePage": "Co-defendant interview summary (Tara Vale)",
+      "evidenceState": "Incomplete",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "Co-defendant interview summary (Tara Vale)",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "CPS / disclosure officer",
+      "sourcePage": "source verification required",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Target defendant interview transcript (see MG6C/INT/04) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Crown / disclosure officer",
+      "sourcePage": "Charge sheet; MG5; MG6C; officer statement; c…",
+      "evidenceState": "Not safely confirmed",
+      "safeAction": "check"
+    },
+    {
+      "outputLine": "Please provide Co-defendant attribution / continuity (see MG6C/CO/01) or confirm in writing why it is not available.",
+      "surface": "CPS Chase",
+      "sourceDocument": "Custody / police interview unit",
+      "sourcePage": "Co-defendant interview summary (Tara Vale)",
+      "evidenceState": "Missing",
+      "safeAction": "chase"
+    }
+  ],
+  "hardSafetyFailures": [],
+  "precomputedArtifactHints": {
+    "cps-chase.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-04-co-def-interview/cps-chase.json",
+    "court-tab.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-04-co-def-interview/court-tab.json",
+    "client-summary.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-04-co-def-interview/client-summary.json",
+    "overview-truth-map.json": "artifacts/casebrain-qa/demo-audit-five/demo-audit-04-co-def-interview/overview-truth-map.json"
+  }
+}

@@ -8,8 +8,20 @@ const nested = sanitizePilotCourtRecordLine(
   "Ask the court to record that prepare hearing line on outstanding disclosure; set a timetable. remains outstanding and should be disclosed on a timetable.",
 );
 assert.ok(nested);
-assert.match(nested!, /outstanding disclosure should be timetabled/i);
+assert.equal(
+  nested,
+  "Ask the court to record that the defence position remains provisional pending service of the outstanding material.",
+);
 assert.doesNotMatch(nested!, /prepare hearing line on outstanding disclosure/i);
+assert.doesNotMatch(nested!, /provisional pending service\.\s*remains outstanding/i);
+
+const provisionalHybrid = sanitizePilotCourtRecordLine(
+  "Ask the court to record that the defence position remains provisional pending service. remains outstanding and should be disclosed on a timetable.",
+);
+assert.equal(
+  provisionalHybrid,
+  "Ask the court to record that the defence position remains provisional pending service of the outstanding material.",
+);
 
 const rawMg6 = sanitizePilotCourtRecordLine(
   "Ask the court to record that mG6C/003 — Subscriber data — outstanding. remains outstanding and should be disclosed on a timetable.",
