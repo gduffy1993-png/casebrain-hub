@@ -28,7 +28,7 @@ export function OverviewProofDepthDrawer({ children }: { children: ReactNode }) 
         <div className="min-w-0 flex-1">
           <h2 className={workflowSectionTitle}>Proof / audit depth</h2>
           <p className="text-[11px] text-slate-500 mt-0.5">
-            Proof receipts, proof packet, truth map, and family review — expand when you need source depth.
+            Proof receipts and truth map — expand when you need source depth.
           </p>
         </div>
         {open ? (

@@ -15,6 +15,7 @@ import {
 } from "@/lib/criminal/resolve-case-header-metadata";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { pilotCourtChaseLabels } from "@/lib/criminal/pilot-workflow";
+import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import type {
   CourtCaseBrief,
@@ -356,10 +357,11 @@ export function buildCourtCaseBrief(
     pilotMode && PILOT_BAD_ALLEGATION_RE.test(allegationBase)
       ? resolvePilotAllegationFallback(row.title) ?? allegationBase
       : allegationBase;
-  const stage =
+  const stageRaw =
     headerMeta.stage && !/^stage not recorded$/i.test(headerMeta.stage)
       ? headerMeta.stage
       : "Stage not safely extracted — open case file";
+  const stage = collapseHeaderCellDuplicates(stageRaw) || stageRaw;
   const chaseItems = buildChaseItems(row, battleboard, enrichment);
   const readiness = resolveReadiness(row, bucket, chaseItems.length, battleboard, allegation, clientLabel);
   const hearingTimeLabel = resolveHearingTimeLabel(row, enrichment, hearingDate);

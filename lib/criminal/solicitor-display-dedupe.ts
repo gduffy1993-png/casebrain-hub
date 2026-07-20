@@ -56,9 +56,19 @@ export function collapseRepeatedPhrase(text: string): string {
 
 /** Court / hearing / stage header cells — collapse repeats without changing extraction. */
 export function collapseHeaderCellDuplicates(raw: string | null | undefined): string {
-  const t = (raw ?? "").trim();
+  let t = (raw ?? "").trim();
   if (!t) return "";
-  return collapseRepeatedPhrase(t);
+  // Normalize common stage/header noise before phrase collapse.
+  t = t
+    .replace(/_/g, " ")
+    .replace(/\|/g, " ")
+    .replace(/^(?:stage|hearing|court)\s*:\s*/i, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+  t = collapseRepeatedPhrase(t);
+  // Second pass after underscore/pipe normalization (e.g. "pre ptph pre ptph").
+  t = collapseRepeatedPhrase(t);
+  return t;
 }
 
 export function solicitorLinesNearlyEqual(a: string, b: string): boolean {

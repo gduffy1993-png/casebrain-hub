@@ -15,7 +15,11 @@ import { displayPilotStripStage, dedupePilotLines } from "../components/criminal
 assert.equal(collapseRepeatedPhrase("pre ptph pre ptph"), "pre ptph");
 assert.equal(collapseRepeatedPhrase("Crown Court Crown Court"), "Crown Court");
 assert.equal(collapseHeaderCellDuplicates("pre_ptph pre_ptph".replace(/_/g, " ")), "pre ptph");
+assert.equal(collapseHeaderCellDuplicates("pre_ptph pre_ptph"), "pre ptph");
+assert.equal(collapseHeaderCellDuplicates("pre ptph | pre ptph"), "pre ptph");
+assert.equal(collapseHeaderCellDuplicates("Stage: pre ptph pre ptph"), "pre ptph");
 assert.equal(displayPilotStripStage("pre ptph pre ptph"), "pre ptph");
+assert.equal(displayPilotStripStage("pre_ptph|pre_ptph"), "pre ptph");
 
 assert.equal(isGenericAdditionalSourceLabel("Additional source-material issues (1)"), true);
 assert.equal(polishChasePreviewLabel("Additional source-material issues (1)"), null);

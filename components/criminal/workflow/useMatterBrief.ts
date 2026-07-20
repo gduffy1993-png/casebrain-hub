@@ -32,6 +32,7 @@ import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-ma
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan/types";
 import { resolveDemoPresentationHearingLabel } from "@/lib/criminal/demo-presentation-polish";
+import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -229,7 +230,9 @@ export function useMatterBrief(caseId: string) {
     });
     const caseTitle = safeSolicitorCaseTitle(pilotHeader?.displayTitle ?? pilotHeader?.title ?? caseTitleBase);
     const allegation = pilotHeader?.allegation ?? allegationBase;
-    const stage = headerMeta.stage;
+  const stage = headerMeta.stage
+    ? collapseHeaderCellDuplicates(headerMeta.stage) || headerMeta.stage
+    : headerMeta.stage;
     const hearingDateIso =
       bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
     const hearingStatus = resolveDemoPresentationHearingLabel({

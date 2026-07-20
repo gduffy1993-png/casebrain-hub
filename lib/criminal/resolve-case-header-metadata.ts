@@ -19,6 +19,7 @@ import {
 } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
 
 export type BundleSourceHeaderInput = {
   shortTitle?: string | null;
@@ -197,20 +198,24 @@ function resolveStage(
   header: BundleSourceHeaderInput | null | undefined,
   matterState?: string | null,
 ): { label: string; source: MetadataFieldSource } {
-  if (bundle?.stage?.trim() && !/^unknown|not recorded|—$/i.test(bundle.stage)) {
-    return { label: bundle.stage.trim(), source: bundle.stageSource };
-  }
-  if (header?.stage?.trim() && !/^unknown|not recorded|—$/i.test(header.stage)) {
-    return { label: header.stage.trim(), source: "extracted_cover_fallback" };
-  }
-  const fromMatter =
-    matter?.stageDetected?.replace(/_/g, " ") ??
-    snapshot?.caseMeta?.caseStage?.replace(/_/g, " ") ??
-    matterState?.replace(/_/g, " ") ??
-    null;
-  if (fromMatter && !/^unknown|stage not recorded|—$/i.test(fromMatter)) {
-    return { label: fromMatter, source: "structured_field" };
-  }
+  const pick = (raw: string | null | undefined, source: MetadataFieldSource) => {
+    const label = collapseHeaderCellDuplicates(raw);
+    if (!label || /^unknown|not recorded|stage not recorded|—$/i.test(label)) return null;
+    return { label, source };
+  };
+
+  const fromBundle = pick(bundle?.stage, bundle?.stageSource ?? "extracted_cover_fallback");
+  if (fromBundle) return fromBundle;
+
+  const fromHeader = pick(header?.stage, "extracted_cover_fallback");
+  if (fromHeader) return fromHeader;
+
+  const fromMatter = pick(
+    matter?.stageDetected ?? snapshot?.caseMeta?.caseStage ?? matterState ?? null,
+    "structured_field",
+  );
+  if (fromMatter) return fromMatter;
+
   return { label: "Stage not recorded", source: "unavailable" };
 }
 

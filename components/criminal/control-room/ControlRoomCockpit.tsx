@@ -18,6 +18,7 @@ import {
 } from "@/components/criminal/workflow/workflowUi";
 import { pilotRouteStatusBadgeLabel } from "@/lib/criminal/pilot-workflow";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
+import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
 import type { AboveFoldSummaryProps } from "./AboveFoldSummary";
 
 export type ControlRoomCockpitProps = AboveFoldSummaryProps & {
@@ -110,6 +111,7 @@ export function ControlRoomCockpit({
   bundlePositionNote,
   pilotDark = false,
 }: ControlRoomCockpitProps) {
+  const stageDisplay = collapseHeaderCellDuplicates(stage) || stage;
   const topActions = immediateActions.slice(0, 3);
   const biggestRisk =
     defenceRisks[0] ??
@@ -166,7 +168,8 @@ export function ControlRoomCockpit({
                 {loading ? "—" : courtLabel ?? "Court not safely extracted"}
               </span>
               <span>
-                <span className={`font-medium ${metaClass}`}>Stage:</span> {loading ? "—" : stage}
+                <span className={`font-medium ${metaClass}`}>Stage:</span>{" "}
+                {loading ? "—" : stageDisplay}
               </span>
               <span>
                 <span className={`font-medium ${metaClass}`}>Next hearing:</span>{" "}
@@ -175,7 +178,7 @@ export function ControlRoomCockpit({
             </>
           ) : (
             <span>
-              <span className={`font-medium ${metaClass}`}>Stage:</span> {loading ? "—" : stage}
+              <span className={`font-medium ${metaClass}`}>Stage:</span> {loading ? "—" : stageDisplay}
             </span>
           )}
         </p>

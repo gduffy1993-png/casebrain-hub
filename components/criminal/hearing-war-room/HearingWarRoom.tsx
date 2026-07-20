@@ -66,6 +66,7 @@ import {
   displayPilotStripHearing,
   displayPilotStripStage,
 } from "@/components/criminal/workflow/workflowPilotDisplay";
+import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
 import { useEvidenceChangesEnabled } from "@/lib/criminal/evidence-change-detector/evidence-change-flag";
@@ -476,7 +477,7 @@ export function HearingWarRoom({
   const pilotMode = isCriminalPilotMode();
   const stage = pilotMode
     ? displayPilotStripStage(headerMeta.stage) || headerMeta.stage
-    : headerMeta.stage;
+    : collapseHeaderCellDuplicates(headerMeta.stage) || headerMeta.stage;
   const metadataNote = pilotDisplayMetadataNote(headerMeta.metadataNote);
   const usePilotDeskUi = embedInShell || pilotMode;
   const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
