@@ -33,6 +33,11 @@ import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/ma
 import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan/types";
 import { resolveDemoPresentationHearingLabel } from "@/lib/criminal/demo-presentation-polish";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
+import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
+import { buildSolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-state";
+import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
+import { computeCounters } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -360,6 +365,35 @@ export function useMatterBrief(caseId: string) {
       hasSafeCourtLine: Boolean(warRoom.safePositionToday?.trim()),
     });
 
+    const bundleHay = `${bundleTextForBrief || bundleSource?.frontMatterScan || ""}`;
+    const hearingResolved = resolveSolicitorHearingStatus({
+      nextHearingRaw: hearingStatus,
+      bundleHay,
+      snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt ?? null,
+    });
+    const chaseCounters = computeCounters(chase.items, {});
+    const matterStateVm = buildSolicitorMatterStateVm({
+      evidenceRows: [] as FiveAnswersEvidenceRow[],
+      chaseCounters,
+    });
+    const sampleTexts = [
+      warRoom.safePositionToday,
+      ...warRoom.sayThis.slice(0, 4),
+      ...warRoom.doNotOverstate.slice(0, 4),
+      warRoom.draftWording?.disclosureTimetable,
+      warRoom.draftWording?.adjournment,
+      warRoom.draftWording?.clientExplanation,
+    ].filter((t): t is string => Boolean(t?.trim()));
+
+    const outputIntegrity = evaluateMatterIntegrity({
+      allegation,
+      bundleHay,
+      matterLevel: matterConfidence.level === "blocked" ? "blocked" : matterConfidence.summarySendability,
+      sampleTexts,
+      matterState: matterStateVm,
+      hearing: hearingResolved,
+    });
+
     return {
       matterBrief,
       matterConfidence,
@@ -370,6 +404,9 @@ export function useMatterBrief(caseId: string) {
       clientLabel,
       courtLabel: headerMeta.court?.trim() || null,
       hearingLabel: hearingStatus,
+      hearingStatusResolved: hearingResolved,
+      matterStateVm,
+      outputIntegrity,
       briefPlan,
       primaryRouteTitle,
       bundleMeta: bundleSource
@@ -407,6 +444,9 @@ export function useMatterBrief(caseId: string) {
     clientLabel: pilotMatter?.clientLabel ?? null,
     courtLabel: pilotMatter?.courtLabel ?? null,
     hearingLabel: pilotMatter?.hearingLabel ?? null,
+    hearingStatusResolved: pilotMatter?.hearingStatusResolved ?? null,
+    matterStateVm: pilotMatter?.matterStateVm ?? null,
+    outputIntegrity: pilotMatter?.outputIntegrity ?? null,
     briefPlan: pilotMatter?.briefPlan ?? null,
     primaryRouteTitle: pilotMatter?.primaryRouteTitle ?? null,
     bundleMeta: pilotMatter?.bundleMeta ?? null,
