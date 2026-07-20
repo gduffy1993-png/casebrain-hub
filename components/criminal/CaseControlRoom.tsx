@@ -18,6 +18,8 @@ import { buildEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-dete
 import { compareEvidenceChanges } from "@/lib/criminal/evidence-change-detector/compare-evidence-changes";
 import { loadEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-detector/evidence-change-snapshot-storage";
 import { SolicitorExportBuilderPanel } from "./control-room/SolicitorExportBuilderPanel";
+import { SolicitorDeepDetailGate } from "@/components/criminal/trust/SolicitorDeepDetailGate";
+import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
 import { SupervisorQAPanel } from "./control-room/SupervisorQAPanel";
 import { ClientExplanationPanel } from "./control-room/ClientExplanationPanel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
@@ -472,6 +474,16 @@ export function CaseControlRoom({
     pilotOverrides?.displayTitle ?? pilotOverrides?.title ?? caseTitle,
   );
   const allegation = pilotOverrides?.allegation ?? allegationBase;
+
+  const papersOutputIntegrity = useMemo(
+    () =>
+      evaluateMatterIntegrity({
+        allegation,
+        bundleHay: bundleSource?.frontMatterScan ?? "",
+      }),
+    [allegation, bundleSource?.frontMatterScan],
+  );
+  const papersDeepBlocked = !papersOutputIntegrity.deepDetailAvailable;
 
   const proofMapResult = useMemo(() => {
     if (!proofMapEnabled) return null;
@@ -1148,26 +1160,39 @@ export function CaseControlRoom({
             <div className={`${workflowPilotCard} px-4 py-3`}>
               <button
                 type="button"
-                className="w-full flex items-center justify-between gap-2 text-left"
-                onClick={() => setPapersDeepOpen((v) => !v)}
+                className="w-full flex items-center justify-between gap-2 text-left disabled:opacity-70"
+                onClick={() => {
+                  if (papersDeepBlocked) return;
+                  setPapersDeepOpen((v) => !v);
+                }}
+                disabled={papersDeepBlocked}
+                data-testid="papers-deep-toggle"
               >
                 <div>
                   <p className={workflowSectionTitle}>
                     {thickPilotBundle ? "Full papers workspace" : "More papers detail"}
                   </p>
                   <p className="text-xs text-slate-400 mt-1">
-                    {thickPilotBundle
-                      ? "Proof map, readiness, exports, and supervisor tools — scroll inside this section."
-                      : "Proof map, readiness checks, and additional control-room panels."}
+                    {papersDeepBlocked
+                      ? "Deep papers tools unavailable until integrity checks pass."
+                      : thickPilotBundle
+                        ? "Proof map, readiness, exports, and supervisor tools — scroll inside this section."
+                        : "Proof map, readiness checks, and additional control-room panels."}
                   </p>
                 </div>
-                {papersDeepOpen ? (
+                {papersDeepOpen && !papersDeepBlocked ? (
                   <ChevronUp className="h-4 w-4 text-slate-400 shrink-0" />
                 ) : (
                   <ChevronDown className="h-4 w-4 text-slate-400 shrink-0" />
                 )}
               </button>
-              {papersDeepOpen ? (
+              {papersDeepBlocked ? (
+                <div className="mt-3 border-t border-slate-700/60 pt-3">
+                  <SolicitorDeepDetailGate integrity={papersOutputIntegrity} label="More papers detail">
+                    {null}
+                  </SolicitorDeepDetailGate>
+                </div>
+              ) : papersDeepOpen ? (
                 <div
                   className={`mt-3 border-t border-slate-700/60 pt-3 max-h-[min(70vh,900px)] overflow-y-auto space-y-3 ${pilotPapersDeepScope}`}
                 >
