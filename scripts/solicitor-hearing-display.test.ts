@@ -35,5 +35,7 @@ assert.equal(
 
 assert.equal(displaySolicitorStage("pre ptph pre ptph"), "pre ptph");
 assert.equal(displaySolicitorStage("pre_ptph pre_ptph"), "pre ptph");
+assert.equal(displaySolicitorStage("pre ptph | pre ptph"), "pre ptph");
+assert.equal(displaySolicitorStage("Stage: pre_ptph pre_ptph"), "pre ptph");
 
 console.log("solicitor-hearing-display.test.ts: PASS");

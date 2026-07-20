@@ -83,5 +83,5 @@ export function resolveSolicitorHearingDateIso(input: {
 export function displaySolicitorStage(raw: string | null | undefined): string {
   const t = collapseHeaderCellDuplicates(raw);
   if (!t || /not recorded|unknown/i.test(t)) return t;
-  return t.replace(/_/g, " ").replace(/\s+/g, " ").trim();
+  return t;
 }

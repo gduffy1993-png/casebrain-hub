@@ -212,7 +212,11 @@ export function ProofReceiptPanel({
   warnings?: string[];
   depthOnly?: boolean;
 }) {
-  const [familyOpen, setFamilyOpen] = useState(model.familyCards.length > 0 && model.familyCards.length <= 3);
+  // Dedupe by id so family chrome never repeats.
+  const familyCards = Array.from(
+    new Map(model.familyCards.map((card) => [card.id, card])).values(),
+  );
+  const [familyOpen, setFamilyOpen] = useState(false);
 
   return (
     <section
@@ -227,12 +231,15 @@ export function ProofReceiptPanel({
         </div>
       </div>
 
-      <ProofPacketSummary
-        rows={evidenceRows}
-        warnings={warnings}
-        hideRefused={depthOnly || model.refusedOverstatements.length > 0}
-        hideNeedsReview={depthOnly}
-      />
+      {/* In Overview depth drawer, skip packet summary — gaps/don’t-say already above fold. */}
+      {!depthOnly ? (
+        <ProofPacketSummary
+          rows={evidenceRows}
+          warnings={warnings}
+          hideRefused={model.refusedOverstatements.length > 0}
+          hideNeedsReview={false}
+        />
+      ) : null}
 
       {model.receipts.length === 0 ? (
         <p className="text-sm text-slate-400" data-testid="proof-receipt-empty">
@@ -270,8 +277,8 @@ export function ProofReceiptPanel({
         </div>
       ) : null}
 
-      {model.familyCards.length > 0 ? (
-        <div className="space-y-2">
+      {familyCards.length > 0 ? (
+        <div className="space-y-2" data-testid="family-proof-cards-section">
           <button
             type="button"
             className="flex w-full items-center gap-2 text-left text-[11px] font-semibold uppercase tracking-wider text-slate-400"
@@ -280,16 +287,16 @@ export function ProofReceiptPanel({
             data-testid="family-proof-cards-toggle"
           >
             {familyOpen ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />}
-            Family review cards ({model.familyCards.length})
+            Family review ({familyCards.length})
           </button>
           {familyOpen ? (
             <div className="space-y-2" data-testid="family-proof-cards">
-              {model.familyCards.slice(0, 3).map((card) => (
+              {familyCards.slice(0, 3).map((card) => (
                 <FamilyCard key={card.id} card={card} />
               ))}
-              {model.familyCards.length > 3 ? (
+              {familyCards.length > 3 ? (
                 <p className="text-[10px] text-slate-500">
-                  +{model.familyCards.length - 3} more family cards on linked truth-map rows.
+                  +{familyCards.length - 3} more on linked truth-map rows.
                 </p>
               ) : null}
             </div>
