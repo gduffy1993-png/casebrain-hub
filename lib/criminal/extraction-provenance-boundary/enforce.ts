@@ -2,7 +2,7 @@
  * Enforce Phase 7 extraction / provenance boundary rules.
  */
 
-import { createHash } from "node:crypto";
+import { sha256HexSlice } from "@/lib/shared/sha256-hex";
 import { dedupeEvidenceAliases } from "@/lib/criminal/evidence-alias-dedupe";
 import { assessStructuredField } from "@/lib/criminal/structured-solicitor-output";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
@@ -57,7 +57,7 @@ export function containsRawExtractionSyntax(text: string | null | undefined): bo
 
 /** Stable evidence id from label + status (matches canonical style prefix). */
 export function stableEvidenceId(label: string, existence = "unknown"): string {
-  return `ev_${createHash("sha256").update(`${label.trim()}|${existence}`).digest("hex").slice(0, 16)}`;
+  return `ev_${sha256HexSlice(`${label.trim()}|${existence}`, 16)}`;
 }
 
 /** Deduplicate alias labels before display (string list). */
@@ -65,7 +65,7 @@ export function dedupeDisplayLabels(labels: string[]): string[] {
   const rows: FiveAnswersEvidenceRow[] = labels
     .map((label) => label.trim())
     .filter(Boolean)
-    .map((label) => ({ label, existence: "unknown" as const, reliability: "unknown" as const }));
+    .map((label) => ({ label, existence: "unknown" as const, reliability: "needs_review" as const }));
   return dedupeEvidenceAliases(rows).map((r) => r.label);
 }
 

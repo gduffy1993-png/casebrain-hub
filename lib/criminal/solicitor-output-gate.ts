@@ -16,7 +16,7 @@ import {
 } from "@/lib/criminal/solicitor-offence-family";
 import type { StructuredProvenanceRef } from "@/lib/criminal/offence-family-concept-registry";
 import { assessSolicitorSentence } from "@/lib/criminal/solicitor-sentence-composer";
-import { createHash } from "node:crypto";
+import { sha256HexSlice } from "@/lib/shared/sha256-hex";
 
 export type IntegrityGateStatus = "ok" | "degraded" | "integrity_blocked";
 
@@ -85,7 +85,7 @@ export function isSubstantiveSolicitorWording(text: string): boolean {
 
 function redactDiagnostic(text: string): string {
   const t = text.replace(/\s+/g, " ").trim();
-  return `len=${t.length};hash=${createHash("sha256").update(t).digest("hex").slice(0, 12)}`;
+  return `len=${t.length};hash=${sha256HexSlice(t, 12)}`;
 }
 
 /** Collect rule IDs from integrity + wrong-family classification (no sensitive text). */

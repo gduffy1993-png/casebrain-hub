@@ -3,7 +3,6 @@
  */
 
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
-import type { DisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import {
   buildCanonicalMatterStateV1,
   type BuildCanonicalMatterInput,
@@ -21,7 +20,20 @@ export type LegacyFiveAnswersChaseInput = {
   bundleHay?: string | null;
   provisional?: boolean;
   evidenceRows: FiveAnswersEvidenceRow[];
-  chase: Pick<DisclosureChaseBrief, "items" | "primaryItems"> | null;
+  chase: {
+    items?: Array<{
+      id?: string;
+      label: string;
+      baseStatus?: string;
+      whyItMatters?: string | null;
+    }>;
+    primaryItems?: Array<{
+      id?: string;
+      label: string;
+      baseStatus?: string;
+      whyItMatters?: string | null;
+    }>;
+  } | null;
   hearing?: BuildCanonicalMatterInput["hearing"];
 };
 
@@ -77,7 +89,7 @@ export function adaptTruthKeyEvidenceToRows(
     .map((i) => ({
       label: i.label!.trim(),
       existence: (i.existence as FiveAnswersEvidenceRow["existence"]) || "unknown",
-      reliability: "unknown" as const,
+      reliability: "needs_review",
       note: i.note,
     }));
 }

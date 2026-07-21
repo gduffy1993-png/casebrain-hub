@@ -36,7 +36,7 @@ function readJson<T>(abs: string): T | null {
 }
 
 function row(label: string, existence: FiveAnswersEvidenceRow["existence"]): FiveAnswersEvidenceRow {
-  return { label, existence, reliability: "unknown" };
+  return { label, existence, reliability: "needs_review" };
 }
 
 type Disposition =
@@ -226,7 +226,7 @@ function main() {
       adviceChangeItemCount: 0,
     },
     matterLevel: "provisional",
-  } as Parameters<typeof buildConfidenceDashboard>[0]);
+  } as unknown as Parameters<typeof buildConfidenceDashboard>[0]);
 
   matrix.push({
     name: "canonical_overview_counts_match",

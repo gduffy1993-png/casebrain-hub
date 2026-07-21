@@ -1,0 +1,94 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "generatedAt": "2026-07-21T19:00:00.000Z",
+  "baseRef": "cc7e6bb20945a1ae29333da86645781f6f254e89",
+  "note": "Verified pre-existing failures only. Do not weaken tests to clear these.",
+  "items": [
+    {
+      "id": "PRE-TS-EVAL",
+      "priority": "P1",
+      "class": "pre_existing",
+      "summary": "lib/eval type drift and missing modules (bad-output-memory, chase-source-gate presentation helpers, SimulatorV2TruthKey, TrapBlueprint, LineSourceProofRecord)",
+      "affectedPaths": ["lib/eval/**"],
+      "evidence": "Present on base typecheck (47 errors); unchanged after clearing programme-only errors",
+      "proposedFix": "Restore missing modules or update eval callers to current APIs; do not stub for green",
+      "schedule": "Parallel tech-debt; not Phase 8 scope"
+    },
+    {
+      "id": "PRE-TS-SCRIPTS",
+      "priority": "P2",
+      "class": "pre_existing",
+      "summary": "Demo/gold/messy proof and seed scripts fail tsc",
+      "affectedPaths": [
+        "scripts/build-demo-audit-five-pdf-cases.ts",
+        "scripts/build-demo-audit-thirty-pdf-cases.ts",
+        "scripts/build-gold-manual-proof-set-v1.ts",
+        "scripts/run-messy-pdf-proof-v*.ts",
+        "scripts/seed-evidence-state-audit-cases.ts"
+      ],
+      "evidence": "Same errors on base typecheck",
+      "proposedFix": "Align script types with current FiveAnswers / Simulator / SourceDocument types",
+      "schedule": "Tech-debt"
+    },
+    {
+      "id": "PRE-VITEST-DATE",
+      "priority": "P1",
+      "class": "pre_existing",
+      "summary": "Limitation and Awaab tests use wall-clock dates that fail in 2026",
+      "affectedTests": [
+        "lib/core/__tests__/limitation.test.ts > calculateLimitation > should calculate 3-year limitation for PI cases",
+        "lib/core/__tests__/limitation.test.ts > calculateLimitation > should use date of knowledge if provided",
+        "lib/core/__tests__/limitation.test.ts > calculateLimitation > should set severity based on days remaining",
+        "lib/core/__tests__/riskCopy.test.ts > riskCopy > limitation > should build messages with limitation date",
+        "lib/housing/__tests__/awaabs-monitor.test.ts > Awaab's Law Monitor > should calculate investigation deadline for social landlord"
+      ],
+      "evidence": "Fails on base and branch; expected 2025 dates vs received 2028 / negative day counts",
+      "proposedFix": "Inject fixed `today` / clock in tests; keep product logic",
+      "schedule": "Before claiming CI green"
+    },
+    {
+      "id": "PRE-VITEST-COPY",
+      "priority": "P2",
+      "class": "pre_existing",
+      "summary": "Copy/string expectation drift in purity, court-name, supervision disclaimer tests",
+      "affectedTests": [
+        "lib/criminal/__tests__/criminal-purity.test.ts > Criminal purity + probability gating > probabilities are suppressed when completeness is low",
+        "lib/criminal/__tests__/structured-extractor.test.ts > validateCourtName > (8 cases)",
+        "lib/housing/__tests__/supervision-pack.test.ts > Supervision Pack Generator > should include disclaimer in all outputs"
+      ],
+      "evidence": "Fails on base and branch; product strings changed vs outdated expectations",
+      "proposedFix": "Update expectations to intentional product copy OR restore product strings if regressions — decide with product owner; do not delete tests",
+      "schedule": "Tech-debt"
+    },
+    {
+      "id": "PRE-VITEST-CONFIG",
+      "priority": "P2",
+      "class": "environment_configuration",
+      "summary": "Vitest includes scripts/*.test.ts that are tsx assert scripts (No test suite found)",
+      "affectedPaths": ["scripts/*.test.ts", "vitest.config.*"],
+      "evidence": "Dozens of suite failures with 'No test suite found' on base and branch",
+      "proposedFix": "Configure vitest include/exclude so tsx scripts run via npm scripts, not vitest collect",
+      "schedule": "Tooling"
+    },
+    {
+      "id": "PRE-BUILD-ENV",
+      "priority": "P1",
+      "class": "environment_configuration",
+      "summary": "Base next build compiles then fails collecting page data for /api/billing/invoices",
+      "affectedPaths": ["app/api/billing/invoices/**"],
+      "evidence": "base-build.txt EXIT 1 after 'Compiled successfully'",
+      "proposedFix": "Guard collect-time side effects; document required env for production build",
+      "schedule": "Platform"
+    },
+    {
+      "id": "PRE-E2E",
+      "priority": "P1",
+      "class": "unrun",
+      "summary": "Full Playwright E2E not executed in this attribution pass",
+      "affectedPaths": ["e2e/**", "playwright.config.*"],
+      "evidence": "Explicitly not run per checkpoint scope",
+      "proposedFix": "Run full E2E on base and branch with same env; attribute deltas",
+      "schedule": "After CI baseline green / before merge claims"
+    }
+  ]
+}

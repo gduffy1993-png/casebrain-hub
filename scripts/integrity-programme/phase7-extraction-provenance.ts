@@ -124,9 +124,9 @@ function main() {
 
   // Fingerprint regression
   const rows: FiveAnswersEvidenceRow[] = [
-    { label: "MG11", existence: "served", reliability: "unknown" },
-    { label: "Witness statement", existence: "served", reliability: "unknown" },
-    { label: "CCTV", existence: "missing", reliability: "unknown" },
+    { label: "MG11", existence: "served", reliability: "needs_review" },
+    { label: "Witness statement", existence: "served", reliability: "needs_review" },
+    { label: "CCTV", existence: "missing", reliability: "needs_review" },
   ];
   const canonical = buildCanonicalMatterStateV1({ evidenceRows: rows, chaseItems: [] });
   const matterVm = buildSolicitorMatterStateVmFromCanonical(canonical, rows);

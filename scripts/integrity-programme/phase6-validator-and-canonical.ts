@@ -48,7 +48,7 @@ function redact(s: string): string {
 }
 
 function row(label: string, existence: FiveAnswersEvidenceRow["existence"]): FiveAnswersEvidenceRow {
-  return { label, existence, reliability: "unknown" };
+  return { label, existence, reliability: "needs_review" };
 }
 
 function main() {
@@ -89,7 +89,7 @@ function main() {
   const esaRoot = path.join(ROOT, "artifacts/evidence-state-audit-local/cases");
   type P3Style = { fixtureId: string; ruleId: string; mode: string; diagnostic: string };
   const p3StyleFindings: P3Style[] = [];
-  const p5ByDiag = new Map<string, (typeof phase5Stock.hits)[0]>();
+  const p5ByDiag = new Map<string, NonNullable<typeof phase5Stock>["hits"][number]>();
   for (const h of phase5Stock?.hits ?? []) {
     p5ByDiag.set(`${h.ruleId}|${h.diagnostic}`, h);
   }
@@ -237,14 +237,11 @@ function main() {
     row("Phone download", "missing"),
     row("Screenshots", "referred_only"),
   ];
-  const canonical = adaptFiveAnswersAndChaseToCanonical({
+  const canonical = buildCanonicalMatterStateV1({
     caseId: "phase6-fingerprint",
     allegation: "Harassment contrary to Protection from Harassment Act phone WhatsApp",
     evidenceRows,
-    chase: {
-      items: [{ id: "c1", label: "Full phone download", baseStatus: "Overdue", whyItMatters: "Attribution" }],
-      primaryItems: [],
-    },
+    chaseItems: [{ id: "c1", label: "Full phone download", baseStatus: "Overdue", whyItMatters: "Attribution" }],
   });
   const overviewCounts = countEvidenceStatesForDisplay(evidenceRows);
   const matterVm = buildSolicitorMatterStateVmFromCanonical(canonical, evidenceRows);
@@ -274,7 +271,7 @@ function main() {
       adviceChangeItemCount: 0,
     },
     matterLevel: "provisional",
-  } as Parameters<typeof buildConfidenceDashboard>[0]);
+  } as unknown as Parameters<typeof buildConfidenceDashboard>[0]);
 
   const fingerprintConsistency = {
     canonical: canonical.fingerprint,

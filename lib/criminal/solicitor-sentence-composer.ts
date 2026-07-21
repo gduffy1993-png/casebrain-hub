@@ -39,7 +39,7 @@ const LEGIT_ABBREV_END_RE =
 const CONTRADICTORY_RE =
   /\b(?:is\s+)?served\b.{0,40}\bnot served\b|\bnot served\b.{0,40}\b(?:is\s+)?served\b|\b(?:final|complete)\b.{0,40}\b(?:draft|unsigned)\b|\b(?:draft|unsigned)\b.{0,40}\b(?:final|complete)\b/i;
 
-const BULLET_CONCAT_RE = /(?:^|\n)\s*[-•*]\s+.+(?:\n\s*[-•*]\s+.+)+/s;
+const BULLET_CONCAT_RE = /(?:^|\n)\s*[-•*]\s+.+(?:\n\s*[-•*]\s+.+)+/;
 
 function stripPagePipes(raw: string): string {
   return raw

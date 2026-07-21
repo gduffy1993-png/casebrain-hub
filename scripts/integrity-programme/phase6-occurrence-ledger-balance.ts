@@ -109,7 +109,7 @@ function rollupDisposition(defects: DefectiveInBatch[]): Exclude<Disp, "proven_d
 }
 
 function row(label: string, existence: FiveAnswersEvidenceRow["existence"]): FiveAnswersEvidenceRow {
-  return { label, existence, reliability: "unknown" };
+  return { label, existence, reliability: "needs_review" };
 }
 
 function main() {
@@ -393,7 +393,7 @@ function main() {
       adviceChangeItemCount: 0,
     },
     matterLevel: "provisional",
-  } as Parameters<typeof buildConfidenceDashboard>[0]);
+  } as unknown as Parameters<typeof buildConfidenceDashboard>[0]);
   const calculators = {
     confidence_dashboard: {
       status: "migrated",

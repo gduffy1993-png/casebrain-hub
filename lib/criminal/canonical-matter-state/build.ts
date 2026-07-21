@@ -2,7 +2,7 @@
  * Build + fingerprint CanonicalMatterStateV1.
  */
 
-import { createHash } from "node:crypto";
+import { sha256HexSlice } from "@/lib/shared/sha256-hex";
 import {
   CANONICAL_MATTER_STATE_VERSION,
   type CanonicalAttributionState,
@@ -25,7 +25,7 @@ import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 
 function stableId(prefix: string, parts: string[]): string {
   const raw = parts.map((p) => normalizeSolicitorLineKey(p)).filter(Boolean).join("|");
-  const hash = createHash("sha256").update(raw).digest("hex").slice(0, 16);
+  const hash = sha256HexSlice(raw, 16);
   return `${prefix}_${hash}`;
 }
 
@@ -148,7 +148,7 @@ function resolveAttribution(
 
 export function fingerprintCanonicalMatter(parts: CanonicalMatterFingerprintParts): string {
   const payload = JSON.stringify(parts);
-  return `v${parts.schemaVersion}:${createHash("sha256").update(payload).digest("hex").slice(0, 24)}`;
+  return `v${parts.schemaVersion}:${sha256HexSlice(payload, 24)}`;
 }
 
 export type BuildCanonicalMatterInput = {

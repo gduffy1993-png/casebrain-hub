@@ -501,7 +501,6 @@ function main() {
     path.join(OUT, "canonical-fingerprint-compat.json"),
     JSON.stringify(
       {
-        schemaVersion: CANONICAL_MATTER_STATE_VERSION,
         ...compatibility,
         sampleFingerprints: materialisedScan.fingerprintChecks.slice(0, 20),
       },
