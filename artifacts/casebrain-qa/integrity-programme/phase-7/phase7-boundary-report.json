@@ -1,0 +1,159 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "phase": 7,
+  "generatedAt": "2026-07-21T18:01:22.758Z",
+  "boundaryVersion": "1.0.0",
+  "canonicalSchemaVersion": "1.0.0",
+  "disclaimer": "Phase 7 extraction/provenance boundary — not a corpus PASS. Do not merge / deploy. Stop for review.",
+  "contracts": [
+    {
+      "name": "fields_remain_separate",
+      "pass": true,
+      "detail": "title=Phone extraction; id=ev_64ea354e89ccd25c; deduped=1"
+    },
+    {
+      "name": "truncated_excerpt_not_title",
+      "pass": true,
+      "detail": "truncated detector"
+    },
+    {
+      "name": "incomplete_quotation_detected",
+      "pass": true,
+      "detail": "incomplete quote"
+    },
+    {
+      "name": "raw_syntax_detected",
+      "pass": true,
+      "detail": "raw marker"
+    },
+    {
+      "name": "boundary_blocks_raw_and_omits_incomplete_quote",
+      "pass": true,
+      "detail": "boundary.incomplete_quotation,boundary.raw_extraction_syntax"
+    },
+    {
+      "name": "canonical_fingerprint_stable_after_alias_dedupe",
+      "pass": true,
+      "detail": "v1.0.0:d6c7401bd05e4f36b6e6808b"
+    },
+    {
+      "name": "materialised_raw_strings_copy_fail_closed",
+      "pass": true,
+      "detail": "scannedCases=500; rawCopyBlocked=1"
+    },
+    {
+      "name": "central_surfaces_unchanged_count",
+      "pass": true,
+      "detail": "central=31"
+    }
+  ],
+  "contractPass": true,
+  "materialisedScan": {
+    "unit": "per_string_scan_hit",
+    "scannedCases": 500,
+    "rawCopyBlocked": 1,
+    "truncTitleCandidates": 55,
+    "incompleteQuotes": 57,
+    "sampleHits": [
+      {
+        "fixtureId": "cb-fresh-001-taylor-brookes",
+        "kind": "raw",
+        "diagnostic": "len=30;hash=4c54c565ecbb"
+      },
+      {
+        "fixtureId": "sim-001",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-002",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-005",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-007",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-010",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-011",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-013",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-014",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-015",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-017",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-020",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-021",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-024",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-027",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      },
+      {
+        "fixtureId": "sim-028",
+        "kind": "trunc_title",
+        "diagnostic": "len=21;hash=4dc9a04370a2"
+      }
+    ]
+  },
+  "occurrenceLedgerRegression": {
+    "phase6Status": "LEDGER_BALANCED",
+    "prior72RawBalanced": true,
+    "prior28TruncBalanced": true,
+    "current42RawPerStringHits": 42,
+    "current55TruncPerStringHits": 55,
+    "unitReminder": {
+      "prior72_28": "copyable_exportable_rule_firing_occurrence",
+      "current42_55": "per_string_copyable_hit",
+      "doNotMix": true
+    },
+    "ledgerImpact": "Phase 7 does not re-count or mutate Phase-6 stock totals"
+  },
+  "remainingRisks": [
+    "Not all UI surfaces yet render ExtractionProvenanceBlockV1 slots separately (chase still renders composed prose after boundary check)",
+    "defence-plan-chat eval joins remain gated legacy composer",
+    "Phase 4 uncertain-family residual still DEFERRED_TO_PHASE_9_11",
+    "Full N-case corpus (Phase 9) and rendered coverage (Phase 11) not started"
+  ]
+}

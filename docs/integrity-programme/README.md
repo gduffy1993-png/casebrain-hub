@@ -15,7 +15,8 @@ Authoritative scope: user programme brief (Workstream A then B).
 | Phase 4 — offence-family concept registry | UNRESOLVED ITEMS DISPOSITIONED (not corpus PASS) | `docs/integrity-programme/phase-4-checkpoint.md` | `docs/integrity-programme/phase-4-checkpoint.md` |
 | Phase 5 — structured composer repair | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-5-checkpoint.md` |
 | Phase 6 — final validator + canonical migration | CLOSED — LEDGER_BALANCED acknowledged (not corpus PASS) | `docs/integrity-programme/phase-6-checkpoint.md` + `docs/integrity-programme/phase-6-occurrence-ledger-balance.md` |
-| Phases 7–11 | PENDING | |
+| Phase 7 — extraction & provenance boundary | COMPLETE (not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-7-checkpoint.md` |
+| Phases 8–11 | PENDING | |
 | Workstream B | BLOCKED until A gates pass | |
 
 ## Preserved work
