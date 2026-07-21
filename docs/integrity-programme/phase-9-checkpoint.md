@@ -1,6 +1,6 @@
 # Phase 9 checkpoint — N-case corpus
 
-**Status:** **CORPUS_CONTAINMENT_PASS** (human-acknowledged) — **not a final corpus PASS** — **not a programme PASS**  
+**Status:** CLOSED — **CORPUS_CONTAINMENT_PASS** acknowledged (`4f44530e1`) — **not a final corpus PASS** — **not a programme PASS**  
 **Canonical schema:** 1.1.0  
 **Branch:** programme/criminal-defence-integrity-corpus  
 **PR:** #65 (do not merge / do not deploy)
@@ -97,6 +97,10 @@ See `artifacts/casebrain-qa/integrity-programme/phase-9/before-after-comparison.
 ## Proposed next step
 
 Phase 10 — mutation and adversarial injection tests (truncated, wrong-family, conflicting counts/states, ambiguous hearing dates, mixed families) proving unsafe output remains blocked. Do not merge/deploy.
+
+## Closure
+
+Phase 9 checkpoint acknowledged as CORPUS_CONTAINMENT_PASS (not final corpus/programme PASS). Proceed to Phase 10.
 
 ## Explicit non-goals
 
