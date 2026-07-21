@@ -66,6 +66,8 @@ import {
   displayPilotStripHearing,
   displayPilotStripStage,
 } from "@/components/criminal/workflow/workflowPilotDisplay";
+import { resolveSolicitorHearingDateIso } from "@/lib/criminal/solicitor-hearing-display";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
 import { useReasoningV2Enabled } from "@/lib/criminal/reasoning-v2/reasoning-v2-flag";
 import { useReadinessEnabled } from "@/lib/criminal/pre-hearing-readiness/readiness-flag";
@@ -527,26 +529,38 @@ export function HearingWarRoom({
   const usePilotDeskUi = embedInShell || pilotMode;
   const { uploadDisabled: pilotUploadDisabled, recordPositionDisabled: pilotRecordPositionHidden } =
     usePilotDemoSession();
-  const hearingDateIso =
-    bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
+  const hearingDateIso = resolveSolicitorHearingDateIso({
+    bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
+    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
+    bundleHay: bundleSource?.frontMatterScan,
+  });
   const courtDisplay = pilotMode
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
       cleanPilotCourtHeaderCell(headerMeta.court)
     : headerMeta.court?.trim() || "Court not safely extracted";
-  const hearingDisplay = pilotMode
-    ? displayPilotStripHearing(
-        cleanPilotHearingHeaderCell(
-          snapshotLoading || bundleLoading ? "…" : headerMeta.nextHearing,
-          hearingDateIso,
-        ),
-      ) ||
-      cleanPilotHearingHeaderCell(
-        snapshotLoading || bundleLoading ? "…" : headerMeta.nextHearing,
-        hearingDateIso,
-      )
-    : (snapshotLoading || bundleLoading) && /not safely extracted/i.test(headerMeta.nextHearing)
-      ? "…"
-      : headerMeta.nextHearing;
+  const hearingResolved = resolveSolicitorHearingStatus({
+    bundleNextHearingIso: hearingDateIso,
+    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    nextHearingRaw: headerMeta.nextHearing,
+    bundleHay: [
+      bundleSource?.caseMetadata?.nextHearingRaw,
+      bundleSource?.frontMatterScan,
+    ]
+      .filter(Boolean)
+      .join("\n"),
+  });
+  const hearingDisplay = (() => {
+    if (
+      (snapshotLoading || bundleLoading) &&
+      /not safely extracted/i.test(headerMeta.nextHearing)
+    ) {
+      return "…";
+    }
+    const statusLine = hearingResolved.statusLabel;
+    if (!pilotMode) return statusLine;
+    return displayPilotStripHearing(statusLine) || statusLine;
+  })();
   const hearingStatus = hearingDisplay;
 
   const chaseItemsAll = useMemo(

@@ -43,6 +43,8 @@ import {
   buildExtractionProvenanceBlock,
   stableEvidenceId,
 } from "@/lib/criminal/extraction-provenance-boundary";
+import { utcDayDiff } from "@/lib/criminal/solicitor-time-clock";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted)\b/i;
@@ -287,15 +289,10 @@ function getFamilyDef(id: ChaseFamilyId): FamilyDef {
   return CHASE_FAMILIES.find((f) => f.id === id)!;
 }
 
-function daysUntilHearing(iso: string | null): number | null {
+function daysUntilHearing(iso: string | null, asOf: Date = new Date()): number | null {
   if (!iso?.trim()) return null;
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return null;
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const hearing = new Date(d);
-  hearing.setHours(0, 0, 0, 0);
-  return Math.round((hearing.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  const calendar = iso.trim().slice(0, 10);
+  return utcDayDiff(asOf, calendar);
 }
 
 type DeadlineContext = {
@@ -306,7 +303,7 @@ type DeadlineContext = {
   baseStatus: ChaseItemStatus;
 };
 
-function resolveDeadlineContext(days: number | null): DeadlineContext {
+function resolveDeadlineContext(days: number | null, hearingIso?: string | null, asOf: Date = new Date()): DeadlineContext {
   if (days === null) {
     return {
       days: null,
@@ -315,6 +312,40 @@ function resolveDeadlineContext(days: number | null): DeadlineContext {
       urgency: "medium",
       baseStatus: "Not safely confirmed",
     };
+  }
+  // Align labels with Phase 8 shared hearing status when ISO is available
+  if (hearingIso?.trim()) {
+    const status = resolveSolicitorHearingStatus({
+      bundleNextHearingIso: hearingIso.trim().slice(0, 10),
+      asOf,
+    });
+    if (status.kind === "same_day") {
+      return {
+        days,
+        sharedLabel: status.statusLabel,
+        hearingDeadlineNote: null,
+        urgency: "high",
+        baseStatus: "Due soon",
+      };
+    }
+    if (status.kind === "passed") {
+      return {
+        days,
+        sharedLabel: status.statusLabel,
+        hearingDeadlineNote: null,
+        urgency: "high",
+        baseStatus: "Overdue",
+      };
+    }
+    if (status.kind === "upcoming" || status.kind === "listed") {
+      return {
+        days,
+        sharedLabel: status.statusLabel,
+        hearingDeadlineNote: null,
+        urgency: days <= 3 ? "high" : days <= 14 ? "medium" : "low",
+        baseStatus: days <= 14 ? "Due soon" : "Outstanding",
+      };
+    }
   }
   if (days < 0) {
     return {
@@ -328,7 +359,7 @@ function resolveDeadlineContext(days: number | null): DeadlineContext {
   if (days === 0) {
     return {
       days,
-      sharedLabel: "Hearing today",
+      sharedLabel: "Same-day hearing",
       hearingDeadlineNote: null,
       urgency: "high",
       baseStatus: "Due soon",
@@ -1132,7 +1163,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   );
 
   const days = daysUntilHearing(input.hearingDateIso);
-  const deadline = resolveDeadlineContext(days);
+  const deadline = resolveDeadlineContext(days, input.hearingDateIso);
 
   let items: DisclosureChaseItem[];
   let primaryItems: DisclosureChaseItem[];

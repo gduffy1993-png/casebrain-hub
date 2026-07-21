@@ -1,14 +1,26 @@
 /**
- * Central hearing-status logic for solicitor UI + exports.
- * Date may stay fixed; status (listed / upcoming / passed / snapshot) must agree everywhere.
+ * Central hearing-status logic for solicitor UI + exports (Phase 8).
+ * One deterministic formatter: unknown | listed | same_day | upcoming | passed | snapshot.
+ * Pass fixed `asOf` in tests; snapshot surfaces carry an explicit "as at" marker.
  */
 
 import {
   isPlaceholderHearingIso,
   resolveSolicitorHearingDateIso,
 } from "@/lib/criminal/solicitor-hearing-display";
+import {
+  formatEnGbUtc,
+  formatIsoDateOnly,
+  startOfUtcDay,
+} from "@/lib/criminal/solicitor-time-clock";
 
-export type HearingStatusKind = "listed" | "upcoming" | "passed" | "snapshot" | "unknown";
+export type HearingStatusKind =
+  | "unknown"
+  | "listed"
+  | "same_day"
+  | "upcoming"
+  | "passed"
+  | "snapshot";
 
 export type SolicitorHearingStatus = {
   kind: HearingStatusKind;
@@ -18,24 +30,9 @@ export type SolicitorHearingStatus = {
   /** One-line status for strips / exports. */
   statusLabel: string;
   isSnapshot: boolean;
+  /** ISO calendar date of the as-of / as-at clock used for classification. */
+  asAtIso: string | null;
 };
-
-function formatEnGb(iso: string): string {
-  const m = iso.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if (!m) return iso;
-  const d = new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])));
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-}
-
-function startOfUtcDay(d: Date): number {
-  return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
-}
 
 /**
  * Resolve hearing status from shared ISO inputs.
@@ -46,10 +43,12 @@ export function resolveSolicitorHearingStatus(input: {
   snapshotHearingNextAt?: string | null;
   nextHearingRaw?: string | null;
   bundleHay?: string | null;
-  /** When true, treat resolved date as a frozen demo/snapshot listing. */
+  /** When true, treat resolved date as a frozen historical / demo snapshot. */
   treatAsSnapshot?: boolean;
   asOf?: Date;
 }): SolicitorHearingStatus {
+  const asOf = input.asOf ?? new Date();
+  const asAtIso = formatIsoDateOnly(asOf);
   const dateIso = resolveSolicitorHearingDateIso(input);
   if (!dateIso) {
     return {
@@ -58,45 +57,57 @@ export function resolveSolicitorHearingStatus(input: {
       dateLabel: null,
       statusLabel: "Hearing date not safely extracted",
       isSnapshot: false,
+      asAtIso,
     };
   }
 
+  const dateLabel = formatEnGbUtc(dateIso);
+
   if (input.treatAsSnapshot || isPlaceholderHearingIso(input.snapshotHearingNextAt)) {
-    // Placeholder snapshot alone is already rejected by resolveSolicitorHearingDateIso;
-    // treatAsSnapshot marks controlled demo freeze.
     if (input.treatAsSnapshot) {
-      const dateLabel = formatEnGb(dateIso);
       return {
         kind: "snapshot",
         dateIso,
         dateLabel,
-        statusLabel: `Listed (snapshot) · ${dateLabel}`,
+        statusLabel: `Frozen historical snapshot · hearing ${dateLabel} (as at ${asAtIso})`,
         isSnapshot: true,
+        asAtIso,
       };
     }
   }
 
-  const asOf = input.asOf ?? new Date();
   const hearingDay = startOfUtcDay(new Date(`${dateIso}T12:00:00Z`));
   const today = startOfUtcDay(asOf);
-  const dateLabel = formatEnGb(dateIso);
+  const dayDiff = Math.round((hearingDay - today) / 86_400_000);
 
-  if (hearingDay === today) {
+  if (dayDiff === 0) {
     return {
-      kind: "listed",
+      kind: "same_day",
       dateIso,
       dateLabel,
-      statusLabel: `Listed today · ${dateLabel}`,
+      statusLabel: `Same-day hearing · ${dateLabel}`,
       isSnapshot: false,
+      asAtIso,
     };
   }
-  if (hearingDay > today) {
+  if (dayDiff > 0 && dayDiff <= 14) {
     return {
       kind: "upcoming",
       dateIso,
       dateLabel,
       statusLabel: `Upcoming · ${dateLabel}`,
       isSnapshot: false,
+      asAtIso,
+    };
+  }
+  if (dayDiff > 14) {
+    return {
+      kind: "listed",
+      dateIso,
+      dateLabel,
+      statusLabel: `Listed · ${dateLabel}`,
+      isSnapshot: false,
+      asAtIso,
     };
   }
   return {
@@ -105,7 +116,13 @@ export function resolveSolicitorHearingStatus(input: {
     dateLabel,
     statusLabel: `Hearing date passed · ${dateLabel}`,
     isSnapshot: false,
+    asAtIso,
   };
+}
+
+/** Listed (future or undated diary entry that is not same-day/passed/snapshot) — alias for upcoming. */
+export function isListedHearingKind(kind: HearingStatusKind): boolean {
+  return kind === "listed" || kind === "upcoming" || kind === "same_day";
 }
 
 export function formatHearingStatusForDisplay(status: SolicitorHearingStatus): string {

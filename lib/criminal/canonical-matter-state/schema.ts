@@ -3,7 +3,7 @@
  * All tabs / copy / exports must consume this (or an explicit adapter into it).
  */
 
-export const CANONICAL_MATTER_STATE_VERSION = "1.0.0" as const;
+export const CANONICAL_MATTER_STATE_VERSION = "1.1.0" as const;
 
 export type CanonicalEvidenceExistence =
   | "served"
@@ -29,6 +29,7 @@ export type CanonicalMg11Status =
 export type CanonicalHearingKind =
   | "unknown"
   | "listed"
+  | "same_day"
   | "upcoming"
   | "passed"
   | "snapshot";

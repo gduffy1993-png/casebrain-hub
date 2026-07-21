@@ -129,7 +129,15 @@ function row(label: string, existence: FiveAnswersEvidenceRow["existence"]): Fiv
     bundleNextHearingIso: "2026-07-15",
     asOf: new Date("2026-07-15T12:00:00Z"),
   });
-  assert.equal(listed.kind, "listed");
+  assert.equal(listed.kind, "same_day");
+  assert.match(listed.statusLabel, /Same-day/);
+
+  const farListed = resolveSolicitorHearingStatus({
+    bundleNextHearingIso: "2026-09-01",
+    asOf: new Date("2026-07-01T12:00:00Z"),
+  });
+  assert.equal(farListed.kind, "listed");
+  assert.match(farListed.statusLabel, /Listed/);
 
   const snap = resolveSolicitorHearingStatus({
     bundleNextHearingIso: "2026-07-15",
@@ -137,6 +145,7 @@ function row(label: string, existence: FiveAnswersEvidenceRow["existence"]): Fiv
     asOf: new Date("2026-07-01T12:00:00Z"),
   });
   assert.equal(snap.kind, "snapshot");
+  assert.match(snap.statusLabel, /as at/i);
 }
 
 // --- Integrity gate: harassment must not copy wrong-family / malformed ---

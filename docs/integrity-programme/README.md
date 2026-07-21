@@ -17,7 +17,8 @@ Authoritative scope: user programme brief (Workstream A then B).
 | Phase 6 — final validator + canonical migration | CLOSED — LEDGER_BALANCED acknowledged (not corpus PASS) | `docs/integrity-programme/phase-6-checkpoint.md` + `docs/integrity-programme/phase-6-occurrence-ledger-balance.md` |
 | Phase 7 — extraction & provenance boundary | COMPLETE (not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-7-checkpoint.md` |
 | Baseline attribution (pre-Phase 8) | COMPLETE — stop for review | `docs/integrity-programme/baseline-attribution-checkpoint.md` |
-| Phases 8–11 | PENDING (blocked until attribution ack) | |
+| Phase 8 — hearing and time logic | COMPLETE (not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-8-checkpoint.md` | COMPLETE (not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-8-checkpoint.md` |
+| Phases 9–11 | PENDING | |
 | Workstream B | BLOCKED until A gates pass | |
 
 ## Preserved work

@@ -33,8 +33,8 @@
     {
       "id": "PRE-VITEST-DATE",
       "priority": "P1",
-      "class": "pre_existing",
-      "summary": "Limitation and Awaab tests use wall-clock dates that fail in 2026",
+      "class": "resolved_in_phase_8",
+      "summary": "Limitation and Awaab date-clock failures — resolved under Phase 8 hearing/time acceptance (fixed clocks, ISO dates, PI pack rule precedence)",
       "affectedTests": [
         "lib/core/__tests__/limitation.test.ts > calculateLimitation > should calculate 3-year limitation for PI cases",
         "lib/core/__tests__/limitation.test.ts > calculateLimitation > should use date of knowledge if provided",
@@ -42,9 +42,9 @@
         "lib/core/__tests__/riskCopy.test.ts > riskCopy > limitation > should build messages with limitation date",
         "lib/housing/__tests__/awaabs-monitor.test.ts > Awaab's Law Monitor > should calculate investigation deadline for social landlord"
       ],
-      "evidence": "Fails on base and branch; expected 2025 dates vs received 2028 / negative day counts",
-      "proposedFix": "Inject fixed `today` / clock in tests; keep product logic",
-      "schedule": "Before claiming CI green"
+      "evidence": "before-date-tests.txt (5 failed) → after-date-tests.txt (22 passed); see phase-8-checkpoint.md",
+      "proposedFix": "DONE in Phase 8 — do not weaken; keep visible as resolved",
+      "schedule": "Phase 8 (resolved)"
     },
     {
       "id": "PRE-VITEST-COPY",

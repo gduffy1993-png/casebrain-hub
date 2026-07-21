@@ -46,6 +46,7 @@ import {
   displaySolicitorStage,
   resolveSolicitorHearingDateIso,
 } from "@/lib/criminal/solicitor-hearing-display";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { pilotPapersDeepScope, workflowPilotCard, workflowSectionTitle } from "./workflow/workflowUi";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -529,10 +530,22 @@ export function CaseControlRoom({
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
       cleanPilotCourtHeaderCell(headerMeta.court)
     : headerMeta.court?.trim() || undefined;
-  const hearingLabelDisplay = pilotMode
-    ? displayPilotStripHearing(cleanPilotHearingHeaderCell(nextHearing, hearingDateIso)) ||
-      cleanPilotHearingHeaderCell(nextHearing, hearingDateIso)
-    : nextHearing;
+  const hearingResolved = resolveSolicitorHearingStatus({
+    bundleNextHearingIso: hearingDateIso,
+    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    nextHearingRaw: nextHearing,
+    bundleHay: [
+      bundleSource?.caseMetadata?.nextHearingRaw,
+      bundleSource?.frontMatterScan,
+    ]
+      .filter(Boolean)
+      .join("\n"),
+  });
+  const hearingLabelDisplay = (() => {
+    const statusLine = hearingResolved.statusLabel;
+    if (!pilotMode) return statusLine;
+    return displayPilotStripHearing(statusLine) || statusLine;
+  })();
 
   const filteredBattleboard = useMemo(
     () => filterBattleboardForWorkflowPilot(battleboard, workflowContext),
