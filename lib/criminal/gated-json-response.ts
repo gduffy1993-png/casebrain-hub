@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
 import { collectWordingStrings } from "@/lib/criminal/collect-wording-strings";
-import {
-  integrityBlockedApiBody,
-  gateSolicitorOutput,
-} from "@/lib/criminal/solicitor-output-gate";
+import { integrityBlockedApiBody } from "@/lib/criminal/solicitor-output-gate";
+import { validateSolicitorSurface } from "@/lib/criminal/shared-solicitor-validator";
 
 /**
- * Central API exit gate: if wording fails integrity, return typed integrity_blocked (200).
- * Otherwise return the original payload unchanged.
+ * Central API exit gate: shared validator + typed integrity_blocked (200).
+ * Optionally verifies canonical fingerprint consistency.
  */
 export function gatedJsonResponse(
   surfaceId: string,
@@ -18,11 +16,13 @@ export function gatedJsonResponse(
     chargeWording?: string | null;
     status?: number;
     headers?: HeadersInit;
+    canonicalFingerprint?: string | null;
+    expectedCanonicalFingerprint?: string | null;
   },
 ): NextResponse {
   const texts = collectWordingStrings(payload);
   if (texts.length) {
-    const gated = gateSolicitorOutput({
+    const gated = validateSolicitorSurface({
       surfaceId,
       texts,
       allegation: opts?.allegation,
@@ -30,9 +30,16 @@ export function gatedJsonResponse(
       chargeWording: opts?.chargeWording,
       mode: "api",
       data: { texts },
+      canonicalFingerprint: opts?.canonicalFingerprint,
+      expectedCanonicalFingerprint: opts?.expectedCanonicalFingerprint,
     });
     if (gated.status === "integrity_blocked") {
-      return NextResponse.json(integrityBlockedApiBody(surfaceId, gated.ruleIds), {
+      const body = {
+        ...integrityBlockedApiBody(surfaceId, gated.ruleIds),
+        canonicalFingerprint: opts?.expectedCanonicalFingerprint ?? opts?.canonicalFingerprint ?? null,
+        fingerprintMatch: gated.fingerprintMatch,
+      };
+      return NextResponse.json(body, {
         status: 200,
         headers: opts?.headers,
       });

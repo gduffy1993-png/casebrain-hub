@@ -10,7 +10,7 @@ import {
 } from "./build";
 import type { CanonicalMatterStateV1 } from "./schema";
 import {
-  buildSolicitorMatterStateVm,
+  buildSolicitorMatterStateVmFromCanonical,
   type SolicitorMatterStateVm,
 } from "@/lib/criminal/solicitor-matter-state";
 
@@ -65,17 +65,7 @@ export function projectCanonicalToLegacyMatterVm(
   canonical: CanonicalMatterStateV1,
   evidenceRows: FiveAnswersEvidenceRow[],
 ): SolicitorMatterStateVm {
-  return buildSolicitorMatterStateVm({
-    evidenceRows,
-    chaseCounters: {
-      total: canonical.chase.counts.total,
-      overdue: canonical.chase.counts.overdue,
-      dueSoon: canonical.chase.counts.dueSoon,
-      chased: canonical.chase.counts.chased,
-      received: canonical.chase.counts.received,
-      notStarted: canonical.chase.counts.notStarted,
-    },
-  });
+  return buildSolicitorMatterStateVmFromCanonical(canonical, evidenceRows);
 }
 
 /** Truth-key shaped legacy → evidence rows for canonical build. */

@@ -4,6 +4,7 @@
 
 import { humanizeChaseFragmentLabel, isRawChaseFragmentLabel } from "@/lib/criminal/disclosure-chase-finalize";
 import { collapseRepeatedPhrase, sanitizeSolicitorVisibleText } from "@/lib/criminal/solicitor-display-dedupe";
+import { displayForSafelyOmitted } from "./omit-safety";
 import {
   STRUCTURED_SOLICITOR_OUTPUT_VERSION,
   type EvidenceExistenceState,
@@ -319,9 +320,26 @@ export function composeStructuredSolicitorOutput(input: BuildStructuredInput): S
   };
 }
 
+function safelyOmittedResult(
+  legacy: string,
+  rejections: StructuredFieldRejection[],
+): StructuredComposeResult {
+  const omit = displayForSafelyOmitted(legacy);
+  return {
+    ok: false,
+    text: omit.display,
+    output: null,
+    rejections,
+    disposition: "safely_omitted",
+    omitDisplay: omit.display,
+    omitKind: omit.kind,
+  };
+}
+
 /**
  * Migrate a legacy free-text string into structured output when possible.
  * Does NOT count "hidden by gate" as repaired — returns explicit disposition.
+ * Substantive safely-omitted content gets a neutral review-required display (never empty gap).
  */
 export function migrateLegacySolicitorString(
   legacy: string,
@@ -333,13 +351,9 @@ export function migrateLegacySolicitorString(
 ): StructuredComposeResult {
   const raw = (legacy ?? "").trim();
   if (!raw) {
-    return {
-      ok: false,
-      text: null,
-      output: null,
-      rejections: [{ field: "rendered", code: "field.empty", detail: "Empty legacy string" }],
-      disposition: "safely_omitted",
-    };
+    return safelyOmittedResult(raw, [
+      { field: "rendered", code: "field.empty", detail: "Empty legacy string" },
+    ]);
   }
 
   const pre = assessStructuredField(raw, "rendered");
@@ -355,16 +369,10 @@ export function migrateLegacySolicitorString(
     });
   }
 
-  // Truncated / partial sentences: never invent completions — safely omit.
+  // Truncated / partial sentences: never invent completions — safely omit (with review message if substantive).
   const wasTruncated = pre.rejections.some((r) => r.code === "field.truncated_fragment");
   if (wasTruncated) {
-    return {
-      ok: false,
-      text: null,
-      output: null,
-      rejections: pre.rejections,
-      disposition: "safely_omitted",
-    };
+    return safelyOmittedResult(raw, pre.rejections);
   }
 
   // Attempt reconstruction from raw markers only
@@ -375,15 +383,12 @@ export function migrateLegacySolicitorString(
     .trim();
 
   if (!cleanedLabel || cleanedLabel.length < 8) {
-    return {
-      ok: false,
-      text: null,
-      output: null,
-      rejections: pre.rejections.length
+    return safelyOmittedResult(
+      raw,
+      pre.rejections.length
         ? pre.rejections
         : [{ field: "rendered", code: "compose.legacy_passthrough_rejected", detail: "Cannot reconstruct" }],
-      disposition: "safely_omitted",
-    };
+    );
   }
 
   // If still has raw markers after humanize, omit rather than invent
@@ -409,15 +414,7 @@ export function migrateLegacySolicitorString(
         disposition: reconstructed.ok ? "reconstructed" : "still_blocked",
       };
     }
-    return {
-      ok: false,
-      text: null,
-      output: null,
-      rejections: again.rejections,
-      disposition: pre.rejections.some((r) => r.code === "field.raw_extraction_marker")
-        ? "safely_omitted"
-        : "still_blocked",
-    };
+    return safelyOmittedResult(raw, again.rejections.length ? again.rejections : pre.rejections);
   }
 
   const reconstructed = composeStructuredSolicitorOutput({

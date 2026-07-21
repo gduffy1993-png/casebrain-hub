@@ -20,7 +20,7 @@ import {
 import { normalizeSolicitorLineKey } from "@/lib/criminal/solicitor-display-dedupe";
 import { resolveSolicitorOffenceFamily } from "@/lib/criminal/solicitor-offence-family";
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
-import { dedupeEvidenceAliases } from "@/lib/criminal/solicitor-matter-state";
+import { dedupeEvidenceAliases } from "@/lib/criminal/evidence-alias-dedupe";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 
 function stableId(prefix: string, parts: string[]): string {

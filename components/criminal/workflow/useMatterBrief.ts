@@ -375,6 +375,10 @@ export function useMatterBrief(caseId: string) {
     const matterStateVm = buildSolicitorMatterStateVm({
       evidenceRows: [] as FiveAnswersEvidenceRow[],
       chaseCounters,
+      allegation,
+      bundleHay,
+      caseId,
+      chaseLabels: chase.items.map((i) => i.label).slice(0, 40),
     });
     const sampleTexts = [
       warRoom.safePositionToday,

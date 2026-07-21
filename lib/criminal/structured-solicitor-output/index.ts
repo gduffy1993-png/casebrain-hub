@@ -14,3 +14,9 @@ export {
   migrateLegacySolicitorString,
   type BuildStructuredInput,
 } from "./compose";
+export {
+  REVIEW_REQUIRED_NEUTRAL,
+  classifySubstantiveOmitKind,
+  displayForSafelyOmitted,
+  type SubstantiveOmitKind,
+} from "./omit-safety";

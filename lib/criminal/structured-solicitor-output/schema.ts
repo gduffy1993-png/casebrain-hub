@@ -70,4 +70,10 @@ export type StructuredComposeResult = {
   rejections: StructuredFieldRejection[];
   /** How a legacy string was handled when migrating stock. */
   disposition?: "reconstructed" | "safely_omitted" | "still_blocked";
+  /**
+   * When safely_omitted and substantive: neutral review-required message for display
+   * (never an empty gap). Null when non-substantive omission is acceptable.
+   */
+  omitDisplay?: string | null;
+  omitKind?: string | null;
 };
