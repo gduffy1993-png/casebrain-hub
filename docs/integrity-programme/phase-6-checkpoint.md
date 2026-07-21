@@ -1,65 +1,52 @@
 # Phase 6 checkpoint — final validator & canonical migration
 
-**Status:** CANONICAL MIGRATION + SHARED VALIDATOR — **not a corpus PASS**  
+**Status:** LEDGER BALANCED — checkpoint may close after human ack  
 **Phase 4 status:** safe-but-unresolved (not PASS)  
 **Branch:** programme/criminal-defence-integrity-corpus  
-**PR:** #65 (do not merge / do not deploy)
+**PR:** #65 (do not merge / do not deploy / do not Phase 7)
+
+Occurrence-level reconciliation (required): see `docs/integrity-programme/phase-6-occurrence-ledger-balance.md` and `artifacts/casebrain-qa/integrity-programme/phase-6/occurrence-ledger-balanced.json`.
+
+## Unit definitions
+
+| Figure | Unit |
+|-------|------|
+| Prior 72 / 28 | copyable_exportable_rule_firing_occurrence (fixture × copy/api mode) |
+| Current 42 / 55 | per_string_copyable_hit |
+| Do not subtract across units | 55−28 and 72−42 are invalid comparisons |
+
+## Prior 72 raw → dispositions
+
+Reconstructed **72** / published **72** (balanced=true). Totals: {"reconstructed":35,"proven_duplicate":36,"safely_omitted":1}.  
+Index: `prior-72-raw-occurrence-index.tsv`.
+
+## Prior 28 trunc ↔ current 55 trunc
+
+Reconstructed P3 **28** / published **28** (balanced=true).  
+P3 unique fixtures: **14** (= 28÷2 dual-mode).  
+Of 55 P5 per-string hits: **14** baseline correspondent; **0** additional on baseline fixtures; **41** newly discovered.  
+**Do not use 55−28=27.** Index: `prior-28-trunc-occurrence-index.tsv`, `current-55-trunc-source-index.tsv`.
 
 ## Canonical migrations completed
 
-- confidence_dashboard → CanonicalMatterStateV1 counts + fingerprint
+- confidence_dashboard → CanonicalMatterStateV1 counts + fingerprint (true)
 - overview-presentation countEvidenceStates* → canonical adapter (deprecated independent algorithm)
 - solicitor-matter-state → build from canonical; fingerprint = canonical.fingerprint
 
-Independent calculators remaining: **none** (legacy helpers deprecated as thin adapters only).
+Independent calculators remaining: **none**.
 
 ## Validator coverage by surface
 
-Shared validator v1.0.0 on all **31** central surfaces (incl. `api_defence_plan_chat`).
-
-| Assertion | Result |
-|-----------|--------|
-| Valid output passes | true |
-| Invalid output blocks | true |
-| Scoped display removes only defective line | 31/31 (view-mode capable) |
-| Copy/API/export fails closed | true |
-| Consumer recognises integrity_blocked | true |
+Shared validator on all **31** central surfaces (incl. `api_defence_plan_chat`).  
+Inventoried **51**; excluded **20** (non-wording / parent-covered / gate=none) — listed in balanced ledger JSON.
 
 ## Fingerprint consistency
 
-| Check | Result |
-|-------|--------|
-| Overview counts match canonical | true |
-| Matter VM fingerprint = canonical | true |
-| Dashboard exposes fingerprint | true |
-| Fingerprint mismatch blocks | true |
-
-## Reconciled occurrence ledger
-
-| Stock | Prior (Phase 3 copyable) | Phase 5 scanned | Reconstructed | Safely omitted | Still blocked | Proven duplicate diags |
-|-------|-------------------------:|----------------:|--------------:|---------------:|--------------:|-----------------------:|
-| Raw marker | 72 | 42 | 41 | 1 | 0 | 39 |
-| Truncated | 28 | 55 | 0 | 55 | 0 | 54 |
-
-Prior 72 ≈ dual-mode batch findings. Current 42 unique copyable strings (3 distinct diagnostics; 39 cross-fixture duplicate diagnostics). Delta explained by: (1) removing dual-mode double-count, (2) per-string vs batch, (3) newly discovered strings in deeper walk, (4) retired/reconstructed IDs no longer emitting raw markers in migrated composers.
-
-Prior 28 dual-mode batch. Current 55 includes newly discovered truncated lines from deeper string walk (estimate +41). All truncated dispositions are safely_omitted (never invent completions) with review-required display when substantive.
-
-Every Phase-5 occurrence ends as reconstructed / safely_omitted / still_blocked / proven_duplicate. Phase-3 lacked per-occurrence IDs; dual-mode inflation and deeper walk explain the numeric delta.
+Overview counts match canonical; matter VM fingerprint = canonical; dashboard exposes fingerprint; mismatch blocks — see completion summary in balanced ledger.
 
 ## Omitted substantive vs non-substantive
 
-Substantive omissions display: *Solicitor review required — this item could not be safely reconstructed from str…*  
-Non-substantive may omit silently. Sample check: substantive-with-message≈56, non-substantive≈0.
-
-## Contract & mutation results
-
-Mutations: conflicting_counts=PASS, conflicting_mg11_states=PASS, raw_markers=PASS, truncation=PASS, wrong_family_terms=PASS, missing_provenance_family=PASS, hearing_conflicts=PASS, broken_punctuation=PASS, fingerprint_mismatch_blocks=PASS  
-All mutations pass: **true**
-
-## Compatibility failures
-
-- none
+Substantive with review-required: **56**. Non-substantive: **0**. Silent loss prevented: **true**.
 
 ## Remaining gated legacy composers
 
@@ -67,4 +54,4 @@ All mutations pass: **true**
 
 ## Explicit non-goals
 
-No UX redesign. No merge. No deploy. Phase 4 not declared PASS.
+No UX redesign. No merge. No deploy. No Phase 7. Phase 4 not declared PASS.
