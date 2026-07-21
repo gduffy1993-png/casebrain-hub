@@ -11,7 +11,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
-import { gateSolicitorOutput, type IntegrityRuleId } from "@/lib/criminal/solicitor-output-gate";
+import { gateSolicitorOutput } from "@/lib/criminal/solicitor-output-gate";
 import {
   adaptFiveAnswersAndChaseToCanonical,
   adaptTruthKeyEvidenceToRows,
