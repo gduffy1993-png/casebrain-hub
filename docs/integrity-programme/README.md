@@ -12,7 +12,7 @@ Authoritative scope: user programme brief (Workstream A then B).
 | Phase 1 — surface inventory | COMPLETE (not PASS) | `docs/integrity-programme/phase-1-checkpoint.md` |
 | Phase 2 — fail-closed containment | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-2-checkpoint.md` |
 | Phase 3 — canonical model + dual-lane | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-3-checkpoint.md` |
-| Phase 4 — offence-family concept registry | COMPLETE (safe-but-unresolved, not PASS) | `docs/integrity-programme/phase-4-checkpoint.md` |
+| Phase 4 — offence-family concept registry | UNRESOLVED ITEMS DISPOSITIONED (not corpus PASS) | `docs/integrity-programme/phase-4-checkpoint.md` | `docs/integrity-programme/phase-4-checkpoint.md` |
 | Phase 5 — structured composer repair | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-5-checkpoint.md` |
 | Phase 6 — final validator + canonical migration | CLOSED — LEDGER_BALANCED acknowledged (not corpus PASS) | `docs/integrity-programme/phase-6-checkpoint.md` + `docs/integrity-programme/phase-6-occurrence-ledger-balance.md` |
 | Phases 7–11 | PENDING | |

@@ -1,103 +1,97 @@
 # Phase 4 checkpoint — offence-family concept registry
 
-**Status:** REGISTRY + DUAL-LANE FAMILY CLASSIFICATION — **not a corpus PASS**  
+**Status:** UNRESOLVED ITEMS DISPOSITIONED — **not a corpus PASS**  
+**Former status:** safe-but-unresolved  
 **Branch:** programme/criminal-defence-integrity-corpus  
 **PR:** #65 (do not merge / do not deploy)
 
-> CanonicalMatterStateV1 is **foundational but not fully migrated**. Do not claim one canonical truth until confidence dashboard, overview-presentation helpers, solicitor-matter-state, and every substantive output surface consume the canonical model or an explicit validated adapter.
+> Hidden or blocked output is not PASS. Residual uncertain-family correctness remains for Phase 9 (full corpus) and Phase 11 (rendered / human gold review).
 
-## Registry
+## Disposition of former safe-but-unresolved items
 
-| Field | Value |
-|-------|-------|
-| Version | **1.0.0** |
-| Module | `lib/criminal/offence-family-concept-registry/` |
-| Tiers | allowed · conditional_provenance · forbidden · uncertain_fail_closed |
+| Item | Disposition | Ledger impact |
+|------|-------------|---------------|
+| independent_state_calculators | **RESOLVED** | none — calculator migration does not alter 72/28 or 42/55 stock units |
+| composer_raw_trunc_stock | **RESOLVED** | Stock dispositions unchanged; units remain labeled. No re-count of Phase-3 aggregates. |
+| scale_lane_audit_family_probes | **RESOLVED_AS_CONTAINMENT_PROOF** | none — scale probes are a separate counting lane from materialised stock 72/28 and 42/55 |
+| residual_unsupported_uncertain_counts | **FAIL_CLOSED_WITH_RESIDUAL_RISK** | none — uncertain/unsupported are family-classification units, not raw/trunc stock units |
+| human_fp_fn_signoff | **DEFERRED_TO_PHASE_9_11** | none |
 
-Source-backed / conditional allowance requires **structured provenance + evidence IDs**. Keyword presence in free-text hay alone does **not** activate another family.
+### Evidence summary
 
-Mixed-family: every activated family is recorded with activation source (allegation / evidence_item / audit / truth-key).
+#### independent_state_calculators
+- Former: Full canonical migration of three independent calculators
+- Disposition: **RESOLVED**
+- Phase 6 migrated confidence_dashboard, overview-presentation adapters, solicitor-matter-state
+- Re-verified: overview counts match=true
+- matter VM fingerprint match=true
+- dashboard fingerprint present=true
 
-Scoped blocking: view mode can withhold only leaked lines; copy/API/export still fail closed on affected substantive output. One optional advanced leak must not wipe the whole matter view.
+#### composer_raw_trunc_stock
+- Former: Composer repair for raw-marker / truncated copyable stock
+- Disposition: **RESOLVED**
+- Phase 6 LEDGER_BALANCED status=LEDGER_BALANCED
+- Prior 72 raw rule-firing occurrences reconstructed=72 balanced=true dispositions={"reconstructed":35,"proven_duplicate":36,"safely_omitted":1}
+- Prior 28 trunc rule-firing occurrences reconstructed=28 balanced=true dispositions={"safely_omitted":14,"proven_duplicate":14}
+- Current per-string hits remain labeled separately: raw=42 trunc=55 (do not mix with 72/28)
 
-Scale copy/export block counts reflect **adversarial cross-family probes** run on every scale identity (containment proof). They are not a claim that all 3,000 generated bundles already emit those leak strings in production output. Process-only audit families that cannot be mapped remain **uncertain** (1,138) — unresolved, not passed by hiding.
+#### scale_lane_audit_family_probes
+- Former: Scale lane uses audit-family probes (full generated wording not on disk for all 3000)
+- Disposition: **RESOLVED_AS_CONTAINMENT_PROOF**
+- Scale copy/export block counts are adversarial cross-family probes on every scale identity — containment proof only
+- They are not a claim that all 3,000 generated bundles emit leak strings in production output
+- Process-only audit families that cannot be mapped remain uncertain — fail-closed, not passed by hiding
+- Materialised gold lane (530) remains in final evidence alongside scale (3000) and combined (3530)
 
-Materialised gold lane remains in final evidence alongside scale and combined.
+#### residual_unsupported_uncertain_counts
+- Former: Residual unsupported / uncertain counts — hidden output ≠ correct output
+- Disposition: **FAIL_CLOSED_WITH_RESIDUAL_RISK**
+- Materialised mixed=281 uncertain=400 overlap=196
+- FP sample size=18; stratified samples=0
+- Adversarial matrix allPass=true: harassment_blocks_unsupported_drugs_defence=PASS; keyword_alone_does_not_activate_foreign_family=PASS; missing_family_blocks_substantive_api=PASS; neutral_non_substantive_ack_usable=PASS; scoped_view_keeps_clean_line=PASS; conditional_requires_structured_provenance_ids=PASS; canonical_overview_counts_match=PASS; canonical_matter_vm_fingerprint=PASS; canonical_dashboard_fingerprint_present=PASS
+- Substantive copy/API remain fail-closed when family uncertain; neutral ack usable; scoped view keeps clean lines
+- Hidden/blocked output is not counted as repaired or PASS — residual risk tracked for Phase 9 corpus + Phase 11 rendered/human review
 
-| Lane | Denom | Mixed | Uncertain | Conditional allowed | Unsupported blocked | Unique affected | Copy/export blocks |
-|------|------:|------:|----------:|--------------------:|--------------------:|----------------:|-------------------:|
-| Scale | 3000 | 0 | 1138 | 0 | 10712 | 3000 | 3000 |
-| Materialised (gold) | 530 | 281 | 400 | 19 | 63 | 412 | 412 |
-| Combined | 3530 | 281 | 1538 | 19 | 10775 | 3412 | 3412 |
+#### human_fp_fn_signoff
+- Former: Larger corpus / rendered FP–FN reviews before Phase 4 PASS
+- Disposition: **DEFERRED_TO_PHASE_9_11**
+- Automated adversarial matrix and stratified samples are evidence of enforcement, not human gold sign-off
+- Phase 9 full N-case corpus + Phase 11 rendered coverage / 30–50 gold human review remain the PASS gate for family correctness
+- Phase 4 programme blockers (calculators, composer stock, probe methodology) are dispositioned above without claiming corpus PASS
 
-### Family distribution — scale
 
-| Family | Count |
-|--------|------:|
-| unknown | 1138 |
-| harassment_digital | 478 |
-| violence | 441 |
-| theft | 421 |
-| motoring | 191 |
-| drugs_supply | 178 |
-| harassment_other | 153 |
+## Adversarial matrix (re-verified)
 
-### Family distribution — materialised
+| Check | Result |
+|-------|--------|
+| harassment_blocks_unsupported_drugs_defence | PASS — status=integrity_blocked; rules=wrong_family.unsupported_template_leakage |
+| keyword_alone_does_not_activate_foreign_family | PASS — activated=harassment_digital; mixed=false |
+| missing_family_blocks_substantive_api | PASS — status=integrity_blocked; rules=offence_family_uncertain |
+| neutral_non_substantive_ack_usable | PASS — status=ok |
+| scoped_view_keeps_clean_line | PASS — status=degraded; kept=1 |
+| conditional_requires_structured_provenance_ids | PASS — withIds.conditional=2; keywordOnly.families=harassment_digital |
+| canonical_overview_counts_match | PASS — schema=1.0.0 |
+| canonical_matter_vm_fingerprint | PASS — v1.0.0:63b1c4bb2c2aa3ee1 |
+| canonical_dashboard_fingerprint_present | PASS — v1.0.0:f0c60dbd31d57ed07 |
 
-| Family | Count |
-|--------|------:|
-| unknown | 400 |
-| violence | 50 |
-| motoring | 47 |
-| harassment_digital | 23 |
-| harassment_other | 8 |
-| theft | 2 |
+All matrix checks pass: **true**
 
-## Pending composer / provenance repair
+## Unit reminder
 
-| Metric | Value |
-|--------|------:|
-| Phase-3 copyable raw-marker occurrences | 72 |
-| Phase-3 copyable truncated occurrences | 28 |
-| Raw marker still blocked on copy | true |
-| Truncated still blocked on copy | true |
+| Figure | Unit |
+|-------|------|
+| Prior 72 / 28 | fixture × mode rule-firing occurrences |
+| Current 42 / 55 | per-string copyable hits |
+| Do not mix | true |
 
-These remain blocked pending later composer/provenance repair — **not** cleared by family registry work.
+## Residual risks
 
-## False-positive review sample
-
-18 mixed cases with residual unsupported blocks sampled for human review (see `false-positive-review-sample.json`).
-
-## Migration plan — independent state calculators
-
-Deadline: **no later than shared composer / validator phases (Phases 5–6)**.
-
-1. `confidence_dashboard` local `countEvidenceStates` → canonical counts + fingerprint
-2. `overview-presentation` count helpers → legacy-only; validated adapter at call sites
-3. `solicitor-matter-state` → `projectCanonicalToLegacyMatterVm` only
-
-## Correctly classified vs still unresolved
-
-**Classified / enforced this phase**
-- Harassment blocks unsupported drugs / vehicle / self-defence (adversarial)
-- Source-backed mixed passes only with evidence IDs
-- Keyword-alone activation rejected
-- Missing family blocks substantive copy/API/export; neutral ack remains usable
-- Scoped view withholding of leaked lines
-
-**Still unresolved (not a PASS)**
-- Full canonical migration of three independent calculators
-- Composer repair for raw-marker / truncated copyable stock
-- Scale lane uses audit-family probes (full generated wording not on disk for all 3000)
-- Residual unsupported / uncertain counts above — hidden output ≠ correct output
+- Materialised uncertain-family cases remain fail-closed until Phase 9/11 human FP–FN establishes acceptable rates
+- Scale uncertain (process-only audit families) remain unresolved classification, not hidden PASS
+- Defence-plan-chat eval joins still gated legacy composer (Phase 6 residual)
 
 ## Explicit non-goals
 
-No broad UX wording cleanup. No merge. No deploy. No claim that uncertain outputs being hidden equals PASS.
+No merge. No deploy. No corpus PASS claim. No UX redesign. Continue to Phase 7 (extraction and provenance boundary).
 
-
-## Phase 4 closure metrics
-
-Reported with Phase 5 (mixed∩uncertain overlap, coverage table, stratified review): see `docs/integrity-programme/phase-5-checkpoint.md` and `artifacts/casebrain-qa/integrity-programme/phase-5/phase4-closure-coverage.json`.
-
-**Phase 4 remains safe-but-unresolved — not PASS.**
+Artefact: `artifacts/casebrain-qa/integrity-programme/phase-4/phase4-resolution-evidence.json`
