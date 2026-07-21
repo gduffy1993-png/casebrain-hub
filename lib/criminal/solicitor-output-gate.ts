@@ -14,6 +14,7 @@ import {
   classifyWrongFamilyHits,
   resolveSolicitorOffenceFamily,
 } from "@/lib/criminal/solicitor-offence-family";
+import type { StructuredProvenanceRef } from "@/lib/criminal/offence-family-concept-registry";
 import { assessSolicitorSentence } from "@/lib/criminal/solicitor-sentence-composer";
 import { createHash } from "node:crypto";
 
@@ -56,7 +57,15 @@ export type GateSolicitorOutputInput = {
   allegation?: string | null;
   bundleHay?: string | null;
   chargeWording?: string | null;
+  /** Structured evidence IDs for conditional / mixed-family allowance. */
+  evidence?: StructuredProvenanceRef[];
+  auditFamily?: string | null;
   mode: "view" | "copy" | "export" | "api";
+  /**
+   * View/advanced: drop only leaked lines; keep remaining usable.
+   * Copy/export/api ignore this and fail closed if any text leaks.
+   */
+  scopeBlockToAffectedTexts?: boolean;
 };
 
 const BANNER =
@@ -86,7 +95,14 @@ export function collectIntegrityRuleIds(
   bundleHay?: string | null,
   chargeWording?: string | null,
   mode: GateSolicitorOutputInput["mode"] = "view",
-): { ruleIds: IntegrityRuleId[]; integrity: SolicitorIntegrityResult } {
+  evidence?: StructuredProvenanceRef[],
+  auditFamily?: string | null,
+): {
+  ruleIds: IntegrityRuleId[];
+  integrity: SolicitorIntegrityResult;
+  /** Indices of texts with unsupported family leakage (scoped block). */
+  leakedTextIndexes: number[];
+} {
   const hasFamilyContext = Boolean(
     (allegation && allegation.trim()) ||
       (bundleHay && bundleHay.trim()) ||
@@ -94,6 +110,13 @@ export function collectIntegrityRuleIds(
   );
   const offenceFamily = resolveSolicitorOffenceFamily({ allegation, bundleHay, chargeWording });
   const ruleIds = new Set<IntegrityRuleId>();
+  const leakedTextIndexes: number[] = [];
+  const familyOpts = {
+    evidence: evidence ?? [],
+    allegation,
+    chargeWording,
+    auditFamily,
+  };
 
   if (hasFamilyContext && offenceFamily.failClosed) {
     ruleIds.add("offence_family_uncertain");
@@ -109,10 +132,10 @@ export function collectIntegrityRuleIds(
     ruleIds.add("offence_family_uncertain");
   }
 
-  for (const text of texts) {
+  texts.forEach((text, textIndex) => {
     if (!text?.trim()) {
       ruleIds.add("text_empty");
-      continue;
+      return;
     }
     const sentence = assessSolicitorSentence(text);
     for (const issue of sentence.issues) {
@@ -127,14 +150,14 @@ export function collectIntegrityRuleIds(
     }
 
     if (hasFamilyContext) {
-      const hits = classifyWrongFamilyHits(text, offenceFamily, bundleHay ?? "");
-      for (const hit of hits) {
-        if (hit.kind === "unsupported_template_leakage") {
-          ruleIds.add("wrong_family.unsupported_template_leakage");
-        }
+      const hits = classifyWrongFamilyHits(text, offenceFamily, bundleHay ?? "", familyOpts);
+      const leaked = hits.some((h) => h.kind === "unsupported_template_leakage");
+      if (leaked) {
+        ruleIds.add("wrong_family.unsupported_template_leakage");
+        leakedTextIndexes.push(textIndex);
       }
     }
-  }
+  });
 
   let integrity: SolicitorIntegrityResult;
   if (substantiveWithoutFamily) {
@@ -192,24 +215,59 @@ export function collectIntegrityRuleIds(
     integrity.banner = BANNER;
   }
 
-  return { ruleIds: [...ruleIds], integrity };
+  return { ruleIds: [...ruleIds], integrity, leakedTextIndexes };
 }
 
 /**
  * Gate solicitor wording centrally.
- * - copy/export/api: blocked → data null, canCopy false
- * - view: blocked → data null + banner (safe empty UI state)
+ * - copy/export/api: any leak / hard rule → blocked, data null, canCopy false
+ * - view (scoped): drop only leaked lines; keep remaining texts as degraded usable output
+ *   so one optional advanced line does not wipe the whole matter view
  */
 export function gateSolicitorOutput<T extends { texts: string[] }>(
   input: GateSolicitorOutputInput & { data: T },
 ): GatedSolicitorPayload<T> {
-  const { ruleIds, integrity } = collectIntegrityRuleIds(
+  const { ruleIds, integrity, leakedTextIndexes } = collectIntegrityRuleIds(
     input.texts,
     input.allegation,
     input.bundleHay,
     input.chargeWording,
     input.mode,
+    input.evidence,
+    input.auditFamily,
   );
+
+  const sentenceOrEmptyHard = ruleIds.some(
+    (r) => r.startsWith("sentence.") || r === "text_empty" || r === "offence_family_uncertain",
+  );
+  const familyLeak = ruleIds.includes("wrong_family.unsupported_template_leakage");
+  const scopeView =
+    input.mode === "view" &&
+    (input.scopeBlockToAffectedTexts !== false) &&
+    familyLeak &&
+    !sentenceOrEmptyHard &&
+    leakedTextIndexes.length > 0 &&
+    leakedTextIndexes.length < input.texts.length;
+
+  if (scopeView) {
+    const keptTexts = input.texts.filter((_, i) => !leakedTextIndexes.includes(i));
+    return {
+      status: "degraded",
+      ok: true,
+      canCopy: false,
+      deepDetailAvailable: false,
+      banner: "Some wording was withheld — unsupported offence-family concepts on this surface.",
+      ruleIds,
+      surfaceId: input.surfaceId,
+      data: { ...input.data, texts: keptTexts },
+      integrity: {
+        ...integrity,
+        level: "degraded",
+        canCopy: false,
+        banner: "Some wording was withheld — unsupported offence-family concepts on this surface.",
+      },
+    };
+  }
 
   const blocked =
     integrity.level === "blocked" ||

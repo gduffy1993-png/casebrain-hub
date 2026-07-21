@@ -65,26 +65,52 @@ function expectPass(name: string, ok: boolean) {
   expectPass("valid harassment", g.status === "ok" && g.canCopy === true && g.data != null);
 }
 
-// Source-backed mixed: drugs concept allowed when hay supports it
+// Source-backed mixed: drugs concept allowed only with structured evidence IDs (not keyword hay alone)
 {
   const fam = resolveSolicitorOffenceFamily({
-    allegation: "Harassment and related drug allegation",
-    bundleHay: "harassment WhatsApp screenshots plus PWITS wraps controlled drug intent to supply",
+    allegation: "Harassment contrary to Protection from Harassment Act phone WhatsApp",
+    bundleHay: "harassment WhatsApp screenshots",
   });
+  const evidence = [
+    {
+      evidenceId: "ev_drug_wraps_001",
+      label: "PWITS wraps controlled drug intent to supply",
+      existence: "referred_only",
+    },
+    {
+      evidenceId: "ev_phone_001",
+      label: "Phone extraction WhatsApp screenshots",
+      existence: "served",
+    },
+  ];
   const hits = classifyWrongFamilyHits(
     "Chase PWITS continuity and phone attribution.",
     fam,
     "harassment WhatsApp PWITS wraps controlled drug intent to supply phone",
+    { evidence, allegation: "Harassment contrary to Protection from Harassment Act phone WhatsApp" },
   );
-  assert.ok(hits.every((h) => h.kind === "source_backed_ok" || h.label.includes("phone") === false));
   const unsupported = hits.filter((h) => h.kind === "unsupported_template_leakage");
   expectPass("source-backed mixed not leak", unsupported.length === 0);
+  assert.ok(hits.some((h) => h.kind === "source_backed_ok") || unsupported.length === 0);
+
+  // Keyword hay alone must NOT allow
+  const keywordOnly = classifyWrongFamilyHits(
+    "Chase PWITS continuity on the schedule.",
+    fam,
+    "harassment WhatsApp PWITS wraps controlled drug intent to supply",
+    { evidence: [], allegation: "Harassment contrary to Protection from Harassment Act phone WhatsApp" },
+  );
+  assert.ok(
+    keywordOnly.some((h) => h.kind === "unsupported_template_leakage"),
+    "keyword hay alone must not activate drugs family",
+  );
 
   const g = gateSolicitorOutput({
     surfaceId: "test_mixed",
     texts: ["Chase PWITS continuity on the served schedule."],
-    allegation: "Harassment and related drug allegation",
-    bundleHay: "harassment WhatsApp PWITS wraps controlled drug intent to supply",
+    allegation: "Harassment contrary to Protection from Harassment Act phone WhatsApp",
+    bundleHay: "harassment WhatsApp screenshots",
+    evidence,
     mode: "copy",
     data: { texts: ["Chase PWITS continuity on the served schedule."] },
   });

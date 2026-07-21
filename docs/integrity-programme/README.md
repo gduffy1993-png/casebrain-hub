@@ -12,7 +12,8 @@ Authoritative scope: user programme brief (Workstream A then B).
 | Phase 1 — surface inventory | COMPLETE (not PASS) | `docs/integrity-programme/phase-1-checkpoint.md` |
 | Phase 2 — fail-closed containment | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-2-checkpoint.md` |
 | Phase 3 — canonical model + dual-lane | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-3-checkpoint.md` |
-| Phases 4–11 | PENDING | |
+| Phase 4 — offence-family concept registry | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-4-checkpoint.md` |
+| Phases 5–11 | PENDING | |
 | Workstream B | BLOCKED until A gates pass | |
 
 ## Preserved work

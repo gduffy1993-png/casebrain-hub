@@ -51,6 +51,8 @@ export type EvaluateTextIntegrityInput = {
   chargeWording?: string | null;
   /** Pre-resolved family; otherwise derived from hay. */
   offenceFamily?: OffenceFamilyResolution;
+  /** Structured evidence IDs required for source-backed mixed concepts. */
+  evidence?: import("@/lib/criminal/offence-family-concept-registry").StructuredProvenanceRef[];
 };
 
 export type EvaluateMatterIntegrityInput = {
@@ -118,7 +120,11 @@ export function evaluateTextIntegrity(input: EvaluateTextIntegrityInput): Solici
     });
   }
 
-  const wrongHits = classifyWrongFamilyHits(input.text, offenceFamily, input.bundleHay ?? "");
+  const wrongHits = classifyWrongFamilyHits(input.text, offenceFamily, input.bundleHay ?? "", {
+    evidence: input.evidence ?? [],
+    allegation: input.allegation,
+    chargeWording: input.chargeWording,
+  });
   const unsupported = wrongHits.filter((h) => h.kind === "unsupported_template_leakage");
   if (unsupported.length) {
     reasons.push({

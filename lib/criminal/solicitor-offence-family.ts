@@ -1,7 +1,16 @@
 /**
  * Practice / offence-family isolation for solicitor-facing output.
  * Fail closed when mapping is uncertain — never inherit wrong-family templates.
+ *
+ * Phase 4: source-backed / conditional concepts require structured evidence IDs
+ * via offence-family-concept-registry. Keyword hay alone is not sufficient.
  */
+
+import {
+  classifyTextsAgainstConceptRegistry,
+  type ProvenanceContext,
+  type StructuredProvenanceRef,
+} from "@/lib/criminal/offence-family-concept-registry";
 
 export type SolicitorOffenceFamily =
   | "harassment_digital"
@@ -21,53 +30,7 @@ export type OffenceFamilyResolution = {
   reason: string;
 };
 
-/** Family-forbidden patterns with explicit source support checks (mixed cases allowed). */
-const FAMILY_FORBIDDEN_WITH_SUPPORT: Record<
-  Exclude<SolicitorOffenceFamily, "unknown">,
-  Array<{ concept: RegExp; requires: RegExp; label: string }>
-> = {
-  harassment_digital: [
-    { concept: /\bintent to supply\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "intent to supply" },
-    { concept: /\bpwits\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "pwits" },
-    { concept: /\bpossession of (?:a )?controlled drug\b/i, requires: /\bdrug\b|controlled drug|pwits/i, label: "drug possession" },
-    { concept: /\bdrug continuity\b/i, requires: /\bdrug\b|controlled drug|pwits/i, label: "drug continuity" },
-    { concept: /\bdefensive force\b/i, requires: /defensive force|self[-\s]?defence|assault|gbh|abh/i, label: "defensive force" },
-    { concept: /\bself[-\s]?defence\b/i, requires: /self[-\s]?defence|defensive force|assault|gbh|abh/i, label: "self-defence" },
-    { concept: /\breasonable force\b/i, requires: /reasonable force|self[-\s]?defence|assault|gbh|abh/i, label: "reasonable force" },
-    { concept: /\bvehicle ownership\b/i, requires: /vehicle|registration|vrm|number plate/i, label: "vehicle ownership" },
-  ],
-  harassment_other: [
-    { concept: /\bintent to supply\b|\bpwits\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "drugs supply" },
-    { concept: /\bpossession of (?:a )?controlled drug\b/i, requires: /\bdrug\b|controlled drug/i, label: "drug possession" },
-    { concept: /\bdefensive force\b|\bself[-\s]?defence\b/i, requires: /self[-\s]?defence|defensive force|assault|gbh|abh/i, label: "defensive force" },
-    { concept: /\bvehicle ownership\b/i, requires: /vehicle|registration|vrm|number plate/i, label: "vehicle ownership" },
-  ],
-  violence: [
-    { concept: /\bintent to supply\b|\bpwits\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "drugs supply" },
-    { concept: /\bpossession of (?:a )?controlled drug\b/i, requires: /\bdrug\b|controlled drug/i, label: "drug possession" },
-    { concept: /\bphone extraction summary\b/i, requires: /phone|extraction|handset|whatsapp|sms|subscriber/i, label: "phone extraction" },
-  ],
-  drugs_possession: [
-    { concept: /\bdefensive force\b|\bself[-\s]?defence\b/i, requires: /self[-\s]?defence|defensive force|assault|gbh|abh/i, label: "defensive force" },
-    { concept: /\bprotection from harassment\b/i, requires: /harassment|stalking|protection from harassment/i, label: "harassment" },
-  ],
-  drugs_supply: [
-    { concept: /\bdefensive force\b|\bself[-\s]?defence\b/i, requires: /self[-\s]?defence|defensive force|assault|gbh|abh/i, label: "defensive force" },
-    { concept: /\bprotection from harassment\b/i, requires: /harassment|stalking|protection from harassment/i, label: "harassment" },
-  ],
-  theft: [
-    { concept: /\bintent to supply\b|\bpwits\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "drugs supply" },
-    { concept: /\bdefensive force\b/i, requires: /defensive force|self[-\s]?defence|assault|gbh|abh/i, label: "defensive force" },
-    { concept: /\bprotection from harassment\b/i, requires: /harassment|stalking/i, label: "harassment" },
-  ],
-  motoring: [
-    { concept: /\bintent to supply\b|\bpwits\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "drugs supply" },
-    { concept: /\bdefensive force\b/i, requires: /defensive force|self[-\s]?defence|assault|gbh|abh/i, label: "defensive force" },
-    { concept: /\bprotection from harassment\b/i, requires: /harassment|stalking/i, label: "harassment" },
-  ],
-};
-
-/** Concepts that must never appear unless the bundle explicitly supports them. */
+/** @deprecated Prefer OFFENCE_FAMILY_CONCEPT_REGISTRY — kept for legacy readers. */
 export const UNIVERSAL_WRONG_FAMILY_WITHOUT_SOURCE: Array<{
   concept: RegExp;
   requires: RegExp;
@@ -193,46 +156,58 @@ export type WrongFamilyHit = {
   kind: WrongFamilyHitKind;
 };
 
+export type ClassifyWrongFamilyOptions = {
+  /** Structured evidence with IDs — required for source_backed_ok. */
+  evidence?: StructuredProvenanceRef[];
+  allegation?: string | null;
+  chargeWording?: string | null;
+  auditFamily?: string | null;
+};
+
+const FAMILY_SEED: Record<Exclude<SolicitorOffenceFamily, "unknown">, string> = {
+  harassment_digital: "Harassment Protection from Harassment Act phone WhatsApp screenshots",
+  harassment_other: "Harassment Protection from Harassment Act stalking",
+  violence: "GBH assault occasioning actual bodily harm",
+  drugs_possession: "Possession of a controlled drug",
+  drugs_supply: "PWITS intent to supply controlled drug",
+  theft: "Theft dishonest appropriation",
+  motoring: "Drink drive road traffic intoxilyser",
+};
+
 /**
- * Classify cross-family concepts:
- * - unsupported_template_leakage → block (no source support)
- * - source_backed_ok → allow (mixed case / explicit evidence)
+ * Classify cross-family concepts via the Phase-4 concept registry.
+ * - unsupported_template_leakage → block (no structured provenance)
+ * - source_backed_ok → allow only when evidence IDs activate the concept
+ *
+ * Keyword matches in bundleHay alone do NOT produce source_backed_ok.
  */
 export function classifyWrongFamilyHits(
   text: string,
   resolution: OffenceFamilyResolution,
   bundleHay = "",
+  options?: ClassifyWrongFamilyOptions,
 ): WrongFamilyHit[] {
-  const hits: WrongFamilyHit[] = [];
-  const hay = bundleHay.toLowerCase();
-  const seen = new Set<string>();
+  const allegation =
+    options?.allegation ??
+    (resolution.family !== "unknown"
+      ? FAMILY_SEED[resolution.family as Exclude<SolicitorOffenceFamily, "unknown">]
+      : null);
 
-  const push = (label: string, supported: boolean) => {
-    const key = `${label}:${supported ? "ok" : "leak"}`;
-    if (seen.has(key)) return;
-    seen.add(key);
-    hits.push({
-      label,
-      kind: supported ? "source_backed_ok" : "unsupported_template_leakage",
-    });
+  const ctx: ProvenanceContext = {
+    evidence: options?.evidence ?? [],
+    allegation,
+    chargeWording: options?.chargeWording,
+    bundleHay,
+    auditFamily: options?.auditFamily,
   };
 
-  for (const rule of UNIVERSAL_WRONG_FAMILY_WITHOUT_SOURCE) {
-    if (rule.concept.test(text)) {
-      push(rule.label, rule.requires.test(hay));
-    }
-  }
-
-  if (resolution.family !== "unknown") {
-    const rules = FAMILY_FORBIDDEN_WITH_SUPPORT[resolution.family] ?? [];
-    for (const rule of rules) {
-      if (rule.concept.test(text)) {
-        push(rule.label, rule.requires.test(hay));
-      }
-    }
-  }
-
-  return hits;
+  const classification = classifyTextsAgainstConceptRegistry([text], ctx);
+  return classification.conceptVerdicts
+    .filter((v) => v.kind === "unsupported_template_leakage" || v.kind === "source_backed_ok")
+    .map((v) => ({
+      label: v.label,
+      kind: v.kind as WrongFamilyHitKind,
+    }));
 }
 
 /** Unsupported leakage labels only (gates / filters). */
@@ -240,18 +215,24 @@ export function findWrongFamilyTerms(
   text: string,
   resolution: OffenceFamilyResolution,
   bundleHay = "",
+  options?: ClassifyWrongFamilyOptions,
 ): string[] {
-  return classifyWrongFamilyHits(text, resolution, bundleHay)
+  return classifyWrongFamilyHits(text, resolution, bundleHay, options)
     .filter((h) => h.kind === "unsupported_template_leakage")
     .map((h) => h.label);
 }
 
-/** Filter lines that introduce unsupported wrong-family concepts for this matter. */
+/**
+ * Filter lines that introduce unsupported wrong-family concepts.
+ * Scoped: only drops affected lines — does not empty the whole list on one optional failure
+ * unless failClosed (uncertain primary family).
+ */
 export function filterWrongFamilyLines(
   lines: string[],
   resolution: OffenceFamilyResolution,
   bundleHay = "",
+  options?: ClassifyWrongFamilyOptions,
 ): string[] {
   if (resolution.failClosed) return [];
-  return lines.filter((line) => findWrongFamilyTerms(line, resolution, bundleHay).length === 0);
+  return lines.filter((line) => findWrongFamilyTerms(line, resolution, bundleHay, options).length === 0);
 }
