@@ -294,7 +294,13 @@ function main() {
 
   // --- Contracts for 31 surfaces ---
   const SAFE = "Attribution remains outstanding on the served screenshots.";
+  /** Hard-block input (raw marker) — copy/api/invalid contracts. */
   const BLOCK = "Consider defensive force and PWITS continuity | 4 |.";
+  /**
+   * Wrong-family leak without hard sentence rules — scoped view can drop only this line.
+   * Raw markers force full integrity_blocked even in view mode.
+   */
+  const SCOPED_LEAK = "Consider defensive force and PWITS continuity on the papers.";
   const FAMILY = {
     allegation: "Harassment contrary to Protection from Harassment Act",
     bundleHay: "WhatsApp screenshots MG11 phone extraction subscriber",
@@ -326,11 +332,11 @@ function main() {
     });
     const scoped = validateSolicitorSurface({
       surfaceId,
-      texts: [SAFE, BLOCK],
+      texts: [SAFE, SCOPED_LEAK],
       ...FAMILY,
       mode: "view",
       scopeBlockToAffectedTexts: true,
-      data: { texts: [SAFE, BLOCK] },
+      data: { texts: [SAFE, SCOPED_LEAK] },
     });
     const copyFail = validateSolicitorSurface({
       surfaceId,

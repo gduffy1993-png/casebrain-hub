@@ -21,7 +21,7 @@ Shared validator v1.0.0 on all **31** central surfaces (incl. `api_defence_plan_
 |-----------|--------|
 | Valid output passes | true |
 | Invalid output blocks | true |
-| Scoped display removes only defective line | 0/31 (view-mode capable) |
+| Scoped display removes only defective line | 31/31 (view-mode capable) |
 | Copy/API/export fails closed | true |
 | Consumer recognises integrity_blocked | true |
 

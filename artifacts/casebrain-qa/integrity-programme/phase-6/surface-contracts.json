@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-21T02:08:53.515Z",
+  "generatedAt": "2026-07-21T02:11:33.377Z",
   "results": [
     {
       "surfaceId": "overview_safe_wording_card",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -14,7 +14,7 @@
       "surfaceId": "overview_court_prep_card",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -23,7 +23,7 @@
       "surfaceId": "overview_evidence_gaps_card",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -32,7 +32,7 @@
       "surfaceId": "overview_snapshot_boxes",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -41,7 +41,7 @@
       "surfaceId": "overview_advanced_panel",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -50,7 +50,7 @@
       "surfaceId": "confidence_dashboard",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -59,7 +59,7 @@
       "surfaceId": "defence_decision_board",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -68,7 +68,7 @@
       "surfaceId": "advice_change_radar",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -77,7 +77,7 @@
       "surfaceId": "rerun_diff_panel",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -86,7 +86,7 @@
       "surfaceId": "hearing_war_room_assistant",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -95,7 +95,7 @@
       "surfaceId": "client_explanation_panel",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -104,7 +104,7 @@
       "surfaceId": "reasoning_v2_panel",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -113,7 +113,7 @@
       "surfaceId": "client_account_stress_test",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -122,7 +122,7 @@
       "surfaceId": "supervisor_qa_panel",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -131,7 +131,7 @@
       "surfaceId": "control_room_assistant",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -140,7 +140,7 @@
       "surfaceId": "export_case_qa_pack",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -149,7 +149,7 @@
       "surfaceId": "api_letters_draft",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -158,7 +158,7 @@
       "surfaceId": "api_disclosure_request",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -167,7 +167,7 @@
       "surfaceId": "api_hearing_prep",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -176,7 +176,7 @@
       "surfaceId": "api_cases_hearing_prep",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -185,7 +185,7 @@
       "surfaceId": "api_client_advice",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -194,7 +194,7 @@
       "surfaceId": "api_bail_application",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -203,7 +203,7 @@
       "surfaceId": "api_sentencing_mitigation",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -212,7 +212,7 @@
       "surfaceId": "api_court_scripts",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -221,7 +221,7 @@
       "surfaceId": "api_kill_shot",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -230,7 +230,7 @@
       "surfaceId": "api_prosecution_weaknesses",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -239,7 +239,7 @@
       "surfaceId": "api_propose_summary",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -248,7 +248,7 @@
       "surfaceId": "api_strategy_export",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -257,7 +257,7 @@
       "surfaceId": "api_strategy_ask",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -266,7 +266,7 @@
       "surfaceId": "api_defence_plan_chat",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
@@ -275,7 +275,7 @@
       "surfaceId": "api_executive_brief",
       "validPasses": true,
       "invalidBlocks": true,
-      "scopedRemovesOnlyDefective": false,
+      "scopedRemovesOnlyDefective": true,
       "copyFailsClosed": true,
       "consumerRecognisesBlocked": true,
       "fingerprintOk": true
