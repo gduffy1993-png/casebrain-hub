@@ -1,0 +1,97 @@
+{
+  "goldId": "GOLD-11-012",
+  "def": {
+    "goldId": "GOLD-11-012",
+    "stratum": "uncertain_family",
+    "sourceKind": "phase9_pack_seed",
+    "fixtureId": "cb-fresh-002-jordan-hale",
+    "selectionReason": "Phase 9 uncertain_family stratum",
+    "reviewFocus": "Is uncertain / fail-closed presentation correct for the solicitor?"
+  },
+  "surfaces": [
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 4 · Referred 2 · Missing 1 · Incomplete 0 · Not safely confirmed 0",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence-family resolution",
+      "solicitorVisibleText": "Resolved family: violence\nAudit family seed: assault_emergency_worker",
+      "gateStatus": "resolved",
+      "canCopy": true
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase brief (solicitor list)",
+      "solicitorVisibleText": "Total 3\n• CCTV full window / master footage\n• Full custody record / PACE material\n• complainant MG11",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\n2026-06-29T17:03:07.726Z",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\ncb-fresh-002-jordan-hale",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nCaseBrain H5 presentation builders (no Brain 1 mutation)",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nNeeds review before relying",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nHuman review or material gaps flagged on current papers.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nCCTV full window / master footage",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family leak probe (copy)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — family containment blocked probe.\nBanner: Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "central_surface_sample",
+      "label": "Central surface sample (overview_safe_wording_card)",
+      "solicitorVisibleText": "SURFACE NOT COPYABLE — status=integrity_blocked; rules=offence_family_uncertain",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    }
+  ]
+}

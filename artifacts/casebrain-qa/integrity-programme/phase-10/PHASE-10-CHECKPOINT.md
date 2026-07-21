@@ -1,6 +1,6 @@
 # Phase 10 checkpoint — mutation & adversarial injection
 
-**Status:** MUTATION CONTRACTS PASS (containment) — **not a corpus PASS** — **not a programme PASS**  
+**Status:** CLOSED — MUTATION CONTRACTS PASS (containment) acknowledged (`a88878867`) — **not a corpus PASS** — **not a programme PASS**  
 **Canonical schema:** 1.1.0  
 **Branch:** programme/criminal-defence-integrity-corpus  
 **PR:** #65 (do not merge / do not deploy)
