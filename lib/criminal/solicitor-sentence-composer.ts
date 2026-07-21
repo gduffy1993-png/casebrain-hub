@@ -32,6 +32,10 @@ const MALFORMED_PUNCT_RE = /\.;|;\.|,\.|\.{2,}|;;+|::+/;
 const TRUNCATED_RE =
   /\b(?:and|or|that|which|the|to|of|for|with|from|including|including:)\s*$/i;
 
+/** Legitimate abbreviations / acronyms — do not flag as truncation. */
+const LEGIT_ABBREV_END_RE =
+  /\b(?:cps|mg11|mg6c?|ptph|bwv|cctv|dna|anpr|vrm|pfha|pwits|s\.?\s*18|s\.?\s*20|e\.g|i\.e|etc|ltd|plc|uk|id)\.?\s*$/i;
+
 const CONTRADICTORY_RE =
   /\b(?:is\s+)?served\b.{0,40}\bnot served\b|\bnot served\b.{0,40}\b(?:is\s+)?served\b|\b(?:final|complete)\b.{0,40}\b(?:draft|unsigned)\b|\b(?:draft|unsigned)\b.{0,40}\b(?:final|complete)\b/i;
 
@@ -67,7 +71,10 @@ export function assessSolicitorSentence(raw: string | null | undefined): Sentenc
   if (CONTRADICTORY_RE.test(text)) {
     issues.push("contradictory_clause");
   }
-  if (TRUNCATED_RE.test(text) || /[-–—:]\s*$/.test(text)) {
+  if (
+    (TRUNCATED_RE.test(text) || /[-–—:]\s*$/.test(text)) &&
+    !LEGIT_ABBREV_END_RE.test(text)
+  ) {
     issues.push("truncated_fragment");
   }
   if (/\([^\)]*$/.test(text)) {

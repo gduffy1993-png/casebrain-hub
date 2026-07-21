@@ -136,16 +136,20 @@ function evidenceIdsSupportingConcept(
   const ids: string[] = [];
   for (const ev of evidence) {
     if (!ev.evidenceId?.trim()) continue;
-    if (entry.activateFromEvidenceLabel.test(ev.label)) {
-      ids.push(ev.evidenceId);
-    }
+    if (!ev.label?.trim()) continue;
+    // ID alone is insufficient — label content must support the activated concept.
+    if (!entry.activateFromEvidenceLabel.test(ev.label)) continue;
+    // Reject placeholder / empty-shell labels that only exist to carry an ID.
+    if (/^(unknown|n\/?a|item|evidence)\s*\d*$/i.test(ev.label.trim())) continue;
+    ids.push(ev.evidenceId);
   }
   return ids;
 }
 
 /**
  * Keyword presence in free-text hay alone MUST NOT satisfy conditional provenance.
- * Only structured evidence rows with IDs count.
+ * Structured evidence rows need both a real evidenceId AND label content that supports
+ * the concept (ID possession alone is insufficient).
  */
 export function resolveConceptTier(
   conceptId: ConceptId,

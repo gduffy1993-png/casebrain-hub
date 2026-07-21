@@ -147,12 +147,30 @@ const HARASS_HAY = "WhatsApp screenshots MG11 phone extraction subscriber";
   assert.ok(trunc.ruleIds.includes("sentence.truncated_fragment"));
 }
 
+// 8) Evidence ID alone (shell label) cannot activate another family
+{
+  const fam = resolveSolicitorOffenceFamily({
+    allegation: HARASS_ALLEGATION,
+    bundleHay: HARASS_HAY,
+  });
+  const hits = classifyWrongFamilyHits(
+    "Chase PWITS continuity on the schedule.",
+    fam,
+    HARASS_HAY,
+    {
+      evidence: [{ evidenceId: "ev_shell_only", label: "item 1" }],
+      allegation: HARASS_ALLEGATION,
+    },
+  );
+  assert.ok(hits.some((h) => h.kind === "unsupported_template_leakage"));
+}
+
 console.log(
   JSON.stringify(
     {
       ok: true,
       registryVersion: OFFENCE_FAMILY_CONCEPT_REGISTRY_VERSION,
-      adversarialAssertions: 7,
+      adversarialAssertions: 8,
     },
     null,
     2,

@@ -646,7 +646,7 @@ export function HearingWarRoom({
     const parts = [
       `Hearing War Room — ${caseTitle}`,
       `Safe position: ${brief.safePositionToday}`,
-      brief.sayThis.length ? `Say this: ${brief.sayThis.join(" | ")}` : "",
+      brief.sayThis.length ? `Say this:\n${brief.sayThis.map((s) => `• ${s}`).join("\n")}` : "",
     ];
     return parts.filter(Boolean).join("\n");
   }, [brief, caseTitle]);

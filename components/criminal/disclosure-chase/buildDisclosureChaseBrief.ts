@@ -37,6 +37,7 @@ import { buildContradictionActions } from "@/lib/criminal/contradiction-actions"
 import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-contradictions";
 import { guardDisclosureChaseBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
 import { finalizeDisclosureChasePresentation } from "@/lib/criminal/disclosure-chase-finalize";
+import { composeStructuredSolicitorOutput } from "@/lib/criminal/structured-solicitor-output";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted)\b/i;
@@ -407,18 +408,43 @@ function inferWhyItMatters(
 function toCourtLine(canonicalLabel: string): string {
   const core = canonicalLabel.trim();
   if (!core || FORBIDDEN_RE.test(core)) {
-    return `${COURT_RECORD_PREFIX} that outstanding source material remains on the disclosure schedule and should be timetabled.`;
+    const fallback = composeStructuredSolicitorOutput({
+      subject: "outstanding source material on the disclosure schedule",
+      evidenceState: "not_safely_confirmed",
+      kind: "court_line",
+      safetyQualification: "Solicitor review required before addressing the court.",
+    });
+    return (
+      fallback.text ??
+      `${COURT_RECORD_PREFIX} that outstanding source material remains on the disclosure schedule and should be timetabled.`
+    );
   }
+  const composed = composeStructuredSolicitorOutput({
+    subject: core,
+    evidenceState: "missing",
+    kind: "court_line",
+    safetyQualification: "Solicitor review required before addressing the court.",
+  });
+  if (composed.ok && composed.text) return composed.text;
   return `${COURT_RECORD_PREFIX} that ${core.charAt(0).toLowerCase()}${core.slice(1)} appears outstanding on the current file and should be disclosed on a timetable.`;
 }
 
 function draftChaseWording(canonicalLabel: string, mergedFrom: string[]): string {
   const provision = materialLabelFromCourtLine(canonicalLabel);
-  const detail =
-    mergedFrom.length > 1
-      ? ` (including items noted on file: ${mergedFrom.slice(0, 3).join("; ")}${mergedFrom.length > 3 ? "…" : ""})`
-      : "";
-  return `Please provide ${provision.toLowerCase()}. This material appears outstanding on the current file and may be relevant to preparation — conditional on what is ultimately served${detail}. Kindly confirm expected service date.`;
+  // Never pipe-join or punctuation-join arbitrary merged bullets into the prose.
+  const composed = composeStructuredSolicitorOutput({
+    subject: provision,
+    evidenceState: "missing",
+    kind: "cps_chase",
+    whyItMatters:
+      mergedFrom.length > 1
+        ? "Multiple related source notes appear on file — confirm each item before reliance."
+        : "Material appears outstanding on the current file and may be relevant to preparation.",
+    requestedAction: `Please provide ${provision.toLowerCase()}. This material appears outstanding on the current file and may be relevant to preparation — conditional on what is ultimately served. Kindly confirm expected service date.`,
+    safetyQualification: "Solicitor review required before sending.",
+  });
+  if (composed.ok && composed.text) return composed.text;
+  return `Please provide ${provision.toLowerCase()}. This material appears outstanding on the current file and may be relevant to preparation — conditional on what is ultimately served. Kindly confirm expected service date.`;
 }
 
 function findLinkedRoute(

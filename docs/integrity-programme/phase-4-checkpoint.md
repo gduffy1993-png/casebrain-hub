@@ -94,3 +94,10 @@ Deadline: **no later than shared composer / validator phases (Phases 5–6)**.
 ## Explicit non-goals
 
 No broad UX wording cleanup. No merge. No deploy. No claim that uncertain outputs being hidden equals PASS.
+
+
+## Phase 4 closure metrics
+
+Reported with Phase 5 (mixed∩uncertain overlap, coverage table, stratified review): see `docs/integrity-programme/phase-5-checkpoint.md` and `artifacts/casebrain-qa/integrity-programme/phase-5/phase4-closure-coverage.json`.
+
+**Phase 4 remains safe-but-unresolved — not PASS.**
