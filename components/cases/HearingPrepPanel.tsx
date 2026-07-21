@@ -17,6 +17,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/Toast";
 import type { HearingPrepPack, HearingPrepSection } from "@/lib/types/casebrain";
+import {
+  canUseSolicitorApiResponse,
+  solicitorUiStateFromApiBody,
+} from "@/lib/criminal/integrity-blocked-consumer";
 
 type HearingPrepPanelProps = {
   caseId: string;
@@ -49,9 +53,13 @@ export function HearingPrepPanel({ caseId }: HearingPrepPanelProps) {
         }),
       });
 
+      const data = await res.json().catch(() => ({}));
+      if (!canUseSolicitorApiResponse(data)) {
+        const ui = solicitorUiStateFromApiBody(data);
+        throw new Error(ui.banner ?? "Solicitor review required — output integrity check failed.");
+      }
       if (!res.ok) throw new Error("Failed to generate");
 
-      const data = await res.json();
       setPack(data.pack);
       // Expand essential sections by default
       setExpandedSections(new Set(

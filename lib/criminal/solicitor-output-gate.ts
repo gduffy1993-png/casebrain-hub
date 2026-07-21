@@ -62,6 +62,18 @@ export type GateSolicitorOutputInput = {
 const BANNER =
   "Solicitor review required — output integrity check failed.";
 
+/**
+ * Substantive solicitor-generated wording (advice, court, chase, strategy, disclosure).
+ * Without resolved family context, copy/export/api modes must fail closed.
+ */
+export function isSubstantiveSolicitorWording(text: string): boolean {
+  const t = text.trim();
+  if (t.length < 24) return false;
+  return /\b(court|cps|disclosure|advise|advice|plea|strategy|ask the court|client should|mitigation|bail|admission|not guilty|guilty|attribution|outstanding|chase|witness|mg11|mg6|timetable|adjournment|handover|prosecution|defence|solicitor|hearing prep|kill[- ]shot|weakness)\b/i.test(
+    t,
+  );
+}
+
 function redactDiagnostic(text: string): string {
   const t = text.replace(/\s+/g, " ").trim();
   return `len=${t.length};hash=${createHash("sha256").update(t).digest("hex").slice(0, 12)}`;
@@ -73,6 +85,7 @@ export function collectIntegrityRuleIds(
   allegation?: string | null,
   bundleHay?: string | null,
   chargeWording?: string | null,
+  mode: GateSolicitorOutputInput["mode"] = "view",
 ): { ruleIds: IntegrityRuleId[]; integrity: SolicitorIntegrityResult } {
   const hasFamilyContext = Boolean(
     (allegation && allegation.trim()) ||
@@ -83,6 +96,16 @@ export function collectIntegrityRuleIds(
   const ruleIds = new Set<IntegrityRuleId>();
 
   if (hasFamilyContext && offenceFamily.failClosed) {
+    ruleIds.add("offence_family_uncertain");
+  }
+
+  const requiresFamily =
+    mode === "copy" || mode === "export" || mode === "api";
+  const substantiveWithoutFamily =
+    !hasFamilyContext &&
+    requiresFamily &&
+    texts.some((t) => isSubstantiveSolicitorWording(t));
+  if (substantiveWithoutFamily) {
     ruleIds.add("offence_family_uncertain");
   }
 
@@ -113,28 +136,43 @@ export function collectIntegrityRuleIds(
     }
   }
 
-  const integrity = hasFamilyContext
-    ? texts.length === 1
-      ? evaluateTextIntegrity({
-          text: texts[0] ?? "",
-          allegation,
-          bundleHay,
-          chargeWording,
-          offenceFamily,
-        })
-      : evaluateMatterIntegrity({
-          allegation,
-          bundleHay,
-          chargeWording,
-          sampleTexts: texts,
-        })
-    : evaluateSentenceIntegrityOnly(texts.filter(Boolean).join("\n") || " ");
-
-  if (hasFamilyContext) {
+  let integrity: SolicitorIntegrityResult;
+  if (substantiveWithoutFamily) {
+    integrity = {
+      level: "blocked",
+      reasons: [
+        {
+          code: "offence_family_uncertain",
+          detail: "Copyable/exportable solicitor wording requires resolved offence family.",
+        },
+      ],
+      canCopy: false,
+      deepDetailAvailable: false,
+      banner: BANNER,
+      offenceFamily: { ...offenceFamily, failClosed: true },
+    };
+  } else if (hasFamilyContext) {
+    integrity =
+      texts.length === 1
+        ? evaluateTextIntegrity({
+            text: texts[0] ?? "",
+            allegation,
+            bundleHay,
+            chargeWording,
+            offenceFamily,
+          })
+        : evaluateMatterIntegrity({
+            allegation,
+            bundleHay,
+            chargeWording,
+            sampleTexts: texts,
+          });
     const hasUnsupported = ruleIds.has("wrong_family.unsupported_template_leakage");
     if (!hasUnsupported) {
       integrity.reasons = integrity.reasons.filter((r) => r.code !== "wrong_family_term");
     }
+  } else {
+    integrity = evaluateSentenceIntegrityOnly(texts.filter(Boolean).join("\n") || " ");
   }
 
   const hard = [...ruleIds].some(
@@ -170,6 +208,7 @@ export function gateSolicitorOutput<T extends { texts: string[] }>(
     input.allegation,
     input.bundleHay,
     input.chargeWording,
+    input.mode,
   );
 
   const blocked =

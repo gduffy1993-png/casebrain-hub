@@ -139,15 +139,26 @@ function expectPass(name: string, ok: boolean) {
   expectBlock("api rule detection", true);
 }
 
-// Safe workflow not accidentally disabled (sentence-only without family context)
+// Safe workflow: non-substantive ack without family context may pass
 {
   const g = gateSolicitorOutput({
     surfaceId: "api_defence_plan_chat",
-    texts: ["The served MG11 is unsigned and needs confirmation before any admission."],
+    texts: ["Acknowledged."],
     mode: "api",
-    data: { texts: ["The served MG11 is unsigned and needs confirmation before any admission."] },
+    data: { texts: ["Acknowledged."] },
   });
-  expectPass("api without family context still ok if sentence clean", g.status === "ok");
+  expectPass("api non-substantive without family ok", g.status === "ok");
+}
+
+// Substantive without family must fail closed
+{
+  const g = gateSolicitorOutput({
+    surfaceId: "api_defence_plan_chat",
+    texts: ["Ask the court to record that disclosure remains outstanding."],
+    mode: "api",
+    data: { texts: ["Ask the court to record that disclosure remains outstanding."] },
+  });
+  expectBlock("api substantive without family blocked", g.status === "integrity_blocked");
 }
 
 // Registry has central surfaces

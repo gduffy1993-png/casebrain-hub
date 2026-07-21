@@ -4,6 +4,10 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, Loader2, Copy } from "lucide-react";
+import {
+  canUseSolicitorApiResponse,
+  solicitorUiStateFromApiBody,
+} from "@/lib/criminal/integrity-blocked-consumer";
 
 type FirstDisclosureRequestCardProps = { caseId: string };
 
@@ -11,10 +15,12 @@ export function FirstDisclosureRequestCard({ caseId }: FirstDisclosureRequestCar
   const [loading, setLoading] = useState(false);
   const [draft, setDraft] = useState<{ subject: string; body: string } | null>(null);
   const [copied, setCopied] = useState(false);
+  const [integrityBanner, setIntegrityBanner] = useState<string | null>(null);
 
   const fetchDraft = async () => {
     setLoading(true);
     setDraft(null);
+    setIntegrityBanner(null);
     try {
       const res = await fetch(`/api/criminal/${caseId}/letters/draft`, {
         method: "POST",
@@ -23,6 +29,13 @@ export function FirstDisclosureRequestCard({ caseId }: FirstDisclosureRequestCar
         body: JSON.stringify({ kind: "initial_disclosure_request" }),
       });
       const data = await res.json().catch(() => ({}));
+      if (!canUseSolicitorApiResponse(data)) {
+        setIntegrityBanner(
+          solicitorUiStateFromApiBody(data).banner ??
+            "Solicitor review required — output integrity check failed.",
+        );
+        return;
+      }
       if (res.ok && data?.subject && data?.body) setDraft({ subject: data.subject, body: data.body });
     } finally {
       setLoading(false);
@@ -47,6 +60,9 @@ export function FirstDisclosureRequestCard({ caseId }: FirstDisclosureRequestCar
       <p className="text-xs text-muted-foreground mb-3">
         One-click draft for a letter/email requesting initial disclosure (CPIA). Edit as needed before sending.
       </p>
+      {integrityBanner ? (
+        <p className="text-xs text-amber-700 mb-2">{integrityBanner}</p>
+      ) : null}
       {!draft ? (
         <Button variant="outline" size="sm" onClick={fetchDraft} disabled={loading}>
           {loading ? <Loader2 className="h-3 w-3 animate-spin mr-1" /> : <FileText className="h-3 w-3 mr-1" />}
