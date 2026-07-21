@@ -1,9 +1,10 @@
 # Phase 8 checkpoint — hearing and time logic
 
-**Status:** HEARING/TIME CONTRACTS PASS — **not a corpus PASS**  
+**Status:** CLOSED — human-acknowledged (`eadc2db37`) — **not a corpus PASS**  
 **Canonical schema:** 1.1.0 (adds `same_day`)  
 **Branch:** programme/criminal-defence-integrity-corpus  
-**PR:** #65 (do not merge / do not deploy)
+**PR:** #65 (do not merge / do not deploy)  
+**Commit:** `eadc2db37f1bc6e795593aa815ca844c005bb207`
 
 ## Programme requirements covered
 

@@ -115,12 +115,14 @@
     {
       "id": "human_fp_fn_signoff",
       "formerStatus": "Larger corpus / rendered FP–FN reviews before Phase 4 PASS",
-      "disposition": "DEFERRED_TO_PHASE_9_11",
+      "disposition": "PHASE_9_CORPUS_PACK_RECORDED__PHASE_11_GOLD_REMAINING",
       "evidence": [
-        "Automated adversarial matrix and stratified samples are evidence of enforcement, not human gold sign-off",
-        "Phase 9 full N-case corpus + Phase 11 rendered coverage / 30–50 gold human review remain the PASS gate for family correctness",
-        "Phase 4 programme blockers (calculators, composer stock, probe methodology) are dispositioned above without claiming corpus PASS"
+        "Phase 9 recorded dual-lane corpus FP–FN rates and stratified human-review pack (32 samples) at artifacts/casebrain-qa/integrity-programme/phase-9/human-fp-fn-corpus-pack.json",
+        "Phase 9 N-case run completed 3530 unique fixtures with gate-enforced asserts; blocked ≠ repaired",
+        "Final gold/rendered human word-for-word sign-off (30–50 cases) remains Phase 11 — not claimed here",
+        "Automated adversarial matrix remains enforcement evidence only"
       ],
+      "phase9Evidence": "artifacts/casebrain-qa/integrity-programme/phase-9/human-fp-fn-corpus-pack.json",
       "ledgerImpact": "none",
       "passClaim": false
     }

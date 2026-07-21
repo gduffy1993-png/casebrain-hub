@@ -1,9 +1,10 @@
 # Phase 8 checkpoint — hearing and time logic
 
-**Status:** HEARING/TIME CONTRACTS PASS — **not a corpus PASS**  
+**Status:** CLOSED — human-acknowledged (`eadc2db37`) — **not a corpus PASS**  
 **Canonical schema:** 1.1.0 (adds `same_day`)  
 **Branch:** programme/criminal-defence-integrity-corpus  
-**PR:** #65 (do not merge / do not deploy)
+**PR:** #65 (do not merge / do not deploy)  
+**Commit:** `eadc2db37f1bc6e795593aa815ca844c005bb207`
 
 ## Programme requirements covered
 
@@ -60,6 +61,8 @@ Phase 8 introduced no additional TypeScript errors and cleared Phase-8-relevant 
 
 ## Explicit non-goals
 
-No merge. No deploy. No Phase 9+. No whole-programme PASS. Stop here for review.
+No merge. No deploy. No whole-programme PASS.
 
-Artefact: `artifacts/casebrain-qa/integrity-programme/phase-8/phase8-hearing-time-report.json`
+## Closure
+
+Phase 8 checkpoint acknowledged. Proceed to Phase 9 (N-case corpus). Artefact: `artifacts/casebrain-qa/integrity-programme/phase-8/phase8-hearing-time-report.json`

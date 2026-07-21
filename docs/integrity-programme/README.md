@@ -12,13 +12,14 @@ Authoritative scope: user programme brief (Workstream A then B).
 | Phase 1 — surface inventory | COMPLETE (not PASS) | `docs/integrity-programme/phase-1-checkpoint.md` |
 | Phase 2 — fail-closed containment | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-2-checkpoint.md` |
 | Phase 3 — canonical model + dual-lane | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-3-checkpoint.md` |
-| Phase 4 — offence-family concept registry | UNRESOLVED ITEMS DISPOSITIONED (not corpus PASS) | `docs/integrity-programme/phase-4-checkpoint.md` | `docs/integrity-programme/phase-4-checkpoint.md` |
+| Phase 4 — offence-family concept registry | UNRESOLVED ITEMS DISPOSITIONED (not corpus PASS) | `docs/integrity-programme/phase-4-checkpoint.md` |
 | Phase 5 — structured composer repair | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-5-checkpoint.md` |
 | Phase 6 — final validator + canonical migration | CLOSED — LEDGER_BALANCED acknowledged (not corpus PASS) | `docs/integrity-programme/phase-6-checkpoint.md` + `docs/integrity-programme/phase-6-occurrence-ledger-balance.md` |
-| Phase 7 — extraction & provenance boundary | COMPLETE (not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-7-checkpoint.md` |
-| Baseline attribution (pre-Phase 8) | COMPLETE — stop for review | `docs/integrity-programme/baseline-attribution-checkpoint.md` |
-| Phase 8 — hearing and time logic | COMPLETE (not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-8-checkpoint.md` | COMPLETE (not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-8-checkpoint.md` |
-| Phases 9–11 | PENDING | |
+| Phase 7 — extraction & provenance boundary | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-7-checkpoint.md` |
+| Baseline attribution (pre-Phase 8) | COMPLETE | `docs/integrity-programme/baseline-attribution-checkpoint.md` |
+| Phase 8 — hearing and time logic | CLOSED — acknowledged (`eadc2db37`) (not corpus PASS) | `docs/integrity-programme/phase-8-checkpoint.md` |
+| Phase 9 — N-case corpus | **CORPUS_CONTAINMENT_PASS** (not final corpus/programme PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-9-checkpoint.md` |
+| Phases 10–11 | PENDING | |
 | Workstream B | BLOCKED until A gates pass | |
 
 ## Preserved work
