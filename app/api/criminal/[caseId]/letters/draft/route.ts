@@ -3,6 +3,7 @@ import { requireRole } from "@/lib/auth";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { buildCriminalLetterDraft, type CriminalLetterKind } from "@/lib/criminal/deterministic-letter-drafts";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -110,11 +111,16 @@ export async function POST(request: Request, { params }: RouteParams) {
     notes,
   });
 
-  return NextResponse.json({
+  const payload = {
     kind,
     subject: draft.subject,
     body: draft.body,
     deterministic: true,
+  };
+  return gatedJsonResponse("api_letters_draft", payload, {
+    allegation: Array.isArray(charges)
+      ? charges.map((c: { offence?: string }) => c.offence ?? "").join("; ")
+      : null,
   });
 }
 

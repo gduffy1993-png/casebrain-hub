@@ -18,6 +18,7 @@ import type { PreHearingReadinessInput } from "@/lib/criminal/pre-hearing-readin
 import type { ClientStressResult } from "@/lib/criminal/client-stress-test/client-stress-types";
 import type { ReasoningV2Result } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
 import { REASONING_V2_UNAVAILABLE_MESSAGE } from "@/lib/criminal/reasoning-v2/reasoning-v2-types";
+import { gateSolicitorOutput } from "@/lib/criminal/solicitor-output-gate";
 
 export type ClientExplanationPanelProps = {
   caseId: string;
@@ -31,6 +32,8 @@ export type ClientExplanationPanelProps = {
   clientStressResult?: ClientStressResult | null;
   readinessInput?: PreHearingReadinessInput | null;
   loading?: boolean;
+  allegation?: string | null;
+  bundleHay?: string | null;
 };
 
 export function ClientExplanationPanel({
@@ -45,6 +48,8 @@ export function ClientExplanationPanel({
   clientStressResult = null,
   readinessInput = null,
   loading = false,
+  allegation = null,
+  bundleHay = null,
 }: ClientExplanationPanelProps) {
   const exportReviewPersistence = useExportReviewPersistenceEnabled();
   const [copied, setCopied] = useState(false);
@@ -96,6 +101,27 @@ export function ClientExplanationPanel({
     evidenceChanges,
   ]);
 
+  const explanationGate = useMemo(() => {
+    if (!explanation?.available || !explanation.fullText?.trim()) return null;
+    return gateSolicitorOutput({
+      surfaceId: "client_explanation_panel",
+      texts: [explanation.fullText],
+      allegation,
+      bundleHay,
+      mode: "copy",
+      data: { texts: [explanation.fullText] },
+    });
+  }, [explanation, allegation, bundleHay]);
+
+  const canCopyExplanation = Boolean(
+    explanation?.available &&
+      explanationGate &&
+      explanationGate.status !== "integrity_blocked" &&
+      explanationGate.canCopy,
+  );
+  const copyBlockedReason =
+    explanationGate?.status === "integrity_blocked" ? explanationGate.banner : null;
+
   const metadataCtx = useMemo(() => {
     if (!hasReasoning) return null;
     return {
@@ -146,7 +172,7 @@ export function ClientExplanationPanel({
   }, [exportReviewPersistence, explanation, metadataCtx, persistReview]);
 
   const onCopy = async () => {
-    if (!explanation?.available) return;
+    if (!explanation?.available || !canCopyExplanation) return;
     try {
       await navigator.clipboard.writeText(explanation.fullText);
       setCopied(true);
@@ -220,10 +246,21 @@ export function ClientExplanationPanel({
         />
 
         <div className="flex flex-wrap gap-2 items-center">
-          <Button type="button" size="sm" className="h-8 text-xs gap-1.5" onClick={() => void onCopy()}>
+          <Button
+            type="button"
+            size="sm"
+            className="h-8 text-xs gap-1.5"
+            disabled={!canCopyExplanation}
+            onClick={() => void onCopy()}
+          >
             <Copy className="h-3.5 w-3.5" />
             {copied ? "Copied" : "Copy draft"}
           </Button>
+          {copyBlockedReason ? (
+            <p className="text-[10px] text-amber-700 w-full" data-testid="client-explanation-copy-blocked">
+              {copyBlockedReason}
+            </p>
+          ) : null}
           {exportReviewPersistence ? (
             <>
               <Button

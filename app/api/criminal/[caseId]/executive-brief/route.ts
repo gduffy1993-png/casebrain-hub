@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 import type { CriminalMeta } from "@/types/case";
 
 export const runtime = "nodejs";
@@ -254,7 +255,7 @@ export async function GET(
       actionItems: actionItems.slice(0, 3),
     };
 
-    return NextResponse.json({ ok: true, data: brief });
+    return gatedJsonResponse("api_executive_brief", { ok: true, data: brief });
   } catch (error: any) {
     console.error("[executive-brief] Error:", error);
     return NextResponse.json(

@@ -4,6 +4,7 @@ import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 export const runtime = "nodejs";
 
@@ -125,7 +126,7 @@ I submit that in light of the personal and legal mitigation set out above, and t
       stageDetected: caseState.stage_detected || null,
     };
 
-    return NextResponse.json({ ok: true, data: result });
+    return gatedJsonResponse("api_sentencing_mitigation", { ok: true, data: result });
   } catch (error: any) {
     console.error("[sentencing-mitigation] Error:", error);
     return NextResponse.json(

@@ -1,0 +1,36 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "phase": 2,
+  "generatedAt": "2026-07-21T00:22:21.603Z",
+  "disclaimer": "Discovery clarification — fixtures not altered. Not a PASS claim.",
+  "N_approved_scale3000": 3000,
+  "N_materialised": 530,
+  "N_union": 3530,
+  "explanations": {
+    "N_approved_scale3000": "Unique caseId rows in messy-pdf-proof-v9-scale3000 summary. Generated at run-time from ~70 demo-audit templates × trap axes. Not 3000 on-disk PDF folders.",
+    "N_materialised": "On-disk directories under artifacts/evidence-state-audit-local/cases with truth-key.json. Used for baseline structured/output scans without regenerating 3000 bundles.",
+    "N_union": "Deduped |scaleIds ∪ materialisedIds|. Inflated vs 3000 because most materialised IDs are source templates (demo-audit-*) or sims not present as scale caseIds.",
+    "generated": "Scale3000 caseIds (synthetic variants).",
+    "materialised": "ESA truth-key case folders on disk.",
+    "overlapping_exact_id": "Materialised folder name equals a scale caseId (rare).",
+    "overlapping_via_sourceCaseId": "Materialised folder name equals a scale row's sourceCaseId (template backing).",
+    "unique_for_final_pass_rates": "N_approved_scale3000 — unique messy v9 caseId identities (generated from demo-audit templates)"
+  },
+  "counts": {
+    "N_approved_scale3000": 3000,
+    "N_materialised": 530,
+    "N_union": 3530,
+    "N_overlap_exact_id": 0,
+    "N_materialised_as_scale_source": 30,
+    "N_materialised_only": 500,
+    "N_scale_ids": 3000,
+    "uniqueFixtureDenominatorForPassRates": 3000
+  },
+  "uniqueFixtureDenominatorForPassRates": 3000,
+  "uniqueFixtureDenominatorLabel": "N_approved_scale3000 — unique messy v9 caseId identities (generated from demo-audit templates)",
+  "sources": {
+    "messySummary": "artifacts/casebrain-qa/messy-pdf-proof-v9-scale3000/MESSY-PDF-PROOF-SUMMARY.json",
+    "esaRoot": "artifacts/evidence-state-audit-local/cases",
+    "controlledMetrics": "artifacts/casebrain-proof/controlled-3000-proof-metrics.json"
+  }
+}

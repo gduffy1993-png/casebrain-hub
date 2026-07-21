@@ -9,6 +9,7 @@ import { requireAuthContextApi } from "@/lib/auth-api";
 import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getOpenAIClient } from "@/lib/openai";
 import { retrieveLawChunks } from "@/lib/criminal/criminal-law-corpus";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -103,5 +104,5 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   const raw = completion.choices[0]?.message?.content?.trim() ?? "";
   const text = raw.slice(0, MAX_TEXT_LENGTH);
 
-  return NextResponse.json({ ok: true, text }, { status: 200 });
+  return gatedJsonResponse("api_disclosure_request", { ok: true, text });
 }

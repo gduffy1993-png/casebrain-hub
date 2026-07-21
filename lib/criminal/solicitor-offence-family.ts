@@ -21,57 +21,49 @@ export type OffenceFamilyResolution = {
   reason: string;
 };
 
-const FAMILY_FORBIDDEN: Record<
+/** Family-forbidden patterns with explicit source support checks (mixed cases allowed). */
+const FAMILY_FORBIDDEN_WITH_SUPPORT: Record<
   Exclude<SolicitorOffenceFamily, "unknown">,
-  RegExp[]
+  Array<{ concept: RegExp; requires: RegExp; label: string }>
 > = {
   harassment_digital: [
-    /\bintent to supply\b/i,
-    /\bpwits\b/i,
-    /\bpossession of (?:a )?controlled drug\b/i,
-    /\bdrug continuity\b/i,
-    /\bdefensive force\b/i,
-    /\bself[-\s]?defence\b/i,
-    /\breasonable force\b/i,
-    /\bvehicle ownership\b/i,
-    /\bVRM\b/,
-    /\bnumber plate\b/i,
+    { concept: /\bintent to supply\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "intent to supply" },
+    { concept: /\bpwits\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "pwits" },
+    { concept: /\bpossession of (?:a )?controlled drug\b/i, requires: /\bdrug\b|controlled drug|pwits/i, label: "drug possession" },
+    { concept: /\bdrug continuity\b/i, requires: /\bdrug\b|controlled drug|pwits/i, label: "drug continuity" },
+    { concept: /\bdefensive force\b/i, requires: /defensive force|self[-\s]?defence|assault|gbh|abh/i, label: "defensive force" },
+    { concept: /\bself[-\s]?defence\b/i, requires: /self[-\s]?defence|defensive force|assault|gbh|abh/i, label: "self-defence" },
+    { concept: /\breasonable force\b/i, requires: /reasonable force|self[-\s]?defence|assault|gbh|abh/i, label: "reasonable force" },
+    { concept: /\bvehicle ownership\b/i, requires: /vehicle|registration|vrm|number plate/i, label: "vehicle ownership" },
   ],
   harassment_other: [
-    /\bintent to supply\b/i,
-    /\bpwits\b/i,
-    /\bpossession of (?:a )?controlled drug\b/i,
-    /\bdefensive force\b/i,
-    /\bself[-\s]?defence\b/i,
-    /\bvehicle ownership\b/i,
+    { concept: /\bintent to supply\b|\bpwits\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "drugs supply" },
+    { concept: /\bpossession of (?:a )?controlled drug\b/i, requires: /\bdrug\b|controlled drug/i, label: "drug possession" },
+    { concept: /\bdefensive force\b|\bself[-\s]?defence\b/i, requires: /self[-\s]?defence|defensive force|assault|gbh|abh/i, label: "defensive force" },
+    { concept: /\bvehicle ownership\b/i, requires: /vehicle|registration|vrm|number plate/i, label: "vehicle ownership" },
   ],
   violence: [
-    /\bintent to supply\b/i,
-    /\bpwits\b/i,
-    /\bpossession of (?:a )?controlled drug\b/i,
-    /\bphone extraction summary\b/i,
+    { concept: /\bintent to supply\b|\bpwits\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "drugs supply" },
+    { concept: /\bpossession of (?:a )?controlled drug\b/i, requires: /\bdrug\b|controlled drug/i, label: "drug possession" },
+    { concept: /\bphone extraction summary\b/i, requires: /phone|extraction|handset|whatsapp|sms|subscriber/i, label: "phone extraction" },
   ],
   drugs_possession: [
-    /\bdefensive force\b/i,
-    /\bself[-\s]?defence\b/i,
-    /\bprotection from harassment\b/i,
+    { concept: /\bdefensive force\b|\bself[-\s]?defence\b/i, requires: /self[-\s]?defence|defensive force|assault|gbh|abh/i, label: "defensive force" },
+    { concept: /\bprotection from harassment\b/i, requires: /harassment|stalking|protection from harassment/i, label: "harassment" },
   ],
   drugs_supply: [
-    /\bdefensive force\b/i,
-    /\bself[-\s]?defence\b/i,
-    /\bprotection from harassment\b/i,
+    { concept: /\bdefensive force\b|\bself[-\s]?defence\b/i, requires: /self[-\s]?defence|defensive force|assault|gbh|abh/i, label: "defensive force" },
+    { concept: /\bprotection from harassment\b/i, requires: /harassment|stalking|protection from harassment/i, label: "harassment" },
   ],
   theft: [
-    /\bintent to supply\b/i,
-    /\bpwits\b/i,
-    /\bdefensive force\b/i,
-    /\bprotection from harassment\b/i,
+    { concept: /\bintent to supply\b|\bpwits\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "drugs supply" },
+    { concept: /\bdefensive force\b/i, requires: /defensive force|self[-\s]?defence|assault|gbh|abh/i, label: "defensive force" },
+    { concept: /\bprotection from harassment\b/i, requires: /harassment|stalking/i, label: "harassment" },
   ],
   motoring: [
-    /\bintent to supply\b/i,
-    /\bpwits\b/i,
-    /\bdefensive force\b/i,
-    /\bprotection from harassment\b/i,
+    { concept: /\bintent to supply\b|\bpwits\b/i, requires: /\bdrug\b|pwits|intent to supply|controlled drug/i, label: "drugs supply" },
+    { concept: /\bdefensive force\b/i, requires: /defensive force|self[-\s]?defence|assault|gbh|abh/i, label: "defensive force" },
+    { concept: /\bprotection from harassment\b/i, requires: /harassment|stalking/i, label: "harassment" },
   ],
 };
 
@@ -194,36 +186,67 @@ export function resolveSolicitorOffenceFamily(input: {
   };
 }
 
-export function findWrongFamilyTerms(
+export type WrongFamilyHitKind = "unsupported_template_leakage" | "source_backed_ok";
+
+export type WrongFamilyHit = {
+  label: string;
+  kind: WrongFamilyHitKind;
+};
+
+/**
+ * Classify cross-family concepts:
+ * - unsupported_template_leakage → block (no source support)
+ * - source_backed_ok → allow (mixed case / explicit evidence)
+ */
+export function classifyWrongFamilyHits(
   text: string,
   resolution: OffenceFamilyResolution,
   bundleHay = "",
-): string[] {
-  const hits: string[] = [];
+): WrongFamilyHit[] {
+  const hits: WrongFamilyHit[] = [];
   const hay = bundleHay.toLowerCase();
+  const seen = new Set<string>();
+
+  const push = (label: string, supported: boolean) => {
+    const key = `${label}:${supported ? "ok" : "leak"}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    hits.push({
+      label,
+      kind: supported ? "source_backed_ok" : "unsupported_template_leakage",
+    });
+  };
 
   for (const rule of UNIVERSAL_WRONG_FAMILY_WITHOUT_SOURCE) {
-    if (rule.concept.test(text) && !rule.requires.test(hay)) {
-      hits.push(rule.label);
+    if (rule.concept.test(text)) {
+      push(rule.label, rule.requires.test(hay));
     }
   }
 
-  if (resolution.family === "unknown") {
-    return hits;
-  }
-
-  const forbidden = FAMILY_FORBIDDEN[resolution.family] ?? [];
-  for (const re of forbidden) {
-    if (re.test(text)) {
-      const label = re.source.replace(/\\b/g, "").replace(/\(\?:|\)|\?/g, "").slice(0, 48);
-      if (!hits.includes(label)) hits.push(label);
+  if (resolution.family !== "unknown") {
+    const rules = FAMILY_FORBIDDEN_WITH_SUPPORT[resolution.family] ?? [];
+    for (const rule of rules) {
+      if (rule.concept.test(text)) {
+        push(rule.label, rule.requires.test(hay));
+      }
     }
   }
 
   return hits;
 }
 
-/** Filter lines that introduce wrong-family concepts for this matter. */
+/** Unsupported leakage labels only (gates / filters). */
+export function findWrongFamilyTerms(
+  text: string,
+  resolution: OffenceFamilyResolution,
+  bundleHay = "",
+): string[] {
+  return classifyWrongFamilyHits(text, resolution, bundleHay)
+    .filter((h) => h.kind === "unsupported_template_leakage")
+    .map((h) => h.label);
+}
+
+/** Filter lines that introduce unsupported wrong-family concepts for this matter. */
 export function filterWrongFamilyLines(
   lines: string[],
   resolution: OffenceFamilyResolution,

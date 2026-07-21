@@ -33,6 +33,7 @@ import {
   isPackAAMessyBundle,
   isPackAAProsecutionProveQuestion,
 } from "@/lib/criminal/pack-aa-messy-parsers";
+import { maybeIntegrityBlockedResponse } from "@/lib/criminal/solicitor-output-gate";
 
 type RouteParams = { params: Promise<{ caseId: string }> };
 
@@ -310,6 +311,28 @@ function jsonWithRoute(
   route: string,
   status = 200
 ) {
+  if (data.ok !== false && data.reply?.trim()) {
+    const blocked = maybeIntegrityBlockedResponse({
+      surfaceId: "api_defence_plan_chat",
+      texts: [data.reply],
+    });
+    if (blocked) {
+      // Preserve route header on integrity_blocked so consumers stay typed-safe.
+      const body = {
+        ok: false as const,
+        status: "integrity_blocked" as const,
+        surfaceId: "api_defence_plan_chat",
+        banner: "Solicitor review required — output integrity check failed.",
+        reply: null,
+        error: "integrity_blocked",
+        canCopy: false,
+      };
+      return NextResponse.json(body, {
+        status: 200,
+        headers: { [CASEBRAIN_ROUTE_HEADER]: `${route}|integrity_blocked` },
+      });
+    }
+  }
   return NextResponse.json(data, { status, headers: { [CASEBRAIN_ROUTE_HEADER]: route } });
 }
 

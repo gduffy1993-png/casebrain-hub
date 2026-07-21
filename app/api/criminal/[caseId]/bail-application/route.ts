@@ -4,6 +4,7 @@ import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getCaseStateSnapshot } from "@/lib/criminal/case-state-snapshot";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 export const runtime = "nodejs";
 
@@ -246,7 +247,7 @@ Subject to solicitor confirmation and verification of all facts, I submit that b
       solicitorInputRequired: solicitorInputRequired.length > 0 ? solicitorInputRequired : undefined,
     };
 
-    return NextResponse.json({ ok: true, data: result });
+    return gatedJsonResponse("api_bail_application", { ok: true, data: result });
   } catch (error: any) {
     console.error("[bail-application] Error:", error);
     return NextResponse.json(

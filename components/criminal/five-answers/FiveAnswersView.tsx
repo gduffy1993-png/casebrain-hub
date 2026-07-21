@@ -287,7 +287,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       </div>
 
       <div id="overview-review" className="scroll-mt-4 space-y-3">
-        <OverviewAdvancedPanel>
+        <OverviewAdvancedPanel integrity={outputIntegrity}>
           {warRoom && chase ? (
             <ConfidenceDashboardPanel
               caseId={caseId}

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 export const runtime = "nodejs";
 
@@ -158,7 +159,7 @@ export async function GET(
       top3Attacks,
     };
 
-    return NextResponse.json({ ok: true, data: result });
+    return gatedJsonResponse("api_prosecution_weaknesses", { ok: true, data: result });
   } catch (error: any) {
     console.error("[prosecution-weaknesses] Error:", error);
     return NextResponse.json(

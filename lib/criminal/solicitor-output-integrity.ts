@@ -4,7 +4,7 @@
  */
 
 import {
-  findWrongFamilyTerms,
+  classifyWrongFamilyHits,
   resolveSolicitorOffenceFamily,
   type OffenceFamilyResolution,
 } from "@/lib/criminal/solicitor-offence-family";
@@ -118,13 +118,15 @@ export function evaluateTextIntegrity(input: EvaluateTextIntegrityInput): Solici
     });
   }
 
-  const wrong = findWrongFamilyTerms(input.text, offenceFamily, input.bundleHay ?? "");
-  if (wrong.length) {
+  const wrongHits = classifyWrongFamilyHits(input.text, offenceFamily, input.bundleHay ?? "");
+  const unsupported = wrongHits.filter((h) => h.kind === "unsupported_template_leakage");
+  if (unsupported.length) {
     reasons.push({
       code: "wrong_family_term",
-      detail: `Wrong-family concepts: ${wrong.join(", ")}.`,
+      detail: `Unsupported template leakage: ${unsupported.map((h) => h.label).join(", ")}.`,
     });
   }
+  // source_backed_ok hits are intentional mixed-case / evidence-backed — do not block.
 
   return finalizeIntegrity(reasons, offenceFamily);
 }
