@@ -1,0 +1,14 @@
+{
+  "phase": "11-remediation",
+  "typecheck": { "before": 47, "after": 47, "delta": 0 },
+  "dateAnchoredVitest": { "passed": 22, "failed": 0 },
+  "build": "BUILD_OK",
+  "mutations": { "killed": 30, "survived": 0, "killRate": 1 },
+  "phase6to11Contracts": true,
+  "preVitestCopyStillFailing": true,
+  "ledgerImpact": "none",
+  "schemaImpact": "none",
+  "v1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "v2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "programmePassSupported": false
+}

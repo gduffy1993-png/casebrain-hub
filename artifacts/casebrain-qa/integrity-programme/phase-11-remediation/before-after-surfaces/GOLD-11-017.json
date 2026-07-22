@@ -1,0 +1,50 @@
+{
+  "goldId": "GOLD-11-017",
+  "changes": [
+    {
+      "surface": "court_line",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "022949ef6475",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nUnderlying court line was gated (blocked ≠ repaired):\nThe defence asks the court t"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa6639659e0c",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "ade755eb7208",
+        "textPreview": "Please provide updated mg5 or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "46117d5a236c",
+        "textPreview": "Please provide updated MG5 or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "ec403919fca7",
+        "textPreview": "• witness MG11 — not_safely_confirmed\n• custody extract — not_safely_confirmed\n• corrected charge sheet — missing\n• updated mg5 — missing\n• court listing confir"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "9990e01d6a78",
+        "textPreview": "• Witness MG11 — not_safely_confirmed\n• Custody extract — not_safely_confirmed\n• Corrected charge sheet — missing\n• Updated MG5 — missing\n• Court listing confir"
+      }
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "goldId": "GOLD-11-015",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: CASE-01:demo-audit-01-phone-harassment\nControlled source context (safely redacted for review)\nClient label: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997\nEvidence states:\n• Screenshot / message pack — Served\n• Phone extraction source material — Served\n• Device metadata export — Referred only\n• Complainant MG11 (draft) — Served\n• Attribution / subscriber material — Not safely confirmed\n• Full phone download — Missing\n• Subscriber / account data — Missing\n• Full message export — Missing\nChase / outstanding items:\n• Full phone download\n• Subscriber / account data\n• Full message export\n• Final signed MG11",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "case_header",
+      "label": "Case header",
+      "solicitorVisibleText": "Client: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line",
+      "solicitorVisibleText": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review.",
+      "gateStatus": "qualified_solicitor_review_queue",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary",
+      "solicitorVisibleText": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Riley Moss. This is early-stage — nothing is final until we have full disclosure and your instructions. Screenshots of messages are on the papers, but the full phone download, subscriber/account data, and final signed statement are still outstanding. We cannot yet confirm who sent each message from the served material alone.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Full phone download",
+      "solicitorVisibleText": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Subscriber / account data",
+      "solicitorVisibleText": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Full message export",
+      "solicitorVisibleText": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Final signed MG11",
+      "solicitorVisibleText": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map",
+      "solicitorVisibleText": "• Screenshot / message pack — Served\n• Phone extraction source material — Served\n• Device metadata export — Referred only\n• Complainant MG11 (draft) — Served\n• Attribution / subscriber material — Not safely confirmed\n• Full phone download — Missing\n• Subscriber / account data — Missing\n• Full message export — Missing",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• defendant sent the messages\n• Riley Moss sent\n• attribution is proved\n• Do not state the defendant sent messages unless attribution is served and safe.\n• Do not treat draft/unsigned MG11 as a final served statement.",
+      "gateStatus": "warning",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

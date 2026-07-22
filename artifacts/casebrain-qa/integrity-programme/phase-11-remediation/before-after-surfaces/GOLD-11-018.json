@@ -1,0 +1,35 @@
+{
+  "goldId": "GOLD-11-018",
+  "changes": [
+    {
+      "surface": "court_line",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "7e4f231b0cf2",
+        "textPreview": "The defence asks the court to record per MG6C that CCTV still images are served but master CCTV footage, full export, and continuity/provenance remain outstandi"
+      },
+      "after": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textHash": "4ceb0ee8feaa",
+        "textPreview": "Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "97f5f4b6d4a1",
+        "textPreview": "• CCTV still images — served\n• Full CCTV export — referred_only\n• Master CCTV footage — missing\n• CCTV continuity / provenance — missing\n• CCTV audit trail / so"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "5028b62ac374",
+        "textPreview": "• CCTV still images — served\n• Full CCTV export — referred_only\n• Master CCTV footage — missing\n• CCTV Continuity / provenance — missing\n• CCTV audit trail / so"
+      }
+    }
+  ]
+}

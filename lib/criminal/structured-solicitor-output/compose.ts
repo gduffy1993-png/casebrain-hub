@@ -14,8 +14,9 @@ import {
   type StructuredSolicitorOutputV1,
 } from "./schema";
 
+/** Word tokens keep \b; brace/angle placeholders must not rely on \b (non-word edges). */
 const PLACEHOLDER_RE =
-  /\b(?:TODO|TBD|FIXME|\[insert[^\]]*\]|\{[^}]+\}|<<[^>]+>>|PLACEHOLDER|lorem ipsum)\b/i;
+  /(?:\b(?:TODO|TBD|FIXME|PLACEHOLDER|lorem ipsum)\b|\[(?:TODO|insert)[^\]]*\]|\{\{[^}]+\}\}|\{[A-Z][A-Z0-9_]{2,}\}|<<[^>]+>>)/i;
 
 const RAW_MARKER_RE = /\|\s*\d+(?:\s*-\s*\d+)?\s*\||\|\s*\*\*|#{2,}|^\s*\d+\s*\|\s*$/m;
 
@@ -25,9 +26,27 @@ const MALFORMED_PUNCT_RE = /\.;|;\.|,\.|\.{2,}|;;+|::+/;
 const TRUNCATED_RE =
   /\b(?:and|or|that|which|the|to|of|for|with|from|including|including:)\s*$/i;
 
+const ELLIPSIS_END_RE = /(?:\.{3}|…)\s*$/;
+
 /** Ends that look like abbreviations / case acronyms — do not treat as truncation. */
 const LEGIT_ABBREV_END_RE =
   /\b(?:cps|mg11|mg6c?|ptph|bwv|cctv|dna|anpr|vrm|pfha|pwits|s\.?\s*18|s\.?\s*20|e\.g|i\.e|etc|ltd|plc|uk|id)\.?\s*$/i;
+
+const COMPLETE_WORD_END_RE =
+  /(?:ing|ed|ly|tion|sion|ment|ance|ence|ous|able|ible|ive|als?|ers?|ests?|ness|ful|less|ships?|ity|ties|ures?|ants?|ents?|ors?|ary|ory|ics?|ate|ize|ise|ous|screenshots?|outstanding|available|required|confirmed|extracted|missing|served|referred|hearing|defendant|complainant)$/i;
+
+function looksLikeMidWordTruncation(text: string): boolean {
+  const t = text.trim();
+  if (t.length < 12) return false;
+  if (ELLIPSIS_END_RE.test(t)) return true;
+  if (/[.!?]"?'?\s*$/.test(t)) return false;
+  if (LEGIT_ABBREV_END_RE.test(t)) return false;
+  const words = t.split(/\s+/).filter(Boolean);
+  if (words.length < 3) return false;
+  const last = (words[words.length - 1] ?? "").replace(/[^A-Za-z]/g, "");
+  if (last.length < 4 || !/^[A-Za-z]+$/.test(last)) return false;
+  return !COMPLETE_WORD_END_RE.test(last);
+}
 
 const CONTRADICTORY_RE =
   /\b(?:is\s+)?served\b.{0,40}\bnot served\b|\bnot served\b.{0,40}\b(?:is\s+)?served\b|\b(?:final|complete)\b.{0,40}\b(?:draft|unsigned)\b|\b(?:draft|unsigned)\b.{0,40}\b(?:final|complete)\b/i;
@@ -114,7 +133,8 @@ export function assessStructuredField(
     });
   }
   const truncSuspect =
-    (TRUNCATED_RE.test(text) || /[-–—:]\s*$/.test(text)) && !LEGIT_ABBREV_END_RE.test(text);
+    ((TRUNCATED_RE.test(text) || /[-–—:]\s*$/.test(text)) && !LEGIT_ABBREV_END_RE.test(text)) ||
+    looksLikeMidWordTruncation(text);
   if (truncSuspect) {
     rejections.push({
       field,
@@ -443,5 +463,7 @@ function extractSubjectFromLegacy(text: string): string {
   if (court?.[1]) return court[1].replace(/^the\s+/i, "").trim();
   const please = text.match(/please provide\s+(.+?)(?:\.|$)/i);
   if (please?.[1]) return please[1].trim();
-  return text.length > 72 ? text.slice(0, 72).trim() : text;
+  // Never hard-slice mid-word for subject extraction — omit and let reconstruction fail closed.
+  if (text.length > 72) return "";
+  return text;
 }

@@ -18,9 +18,9 @@ Authoritative scope: user programme brief (Workstream A then B).
 | Phase 7 — extraction & provenance boundary | COMPLETE (not corpus PASS) | `docs/integrity-programme/phase-7-checkpoint.md` |
 | Baseline attribution (pre-Phase 8) | COMPLETE | `docs/integrity-programme/baseline-attribution-checkpoint.md` |
 | Phase 8 — hearing and time logic | CLOSED — acknowledged (`eadc2db37`) (not corpus PASS) | `docs/integrity-programme/phase-8-checkpoint.md` |
-| Phase 9 — N-case corpus | CLOSED — CORPUS_CONTAINMENT_PASS (`4f44530e1`) | `docs/integrity-programme/phase-9-checkpoint.md` |
-| Phase 10 — mutation & adversarial injection | CLOSED — mutation-containment proof (`a88878867`) | `docs/integrity-programme/phase-10-checkpoint.md` |
-| Phase 11 — rendered coverage + gold FP–FN | **AWAITING_HUMAN_GOLD_REVIEW** (freeze+renders; not programme PASS) — **STOP FOR HUMAN REVIEW** | `docs/integrity-programme/phase-11-checkpoint.md` |
+| Phase 9 — N-case corpus | CLOSED — CORPUS_CONTAINMENT_PASS (`4f44530e1`) | `docs/integrity-programme/phase-9-checkpoint.md` | `docs/integrity-programme/phase-9-checkpoint.md` | `docs/integrity-programme/phase-9-checkpoint.md` | `docs/integrity-programme/phase-9-checkpoint.md` | `docs/integrity-programme/phase-9-checkpoint.md` |
+| Phase 10 — mutation & adversarial injection | COMPLETE (containment; not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-10-checkpoint.md` | COMPLETE (containment; not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-10-checkpoint.md` | COMPLETE (containment; not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-10-checkpoint.md` | COMPLETE (containment; not corpus PASS) — **STOP FOR REVIEW** | `docs/integrity-programme/phase-10-checkpoint.md` | CLOSED — mutation-containment proof (`a88878867`) | `docs/integrity-programme/phase-10-checkpoint.md` |
+| Phase 11 — rendered coverage + gold FP–FN | **REMEDIATION_V6_COMPLETE / AWAITING_HUMAN_GOLD_REVIEW** (v1–v5 preserved; GOLD-11-039 substantively repaired; not a PASS) | `docs/integrity-programme/phase-11-remediation-v6-checkpoint.md` |
 | Workstream B | BLOCKED until A gates pass | |
 
 ## Preserved work

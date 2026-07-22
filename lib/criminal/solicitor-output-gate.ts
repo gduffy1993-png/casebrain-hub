@@ -13,15 +13,25 @@ import {
 import {
   classifyWrongFamilyHits,
   resolveSolicitorOffenceFamily,
+  type OffenceFamilyResolution,
+  type SolicitorOffenceFamily,
 } from "@/lib/criminal/solicitor-offence-family";
-import type { StructuredProvenanceRef } from "@/lib/criminal/offence-family-concept-registry";
+import {
+  mapAuditScenarioFamilyToSolicitor,
+  type StructuredProvenanceRef,
+} from "@/lib/criminal/offence-family-concept-registry";
 import { assessSolicitorSentence } from "@/lib/criminal/solicitor-sentence-composer";
+import {
+  QUALIFIED_SOLICITOR_REVIEW_QUEUE_BANNER,
+  requiresQualifiedSolicitorReviewQueue,
+} from "@/lib/criminal/solicitor-visible-sanitization";
 import { sha256HexSlice } from "@/lib/shared/sha256-hex";
 
 export type IntegrityGateStatus = "ok" | "degraded" | "integrity_blocked";
 
 export type IntegrityRuleId =
   | "offence_family_uncertain"
+  | "family_candidate_unproven"
   | "wrong_family.unsupported_template_leakage"
   | "sentence.raw_extraction_marker"
   | "sentence.truncated_fragment"
@@ -34,7 +44,8 @@ export type IntegrityRuleId =
   | "matter_confidence_blocked"
   | "state_inconsistent"
   | "hearing_unknown"
-  | "text_empty";
+  | "text_empty"
+  | "qualified_solicitor_review_required";
 
 export type GatedSolicitorPayload<T> = {
   status: IntegrityGateStatus;
@@ -83,9 +94,60 @@ export function isSubstantiveSolicitorWording(text: string): boolean {
   );
 }
 
+/**
+ * Provisional status lines that are safe to copy even when primary offence family is fail-closed.
+ * Does not weaken wrong-family leak or sentence integrity rules.
+ */
+export function isProvisionalStatusLine(text: string): boolean {
+  const t = text.trim();
+  if (!t) return false;
+  if (/\b(ask the court|plea|not guilty|guilty plea|mitigation|bail application|advise the client)\b/i.test(t)) {
+    return false;
+  }
+  return (
+    /\battribution remains outstanding\b/i.test(t) ||
+    /\bnot safely (?:confirmed|extracted|recorded)\b/i.test(t) ||
+    /\bhearing date not safely extracted\b/i.test(t) ||
+    /\bevidence state:\s*provisional\b/i.test(t) ||
+    /\bposition not safely recorded\b/i.test(t) ||
+    /\breview papers\b/i.test(t)
+  );
+}
+
 function redactDiagnostic(text: string): string {
   const t = text.replace(/\s+/g, " ").trim();
   return `len=${t.length};hash=${sha256HexSlice(t, 12)}`;
+}
+
+/**
+ * Prefer structured audit-family mapping for matter-level resolution.
+ * Text-hay failClosed alone must not claim the whole matter family is unresolved
+ * when audit/scenario family is already known.
+ */
+export function resolveGateOffenceFamily(input: {
+  allegation?: string | null;
+  bundleHay?: string | null;
+  chargeWording?: string | null;
+  auditFamily?: string | null;
+}): OffenceFamilyResolution & { matterFamilyFromAudit: boolean } {
+  const fromText = resolveSolicitorOffenceFamily({
+    allegation: input.allegation,
+    bundleHay: input.bundleHay,
+    chargeWording: input.chargeWording,
+  });
+  const mapped = mapAuditScenarioFamilyToSolicitor(input.auditFamily);
+  if (mapped && mapped !== ("unknown" as SolicitorOffenceFamily)) {
+    return {
+      family: mapped,
+      confidence: !fromText.failClosed && fromText.family === mapped ? "high" : "low",
+      failClosed: false,
+      matterFamilyFromAudit: true,
+      reason: fromText.failClosed
+        ? "Matter family resolved from structured audit/scenario family; text-hay alone was insufficient."
+        : fromText.reason,
+    };
+  }
+  return { ...fromText, matterFamilyFromAudit: false };
 }
 
 /** Collect rule IDs from integrity + wrong-family classification (no sensitive text). */
@@ -103,12 +165,18 @@ export function collectIntegrityRuleIds(
   /** Indices of texts with unsupported family leakage (scoped block). */
   leakedTextIndexes: number[];
 } {
+  const offenceFamily = resolveGateOffenceFamily({
+    allegation,
+    bundleHay,
+    chargeWording,
+    auditFamily,
+  });
   const hasFamilyContext = Boolean(
     (allegation && allegation.trim()) ||
       (bundleHay && bundleHay.trim()) ||
-      (chargeWording && chargeWording.trim()),
+      (chargeWording && chargeWording.trim()) ||
+      offenceFamily.matterFamilyFromAudit,
   );
-  const offenceFamily = resolveSolicitorOffenceFamily({ allegation, bundleHay, chargeWording });
   const ruleIds = new Set<IntegrityRuleId>();
   const leakedTextIndexes: number[] = [];
   const familyOpts = {
@@ -118,16 +186,22 @@ export function collectIntegrityRuleIds(
     auditFamily,
   };
 
-  if (hasFamilyContext && offenceFamily.failClosed) {
-    ruleIds.add("offence_family_uncertain");
+  const requiresFamily = mode === "copy" || mode === "export" || mode === "api";
+
+  // Matter-level unresolved only when neither audit nor text-hay resolves a family.
+  if (hasFamilyContext && offenceFamily.failClosed && requiresFamily) {
+    const needsResolvedFamily = texts.some(
+      (t) => isSubstantiveSolicitorWording(t) && !isProvisionalStatusLine(t),
+    );
+    if (needsResolvedFamily) {
+      ruleIds.add("offence_family_uncertain");
+    }
   }
 
-  const requiresFamily =
-    mode === "copy" || mode === "export" || mode === "api";
   const substantiveWithoutFamily =
     !hasFamilyContext &&
     requiresFamily &&
-    texts.some((t) => isSubstantiveSolicitorWording(t));
+    texts.some((t) => isSubstantiveSolicitorWording(t) && !isProvisionalStatusLine(t));
   if (substantiveWithoutFamily) {
     ruleIds.add("offence_family_uncertain");
   }
@@ -156,6 +230,10 @@ export function collectIntegrityRuleIds(
         ruleIds.add("wrong_family.unsupported_template_leakage");
         leakedTextIndexes.push(textIndex);
       }
+    }
+
+    if (requiresFamily && requiresQualifiedSolicitorReviewQueue(text)) {
+      ruleIds.add("qualified_solicitor_review_required");
     }
   });
 
@@ -201,7 +279,9 @@ export function collectIntegrityRuleIds(
   const hard = [...ruleIds].some(
     (r) =>
       r === "offence_family_uncertain" ||
+      r === "family_candidate_unproven" ||
       r === "wrong_family.unsupported_template_leakage" ||
+      r === "qualified_solicitor_review_required" ||
       r.startsWith("sentence.") ||
       r === "text_empty" ||
       r === "matter_confidence_blocked" ||
@@ -212,7 +292,9 @@ export function collectIntegrityRuleIds(
     integrity.level = "blocked";
     integrity.canCopy = false;
     integrity.deepDetailAvailable = false;
-    integrity.banner = BANNER;
+    integrity.banner = ruleIds.has("qualified_solicitor_review_required")
+      ? QUALIFIED_SOLICITOR_REVIEW_QUEUE_BANNER
+      : BANNER;
   }
 
   return { ruleIds: [...ruleIds], integrity, leakedTextIndexes };
@@ -273,17 +355,21 @@ export function gateSolicitorOutput<T extends { texts: string[] }>(
     integrity.level === "blocked" ||
     ruleIds.includes("wrong_family.unsupported_template_leakage") ||
     ruleIds.includes("offence_family_uncertain") ||
+    ruleIds.includes("qualified_solicitor_review_required") ||
     ruleIds.some((r) => r.startsWith("sentence.") || r === "text_empty");
 
   const degraded = !blocked && integrity.level === "degraded";
 
   if (blocked) {
+    const banner = ruleIds.includes("qualified_solicitor_review_required")
+      ? QUALIFIED_SOLICITOR_REVIEW_QUEUE_BANNER
+      : BANNER;
     return {
       status: "integrity_blocked",
       ok: false,
       canCopy: false,
       deepDetailAvailable: false,
-      banner: BANNER,
+      banner,
       ruleIds,
       surfaceId: input.surfaceId,
       data: null,
@@ -292,7 +378,7 @@ export function gateSolicitorOutput<T extends { texts: string[] }>(
         level: "blocked",
         canCopy: false,
         deepDetailAvailable: false,
-        banner: BANNER,
+        banner,
       },
     };
   }

@@ -1,0 +1,104 @@
+{
+  "phase": "11-remediation",
+  "status": "REMEDIATION_COMPLETE__AWAITING_HUMAN_GOLD_REVIEW",
+  "generatedAt": "2026-07-21T22:25:52.086Z",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "v2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "sampleSize": 33,
+  "surfacesTotal": 191,
+  "changedSurfaces": 160,
+  "duplicationDisclosure": {
+    "v1Ids": 33,
+    "uniqueFixtures": 30,
+    "duplicateFixtures": [
+      {
+        "fixtureId": "cb-found-2003-nguyen",
+        "occurrences": 3
+      },
+      {
+        "fixtureId": "cb-fresh-002-jordan-hale",
+        "occurrences": 2
+      }
+    ],
+    "uniqueRenderBodiesNote": "v1 independent review reported 28 unique render bodies after body-only comparison; this remediation keeps the same 33 goldIds for before/after comparison.",
+    "v2MembershipPolicy": "SAME 33 goldIds / fixtures regenerated for comparison. Exact fixture repeats across strata are JUSTIFIED (multi-angle review of the same papers: accepted vs blocked vs uncertain). Membership not silently changed."
+  },
+  "fnChecks": {
+    "GOLD-11-021_trunc_not_copyable": true,
+    "GOLD-11-025_placeholder_not_copyable": true,
+    "GOLD-11-022_title_withheld": true,
+    "GOLD-11-033_title_withheld": true,
+    "no_ellipsis_title_shown_022": true,
+    "no_ellipsis_title_shown_033": true
+  },
+  "contracts": [
+    {
+      "name": "schema_1_1_0",
+      "pass": true,
+      "detail": "1.1.0"
+    },
+    {
+      "name": "central_31",
+      "pass": true,
+      "detail": "31"
+    },
+    {
+      "name": "ledger_untouched",
+      "pass": true,
+      "detail": "42=42;55=55"
+    },
+    {
+      "name": "v1_preserved",
+      "pass": true,
+      "detail": "619f62a2d3408edf"
+    },
+    {
+      "name": "v2_frozen_33",
+      "pass": true,
+      "detail": "33"
+    },
+    {
+      "name": "fn_trunc_021",
+      "pass": true,
+      "detail": "canCopy=false"
+    },
+    {
+      "name": "fn_placeholder_025",
+      "pass": true,
+      "detail": "canCopy=false"
+    },
+    {
+      "name": "title_022_withheld",
+      "pass": true,
+      "detail": "withheld"
+    },
+    {
+      "name": "title_033_withheld",
+      "pass": true,
+      "detail": "withheld"
+    },
+    {
+      "name": "blind_bundle_no_predictions",
+      "pass": true,
+      "detail": "predictions excluded"
+    },
+    {
+      "name": "human_blank",
+      "pass": true,
+      "detail": "AWAITING_HUMAN_GOLD_REVIEW"
+    }
+  ],
+  "contractPass": true,
+  "ledgerImpact": "none",
+  "schemaImpact": "none — still 1.1.0",
+  "programmePassSupported": false,
+  "rootCausesFixed": [
+    "Mid-word truncation + ellipsis detection (GOLD-11-021)",
+    "{{PLACEHOLDER}} / {TOKEN} detection without \\b on braces (GOLD-11-025)",
+    "Ellipsis / incomplete-quote titles withheld on display path (GOLD-11-022/033)",
+    "Internal timestamps/builder/audit seeds stripped from solicitor-facing renders",
+    "Provisional status lines no longer coarse-blocked solely by uncertain family (001–014 root cause)",
+    "Chase label capitalization humanized (016/017/019/020 display)",
+    "record per MG6C / Theft Act routed to qualified solicitor review queue"
+  ]
+}

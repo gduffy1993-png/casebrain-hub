@@ -1,0 +1,828 @@
+{
+  "generatedAt": "2026-07-21T23:11:59.796Z",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "v3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "separationRule": "AUTOMATED ONLY — excluded from blinded reviewer bundle",
+  "keyGolds": [
+    "GOLD-11-001",
+    "GOLD-11-002",
+    "GOLD-11-003",
+    "GOLD-11-004",
+    "GOLD-11-005",
+    "GOLD-11-006",
+    "GOLD-11-007",
+    "GOLD-11-008",
+    "GOLD-11-009",
+    "GOLD-11-010",
+    "GOLD-11-011",
+    "GOLD-11-012",
+    "GOLD-11-013",
+    "GOLD-11-014",
+    "GOLD-11-018",
+    "GOLD-11-019",
+    "GOLD-11-021",
+    "GOLD-11-022",
+    "GOLD-11-025",
+    "GOLD-11-029",
+    "GOLD-11-033"
+  ],
+  "comparisons": [
+    {
+      "goldId": "GOLD-11-001",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "3abd9a099268",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Morgan Ellis — foundation SJ"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "a4db3be8b6db",
+          "textPreview": "Served 4 · Referred 1 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "uncertain",
+          "canCopy": true,
+          "textHash": "95265efb52df",
+          "textPreview": "Offence family not safely resolved — treat wording as provisional."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-002",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "582abb2633ea",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Jordan Smith — foundation Fi"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "a4db3be8b6db",
+          "textPreview": "Served 4 · Referred 1 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "uncertain",
+          "canCopy": true,
+          "textHash": "95265efb52df",
+          "textPreview": "Offence family not safely resolved — treat wording as provisional."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-003",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "cfd014f9ee27",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Priya Nguyen — foundation Fi"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2da05461783e",
+          "textPreview": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-004",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "a10867067229",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Daniel Clarke — foundation F"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2da05461783e",
+          "textPreview": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-005",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "1312de9118ad",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Amara Okafor — foundation Fi"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2da05461783e",
+          "textPreview": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "uncertain",
+          "canCopy": true,
+          "textHash": "95265efb52df",
+          "textPreview": "Offence family not safely resolved — treat wording as provisional."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-006",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "cfd014f9ee27",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Priya Nguyen — foundation Fi"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2da05461783e",
+          "textPreview": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-007",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "f8b283ff7bfb",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not safely labelled f"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "03c6c216d412",
+          "textPreview": "Served 4 · Referred 3 · Missing 1 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-008",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "f1603da40cc5",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not safely labelled f"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "1a6b2f5c7596",
+          "textPreview": "Served 4 · Referred 2 · Missing 1 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-009",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "b6602da806cd",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Marcus Vale — fraud hero\nHea"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "f7bf572c4c3e",
+          "textPreview": "Served 1 · Referred 0 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-010",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "ce8e1c2f0bc9",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: Proof Pack 01 — mixed evidence s"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "b013aa9b5ce1",
+          "textPreview": "Served 2 · Referred 1 · Missing 1 · Incomplete 0 · Not safely confirmed 3"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "uncertain",
+          "canCopy": true,
+          "textHash": "95265efb52df",
+          "textPreview": "Offence family not safely resolved — treat wording as provisional."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-011",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "cfd014f9ee27",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Priya Nguyen — foundation Fi"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "2da05461783e",
+          "textPreview": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-012",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "f1603da40cc5",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not safely labelled f"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "1a6b2f5c7596",
+          "textPreview": "Served 4 · Referred 2 · Missing 1 · Incomplete 0 · Not safely confirmed 0"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-013",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 12,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "6e8bf9031f70",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: DA-03 Casey Fry — BWV referred /"
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "7fe4f1de3878",
+          "textPreview": "Served 3 · Referred 1 · Missing 4 · Incomplete 0 · Not safely confirmed 2"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-014",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 11,
+        "v2": 9,
+        "v3": 9
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "e096e9e4080e",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: DA-10 Tessa Lane — BWV referred "
+        },
+        {
+          "surface": "overview_counts",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "f4b3e492cc1c",
+          "textPreview": "Served 3 · Referred 1 · Missing 3 · Incomplete 0 · Not safely confirmed 2"
+        },
+        {
+          "surface": "hearing_status_strip",
+          "gateStatus": "unknown",
+          "canCopy": true,
+          "textHash": "718236a3373f",
+          "textPreview": "Hearing date not safely extracted"
+        },
+        {
+          "surface": "offence_family",
+          "gateStatus": "resolved",
+          "canCopy": true,
+          "textHash": "0a160ceb9601",
+          "textPreview": "Offence family resolved for this matter."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-018",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 9,
+        "v2": 9,
+        "v3": 10
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "cb92d257e5bd",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Devon Walsh\nAllegation (queued for qualified solici"
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "85417fcf3fb3",
+          "textPreview": "Client: Devon Walsh\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for f"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "qualified_solicitor_review_queue",
+          "canCopy": false,
+          "textHash": "49a991c43a31",
+          "textPreview": "Item: Disclosure / chase wording (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified s"
+        },
+        {
+          "surface": "client_summary",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "16c27434ac47",
+          "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Devon Walsh). This is early-stage "
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-019",
+      "reviewEligibility": "substantive",
+      "surfaceCounts": {
+        "v1": 8,
+        "v2": 8,
+        "v3": 9
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "ffdce5bb8142",
+          "textPreview": "Controlled source context (safely redacted for review)\nClient label: Farah Kent\nAllegation: Stalking, contrary to sectio"
+        },
+        {
+          "surface": "case_header",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "7fee4a1e3ef4",
+          "textPreview": "Client: Farah Kent\nAllegation: Stalking, contrary to section 2A of the Protection from Harassment Act 1997"
+        },
+        {
+          "surface": "court_line",
+          "gateStatus": "ok",
+          "canCopy": true,
+          "textHash": "a51306ee547d",
+          "textPreview": "The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and fu"
+        },
+        {
+          "surface": "client_summary",
+          "gateStatus": "display",
+          "canCopy": true,
+          "textHash": "e904ed57e9ae",
+          "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Farah Kent). This is early-stage —"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-021",
+      "reviewEligibility": "INSUFFICIENT_SOURCE_CONTEXT",
+      "surfaceCounts": {
+        "v1": 1,
+        "v2": 1,
+        "v3": 2
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "0f3581429527",
+          "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached "
+        },
+        {
+          "surface": "copy_preview",
+          "gateStatus": "integrity_blocked",
+          "canCopy": false,
+          "textHash": "3ebb722dab57",
+          "textPreview": "Item: Status / attribution wording (1)\nStatus: Copy unavailable\nReason: Text appears truncated or incomplete and must no"
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-022",
+      "reviewEligibility": "INSUFFICIENT_SOURCE_CONTEXT",
+      "surfaceCounts": {
+        "v1": 1,
+        "v2": 1,
+        "v3": 2
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "0f3581429527",
+          "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached "
+        },
+        {
+          "surface": "evidence_title",
+          "gateStatus": "blocked_title",
+          "canCopy": false,
+          "textHash": "f3fb7c4a1613",
+          "textPreview": "Evidence title withheld — incomplete quotation or truncated excerpt cannot be shown as a title. Check the source papers."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-025",
+      "reviewEligibility": "INSUFFICIENT_SOURCE_CONTEXT",
+      "surfaceCounts": {
+        "v1": 1,
+        "v2": 1,
+        "v3": 2
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "0f3581429527",
+          "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached "
+        },
+        {
+          "surface": "copy_preview",
+          "gateStatus": "integrity_blocked",
+          "canCopy": false,
+          "textHash": "c9765b934902",
+          "textPreview": "Item: Disclosure / chase wording (1)\nStatus: Copy unavailable\nReason: Unresolved placeholder text must not be copied."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-029",
+      "reviewEligibility": "INSUFFICIENT_SOURCE_CONTEXT",
+      "surfaceCounts": {
+        "v1": 2,
+        "v2": 2,
+        "v3": 2
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "0f3581429527",
+          "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached "
+        },
+        {
+          "surface": "api_blocked_banner",
+          "gateStatus": "integrity_blocked",
+          "canCopy": false,
+          "textHash": "c9bd5dd3a652",
+          "textPreview": "Copy and send are unavailable for this output. Review the source papers before relying on or sending this content."
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-033",
+      "reviewEligibility": "INSUFFICIENT_SOURCE_CONTEXT",
+      "surfaceCounts": {
+        "v1": 1,
+        "v2": 1,
+        "v3": 2
+      },
+      "changedV1toV2": true,
+      "changedV2toV3": true,
+      "v3Preview": [
+        {
+          "surface": "source_context",
+          "gateStatus": "context",
+          "canCopy": false,
+          "textHash": "0f3581429527",
+          "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached "
+        },
+        {
+          "surface": "evidence_title",
+          "gateStatus": "blocked_title",
+          "canCopy": false,
+          "textHash": "f3fb7c4a1613",
+          "textPreview": "Evidence title withheld — incomplete quotation or truncated excerpt cannot be shown as a title. Check the source papers."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "keyGoldCount": 21,
+    "changedV2toV3Count": 21,
+    "insufficientAmongKey": 5
+  }
+}

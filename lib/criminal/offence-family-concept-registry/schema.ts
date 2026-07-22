@@ -205,6 +205,9 @@ export const AUDIT_FAMILY_TO_SOLICITOR: Record<string, SolicitorOffenceFamily> =
   "public-order-bwv": "violence",
   "assault-public-order-bwv": "violence",
   "abe-first-account-third-party": "violence",
+  sexual_offences: "violence",
+  "historic-sexual": "violence",
+  "historic-sexual-abe": "violence",
   "edited-bwv-footage": "violence",
   "bwv-transcript-no-video": "violence",
   "complainant-first-account": "violence",
@@ -234,6 +237,7 @@ export function mapAuditScenarioFamilyToSolicitor(
   if (/pwits|county-lines|drugs|runner-lab|controlled.drug|intent.to.supply/.test(key)) {
     return /supply|pwits|county|runner|dealer/.test(key) ? "drugs_supply" : "drugs_possession";
   }
+  if (/sexual|indecent|soa\b|historic-sexual/.test(key)) return "violence";
   if (/gbh|abh|assault|violence|wounding|public-order|bwv|abe|injury/.test(key)) return "violence";
   if (/theft|robbery|fraud|shoplift|dishonest/.test(key)) return "theft";
   if (/motoring|drink|drive|sjp|telematics|anpr|vehicle|intoxilyser|rta/.test(key)) return "motoring";

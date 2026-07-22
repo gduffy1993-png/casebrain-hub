@@ -1,0 +1,106 @@
+{
+  "goldId": "GOLD-11-037",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: CASE-10:demo-audit-41-translated-messages\nControlled source context (safely redacted for review)\nClient label: Aiden Cole\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997\nEvidence states:\n• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Certified translation — Missing\n• Interpreter contemporaneous note — Missing\n• Original language export — Missing\nChase / outstanding items:\n• Certified translation\n• Interpreter contemporaneous note\n• Original language export",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "case_header",
+      "label": "Case header",
+      "solicitorVisibleText": "Client: Aiden Cole\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line",
+      "solicitorVisibleText": "The defence asks the court to record that certified translations, interpreter notes, and the original-language export remain outstanding, so any message interpretation remains provisional.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary",
+      "solicitorVisibleText": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Aiden Cole). This is early-stage — nothing is final until we have full disclosure and your instructions. Message screenshots may be on the papers, but certified translation, interpreter notes, and the original-language export remain outstanding. Any reading of meaning from screenshots alone is provisional.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Certified translation",
+      "solicitorVisibleText": "Please provide certified translation or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Interpreter contemporaneous note",
+      "solicitorVisibleText": "Please provide interpreter contemporaneous note or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Original language export",
+      "solicitorVisibleText": "Please provide original language export or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map",
+      "solicitorVisibleText": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Certified translation — Missing\n• Interpreter contemporaneous note — Missing\n• Original language export — Missing",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not state the defendant sent messages unless attribution is served and safe.\n• Do not state \"interview confirms\" — Interview material is not fully served\n• Do not treat uncertified message screenshots as a final translation of meaning.",
+      "gateStatus": "warning",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

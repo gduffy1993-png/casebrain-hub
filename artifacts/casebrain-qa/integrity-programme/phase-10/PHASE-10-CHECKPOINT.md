@@ -1,6 +1,6 @@
 # Phase 10 checkpoint — mutation & adversarial injection
 
-**Status:** CLOSED — MUTATION CONTRACTS PASS (containment) acknowledged (`a88878867`) — **not a corpus PASS** — **not a programme PASS**  
+**Status:** MUTATION CONTRACTS PASS (containment) — **not a corpus PASS** — **not a programme PASS**  
 **Canonical schema:** 1.1.0  
 **Branch:** programme/criminal-defence-integrity-corpus  
 **PR:** #65 (do not merge / do not deploy)
@@ -15,8 +15,8 @@
 
 | Metric | Value |
 |--------|------:|
-| Total mutants | 30 |
-| Killed | 30 |
+| Total mutants | 31 |
+| Killed | 31 |
 | Survived | 0 |
 | Could not exercise | 0 |
 | Kill rate | 100.0% |
@@ -26,7 +26,7 @@
 
 | Category | Mutants | Killed | Survived | Unexercised |
 |----------|--------:|-------:|---------:|------------:|
-| truncation_omission | 3 | 3 | 0 | 0 |
+| truncation_omission | 4 | 4 | 0 | 0 |
 | changed_substituted_wording | 3 | 3 | 0 | 0 |
 | incorrect_offence_family | 3 | 3 | 0 | 0 |
 | fingerprint_disagreement | 2 | 2 | 0 | 0 |
@@ -50,7 +50,7 @@ _None._
 | central_surfaces_31 | PASS — central=31 |
 | phase6_ledger_untouched | PASS — status=LEDGER_BALANCED;42=42;55=55 |
 | no_safety_relevant_survivors | PASS — safetySurvivors=none |
-| mutation_inventory_nonempty | PASS — mutants=30;killed=30;survived=0;unexercised=0 |
+| mutation_inventory_nonempty | PASS — mutants=31;killed=31;survived=0;unexercised=0 |
 | blocked_not_equated_to_repaired | PASS — all mutants carry blockedDoesNotMeanRepaired=true |
 
 All contracts pass: **true**

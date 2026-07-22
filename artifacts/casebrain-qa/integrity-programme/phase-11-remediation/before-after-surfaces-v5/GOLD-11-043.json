@@ -1,0 +1,102 @@
+{
+  "goldId": "GOLD-11-043",
+  "reviewEligibility": "substantive",
+  "isNewInV5": false,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "parentV4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "v5FreezeHash": "3e2479c86769e3cd5342903997eaa548cfdc98a8339a34d0890bfc0178536f5d",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "ab9d5d9d0438",
+        "textPreview": "Controlled evidence reference: CASE-16:demo-audit-49-anpr-trap\nControlled source context (safely redacted for review)\nClient label: Maya Singh\nAllegation (queue"
+      },
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "dd9c41af5f92",
+        "textPreview": "Controlled evidence reference: CASE-16:demo-audit-49-anpr-trap\nControlled source context (safely redacted for review)\nClient label: Maya Singh\nAllegation (queue"
+      }
+    },
+    {
+      "surface": "client_summary",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "741fd28c0fbb",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Maya Singh). This is early-stage — nothing is final until we have full dis"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "d9755301c163",
+        "textPreview": "Item: Client-safe summary wording\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "bb703d0b52c5",
+        "textPreview": "Please provide anpr image export or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "bb703d0b52c5",
+        "textPreview": "Please provide anpr image export or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "0512c79e1ada",
+        "textPreview": "Please provide national anpr audit trail or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "0512c79e1ada",
+        "textPreview": "Please provide national anpr audit trail or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "d17e66231f51",
+        "textPreview": "Please provide vehicle keeper response or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "d17e66231f51",
+        "textPreview": "Please provide vehicle keeper response or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "6f85e3183bb9",
+        "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Anpr image export — Missing\n• National anpr audit trail — Missing\n• Vehicle kee"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "70cd2868610c",
+        "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• ANPR image export — Missing\n• National ANPR audit trail — Missing\n• Vehicle kee"
+      }
+    }
+  ]
+}

@@ -24,6 +24,7 @@ import {
   ledgerMaterialsNeedingChase,
 } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
+import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import {
   confirmNoneLine,
   familiesInText,
@@ -775,7 +776,10 @@ function resolveSafeCourtLine(battleboard: BattleboardOutput | null): string {
   const fromRoute = battleboard?.primary_route?.hearing_line?.trim();
   if (fromRoute && !FORBIDDEN_RE.test(fromRoute)) return fromRoute;
   const summary = battleboard?.solicitor_safe_summary?.trim();
-  if (summary && !FORBIDDEN_RE.test(summary)) return summary.slice(0, 400);
+  if (summary && !FORBIDDEN_RE.test(summary)) {
+    const finalized = finalizeSolicitorVisibleProse(summary);
+    if (finalized.ok) return finalized.text;
+  }
   return "Position remains provisional — ask the court to record outstanding source material and set a timetable.";
 }
 

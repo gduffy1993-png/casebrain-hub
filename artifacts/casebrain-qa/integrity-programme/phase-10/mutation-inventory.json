@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-21T20:59:20.790Z",
+  "generatedAt": "2026-07-22T14:47:58.913Z",
   "summary": {
-    "total": 30,
-    "killed": 30,
+    "total": 31,
+    "killed": 31,
     "survived": 0,
     "couldNotExercise": 0,
     "killRate": 1,
@@ -24,6 +24,15 @@
       "outcome": "killed",
       "expectedDetectionPoint": "assertSafeEvidenceTitle / isTruncatedExcerptUsedAsTitle",
       "actualResult": "truncTitle=true;safeTitle=null",
+      "safetyRelevant": true,
+      "disposition": null
+    },
+    {
+      "id": "M10-TRUNC-600",
+      "category": "truncation_omission",
+      "outcome": "killed",
+      "expectedDetectionPoint": "finalizeSolicitorVisibleProse + gateSolicitorOutput(copy) fail-closed",
+      "actualResult": "len=600;incomplete=true;finalOk=false;status=integrity_blocked;canCopy=false",
       "safetyRelevant": true,
       "disposition": null
     },
@@ -59,7 +68,7 @@
       "category": "changed_substituted_wording",
       "outcome": "killed",
       "expectedDetectionPoint": "migrateLegacySolicitorString disposition omit/block/reconstruct-without-raw",
-      "actualResult": "ok=true;disposition=reconstructed;textRaw=false",
+      "actualResult": "ok=false;disposition=safely_omitted;textRaw=false",
       "safetyRelevant": true,
       "disposition": null
     },

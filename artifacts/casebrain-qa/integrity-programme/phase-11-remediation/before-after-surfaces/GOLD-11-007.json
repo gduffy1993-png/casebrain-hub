@@ -1,0 +1,137 @@
+{
+  "goldId": "GOLD-11-007",
+  "changes": [
+    {
+      "surface": "offence_family",
+      "before": {
+        "gateStatus": "resolved",
+        "canCopy": true,
+        "textHash": "69e10d934c8c",
+        "textPreview": "Resolved family: harassment_digital\nAudit family seed: harassment_digital"
+      },
+      "after": {
+        "gateStatus": "resolved",
+        "canCopy": true,
+        "textHash": "0a160ceb9601",
+        "textPreview": "Offence family resolved for this matter."
+      }
+    },
+    {
+      "surface": "chase_brief",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "1d5a333c5fb0",
+        "textPreview": "Total 1\n• Screenshot / message pack"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "6aacf892b812",
+        "textPreview": "Total 1\n• Additional source-material on file"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "768ee88b6806",
+        "textPreview": "2026-06-29T17:03:07.431Z"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "94a6aa4e1e7c",
+        "textPreview": "cb-fresh-001-taylor-brookes"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "94a6aa4e1e7c",
+        "textPreview": "cb-fresh-001-taylor-brookes"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "0f2cffadad78",
+        "textPreview": "Human review or material gaps flagged on current papers."
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "d0a003dcb7c1",
+        "textPreview": "CaseBrain H5 presentation builders (no Brain 1 mutation)"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "fb6d5ebfa9f6",
+        "textPreview": "MG6 / unused schedule clarification"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "54bd852b1ad4",
+        "textPreview": "Needs review before relying"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "6ba6cdbb6e7a",
+        "textPreview": "CPS / disclosure officer"
+      }
+    },
+    {
+      "surface": "family_leak_probe",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "0f2cffadad78",
+        "textPreview": "Human review or material gaps flagged on current papers."
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa6639659e0c",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed."
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textPreview": "MG6 / unused schedule clarification"
+      },
+      "after": null
+    },
+    {
+      "surface": "family_leak_probe",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textPreview": "COPY UNAVAILABLE — family containment blocked probe.\nBanner: Solicitor review required — output integrity check failed."
+      },
+      "after": null
+    },
+    {
+      "surface": "central_surface_sample",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textPreview": "2026-06-29T17:03:07.431Z"
+      },
+      "after": null
+    }
+  ]
+}

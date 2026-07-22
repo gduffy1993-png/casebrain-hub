@@ -1,7 +1,7 @@
 {
   "programme": "criminal-defence-integrity-corpus",
   "phase": 10,
-  "generatedAt": "2026-07-21T20:59:20.790Z",
+  "generatedAt": "2026-07-22T14:47:58.913Z",
   "disclaimer": "Phase 10 mutation/adversarial — CORPUS containment proof only. Blocked ≠ repaired. Not a corpus/programme PASS. Do not merge / deploy. No Phase 11+.",
   "canonicalSchemaVersion": "1.1.0",
   "mutants": [
@@ -21,6 +21,16 @@
       "description": "Truncated excerpt used as evidence title",
       "expectedDetectionPoint": "assertSafeEvidenceTitle / isTruncatedExcerptUsedAsTitle",
       "actualResult": "truncTitle=true;safeTitle=null",
+      "outcome": "killed",
+      "blockedDoesNotMeanRepaired": true,
+      "safetyRelevant": true
+    },
+    {
+      "id": "M10-TRUNC-600",
+      "category": "truncation_omission",
+      "description": "Post-composition 600-char client-summary hard-cap cut (incomplete disclaimer)",
+      "expectedDetectionPoint": "finalizeSolicitorVisibleProse + gateSolicitorOutput(copy) fail-closed",
+      "actualResult": "len=600;incomplete=true;finalOk=false;status=integrity_blocked;canCopy=false",
       "outcome": "killed",
       "blockedDoesNotMeanRepaired": true,
       "safetyRelevant": true
@@ -60,7 +70,7 @@
       "category": "changed_substituted_wording",
       "description": "Raw pipe/table fragment substituted into legacy composer path",
       "expectedDetectionPoint": "migrateLegacySolicitorString disposition omit/block/reconstruct-without-raw",
-      "actualResult": "ok=true;disposition=reconstructed;textRaw=false",
+      "actualResult": "ok=false;disposition=safely_omitted;textRaw=false",
       "outcome": "killed",
       "blockedDoesNotMeanRepaired": true,
       "safetyRelevant": true
@@ -307,8 +317,8 @@
     }
   ],
   "summary": {
-    "total": 30,
-    "killed": 30,
+    "total": 31,
+    "killed": 31,
     "survived": 0,
     "couldNotExercise": 0,
     "killRate": 1,
@@ -338,7 +348,7 @@
     {
       "name": "mutation_inventory_nonempty",
       "pass": true,
-      "detail": "mutants=30;killed=30;survived=0;unexercised=0"
+      "detail": "mutants=31;killed=31;survived=0;unexercised=0"
     },
     {
       "name": "blocked_not_equated_to_repaired",

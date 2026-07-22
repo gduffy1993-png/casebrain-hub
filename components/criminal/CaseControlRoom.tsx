@@ -20,6 +20,7 @@ import { loadEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-detec
 import { SolicitorExportBuilderPanel } from "./control-room/SolicitorExportBuilderPanel";
 import { SolicitorDeepDetailGate } from "@/components/criminal/trust/SolicitorDeepDetailGate";
 import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
+import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import { SupervisorQAPanel } from "./control-room/SupervisorQAPanel";
 import { ClientExplanationPanel } from "./control-room/ClientExplanationPanel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
@@ -865,8 +866,9 @@ export function CaseControlRoom({
       if (fromRoute) line = fromRoute;
       else {
         const summary = battleboard?.solicitor_safe_summary?.trim();
-        line = summary
-          ? summary.slice(0, 600)
+        const finalized = summary ? finalizeSolicitorVisibleProse(summary) : null;
+        line = finalized?.ok
+          ? finalized.text
           : "Prepare a conditional hearing line after reviewing served material — do not overstate position or facts.";
       }
     }

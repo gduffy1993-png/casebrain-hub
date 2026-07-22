@@ -1,0 +1,26 @@
+{
+  "goldId": "GOLD-11-026",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: SYN-HEAR-UNKNOWN\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's own rendered output).\nProbe design: Controlled hearing-status probe — no next-hearing date supplied\nControlled input construction: Test harness supplies no next-hearing date at all against its fixed controlled reference time.\nExpected behaviour under test: Hearing status must read as unknown / not safely extracted — never inferred or invented.",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic — controlled technical control",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

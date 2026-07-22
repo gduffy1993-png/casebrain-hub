@@ -1,0 +1,26 @@
+{
+  "goldId": "GOLD-11-033",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: SYN-PROV-TITLE-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's own rendered output).\nProbe design: Controlled raw-extraction / truncated-title provenance probe\nControlled input construction: Test harness supplies a quoted excerpt with an unterminated quotation mark, independent of any real client bundle.\nExpected behaviour under test: Provenance boundary must refuse the unsafe title rather than presenting it as a safe evidence title.",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic — controlled technical control",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "evidence_title",
+      "label": "Evidence title",
+      "solicitorVisibleText": "Evidence title withheld — incomplete quotation or truncated excerpt cannot be shown as a title. Check the source papers.",
+      "gateStatus": "blocked_title",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

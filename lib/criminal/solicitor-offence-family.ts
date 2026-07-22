@@ -123,6 +123,15 @@ export function resolveSolicitorOffenceFamily(input: {
     };
   }
 
+  if (/sexual (?:assault|offence)|sexual offences act|\babe\b|indecent assault/i.test(hay)) {
+    return {
+      family: "violence",
+      confidence: "high",
+      failClosed: false,
+      reason: "Sexual offence / ABE cues on papers (mapped to violence practice family).",
+    };
+  }
+
   if (/\btheft\b|dishonest(?:ly)? appropriat|shoplift/i.test(hay)) {
     return {
       family: "theft",

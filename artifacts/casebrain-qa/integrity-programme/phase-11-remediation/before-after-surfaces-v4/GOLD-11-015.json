@@ -1,0 +1,170 @@
+{
+  "goldId": "GOLD-11-015",
+  "reviewEligibility": "substantive",
+  "isNewInV4": false,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "v4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "c08b720a6d47",
+        "textPreview": "Controlled source context (safely redacted for review)\nClient label: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment "
+      },
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "12c66807e0f3",
+        "textPreview": "Controlled evidence reference: CASE-01:demo-audit-01-phone-harassment\nControlled source context (safely redacted for review)\nClient label: Riley Moss\nAllegation"
+      }
+    },
+    {
+      "surface": "offence_family",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "ba2d2fb978ad",
+        "textPreview": "Client: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997"
+      },
+      "after": {
+        "gateStatus": "resolved",
+        "canCopy": true,
+        "textHash": "0a160ceb9601",
+        "textPreview": "Offence family resolved for this matter."
+      }
+    },
+    {
+      "surface": "case_header",
+      "before": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textHash": "49a991c43a31",
+        "textPreview": "Item: Disclosure / chase wording (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "ba2d2fb978ad",
+        "textPreview": "Client: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997"
+      }
+    },
+    {
+      "surface": "court_line",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "3ace51736976",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full dis"
+      },
+      "after": {
+        "gateStatus": "qualified_solicitor_review_queue",
+        "canCopy": false,
+        "textHash": "3595cf6f9543",
+        "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+      }
+    },
+    {
+      "surface": "client_summary",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "59f792f49944",
+        "textPreview": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "3ace51736976",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full dis"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "542227bd1736",
+        "textPreview": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "59f792f49944",
+        "textPreview": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "698e68cd5fac",
+        "textPreview": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "542227bd1736",
+        "textPreview": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "7019bec82016",
+        "textPreview": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "698e68cd5fac",
+        "textPreview": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "35d39acea9d3",
+        "textPreview": "• Screenshot / message pack — Served\n• Phone extraction source material — Served\n• Device metadata export — Referred only\n• Complainant MG11 (draft) — Served\n• "
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "7019bec82016",
+        "textPreview": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": {
+        "gateStatus": "warning",
+        "canCopy": false,
+        "textHash": "e7a37bb6861d",
+        "textPreview": "• defendant sent the messages\n• Riley Moss sent\n• attribution is proved\n• Do not state the defendant sent messages unless attribution is served and safe.\n• Do n"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "35d39acea9d3",
+        "textPreview": "• Screenshot / message pack — Served\n• Phone extraction source material — Served\n• Device metadata export — Referred only\n• Complainant MG11 (draft) — Served\n• "
+      }
+    },
+    {
+      "surface": "do_not_overstate",
+      "before": null,
+      "after": {
+        "gateStatus": "warning",
+        "canCopy": false,
+        "textPreview": "• defendant sent the messages\n• Riley Moss sent\n• attribution is proved\n• Do not state the defendant sent messages unless attribution is served and safe.\n• Do n"
+      }
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "phase": "11-remediation-v5",
+  "status": "REMEDIATION_V5_COMPLETE__AWAITING_HUMAN_GOLD_REVIEW",
+  "generatedAt": "2026-07-22T01:14:07.286Z",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "parentV4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "v5FreezeHash": "3e2479c86769e3cd5342903997eaa548cfdc98a8339a34d0890bfc0178536f5d",
+  "sampleSize": 43,
+  "substantiveCount": 43,
+  "insufficientSourceContextCount": 0,
+  "surfacesTotal": 336,
+  "changedSurfaces": 84,
+  "lineageDisclosure": {
+    "v1IdsRetained": 33,
+    "carriedForwardFromV4Count": 10,
+    "additionsCount": 0,
+    "removalsCount": 0,
+    "totalV5": 43,
+    "uniqueFixtures": 40,
+    "duplicateFixtures": [
+      {
+        "fixtureId": "cb-found-2003-nguyen",
+        "occurrences": 3
+      },
+      {
+        "fixtureId": "cb-fresh-002-jordan-hale",
+        "occurrences": 2
+      }
+    ],
+    "carriedForward": [
+      {
+        "goldId": "GOLD-11-034",
+        "fixtureId": "CASE-03:demo-audit-27-custody-pace-missing",
+        "selectionReason": "v4 remediation addition — previously unused gold-manual packet (BWV referred-only / PACE pressure)."
+      },
+      {
+        "goldId": "GOLD-11-035",
+        "fixtureId": "CASE-06:demo-audit-04-co-def-interview",
+        "selectionReason": "v4 remediation addition — previously unused gold-manual packet (co-defendant interview / burglary)."
+      },
+      {
+        "goldId": "GOLD-11-036",
+        "fixtureId": "CASE-09:demo-audit-32-restraining-order-breach",
+        "selectionReason": "v4 remediation addition — previously unused gold-manual packet (restraining order breach)."
+      },
+      {
+        "goldId": "GOLD-11-037",
+        "fixtureId": "CASE-10:demo-audit-41-translated-messages",
+        "selectionReason": "v4 remediation addition — previously unused gold-manual packet (translated messages harassment)."
+      },
+      {
+        "goldId": "GOLD-11-038",
+        "fixtureId": "CASE-11:demo-audit-22-youth-interview",
+        "selectionReason": "v4 remediation addition — previously unused gold-manual packet (youth interview / theft from a shop)."
+      },
+      {
+        "goldId": "GOLD-11-039",
+        "fixtureId": "CASE-12:demo-audit-21-historic-sexual-abe",
+        "selectionReason": "v4 remediation addition — previously unused gold-manual packet (historic sexual ABE)."
+      },
+      {
+        "goldId": "GOLD-11-040",
+        "fixtureId": "CASE-13:demo-audit-50-lab-continuity-conflict",
+        "selectionReason": "v4 remediation addition — previously unused gold-manual packet (drugs lab continuity conflict)."
+      },
+      {
+        "goldId": "GOLD-11-041",
+        "fixtureId": "CASE-14:demo-audit-16-fraud-bank-statements",
+        "selectionReason": "v4 remediation addition — previously unused gold-manual packet (fraud bank statements)."
+      },
+      {
+        "goldId": "GOLD-11-042",
+        "fixtureId": "CASE-15:demo-audit-18-motoring-sjp-thin",
+        "selectionReason": "v4 remediation addition — previously unused gold-manual packet (motoring SJP thin bundle)."
+      },
+      {
+        "goldId": "GOLD-11-043",
+        "fixtureId": "CASE-16:demo-audit-49-anpr-trap",
+        "selectionReason": "v4 remediation addition — previously unused gold-manual packet (ANPR vehicle trap)."
+      }
+    ],
+    "removals": [],
+    "additions": [],
+    "repeatsNote": "Exact fixture repeats carried forward from v1 (multi-angle review of the same papers: accepted vs blocked vs uncertain) remain JUSTIFIED and unchanged. v5 introduces no new repeats.",
+    "syntheticExclusionRule": "Synthetic technical controls (SYN-*) are denominator-eligible (reviewEligibility: substantive) ONLY when an independent expected-truth source (test-harness design, not the probe's own rendered output) is documented in SYNTHETIC_EXPECTED_TRUTH. All 13 synthetics carried forward from v1/v4 keep documented independent expected truth in v5.",
+    "v5MembershipPolicy": "v5 CARRIES FORWARD the exact same 43 v4 goldIds/fixtures UNCHANGED (the v1 33 for lineage + the 10 gold-manual additions GOLD-11-034..043 from v4). Zero additions, zero removals. Membership is byte-identical to v4; only the render discipline (mandatory sanitize→boundary→assert→gate for every copyable prose surface) and the scan (full rendered-JSON boundary probe across the whole corpus, including GOLD-11-034..043) differ. v1, v2, v3 and v4 artefacts preserved read-only."
+  },
+  "carriedForwardSummary": [
+    {
+      "goldId": "GOLD-11-034",
+      "fixtureId": "CASE-03:demo-audit-27-custody-pace-missing",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 11
+    },
+    {
+      "goldId": "GOLD-11-035",
+      "fixtureId": "CASE-06:demo-audit-04-co-def-interview",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 11
+    },
+    {
+      "goldId": "GOLD-11-036",
+      "fixtureId": "CASE-09:demo-audit-32-restraining-order-breach",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 10
+    },
+    {
+      "goldId": "GOLD-11-037",
+      "fixtureId": "CASE-10:demo-audit-41-translated-messages",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 10
+    },
+    {
+      "goldId": "GOLD-11-038",
+      "fixtureId": "CASE-11:demo-audit-22-youth-interview",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 11
+    },
+    {
+      "goldId": "GOLD-11-039",
+      "fixtureId": "CASE-12:demo-audit-21-historic-sexual-abe",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 11
+    },
+    {
+      "goldId": "GOLD-11-040",
+      "fixtureId": "CASE-13:demo-audit-50-lab-continuity-conflict",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 10
+    },
+    {
+      "goldId": "GOLD-11-041",
+      "fixtureId": "CASE-14:demo-audit-16-fraud-bank-statements",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 10
+    },
+    {
+      "goldId": "GOLD-11-042",
+      "fixtureId": "CASE-15:demo-audit-18-motoring-sjp-thin",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 11
+    },
+    {
+      "goldId": "GOLD-11-043",
+      "fixtureId": "CASE-16:demo-audit-49-anpr-trap",
+      "reviewEligibility": "substantive",
+      "surfaceCount": 10
+    }
+  ],
+  "fnChecks": {
+    "GOLD-11-021_trunc_not_copyable": true,
+    "GOLD-11-025_placeholder_not_copyable": true,
+    "GOLD-11-022_title_withheld": true,
+    "GOLD-11-033_title_withheld": true,
+    "no_ellipsis_title_shown_022": true,
+    "no_ellipsis_title_shown_033": true,
+    "GOLD-11-029_api_neutral_banner_only": true,
+    "GOLD-11-039_client_summary_not_copyable_truncated": true
+  },
+  "scan": {
+    "pass": true,
+    "hits": []
+  },
+  "boundaryScan": {
+    "pass": true,
+    "hits": [],
+    "scannedSurfaceCount": 102,
+    "scannedCaseCount": 43
+  },
+  "contradictionScan": {
+    "pass": true,
+    "hits": []
+  },
+  "contracts": [
+    {
+      "name": "schema_1_1_0",
+      "pass": true,
+      "detail": "1.1.0"
+    },
+    {
+      "name": "central_31",
+      "pass": true,
+      "detail": "31"
+    },
+    {
+      "name": "ledger_untouched",
+      "pass": true,
+      "detail": "42=42;55=55"
+    },
+    {
+      "name": "v1_preserved",
+      "pass": true,
+      "detail": "619f62a2d3408edf"
+    },
+    {
+      "name": "v2_preserved",
+      "pass": true,
+      "detail": "fcdd13e53f35a61f"
+    },
+    {
+      "name": "v3_preserved",
+      "pass": true,
+      "detail": "de6d04734c9636e4"
+    },
+    {
+      "name": "v4_preserved",
+      "pass": true,
+      "detail": "d887114aac265e00"
+    },
+    {
+      "name": "v5_frozen_total",
+      "pass": true,
+      "detail": "43"
+    },
+    {
+      "name": "membership_identical_to_v4",
+      "pass": true,
+      "detail": "0 additions, 0 removals (43)"
+    },
+    {
+      "name": "membership_30_50",
+      "pass": true,
+      "detail": "43 (target 30-50)"
+    },
+    {
+      "name": "substantive_eligible_30_50",
+      "pass": true,
+      "detail": "43 (target 30-50)"
+    },
+    {
+      "name": "fn_trunc_021",
+      "pass": true,
+      "detail": "canCopy=false"
+    },
+    {
+      "name": "fn_placeholder_025",
+      "pass": true,
+      "detail": "canCopy=false"
+    },
+    {
+      "name": "title_022_withheld",
+      "pass": true,
+      "detail": "withheld"
+    },
+    {
+      "name": "title_033_withheld",
+      "pass": true,
+      "detail": "withheld"
+    },
+    {
+      "name": "api_029_neutral_only",
+      "pass": true,
+      "detail": "NEUTRAL_SOLICITOR_BLOCKED_BANNER"
+    },
+    {
+      "name": "fn_039_client_summary_not_truncated",
+      "pass": true,
+      "detail": "canCopy=false;len=178;tail=\" and must not be copied until corrected.\""
+    },
+    {
+      "name": "solicitor_visible_scan",
+      "pass": true,
+      "detail": "clean"
+    },
+    {
+      "name": "copyable_boundary_scan",
+      "pass": true,
+      "detail": "clean (102 prose surfaces across 43 cases)"
+    },
+    {
+      "name": "contradiction_contract",
+      "pass": true,
+      "detail": "zero hits"
+    },
+    {
+      "name": "blind_bundle_no_predictions",
+      "pass": true,
+      "detail": "predictions excluded"
+    },
+    {
+      "name": "human_blank",
+      "pass": true,
+      "detail": "AWAITING_HUMAN_GOLD_REVIEW"
+    }
+  ],
+  "contractPass": true,
+  "ledgerImpact": "none",
+  "schemaImpact": "none — still 1.1.0",
+  "programmePassSupported": false,
+  "rootCausesFixed": [
+    "GOLD-11-039 (CASE-12) blocking FN fixed: client_summary is now built via sanitizeSolicitorProse → finalizeSolicitorVisibleProse → assertCopyableSolicitorText → gateSolicitorOutput(mode:copy, auditFamily) → solicitorVisibleGatedCopy, and NEVER sets canCopy=true without all of those passing. A boundary/gate failure now yields a proportionate blocked preview (Item/Status/Reason), canCopy=false.",
+    "cps_chase_draft (previously ungated in v4 — canCopy hardcoded true) now runs the same mandatory discipline as every other copyable prose surface.",
+    "court_line, copy_preview (ESA sample texts), export_preview and family_leak_probe all now run finalizeSolicitorVisibleProse + assertCopyableSolicitorText ahead of the gate, in addition to the existing gateSolicitorOutput call.",
+    "Scan repaired: scanCopyableBoundaryIntegrity reads the COMPLETE rendered JSON (not markdown previews, not first-N samples) for every case including GOLD-11-034..043, and fails the corpus if any canCopy===true prose surface has an incomplete disclaimer, a mid-word/mid-sentence cut, an unclosed bracket/quote, an ellipsis cut, or is exactly 600 chars ending mid-disclaimer.",
+    "resolveGateOffenceFamily + auditFamily preference used for every offence_family surface and passed into every gateSolicitorOutput call (ESA / gold-manual / synthetic) — removes matter-level resolved-vs-unresolved contradictions.",
+    "hasMatterFamilyResolvedUnresolvedContradiction cross-surface contract run per case across the whole v5 corpus — zero hits required.",
+    "Controlled source context surface with INSUFFICIENT_SOURCE_CONTEXT exclusion from substantive FP/FN; synthetics carry independent expected-truth context and count as substantive.",
+    "Every packet's source context discloses a 'Controlled evidence reference' line (not free-copy; excluded from the leak scan by design) without echoing the primary judged output.",
+    "Fixture IDs / internal strings stripped from solicitor-visible copy.",
+    "Theft Act / MG6C formulas queued (not free copy) on header and court lines.",
+    "Client summary prose sanitized (redacted papers have been served / nested 'in your case (Name)' → 'for Name' / leading-hyphen stripped / unsafe proof-outcome wording / foundation SJP / First appearance / fraud hero / Further papers on the file).",
+    "Evidence states humanized (referred_only → Referred only); ANPR/SFR preserved uppercase in solicitorDisplayLabel.",
+    "Chase labels deduped (dedupeSolicitorLabels) and sanitized for solicitor display (Chase Total = deduped label count) — repeated MG6 chase/preview wording removed.",
+    "Blocked copy previews proportionate (Item/Status/Reason) via ruleIds and inferBlockedItemLabel.",
+    "SYN-API-BLOCK-01 shows only NEUTRAL_SOLICITOR_BLOCKED_BANNER."
+  ]
+}

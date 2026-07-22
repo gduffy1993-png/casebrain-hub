@@ -45,6 +45,10 @@ import {
   migrateLegacySolicitorString,
   REVIEW_REQUIRED_NEUTRAL,
 } from "@/lib/criminal/structured-solicitor-output";
+import {
+  finalizeSolicitorVisibleProse,
+  hasIncompleteRequiredDisclaimer,
+} from "@/lib/criminal/solicitor-visible-boundary";
 
 const ROOT = path.resolve(__dirname, "../..");
 const OUT = path.join(ROOT, "artifacts/casebrain-qa/integrity-programme/phase-10");
@@ -205,6 +209,46 @@ function runMutants(): MutantResult[] {
             "Truncated excerpt used as evidence title",
             "assertSafeEvidenceTitle",
             `truncTitle=${truncTitle};safeTitle=${titleGate.safeTitle}`,
+          ),
+    );
+  }
+  {
+    // Post-composition 600-char hard-cap cut (GOLD-11-039 class) — must fail closed at copy boundary.
+    const body =
+      "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Daniel Pike). This is early-stage — nothing is final until we have full disclosure and your instructions. A draft complainant statement is on the papers, but the ABE interview video, transcript, and final signed MG11 are still outstanding. We cannot rely on the served draft alone for hearing position. This is a historic allegation — the ABE interview video is referred on the schedule but not on the bundle we have reviewed.";
+    const truncated600 = `${body}\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS us`;
+    const g = gateSolicitorOutput({
+      surfaceId: "p10_client_summary_600_trunc",
+      texts: [truncated600],
+      allegation: "Historic allegation",
+      bundleHay: "ABE MG11 draft complainant",
+      auditFamily: "violence",
+      mode: "copy",
+      data: { texts: [truncated600] },
+    });
+    const incomplete = hasIncompleteRequiredDisclaimer(truncated600);
+    const finalized = finalizeSolicitorVisibleProse(truncated600);
+    const ok =
+      truncated600.length === 600 &&
+      incomplete === true &&
+      finalized.ok === false &&
+      g.canCopy === false &&
+      g.status === "integrity_blocked";
+    out.push(
+      ok
+        ? killed(
+            "M10-TRUNC-600",
+            "truncation_omission",
+            "Post-composition 600-char client-summary hard-cap cut (incomplete disclaimer)",
+            "finalizeSolicitorVisibleProse + gateSolicitorOutput(copy) fail-closed",
+            `len=${truncated600.length};incomplete=${incomplete};finalOk=${finalized.ok};status=${g.status};canCopy=${g.canCopy}`,
+          )
+        : survived(
+            "M10-TRUNC-600",
+            "truncation_omission",
+            "Post-composition 600-char client-summary hard-cap cut",
+            "boundary + copy gate must block",
+            `len=${truncated600.length};incomplete=${incomplete};finalOk=${finalized.ok};status=${g.status};canCopy=${g.canCopy}`,
           ),
     );
   }

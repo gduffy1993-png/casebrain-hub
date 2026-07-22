@@ -1,0 +1,590 @@
+{
+  "changedSurfaces": 18,
+  "insufficientSourceContextCount": 0,
+  "substantiveCount": 43,
+  "cases": [
+    {
+      "goldId": "GOLD-11-001",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-002",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-003",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "aa3ab95ecaf3",
+            "textPreview": "BWV / footage  — not served  — log only; clip outstanding"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "667112a76e34",
+            "textPreview": "BWV/footage is not served. Only a log entry is available; the clip remains outstanding."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-004",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-005",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-006",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "aa3ab95ecaf3",
+            "textPreview": "BWV / footage  — not served  — log only; clip outstanding"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "667112a76e34",
+            "textPreview": "BWV/footage is not served. Only a log entry is available; the clip remains outstanding."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-007",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "473057e70059",
+            "textPreview": "Further papers on the file appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "e9aeed2a37f3",
+            "textPreview": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-008",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-009",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "21461894c382",
+            "textPreview": "Further papers on the file appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "e9aeed2a37f3",
+            "textPreview": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-010",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-011",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "aa3ab95ecaf3",
+            "textPreview": "BWV / footage  — not served  — log only; clip outstanding"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "667112a76e34",
+            "textPreview": "BWV/footage is not served. Only a log entry is available; the clip remains outstanding."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-012",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-013",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-014",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-015",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "d759fc363da6",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Riley Moss. This is early-stage — nothing is final until we have full disclosure and"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "c55eedd17944",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Riley Moss. This is early-stage — nothing is final until we have full disclosure and"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-016",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-017",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-018",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "ad147cfb4d90",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Devon Walsh. This is early-stage — nothing is final until we have full disclosure an"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "aca538093fb1",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Devon Walsh. This is early-stage — nothing is final until we have full disclosure an"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-019",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-020",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-021",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-022",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-023",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-024",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-025",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-026",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-027",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-028",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-029",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-030",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-031",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-032",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-033",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-034",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-035",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-036",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-037",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-038",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "511cd0ac2b54",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Kian Doyle  (youth — 17 years). This is early-stage — nothing is final until we have"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "f67b234fab14",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Kian Doyle (youth — 17 years). This is early-stage — nothing is final until we have "
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-039",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 6,
+      "changes": [
+        {
+          "surface": "offence_family",
+          "before": {
+            "gateStatus": "uncertain",
+            "canCopy": true,
+            "textHash": "95265efb52df",
+            "textPreview": "Offence family not safely resolved — treat wording as provisional."
+          },
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textHash": "0a160ceb9601",
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "boundary_blocked",
+            "canCopy": false,
+            "textHash": "c42cd114114c",
+            "textPreview": "Item: Client-safe summary wording\nStatus: Copy unavailable\nReason: Text has an unclosed bracket (possible truncated or duplicated wording) and must not be copie"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "12c64e672661",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Daniel Pike. This is early-stage — nothing is final until we have full disclosure an"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "b785e88b7742",
+            "textPreview": "Item: CPS chase — ABE interview video\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "03d1afb83c41",
+            "textPreview": "Please provide ABE interview video (see MG6C/SX/02) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "d3080db7bbb9",
+            "textPreview": "Item: CPS chase — ABE interview transcript\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structu"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "d1c63ac37633",
+            "textPreview": "Please provide ABE interview transcript (see MG6C/SX/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "2cab039eb1de",
+            "textPreview": "Item: CPS chase — Final signed MG11\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavailable."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "d4bcbf779d5c",
+            "textPreview": "Please provide Final signed MG11 (see MG6C/SX/05) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "4117caca0685",
+            "textPreview": "Item: CPS chase — Third-party counselling notes\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from st"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "50b61a1ecb96",
+            "textPreview": "Please provide Third-party counselling notes (see MG6C/SX/04) or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-040",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "a3c6d2be6b95",
+            "textPreview": "Please provide sfr drugs analysis or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "d504a81012c4",
+            "textPreview": "Please provide SFR drugs analysis or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-041",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-042",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "300f32df6105",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Ella Shaw. This is early-stage — nothing is final until we have full disclosure and "
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "bdd7e2b76a3b",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Ella Shaw. This is early-stage — nothing is final until we have full disclosure and "
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-043",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 2,
+      "changes": [
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "bb703d0b52c5",
+            "textPreview": "Please provide anpr image export or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "182b0d8aac58",
+            "textPreview": "Please provide ANPR image export or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0512c79e1ada",
+            "textPreview": "Please provide national anpr audit trail or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "1b2828b7d742",
+            "textPreview": "Please provide national ANPR audit trail or confirm in writing why it is not available."
+          }
+        }
+      ]
+    }
+  ]
+}

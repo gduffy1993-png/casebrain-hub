@@ -8,6 +8,7 @@ export {
 export {
   buildExtractionProvenanceBlock,
   assertSafeEvidenceTitle,
+  solicitorVisibleEvidenceTitle,
   detectIncompleteQuotation,
   isTruncatedExcerptUsedAsTitle,
   containsRawExtractionSyntax,

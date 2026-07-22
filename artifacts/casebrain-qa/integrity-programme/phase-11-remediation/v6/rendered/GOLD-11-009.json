@@ -1,0 +1,106 @@
+{
+  "goldId": "GOLD-11-009",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: pilot-3-marcus-vale\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Marcus Vale — fraud case profile\nHearing: Hearing date not safely extracted\nEvidence states:\n• Charge sheet — Served",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 1 · Referred 0 · Missing 0 · Incomplete 0 · Not safely confirmed 0",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase list",
+      "solicitorVisibleText": "Total 1\n• MG6 / unused schedule clarification",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Human review or material gaps flagged on current papers.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Item: Disclosure chase request (2)\nStatus: Copy unavailable\nReason: Text is cut off mid-word and must not be copied until the source wording is corrected.",
+      "gateStatus": "boundary_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Full mailbox export / email source material — outstanding",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.",
+      "gateStatus": "ok",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family containment probe",
+      "solicitorVisibleText": "Item: Cross-family containment probe (1)\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key with casebrain-output (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

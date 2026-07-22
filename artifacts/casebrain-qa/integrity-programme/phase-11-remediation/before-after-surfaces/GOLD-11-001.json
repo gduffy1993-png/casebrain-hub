@@ -1,0 +1,137 @@
+{
+  "goldId": "GOLD-11-001",
+  "changes": [
+    {
+      "surface": "offence_family",
+      "before": {
+        "gateStatus": "uncertain",
+        "canCopy": true,
+        "textHash": "30a3ee78600b",
+        "textPreview": "Resolved family: unknown\nAudit family seed: generic"
+      },
+      "after": {
+        "gateStatus": "uncertain",
+        "canCopy": true,
+        "textHash": "95265efb52df",
+        "textPreview": "Offence family not safely resolved — treat wording as provisional."
+      }
+    },
+    {
+      "surface": "chase_brief",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "05b550d669ce",
+        "textPreview": "Total 4\n• CCTV Continuity / provenance\n• CCTV full window / master footage\n• MG6 / unused schedule clarification\n• source material / source evidence behind alle"
+      },
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "01eabc87652d",
+        "textPreview": "Total 4\n• CCTV Continuity / provenance\n• CCTV full window / master footage\n• MG6 / unused schedule clarification\n• Source material / source evidence behind alle"
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "7274affa7165",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\n2026-06-29T17:03:04.921Z"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa6639659e0c",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed."
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "c26ca89ea2bf",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nCaseBrain H5 presentation builders (no Brain 1 muta"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa6639659e0c",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed."
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "809f4f592b74",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nNeeds review before relying"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa6639659e0c",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed."
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "4b984b1f3158",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nHuman review or material gaps flagged on current pa"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa6639659e0c",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed."
+      }
+    },
+    {
+      "surface": "family_leak_probe",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa8883be4edf",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nCCTV Continuity / provenance"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa6639659e0c",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed."
+      }
+    },
+    {
+      "surface": "copy_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nThe defendant is alleged to have left Riverside Sto"
+      },
+      "after": null
+    },
+    {
+      "surface": "family_leak_probe",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textPreview": "COPY UNAVAILABLE — family containment blocked probe.\nBanner: Solicitor review required — output integrity check failed."
+      },
+      "after": null
+    },
+    {
+      "surface": "central_surface_sample",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textPreview": "SURFACE NOT COPYABLE — status=integrity_blocked; rules=offence_family_uncertain"
+      },
+      "after": null
+    }
+  ]
+}

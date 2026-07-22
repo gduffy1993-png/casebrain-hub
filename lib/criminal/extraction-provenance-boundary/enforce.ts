@@ -39,6 +39,10 @@ export function isTruncatedExcerptUsedAsTitle(title: string | null | undefined):
   const t = (title ?? "").trim();
   if (!t) return false;
   if (t.length > 80 && /^["']/.test(t)) return true;
+  // Ellipsis / incomplete quote-as-title (unicode … or ...)
+  if (/(?:\.{3}|…)\s*$/.test(t)) return true;
+  if (/"[^"]*"(?:\.{3}|…)\s*$/.test(t) || /'[^']*'(?:\.{3}|…)\s*$/.test(t)) return true;
+  if (detectIncompleteQuotation(t) && /\b(said|stated|extract|quote)\b/i.test(t)) return true;
   if ((TRUNCATED_RE.test(t) || /[-–—:]\s*$/.test(t)) && !LEGIT_ABBREV_END_RE.test(t)) return true;
   const assessed = assessStructuredField(t, "subject");
   return assessed.rejections.some(
@@ -47,6 +51,35 @@ export function isTruncatedExcerptUsedAsTitle(title: string | null | undefined):
       r.code === "field.source_excerpt_as_heading" ||
       r.code === "field.speculative_quotation",
   );
+}
+
+/**
+ * Solicitor-visible evidence title — never show an unsafe/truncated title even when canCopy=false.
+ */
+export function solicitorVisibleEvidenceTitle(title: string | null | undefined): {
+  display: string;
+  blocked: boolean;
+  safeTitle: string | null;
+} {
+  const raw = (title ?? "").trim();
+  if (!raw) {
+    return {
+      display: "Evidence title not available — check source papers.",
+      blocked: true,
+      safeTitle: null,
+    };
+  }
+  const trunc = isTruncatedExcerptUsedAsTitle(raw);
+  const safe = assertSafeEvidenceTitle(raw);
+  if (trunc || !safe.ok || !safe.safeTitle) {
+    return {
+      display:
+        "Evidence title withheld — incomplete quotation or truncated excerpt cannot be shown as a title. Check the source papers.",
+      blocked: true,
+      safeTitle: null,
+    };
+  }
+  return { display: safe.safeTitle, blocked: false, safeTitle: safe.safeTitle };
 }
 
 export function containsRawExtractionSyntax(text: string | null | undefined): boolean {
