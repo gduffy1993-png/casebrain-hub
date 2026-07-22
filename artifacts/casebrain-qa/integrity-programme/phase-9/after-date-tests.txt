@@ -1,0 +1,13 @@
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 C:/Users/gduff/casebrain-hub
+
+ Ô£ô lib/core/__tests__/riskCopy.test.ts (11 tests) 21ms
+ Ô£ô lib/housing/__tests__/awaabs-monitor.test.ts (3 tests) 11ms
+ Ô£ô lib/core/__tests__/limitation.test.ts (8 tests) 17ms
+
+ Test Files  3 passed (3)
+      Tests  22 passed (22)
+   Start at  21:14:51
+   Duration  6.87s (transform 2.42s, setup 0ms, collect 3.53s, tests 49ms, environment 5ms, prepare 1.92s)
+

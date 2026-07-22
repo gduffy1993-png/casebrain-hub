@@ -1,0 +1,28 @@
+{
+  "goldId": "GOLD-11-012",
+  "freezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "fixtureId": "cb-fresh-002-jordan-hale",
+  "sourceKind": "phase9_pack_seed",
+  "surfaceCount": 12,
+  "evidenceFiles": [
+    "solicitor-visible-render.md",
+    "solicitor-visible-render.json"
+  ],
+  "judgmentFields": {
+    "unresolved": true,
+    "reviewerIdentity": null,
+    "reviewerRole": null,
+    "falsePositive": null,
+    "disagreement": null,
+    "reviewDate": null,
+    "rationale": null,
+    "actualClassification": null,
+    "substantiveWordingJudgment": null,
+    "expectedClassification": null,
+    "adjudication": null,
+    "notes": null,
+    "falseNegative": null,
+    "reviewerDecision": null
+  },
+  "blindingNote": "Stratum labels, selection reasons, and automated predictions are withheld from this packet."
+}

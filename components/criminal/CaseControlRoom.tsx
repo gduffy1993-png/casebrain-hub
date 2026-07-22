@@ -18,6 +18,9 @@ import { buildEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-dete
 import { compareEvidenceChanges } from "@/lib/criminal/evidence-change-detector/compare-evidence-changes";
 import { loadEvidenceChangeSnapshot } from "@/lib/criminal/evidence-change-detector/evidence-change-snapshot-storage";
 import { SolicitorExportBuilderPanel } from "./control-room/SolicitorExportBuilderPanel";
+import { SolicitorDeepDetailGate } from "@/components/criminal/trust/SolicitorDeepDetailGate";
+import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
+import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import { SupervisorQAPanel } from "./control-room/SupervisorQAPanel";
 import { ClientExplanationPanel } from "./control-room/ClientExplanationPanel";
 import { buildReasoningV2ViewModel } from "@/lib/criminal/reasoning-v2/build-reasoning-v2-view-model";
@@ -44,6 +47,7 @@ import {
   displaySolicitorStage,
   resolveSolicitorHearingDateIso,
 } from "@/lib/criminal/solicitor-hearing-display";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { pilotPapersDeepScope, workflowPilotCard, workflowSectionTitle } from "./workflow/workflowUi";
 import { buildCaseSummarySnippet } from "@/lib/criminal/build-case-summary-snippet";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -473,6 +477,16 @@ export function CaseControlRoom({
   );
   const allegation = pilotOverrides?.allegation ?? allegationBase;
 
+  const papersOutputIntegrity = useMemo(
+    () =>
+      evaluateMatterIntegrity({
+        allegation,
+        bundleHay: bundleSource?.frontMatterScan ?? "",
+      }),
+    [allegation, bundleSource?.frontMatterScan],
+  );
+  const papersDeepBlocked = !papersOutputIntegrity.deepDetailAvailable;
+
   const proofMapResult = useMemo(() => {
     if (!proofMapEnabled) return null;
     return buildProductProofMap({
@@ -517,10 +531,22 @@ export function CaseControlRoom({
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
       cleanPilotCourtHeaderCell(headerMeta.court)
     : headerMeta.court?.trim() || undefined;
-  const hearingLabelDisplay = pilotMode
-    ? displayPilotStripHearing(cleanPilotHearingHeaderCell(nextHearing, hearingDateIso)) ||
-      cleanPilotHearingHeaderCell(nextHearing, hearingDateIso)
-    : nextHearing;
+  const hearingResolved = resolveSolicitorHearingStatus({
+    bundleNextHearingIso: hearingDateIso,
+    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    nextHearingRaw: nextHearing,
+    bundleHay: [
+      bundleSource?.caseMetadata?.nextHearingRaw,
+      bundleSource?.frontMatterScan,
+    ]
+      .filter(Boolean)
+      .join("\n"),
+  });
+  const hearingLabelDisplay = (() => {
+    const statusLine = hearingResolved.statusLabel;
+    if (!pilotMode) return statusLine;
+    return displayPilotStripHearing(statusLine) || statusLine;
+  })();
 
   const filteredBattleboard = useMemo(
     () => filterBattleboardForWorkflowPilot(battleboard, workflowContext),
@@ -840,8 +866,9 @@ export function CaseControlRoom({
       if (fromRoute) line = fromRoute;
       else {
         const summary = battleboard?.solicitor_safe_summary?.trim();
-        line = summary
-          ? summary.slice(0, 600)
+        const finalized = summary ? finalizeSolicitorVisibleProse(summary) : null;
+        line = finalized?.ok
+          ? finalized.text
           : "Prepare a conditional hearing line after reviewing served material — do not overstate position or facts.";
       }
     }
@@ -1148,26 +1175,39 @@ export function CaseControlRoom({
             <div className={`${workflowPilotCard} px-4 py-3`}>
               <button
                 type="button"
-                className="w-full flex items-center justify-between gap-2 text-left"
-                onClick={() => setPapersDeepOpen((v) => !v)}
+                className="w-full flex items-center justify-between gap-2 text-left disabled:opacity-70"
+                onClick={() => {
+                  if (papersDeepBlocked) return;
+                  setPapersDeepOpen((v) => !v);
+                }}
+                disabled={papersDeepBlocked}
+                data-testid="papers-deep-toggle"
               >
                 <div>
                   <p className={workflowSectionTitle}>
                     {thickPilotBundle ? "Full papers workspace" : "More papers detail"}
                   </p>
                   <p className="text-xs text-slate-400 mt-1">
-                    {thickPilotBundle
-                      ? "Proof map, readiness, exports, and supervisor tools — scroll inside this section."
-                      : "Proof map, readiness checks, and additional control-room panels."}
+                    {papersDeepBlocked
+                      ? "Deep papers tools unavailable until integrity checks pass."
+                      : thickPilotBundle
+                        ? "Proof map, readiness, exports, and supervisor tools — scroll inside this section."
+                        : "Proof map, readiness checks, and additional control-room panels."}
                   </p>
                 </div>
-                {papersDeepOpen ? (
+                {papersDeepOpen && !papersDeepBlocked ? (
                   <ChevronUp className="h-4 w-4 text-slate-400 shrink-0" />
                 ) : (
                   <ChevronDown className="h-4 w-4 text-slate-400 shrink-0" />
                 )}
               </button>
-              {papersDeepOpen ? (
+              {papersDeepBlocked ? (
+                <div className="mt-3 border-t border-slate-700/60 pt-3">
+                  <SolicitorDeepDetailGate integrity={papersOutputIntegrity} label="More papers detail">
+                    {null}
+                  </SolicitorDeepDetailGate>
+                </div>
+              ) : papersDeepOpen ? (
                 <div
                   className={`mt-3 border-t border-slate-700/60 pt-3 max-h-[min(70vh,900px)] overflow-y-auto space-y-3 ${pilotPapersDeepScope}`}
                 >

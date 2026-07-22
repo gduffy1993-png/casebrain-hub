@@ -1,0 +1,97 @@
+{
+  "goldId": "GOLD-11-010",
+  "def": {
+    "goldId": "GOLD-11-010",
+    "stratum": "blocked_containment",
+    "sourceKind": "phase9_pack_seed",
+    "fixtureId": "proof-pack-01",
+    "selectionReason": "Phase 9 possible_fp_overblock — containment blocks present",
+    "reviewFocus": "Is fail-closed over-blocking safe solicitor wording? (FP). Blocked ≠ repaired."
+  },
+  "surfaces": [
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 2 · Referred 1 · Missing 1 · Incomplete 0 · Not safely confirmed 3",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence-family resolution",
+      "solicitorVisibleText": "Resolved family: unknown\nAudit family seed: unknown",
+      "gateStatus": "uncertain",
+      "canCopy": true
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase brief (solicitor list)",
+      "solicitorVisibleText": "Total 1\n• source material / source evidence behind allegation",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\n2026-06-29T13:26:34.086Z",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nCaseBrain H5 presentation builders (no Brain 1 mutation)",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nbuildStrategyBattleboard",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nbuildDisclosureChaseBrief",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nbuildHearingWarRoomBrief",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\ninferChaseItemSourceState",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family leak probe (copy)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — family containment blocked probe.\nBanner: Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "central_surface_sample",
+      "label": "Central surface sample (overview_safe_wording_card)",
+      "solicitorVisibleText": "SURFACE NOT COPYABLE — status=integrity_blocked; rules=offence_family_uncertain",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    }
+  ]
+}

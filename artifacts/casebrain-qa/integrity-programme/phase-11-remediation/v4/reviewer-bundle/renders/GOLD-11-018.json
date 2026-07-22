@@ -1,0 +1,116 @@
+{
+  "goldId": "GOLD-11-018",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: CASE-04:demo-audit-02-cctv-stills\nControlled source context (safely redacted for review)\nClient label: Devon Walsh\nAllegation (queued for qualified solicitor review — not free-copy): Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nFree-copy status: Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export.\nEvidence states:\n• CCTV still images — Served\n• Full CCTV export — Referred only\n• Master CCTV footage — Missing\n• CCTV Continuity / provenance — Missing\n• CCTV audit trail / source hash record — Missing\n• Recognition / ID basis — Missing\nChase / outstanding items:\n• Master CCTV footage\n• Full CCTV export\n• CCTV Continuity / provenance\n• CCTV audit trail / source hash",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "case_header",
+      "label": "Case header",
+      "solicitorVisibleText": "Client: Devon Walsh\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export.",
+      "gateStatus": "qualified_solicitor_review_queue",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line",
+      "solicitorVisibleText": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review.",
+      "gateStatus": "qualified_solicitor_review_queue",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary",
+      "solicitorVisibleText": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full disclosure and your instructions. CCTV still images are on the papers, but the master CCTV footage, full export, and continuity/provenance material are still outstanding. Stills alone do not show the full recording.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Master CCTV footage",
+      "solicitorVisibleText": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Full CCTV export",
+      "solicitorVisibleText": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — CCTV Continuity / provenance",
+      "solicitorVisibleText": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — CCTV audit trail / source hash",
+      "solicitorVisibleText": "Please provide CCTV audit trail / source hash (see MG6C/CCTV/05) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map",
+      "solicitorVisibleText": "• CCTV still images — Served\n• Full CCTV export — Referred only\n• Master CCTV footage — Missing\n• CCTV Continuity / provenance — Missing\n• CCTV audit trail / source hash record — Missing\n• Recognition / ID basis — Missing",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• CCTV proves identity\n• CCTV proves offence\n• positive identification from stills\n• Do not treat stills alone as proof of identity or offence.\n• Do not state \"Full CCTV confirms\" — CCTV is not fully served on papers",
+      "gateStatus": "warning",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

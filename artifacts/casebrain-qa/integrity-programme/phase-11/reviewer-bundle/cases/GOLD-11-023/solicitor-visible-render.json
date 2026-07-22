@@ -1,0 +1,27 @@
+{
+  "goldId": "GOLD-11-023",
+  "def": {
+    "goldId": "GOLD-11-023",
+    "stratum": "omission_truncation",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-OMIT-01",
+    "selectionReason": "Safely omitted legacy → review-required display",
+    "reviewFocus": "Omission must show review-required neutral, not silent drop."
+  },
+  "surfaces": [
+    {
+      "surface": "overview_field",
+      "label": "Overview field after safe omit",
+      "solicitorVisibleText": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "other_substantive",
+      "canCopy": false
+    },
+    {
+      "surface": "review_required_banner",
+      "label": "Review-required neutral",
+      "solicitorVisibleText": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "review_required",
+      "canCopy": false
+    }
+  ]
+}

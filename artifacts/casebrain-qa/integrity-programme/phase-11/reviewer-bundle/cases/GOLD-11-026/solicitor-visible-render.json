@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-026",
+  "def": {
+    "goldId": "GOLD-11-026",
+    "stratum": "hearing_time",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-HEAR-UNKNOWN",
+    "selectionReason": "Unknown hearing date display",
+    "reviewFocus": "Hearing unknown wording exactness."
+  },
+  "surfaces": [
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status (Overview / Court Today strip)",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true
+    }
+  ]
+}

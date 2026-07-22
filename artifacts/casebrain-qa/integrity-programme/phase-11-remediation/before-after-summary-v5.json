@@ -1,0 +1,1590 @@
+{
+  "changedSurfaces": 84,
+  "insufficientSourceContextCount": 0,
+  "substantiveCount": 43,
+  "cases": [
+    {
+      "goldId": "GOLD-11-001",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-002",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-003",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "4192aaaa11c7",
+            "textPreview": "BWV / footage | not served | log only; clip outstanding"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "aa3ab95ecaf3",
+            "textPreview": "BWV / footage  — not served  — log only; clip outstanding"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-004",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-005",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-006",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "4192aaaa11c7",
+            "textPreview": "BWV / footage | not served | log only; clip outstanding"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "aa3ab95ecaf3",
+            "textPreview": "BWV / footage  — not served  — log only; clip outstanding"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-007",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "fb6d5ebfa9f6",
+            "textPreview": "MG6 / unused schedule clarification"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "473057e70059",
+            "textPreview": "Further papers on the file appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-008",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-009",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 3,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "c6c73bd3ea2d",
+            "textPreview": "Item: Disclosure chase request (2)\nStatus: Copy unavailable\nReason: Text appears truncated or incomplete and must not be copied."
+          },
+          "after": {
+            "gateStatus": "boundary_blocked",
+            "canCopy": false,
+            "textHash": "b069c04f122b",
+            "textPreview": "Item: Disclosure chase request (2)\nStatus: Copy unavailable\nReason: Text is cut off mid-word and must not be copied until the source wording is corrected."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "9e0132328d58",
+            "textPreview": "- Full mailbox export / email source material — outstanding"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "d9bdc3d974b9",
+            "textPreview": "Full mailbox export / email source material — outstanding"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "b0afc265706f",
+            "textPreview": "Item: Disclosure chase request (4)\nStatus: Copy unavailable\nReason: Text appears truncated or incomplete and must not be copied."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "21461894c382",
+            "textPreview": "Further papers on the file appears outstanding on the current file — solicitor to confirm relevance before fixing hearing position. — still chase if disclosure-"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-010",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-011",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "4192aaaa11c7",
+            "textPreview": "BWV / footage | not served | log only; clip outstanding"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "aa3ab95ecaf3",
+            "textPreview": "BWV / footage  — not served  — log only; clip outstanding"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-012",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-013",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-014",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-015",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "3ace51736976",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "d759fc363da6",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Riley Moss. This is early-stage — nothing is final until we have full disclosure and"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "59f792f49944",
+            "textPreview": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "59f792f49944",
+            "textPreview": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "542227bd1736",
+            "textPreview": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "542227bd1736",
+            "textPreview": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "698e68cd5fac",
+            "textPreview": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "698e68cd5fac",
+            "textPreview": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "7019bec82016",
+            "textPreview": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "7019bec82016",
+            "textPreview": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-016",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a88b010827f5",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Liam Craft). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "d9755301c163",
+            "textPreview": "Item: Client-safe summary wording\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a163890f6cbc",
+            "textPreview": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "a163890f6cbc",
+            "textPreview": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "87cf63c5816f",
+            "textPreview": "Please provide Handle attribution report (see MG6C/ENC/03) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "25c7adf1d9cb",
+            "textPreview": "Item: CPS chase — Handle attribution report\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a9095a1b3d9f",
+            "textPreview": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "b9c67e26082a",
+            "textPreview": "Item: CPS chase — Subscriber / account data\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "764954526442",
+            "textPreview": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "764954526442",
+            "textPreview": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-017",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 4,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "dbb2c229aa66",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Jordan Hale). This is early-stage — nothing is final until we have full di"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "f44031db2528",
+            "textPreview": "Item: Client-safe summary wording\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured field"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "b3d4c068bc0e",
+            "textPreview": "Please provide corrected charge sheet or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "2980230f6f8a",
+            "textPreview": "Item: CPS chase — Corrected charge sheet\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structure"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "46117d5a236c",
+            "textPreview": "Please provide updated MG5 or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "090211102f47",
+            "textPreview": "Item: CPS chase — Updated MG5\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. C"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "4c695f105ddd",
+            "textPreview": "Please provide court listing confirmation or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "f52739f0ae44",
+            "textPreview": "Item: CPS chase — Court listing confirmation\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unava"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-018",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "16c27434ac47",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full di"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "ad147cfb4d90",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Devon Walsh. This is early-stage — nothing is final until we have full disclosure an"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "b98be92638e6",
+            "textPreview": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "b98be92638e6",
+            "textPreview": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "c85bfe0c0831",
+            "textPreview": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "c85bfe0c0831",
+            "textPreview": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "70a8d6bf3ac6",
+            "textPreview": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "70a8d6bf3ac6",
+            "textPreview": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "94494e448902",
+            "textPreview": "Please provide CCTV audit trail / source hash (see MG6C/CCTV/05) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "94494e448902",
+            "textPreview": "Please provide CCTV audit trail / source hash (see MG6C/CCTV/05) or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-019",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 4,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "e904ed57e9ae",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Farah Kent). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "42b09b1cf033",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Farah Kent. This is early-stage — nothing is final until we have full disclosure and"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "b03ff4df4b4b",
+            "textPreview": "Please provide unredacted MG11 or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "b03ff4df4b4b",
+            "textPreview": "Please provide unredacted MG11 or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "efd21216809f",
+            "textPreview": "Please provide redaction schedule or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "efd21216809f",
+            "textPreview": "Please provide redaction schedule or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "88b5f6bfb09a",
+            "textPreview": "Please provide full police note or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "88b5f6bfb09a",
+            "textPreview": "Please provide full police note or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-020",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 4,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "d95ce55e49e3",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Casey Fry). This is early-stage — nothing is final until we have full disc"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "a0f3e1b5f7d4",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Casey Fry. This is early-stage — nothing is final until we have full disclosure and "
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "bf2bb3dbb842",
+            "textPreview": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "bf2bb3dbb842",
+            "textPreview": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "0e99216b364b",
+            "textPreview": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0e99216b364b",
+            "textPreview": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a4f493b7b5e5",
+            "textPreview": "Please provide Interview audio / transcript (see MG6C/013) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "a4f493b7b5e5",
+            "textPreview": "Please provide Interview audio / transcript (see MG6C/013) or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-021",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "78a8ba3aa7ff",
+            "textPreview": "Item: Evidence-status wording (1)\nStatus: Copy unavailable\nReason: Text appears truncated or incomplete and must not be copied."
+          },
+          "after": {
+            "gateStatus": "boundary_blocked",
+            "canCopy": false,
+            "textHash": "604cfb0eaa5e",
+            "textPreview": "Item: Evidence-status wording (1)\nStatus: Copy unavailable\nReason: Text is cut off mid-word and must not be copied until the source wording is corrected."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-022",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-023",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-024",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-025",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-026",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-027",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-028",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-029",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-030",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-031",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-032",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-033",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 0,
+      "changes": []
+    },
+    {
+      "goldId": "GOLD-11-034",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "d7eada60ae00",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Sam Okonkwo). This is early-stage — nothing is final until we have full di"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "255eebc99dae",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Sam Okonkwo. This is early-stage — nothing is final until we have full disclosure an"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "bf2bb3dbb842",
+            "textPreview": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "bf2bb3dbb842",
+            "textPreview": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "0e99216b364b",
+            "textPreview": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0e99216b364b",
+            "textPreview": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "8cc679afc5c4",
+            "textPreview": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "8cc679afc5c4",
+            "textPreview": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "baa8cc8ee0fa",
+            "textPreview": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "baa8cc8ee0fa",
+            "textPreview": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-035",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "03285f3535ab",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Morgan Reid). This is early-stage — nothing is final until we have full di"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "cbd73bef3cd2",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Morgan Reid. This is early-stage — nothing is final until we have full disclosure an"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "3bc5443dd744",
+            "textPreview": "Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "3bc5443dd744",
+            "textPreview": "Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "3459575c0077",
+            "textPreview": "Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "3459575c0077",
+            "textPreview": "Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "ba59a500e63b",
+            "textPreview": "Please provide Target defendant interview transcript (see MG6C/INT/04) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "ba59a500e63b",
+            "textPreview": "Please provide Target defendant interview transcript (see MG6C/INT/04) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "ca2f4a7e3f33",
+            "textPreview": "Please provide Co-defendant attribution / continuity (see MG6C/CO/01) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "5399eadd2e09",
+            "textPreview": "Item: CPS chase — Co-defendant attribution / continuity\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-036",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 4,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a17932d9bca9",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Lena Ortiz). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "9a9ac3fd43ee",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Lena Ortiz. This is early-stage — nothing is final until we have full disclosure and"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "779ab52ff4f8",
+            "textPreview": "Please provide full sealed restraining order or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "779ab52ff4f8",
+            "textPreview": "Please provide full sealed restraining order or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "774ac6fd3ff3",
+            "textPreview": "Please provide service proof or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "774ac6fd3ff3",
+            "textPreview": "Please provide service proof or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "3addcbe32cb3",
+            "textPreview": "Please provide breach location map or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "3addcbe32cb3",
+            "textPreview": "Please provide breach location map or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-037",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 4,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "5929cbafb659",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Aiden Cole). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "593d8d771059",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Aiden Cole. This is early-stage — nothing is final until we have full disclosure and"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "890f00830609",
+            "textPreview": "Please provide certified translation or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "890f00830609",
+            "textPreview": "Please provide certified translation or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "9d49202be34c",
+            "textPreview": "Please provide interpreter contemporaneous note or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "9d49202be34c",
+            "textPreview": "Please provide interpreter contemporaneous note or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "f08f8ce2e0c2",
+            "textPreview": "Please provide original language export or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "f08f8ce2e0c2",
+            "textPreview": "Please provide original language export or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-038",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "111168003c1e",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Kian Doyle (youth — 17 years)). This is early-stage — nothing is final unt"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "511cd0ac2b54",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Kian Doyle  (youth — 17 years). This is early-stage — nothing is final until we have"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "52f23ff8cd8b",
+            "textPreview": "Please provide Full YJS pre-sentence report (see MG6C/YTH/03) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "52f23ff8cd8b",
+            "textPreview": "Please provide Full YJS pre-sentence report (see MG6C/YTH/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "2e17e116af51",
+            "textPreview": "Please provide Vulnerability assessment (see MG6C/YTH/04) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "2e17e116af51",
+            "textPreview": "Please provide Vulnerability assessment (see MG6C/YTH/04) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "5bce88a1076c",
+            "textPreview": "Please provide Youth interview audio (see MG6C/YTH/05) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "5bce88a1076c",
+            "textPreview": "Please provide Youth interview audio (see MG6C/YTH/05) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "f8dc8d2eb9e5",
+            "textPreview": "Please provide Appropriate adult continuity (see MG6C/YTH/06) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "f8dc8d2eb9e5",
+            "textPreview": "Please provide Appropriate adult continuity (see MG6C/YTH/06) or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-039",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "958adc10f716",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Daniel Pike). This is early-stage — nothing is final until we have full di"
+          },
+          "after": {
+            "gateStatus": "boundary_blocked",
+            "canCopy": false,
+            "textHash": "c42cd114114c",
+            "textPreview": "Item: Client-safe summary wording\nStatus: Copy unavailable\nReason: Text has an unclosed bracket (possible truncated or duplicated wording) and must not be copie"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "03d1afb83c41",
+            "textPreview": "Please provide ABE interview video (see MG6C/SX/02) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "b785e88b7742",
+            "textPreview": "Item: CPS chase — ABE interview video\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "d1c63ac37633",
+            "textPreview": "Please provide ABE interview transcript (see MG6C/SX/03) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "d3080db7bbb9",
+            "textPreview": "Item: CPS chase — ABE interview transcript\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structu"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "d4bcbf779d5c",
+            "textPreview": "Please provide Final signed MG11 (see MG6C/SX/05) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "2cab039eb1de",
+            "textPreview": "Item: CPS chase — Final signed MG11\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavailable."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "50b61a1ecb96",
+            "textPreview": "Please provide Third-party counselling notes (see MG6C/SX/04) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "4117caca0685",
+            "textPreview": "Item: CPS chase — Third-party counselling notes\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from st"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-040",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 6,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "5043298efd70",
+            "textPreview": "Controlled evidence reference: CASE-13:demo-audit-50-lab-continuity-conflict\nControlled source context (safely redacted for review)\nClient label: Holly Reed\nAll"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "6bcf0028725d",
+            "textPreview": "Controlled evidence reference: CASE-13:demo-audit-50-lab-continuity-conflict\nControlled source context (safely redacted for review)\nClient label: Holly Reed\nAll"
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "34c8ec935c41",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Holly Reed). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "3845504ab5c8",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Holly Reed. This is early-stage — nothing is final until we have full disclosure and"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "cd2479a837c9",
+            "textPreview": "Please provide lab intake sheet or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "cd2479a837c9",
+            "textPreview": "Please provide lab intake sheet or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "ed1422bd8d47",
+            "textPreview": "Please provide full continuity chain or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "ed1422bd8d47",
+            "textPreview": "Please provide full continuity chain or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a3c6d2be6b95",
+            "textPreview": "Please provide sfr drugs analysis or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "a3c6d2be6b95",
+            "textPreview": "Please provide sfr drugs analysis or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "8839fc89813d",
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Lab intake sheet — Missing\n• Full continuity chain — Missing\n• Sfr drugs analys"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a16edecc21c1",
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Lab intake sheet — Missing\n• Full continuity chain — Missing\n• SFR drugs analys"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-041",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 4,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "67cb6d70517a",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Isla Grant). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "bb47e9a4aa3a",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Isla Grant. This is early-stage — nothing is final until we have full disclosure and"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "091c50bfeb33",
+            "textPreview": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "091c50bfeb33",
+            "textPreview": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "955b8f48f231",
+            "textPreview": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "955b8f48f231",
+            "textPreview": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "606de74c4468",
+            "textPreview": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "606de74c4468",
+            "textPreview": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-042",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "588c90d8d29d",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Ella Shaw). This is early-stage — nothing is final until we have full disc"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "300f32df6105",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Ella Shaw. This is early-stage — nothing is final until we have full disclosure and "
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "ec9865a512a9",
+            "textPreview": "Please provide Notice / requirement to identify driver or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "ec9865a512a9",
+            "textPreview": "Please provide Notice / requirement to identify driver or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "2f905d3b35a6",
+            "textPreview": "Please provide Proof of service / posting or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "2f905d3b35a6",
+            "textPreview": "Please provide Proof of service / posting or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "81e20914288a",
+            "textPreview": "Please provide Keeper / DVLA record or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "81e20914288a",
+            "textPreview": "Please provide Keeper / DVLA record or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "4c5483035144",
+            "textPreview": "Please provide Nomination / response record or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "4c5483035144",
+            "textPreview": "Please provide Nomination / response record or confirm in writing why it is not available."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-043",
+      "reviewEligibility": "substantive",
+      "isNewInV5": false,
+      "changeCount": 6,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "ab9d5d9d0438",
+            "textPreview": "Controlled evidence reference: CASE-16:demo-audit-49-anpr-trap\nControlled source context (safely redacted for review)\nClient label: Maya Singh\nAllegation (queue"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "dd9c41af5f92",
+            "textPreview": "Controlled evidence reference: CASE-16:demo-audit-49-anpr-trap\nControlled source context (safely redacted for review)\nClient label: Maya Singh\nAllegation (queue"
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "741fd28c0fbb",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Maya Singh). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "d9755301c163",
+            "textPreview": "Item: Client-safe summary wording\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "bb703d0b52c5",
+            "textPreview": "Please provide anpr image export or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "bb703d0b52c5",
+            "textPreview": "Please provide anpr image export or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "0512c79e1ada",
+            "textPreview": "Please provide national anpr audit trail or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0512c79e1ada",
+            "textPreview": "Please provide national anpr audit trail or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "d17e66231f51",
+            "textPreview": "Please provide vehicle keeper response or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "d17e66231f51",
+            "textPreview": "Please provide vehicle keeper response or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "6f85e3183bb9",
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Anpr image export — Missing\n• National anpr audit trail — Missing\n• Vehicle kee"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "70cd2868610c",
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• ANPR image export — Missing\n• National ANPR audit trail — Missing\n• Vehicle kee"
+          }
+        }
+      ]
+    }
+  ]
+}

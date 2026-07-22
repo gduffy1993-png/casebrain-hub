@@ -15,6 +15,11 @@ import {
   tryLocalSuggestedAnswer,
   type ControlRoomAssistantContext,
 } from "./assistantBattleboardFallback";
+import {
+  canUseSolicitorApiResponse,
+  isIntegrityBlockedPayload,
+  solicitorUiStateFromApiBody,
+} from "@/lib/criminal/integrity-blocked-consumer";
 
 const CHAT_STORAGE_KEY_PREFIX = "casebrain:control-room-chat:";
 const ASSISTANT_TIMEOUT_MS = 90_000;
@@ -136,6 +141,17 @@ function AssistantChat({
           }),
         });
         const data = await res.json().catch(() => ({}));
+        if (isIntegrityBlockedPayload(data) || !canUseSolicitorApiResponse(data)) {
+          const ui = solicitorUiStateFromApiBody(data);
+          setMessages((prev) => [
+            ...prev,
+            {
+              role: "assistant",
+              content: ui.banner ?? "Solicitor review required — output integrity check failed.",
+            },
+          ]);
+          return;
+        }
         const rawReply =
           typeof data?.reply === "string"
             ? data.reply

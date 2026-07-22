@@ -1,0 +1,79 @@
+{
+  "generatedAt": "2026-07-22T01:14:07.286Z",
+  "v5FreezeHash": "3e2479c86769e3cd5342903997eaa548cfdc98a8339a34d0890bfc0178536f5d",
+  "purpose": "Disposition of fixed-length-slice wording operations that historically risked (or could risk) the GOLD-11-039 class of false negative: a copyable solicitor-facing surface cut mid-word / mid-sentence / mid-disclaimer by a hardcoded .slice(0, N).",
+  "dispositionLegend": {
+    "fail_closed_fixed": "The hard slice was removed / replaced; the site now fails closed (blocks copy) rather than emitting a truncated string when content would be cut.",
+    "safe_boundary_module": "The site is now built via lib/criminal/solicitor-visible-boundary.ts (finalizeSolicitorVisibleProse / assertCopyableSolicitorText), which prefers complete semantic units and fails closed on unsafe cuts — no hardcoded length slice remains.",
+    "keep_list_limit": "The fixed-length operation bounds a list/count/dedupe-key (not the free-copy prose itself) and is an intentional, low-risk display/dedupe policy — not part of the truncation-FN class.",
+    "diagnostic_only": "The fixed-length operation feeds a diagnostic / internal / AI-assistant-context field, not a solicitor-facing copyable surface — out of scope for the client_summary-class FN."
+  },
+  "sites": [
+    {
+      "site": "scripts/build-gold-manual-proof-set-v1.ts — clientSummaryPreview (clientPreview)",
+      "priorBehavior": "Historically built via a hard `clientPreview.slice(0, 600)`.",
+      "currentBehavior": "clientPreview is now built via presentClientSummaryForFamily(spec.familyLabel, clientLabel, clientPreviewRaw) with no `.slice()` call at all; assigned directly to clientSummaryPreview.",
+      "disposition": "fail_closed_fixed"
+    },
+    {
+      "site": "components/criminal/hearing-war-room/HearingWarRoom.tsx — summary slice",
+      "priorBehavior": "Historically hard-sliced summary text at 600/400 chars.",
+      "currentBehavior": "No `.slice(0, 600)` / `.slice(0, 400)` present in this file (verified by corpus grep).",
+      "disposition": "fail_closed_fixed"
+    },
+    {
+      "site": "components/criminal/disclosure-chase/DisclosureChase.tsx — summary slice",
+      "priorBehavior": "Historically hard-sliced summary text at 600/400 chars.",
+      "currentBehavior": "No `.slice(0, 600)` / `.slice(0, 400)` present in this file (verified by corpus grep).",
+      "disposition": "fail_closed_fixed"
+    },
+    {
+      "site": "components/criminal/CaseControlRoom.tsx — planSummary (`buildPlanSummary` + battleboard snippet)",
+      "priorBehavior": "`.slice(0, 400)` on a battleboard primary-route line; `.slice(0, 300)` on solicitor_safe_summary.",
+      "currentBehavior": "Still present, but `planSummary` is passed only into `ControlRoomAssistantDock` as AI-assistant prompt context (a context-window budget for the case-brain chat assistant) — it is never rendered as, or exported as, a solicitor copy/export field. Not part of the client_summary/court_line/cps_chase render pipeline.",
+      "disposition": "diagnostic_only"
+    },
+    {
+      "site": "lib/criminal/five-answers/build-five-answers-view.ts — chase.copySuggestion",
+      "priorBehavior": "Historically capped at a fixed ~280-char slice.",
+      "currentBehavior": "`const finalized = finalizeSolicitorVisibleProse(copy.textForClipboard); copySuggestion: finalized.ok ? finalized.text : item.label` — no length slice; fails over to the safe item label if the boundary module rejects the text.",
+      "disposition": "safe_boundary_module"
+    },
+    {
+      "site": "lib/criminal/hearing-mode/build-hearing-mode.ts — cpsChaseWording",
+      "priorBehavior": "Historically capped at a fixed ~280-char slice.",
+      "currentBehavior": "`const finalized = finalizeSolicitorVisibleProse(copy.textForClipboard); cpsChaseWording: sanitise(finalized.ok ? finalized.text : item.label)` — no length slice; canCopy is additionally gated on `finalized.ok`.",
+      "disposition": "safe_boundary_module"
+    },
+    {
+      "site": "lib/criminal/structured-solicitor-output/compose.ts — extractSubjectFromLegacy",
+      "priorBehavior": "Historically hard-sliced the legacy subject string at 72 chars mid-word.",
+      "currentBehavior": "`// Never hard-slice mid-word for subject extraction — omit and let reconstruction fail closed. if (text.length > 72) return \"\";` — omits (fails closed to empty subject, which the caller treats as still_blocked) rather than slicing.",
+      "disposition": "fail_closed_fixed"
+    },
+    {
+      "site": "scripts/integrity-programme/phase11-remediation-v5.ts (THIS script) — client_summary / court_line / cps_chase_draft / copy_preview / export_preview / family_leak_probe",
+      "priorBehavior": "v4: client_summary and cps_chase_draft were rendered with sanitizeSolicitorProse only (no boundary check, no gate) — the direct cause of the GOLD-11-039 false negative.",
+      "currentBehavior": "All six surfaces now route through renderCopyableSolicitorText(): sanitizeSolicitorProse → finalizeSolicitorVisibleProse → assertCopyableSolicitorText → gateSolicitorOutput(mode, auditFamily) → solicitorVisibleGatedCopy. Any failure yields a proportionate blocked preview, canCopy=false.",
+      "disposition": "fail_closed_fixed"
+    },
+    {
+      "site": "lib/criminal/proof-receipt/build-proof-receipts.ts — sourceSnippet",
+      "priorBehavior": "`row.sourceAnchor?.trim().slice(0, 280)`.",
+      "currentBehavior": "Unchanged — bounds a short evidentiary source-anchor citation, not the primary copyable prose field.",
+      "disposition": "keep_list_limit"
+    },
+    {
+      "site": "lib/criminal/disclosure-export/build-hearing-prep-note.ts / build-case-handover-summary.ts / lib/criminal/supervisor-qa/build-supervisor-qa-result.ts — readiness.explanation slice(0,280/400)",
+      "priorBehavior": "Fixed-length slice on a readiness-explanation status line embedded in export/QA notes.",
+      "currentBehavior": "Unchanged in this remediation round — bounds a short structured readiness LABEL (not the client_summary/court_line/cps_chase narrative class); out of the explicit v5 scope. Flagged here for a follow-up remediation pass rather than silently left undocumented.",
+      "disposition": "keep_list_limit"
+    },
+    {
+      "site": "lib/criminal/re-run-diff/rerun-diff-sanitize.ts labelKey / lib/criminal/supervisor-qa/build-supervisor-qa-result.ts dedupeLines key / lib/criminal/disclosure-export dedupeLines key — `.slice(0, 72)`",
+      "priorBehavior": "N/A — these are dedupe-key computations, not display text.",
+      "currentBehavior": "Unchanged — the slice bounds a lowercase dedupe KEY used only for duplicate detection; the full sanitized line is still pushed to output, never the truncated key.",
+      "disposition": "keep_list_limit"
+    }
+  ]
+}

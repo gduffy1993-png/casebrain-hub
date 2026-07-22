@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-031",
+  "def": {
+    "goldId": "GOLD-11-031",
+    "stratum": "copy_export_api",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-COPY-SAFE-01",
+    "selectionReason": "Safe line should remain copyable (accepted control)",
+    "reviewFocus": "Safe wording remains available — check FP over-block."
+  },
+  "surfaces": [
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (safe control)",
+      "solicitorVisibleText": "Attribution remains outstanding on the served screenshots.",
+      "gateStatus": "ok",
+      "canCopy": true
+    }
+  ]
+}

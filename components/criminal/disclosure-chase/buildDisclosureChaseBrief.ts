@@ -24,6 +24,7 @@ import {
   ledgerMaterialsNeedingChase,
 } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
+import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import {
   confirmNoneLine,
   familiesInText,
@@ -37,6 +38,14 @@ import { buildContradictionActions } from "@/lib/criminal/contradiction-actions"
 import { extractAllBundleContradictions } from "@/lib/criminal/merge-bundle-contradictions";
 import { guardDisclosureChaseBrief, type SourceTruthGuardianReport } from "@/lib/criminal/source-truth-guardian";
 import { finalizeDisclosureChasePresentation } from "@/lib/criminal/disclosure-chase-finalize";
+import { composeStructuredSolicitorOutput } from "@/lib/criminal/structured-solicitor-output";
+import {
+  assertSafeEvidenceTitle,
+  buildExtractionProvenanceBlock,
+  stableEvidenceId,
+} from "@/lib/criminal/extraction-provenance-boundary";
+import { utcDayDiff } from "@/lib/criminal/solicitor-time-clock";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 
 const FORBIDDEN_RE =
   /\b(this wins|case collapses|crowns?\s+will\s+lose|crown\s+case\s+collapses|guaranteed|will\s+be\s+acquitted)\b/i;
@@ -281,15 +290,10 @@ function getFamilyDef(id: ChaseFamilyId): FamilyDef {
   return CHASE_FAMILIES.find((f) => f.id === id)!;
 }
 
-function daysUntilHearing(iso: string | null): number | null {
+function daysUntilHearing(iso: string | null, asOf: Date = new Date()): number | null {
   if (!iso?.trim()) return null;
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return null;
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const hearing = new Date(d);
-  hearing.setHours(0, 0, 0, 0);
-  return Math.round((hearing.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  const calendar = iso.trim().slice(0, 10);
+  return utcDayDiff(asOf, calendar);
 }
 
 type DeadlineContext = {
@@ -300,7 +304,7 @@ type DeadlineContext = {
   baseStatus: ChaseItemStatus;
 };
 
-function resolveDeadlineContext(days: number | null): DeadlineContext {
+function resolveDeadlineContext(days: number | null, hearingIso?: string | null, asOf: Date = new Date()): DeadlineContext {
   if (days === null) {
     return {
       days: null,
@@ -309,6 +313,40 @@ function resolveDeadlineContext(days: number | null): DeadlineContext {
       urgency: "medium",
       baseStatus: "Not safely confirmed",
     };
+  }
+  // Align labels with Phase 8 shared hearing status when ISO is available
+  if (hearingIso?.trim()) {
+    const status = resolveSolicitorHearingStatus({
+      bundleNextHearingIso: hearingIso.trim().slice(0, 10),
+      asOf,
+    });
+    if (status.kind === "same_day") {
+      return {
+        days,
+        sharedLabel: status.statusLabel,
+        hearingDeadlineNote: null,
+        urgency: "high",
+        baseStatus: "Due soon",
+      };
+    }
+    if (status.kind === "passed") {
+      return {
+        days,
+        sharedLabel: status.statusLabel,
+        hearingDeadlineNote: null,
+        urgency: "high",
+        baseStatus: "Overdue",
+      };
+    }
+    if (status.kind === "upcoming" || status.kind === "listed") {
+      return {
+        days,
+        sharedLabel: status.statusLabel,
+        hearingDeadlineNote: null,
+        urgency: days <= 3 ? "high" : days <= 14 ? "medium" : "low",
+        baseStatus: days <= 14 ? "Due soon" : "Outstanding",
+      };
+    }
   }
   if (days < 0) {
     return {
@@ -322,7 +360,7 @@ function resolveDeadlineContext(days: number | null): DeadlineContext {
   if (days === 0) {
     return {
       days,
-      sharedLabel: "Hearing today",
+      sharedLabel: "Same-day hearing",
       hearingDeadlineNote: null,
       urgency: "high",
       baseStatus: "Due soon",
@@ -405,20 +443,65 @@ function inferWhyItMatters(
 }
 
 function toCourtLine(canonicalLabel: string): string {
-  const core = canonicalLabel.trim();
+  const titleGate = assertSafeEvidenceTitle(canonicalLabel);
+  const core = titleGate.safeTitle?.trim() ?? "";
   if (!core || FORBIDDEN_RE.test(core)) {
-    return `${COURT_RECORD_PREFIX} that outstanding source material remains on the disclosure schedule and should be timetabled.`;
+    const fallback = composeStructuredSolicitorOutput({
+      subject: "outstanding source material on the disclosure schedule",
+      evidenceState: "not_safely_confirmed",
+      sourceEvidenceId: stableEvidenceId("outstanding source material on the disclosure schedule", "not_safely_confirmed"),
+      kind: "court_line",
+      safetyQualification: "Solicitor review required before addressing the court.",
+    });
+    return (
+      fallback.text ??
+      `${COURT_RECORD_PREFIX} that outstanding source material remains on the disclosure schedule and should be timetabled.`
+    );
   }
+  const boundary = buildExtractionProvenanceBlock({
+    evidenceTitle: core,
+    evidenceStatus: "missing",
+    sourceEvidenceId: stableEvidenceId(core, "missing"),
+  });
+  const composed = composeStructuredSolicitorOutput({
+    subject: boundary.block.evidenceTitle,
+    evidenceState: "missing",
+    sourceEvidenceId: boundary.block.sourceEvidenceId,
+    kind: "court_line",
+    safetyQualification: "Solicitor review required before addressing the court.",
+  });
+  if (composed.ok && composed.text) return composed.text;
   return `${COURT_RECORD_PREFIX} that ${core.charAt(0).toLowerCase()}${core.slice(1)} appears outstanding on the current file and should be disclosed on a timetable.`;
 }
 
 function draftChaseWording(canonicalLabel: string, mergedFrom: string[]): string {
-  const provision = materialLabelFromCourtLine(canonicalLabel);
-  const detail =
-    mergedFrom.length > 1
-      ? ` (including items noted on file: ${mergedFrom.slice(0, 3).join("; ")}${mergedFrom.length > 3 ? "…" : ""})`
-      : "";
-  return `Please provide ${provision.toLowerCase()}. This material appears outstanding on the current file and may be relevant to preparation — conditional on what is ultimately served${detail}. Kindly confirm expected service date.`;
+  const titleGate = assertSafeEvidenceTitle(canonicalLabel);
+  const provision =
+    titleGate.safeTitle?.trim() || materialLabelFromCourtLine(canonicalLabel);
+  const boundary = buildExtractionProvenanceBlock({
+    evidenceTitle: provision,
+    evidenceStatus: "missing",
+    generatedExplanation:
+      mergedFrom.length > 1
+        ? "Multiple related source notes appear on file — confirm each item before reliance."
+        : "Material appears outstanding on the current file and may be relevant to preparation.",
+    requestedAction: `Please provide ${provision.toLowerCase()}. This material appears outstanding on the current file and may be relevant to preparation — conditional on what is ultimately served. Kindly confirm expected service date.`,
+    sourceEvidenceId: stableEvidenceId(provision, "missing"),
+    displayLabels: mergedFrom,
+  });
+  // Never pipe-join or punctuation-join arbitrary merged bullets into the prose.
+  // Alias-deduped labels stay in displayLabels; explanation/action remain separate fields until render.
+  const composed = composeStructuredSolicitorOutput({
+    subject: boundary.block.evidenceTitle ?? provision,
+    evidenceState: "missing",
+    sourceEvidenceId: boundary.block.sourceEvidenceId,
+    kind: "cps_chase",
+    whyItMatters: boundary.block.generatedExplanation,
+    requestedAction: boundary.block.requestedAction,
+    safetyQualification: "Solicitor review required before sending.",
+  });
+  if (composed.ok && composed.text) return composed.text;
+  return `Please provide ${provision.toLowerCase()}. This material appears outstanding on the current file and may be relevant to preparation — conditional on what is ultimately served. Kindly confirm expected service date.`;
 }
 
 function findLinkedRoute(
@@ -693,7 +776,10 @@ function resolveSafeCourtLine(battleboard: BattleboardOutput | null): string {
   const fromRoute = battleboard?.primary_route?.hearing_line?.trim();
   if (fromRoute && !FORBIDDEN_RE.test(fromRoute)) return fromRoute;
   const summary = battleboard?.solicitor_safe_summary?.trim();
-  if (summary && !FORBIDDEN_RE.test(summary)) return summary.slice(0, 400);
+  if (summary && !FORBIDDEN_RE.test(summary)) {
+    const finalized = finalizeSolicitorVisibleProse(summary);
+    if (finalized.ok) return finalized.text;
+  }
   return "Position remains provisional — ask the court to record outstanding source material and set a timetable.";
 }
 
@@ -1081,7 +1167,7 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
   );
 
   const days = daysUntilHearing(input.hearingDateIso);
-  const deadline = resolveDeadlineContext(days);
+  const deadline = resolveDeadlineContext(days, input.hearingDateIso);
 
   let items: DisclosureChaseItem[];
   let primaryItems: DisclosureChaseItem[];

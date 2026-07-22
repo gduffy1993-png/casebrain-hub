@@ -1,0 +1,86 @@
+{
+  "goldId": "GOLD-11-010",
+  "surfaces": [
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 2 · Referred 1 · Missing 1 · Incomplete 0 · Not safely confirmed 3",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for proof-pack-01 (+ casebrain-output)."
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for proof-pack-01 (+ casebrain-output)."
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family not safely resolved — treat wording as provisional.",
+      "gateStatus": "uncertain",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for proof-pack-01 (+ casebrain-output)."
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase list",
+      "solicitorVisibleText": "Total 2\n• CCTV full window / master footage\n• Source material / source evidence behind allegation",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for proof-pack-01 (+ casebrain-output)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for proof-pack-01 (+ casebrain-output)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for proof-pack-01 (+ casebrain-output)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for proof-pack-01 (+ casebrain-output)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for proof-pack-01 (+ casebrain-output)."
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family containment probe",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for proof-pack-01 (+ casebrain-output)."
+    }
+  ]
+}

@@ -216,11 +216,12 @@ export function getLimitationRules(practiceArea?: PracticeArea | string | null):
     if (parentPack) {
       const combined = new Map<string, PackLimitationRule>();
       
-      for (const rule of parentPack.limitationRules) {
-        combined.set(rule.id, rule);
-      }
+      // Child (practice-area) rules first so specialised periods win over base 6-year defaults.
       for (const rule of pack.limitationRules) {
         combined.set(rule.id, rule);
+      }
+      for (const rule of parentPack.limitationRules) {
+        if (!combined.has(rule.id)) combined.set(rule.id, rule);
       }
       
       return Array.from(combined.values());

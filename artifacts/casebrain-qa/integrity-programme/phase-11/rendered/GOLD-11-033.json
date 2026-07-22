@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-033",
+  "def": {
+    "goldId": "GOLD-11-033",
+    "stratum": "provenance",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-PROV-TITLE-01",
+    "selectionReason": "Raw extraction / truncated title provenance boundary",
+    "reviewFocus": "Provenance boundary must refuse unsafe titles."
+  },
+  "surfaces": [
+    {
+      "surface": "evidence_title",
+      "label": "Evidence title",
+      "solicitorVisibleText": "MG11 extract: \"I saw him\"…",
+      "gateStatus": "ok",
+      "canCopy": false
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "goldId": "GOLD-11-004",
+  "def": {
+    "goldId": "GOLD-11-004",
+    "stratum": "accepted_clean",
+    "sourceKind": "phase9_pack_seed",
+    "fixtureId": "cb-found-2004-clarke",
+    "selectionReason": "Phase 9 clean_pass stratum — accepted containment candidate",
+    "reviewFocus": "Confirm solicitor-visible wording remains acceptable and not over-blocked."
+  },
+  "surfaces": [
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 4 · Referred 2 · Missing 0 · Incomplete 0 · Not safely confirmed 0",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence-family resolution",
+      "solicitorVisibleText": "Resolved family: motoring\nAudit family seed: generic_motoring_provisional",
+      "gateStatus": "resolved",
+      "canCopy": true
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase brief (solicitor list)",
+      "solicitorVisibleText": "Total 2\n• MG6 / unused schedule clarification\n• Outstanding source material on disclosure schedule",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\n2026-06-29T17:03:06.260Z",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nCaseBrain H5 presentation builders (no Brain 1 mutation)",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nNeeds review before relying",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nHuman review or material gaps flagged on current papers.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nMG6 / unused schedule clarification",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nBlocked source (not repaired):\nCPS / disclosure officer",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family leak probe (copy)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — family containment blocked probe.\nBanner: Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "central_surface_sample",
+      "label": "Central surface sample (overview_safe_wording_card)",
+      "solicitorVisibleText": "SURFACE NOT COPYABLE — status=integrity_blocked; rules=offence_family_uncertain",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    }
+  ]
+}

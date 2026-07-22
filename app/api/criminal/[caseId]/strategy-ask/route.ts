@@ -10,6 +10,7 @@ import { getSupabaseAdminClient } from "@/lib/supabase";
 import { getOpenAIClient } from "@/lib/openai";
 import { STRATEGY_SUGGEST_INPUT_LIMITS } from "@/lib/criminal/strategy-suggest/types";
 import { OFFENCE_TYPES, ALL_STRATEGY_ANGLE_IDS, isAiStrategySuggestionsEnabled } from "@/lib/criminal/strategy-suggest/constants";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 const AI_TIMEOUT_MS = 15_000;
 const MAX_MESSAGE_LENGTH = 1000;
@@ -148,7 +149,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
     console.info("[strategy-ask] caseId=%s replyLen=%d", caseId, reply.length);
 
-    return NextResponse.json({ ok: true, reply }, { status: 200 });
+    return gatedJsonResponse("api_strategy_ask", { ok: true, reply });
   } catch (err) {
     console.error("[strategy-ask] Error:", err);
     return NextResponse.json({ ok: false, error: "Something went wrong" }, { status: 500 });

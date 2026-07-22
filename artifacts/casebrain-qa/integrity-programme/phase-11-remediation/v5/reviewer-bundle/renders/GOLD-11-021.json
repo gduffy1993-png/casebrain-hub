@@ -1,0 +1,26 @@
+{
+  "goldId": "GOLD-11-021",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: SYN-TRUNC-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's own rendered output).\nProbe design: Controlled mid-word truncation at copy exit\nControlled input construction: Test harness supplies a deliberately truncated fragment ending mid-word, independent of any real client bundle.\nExpected behaviour under test: Truncated fragment must fail closed: canCopy=false. A truncated fragment reaching solicitor copy would be a false negative.",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic — controlled technical control",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Item: Evidence-status wording (1)\nStatus: Copy unavailable\nReason: Text is cut off mid-word and must not be copied until the source wording is corrected.",
+      "gateStatus": "boundary_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "synthetic",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

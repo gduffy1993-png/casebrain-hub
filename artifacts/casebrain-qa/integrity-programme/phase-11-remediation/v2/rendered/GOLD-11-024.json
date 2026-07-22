@@ -1,0 +1,14 @@
+{
+  "goldId": "GOLD-11-024",
+  "surfaces": [
+    {
+      "surface": "overview_field",
+      "label": "Overview field after safe omit",
+      "solicitorVisibleText": "Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "other_substantive",
+      "canCopy": false,
+      "sourceEvidenceAvailable": false,
+      "sourceEvidenceNote": "Controlled synthetic probe — no client bundle on disk."
+    }
+  ]
+}

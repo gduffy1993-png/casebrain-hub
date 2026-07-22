@@ -6,6 +6,10 @@ import { Button } from "@/components/ui/button";
 import type { LetterTemplate } from "@/types";
 import { useToast } from "@/components/Toast";
 import { normalizePracticeArea } from "@/lib/types/casebrain";
+import {
+  canUseSolicitorApiResponse,
+  solicitorUiStateFromApiBody,
+} from "@/lib/criminal/integrity-blocked-consumer";
 
 type LetterGeneratorProps = {
   caseId: string;
@@ -52,11 +56,14 @@ export function LetterGenerator({ caseId, templates, practiceArea }: LetterGener
             body: JSON.stringify({ caseId, templateId, notes, actingFor }),
           });
 
+      const payload = await response.json().catch(() => null);
       if (!response.ok) {
-        const payload = await response.json().catch(() => null);
         throw new Error(payload?.error ?? "Unable to generate letter");
       }
-      const payload = await response.json();
+      if (isCriminal && !canUseSolicitorApiResponse(payload)) {
+        const ui = solicitorUiStateFromApiBody(payload);
+        throw new Error(ui.banner ?? "Solicitor review required — output integrity check failed.");
+      }
       setResult({
         body: payload.body,
         reasoning: payload.deterministic

@@ -2,6 +2,7 @@ import type { DisclosureChaseBrief } from "@/components/criminal/disclosure-chas
 import type { HearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import { inferChaseItemSourceState, buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
+import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import { FIRM_SENDABILITY_LABELS } from "@/lib/criminal/trust/firm-facing-labels";
 import { surfaceContradictions } from "./contradiction-surface";
 import { evidenceRowFromSourceState, FIVE_ANSWERS_HARD_RULES } from "./evidence-trace";
@@ -37,7 +38,14 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
     });
     const row = evidenceRowFromSourceState(item.label, state, item.whyItMatters?.trim() || undefined);
     if (state === "missing") {
-      row.note = row.note ? `${row.note} — still chase if disclosure-relevant.` : "Still chase if disclosure-relevant.";
+      const note = row.note ?? "";
+      const alreadyGuidesChase =
+        /still chase|confirm their relevance|appear to be outstanding|confirm relevance/i.test(note);
+      if (!alreadyGuidesChase) {
+        row.note = note
+          ? `${note} — still chase if disclosure-relevant.`
+          : "Still chase if disclosure-relevant.";
+      }
     }
     if (state === "referred_only") {
       row.note = row.note ? `${row.note} — referred only, not usable as proof.` : "Referred only — not usable as proof.";
@@ -68,12 +76,13 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
       sourceLabel: item.source,
       matterLevel: matterConfidence?.chaseSendability,
     });
+    const finalized = finalizeSolicitorVisibleProse(copy.textForClipboard);
     return {
       label: item.label,
       existence: mapSourceStateToExistence(state),
-      copySuggestion: copy.textForClipboard.slice(0, 280),
+      copySuggestion: finalized.ok ? finalized.text : item.label,
       sendabilityLabel: FIRM_SENDABILITY_LABELS[copy.sendability] ?? copy.sendabilityLabel,
-      canCopy: copy.canCopy,
+      canCopy: copy.canCopy && finalized.ok,
     };
   });
 
@@ -85,16 +94,19 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
     matterLevel: matterConfidence?.level === "blocked" ? "blocked" : "needs_solicitor_review",
   });
 
-  const mainIssue =
+  const mainIssueRaw =
     matterConfidence?.mainIssue?.trim() ||
     warRoom.safePositionToday?.trim() ||
     chase.disclosureSummary?.trim() ||
     "Provisional — review served papers before relying on any line.";
+  const mainIssueFinal = finalizeSolicitorVisibleProse(mainIssueRaw);
 
   return {
     caseSaying: {
       allegation: allegation.trim() || "Charge not on papers",
-      mainIssue: mainIssue.slice(0, 320),
+      mainIssue: mainIssueFinal.ok
+        ? mainIssueFinal.text
+        : "Provisional — review served papers before relying on any line.",
       nextAction: nextActionFromConfidence(matterConfidence),
     },
     evidenceState: {

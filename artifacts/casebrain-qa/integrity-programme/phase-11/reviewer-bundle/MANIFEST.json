@@ -1,0 +1,23 @@
+{
+  "bundleId": "phase11-reviewer-bundle-v1",
+  "freezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "freezeVersion": "phase11-gold-sample-v1",
+  "sampleSize": 33,
+  "renderedCases": 33,
+  "renderedSurfaces": 234,
+  "humanJudgmentsRecorded": 0,
+  "includesAutomatedPredictions": false,
+  "status": "AWAITING_HUMAN_GOLD_REVIEW",
+  "contents": [
+    "INSTRUCTIONS.md",
+    "HUMAN_JUDGMENT_FORM.md",
+    "human-judgment-workbook.json",
+    "blinded-review-order.json",
+    "cases/GOLD-11-*/",
+    "renders/*.md + *.json"
+  ],
+  "excludedFromBundle": [
+    "automated-predictions.json (kept outside bundle to preserve blinding)",
+    "fp-fn-report automatedHypothesesOnly"
+  ]
+}

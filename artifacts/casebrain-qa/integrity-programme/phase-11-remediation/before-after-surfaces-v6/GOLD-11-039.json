@@ -1,0 +1,102 @@
+{
+  "goldId": "GOLD-11-039",
+  "reviewEligibility": "substantive",
+  "isNewInV5": false,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "parentV5FreezeHash": "3e2479c86769e3cd5342903997eaa548cfdc98a8339a34d0890bfc0178536f5d",
+  "v6FreezeHash": "f41a0fc688bee60f6ffd32a4a24d45d69203f799931cd7142f603dca461c38fd",
+  "changes": [
+    {
+      "surface": "offence_family",
+      "before": {
+        "gateStatus": "uncertain",
+        "canCopy": true,
+        "textHash": "95265efb52df",
+        "textPreview": "Offence family not safely resolved — treat wording as provisional."
+      },
+      "after": {
+        "gateStatus": "resolved",
+        "canCopy": true,
+        "textHash": "0a160ceb9601",
+        "textPreview": "Offence family resolved for this matter."
+      }
+    },
+    {
+      "surface": "client_summary",
+      "before": {
+        "gateStatus": "boundary_blocked",
+        "canCopy": false,
+        "textHash": "c42cd114114c",
+        "textPreview": "Item: Client-safe summary wording\nStatus: Copy unavailable\nReason: Text has an unclosed bracket (possible truncated or duplicated wording) and must not be copie"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "12c64e672661",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Daniel Pike. This is early-stage — nothing is final until we have full disclosure an"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "b785e88b7742",
+        "textPreview": "Item: CPS chase — ABE interview video\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "03d1afb83c41",
+        "textPreview": "Please provide ABE interview video (see MG6C/SX/02) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "d3080db7bbb9",
+        "textPreview": "Item: CPS chase — ABE interview transcript\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structu"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "d1c63ac37633",
+        "textPreview": "Please provide ABE interview transcript (see MG6C/SX/03) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "2cab039eb1de",
+        "textPreview": "Item: CPS chase — Final signed MG11\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavailable."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "d4bcbf779d5c",
+        "textPreview": "Please provide Final signed MG11 (see MG6C/SX/05) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "4117caca0685",
+        "textPreview": "Item: CPS chase — Third-party counselling notes\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from st"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "50b61a1ecb96",
+        "textPreview": "Please provide Third-party counselling notes (see MG6C/SX/04) or confirm in writing why it is not available."
+      }
+    }
+  ]
+}

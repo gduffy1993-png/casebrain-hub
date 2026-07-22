@@ -1,0 +1,30 @@
+{
+  "phase": 8,
+  "generatedAt": "2026-07-21T19:30:00.000Z",
+  "typecheck": {
+    "before": 47,
+    "after": 47,
+    "delta": 0,
+    "note": "Same pre-existing eval/script errors as baseline-attr branch-typecheck-after-fix; no Phase-8-introduced errors"
+  },
+  "dateAnchoredVitest": {
+    "files": [
+      "lib/core/__tests__/limitation.test.ts",
+      "lib/core/__tests__/riskCopy.test.ts",
+      "lib/housing/__tests__/awaabs-monitor.test.ts"
+    ],
+    "before": { "failed": 5, "passed": 18 },
+    "after": { "failed": 0, "passed": 22 },
+    "deltaFailed": -5
+  },
+  "residualRegisteredVitestSample": {
+    "stillFailingAsRegistered": [
+      "lib/criminal/__tests__/criminal-purity.test.ts > probabilities are suppressed when completeness is low",
+      "lib/housing/__tests__/supervision-pack.test.ts > should include disclaimer in all outputs"
+    ],
+    "note": "PRE-VITEST-COPY — not Phase 8; remain on remediation register"
+  },
+  "build": "BUILD_OK",
+  "phase6ValidatorContracts": { "surfaces": 31, "pass": true },
+  "phase8FocusedContracts": { "pass": true }
+}

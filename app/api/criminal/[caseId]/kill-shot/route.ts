@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { requireAuthContext } from "@/lib/auth";
 import { buildCaseContext, guardAnalysis } from "@/lib/case-context";
 import { getSupabaseAdminClient } from "@/lib/supabase";
+import { gatedJsonResponse } from "@/lib/criminal/gated-json-response";
 
 export const runtime = "nodejs";
 
@@ -174,7 +175,7 @@ export async function GET(
       executionOrder,
     };
 
-    return NextResponse.json({ ok: true, data: killShot });
+    return gatedJsonResponse("api_kill_shot", { ok: true, data: killShot });
   } catch (error: any) {
     console.error("[kill-shot] Error:", error);
     return NextResponse.json(

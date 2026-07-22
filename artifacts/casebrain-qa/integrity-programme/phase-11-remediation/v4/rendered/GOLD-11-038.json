@@ -1,0 +1,116 @@
+{
+  "goldId": "GOLD-11-038",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: CASE-11:demo-audit-22-youth-interview\nControlled source context (safely redacted for review)\nClient label: Kian Doyle (youth — 17 years)\nAllegation (queued for qualified solicitor review — not free-copy): Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nFree-copy status: Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export.\nEvidence states:\n• Officer statement — Served\n• YJS report extract — Served\n• Full YJS pre-sentence report — Missing\n• Vulnerability assessment — Missing\n• Youth interview audio — Missing\n• Appropriate adult continuity — Missing\nChase / outstanding items:\n• Full YJS pre-sentence report\n• Vulnerability assessment\n• Youth interview audio\n• Appropriate adult continuity",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "case_header",
+      "label": "Case header",
+      "solicitorVisibleText": "Client: Kian Doyle (youth — 17 years)\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export.",
+      "gateStatus": "qualified_solicitor_review_queue",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line",
+      "solicitorVisibleText": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review.",
+      "gateStatus": "qualified_solicitor_review_queue",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary",
+      "solicitorVisibleText": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Kian Doyle (youth — 17 years)). This is early-stage — nothing is final until we have full disclosure and your instructions. A YJS report extract is on the papers, but the full pre-sentence report, vulnerability assessment, and youth interview audio are still outstanding. Your case is in the youth court and needs age-appropriate disclosure before we fix strategy.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Full YJS pre-sentence report",
+      "solicitorVisibleText": "Please provide Full YJS pre-sentence report (see MG6C/YTH/03) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Vulnerability assessment",
+      "solicitorVisibleText": "Please provide Vulnerability assessment (see MG6C/YTH/04) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Youth interview audio",
+      "solicitorVisibleText": "Please provide Youth interview audio (see MG6C/YTH/05) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Appropriate adult continuity",
+      "solicitorVisibleText": "Please provide Appropriate adult continuity (see MG6C/YTH/06) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map",
+      "solicitorVisibleText": "• Officer statement — Served\n• YJS report extract — Served\n• Full YJS pre-sentence report — Missing\n• Vulnerability assessment — Missing\n• Youth interview audio — Missing\n• Appropriate adult continuity — Missing",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• youth guilt proved\n• full interview shows\n• Do not import adult-court assumptions — youth interview and YJS material remain provisional.\n• Do not state \"interview confirms\" — Interview material is not fully served",
+      "gateStatus": "warning",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

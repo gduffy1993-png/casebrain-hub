@@ -1,0 +1,110 @@
+{
+  "goldId": "GOLD-11-042",
+  "reviewEligibility": "substantive",
+  "isNewInV4": true,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "v4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": null,
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textPreview": "Controlled evidence reference: CASE-15:demo-audit-18-motoring-sjp-thin\nControlled source context (safely redacted for review)\nClient label: Ella Shaw\nAllegation"
+      }
+    },
+    {
+      "surface": "offence_family",
+      "before": null,
+      "after": {
+        "gateStatus": "resolved",
+        "canCopy": true,
+        "textPreview": "Offence family resolved for this matter."
+      }
+    },
+    {
+      "surface": "case_header",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "Client: Ella Shaw\nAllegation: Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988"
+      }
+    },
+    {
+      "surface": "court_line",
+      "before": null,
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textPreview": "The defence asks the court to record that the s172 notice/requirement to identify the driver, keeper position, and service/nomination records require confirmati"
+      }
+    },
+    {
+      "surface": "client_summary",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Ella Shaw). This is early-stage — nothing is final until we have full disc"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "Please provide Notice / requirement to identify driver or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "Please provide Proof of service / posting or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "Please provide Keeper / DVLA record or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "Please provide Nomination / response record or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "truth_map",
+      "before": null,
+      "after": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textPreview": "• Notice / requirement to identify driver — Missing\n• Proof of service / posting — Missing\n• Keeper / DVLA record — Missing\n• Nomination / response record — Mis"
+      }
+    },
+    {
+      "surface": "do_not_overstate",
+      "before": null,
+      "after": {
+        "gateStatus": "warning",
+        "canCopy": false,
+        "textPreview": "• Do not treat device summary as proof of reliability\n• Do not treat procedure summary alone as proof of device reliability or identity."
+      }
+    }
+  ]
+}

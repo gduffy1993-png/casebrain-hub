@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-021",
+  "def": {
+    "goldId": "GOLD-11-021",
+    "stratum": "omission_truncation",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-TRUNC-01",
+    "selectionReason": "Controlled truncated fragment at copy exit",
+    "reviewFocus": "Truncation must block copy; blocked ≠ repaired wording."
+  },
+  "surfaces": [
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (solicitor clipboard path)",
+      "solicitorVisibleText": "The attribution remains outstan",
+      "gateStatus": "ok",
+      "canCopy": true
+    }
+  ]
+}

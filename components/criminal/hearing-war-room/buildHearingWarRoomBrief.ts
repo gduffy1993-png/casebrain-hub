@@ -28,6 +28,7 @@ import {
   isBlockedBattleboardTemplateLine,
 } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
+import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import {
   type BundleContradiction,
 } from "@/lib/criminal/extract-bundle-contradictions";
@@ -246,7 +247,8 @@ function resolveSafePosition(battleboard: BattleboardOutput | null): string {
   if (fromRoute && !FORBIDDEN_RE.test(fromRoute)) return fromRoute;
   const summary = battleboard?.solicitor_safe_summary?.trim();
   if (summary && !FORBIDDEN_RE.test(summary)) {
-    return summary.slice(0, 600);
+    const finalized = finalizeSolicitorVisibleProse(summary);
+    if (finalized.ok) return finalized.text;
   }
   return "Timing/sequence remains conditional on served CCTV/CAD/999 material. The defence asks the court to record outstanding source material and set a timetable — position remains provisional pending instructions.";
 }

@@ -1,0 +1,59 @@
+{
+  "phase": 11,
+  "generatedAt": "2026-07-21T21:42:00Z",
+  "typecheck": {
+    "before": 47,
+    "after": 47,
+    "delta": 0
+  },
+  "dateAnchoredVitest": {
+    "before": {
+      "failed": 0,
+      "passed": 22
+    },
+    "after": {
+      "failed": 0,
+      "passed": 22
+    },
+    "deltaFailed": 0
+  },
+  "vitestSampleIncludingRegistered": {
+    "note": "PRE-VITEST-COPY residual failures remain registered (purity + supervision disclaimer)",
+    "failed": 2,
+    "passed": 4
+  },
+  "build": "BUILD_OK",
+  "phase6ValidatorContracts": {
+    "surfaces": 31,
+    "pass": true
+  },
+  "phase8FocusedContracts": {
+    "pass": true
+  },
+  "phase9FocusedContracts": {
+    "pass": true
+  },
+  "phase10FocusedContracts": {
+    "pass": true
+  },
+  "phase11FocusedContracts": {
+    "pass": true,
+    "status": "AWAITING_HUMAN_GOLD_REVIEW"
+  },
+  "goldSample": {
+    "size": 33,
+    "band": "30-50",
+    "freezeVersion": "phase11-gold-sample-v1",
+    "humanReviewed": 0,
+    "programmePassSupported": false,
+    "freezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a"
+  },
+  "ledgerImpact": "none",
+  "ledgerPreserved": {
+    "status": "LEDGER_BALANCED",
+    "prior72RawBalanced": true,
+    "prior28TruncBalanced": true,
+    "current42Raw": 42,
+    "current55Trunc": 55
+  }
+}

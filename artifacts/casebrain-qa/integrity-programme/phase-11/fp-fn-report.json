@@ -1,0 +1,33 @@
+{
+  "status": "AWAITING_HUMAN_GOLD_REVIEW",
+  "denominators": {
+    "frozenSampleSize": 33,
+    "humanReviewedCount": 0,
+    "humanUnresolvedCount": 33
+  },
+  "humanCounts": {
+    "falsePositives": 0,
+    "falseNegatives": 0,
+    "safetyRelevantFalseNegatives": 0
+  },
+  "humanRates": {
+    "fpRate": null,
+    "fnRate": null,
+    "note": "Rates undefined until qualified human review completes (denominator = humanReviewedCount)."
+  },
+  "automatedHypothesesOnly": {
+    "note": "Not human FP/FN. Do not treat as sign-off.",
+    "possible_fp_overblock": 11,
+    "possible_fn_leak": 3,
+    "neither": 10,
+    "uncertain": 9
+  },
+  "confidenceLimitations": [
+    "No qualified human/solicitor gold judgments recorded in this checkpoint.",
+    "Automated predictions are hypotheses for reviewer assistance only.",
+    "Blocked ≠ repaired remains in force.",
+    "Full ≥100 browser walkthrough not claimed here."
+  ],
+  "programmePassSupported": false,
+  "blocker": "AWAITING_HUMAN_GOLD_REVIEW — safety-relevant FN cannot be cleared without independent review"
+}

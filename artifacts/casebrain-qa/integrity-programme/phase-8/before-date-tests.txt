@@ -1,0 +1,101 @@
+The CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.
+
+ RUN  v2.1.9 C:/Users/gduff/casebrain-hub
+
+ ÔØ» lib/housing/__tests__/awaabs-monitor.test.ts (4 tests | 1 failed) 22ms
+   ├ù Awaab's Law Monitor > should calculate investigation deadline for social landlord 12ms
+     ÔåÆ expected -918 to be greater than -365
+ ÔØ» lib/core/__tests__/riskCopy.test.ts (11 tests | 1 failed) 215ms
+   ├ù riskCopy > limitation > should build messages with limitation date 154ms
+     ÔåÆ expected 'Possible limitation deadline around 3ÔÇª' to contain '2025-12-31'
+ ÔØ» lib/core/__tests__/limitation.test.ts (8 tests | 3 failed) 95ms
+   ├ù calculateLimitation > should calculate 3-year limitation for PI cases 15ms
+     ÔåÆ expected '2028-01-01T00:00:00.000Z' to be '2025-01-01T00:00:00.000Z' // Object.is equality
+   ├ù calculateLimitation > should use date of knowledge if provided 5ms
+     ÔåÆ expected 'Possible limitation deadline around 0ÔÇª' to contain 'date of knowledge'
+   ├ù calculateLimitation > should set severity based on days remaining 2ms
+     ÔåÆ expected 'low' to be 'critical' // Object.is equality
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ» Failed Tests 5 ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»
+
+ FAIL  lib/core/__tests__/limitation.test.ts > calculateLimitation > should calculate 3-year limitation for PI cases
+AssertionError: expected '2028-01-01T00:00:00.000Z' to be '2025-01-01T00:00:00.000Z' // Object.is equality
+
+Expected: "2025-01-01T00:00:00.000Z"
+Received: "2028-01-01T00:00:00.000Z"
+
+ ÔØ» lib/core/__tests__/limitation.test.ts:32:35
+     30|     });
+     31| 
+     32|     expect(result.limitationDate).toBe("2025-01-01T00:00:00.000Z");
+       |                                   ^
+     33|     expect(result.severity).toBe("critical"); // Within 90 days
+     34|     expect(result.isExpired).toBe(false);
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[1/5]ÔÄ»
+
+ FAIL  lib/core/__tests__/limitation.test.ts > calculateLimitation > should use date of knowledge if provided
+AssertionError: expected 'Possible limitation deadline around 0ÔÇª' to contain 'date of knowledge'
+
+Expected: "date of knowledge"
+Received: "Possible limitation deadline around 01/01/2026 (365 days remaining). This is procedural guidance only and does not constitute legal advice. Dates must be confirmed with a qualified legal advisor."
+
+ ÔØ» lib/core/__tests__/limitation.test.ts:80:32
+     78|     // Should use date of knowledge (2020) + 6 years = 2026
+     79|     expect(result.limitationDate).toBe("2026-01-01T00:00:00.000Z");
+     80|     expect(result.explanation).toContain("date of knowledge");
+       |                                ^
+     81|   });
+     82| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[2/5]ÔÄ»
+
+ FAIL  lib/core/__tests__/limitation.test.ts > calculateLimitation > should set severity based on days remaining
+AssertionError: expected 'low' to be 'critical' // Object.is equality
+
+Expected: "critical"
+Received: "low"
+
+ ÔØ» lib/core/__tests__/limitation.test.ts:110:30
+    108|       today: "2024-12-01", // ~30 days before limitation
+    109|     });
+    110|     expect(result1.severity).toBe("critical");
+       |                              ^
+    111| 
+    112|     // Test high (90-180 days)
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[3/5]ÔÄ»
+
+ FAIL  lib/core/__tests__/riskCopy.test.ts > riskCopy > limitation > should build messages with limitation date
+AssertionError: expected 'Possible limitation deadline around 3ÔÇª' to contain '2025-12-31'
+
+Expected: "2025-12-31"
+Received: "Possible limitation deadline around 31/12/2025 (90 days remaining). This is procedural guidance only and does not constitute legal advice. Dates must be confirmed with a qualified legal advisor."
+
+ ÔØ» lib/core/__tests__/riskCopy.test.ts:19:23
+     17|       });
+     18| 
+     19|       expect(message).toContain("2025-12-31");
+       |                       ^
+     20|       expect(message).toContain("procedural guidance only");
+     21|       expect(message).toContain("does not constitute legal advice");
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[4/5]ÔÄ»
+
+ FAIL  lib/housing/__tests__/awaabs-monitor.test.ts > Awaab's Law Monitor > should calculate investigation deadline for social landlord
+AssertionError: expected -918 to be greater than -365
+ ÔØ» lib/housing/__tests__/awaabs-monitor.test.ts:45:31
+     43| 
+     44|     expect(daysUntilDeadline).toBeLessThanOrEqual(14);
+     45|     expect(daysUntilDeadline).toBeGreaterThan(-365); // Should be withÔÇª
+       |                               ^
+     46|   });
+     47| 
+
+ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»ÔÄ»[5/5]ÔÄ»
+
+ Test Files  3 failed (3)
+      Tests  5 failed | 18 passed (23)
+   Start at  20:06:56
+   Duration  4.08s (transform 1.32s, setup 0ms, collect 2.17s, tests 331ms, environment 2ms, prepare 1.18s)
+

@@ -1,0 +1,3582 @@
+{
+  "changedSurfaces": 261,
+  "insufficientSourceContextCount": 0,
+  "substantiveCount": 43,
+  "cases": [
+    {
+      "goldId": "GOLD-11-001",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 6,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "3abd9a099268",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Morgan Ellis — foundation SJP\nHearing: Hearing date not safely extra"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "85c4575caf4b",
+            "textPreview": "Controlled evidence reference: cb-found-2001-ellis\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Morgan Ellis — Si"
+          }
+        },
+        {
+          "surface": "chase_brief",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "01eabc87652d",
+            "textPreview": "Total 4\n• CCTV Continuity / provenance\n• CCTV full window / master footage\n• MG6 / unused schedule clarification\n• Source material / source evidence behind alle"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "9c16f8d55910",
+            "textPreview": "Total 3\n• CCTV Continuity / provenance\n• CCTV full window / master footage\n• MG6 / unused schedule clarification"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "25ffafca1df2",
+            "textPreview": "Item: Solicitor copy candidate — review required (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "378b1b5cfec1",
+            "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "c7056e6d82d2",
+            "textPreview": "Item: Solicitor copy candidate — review required (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "8dd5de918907",
+            "textPreview": "Item: Disclosure / chase wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "ff799614a447",
+            "textPreview": "Item: Disclosure chase request (3)\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavailable."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "8309c2946e7a",
+            "textPreview": "Item: Disclosure / chase wording (4)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "714caec7f56d",
+            "textPreview": "Item: Disclosure chase request (4)\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavailable."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-002",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 6,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "582abb2633ea",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Jordan Smith — foundation First appearance\nHearing: Hearing date not"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "c54df31b7bf5",
+            "textPreview": "Controlled evidence reference: cb-found-2002-smith\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Jordan Smith — fi"
+          }
+        },
+        {
+          "surface": "chase_brief",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "9a9ca27a0817",
+            "textPreview": "Total 5\n• CCTV Continuity / provenance\n• CCTV full window / master footage\n• CAD / 999 audio / control-room material\n• MG6 / unused schedule clarification\n• Add"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a3cebcacf6a7",
+            "textPreview": "Total 4\n• CCTV Continuity / provenance\n• CCTV full window / master footage\n• CAD / 999 audio / control-room material\n• MG6 / unused schedule clarification"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "25ffafca1df2",
+            "textPreview": "Item: Solicitor copy candidate — review required (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "378b1b5cfec1",
+            "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "c7056e6d82d2",
+            "textPreview": "Item: Solicitor copy candidate — review required (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "8dd5de918907",
+            "textPreview": "Item: Disclosure / chase wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "ff799614a447",
+            "textPreview": "Item: Disclosure chase request (3)\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavailable."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "215d818a1962",
+            "textPreview": "Item: Solicitor wording candidate (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "83d580f5cda0",
+            "textPreview": "Item: Solicitor copy candidate — review required (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-003",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "cfd014f9ee27",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Priya Nguyen — foundation First appearance\nHearing: Hearing date not"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "d0f3167e687d",
+            "textPreview": "Controlled evidence reference: cb-found-2003-nguyen\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Priya Nguyen — f"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0f2cffadad78",
+            "textPreview": "Human review or material gaps flagged on current papers."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "378b1b5cfec1",
+            "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "b7e73a642b50",
+            "textPreview": "CCTV Continuity / provenance"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "83ae2792a931",
+            "textPreview": "Item: Status / attribution wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "4192aaaa11c7",
+            "textPreview": "BWV / footage | not served | log only; clip outstanding"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "215d818a1962",
+            "textPreview": "Item: Solicitor wording candidate (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "06717b6977dc",
+            "textPreview": "CAD / 999 audio / control-room material"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-004",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "a10867067229",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Daniel Clarke — foundation First appearance\nHearing: Hearing date no"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "aa21227125b8",
+            "textPreview": "Controlled evidence reference: cb-found-2004-clarke\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Daniel Clarke — "
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0f2cffadad78",
+            "textPreview": "Human review or material gaps flagged on current papers."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "1b75d45c10fb",
+            "textPreview": "Item: Disclosure / chase wording (2)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "fb6d5ebfa9f6",
+            "textPreview": "MG6 / unused schedule clarification"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "8dd5de918907",
+            "textPreview": "Item: Disclosure / chase wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "6ba6cdbb6e7a",
+            "textPreview": "CPS / disclosure officer"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "215d818a1962",
+            "textPreview": "Item: Solicitor wording candidate (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0ce761aaa7d4",
+            "textPreview": "Exhibit mapping / provenance"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-005",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 6,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "1312de9118ad",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Amara Okafor — foundation First appearance\nHearing: Hearing date not"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "289e690cbd76",
+            "textPreview": "Controlled evidence reference: cb-found-2005-okafor\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Amara Okafor — f"
+          }
+        },
+        {
+          "surface": "chase_brief",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "98d1fac15c77",
+            "textPreview": "Total 3\n• Full custody record / PACE material\n• Exhibit mapping / provenance\n• Lab analysis / search record"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "dfca001286e2",
+            "textPreview": "Total 3\n• Full custody record / PACE material\n• Exhibit mapping / provenance\n• MG6 / unused schedule clarification"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "25ffafca1df2",
+            "textPreview": "Item: Solicitor copy candidate — review required (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "378b1b5cfec1",
+            "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "c7056e6d82d2",
+            "textPreview": "Item: Solicitor copy candidate — review required (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "8dd5de918907",
+            "textPreview": "Item: Disclosure / chase wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "ff799614a447",
+            "textPreview": "Item: Disclosure chase request (3)\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavailable."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "8309c2946e7a",
+            "textPreview": "Item: Disclosure / chase wording (4)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "714caec7f56d",
+            "textPreview": "Item: Disclosure chase request (4)\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavailable."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-006",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "cfd014f9ee27",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Priya Nguyen — foundation First appearance\nHearing: Hearing date not"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "d0f3167e687d",
+            "textPreview": "Controlled evidence reference: cb-found-2003-nguyen\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Priya Nguyen — f"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0f2cffadad78",
+            "textPreview": "Human review or material gaps flagged on current papers."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "378b1b5cfec1",
+            "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "b7e73a642b50",
+            "textPreview": "CCTV Continuity / provenance"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "83ae2792a931",
+            "textPreview": "Item: Status / attribution wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "4192aaaa11c7",
+            "textPreview": "BWV / footage | not served | log only; clip outstanding"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "215d818a1962",
+            "textPreview": "Item: Solicitor wording candidate (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "06717b6977dc",
+            "textPreview": "CAD / 999 audio / control-room material"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-007",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "f8b283ff7bfb",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not safely labelled from source\nHearing: Hearing date not saf"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "c977653d063d",
+            "textPreview": "Controlled evidence reference: cb-fresh-001-taylor-brookes\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation no"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0f2cffadad78",
+            "textPreview": "Human review or material gaps flagged on current papers."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "1b75d45c10fb",
+            "textPreview": "Item: Disclosure / chase wording (2)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "fb6d5ebfa9f6",
+            "textPreview": "MG6 / unused schedule clarification"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "8dd5de918907",
+            "textPreview": "Item: Disclosure / chase wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "6ba6cdbb6e7a",
+            "textPreview": "CPS / disclosure officer"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "8309c2946e7a",
+            "textPreview": "Item: Disclosure / chase wording (4)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "fb6d5ebfa9f6",
+            "textPreview": "MG6 / unused schedule clarification"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-008",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "f1603da40cc5",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not safely labelled from source\nHearing: Hearing date not saf"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "50ff31dfa114",
+            "textPreview": "Controlled evidence reference: cb-fresh-002-jordan-hale\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not s"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0f2cffadad78",
+            "textPreview": "Human review or material gaps flagged on current papers."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "378b1b5cfec1",
+            "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "6a8cc68fb89a",
+            "textPreview": "Officers attended following a call. There was contact between the defendant and officers. Body-worn video is referred to on the schedule but not attached. Custo"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "8dd5de918907",
+            "textPreview": "Item: Disclosure / chase wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "fb6d5ebfa9f6",
+            "textPreview": "MG6 / unused schedule clarification"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "215d818a1962",
+            "textPreview": "Item: Solicitor wording candidate (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "2cd5c984c584",
+            "textPreview": "Full custody record / PACE material"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-009",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "b6602da806cd",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Marcus Vale — fraud hero\nHearing: Hearing date not safely extracted\n"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "d3339b0ccefa",
+            "textPreview": "Controlled evidence reference: pilot-3-marcus-vale\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Marcus Vale — fra"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0f2cffadad78",
+            "textPreview": "Human review or material gaps flagged on current papers."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "afc71a18f79e",
+            "textPreview": "Item: Disclosure / chase wording (2)\nStatus: Copy unavailable\nReason: Text appears truncated or incomplete and must not be copied."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "c6c73bd3ea2d",
+            "textPreview": "Item: Disclosure chase request (2)\nStatus: Copy unavailable\nReason: Text appears truncated or incomplete and must not be copied."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "83ae2792a931",
+            "textPreview": "Item: Status / attribution wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "9e0132328d58",
+            "textPreview": "- Full mailbox export / email source material — outstanding"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "1b9cc867998e",
+            "textPreview": "Item: Disclosure / chase wording (4)\nStatus: Copy unavailable\nReason: Text appears truncated or incomplete and must not be copied."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "b0afc265706f",
+            "textPreview": "Item: Disclosure chase request (4)\nStatus: Copy unavailable\nReason: Text appears truncated or incomplete and must not be copied."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-010",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "ce8e1c2f0bc9",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: Proof Pack 01 — mixed evidence states (fictional)\nHearing: Hearing date "
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "97a11856d18c",
+            "textPreview": "Controlled evidence reference: proof-pack-01\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: Proof Pack 01 — mixed evide"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "25ffafca1df2",
+            "textPreview": "Item: Solicitor copy candidate — review required (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "0e4f1395c371",
+            "textPreview": "Item: Disclosure / chase wording (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fi"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "6634df0862d8",
+            "textPreview": "Item: Disclosure chase request (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fiel"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "66b5c3961ffb",
+            "textPreview": "Item: Solicitor wording candidate (3)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "17e07d55926d",
+            "textPreview": "Item: Solicitor copy candidate — review required (3)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed fr"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "c050842dd516",
+            "textPreview": "Item: Disclosure / chase wording (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fi"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "81d6ccfbdcc2",
+            "textPreview": "Item: Disclosure chase request (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fiel"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-011",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "cfd014f9ee27",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Priya Nguyen — foundation First appearance\nHearing: Hearing date not"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "d0f3167e687d",
+            "textPreview": "Controlled evidence reference: cb-found-2003-nguyen\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: R v Priya Nguyen — f"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0f2cffadad78",
+            "textPreview": "Human review or material gaps flagged on current papers."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "378b1b5cfec1",
+            "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "b7e73a642b50",
+            "textPreview": "CCTV Continuity / provenance"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "83ae2792a931",
+            "textPreview": "Item: Status / attribution wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "4192aaaa11c7",
+            "textPreview": "BWV / footage | not served | log only; clip outstanding"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "215d818a1962",
+            "textPreview": "Item: Solicitor wording candidate (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "06717b6977dc",
+            "textPreview": "CAD / 999 audio / control-room material"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-012",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "f1603da40cc5",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not safely labelled from source\nHearing: Hearing date not saf"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "50ff31dfa114",
+            "textPreview": "Controlled evidence reference: cb-fresh-002-jordan-hale\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: Allegation not s"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "0f2cffadad78",
+            "textPreview": "Human review or material gaps flagged on current papers."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "378b1b5cfec1",
+            "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "6a8cc68fb89a",
+            "textPreview": "Officers attended following a call. There was contact between the defendant and officers. Body-worn video is referred to on the schedule but not attached. Custo"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "8dd5de918907",
+            "textPreview": "Item: Disclosure / chase wording (3)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "fb6d5ebfa9f6",
+            "textPreview": "MG6 / unused schedule clarification"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "215d818a1962",
+            "textPreview": "Item: Solicitor wording candidate (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "2cd5c984c584",
+            "textPreview": "Full custody record / PACE material"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-013",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 5,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "6e8bf9031f70",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: DA-03 Casey Fry — BWV referred / custody extract only\nHearing: Hearing d"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "554a5ed82b4a",
+            "textPreview": "Controlled evidence reference: demo-audit-03-bwv-custody\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: DA-03 Casey Fry"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "770e28345364",
+            "textPreview": "DA-03 Casey Fry — BWV referred / custody extract only"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "378b1b5cfec1",
+            "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "777bd5170ef5",
+            "textPreview": "assault_emergency_worker"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "66b5c3961ffb",
+            "textPreview": "Item: Solicitor wording candidate (3)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "abad8c354569",
+            "textPreview": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "215d818a1962",
+            "textPreview": "Item: Solicitor wording candidate (4)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "602176d2d978",
+            "textPreview": "provisional_check_source"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-014",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 4,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "e096e9e4080e",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: DA-10 Tessa Lane — BWV referred / custody extract\nHearing: Hearing date "
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "bf4a66253dc5",
+            "textPreview": "Controlled evidence reference: demo-audit-10-bwv-public-order\nControlled source context (safely redacted for review)\nClient label: Client\nAllegation: DA-10 Tess"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "765516bc8918",
+            "textPreview": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "777bd5170ef5",
+            "textPreview": "assault_emergency_worker"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "378b1b5cfec1",
+            "textPreview": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "abad8c354569",
+            "textPreview": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "66b5c3961ffb",
+            "textPreview": "Item: Solicitor wording candidate (3)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured f"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "602176d2d978",
+            "textPreview": "provisional_check_source"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-015",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 11,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "c08b720a6d47",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment "
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "12c66807e0f3",
+            "textPreview": "Controlled evidence reference: CASE-01:demo-audit-01-phone-harassment\nControlled source context (safely redacted for review)\nClient label: Riley Moss\nAllegation"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "ba2d2fb978ad",
+            "textPreview": "Client: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997"
+          },
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textHash": "0a160ceb9601",
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textHash": "49a991c43a31",
+            "textPreview": "Item: Disclosure / chase wording (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "ba2d2fb978ad",
+            "textPreview": "Client: Riley Moss\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "3ace51736976",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textHash": "3595cf6f9543",
+            "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "59f792f49944",
+            "textPreview": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "3ace51736976",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Riley Moss). This is early-stage — nothing is final until we have full dis"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "542227bd1736",
+            "textPreview": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "59f792f49944",
+            "textPreview": "Please provide Full phone download (see MG6C/004) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "698e68cd5fac",
+            "textPreview": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "542227bd1736",
+            "textPreview": "Please provide Subscriber / account data (see MG6C/003) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "7019bec82016",
+            "textPreview": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "698e68cd5fac",
+            "textPreview": "Please provide Full message export (see MG6C/001) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "35d39acea9d3",
+            "textPreview": "• Screenshot / message pack — Served\n• Phone extraction source material — Served\n• Device metadata export — Referred only\n• Complainant MG11 (draft) — Served\n• "
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "7019bec82016",
+            "textPreview": "Please provide Final signed MG11 (see MG6C/007) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textHash": "e7a37bb6861d",
+            "textPreview": "• defendant sent the messages\n• Riley Moss sent\n• attribution is proved\n• Do not state the defendant sent messages unless attribution is served and safe.\n• Do n"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "35d39acea9d3",
+            "textPreview": "• Screenshot / message pack — Served\n• Phone extraction source material — Served\n• Device metadata export — Referred only\n• Complainant MG11 (draft) — Served\n• "
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• defendant sent the messages\n• Riley Moss sent\n• attribution is proved\n• Do not state the defendant sent messages unless attribution is served and safe.\n• Do n"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-016",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 11,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "6af6c503d453",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Liam Craft\nAllegation: Being concerned in the supply of a controlled drug of Class A, namel"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "482481212d51",
+            "textPreview": "Controlled evidence reference: CASE-05:demo-audit-05-encro-attribution\nControlled source context (safely redacted for review)\nClient label: Liam Craft\nAllegatio"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "7f5c8e601a1e",
+            "textPreview": "Client: Liam Craft\nAllegation: Being concerned in the supply of a controlled drug of Class A, namely cocaine"
+          },
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textHash": "0a160ceb9601",
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textHash": "49a991c43a31",
+            "textPreview": "Item: Disclosure / chase wording (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "7f5c8e601a1e",
+            "textPreview": "Client: Liam Craft\nAllegation: Being concerned in the supply of a controlled drug of Class A, namely cocaine"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a88b010827f5",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Liam Craft). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textHash": "3595cf6f9543",
+            "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a163890f6cbc",
+            "textPreview": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a88b010827f5",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Liam Craft). This is early-stage — nothing is final until we have full dis"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "87cf63c5816f",
+            "textPreview": "Please provide Handle attribution report (see MG6C/ENC/03) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a163890f6cbc",
+            "textPreview": "Please provide Platform / source extraction (see MG6C/ENC/02) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a9095a1b3d9f",
+            "textPreview": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "87cf63c5816f",
+            "textPreview": "Please provide Handle attribution report (see MG6C/ENC/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "764954526442",
+            "textPreview": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a9095a1b3d9f",
+            "textPreview": "Please provide Subscriber / account data (see MG6C/ENC/04) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "06715005d122",
+            "textPreview": "• Encro message extracts LC/MSG/01 — Served\n• Platform / source extraction — Referred only\n• Handle attribution report — Missing\n• Subscriber / account data — M"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "764954526442",
+            "textPreview": "Please provide Device continuity (see MG6C/ENC/05) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textHash": "a60ab78371bc",
+            "textPreview": "• handle proves defendant\n• NIGHTLINE-77 is Liam Craft\n• phone proves role\n• Do not treat handle or phone reference as proof of the defendant role without serve"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "06715005d122",
+            "textPreview": "• Encro message extracts LC/MSG/01 — Served\n• Platform / source extraction — Referred only\n• Handle attribution report — Missing\n• Subscriber / account data — M"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• handle proves defendant\n• NIGHTLINE-77 is Liam Craft\n• phone proves role\n• Do not treat handle or phone reference as proof of the defendant role without serve"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-017",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 10,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "cbd34aba92cf",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Jordan Hale\nAllegation: Battery, contrary to section 39 of the Criminal Justice Act 1988\nEv"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "9c799c9e7a01",
+            "textPreview": "Controlled evidence reference: CASE-08:demo-audit-69-charge-mg5-hearing\nControlled source context (safely redacted for review)\nClient label: Jordan Hale\nAllegat"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "8350d1ad2b86",
+            "textPreview": "Client: Jordan Hale\nAllegation: Battery, contrary to section 39 of the Criminal Justice Act 1988"
+          },
+          "after": {
+            "gateStatus": "uncertain",
+            "canCopy": true,
+            "textHash": "95265efb52df",
+            "textPreview": "Offence family not safely resolved — treat wording as provisional."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "dc0caedd6d3a",
+            "textPreview": "Item: Court-facing wording (1)\nStatus: Copy unavailable\nReason: Offence family is not safely resolved for free copy of this wording."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "8350d1ad2b86",
+            "textPreview": "Client: Jordan Hale\nAllegation: Battery, contrary to section 39 of the Criminal Justice Act 1988"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "dbb2c229aa66",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Jordan Hale). This is early-stage — nothing is final until we have full di"
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "a242bcb62d1f",
+            "textPreview": "Item: Court-facing application wording (1)\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavail"
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "b3d4c068bc0e",
+            "textPreview": "Please provide corrected charge sheet or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "dbb2c229aa66",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Jordan Hale). This is early-stage — nothing is final until we have full di"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "46117d5a236c",
+            "textPreview": "Please provide updated MG5 or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "b3d4c068bc0e",
+            "textPreview": "Please provide corrected charge sheet or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "4c695f105ddd",
+            "textPreview": "Please provide court listing confirmation or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "46117d5a236c",
+            "textPreview": "Please provide updated MG5 or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "cf9cebec697d",
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Corrected charge sheet — Missing\n• Updated MG5 — Missing\n• Court listing confir"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "4c695f105ddd",
+            "textPreview": "Please provide court listing confirmation or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textHash": "dd4d0ecbf851",
+            "textPreview": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not trea"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "cf9cebec697d",
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Corrected charge sheet — Missing\n• Updated MG5 — Missing\n• Court listing confir"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not trea"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-018",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 11,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "cb92d257e5bd",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Devon Walsh\nAllegation (queued for qualified solicitor review — not free-copy): Theft from "
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "234a2f9f6101",
+            "textPreview": "Controlled evidence reference: CASE-04:demo-audit-02-cctv-stills\nControlled source context (safely redacted for review)\nClient label: Devon Walsh\nAllegation (qu"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textHash": "85417fcf3fb3",
+            "textPreview": "Client: Devon Walsh\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+          },
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textHash": "0a160ceb9601",
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textHash": "49a991c43a31",
+            "textPreview": "Item: Disclosure / chase wording (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          },
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textHash": "85417fcf3fb3",
+            "textPreview": "Client: Devon Walsh\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "16c27434ac47",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full di"
+          },
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textHash": "3595cf6f9543",
+            "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "b98be92638e6",
+            "textPreview": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "16c27434ac47",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Devon Walsh). This is early-stage — nothing is final until we have full di"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "c85bfe0c0831",
+            "textPreview": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "b98be92638e6",
+            "textPreview": "Please provide Master CCTV footage (see MG6C/CCTV/02) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "70a8d6bf3ac6",
+            "textPreview": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "c85bfe0c0831",
+            "textPreview": "Please provide Full CCTV export (see MG6C/CCTV/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "94494e448902",
+            "textPreview": "Please provide CCTV audit trail / source hash (see MG6C/CCTV/05) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "70a8d6bf3ac6",
+            "textPreview": "Please provide CCTV Continuity / provenance (see MG6C/CCTV/04) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "8ccd7ab30c21",
+            "textPreview": "• CCTV still images — Served\n• Full CCTV export — Referred only\n• Master CCTV footage — Missing\n• CCTV Continuity / provenance — Missing\n• CCTV audit trail / so"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "94494e448902",
+            "textPreview": "Please provide CCTV audit trail / source hash (see MG6C/CCTV/05) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textHash": "50fb6ed1260c",
+            "textPreview": "• CCTV proves identity\n• CCTV proves offence\n• positive identification from stills\n• Do not treat stills alone as proof of identity or offence.\n• Do not state \""
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "8ccd7ab30c21",
+            "textPreview": "• CCTV still images — Served\n• Full CCTV export — Referred only\n• Master CCTV footage — Missing\n• CCTV Continuity / provenance — Missing\n• CCTV audit trail / so"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• CCTV proves identity\n• CCTV proves offence\n• positive identification from stills\n• Do not treat stills alone as proof of identity or offence.\n• Do not state \""
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-019",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 10,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "ffdce5bb8142",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Farah Kent\nAllegation: Stalking, contrary to section 2A of the Protection from Harassment A"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "ed9fb7681455",
+            "textPreview": "Controlled evidence reference: CASE-07:demo-audit-44-bad-redaction\nControlled source context (safely redacted for review)\nClient label: Farah Kent\nAllegation: S"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "7fee4a1e3ef4",
+            "textPreview": "Client: Farah Kent\nAllegation: Stalking, contrary to section 2A of the Protection from Harassment Act 1997"
+          },
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textHash": "0a160ceb9601",
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "a51306ee547d",
+            "textPreview": "The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and full police note remain outstanding before"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "7fee4a1e3ef4",
+            "textPreview": "Client: Farah Kent\nAllegation: Stalking, contrary to section 2A of the Protection from Harassment Act 1997"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "e904ed57e9ae",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Farah Kent). This is early-stage — nothing is final until we have full dis"
+          },
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "a51306ee547d",
+            "textPreview": "The defence asks the court to record that redacted papers are served but the unredacted MG11, redaction schedule, and full police note remain outstanding before"
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "b03ff4df4b4b",
+            "textPreview": "Please provide unredacted MG11 or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "e904ed57e9ae",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Farah Kent). This is early-stage — nothing is final until we have full dis"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "efd21216809f",
+            "textPreview": "Please provide redaction schedule or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "b03ff4df4b4b",
+            "textPreview": "Please provide unredacted MG11 or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "88b5f6bfb09a",
+            "textPreview": "Please provide full police note or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "efd21216809f",
+            "textPreview": "Please provide redaction schedule or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "1a2a3f172653",
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Unredacted MG11 — Missing\n• Redaction schedule — Missing\n• Full police note — M"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "88b5f6bfb09a",
+            "textPreview": "Please provide full police note or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textHash": "579e2869fca5",
+            "textPreview": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not rely"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "1a2a3f172653",
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Unredacted MG11 — Missing\n• Redaction schedule — Missing\n• Full police note — M"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not rely"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-020",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 10,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "dd872e9fbdce",
+            "textPreview": "Controlled source context (safely redacted for review)\nClient label: Casey Fry\nAllegation: Assault an emergency worker, contrary to section 1 of the Assaults on"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "13a90feed0ea",
+            "textPreview": "Controlled evidence reference: CASE-02:demo-audit-03-bwv-custody\nControlled source context (safely redacted for review)\nClient label: Casey Fry\nAllegation: Assa"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "e90af810353c",
+            "textPreview": "Client: Casey Fry\nAllegation: Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018"
+          },
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textHash": "0a160ceb9601",
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textHash": "49a991c43a31",
+            "textPreview": "Item: Disclosure / chase wording (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "e90af810353c",
+            "textPreview": "Client: Casey Fry\nAllegation: Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "d95ce55e49e3",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Casey Fry). This is early-stage — nothing is final until we have full disc"
+          },
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textHash": "3595cf6f9543",
+            "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "bf2bb3dbb842",
+            "textPreview": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "d95ce55e49e3",
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Casey Fry). This is early-stage — nothing is final until we have full disc"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "0e99216b364b",
+            "textPreview": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "bf2bb3dbb842",
+            "textPreview": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a4f493b7b5e5",
+            "textPreview": "Please provide Interview audio / transcript (see MG6C/013) or confirm in writing why it is not available."
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "0e99216b364b",
+            "textPreview": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "573b2a931a36",
+            "textPreview": "• Body-worn video (BWV) — Referred only\n• Officer statement — Served\n• Custody record extract — Served\n• Full custody record — Missing\n• Interview audio — Missi"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "a4f493b7b5e5",
+            "textPreview": "Please provide Interview audio / transcript (see MG6C/013) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textHash": "898b3adccfc1",
+            "textPreview": "• BWV shows\n• BWV confirms\n• PACE safeguards were followed\n• Do not rely on full BWV sequence unless export is served.\n• Assumed position may conflict with inte"
+          },
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textHash": "573b2a931a36",
+            "textPreview": "• Body-worn video (BWV) — Referred only\n• Officer statement — Served\n• Custody record extract — Served\n• Full custody record — Missing\n• Interview audio — Missi"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• BWV shows\n• BWV confirms\n• PACE safeguards were followed\n• Do not rely on full BWV sequence unless export is served.\n• Assumed position may conflict with inte"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-021",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 2,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "6e764a4f237a",
+            "textPreview": "Controlled evidence reference: SYN-TRUNC-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's own"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "3ebb722dab57",
+            "textPreview": "Item: Status / attribution wording (1)\nStatus: Copy unavailable\nReason: Text appears truncated or incomplete and must not be copied."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "78a8ba3aa7ff",
+            "textPreview": "Item: Evidence-status wording (1)\nStatus: Copy unavailable\nReason: Text appears truncated or incomplete and must not be copied."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-022",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "da24fa57d2a6",
+            "textPreview": "Controlled evidence reference: SYN-TRUNC-TITLE-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-023",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "14e0551b04c5",
+            "textPreview": "Controlled evidence reference: SYN-OMIT-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's own "
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-024",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "75446f362c74",
+            "textPreview": "Controlled evidence reference: SYN-RR-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's own re"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-025",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 2,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "53b660a3f24c",
+            "textPreview": "Controlled evidence reference: SYN-RR-PLACEHOLDER-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the pr"
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "c9765b934902",
+            "textPreview": "Item: Disclosure / chase wording (1)\nStatus: Copy unavailable\nReason: Unresolved placeholder text must not be copied."
+          },
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "13223acf7263",
+            "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Unresolved placeholder text must not be copied."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-026",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "c53e6011baa8",
+            "textPreview": "Controlled evidence reference: SYN-HEAR-UNKNOWN\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-027",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "bb5ccab496f6",
+            "textPreview": "Controlled evidence reference: SYN-HEAR-SAME-DAY\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe'"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-028",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "35a96762d578",
+            "textPreview": "Controlled evidence reference: SYN-HEAR-PASSED\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's "
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-029",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "39a935364af4",
+            "textPreview": "Controlled evidence reference: SYN-API-BLOCK-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-030",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 3,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "a3e52bfbbf30",
+            "textPreview": "Controlled evidence reference: SYN-EXPORT-FAMILY-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the pro"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "ef6297d3e3be",
+            "textPreview": "Item: Cross-family containment probe (1)\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+          },
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textHash": "0a160ceb9601",
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "export_preview",
+          "before": null,
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textPreview": "Item: Cross-family containment probe (1)\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-031",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 3,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "2d86a29963ce",
+            "textPreview": "Controlled evidence reference: SYN-COPY-SAFE-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textHash": "da0a8bd12c03",
+            "textPreview": "Attribution remains outstanding on the served screenshots."
+          },
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textHash": "0a160ceb9601",
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "copy_preview",
+          "before": null,
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textPreview": "Attribution remains outstanding on the served screenshots."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-032",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 3,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "d1a220454c39",
+            "textPreview": "Controlled evidence reference: SYN-FAM-LEAK-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe's "
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textHash": "ef6297d3e3be",
+            "textPreview": "Item: Cross-family containment probe (1)\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+          },
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textHash": "0a160ceb9601",
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "export_preview",
+          "before": null,
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textPreview": "Item: Cross-family containment probe (1)\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-033",
+      "reviewEligibility": "substantive",
+      "isNewInV4": false,
+      "changeCount": 1,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "0f3581429527",
+            "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+          },
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textHash": "f933a8efb5ab",
+            "textPreview": "Controlled evidence reference: SYN-PROV-TITLE-01\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe'"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-034",
+      "reviewEligibility": "substantive",
+      "isNewInV4": true,
+      "changeCount": 11,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": null,
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textPreview": "Controlled evidence reference: CASE-03:demo-audit-27-custody-pace-missing\nControlled source context (safely redacted for review)\nClient label: Sam Okonkwo\nAlleg"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": null,
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Client: Sam Okonkwo\nAllegation: Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": null,
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Sam Okonkwo). This is early-stage — nothing is final until we have full di"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "• Body-worn video (BWV) — Referred only\n• Officer statement — Served\n• Custody record extract — Served\n• Full custody record — Missing\n• Interview audio — Missi"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• full video proves\n• Assumed position may conflict with interview or served evidence."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-035",
+      "reviewEligibility": "substantive",
+      "isNewInV4": true,
+      "changeCount": 11,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": null,
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textPreview": "Controlled evidence reference: CASE-06:demo-audit-04-co-def-interview\nControlled source context (safely redacted for review)\nClient label: Morgan Reid\nAllegatio"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": null,
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": null,
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textPreview": "Client: Morgan Reid\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": null,
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Morgan Reid). This is early-stage — nothing is final until we have full di"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Target defendant interview summary (see MG6C/INT/02) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Target defendant interview audio (see MG6C/INT/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Target defendant interview transcript (see MG6C/INT/04) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Co-defendant attribution / continuity (see MG6C/CO/01) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "• Officer statement — Served\n• Co-defendant interview summary — Referred only\n• Target defendant interview summary — Missing\n• Co-defendant attribution / contin"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• Morgan Reid admitted\n• defendant's interview shows\n• import co-defendant interview\n• Do not import co-defendant interview into the target defendant account.\n•"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-036",
+      "reviewEligibility": "substantive",
+      "isNewInV4": true,
+      "changeCount": 10,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": null,
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textPreview": "Controlled evidence reference: CASE-09:demo-audit-32-restraining-order-breach\nControlled source context (safely redacted for review)\nClient label: Lena Ortiz\nAl"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": null,
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Client: Lena Ortiz\nAllegation: Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": null,
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textPreview": "The defence asks the court to record that sealed order and service-proof material remain outstanding on the current papers."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Lena Ortiz). This is early-stage — nothing is final until we have full dis"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide full sealed restraining order or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide service proof or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide breach location map or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Full sealed restraining order — Missing\n• Service proof — Missing\n• Breach loca"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not trea"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-037",
+      "reviewEligibility": "substantive",
+      "isNewInV4": true,
+      "changeCount": 10,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": null,
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textPreview": "Controlled evidence reference: CASE-10:demo-audit-41-translated-messages\nControlled source context (safely redacted for review)\nClient label: Aiden Cole\nAllegat"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": null,
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Client: Aiden Cole\nAllegation: Harassment, contrary to section 2 of the Protection from Harassment Act 1997"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": null,
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textPreview": "The defence asks the court to record that certified translations, interpreter notes, and the original-language export remain outstanding, so any message interpr"
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Aiden Cole). This is early-stage — nothing is final until we have full dis"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide certified translation or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide interpreter contemporaneous note or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide original language export or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Certified translation — Missing\n• Interpreter contemporaneous note — Missing\n• "
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not stat"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-038",
+      "reviewEligibility": "substantive",
+      "isNewInV4": true,
+      "changeCount": 11,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": null,
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textPreview": "Controlled evidence reference: CASE-11:demo-audit-22-youth-interview\nControlled source context (safely redacted for review)\nClient label: Kian Doyle (youth — 17"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": null,
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": null,
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textPreview": "Client: Kian Doyle (youth — 17 years)\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": null,
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Kian Doyle (youth — 17 years)). This is early-stage — nothing is final unt"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Full YJS pre-sentence report (see MG6C/YTH/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Vulnerability assessment (see MG6C/YTH/04) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Youth interview audio (see MG6C/YTH/05) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Appropriate adult continuity (see MG6C/YTH/06) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "• Officer statement — Served\n• YJS report extract — Served\n• Full YJS pre-sentence report — Missing\n• Vulnerability assessment — Missing\n• Youth interview audio"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• youth guilt proved\n• full interview shows\n• Do not import adult-court assumptions — youth interview and YJS material remain provisional.\n• Do not state \"inter"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-039",
+      "reviewEligibility": "substantive",
+      "isNewInV4": true,
+      "changeCount": 11,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": null,
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textPreview": "Controlled evidence reference: CASE-12:demo-audit-21-historic-sexual-abe\nControlled source context (safely redacted for review)\nClient label: Daniel Pike\nAllega"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": null,
+          "after": {
+            "gateStatus": "uncertain",
+            "canCopy": true,
+            "textPreview": "Offence family not safely resolved — treat wording as provisional."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Client: Daniel Pike\nAllegation: Sexual assault, contrary to section 3 of the Sexual Offences Act 2003"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": null,
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Daniel Pike). This is early-stage — nothing is final until we have full di"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide ABE interview video (see MG6C/SX/02) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide ABE interview transcript (see MG6C/SX/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Final signed MG11 (see MG6C/SX/05) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Third-party counselling notes (see MG6C/SX/04) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "• ABE interview video — Referred only\n• Complainant MG11 (draft) — Served\n• ABE interview transcript — Missing\n• Third-party counselling notes — Missing\n• Final"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• ABE proves guilt\n• complainant proved\n• Do not rely on ABE or complainant account as final proof without served interview material.\n• Do not summarise ABE as "
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-040",
+      "reviewEligibility": "substantive",
+      "isNewInV4": true,
+      "changeCount": 10,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": null,
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textPreview": "Controlled evidence reference: CASE-13:demo-audit-50-lab-continuity-conflict\nControlled source context (safely redacted for review)\nClient label: Holly Reed\nAll"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": null,
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Client: Holly Reed\nAllegation: Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": null,
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textPreview": "The defence asks the court to record that lab intake, continuity chain, and SFR/drugs analysis material remain outstanding before the exhibit position is fixed."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Holly Reed). This is early-stage — nothing is final until we have full dis"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide lab intake sheet or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide full continuity chain or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide sfr drugs analysis or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Lab intake sheet — Missing\n• Full continuity chain — Missing\n• Sfr drugs analys"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not rely"
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-041",
+      "reviewEligibility": "substantive",
+      "isNewInV4": true,
+      "changeCount": 10,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": null,
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textPreview": "Controlled evidence reference: CASE-14:demo-audit-16-fraud-bank-statements\nControlled source context (safely redacted for review)\nClient label: Isla Grant\nAlleg"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": null,
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Client: Isla Grant\nAllegation: Fraud by false representation, contrary to section 1 of the Fraud Act 2006"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": null,
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textPreview": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Isla Grant). This is early-stage — nothing is final until we have full dis"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Full transaction export (see MG6C/FRD/02) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Source banking records (see MG6C/FRD/03) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Beneficiary tracing report (see MG6C/FRD/04) or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "• Bank statement summaries — Served\n• Officer statement — Served\n• Beneficiary tracing report — Referred only\n• Full transaction export — Missing\n• Source banki"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• fraud proved from summaries alone\n• Do not treat bank summaries alone as proof of fraud or account attribution."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-042",
+      "reviewEligibility": "substantive",
+      "isNewInV4": true,
+      "changeCount": 11,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": null,
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textPreview": "Controlled evidence reference: CASE-15:demo-audit-18-motoring-sjp-thin\nControlled source context (safely redacted for review)\nClient label: Ella Shaw\nAllegation"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": null,
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Client: Ella Shaw\nAllegation: Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988"
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": null,
+          "after": {
+            "gateStatus": "ok",
+            "canCopy": true,
+            "textPreview": "The defence asks the court to record that the s172 notice/requirement to identify the driver, keeper position, and service/nomination records require confirmati"
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Ella Shaw). This is early-stage — nothing is final until we have full disc"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Notice / requirement to identify driver or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Proof of service / posting or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Keeper / DVLA record or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide Nomination / response record or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "• Notice / requirement to identify driver — Missing\n• Proof of service / posting — Missing\n• Keeper / DVLA record — Missing\n• Nomination / response record — Mis"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• Do not treat device summary as proof of reliability\n• Do not treat procedure summary alone as proof of device reliability or identity."
+          }
+        }
+      ]
+    },
+    {
+      "goldId": "GOLD-11-043",
+      "reviewEligibility": "substantive",
+      "isNewInV4": true,
+      "changeCount": 10,
+      "changes": [
+        {
+          "surface": "source_context",
+          "before": null,
+          "after": {
+            "gateStatus": "context",
+            "canCopy": false,
+            "textPreview": "Controlled evidence reference: CASE-16:demo-audit-49-anpr-trap\nControlled source context (safely redacted for review)\nClient label: Maya Singh\nAllegation (queue"
+          }
+        },
+        {
+          "surface": "offence_family",
+          "before": null,
+          "after": {
+            "gateStatus": "resolved",
+            "canCopy": true,
+            "textPreview": "Offence family resolved for this matter."
+          }
+        },
+        {
+          "surface": "case_header",
+          "before": null,
+          "after": {
+            "gateStatus": "qualified_solicitor_review_queue",
+            "canCopy": false,
+            "textPreview": "Client: Maya Singh\nAllegation: Queued for qualified solicitor review — legally sensitive wording is not available for free copy/export."
+          }
+        },
+        {
+          "surface": "court_line",
+          "before": null,
+          "after": {
+            "gateStatus": "integrity_blocked",
+            "canCopy": false,
+            "textPreview": "Item: Evidence-status wording (1)\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked."
+          }
+        },
+        {
+          "surface": "client_summary",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Maya Singh). This is early-stage — nothing is final until we have full dis"
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide anpr image export or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide national anpr audit trail or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "cps_chase_draft",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "Please provide vehicle keeper response or confirm in writing why it is not available."
+          }
+        },
+        {
+          "surface": "truth_map",
+          "before": null,
+          "after": {
+            "gateStatus": "display",
+            "canCopy": true,
+            "textPreview": "• Witness MG11 — Not safely confirmed\n• Custody extract — Not safely confirmed\n• Anpr image export — Missing\n• National anpr audit trail — Missing\n• Vehicle kee"
+          }
+        },
+        {
+          "surface": "do_not_overstate",
+          "before": null,
+          "after": {
+            "gateStatus": "warning",
+            "canCopy": false,
+            "textPreview": "• Do not treat incomplete or blocked proof wording as a concluded outcome. Check the source papers before relying on identity or offence findings.\n• Do not trea"
+          }
+        }
+      ]
+    }
+  ]
+}

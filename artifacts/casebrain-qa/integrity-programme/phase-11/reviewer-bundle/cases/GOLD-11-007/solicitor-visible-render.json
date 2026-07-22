@@ -1,0 +1,97 @@
+{
+  "goldId": "GOLD-11-007",
+  "def": {
+    "goldId": "GOLD-11-007",
+    "stratum": "blocked_containment",
+    "sourceKind": "phase9_pack_seed",
+    "fixtureId": "cb-fresh-001-taylor-brookes",
+    "selectionReason": "Phase 9 possible_fp_overblock — containment blocks present",
+    "reviewFocus": "Is fail-closed over-blocking safe solicitor wording? (FP). Blocked ≠ repaired."
+  },
+  "surfaces": [
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 4 · Referred 3 · Missing 1 · Incomplete 0 · Not safely confirmed 0",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence-family resolution",
+      "solicitorVisibleText": "Resolved family: harassment_digital\nAudit family seed: harassment_digital",
+      "gateStatus": "resolved",
+      "canCopy": true
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase brief (solicitor list)",
+      "solicitorVisibleText": "Total 1\n• Screenshot / message pack",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "2026-06-29T17:03:07.431Z",
+      "gateStatus": "ok",
+      "canCopy": true
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "cb-fresh-001-taylor-brookes",
+      "gateStatus": "ok",
+      "canCopy": true
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "CaseBrain H5 presentation builders (no Brain 1 mutation)",
+      "gateStatus": "ok",
+      "canCopy": true
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "Needs review before relying",
+      "gateStatus": "ok",
+      "canCopy": true
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "Human review or material gaps flagged on current papers.",
+      "gateStatus": "ok",
+      "canCopy": true
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview (sample line)",
+      "solicitorVisibleText": "MG6 / unused schedule clarification",
+      "gateStatus": "ok",
+      "canCopy": true
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family leak probe (copy)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — family containment blocked probe.\nBanner: Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "central_surface_sample",
+      "label": "Central surface sample (overview_safe_wording_card)",
+      "solicitorVisibleText": "2026-06-29T17:03:07.431Z",
+      "gateStatus": "ok",
+      "canCopy": true
+    }
+  ]
+}

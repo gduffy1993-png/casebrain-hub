@@ -1,0 +1,69 @@
+{
+  "goldId": "GOLD-11-020",
+  "def": {
+    "goldId": "GOLD-11-020",
+    "stratum": "composed_prose",
+    "sourceKind": "gold_manual_pack",
+    "fixtureId": "CASE-02:demo-audit-03-bwv-custody",
+    "selectionReason": "Gold pack BWV/custody composed surfaces",
+    "reviewFocus": "Client/court composed lines word-for-word."
+  },
+  "surfaces": [
+    {
+      "surface": "case_header",
+      "label": "Case header (solicitor view)",
+      "solicitorVisibleText": "Client: Casey Fry\nAllegation: Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line (copy preview)",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.\nUnderlying court line was gated (blocked ≠ repaired):\nThe defence asks the court to record per MG6C that custody extract is served, BWV is referred only, and full custody record and interview material remain outstanding.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary preview",
+      "solicitorVisibleText": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Casey Fry). This is early-stage — nothing is final until we have full disclosure and your instructions. A custody record extract is on the papers, but the full body-worn video export, complete custody record, and interview/PACE material are still outstanding.\n\n[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Full BWV export",
+      "solicitorVisibleText": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Full custody record",
+      "solicitorVisibleText": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Interview audio / transcript",
+      "solicitorVisibleText": "Please provide Interview audio / transcript (see MG6C/013) or confirm in writing why it is not available.",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map (Overview)",
+      "solicitorVisibleText": "• Body-worn video (BWV) — referred_only\n• Officer statement — served\n• Custody record extract — served\n• Full custody record — missing\n• Interview audio — missing\n• Interview transcript — missing\n• PACE safeguards detail — missing",
+      "gateStatus": "display",
+      "canCopy": true
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• BWV shows\n• BWV confirms\n• PACE safeguards were followed\n• Do not rely on full BWV sequence unless export is served.\n• Assumed position may conflict with interview or served evidence.\n• Do not state \"interview confirms\" — Interview material is not fully served",
+      "gateStatus": "warning",
+      "canCopy": false
+    }
+  ]
+}

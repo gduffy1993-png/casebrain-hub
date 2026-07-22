@@ -1,0 +1,312 @@
+{
+  "generatedAt": "2026-07-22T12:08:08.387Z",
+  "freezeHash": "f41a0fc688bee60f6ffd32a4a24d45d69203f799931cd7142f603dca461c38fd",
+  "separationRule": "AUTOMATED ONLY — excluded from blinded reviewer bundle",
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "parentV5FreezeHash": "3e2479c86769e3cd5342903997eaa548cfdc98a8339a34d0890bfc0178536f5d",
+  "predictions": [
+    {
+      "goldId": "GOLD-11-001",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-001.md"
+    },
+    {
+      "goldId": "GOLD-11-002",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-002.md"
+    },
+    {
+      "goldId": "GOLD-11-003",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-003.md"
+    },
+    {
+      "goldId": "GOLD-11-004",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-004.md"
+    },
+    {
+      "goldId": "GOLD-11-005",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-005.md"
+    },
+    {
+      "goldId": "GOLD-11-006",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-006.md"
+    },
+    {
+      "goldId": "GOLD-11-007",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-007.md"
+    },
+    {
+      "goldId": "GOLD-11-008",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-008.md"
+    },
+    {
+      "goldId": "GOLD-11-009",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-009.md"
+    },
+    {
+      "goldId": "GOLD-11-010",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-010.md"
+    },
+    {
+      "goldId": "GOLD-11-011",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-011.md"
+    },
+    {
+      "goldId": "GOLD-11-012",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-012.md"
+    },
+    {
+      "goldId": "GOLD-11-013",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-013.md"
+    },
+    {
+      "goldId": "GOLD-11-014",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-014.md"
+    },
+    {
+      "goldId": "GOLD-11-015",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-015.md"
+    },
+    {
+      "goldId": "GOLD-11-016",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-016.md"
+    },
+    {
+      "goldId": "GOLD-11-017",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-017.md"
+    },
+    {
+      "goldId": "GOLD-11-018",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-018.md"
+    },
+    {
+      "goldId": "GOLD-11-019",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-019.md"
+    },
+    {
+      "goldId": "GOLD-11-020",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-020.md"
+    },
+    {
+      "goldId": "GOLD-11-021",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-021.md"
+    },
+    {
+      "goldId": "GOLD-11-022",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-022.md"
+    },
+    {
+      "goldId": "GOLD-11-023",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-023.md"
+    },
+    {
+      "goldId": "GOLD-11-024",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-024.md"
+    },
+    {
+      "goldId": "GOLD-11-025",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-025.md"
+    },
+    {
+      "goldId": "GOLD-11-026",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-026.md"
+    },
+    {
+      "goldId": "GOLD-11-027",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-027.md"
+    },
+    {
+      "goldId": "GOLD-11-028",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-028.md"
+    },
+    {
+      "goldId": "GOLD-11-029",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-029.md"
+    },
+    {
+      "goldId": "GOLD-11-030",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-030.md"
+    },
+    {
+      "goldId": "GOLD-11-031",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-031.md"
+    },
+    {
+      "goldId": "GOLD-11-032",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-032.md"
+    },
+    {
+      "goldId": "GOLD-11-033",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-033.md"
+    },
+    {
+      "goldId": "GOLD-11-034",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-034.md"
+    },
+    {
+      "goldId": "GOLD-11-035",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-035.md"
+    },
+    {
+      "goldId": "GOLD-11-036",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-036.md"
+    },
+    {
+      "goldId": "GOLD-11-037",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-037.md"
+    },
+    {
+      "goldId": "GOLD-11-038",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-038.md"
+    },
+    {
+      "goldId": "GOLD-11-039",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-039.md"
+    },
+    {
+      "goldId": "GOLD-11-040",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-040.md"
+    },
+    {
+      "goldId": "GOLD-11-041",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-041.md"
+    },
+    {
+      "goldId": "GOLD-11-042",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-042.md"
+    },
+    {
+      "goldId": "GOLD-11-043",
+      "reviewEligibility": "substantive",
+      "predictedClassification": "blocked_or_review",
+      "predictedFpFnHypothesis": "not_for_blinded_bundle",
+      "evidenceReference": "phase-11-remediation/v5/rendered/GOLD-11-043.md"
+    }
+  ]
+}

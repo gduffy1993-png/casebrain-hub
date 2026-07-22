@@ -1,4 +1,10 @@
 import type { SendabilityLevel, SourceStateKind } from "@/lib/criminal/matter-confidence/matter-confidence-types";
+import {
+  applyIntegrityToCopyGate,
+  evaluateSentenceIntegrityOnly,
+  evaluateTextIntegrity,
+  type SolicitorIntegrityResult,
+} from "@/lib/criminal/solicitor-output-integrity";
 
 export type CopyKind = "cps_chase" | "court_line" | "client_summary";
 
@@ -8,6 +14,11 @@ export type CopySafeInput = {
   sourceState: SourceStateKind | null;
   sourceLabel?: string | null;
   matterLevel?: SendabilityLevel;
+  /** Optional precomputed integrity; otherwise text is assessed against allegation/hay. */
+  integrity?: SolicitorIntegrityResult | null;
+  allegation?: string | null;
+  bundleHay?: string | null;
+  chargeWording?: string | null;
 };
 
 export type CopySafeResult = {
@@ -97,17 +108,34 @@ export function buildCopySafeResult(input: CopySafeInput): CopySafeResult {
   }
 
   const effectiveSendability: SendabilityLevel = blockedReason ? "blocked" : sendability;
-  const canCopy = effectiveSendability !== "blocked";
+  let canCopy = effectiveSendability !== "blocked";
+  let reason = blockedReason;
+
+  const integrity =
+    input.integrity ??
+    (input.allegation || input.bundleHay || input.chargeWording
+      ? evaluateTextIntegrity({
+          text: input.text,
+          allegation: input.allegation,
+          bundleHay: input.bundleHay,
+          chargeWording: input.chargeWording,
+        })
+      : evaluateSentenceIntegrityOnly(input.text));
+  const gated = applyIntegrityToCopyGate(canCopy, reason, integrity);
+  canCopy = gated.canCopy;
+  reason = gated.blockedReason;
+  const finalSendability: SendabilityLevel = !canCopy ? "blocked" : effectiveSendability;
+
   const footer = buildFooter(input.kind, input.sourceState, input.sourceLabel);
   const body = input.text.trim();
   const textForClipboard = canCopy ? `${body}\n\n${footer}` : body;
 
   return {
-    sendability: effectiveSendability,
-    sendabilityLabel: SENDABILITY_LABELS[effectiveSendability],
+    sendability: finalSendability,
+    sendabilityLabel: SENDABILITY_LABELS[finalSendability],
     canCopy,
     footer,
     textForClipboard,
-    blockedReason,
+    blockedReason: reason,
   };
 }

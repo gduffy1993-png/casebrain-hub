@@ -1,0 +1,14 @@
+{
+  "goldId": "GOLD-11-032",
+  "surfaces": [
+    {
+      "surface": "export_preview",
+      "label": "Export preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": false,
+      "sourceEvidenceNote": "Controlled synthetic probe — no client bundle on disk."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-022",
+  "changes": [
+    {
+      "surface": "evidence_title",
+      "before": {
+        "gateStatus": "ok",
+        "canCopy": false,
+        "textHash": "08ae068c97e7",
+        "textPreview": "WhatsApp extract shows defendant said…"
+      },
+      "after": {
+        "gateStatus": "blocked_title",
+        "canCopy": false,
+        "textHash": "f3fb7c4a1613",
+        "textPreview": "Evidence title withheld — incomplete quotation or truncated excerpt cannot be shown as a title. Check the source papers."
+      }
+    }
+  ]
+}

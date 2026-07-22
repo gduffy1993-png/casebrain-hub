@@ -1,0 +1,26 @@
+{
+  "goldId": "GOLD-11-027",
+  "reviewEligibility": "substantive",
+  "isNewInV4": false,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "v4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "changes": [
+    {
+      "surface": "source_context",
+      "before": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "0f3581429527",
+        "textPreview": "INSUFFICIENT_SOURCE_CONTEXT\nControlled synthetic integrity probe — no controlled client bundle or truth-key is attached to this gold id.\nThis case is excluded f"
+      },
+      "after": {
+        "gateStatus": "context",
+        "canCopy": false,
+        "textHash": "bb5ccab496f6",
+        "textPreview": "Controlled evidence reference: SYN-HEAR-SAME-DAY\nControlled synthetic technical control — independent expected-truth source (test-harness design, not the probe'"
+      }
+    }
+  ]
+}

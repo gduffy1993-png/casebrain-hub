@@ -56,6 +56,7 @@ import {
   displaySolicitorStage,
   resolveSolicitorHearingDateIso,
 } from "@/lib/criminal/solicitor-hearing-display";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { solicitorLinesNearlyEqual } from "@/lib/criminal/solicitor-display-dedupe";
 import { safeSolicitorCaseTitle } from "@/lib/criminal/dev-ref-scrub";
 import {
@@ -672,13 +673,23 @@ export function DisclosureChase({
     ? displayPilotStripCourt(cleanPilotCourtHeaderCell(headerMeta.court)) ||
       cleanPilotCourtHeaderCell(headerMeta.court)
     : headerMeta.court?.trim() || "Court not safely extracted";
-  const hearingDisplay = pilotMode
-    ? displayPilotStripHearing(
-        cleanPilotHearingHeaderCell(headerLoading ? "…" : headerMeta.nextHearing, hearingDateIso),
-      ) || cleanPilotHearingHeaderCell(headerLoading ? "…" : headerMeta.nextHearing, hearingDateIso)
-    : headerLoading && /not safely extracted/i.test(headerMeta.nextHearing)
-      ? "…"
-      : headerMeta.nextHearing;
+  const hearingResolved = resolveSolicitorHearingStatus({
+    bundleNextHearingIso: hearingDateIso,
+    snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+    nextHearingRaw: headerMeta.nextHearing,
+    bundleHay: [
+      bundleSource?.caseMetadata?.nextHearingRaw,
+      bundleSource?.frontMatterScan,
+    ]
+      .filter(Boolean)
+      .join("\n"),
+  });
+  const hearingDisplay = (() => {
+    if (headerLoading && /not safely extracted/i.test(headerMeta.nextHearing)) return "…";
+    const statusLine = hearingResolved.statusLabel;
+    if (!pilotMode) return statusLine;
+    return displayPilotStripHearing(statusLine) || statusLine;
+  })();
   const metadataNote = pilotDisplayMetadataNote(headerMeta.metadataNote);
 
   const positionStatus = useMemo(() => {

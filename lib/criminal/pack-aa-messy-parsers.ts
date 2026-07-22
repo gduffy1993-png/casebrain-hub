@@ -479,7 +479,7 @@ export function buildPackAAStrictMg6DisclosureAnswerWithMeta(
   const draftDisplay = draft.map(packAAQ2DisplayLine);
 
   const servedBody = servedDisplay.length
-    ? servedDisplay.join(" | ")
+    ? servedDisplay.map((l) => l).join("; ")
     : PACK_AA_Q2_EMPTY_SERVED_FALLBACK;
 
   let servedSuppressedReason = "none";
@@ -497,12 +497,12 @@ export function buildPackAAStrictMg6DisclosureAnswerWithMeta(
     `- Served / apparently served: ${servedBody}`,
     `- Outstanding / awaited / not served / to follow: ${
       outstandingDisplay.length
-        ? outstandingDisplay.join(" | ")
+        ? outstandingDisplay.join("; ")
         : "No explicit outstanding row safely extracted from the MG6 disclosure schedule."
     }`,
     `- Draft / partial / summary-only / status review: ${
       draftDisplay.length
-        ? draftDisplay.join(" | ")
+        ? draftDisplay.join("; ")
         : "No draft, partial, or summary-only MG6 rows safely separated."
     }`,
     "- Reliability warning: The MG6/disclosure material contains old/corrected/summary-only rows, so solicitor review is required.",
@@ -838,7 +838,7 @@ export function buildPackAAStrictProsecutionProveAnswerWithMeta(
   const anchors = collectPackAAQ7Anchors(head, family);
   if (anchors.length) {
     lines.push(
-      `- On these papers, proof also depends on: ${anchors.join(" | ")}. Those links remain live and should not be assumed from schedule presence alone.`
+      `- On these papers, proof also depends on: ${anchors.join("; ")}. Those links remain live and should not be assumed from schedule presence alone.`
     );
   }
 

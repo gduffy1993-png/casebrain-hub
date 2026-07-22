@@ -1,0 +1,96 @@
+{
+  "goldId": "GOLD-11-014",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled source context (safely redacted for review)\nClient label: Client\nAllegation: DA-10 Tessa Lane — BWV referred / custody extract\nHearing: Hearing date not safely extracted\nEvidence states:\n• Charge sheet — Served\n• Officer MG11 — Incomplete\n• Custody record extract — Incomplete\n• Body-worn video — Referred only\n• Full custody record — Missing\n• Interview audio — Missing\n• PACE safeguards detail — Missing\nChase / outstanding items:\n• Full BWV export\n• Full custody record\n• Interview audio\n• PACE safeguards detail",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key only; full output unavailable (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 3 · Referred 1 · Missing 3 · Incomplete 0 · Not safely confirmed 2",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key only; full output unavailable (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key only; full output unavailable (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key only; full output unavailable (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase list",
+      "solicitorVisibleText": "Total 3\n• Body-worn video (BWV)\n• Interview recording / transcript\n• Officer MG11",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key only; full output unavailable (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Item: Solicitor wording candidate (1)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key only; full output unavailable (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Item: Solicitor wording candidate (2)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key only; full output unavailable (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "Item: Solicitor wording candidate (3)\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key only; full output unavailable (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family containment probe",
+      "solicitorVisibleText": "Item: Cross-family containment probe (1)\nStatus: Copy unavailable\nReason: Wrong offence-family wording was blocked.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key only; full output unavailable (controlled redacted review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

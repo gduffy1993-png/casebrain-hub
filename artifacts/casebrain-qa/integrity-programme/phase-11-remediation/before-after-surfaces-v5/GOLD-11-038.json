@@ -1,0 +1,87 @@
+{
+  "goldId": "GOLD-11-038",
+  "reviewEligibility": "substantive",
+  "isNewInV5": false,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "parentV4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "v5FreezeHash": "3e2479c86769e3cd5342903997eaa548cfdc98a8339a34d0890bfc0178536f5d",
+  "changes": [
+    {
+      "surface": "client_summary",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "111168003c1e",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Kian Doyle (youth — 17 years)). This is early-stage — nothing is final unt"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "511cd0ac2b54",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Kian Doyle  (youth — 17 years). This is early-stage — nothing is final until we have"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "52f23ff8cd8b",
+        "textPreview": "Please provide Full YJS pre-sentence report (see MG6C/YTH/03) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "52f23ff8cd8b",
+        "textPreview": "Please provide Full YJS pre-sentence report (see MG6C/YTH/03) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "2e17e116af51",
+        "textPreview": "Please provide Vulnerability assessment (see MG6C/YTH/04) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "2e17e116af51",
+        "textPreview": "Please provide Vulnerability assessment (see MG6C/YTH/04) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "5bce88a1076c",
+        "textPreview": "Please provide Youth interview audio (see MG6C/YTH/05) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "5bce88a1076c",
+        "textPreview": "Please provide Youth interview audio (see MG6C/YTH/05) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "f8dc8d2eb9e5",
+        "textPreview": "Please provide Appropriate adult continuity (see MG6C/YTH/06) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "f8dc8d2eb9e5",
+        "textPreview": "Please provide Appropriate adult continuity (see MG6C/YTH/06) or confirm in writing why it is not available."
+      }
+    }
+  ]
+}

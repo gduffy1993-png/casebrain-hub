@@ -1,0 +1,20 @@
+{
+  "goldId": "GOLD-11-030",
+  "changes": [
+    {
+      "surface": "export_preview",
+      "before": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "b4cf970d5b53",
+        "textPreview": "EXPORT BLOCKED — Solicitor review required — output integrity check failed.\n(Wrong-family / unsupported material must not leave the system.)"
+      },
+      "after": {
+        "gateStatus": "integrity_blocked",
+        "canCopy": false,
+        "textHash": "fa6639659e0c",
+        "textPreview": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed."
+      }
+    }
+  ]
+}

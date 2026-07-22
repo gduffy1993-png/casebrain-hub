@@ -1,0 +1,116 @@
+{
+  "goldId": "GOLD-11-039",
+  "reviewEligibility": "substantive",
+  "surfaces": [
+    {
+      "surface": "source_context",
+      "label": "Controlled source context",
+      "solicitorVisibleText": "Controlled evidence reference: CASE-12:demo-audit-21-historic-sexual-abe\nControlled source context (safely redacted for review)\nClient label: Daniel Pike\nAllegation: Sexual assault, contrary to section 3 of the Sexual Offences Act 2003\nEvidence states:\n• ABE interview video — Referred only\n• Complainant MG11 (draft) — Served\n• ABE interview transcript — Missing\n• Third-party counselling notes — Missing\n• Final signed MG11 — Missing\nChase / outstanding items:\n• ABE interview video\n• ABE interview transcript\n• Final signed MG11\n• Third-party counselling notes",
+      "gateStatus": "context",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family not safely resolved — treat wording as provisional.",
+      "gateStatus": "uncertain",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "case_header",
+      "label": "Case header",
+      "solicitorVisibleText": "Client: Daniel Pike\nAllegation: Sexual assault, contrary to section 3 of the Sexual Offences Act 2003",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "court_line",
+      "label": "Court line",
+      "solicitorVisibleText": "Item: Disclosure chase request (1)\nStatus: Copy unavailable\nReason: Legally sensitive formula — queued for qualified solicitor review.",
+      "gateStatus": "qualified_solicitor_review_queue",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "client_summary",
+      "label": "Client-safe summary",
+      "solicitorVisibleText": "Item: Client-safe summary wording\nStatus: Copy unavailable\nReason: Text has an unclosed bracket (possible truncated or duplicated wording) and must not be copied until corrected.",
+      "gateStatus": "boundary_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — ABE interview video",
+      "solicitorVisibleText": "Item: CPS chase — ABE interview video\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — ABE interview transcript",
+      "solicitorVisibleText": "Item: CPS chase — ABE interview transcript\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Final signed MG11",
+      "solicitorVisibleText": "Item: CPS chase — Final signed MG11\nStatus: Copy unavailable\nReason: Offence family could not be safely resolved for this matter, so free copy is unavailable.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "cps_chase_draft",
+      "label": "CPS chase — Third-party counselling notes",
+      "solicitorVisibleText": "Item: CPS chase — Third-party counselling notes\nStatus: Copy unavailable\nReason: Solicitor review required — this item could not be safely reconstructed from structured fields. Check the source papers before relying on or omitting this point.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "truth_map",
+      "label": "Evidence truth map",
+      "solicitorVisibleText": "• ABE interview video — Referred only\n• Complainant MG11 (draft) — Served\n• ABE interview transcript — Missing\n• Third-party counselling notes — Missing\n• Final signed MG11 — Missing",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    },
+    {
+      "surface": "do_not_overstate",
+      "label": "Do-not-overstate warnings",
+      "solicitorVisibleText": "• ABE proves guilt\n• complainant proved\n• Do not rely on ABE or complainant account as final proof without served interview material.\n• Do not summarise ABE as fact unless the served record is reviewed.",
+      "gateStatus": "warning",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "Gold-manual controlled fictional packet (redacted for solicitor review).",
+      "reviewEligibility": "substantive"
+    }
+  ]
+}

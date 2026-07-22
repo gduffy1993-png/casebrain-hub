@@ -11,6 +11,7 @@ import {
   evidenceReliabilityLabel,
 } from "@/lib/criminal/five-answers/evidence-trace";
 import { inferChaseItemSourceState, buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
+import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import { FIRM_SENDABILITY_LABELS } from "@/lib/criminal/trust/firm-facing-labels";
 import { mapSourceStateToExistence } from "@/lib/criminal/five-answers/types";
 import type {
@@ -164,12 +165,13 @@ export function buildHearingMode(input: BuildHearingModeInput): HearingModeModel
       sourceLabel: item.source,
       matterLevel: matterConfidence?.chaseSendability,
     });
+    const finalized = finalizeSolicitorVisibleProse(copy.textForClipboard);
     return {
       label: item.label,
-      cpsChaseWording: sanitise(copy.textForClipboard.slice(0, 280)),
+      cpsChaseWording: sanitise(finalized.ok ? finalized.text : item.label),
       sendabilityLabel: FIRM_SENDABILITY_LABELS[copy.sendability] ?? copy.sendabilityLabel,
       existenceLabel: evidenceExistenceLabel(mapSourceStateToExistence(state)),
-      canCopy: copy.canCopy,
+      canCopy: copy.canCopy && finalized.ok,
     };
   });
 

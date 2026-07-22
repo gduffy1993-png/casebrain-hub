@@ -1,0 +1,515 @@
+{
+  "generatedAt": "2026-07-21T01:15:29.185Z",
+  "overlap": {
+    "materialisedMixedCount": 281,
+    "materialisedUncertainCount": 400,
+    "mixedAndUncertainOverlap": 196,
+    "mixedOnly": 85,
+    "uncertainOnly": 204,
+    "overlapCaseIdsSample": [
+      "cb-found-2001-ellis",
+      "cb-found-2002-smith",
+      "cb-found-2005-okafor",
+      "cb-found-2006-carter",
+      "cb-found-2007-morrison",
+      "cb-fresh-002-jordan-hale",
+      "demo-audit-03-bwv-custody",
+      "demo-audit-05-encro-attribution",
+      "demo-audit-10-bwv-public-order",
+      "demo-audit-11-custody-pace-ocr",
+      "demo-audit-14-encro-retail",
+      "demo-audit-15-county-lines-runners",
+      "demo-audit-21-historic-sexual-abe",
+      "demo-audit-25-charge-bundle-mismatch",
+      "demo-audit-27-custody-pace-missing",
+      "demo-audit-28-fraud-subscriber-trap",
+      "generic-provisional-sam-okonkwo",
+      "proof-pack-01",
+      "sc-00001",
+      "sc-00002",
+      "sc-00003",
+      "sc-00007",
+      "sc-00008",
+      "sc-00009",
+      "sc-0000b",
+      "sc-0000d",
+      "sc-0000e",
+      "sc-0000f",
+      "sc-00013",
+      "sc-00014",
+      "sc-00015",
+      "sc-00019",
+      "sc-0001a",
+      "sc-0001b",
+      "sc-0001f",
+      "sc-00020",
+      "sc-00021",
+      "sc-00023",
+      "sc-00025",
+      "sc-00026"
+    ],
+    "coverageTable": [
+      {
+        "family": "harassment_digital",
+        "resolvedCases": 23,
+        "mixedResolvedCases": 23,
+        "uncertainCases": 0,
+        "unsupportedConceptsBlocked": 0,
+        "conditionalConceptsAllowed": 0,
+        "substantiveCopyExportUnavailable": 6
+      },
+      {
+        "family": "harassment_other",
+        "resolvedCases": 8,
+        "mixedResolvedCases": 2,
+        "uncertainCases": 0,
+        "unsupportedConceptsBlocked": 0,
+        "conditionalConceptsAllowed": 0,
+        "substantiveCopyExportUnavailable": 4
+      },
+      {
+        "family": "motoring",
+        "resolvedCases": 47,
+        "mixedResolvedCases": 29,
+        "uncertainCases": 0,
+        "unsupportedConceptsBlocked": 0,
+        "conditionalConceptsAllowed": 0,
+        "substantiveCopyExportUnavailable": 12
+      },
+      {
+        "family": "theft",
+        "resolvedCases": 2,
+        "mixedResolvedCases": 1,
+        "uncertainCases": 0,
+        "unsupportedConceptsBlocked": 0,
+        "conditionalConceptsAllowed": 0,
+        "substantiveCopyExportUnavailable": 0
+      },
+      {
+        "family": "unknown",
+        "resolvedCases": 0,
+        "mixedResolvedCases": 0,
+        "uncertainCases": 400,
+        "unsupportedConceptsBlocked": 1,
+        "conditionalConceptsAllowed": 10,
+        "substantiveCopyExportUnavailable": 378
+      },
+      {
+        "family": "violence",
+        "resolvedCases": 50,
+        "mixedResolvedCases": 30,
+        "uncertainCases": 0,
+        "unsupportedConceptsBlocked": 0,
+        "conditionalConceptsAllowed": 0,
+        "substantiveCopyExportUnavailable": 7
+      }
+    ],
+    "stratifiedFalsePositiveFalseNegativeReview": {
+      "note": "Human review sample across charge families — not auto-PASS. Includes uncertain, mixed, allowed, blocked.",
+      "samples": [
+        {
+          "stratum": "uncertain",
+          "caseId": "cb-found-2001-ellis",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "uncertain",
+          "caseId": "cb-found-2002-smith",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "uncertain",
+          "caseId": "cb-found-2005-okafor",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "uncertain",
+          "caseId": "cb-found-2006-carter",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "mixed_resolved",
+          "caseId": "cb-found-2003-nguyen",
+          "primaryFamily": "violence",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=90340bc431ab"
+        },
+        {
+          "stratum": "mixed_resolved",
+          "caseId": "cb-found-2004-clarke",
+          "primaryFamily": "motoring",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=de7d5e6f27b5"
+        },
+        {
+          "stratum": "mixed_resolved",
+          "caseId": "cb-fresh-001-taylor-brookes",
+          "primaryFamily": "harassment_digital",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=54;hash=1da15a7d19a8"
+        },
+        {
+          "stratum": "mixed_resolved",
+          "caseId": "crown-court-patterson",
+          "primaryFamily": "violence",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=90340bc431ab"
+        },
+        {
+          "stratum": "allowed_clean",
+          "caseId": "cb-found-2003-nguyen",
+          "primaryFamily": "violence",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=90340bc431ab"
+        },
+        {
+          "stratum": "allowed_clean",
+          "caseId": "cb-found-2004-clarke",
+          "primaryFamily": "motoring",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=de7d5e6f27b5"
+        },
+        {
+          "stratum": "allowed_clean",
+          "caseId": "cb-fresh-001-taylor-brookes",
+          "primaryFamily": "harassment_digital",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=54;hash=1da15a7d19a8"
+        },
+        {
+          "stratum": "allowed_clean",
+          "caseId": "crown-court-patterson",
+          "primaryFamily": "violence",
+          "mixed": true,
+          "uncertain": false,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=53;hash=90340bc431ab"
+        },
+        {
+          "stratum": "blocked_unsupported",
+          "caseId": "fictional-theft-ashleigh-merritt",
+          "primaryFamily": "unknown",
+          "mixed": false,
+          "uncertain": true,
+          "unsupportedBlocked": 1,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=8;hash=7ad6abec8ea0"
+        },
+        {
+          "stratum": "copy_unavailable",
+          "caseId": "cb-found-2001-ellis",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "copy_unavailable",
+          "caseId": "cb-found-2002-smith",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "copy_unavailable",
+          "caseId": "cb-found-2005-okafor",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        },
+        {
+          "stratum": "copy_unavailable",
+          "caseId": "cb-found-2006-carter",
+          "primaryFamily": "unknown",
+          "mixed": true,
+          "uncertain": true,
+          "unsupportedBlocked": 0,
+          "conditionalAllowed": 0,
+          "diagnostic": "len=43;hash=94d5384d8a55"
+        }
+      ]
+    },
+    "provenanceRule": "Conditional / source-backed requires evidenceId AND label content supporting the concept — ID alone insufficient."
+  },
+  "coverageTable": [
+    {
+      "family": "harassment_digital",
+      "resolvedCases": 23,
+      "mixedResolvedCases": 23,
+      "uncertainCases": 0,
+      "unsupportedConceptsBlocked": 0,
+      "conditionalConceptsAllowed": 0,
+      "substantiveCopyExportUnavailable": 6
+    },
+    {
+      "family": "harassment_other",
+      "resolvedCases": 8,
+      "mixedResolvedCases": 2,
+      "uncertainCases": 0,
+      "unsupportedConceptsBlocked": 0,
+      "conditionalConceptsAllowed": 0,
+      "substantiveCopyExportUnavailable": 4
+    },
+    {
+      "family": "motoring",
+      "resolvedCases": 47,
+      "mixedResolvedCases": 29,
+      "uncertainCases": 0,
+      "unsupportedConceptsBlocked": 0,
+      "conditionalConceptsAllowed": 0,
+      "substantiveCopyExportUnavailable": 12
+    },
+    {
+      "family": "theft",
+      "resolvedCases": 2,
+      "mixedResolvedCases": 1,
+      "uncertainCases": 0,
+      "unsupportedConceptsBlocked": 0,
+      "conditionalConceptsAllowed": 0,
+      "substantiveCopyExportUnavailable": 0
+    },
+    {
+      "family": "unknown",
+      "resolvedCases": 0,
+      "mixedResolvedCases": 0,
+      "uncertainCases": 400,
+      "unsupportedConceptsBlocked": 1,
+      "conditionalConceptsAllowed": 10,
+      "substantiveCopyExportUnavailable": 378
+    },
+    {
+      "family": "violence",
+      "resolvedCases": 50,
+      "mixedResolvedCases": 30,
+      "uncertainCases": 0,
+      "unsupportedConceptsBlocked": 0,
+      "conditionalConceptsAllowed": 0,
+      "substantiveCopyExportUnavailable": 7
+    }
+  ],
+  "stratifiedReview": {
+    "note": "Human review sample across charge families — not auto-PASS. Includes uncertain, mixed, allowed, blocked.",
+    "samples": [
+      {
+        "stratum": "uncertain",
+        "caseId": "cb-found-2001-ellis",
+        "primaryFamily": "unknown",
+        "mixed": true,
+        "uncertain": true,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=43;hash=94d5384d8a55"
+      },
+      {
+        "stratum": "uncertain",
+        "caseId": "cb-found-2002-smith",
+        "primaryFamily": "unknown",
+        "mixed": true,
+        "uncertain": true,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=43;hash=94d5384d8a55"
+      },
+      {
+        "stratum": "uncertain",
+        "caseId": "cb-found-2005-okafor",
+        "primaryFamily": "unknown",
+        "mixed": true,
+        "uncertain": true,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=43;hash=94d5384d8a55"
+      },
+      {
+        "stratum": "uncertain",
+        "caseId": "cb-found-2006-carter",
+        "primaryFamily": "unknown",
+        "mixed": true,
+        "uncertain": true,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=43;hash=94d5384d8a55"
+      },
+      {
+        "stratum": "mixed_resolved",
+        "caseId": "cb-found-2003-nguyen",
+        "primaryFamily": "violence",
+        "mixed": true,
+        "uncertain": false,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=53;hash=90340bc431ab"
+      },
+      {
+        "stratum": "mixed_resolved",
+        "caseId": "cb-found-2004-clarke",
+        "primaryFamily": "motoring",
+        "mixed": true,
+        "uncertain": false,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=53;hash=de7d5e6f27b5"
+      },
+      {
+        "stratum": "mixed_resolved",
+        "caseId": "cb-fresh-001-taylor-brookes",
+        "primaryFamily": "harassment_digital",
+        "mixed": true,
+        "uncertain": false,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=54;hash=1da15a7d19a8"
+      },
+      {
+        "stratum": "mixed_resolved",
+        "caseId": "crown-court-patterson",
+        "primaryFamily": "violence",
+        "mixed": true,
+        "uncertain": false,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=53;hash=90340bc431ab"
+      },
+      {
+        "stratum": "allowed_clean",
+        "caseId": "cb-found-2003-nguyen",
+        "primaryFamily": "violence",
+        "mixed": true,
+        "uncertain": false,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=53;hash=90340bc431ab"
+      },
+      {
+        "stratum": "allowed_clean",
+        "caseId": "cb-found-2004-clarke",
+        "primaryFamily": "motoring",
+        "mixed": true,
+        "uncertain": false,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=53;hash=de7d5e6f27b5"
+      },
+      {
+        "stratum": "allowed_clean",
+        "caseId": "cb-fresh-001-taylor-brookes",
+        "primaryFamily": "harassment_digital",
+        "mixed": true,
+        "uncertain": false,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=54;hash=1da15a7d19a8"
+      },
+      {
+        "stratum": "allowed_clean",
+        "caseId": "crown-court-patterson",
+        "primaryFamily": "violence",
+        "mixed": true,
+        "uncertain": false,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=53;hash=90340bc431ab"
+      },
+      {
+        "stratum": "blocked_unsupported",
+        "caseId": "fictional-theft-ashleigh-merritt",
+        "primaryFamily": "unknown",
+        "mixed": false,
+        "uncertain": true,
+        "unsupportedBlocked": 1,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=8;hash=7ad6abec8ea0"
+      },
+      {
+        "stratum": "copy_unavailable",
+        "caseId": "cb-found-2001-ellis",
+        "primaryFamily": "unknown",
+        "mixed": true,
+        "uncertain": true,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=43;hash=94d5384d8a55"
+      },
+      {
+        "stratum": "copy_unavailable",
+        "caseId": "cb-found-2002-smith",
+        "primaryFamily": "unknown",
+        "mixed": true,
+        "uncertain": true,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=43;hash=94d5384d8a55"
+      },
+      {
+        "stratum": "copy_unavailable",
+        "caseId": "cb-found-2005-okafor",
+        "primaryFamily": "unknown",
+        "mixed": true,
+        "uncertain": true,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=43;hash=94d5384d8a55"
+      },
+      {
+        "stratum": "copy_unavailable",
+        "caseId": "cb-found-2006-carter",
+        "primaryFamily": "unknown",
+        "mixed": true,
+        "uncertain": true,
+        "unsupportedBlocked": 0,
+        "conditionalAllowed": 0,
+        "diagnostic": "len=43;hash=94d5384d8a55"
+      }
+    ]
+  }
+}

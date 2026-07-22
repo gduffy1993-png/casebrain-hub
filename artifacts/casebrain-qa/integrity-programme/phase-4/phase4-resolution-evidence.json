@@ -1,0 +1,136 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "phase": 4,
+  "workUnit": "resolve-safe-but-unresolved",
+  "generatedAt": "2026-07-21T17:57:20.596Z",
+  "status": "UNRESOLVED_ITEMS_DISPOSITIONED",
+  "corpusPassClaim": false,
+  "unitReminder": {
+    "prior72_28": "copyable_exportable_rule_firing_occurrence (fixture × mode)",
+    "current42_55": "per_string_copyable_hit",
+    "doNotMix": true
+  },
+  "adversarialMatrix": [
+    {
+      "name": "harassment_blocks_unsupported_drugs_defence",
+      "pass": true,
+      "detail": "status=integrity_blocked; rules=wrong_family.unsupported_template_leakage"
+    },
+    {
+      "name": "keyword_alone_does_not_activate_foreign_family",
+      "pass": true,
+      "detail": "activated=harassment_digital; mixed=false"
+    },
+    {
+      "name": "missing_family_blocks_substantive_api",
+      "pass": true,
+      "detail": "status=integrity_blocked; rules=offence_family_uncertain"
+    },
+    {
+      "name": "neutral_non_substantive_ack_usable",
+      "pass": true,
+      "detail": "status=ok"
+    },
+    {
+      "name": "scoped_view_keeps_clean_line",
+      "pass": true,
+      "detail": "status=degraded; kept=1"
+    },
+    {
+      "name": "conditional_requires_structured_provenance_ids",
+      "pass": true,
+      "detail": "withIds.conditional=2; keywordOnly.families=harassment_digital"
+    },
+    {
+      "name": "canonical_overview_counts_match",
+      "pass": true,
+      "detail": "schema=1.0.0"
+    },
+    {
+      "name": "canonical_matter_vm_fingerprint",
+      "pass": true,
+      "detail": "v1.0.0:63b1c4bb2c2aa3ee1"
+    },
+    {
+      "name": "canonical_dashboard_fingerprint_present",
+      "pass": true,
+      "detail": "v1.0.0:f0c60dbd31d57ed07"
+    }
+  ],
+  "matrixAllPass": true,
+  "items": [
+    {
+      "id": "independent_state_calculators",
+      "formerStatus": "Full canonical migration of three independent calculators",
+      "disposition": "RESOLVED",
+      "evidence": [
+        "Phase 6 migrated confidence_dashboard, overview-presentation adapters, solicitor-matter-state",
+        "Re-verified: overview counts match=true",
+        "matter VM fingerprint match=true",
+        "dashboard fingerprint present=true"
+      ],
+      "ledgerImpact": "none — calculator migration does not alter 72/28 or 42/55 stock units",
+      "passClaim": false
+    },
+    {
+      "id": "composer_raw_trunc_stock",
+      "formerStatus": "Composer repair for raw-marker / truncated copyable stock",
+      "disposition": "RESOLVED",
+      "evidence": [
+        "Phase 6 LEDGER_BALANCED status=LEDGER_BALANCED",
+        "Prior 72 raw rule-firing occurrences reconstructed=72 balanced=true dispositions={\"reconstructed\":35,\"proven_duplicate\":36,\"safely_omitted\":1}",
+        "Prior 28 trunc rule-firing occurrences reconstructed=28 balanced=true dispositions={\"safely_omitted\":14,\"proven_duplicate\":14}",
+        "Current per-string hits remain labeled separately: raw=42 trunc=55 (do not mix with 72/28)"
+      ],
+      "ledgerImpact": "Stock dispositions unchanged; units remain labeled. No re-count of Phase-3 aggregates.",
+      "passClaim": false
+    },
+    {
+      "id": "scale_lane_audit_family_probes",
+      "formerStatus": "Scale lane uses audit-family probes (full generated wording not on disk for all 3000)",
+      "disposition": "RESOLVED_AS_CONTAINMENT_PROOF",
+      "evidence": [
+        "Scale copy/export block counts are adversarial cross-family probes on every scale identity — containment proof only",
+        "They are not a claim that all 3,000 generated bundles emit leak strings in production output",
+        "Process-only audit families that cannot be mapped remain uncertain — fail-closed, not passed by hiding",
+        "Materialised gold lane (530) remains in final evidence alongside scale (3000) and combined (3530)"
+      ],
+      "ledgerImpact": "none — scale probes are a separate counting lane from materialised stock 72/28 and 42/55",
+      "passClaim": false
+    },
+    {
+      "id": "residual_unsupported_uncertain_counts",
+      "formerStatus": "Residual unsupported / uncertain counts — hidden output ≠ correct output",
+      "disposition": "FAIL_CLOSED_WITH_RESIDUAL_RISK",
+      "evidence": [
+        "Materialised mixed=281 uncertain=400 overlap=196",
+        "FP sample size=18; stratified samples=0",
+        "Adversarial matrix allPass=true: harassment_blocks_unsupported_drugs_defence=PASS; keyword_alone_does_not_activate_foreign_family=PASS; missing_family_blocks_substantive_api=PASS; neutral_non_substantive_ack_usable=PASS; scoped_view_keeps_clean_line=PASS; conditional_requires_structured_provenance_ids=PASS; canonical_overview_counts_match=PASS; canonical_matter_vm_fingerprint=PASS; canonical_dashboard_fingerprint_present=PASS",
+        "Substantive copy/API remain fail-closed when family uncertain; neutral ack usable; scoped view keeps clean lines",
+        "Hidden/blocked output is not counted as repaired or PASS — residual risk tracked for Phase 9 corpus + Phase 11 rendered/human review"
+      ],
+      "ledgerImpact": "none — uncertain/unsupported are family-classification units, not raw/trunc stock units",
+      "passClaim": false
+    },
+    {
+      "id": "human_fp_fn_signoff",
+      "formerStatus": "Larger corpus / rendered FP–FN reviews before Phase 4 PASS",
+      "disposition": "PHASE_9_CORPUS_PACK_RECORDED__PHASE_11_GOLD_REMAINING",
+      "evidence": [
+        "Phase 9 recorded dual-lane corpus FP–FN rates and stratified human-review pack (32 samples) at artifacts/casebrain-qa/integrity-programme/phase-9/human-fp-fn-corpus-pack.json",
+        "Phase 9 N-case run completed 3530 unique fixtures with gate-enforced asserts; blocked ≠ repaired",
+        "Final gold/rendered human word-for-word sign-off (30–50 cases) remains Phase 11 — not claimed here",
+        "Automated adversarial matrix remains enforcement evidence only"
+      ],
+      "phase9Evidence": "artifacts/casebrain-qa/integrity-programme/phase-9/human-fp-fn-corpus-pack.json",
+      "ledgerImpact": "none",
+      "passClaim": false
+    }
+  ],
+  "residualRisks": [
+    "Materialised uncertain-family cases remain fail-closed until Phase 9/11 human FP–FN establishes acceptable rates",
+    "Scale uncertain (process-only audit families) remain unresolved classification, not hidden PASS",
+    "Defence-plan-chat eval joins still gated legacy composer (Phase 6 residual)"
+  ],
+  "ledgerImpactSummary": "No change to prior 72/28 or current 42/55 counts; Phase 4 resolution is disposition evidence only"
+}

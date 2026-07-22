@@ -1,0 +1,27 @@
+{
+  "goldId": "GOLD-11-029",
+  "def": {
+    "goldId": "GOLD-11-029",
+    "stratum": "copy_export_api",
+    "sourceKind": "synthetic_controlled",
+    "fixtureId": "SYN-API-BLOCK-01",
+    "selectionReason": "Integrity-blocked API body must not be usable content",
+    "reviewFocus": "API/UI banner and canCopy=false; blocked ≠ repaired."
+  },
+  "surfaces": [
+    {
+      "surface": "api_consumer_ui",
+      "label": "API consumer UI state",
+      "solicitorVisibleText": "Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false
+    },
+    {
+      "surface": "api_usable_check",
+      "label": "canUseSolicitorApiResponse",
+      "solicitorVisibleText": "NOT USABLE — integrity_blocked payload rejected by consumer",
+      "gateStatus": "consumer_reject",
+      "canCopy": false
+    }
+  ]
+}

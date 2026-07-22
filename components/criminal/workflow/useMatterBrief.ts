@@ -31,8 +31,17 @@ import { buildCriminalBriefPlan } from "@/lib/criminal/brief-plan";
 import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-matter-confidence";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import type { CriminalBriefPlan } from "@/lib/criminal/brief-plan/types";
-import { resolveDemoPresentationHearingLabel } from "@/lib/criminal/demo-presentation-polish";
+import {
+  isDemoPresentationCase,
+  resolveDemoPresentationHearingLabel,
+} from "@/lib/criminal/demo-presentation-polish";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
+import { evaluateMatterIntegrity } from "@/lib/criminal/solicitor-output-integrity";
+import { resolveSolicitorHearingDateIso } from "@/lib/criminal/solicitor-hearing-display";
+import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
+import { buildSolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-state";
+import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
+import { computeCounters } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -233,18 +242,29 @@ export function useMatterBrief(caseId: string) {
   const stage = headerMeta.stage
     ? collapseHeaderCellDuplicates(headerMeta.stage) || headerMeta.stage
     : headerMeta.stage;
-    const hearingDateIso =
-      bundleSource?.caseMetadata?.nextHearingIso ?? snapshot?.caseMeta?.hearingNextAt ?? null;
+    const bundleHayForHearing = [
+      bundleSource?.caseMetadata?.nextHearingRaw,
+      bundleSource?.frontMatterScan,
+      bundleSource?.header?.shortTitle,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const hearingDateIso = resolveSolicitorHearingDateIso({
+      bundleNextHearingIso: bundleSource?.caseMetadata?.nextHearingIso,
+      snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt,
+      nextHearingRaw: bundleSource?.caseMetadata?.nextHearingRaw,
+      bundleHay: bundleHayForHearing,
+    });
+    const hearingResolvedEarly = resolveSolicitorHearingStatus({
+      bundleNextHearingIso: hearingDateIso,
+      snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt ?? null,
+      nextHearingRaw: headerMeta.nextHearing,
+      bundleHay: bundleHayForHearing,
+    });
     const hearingStatus = resolveDemoPresentationHearingLabel({
       caseId,
-      currentLabel: headerMeta.nextHearing?.trim() || "Hearing not on file",
-      bundleHay: [
-        bundleSource?.caseMetadata?.nextHearingRaw,
-        bundleSource?.frontMatterScan,
-        bundleSource?.header?.shortTitle,
-      ]
-        .filter(Boolean)
-        .join("\n"),
+      currentLabel: hearingResolvedEarly.statusLabel,
+      bundleHay: bundleHayForHearing,
     });
     const bundleHealth = deriveBundleHealth(snapshot, bundleSource, battleboard);
 
@@ -360,6 +380,45 @@ export function useMatterBrief(caseId: string) {
       hasSafeCourtLine: Boolean(warRoom.safePositionToday?.trim()),
     });
 
+    const bundleHay = `${bundleTextForBrief || bundleSource?.frontMatterScan || ""}`;
+    const hearingResolved = resolveSolicitorHearingStatus({
+      bundleNextHearingIso: hearingDateIso,
+      snapshotHearingNextAt: snapshot?.caseMeta?.hearingNextAt ?? null,
+      nextHearingRaw: hearingStatus,
+      bundleHay: bundleHayForHearing || bundleHay,
+    });
+    // Prefer demo polish label when present; otherwise shared Phase-8 status line.
+    const hearingLabel =
+      isDemoPresentationCase(caseId) && hearingStatus !== hearingResolvedEarly.statusLabel
+        ? hearingStatus
+        : hearingResolved.statusLabel;
+    const chaseCounters = computeCounters(chase.items, {});
+    const matterStateVm = buildSolicitorMatterStateVm({
+      evidenceRows: [] as FiveAnswersEvidenceRow[],
+      chaseCounters,
+      allegation,
+      bundleHay,
+      caseId,
+      chaseLabels: chase.items.map((i) => i.label).slice(0, 40),
+    });
+    const sampleTexts = [
+      warRoom.safePositionToday,
+      ...warRoom.sayThis.slice(0, 4),
+      ...warRoom.doNotOverstate.slice(0, 4),
+      warRoom.draftWording?.disclosureTimetable,
+      warRoom.draftWording?.adjournment,
+      warRoom.draftWording?.clientExplanation,
+    ].filter((t): t is string => Boolean(t?.trim()));
+
+    const outputIntegrity = evaluateMatterIntegrity({
+      allegation,
+      bundleHay,
+      matterLevel: matterConfidence.level === "blocked" ? "blocked" : matterConfidence.summarySendability,
+      sampleTexts,
+      matterState: matterStateVm,
+      hearing: hearingResolved,
+    });
+
     return {
       matterBrief,
       matterConfidence,
@@ -369,7 +428,10 @@ export function useMatterBrief(caseId: string) {
       allegation,
       clientLabel,
       courtLabel: headerMeta.court?.trim() || null,
-      hearingLabel: hearingStatus,
+      hearingLabel,
+      hearingStatusResolved: hearingResolved,
+      matterStateVm,
+      outputIntegrity,
       briefPlan,
       primaryRouteTitle,
       bundleMeta: bundleSource
@@ -407,6 +469,9 @@ export function useMatterBrief(caseId: string) {
     clientLabel: pilotMatter?.clientLabel ?? null,
     courtLabel: pilotMatter?.courtLabel ?? null,
     hearingLabel: pilotMatter?.hearingLabel ?? null,
+    hearingStatusResolved: pilotMatter?.hearingStatusResolved ?? null,
+    matterStateVm: pilotMatter?.matterStateVm ?? null,
+    outputIntegrity: pilotMatter?.outputIntegrity ?? null,
     briefPlan: pilotMatter?.briefPlan ?? null,
     primaryRouteTitle: pilotMatter?.primaryRouteTitle ?? null,
     bundleMeta: pilotMatter?.bundleMeta ?? null,

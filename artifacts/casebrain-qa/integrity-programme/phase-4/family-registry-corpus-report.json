@@ -1,0 +1,322 @@
+{
+  "programme": "criminal-defence-integrity-corpus",
+  "phase": 4,
+  "generatedAt": "2026-07-21T01:00:28.775Z",
+  "disclaimer": "Phase 4 family registry classification — not a corpus PASS. Hiding uncertain output is not a pass. Do not merge / do not deploy.",
+  "registryVersion": "1.0.0",
+  "corpus": {
+    "N_approved_scale3000": 3000,
+    "N_materialised": 530,
+    "N_union": 3530
+  },
+  "lanes": {
+    "scale": {
+      "denominator": 3000,
+      "familyDistribution": {
+        "harassment_digital": 478,
+        "theft": 421,
+        "unknown": 1138,
+        "motoring": 191,
+        "violence": 441,
+        "drugs_supply": 178,
+        "harassment_other": 153
+      },
+      "mixedFamilyCount": 0,
+      "uncertainCount": 1138,
+      "conditionalConceptsAllowed": 0,
+      "unsupportedConceptsBlocked": 10712,
+      "uniqueAffectedCases": 3000,
+      "copyExportBlocks": 3000,
+      "rawMarkerCopyableOccurrences": 0,
+      "truncatedCopyableOccurrences": 0
+    },
+    "materialised_gold": {
+      "denominator": 530,
+      "familyDistribution": {
+        "unknown": 400,
+        "violence": 50,
+        "motoring": 47,
+        "harassment_digital": 23,
+        "harassment_other": 8,
+        "theft": 2
+      },
+      "mixedFamilyCount": 281,
+      "uncertainCount": 400,
+      "conditionalConceptsAllowed": 19,
+      "unsupportedConceptsBlocked": 63,
+      "uniqueAffectedCases": 412,
+      "copyExportBlocks": 412,
+      "rawMarkerCopyableOccurrences": 23,
+      "truncatedCopyableOccurrences": 0
+    },
+    "combined_3530": {
+      "denominator": 3530,
+      "familyDistribution": {
+        "harassment_digital": 501,
+        "theft": 423,
+        "unknown": 1538,
+        "motoring": 238,
+        "violence": 491,
+        "drugs_supply": 178,
+        "harassment_other": 161
+      },
+      "mixedFamilyCount": 281,
+      "uncertainCount": 1538,
+      "conditionalConceptsAllowed": 19,
+      "unsupportedConceptsBlocked": 10775,
+      "uniqueAffectedCases": 3412,
+      "copyExportBlocks": 3412,
+      "rawMarkerCopyableOccurrences": 23,
+      "truncatedCopyableOccurrences": 0
+    }
+  },
+  "pendingComposerRepair": {
+    "phase3CopyableRawMarkerOccurrences": 72,
+    "phase3CopyableTruncatedOccurrences": 28,
+    "stillBlockedOnCopy": {
+      "raw_extraction_marker": true,
+      "truncated_fragment": true
+    },
+    "note": "Confirm existing 72 raw-marker and 28 truncated copyable occurrences remain blocked pending later composer/provenance repair."
+  },
+  "falsePositiveReviewSample": [
+    {
+      "caseId": "demo-audit-01-phone-harassment",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-03-bwv-custody",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "violence",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=52;hash=1925573bd600",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-05-encro-attribution",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "drugs_supply",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=56;hash=f3559d55199b",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-06-domestic-stalking",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-07-phone-ocr-trap",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-10-bwv-public-order",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "violence",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=52;hash=1925573bd600",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-11-custody-pace-ocr",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "violence",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=52;hash=1925573bd600",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-14-encro-retail",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "drugs_supply",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=56;hash=f3559d55199b",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-15-county-lines-runners",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "drugs_supply",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=56;hash=f3559d55199b",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-18-motoring-sjp-thin",
+      "primaryFamily": "motoring",
+      "activatedFamilies": [
+        "motoring",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=53;hash=de7d5e6f27b5",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-19-motoring-breath-specimen",
+      "primaryFamily": "motoring",
+      "activatedFamilies": [
+        "motoring",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=53;hash=de7d5e6f27b5",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-20-domestic-harassment",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-21-historic-sexual-abe",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=43;hash=94d5384d8a55",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-23-duplicate-pages",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-25-charge-bundle-mismatch",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "drugs_supply",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=56;hash=f3559d55199b",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-26-phone-referred-metadata",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-27-custody-pace-missing",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "violence",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=52;hash=1925573bd600",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-28-fraud-subscriber-trap",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "theft",
+        "harassment_digital"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=32;hash=df5e906979b8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    }
+  ],
+  "migrationPlan": {
+    "deadline": "Shared composer / validator phases (programme Phases 5–6); no later than those phases.",
+    "remainingIndependentCalculators": [
+      {
+        "id": "confidence_dashboard.countEvidenceStates",
+        "path": "lib/criminal/confidence-dashboard/build-confidence-dashboard.ts",
+        "action": "Replace local counts with CanonicalMatterStateV1.evidence.counts (+ fingerprint echo)",
+        "deprecateBy": "Phase 5 shared composer / Phase 6 validator"
+      },
+      {
+        "id": "overview-presentation.countEvidenceStates*",
+        "path": "lib/criminal/overview-presentation.ts",
+        "action": "Mark helpers legacy; call sites must use canonical adapter or validated projection",
+        "deprecateBy": "Phase 5 shared composer / Phase 6 validator"
+      },
+      {
+        "id": "solicitor-matter-state display counts",
+        "path": "lib/criminal/solicitor-matter-state.ts",
+        "action": "Consume projectCanonicalToLegacyMatterVm only — remove independent recount",
+        "deprecateBy": "Phase 5 shared composer / Phase 6 validator"
+      }
+    ],
+    "note": "CanonicalMatterStateV1 is foundational but not fully migrated — do not claim one canonical truth until these three and every substantive output surface consume it or an explicit validated adapter."
+  },
+  "unresolved": {
+    "canonicalNotFullyMigrated": true,
+    "independentStateCalculators": 3,
+    "composerRepairPending": true,
+    "scaleLaneUsesAuditFamilyProbes": true
+  }
+}

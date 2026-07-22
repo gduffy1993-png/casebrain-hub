@@ -1,0 +1,87 @@
+{
+  "goldId": "GOLD-11-034",
+  "reviewEligibility": "substantive",
+  "isNewInV5": false,
+  "parentV1FreezeHash": "619f62a2d3408edf05cdb3e57304f4cdfd0e59a2c2247ab5a22fde973f5a9e3a",
+  "parentV2FreezeHash": "fcdd13e53f35a61fb1a2bf2f0faa7347ec896b1d28bd9098609ac486ab0b64c0",
+  "parentV3FreezeHash": "de6d04734c9636e49de0fe30ca3422f1750180ae9db8d9f1e75e52b3450c7767",
+  "parentV4FreezeHash": "d887114aac265e00e9a8d66c98c82fa087a85388e60f1fc930a6996b5d6ab883",
+  "v5FreezeHash": "3e2479c86769e3cd5342903997eaa548cfdc98a8339a34d0890bfc0178536f5d",
+  "changes": [
+    {
+      "surface": "client_summary",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "d7eada60ae00",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers in your case (Sam Okonkwo). This is early-stage — nothing is final until we have full di"
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "255eebc99dae",
+        "textPreview": "CLIENT-SAFE SUMMARY\n(not for court or CPS)\n\nWe are reviewing the papers for Sam Okonkwo. This is early-stage — nothing is final until we have full disclosure an"
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "bf2bb3dbb842",
+        "textPreview": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "bf2bb3dbb842",
+        "textPreview": "Please provide Full BWV export (see MG6C/010) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "0e99216b364b",
+        "textPreview": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "0e99216b364b",
+        "textPreview": "Please provide Full custody record (see MG6C/011) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "8cc679afc5c4",
+        "textPreview": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "8cc679afc5c4",
+        "textPreview": "Please provide Interview audio (see MG6C/013) or confirm in writing why it is not available."
+      }
+    },
+    {
+      "surface": "cps_chase_draft",
+      "before": {
+        "gateStatus": "display",
+        "canCopy": true,
+        "textHash": "baa8cc8ee0fa",
+        "textPreview": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available."
+      },
+      "after": {
+        "gateStatus": "ok",
+        "canCopy": true,
+        "textHash": "baa8cc8ee0fa",
+        "textPreview": "Please provide PACE safeguards detail (see MG6C/015) or confirm in writing why it is not available."
+      }
+    }
+  ]
+}

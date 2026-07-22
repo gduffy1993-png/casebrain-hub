@@ -4,6 +4,7 @@ import type { ExportPackModel } from "@/lib/criminal/export-pack/types";
 import type { AdviceChangeRadarModel } from "@/lib/criminal/advice-change-radar";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import type { FiveAnswersViewModel } from "@/lib/criminal/five-answers/types";
+import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import type { RerunDiffModel } from "@/lib/criminal/re-run-diff";
 import type { TrustFeedbackRecord } from "@/lib/criminal/trust/feedback/trust-feedback-types";
 import { inferFeedbackSeverity } from "@/lib/criminal/feedback-console/infer-feedback-severity";
@@ -25,73 +26,52 @@ import type {
   SourceStateCoverage,
 } from "./confidence-dashboard-types";
 import { CONFIDENCE_DASHBOARD_STATUS_LABELS } from "./confidence-dashboard-types";
+import { buildCanonicalMatterStateV1 } from "@/lib/criminal/canonical-matter-state";
 
 const REVIEW_DISCLAIMER =
   "Review-confidence view only — not a legal guarantee. All outputs require solicitor review before reliance or sending.";
 
+/** @deprecated Local recount removed — use mapCanonicalEvidenceCounts. */
 function countEvidenceStates(
   rows: BuildConfidenceDashboardInput["evidenceRows"],
   chaseItems: BuildConfidenceDashboardInput["chaseItems"],
 ): EvidenceStateCounts {
+  const chaseMapped = (chaseItems ?? []).map((item, i) => ({
+    id: `ch_${i}`,
+    label: item.label ?? `Chase ${i}`,
+    baseStatus: item.baseStatus ?? "Overdue",
+  }));
+  const evidenceRows = (rows ?? []).map((r, i) => ({
+    label: (r as { label?: string }).label?.trim() || r.sourceAnchor?.trim() || `Evidence ${i + 1}`,
+    existence: r.existence as FiveAnswersEvidenceRow["existence"],
+    reliability: (r.reliability as FiveAnswersEvidenceRow["reliability"]) ?? "unknown",
+  }));
+  const canonical = buildCanonicalMatterStateV1({
+    evidenceRows,
+    chaseItems: chaseMapped,
+  });
+  return mapCanonicalEvidenceCounts(canonical, evidenceRows);
+}
+
+function mapCanonicalEvidenceCounts(
+  canonical: ReturnType<typeof buildCanonicalMatterStateV1>,
+  rows: BuildConfidenceDashboardInput["evidenceRows"],
+): EvidenceStateCounts {
   const counts: EvidenceStateCounts = {
     available: false,
-    served: 0,
-    referred_only: 0,
-    missing: 0,
-    incomplete: 0,
-    not_safely_confirmed: 0,
+    served: canonical.evidence.counts.served,
+    referred_only: canonical.evidence.counts.referred,
+    missing: canonical.evidence.counts.missing,
+    incomplete: canonical.evidence.counts.incomplete,
+    not_safely_confirmed: canonical.evidence.counts.notSafelyConfirmed,
     provisional_or_needs_review: 0,
   };
-
-  if (!rows.length && !chaseItems.length) return counts;
-
-  counts.available = rows.length > 0 || chaseItems.length > 0;
-
-  // Prefer truth-map / evidence-state rows so Overview counts match gap badges.
-  if (rows.length > 0) {
-    for (const row of rows) {
-      switch (row.existence) {
-        case "served":
-          counts.served++;
-          break;
-        case "referred_only":
-          counts.referred_only++;
-          break;
-        case "missing":
-          counts.missing++;
-          break;
-        case "not_safely_confirmed":
-          // Align with displayExistenceLabel → "Incomplete"
-          counts.incomplete++;
-          break;
-        case "unknown":
-          counts.not_safely_confirmed++;
-          break;
-        default:
-          break;
-      }
-      if (row.reliability === "needs_review" || row.reliability === "inference_only") {
-        counts.provisional_or_needs_review++;
-      }
+  counts.available = rows.length > 0 || canonical.chase.counts.total > 0;
+  for (const row of rows) {
+    if (row.reliability === "needs_review" || row.reliability === "inference_only") {
+      counts.provisional_or_needs_review += 1;
     }
-    return counts;
   }
-
-  for (const item of chaseItems) {
-    const status = (item.baseStatus ?? "").toLowerCase();
-    if (/incomplete|partial/.test(status)) counts.incomplete++;
-    const state = inferChaseItemSourceState({
-      label: item.label,
-      source: item.source ?? "",
-      baseStatus: item.baseStatus ?? "",
-      evidenceAnchor: undefined,
-    });
-    const ex = mapSourceStateToExistence(state);
-    if (ex === "missing") counts.missing++;
-    if (ex === "referred_only") counts.referred_only++;
-    if (ex === "not_safely_confirmed") counts.incomplete++;
-  }
-
   return counts;
 }
 
@@ -297,7 +277,21 @@ function recommendAction(
 }
 
 export function buildConfidenceDashboard(input: BuildConfidenceDashboardInput): ConfidenceDashboardModel {
-  const evidenceCounts = countEvidenceStates(input.evidenceRows, input.chaseItems);
+  const chaseMapped = (input.chaseItems ?? []).map((item, i) => ({
+    id: `ch_${i}`,
+    label: item.label ?? `Chase ${i}`,
+    baseStatus: item.baseStatus ?? "Overdue",
+  }));
+  const evidenceRows: FiveAnswersEvidenceRow[] = (input.evidenceRows ?? []).map((r, i) => ({
+    label: (r as { label?: string }).label?.trim() || r.sourceAnchor?.trim() || `Evidence ${i + 1}`,
+    existence: r.existence as FiveAnswersEvidenceRow["existence"],
+    reliability: (r.reliability as FiveAnswersEvidenceRow["reliability"]) ?? "unknown",
+  }));
+  const canonical = buildCanonicalMatterStateV1({
+    evidenceRows,
+    chaseItems: chaseMapped,
+  });
+  const evidenceCounts = mapCanonicalEvidenceCounts(canonical, evidenceRows);
   const sourceCoverage = buildSourceCoverage(input);
   const status = deriveStatus(input, evidenceCounts, sourceCoverage);
 
@@ -351,6 +345,7 @@ export function buildConfidenceDashboard(input: BuildConfidenceDashboardInput): 
     statusLabel: CONFIDENCE_DASHBOARD_STATUS_LABELS[status],
     reviewDisclaimer: REVIEW_DISCLAIMER,
     evidenceCounts,
+    canonicalFingerprint: canonical.fingerprint,
     outputSendability,
     unresolvedWork: buildUnresolved(input),
     riskWarnings: buildRiskWarnings(input),

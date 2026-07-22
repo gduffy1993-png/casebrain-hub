@@ -4,6 +4,10 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MessageSquare, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
+import {
+  canUseSolicitorApiResponse,
+  solicitorUiStateFromApiBody,
+} from "@/lib/criminal/integrity-blocked-consumer";
 
 type ClientAdvicePanelProps = {
   caseId: string;
@@ -18,14 +22,21 @@ type ClientAdvice = {
 
 export function ClientAdvicePanel({ caseId }: ClientAdvicePanelProps) {
   const [advice, setAdvice] = useState<ClientAdvice | null>(null);
+  const [integrityBanner, setIntegrityBanner] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchAdvice() {
       try {
         const res = await fetch(`/api/criminal/${caseId}/client-advice`);
+        const result = await res.json().catch(() => ({}));
+        if (!canUseSolicitorApiResponse(result)) {
+          setAdvice(null);
+          setIntegrityBanner(solicitorUiStateFromApiBody(result).banner);
+          return;
+        }
         if (res.ok) {
-          const result = await res.json();
+          setIntegrityBanner(null);
           setAdvice(result);
         }
       } catch (error) {
@@ -41,6 +52,14 @@ export function ClientAdvicePanel({ caseId }: ClientAdvicePanelProps) {
     return (
       <Card title="Client Advice" description="Generating advice..." className="animate-pulse">
         <div className="h-32 bg-muted/30 rounded-lg" />
+      </Card>
+    );
+  }
+
+  if (integrityBanner) {
+    return (
+      <Card title="Client Advice" description="Output integrity check failed">
+        <div className="text-center py-4 text-muted-foreground text-sm">{integrityBanner}</div>
       </Card>
     );
   }

@@ -1,0 +1,213 @@
+{
+  "generatedAt": "2026-07-21T01:00:28.775Z",
+  "sample": [
+    {
+      "caseId": "demo-audit-01-phone-harassment",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-03-bwv-custody",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "violence",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=52;hash=1925573bd600",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-05-encro-attribution",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "drugs_supply",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=56;hash=f3559d55199b",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-06-domestic-stalking",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-07-phone-ocr-trap",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-10-bwv-public-order",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "violence",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=52;hash=1925573bd600",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-11-custody-pace-ocr",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "violence",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=52;hash=1925573bd600",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-14-encro-retail",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "drugs_supply",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=56;hash=f3559d55199b",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-15-county-lines-runners",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "drugs_supply",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=56;hash=f3559d55199b",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-18-motoring-sjp-thin",
+      "primaryFamily": "motoring",
+      "activatedFamilies": [
+        "motoring",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=53;hash=de7d5e6f27b5",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-19-motoring-breath-specimen",
+      "primaryFamily": "motoring",
+      "activatedFamilies": [
+        "motoring",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=53;hash=de7d5e6f27b5",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-20-domestic-harassment",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-21-historic-sexual-abe",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=43;hash=94d5384d8a55",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-23-duplicate-pages",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-25-charge-bundle-mismatch",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "drugs_supply",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=56;hash=f3559d55199b",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-26-phone-referred-metadata",
+      "primaryFamily": "harassment_digital",
+      "activatedFamilies": [
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=54;hash=1da15a7d19a8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-27-custody-pace-missing",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "violence",
+        "harassment_digital",
+        "harassment_other"
+      ],
+      "unsupportedBlocked": 1,
+      "diagnostic": "len=52;hash=1925573bd600",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    },
+    {
+      "caseId": "demo-audit-28-fraud-subscriber-trap",
+      "primaryFamily": "unknown",
+      "activatedFamilies": [
+        "theft",
+        "harassment_digital"
+      ],
+      "unsupportedBlocked": 2,
+      "diagnostic": "len=32;hash=df5e906979b8",
+      "reviewNote": "Mixed activation with unsupported residual — human review for over-block risk"
+    }
+  ]
+}

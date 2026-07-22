@@ -9,6 +9,10 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Copy, Loader2, Calendar, MessageSquare, HelpCircle, ShieldAlert, FileQuestion, FileWarning, AlertTriangle, RotateCcw } from "lucide-react";
 import type { CriminalHearingPrepStructured } from "@/lib/types/casebrain";
+import {
+  canUseSolicitorApiResponse,
+  solicitorUiStateFromApiBody,
+} from "@/lib/criminal/integrity-blocked-consumer";
 
 const HEARING_TYPES = [
   { value: "PTPH", label: "PTPH" },
@@ -72,6 +76,11 @@ export function HearingPrepGenerator({
         }),
       });
       const data = await res.json().catch(() => ({}));
+      if (!canUseSolicitorApiResponse(data)) {
+        const ui = solicitorUiStateFromApiBody(data);
+        setError(ui.banner ?? "Solicitor review required — output integrity check failed.");
+        return;
+      }
       if (data.ok) {
         if (typeof data.text === "string") setText(data.text);
         if (data.structured) setStructured(data.structured);

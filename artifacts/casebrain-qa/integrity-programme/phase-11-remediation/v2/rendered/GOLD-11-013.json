@@ -1,0 +1,86 @@
+{
+  "goldId": "GOLD-11-013",
+  "surfaces": [
+    {
+      "surface": "overview_counts",
+      "label": "Overview evidence counts",
+      "solicitorVisibleText": "Served 3 · Referred 1 · Missing 4 · Incomplete 0 · Not safely confirmed 2",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for demo-audit-03-bwv-custody (truth-key only; full output unavailable)."
+    },
+    {
+      "surface": "hearing_status_strip",
+      "label": "Hearing status",
+      "solicitorVisibleText": "Hearing date not safely extracted",
+      "gateStatus": "unknown",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for demo-audit-03-bwv-custody (truth-key only; full output unavailable)."
+    },
+    {
+      "surface": "offence_family",
+      "label": "Offence family (solicitor)",
+      "solicitorVisibleText": "Offence family resolved for this matter.",
+      "gateStatus": "resolved",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for demo-audit-03-bwv-custody (truth-key only; full output unavailable)."
+    },
+    {
+      "surface": "chase_brief",
+      "label": "Disclosure chase list",
+      "solicitorVisibleText": "Total 3\n• Body-worn video (BWV)\n• Interview recording / transcript\n• Officer MG11",
+      "gateStatus": "display",
+      "canCopy": true,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for demo-audit-03-bwv-custody (truth-key only; full output unavailable)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for demo-audit-03-bwv-custody (truth-key only; full output unavailable)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for demo-audit-03-bwv-custody (truth-key only; full output unavailable)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for demo-audit-03-bwv-custody (truth-key only; full output unavailable)."
+    },
+    {
+      "surface": "copy_preview",
+      "label": "Copy preview",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for demo-audit-03-bwv-custody (truth-key only; full output unavailable)."
+    },
+    {
+      "surface": "family_leak_probe",
+      "label": "Cross-family containment probe",
+      "solicitorVisibleText": "COPY UNAVAILABLE — Solicitor review required — output integrity check failed.",
+      "gateStatus": "integrity_blocked",
+      "canCopy": false,
+      "sourceEvidenceAvailable": true,
+      "sourceEvidenceNote": "ESA truth-key for demo-audit-03-bwv-custody (truth-key only; full output unavailable)."
+    }
+  ]
+}
