@@ -25,6 +25,7 @@ import {
   QUALIFIED_SOLICITOR_REVIEW_QUEUE_BANNER,
   requiresQualifiedSolicitorReviewQueue,
 } from "@/lib/criminal/solicitor-visible-sanitization";
+import { containsAbsoluteProofWording } from "@/lib/criminal/absolute-proof-wording";
 import { sha256HexSlice } from "@/lib/shared/sha256-hex";
 
 export type IntegrityGateStatus = "ok" | "degraded" | "integrity_blocked";
@@ -45,7 +46,8 @@ export type IntegrityRuleId =
   | "state_inconsistent"
   | "hearing_unknown"
   | "text_empty"
-  | "qualified_solicitor_review_required";
+  | "qualified_solicitor_review_required"
+  | "absolute_proof_wording";
 
 export type GatedSolicitorPayload<T> = {
   status: IntegrityGateStatus;
@@ -235,6 +237,11 @@ export function collectIntegrityRuleIds(
     if (requiresFamily && requiresQualifiedSolicitorReviewQueue(text)) {
       ruleIds.add("qualified_solicitor_review_required");
     }
+
+    // Absolute proof wording — all modes / exits (copy, export, API, view)
+    if (containsAbsoluteProofWording(text)) {
+      ruleIds.add("absolute_proof_wording");
+    }
   });
 
   let integrity: SolicitorIntegrityResult;
@@ -282,6 +289,7 @@ export function collectIntegrityRuleIds(
       r === "family_candidate_unproven" ||
       r === "wrong_family.unsupported_template_leakage" ||
       r === "qualified_solicitor_review_required" ||
+      r === "absolute_proof_wording" ||
       r.startsWith("sentence.") ||
       r === "text_empty" ||
       r === "matter_confidence_blocked" ||

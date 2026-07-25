@@ -149,6 +149,10 @@ export function sanitizeSolicitorProse(text: string): string {
         /\b([A-Za-z][\w /-]{1,40})\s*\|\s*([A-Za-z][\w /-]{1,80}(?:;\s*[A-Za-z][\w /-]{1,40})?)\b/g,
         "$1 — $2",
       )
+      .replace(
+        /\bbefore we fix strategy\b/gi,
+        "before a provisional strategy can safely be fixed",
+      )
       .replace(/\breferred_only\b/g, "Referred only")
       .replace(/\bnot_safely_confirmed\b/g, "Not safely confirmed")
       .replace(/\bneeds_review\b/g, "Needs review")
