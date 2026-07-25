@@ -5,6 +5,11 @@ import { Calendar, FileText, AlertCircle, CheckCircle2, Clock } from "lucide-rea
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { pilotStrategyBasisDisplay, shouldSuppressPilotStrategyBasisReason } from "@/lib/criminal/pilot-workflow";
+import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
+import {
+  assessBundleReadiness,
+  resolveAnalysisStatusLabel,
+} from "@/lib/criminal/bundle-readiness";
 
 type CaseStatusStripProps = {
   snapshot: CaseSnapshot;
@@ -18,58 +23,65 @@ export function CaseStatusStrip({ snapshot, displayStrategyCategory }: CaseStatu
   const missingCount = snapshot.evidence.missingEvidence.filter(
     (item) => item.status === "MISSING" || item.status === "UNASSESSED"
   ).length;
-  const docCount = snapshot.analysis.docCount || 0;
+  const docCount = Math.max(
+    snapshot.analysis.docCount || 0,
+    snapshot.evidence.documents.length,
+    snapshot.analysis.isLargeBundle || (snapshot.analysis.rawCharsTotal ?? 0) > 0
+      ? snapshot.analysis.docCount || snapshot.evidence.documents.length || 1
+      : 0,
+  );
   const bundleScore = snapshot.analysis.completenessScore;
   const bundleTier = snapshot.analysis.capabilityTier;
+  const rawChars = snapshot.analysis.rawCharsTotal ?? 0;
+
+  const readiness = assessBundleReadiness({
+    documentCount: docCount,
+    combinedTextLength: rawChars,
+    pageCount: snapshot.analysis.pageCount ?? null,
+    docs: snapshot.evidence.documents.map((d) => ({ name: d.name })),
+  });
+
+  const bundleBadgeText = formatCaseBundleHealthLabel({
+    documentCount: readiness.effectiveDocumentCount,
+    combinedTextLength: rawChars,
+    capabilityTier: readiness.isLargeBundle
+      ? readiness.extractionOk
+        ? "partial"
+        : bundleTier
+      : bundleTier,
+  });
+  const bundleColor =
+    readiness.isLargeBundle || bundleTier === "full"
+      ? "bg-green-500/10 text-green-600 border-green-500/30"
+      : bundleTier === "partial" || readiness.extractionOk
+        ? "bg-amber-500/10 text-amber-600 border-amber-500/30"
+        : "bg-blue-500/10 text-blue-600 border-blue-500/30";
   
   let disclosureStatus: "Thin" | "Partial" | "Good" = "Thin";
   let disclosureColor = "bg-amber-500/10 text-amber-600 border-amber-500/30";
   
-  if (docCount >= 3 && missingCount === 0) {
+  if (readiness.isLargeBundle || (docCount >= 3 && missingCount === 0)) {
     disclosureStatus = "Good";
     disclosureColor = "bg-green-500/10 text-green-600 border-green-500/30";
-  } else if (docCount >= 2 || missingCount < 3) {
+  } else if (docCount >= 1 || missingCount < 3 || readiness.extractionOk) {
     disclosureStatus = "Partial";
     disclosureColor = "bg-blue-500/10 text-blue-600 border-blue-500/30";
   }
 
-  // Bundle tier display (Phase A): show doc count when available so it's concrete (e.g. "Thin (3 docs)")
-  const bundleLabel = bundleTier === "full" ? "Full" : bundleTier === "partial" ? "Partial" : "Thin";
-  const bundleDetail =
-    docCount !== undefined && docCount >= 0
-      ? `${docCount} doc${docCount !== 1 ? "s" : ""}`
-      : bundleScore >= 0
-        ? String(bundleScore)
-        : null;
-  const bundleBadgeText = bundleDetail ? `${bundleLabel} (${bundleDetail})` : bundleLabel;
-  const bundleColor =
-    bundleTier === "full"
+  const analysisResolved = resolveAnalysisStatusLabel({
+    canShowStrategyOutputs: snapshot.analysis.canShowStrategyOutputs,
+    analysisMode: snapshot.analysis.mode,
+    hasVersion: snapshot.analysis.hasVersion,
+    hasRenderableStrategy: snapshot.strategy.hasRenderableData,
+    readiness,
+  });
+  const analysisStatus = analysisResolved.label;
+  const analysisColor =
+    analysisStatus === "Complete"
       ? "bg-green-500/10 text-green-600 border-green-500/30"
-      : bundleTier === "partial"
-        ? "bg-amber-500/10 text-amber-600 border-amber-500/30"
-        : "bg-blue-500/10 text-blue-600 border-blue-500/30";
-
-  // Analysis status
-  // RULE: Show "Gated (thin pack)" when canShowStrategyOutputs is false AND extraction is thin
-  // Only show "Not run" when truly no analysis version exists AND no strategy data
-  let analysisStatus: string;
-  let analysisColor: string;
-  
-  if (snapshot.analysis.canShowStrategyOutputs) {
-    // Strategy outputs can be shown - use mode
-    analysisStatus = snapshot.analysis.mode === "complete" ? "Complete" : "Preview";
-    analysisColor = snapshot.analysis.mode === "complete"
-      ? "bg-green-500/10 text-green-600 border-green-500/30"
-      : "bg-amber-500/10 text-amber-600 border-amber-500/30";
-  } else if (!snapshot.analysis.hasVersion && !snapshot.strategy.hasRenderableData) {
-    // Truly not run - no version and no strategy data
-    analysisStatus = "Not run";
-    analysisColor = "bg-muted/20 text-muted-foreground border-border/50";
-  } else {
-    // Gated (thin pack) - has version or strategy data but extraction is thin
-    analysisStatus = "Gated (thin pack)";
-    analysisColor = "bg-amber-500/10 text-amber-600 border-amber-500/30";
-  }
+      : analysisStatus === "Not run"
+        ? "bg-muted/20 text-muted-foreground border-border/50"
+        : "bg-amber-500/10 text-amber-600 border-amber-500/30";
 
   // Current position: prefer display strategy category when set so Position matches Strategy (e.g. Act Denial → Fight)
   const positionLabel = displayStrategyCategory
@@ -114,11 +126,11 @@ export function CaseStatusStrip({ snapshot, displayStrategyCategory }: CaseStatu
         </span>
       </div>
 
-      {/* Bundle Completeness (Phase A): show tier + doc count (e.g. Thin (3 docs)) */}
+      {/* Bundle Completeness — shared health label (not Thin (0 docs) for large single PDF) */}
       <div className="flex items-center gap-2">
         <FileText className="h-4 w-4 text-muted-foreground" />
         <span className="text-xs text-muted-foreground">Bundle:</span>
-        <span title={bundleDetail ? `Completeness score: ${bundleScore}` : undefined}>
+        <span title={bundleScore >= 0 ? `Completeness score: ${bundleScore}` : undefined}>
           <Badge className={`text-xs border ${bundleColor}`}>
             {bundleBadgeText}
           </Badge>
@@ -175,4 +187,3 @@ export function CaseStatusStrip({ snapshot, displayStrategyCategory }: CaseStatu
     </div>
   );
 }
-
