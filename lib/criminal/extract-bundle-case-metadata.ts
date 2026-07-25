@@ -1834,11 +1834,35 @@ function sanitizeDefencePositionValue(raw: string | null): string | null {
   const words = t.split(/\s+/).filter(Boolean);
   if (words.length < 2) return null;
   if (/^(?:the|a|an|on|in|at|or|and|not)$/i.test(t)) return null;
+  // Failed OCR / mid-extraction corruption — stay unresolved rather than inventing a position.
+  if (
+    /\bpositions?\s+\w+\s+denies\b/i.test(t) ||
+    /\bdenies\s+taking\b/i.test(t) ||
+    /[\uFFFD]/.test(t) ||
+    /\b(?:undefined|null)\b/i.test(t) ||
+    /^[^A-Za-z]*positions?\b/i.test(t)
+  ) {
+    return null;
+  }
+  // Reject strings that look like truncated mid-sentence OCR (no capital start + truncated end)
+  if (/^[a-z]/.test(t) && /\b(taking|positions?)\b/i.test(t) && words.length < 8) {
+    return null;
+  }
   const hasPositionCue =
     /\b(?:not guilty|denies|deny|no comment|self-defence|self defense|causation|attribution|disputed|provisional)\b/i.test(
       t,
     );
   if (!hasPositionCue && words.length < 4) return null;
+  // Require a coherent cue sentence — bare "denies" mid-garbled fragment is unresolved
+  if (hasPositionCue && !/\b(?:not guilty|no comment|self-defence|self defense|causation|attribution|disputed)\b/i.test(t)) {
+    if (!/\bden(?:y|ies)\b.{0,40}\b(?:act|presence|knowledge|intent|allegation|offence|charge)\b/i.test(t)) {
+      // Allow clean "Denies X" only when X is a short coherent phrase
+      const denyTail = t.match(/\bden(?:y|ies)\s+(.{3,80})$/i)?.[1] ?? "";
+      if (!denyTail || /taking|positions?/i.test(denyTail) || denyTail.split(/\s+/).length < 2) {
+        return null;
+      }
+    }
+  }
   return t.length > 280 ? `${t.slice(0, 277)}…` : t;
 }
 

@@ -13,6 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { workflowCard, workflowMuted, workflowPilotCard, workflowPilotKpiCell, workflowPilotKpiStrip, workflowPilotSurfaceCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
+import { fetchJsonWithSurfaceContract } from "@/lib/criminal/surface-load-contract";
 import type { CaseSnapshot } from "@/lib/criminal/case-snapshot-adapter";
 import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import {
@@ -29,6 +30,10 @@ import { CaseWorkflowShell } from "@/components/criminal/workflow/CaseWorkflowSh
 import { SourceStateBadge } from "@/components/criminal/trust/SourceStateBadge";
 import { TrustFeedbackPanel } from "@/components/criminal/trust/TrustFeedbackPanel";
 import { buildCopySafeResult, inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
+import {
+  assertFindingProvenanceOrLimitation,
+  formatFindingProvenanceLine,
+} from "@/lib/criminal/finding-provenance";
 import { SENDABILITY_DISPLAY } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import type { ExtractedBundleCaseMetadata } from "@/lib/criminal/extract-bundle-case-metadata";
 import { formatCaseBundleHealthLabel } from "@/lib/criminal/format-case-bundle-health";
@@ -93,6 +98,7 @@ type BundleSourceSummary = {
   frontMatterScan?: string | null;
   header?: { stage: string | null; shortTitle?: string | null; accused?: string | null };
   caseMetadata?: ExtractedBundleCaseMetadata | null;
+  canonical?: import("@/lib/criminal/authenticated-matter-canonical").AuthenticatedMatterCanonicalPayload | null;
 };
 
 export type DisclosureChaseProps = {
@@ -235,17 +241,25 @@ function ChaseItemCard({
     baseStatus: item.baseStatus,
     evidenceAnchor: item.evidenceAnchor,
   });
+  const itemProvenance =
+    item.provenance ??
+    assertFindingProvenanceOrLimitation({
+      evidenceState: itemSourceState,
+    });
+  const provenanceLine = formatFindingProvenanceLine(itemProvenance);
   const cpsCopy = buildCopySafeResult({
     text: displayDraft || item.draftChaseWording,
     kind: "cps_chase",
     sourceState: itemSourceState,
     sourceLabel: item.source,
+    provenance: itemProvenance,
   });
   const courtCopy = buildCopySafeResult({
     text: displayCourt || item.courtLine,
     kind: "court_line",
     sourceState: itemSourceState,
     sourceLabel: item.source,
+    provenance: itemProvenance,
   });
 
   const handleCopy = async (kind: "chase" | "court") => {
@@ -286,6 +300,10 @@ function ChaseItemCard({
         <div>
           <dt className={labelClass}>Deadline</dt>
           <dd className={valueClass}>{item.deadlineLabel}</dd>
+        </div>
+        <div className="col-span-2">
+          <dt className={labelClass}>Provenance</dt>
+          <dd className={`${bodyClass} mt-0.5`}>{provenanceLine}</dd>
         </div>
       </dl>
       <div className="px-4 pb-3 flex flex-wrap gap-1.5" onClick={(e) => e.stopPropagation()}>
@@ -478,6 +496,7 @@ export function DisclosureChase({
   const [bundleLoading, setBundleLoading] = useState(true);
   const [filter, setFilter] = useState<ChaseFilterBucket>("all");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [surfaceError, setSurfaceError] = useState<string | null>(null);
   const [localStatus, setLocalStatus] = useState<LocalChaseMap>({});
   const [showAdditional, setShowAdditional] = useState(false);
 
@@ -556,15 +575,25 @@ export function DisclosureChase({
   useEffect(() => {
     let cancelled = false;
     setBattleboardLoading(true);
-    fetch(`/api/criminal/${caseId}/strategy-battleboard`, { cache: "no-store", credentials: "include" })
-      .then((r) => r.json())
+    fetchJsonWithSurfaceContract<BattleboardOutput | "empty">(
+      `/api/criminal/${caseId}/strategy-battleboard`,
+      {
+        mapOk: (json) => {
+          const res = json as { ok?: boolean; data?: unknown } | null;
+          if (res?.ok && res?.data) return res.data as BattleboardOutput;
+          return "empty";
+        },
+      },
+    )
       .then((res) => {
         if (cancelled) return;
-        if (res?.ok && res?.data) setBattleboard(res.data as BattleboardOutput);
-        else setBattleboard(null);
-      })
-      .catch(() => {
-        if (!cancelled) setBattleboard(null);
+        if (res.ok) {
+          setBattleboard(res.data === "empty" ? null : (res.data as BattleboardOutput));
+          setSurfaceError(null);
+        } else {
+          setBattleboard(null);
+          setSurfaceError(res.error);
+        }
       })
       .finally(() => {
         if (!cancelled) setBattleboardLoading(false);
@@ -577,10 +606,23 @@ export function DisclosureChase({
   useEffect(() => {
     let cancelled = false;
     setBundleLoading(true);
-    fetch(`/api/criminal/${caseId}/bundle-source`, { cache: "no-store", credentials: "include" })
-      .then((r) => r.json())
+    fetchJsonWithSurfaceContract<(BundleSourceSummary & { documentCount?: number }) | "empty">(
+      `/api/criminal/${caseId}/bundle-source`,
+      {
+        mapOk: (json) => {
+          const res = json as { ok?: boolean; data?: unknown } | null;
+          if (res?.ok && res?.data) return res.data as BundleSourceSummary & { documentCount?: number };
+          return "empty";
+        },
+      },
+    )
       .then((res) => {
-        if (cancelled || !res?.ok || !res?.data) return;
+        if (cancelled) return;
+        if (!res.ok) {
+          setSurfaceError((prev) => prev ?? res.error);
+          return;
+        }
+        if (res.data === "empty") return;
         const d = res.data as BundleSourceSummary & { documentCount?: number };
         setBundleSource({
           documentCount: d.documentCount ?? 0,
@@ -597,6 +639,7 @@ export function DisclosureChase({
               }
             : undefined,
           caseMetadata: d.caseMetadata ?? null,
+          canonical: (d as BundleSourceSummary).canonical ?? null,
         });
       })
       .catch(() => {})
@@ -722,10 +765,21 @@ export function DisclosureChase({
         bundleHealth: deriveBundleHealth(snapshot, bundleSource, battleboard),
         positionStatus,
         battleboard,
-        snapshotMissing: snapshot?.evidence.missingEvidence,
+        snapshotMissing: [
+          ...(snapshot?.evidence.missingEvidence ?? []),
+          ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
+            label,
+            status: "Outstanding",
+          })),
+        ],
         proceduralOutstanding: effectiveProceduralSafety?.outstandingItems,
         bundleText: bundleSource?.frontMatterScan ?? null,
         profileHint: pilotHeader?.profile ?? null,
+        canonicalFindings: bundleSource?.canonical?.findingSummaries ?? [],
+        canonicalEvidenceRows: (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
+          label: r.label,
+          state: r.existence,
+        })),
       }),
     [
       caseId,
@@ -869,6 +923,17 @@ export function DisclosureChase({
           <div className={`${loadingCardClass} p-8 flex items-center justify-center gap-2 ${pilotEmbed ? "text-slate-400" : "text-slate-600"}`}>
             <Loader2 className="h-5 w-5 animate-spin text-violet-700" />
             Loading disclosure chase tracker…
+          </div>
+        ) : surfaceError && brief.items.length === 0 ? (
+          <div
+            className={`${loadingCardClass} p-6 text-sm text-red-800 border-red-200 bg-red-50/60`}
+            data-testid="disclosure-chase-error"
+          >
+            <p className="font-semibold">Disclosure Chase could not load.</p>
+            <p className="mt-1 text-red-700">{surfaceError}</p>
+            <p className="mt-2 text-xs text-red-700/80">
+              Retry from the case page, or check that documents are uploaded and analysis can run.
+            </p>
           </div>
         ) : (
           <>

@@ -19,6 +19,10 @@ export type BuildFiveAnswersViewInput = {
   doNotOverstate: string[];
   truthKey?: import("@/lib/eval/evidence-state-audit/types").EvidenceStateTruthKey;
   bundleText?: string;
+  /** When set (live document pipeline), prefer these rows over chase-inferred existence. */
+  evidenceRowsOverride?: import("./types").FiveAnswersEvidenceRow[];
+  /** Canonical findings projected into must-not-overstate / truth-map notes. */
+  canonicalFindings?: Array<{ title: string; summary: string; unresolved: boolean; provenanceLine: string }>;
 };
 
 function nextActionFromConfidence(confidence: MatterConfidenceResult | null): string {
@@ -29,29 +33,34 @@ function nextActionFromConfidence(confidence: MatterConfidenceResult | null): st
 export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnswersViewModel {
   const { allegation, warRoom, chase, matterConfidence, doNotOverstate } = input;
 
-  const rawEvidenceRows = chase.primaryItems.slice(0, 8).map((item) => {
-    const state = inferChaseItemSourceState({
-      label: item.label,
-      source: item.source,
-      baseStatus: item.baseStatus,
-      evidenceAnchor: item.evidenceAnchor,
-    });
-    const row = evidenceRowFromSourceState(item.label, state, item.whyItMatters?.trim() || undefined);
-    if (state === "missing") {
-      const note = row.note ?? "";
-      const alreadyGuidesChase =
-        /still chase|confirm their relevance|appear to be outstanding|confirm relevance/i.test(note);
-      if (!alreadyGuidesChase) {
-        row.note = note
-          ? `${note} — still chase if disclosure-relevant.`
-          : "Still chase if disclosure-relevant.";
-      }
-    }
-    if (state === "referred_only") {
-      row.note = row.note ? `${row.note} — referred only, not usable as proof.` : "Referred only — not usable as proof.";
-    }
-    return row;
-  });
+  const rawEvidenceRows =
+    input.evidenceRowsOverride && input.evidenceRowsOverride.length > 0
+      ? input.evidenceRowsOverride.slice(0, 12)
+      : chase.primaryItems.slice(0, 8).map((item) => {
+          const state = inferChaseItemSourceState({
+            label: item.label,
+            source: item.source,
+            baseStatus: item.baseStatus,
+            evidenceAnchor: item.evidenceAnchor,
+          });
+          const row = evidenceRowFromSourceState(item.label, state, item.whyItMatters?.trim() || undefined);
+          if (state === "missing") {
+            const note = row.note ?? "";
+            const alreadyGuidesChase =
+              /still chase|confirm their relevance|appear to be outstanding|confirm relevance/i.test(note);
+            if (!alreadyGuidesChase) {
+              row.note = note
+                ? `${note} — still chase if disclosure-relevant.`
+                : "Still chase if disclosure-relevant.";
+            }
+          }
+          if (state === "referred_only") {
+            row.note = row.note
+              ? `${row.note} — referred only, not usable as proof.`
+              : "Referred only — not usable as proof.";
+          }
+          return row;
+        });
 
   const evidenceRows = expandTruthMapRowsForDisplay({
     rows: rawEvidenceRows,
@@ -113,7 +122,12 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
       rows: evidenceRows,
       hardRules: [...FIVE_ANSWERS_HARD_RULES],
     },
-    mustNotOverstate: doNotOverstate.slice(0, 8),
+    mustNotOverstate: [
+      ...doNotOverstate,
+      ...(input.canonicalFindings ?? [])
+        .filter((f) => f.unresolved)
+        .map((f) => `${f.title}: ${f.summary}`),
+    ].slice(0, 8),
     chase: chaseRows,
     courtNote: {
       text: courtCopy.textForClipboard,

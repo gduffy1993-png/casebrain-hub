@@ -42,6 +42,7 @@ import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-
 import { buildSolicitorMatterStateVm } from "@/lib/criminal/solicitor-matter-state";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
 import { computeCounters } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
+import type { AuthenticatedMatterCanonicalPayload } from "@/lib/criminal/authenticated-matter-canonical";
 
 function bundleHealthTier(label: string, docCount: number): "ready" | "thin" | "unknown" {
   if (docCount === 0) return "unknown";
@@ -70,6 +71,8 @@ type BundleSourceSummary = {
   };
   header?: { shortTitle: string | null; stage: string | null; accused?: string | null };
   caseMetadata?: ExtractedBundleCaseMetadata | null;
+  /** Live canonical pipeline from authenticated document/page units. */
+  canonical?: AuthenticatedMatterCanonicalPayload | null;
 };
 
 function deriveBundleHealth(
@@ -155,6 +158,7 @@ export function useMatterBrief(caseId: string) {
           snippets: d.snippets ?? undefined,
           header: d.header,
           caseMetadata: d.caseMetadata ?? null,
+          canonical: (d as BundleSourceSummary).canonical ?? null,
         });
       })
       .catch(() => {})
@@ -284,7 +288,13 @@ export function useMatterBrief(caseId: string) {
 
     const chaseItemsAll = buildChaseItemsForHearing({
       battleboard,
-      snapshotMissing: snapshot?.evidence.missingEvidence,
+      snapshotMissing: [
+        ...(snapshot?.evidence.missingEvidence ?? []),
+        ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
+          label,
+          status: "Outstanding",
+        })),
+      ],
       proceduralOutstanding: undefined,
     });
     const briefPlan = buildCriminalBriefPlan({
@@ -292,8 +302,27 @@ export function useMatterBrief(caseId: string) {
       missingMaterial: [
         ...chaseItemsAll,
         ...(snapshot?.evidence.missingEvidence?.map((item) => item.label) ?? []),
+        ...(bundleSource?.canonical?.chaseLabels ?? []),
       ],
       allegation,
+    });
+
+    const canonicalFindings = bundleSource?.canonical?.findingSummaries ?? [];
+    const canonicalEvidenceRows = (bundleSource?.canonical?.evidenceRows ?? []).map((r) => ({
+      label: r.label,
+      state: r.existence,
+    }));
+    const evidenceRowsFromCanonical: FiveAnswersEvidenceRow[] = (
+      bundleSource?.canonical?.evidenceRows ?? []
+    ).map((r) => {
+      const row: FiveAnswersEvidenceRow = {
+        label: r.label,
+        existence: r.existence as FiveAnswersEvidenceRow["existence"],
+        reliability: "needs_review",
+      };
+      if (r.note) row.note = r.note;
+      else if (r.sourcePage) row.note = `${r.sourceDocumentTitle ?? "source"} · ${r.sourcePage}`;
+      return row;
     });
 
     let positionRaw: string;
@@ -345,6 +374,7 @@ export function useMatterBrief(caseId: string) {
       bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
       profileHint: pilotHeader?.profile ?? null,
       briefPlan,
+      canonicalFindings,
     });
 
     const chase = buildDisclosureChaseBrief({
@@ -358,10 +388,18 @@ export function useMatterBrief(caseId: string) {
       bundleHealth,
       positionStatus,
       battleboard,
-      snapshotMissing: snapshot?.evidence.missingEvidence,
+      snapshotMissing: [
+        ...(snapshot?.evidence.missingEvidence ?? []),
+        ...(bundleSource?.canonical?.chaseLabels ?? []).map((label) => ({
+          label,
+          status: "Outstanding",
+        })),
+      ],
       bundleText: bundleTextForBrief || bundleSource?.frontMatterScan || null,
       profileHint: pilotHeader?.profile ?? null,
       briefPlan,
+      canonicalFindings,
+      canonicalEvidenceRows,
     });
 
     const primaryRouteTitle = workflowPrimaryRouteTitle(workflowContext);
@@ -394,7 +432,7 @@ export function useMatterBrief(caseId: string) {
         : hearingResolved.statusLabel;
     const chaseCounters = computeCounters(chase.items, {});
     const matterStateVm = buildSolicitorMatterStateVm({
-      evidenceRows: [] as FiveAnswersEvidenceRow[],
+      evidenceRows: evidenceRowsFromCanonical,
       chaseCounters,
       allegation,
       bundleHay,
@@ -434,6 +472,8 @@ export function useMatterBrief(caseId: string) {
       outputIntegrity,
       briefPlan,
       primaryRouteTitle,
+      canonical: bundleSource?.canonical ?? null,
+      evidenceRowsOverride: evidenceRowsFromCanonical,
       bundleMeta: bundleSource
         ? {
             documentCount: Math.max(snapshot?.analysis.docCount ?? 0, bundleSource.documentCount ?? 0),
@@ -441,6 +481,7 @@ export function useMatterBrief(caseId: string) {
             documentRows: bundleSource.documentRows,
             snippets: bundleSource.snippets,
             frontMatterScan: bundleSource.frontMatterScan,
+            canonical: bundleSource.canonical ?? null,
           }
         : null,
     };
@@ -475,6 +516,8 @@ export function useMatterBrief(caseId: string) {
     briefPlan: pilotMatter?.briefPlan ?? null,
     primaryRouteTitle: pilotMatter?.primaryRouteTitle ?? null,
     bundleMeta: pilotMatter?.bundleMeta ?? null,
+    canonical: pilotMatter?.canonical ?? null,
+    evidenceRowsOverride: pilotMatter?.evidenceRowsOverride ?? [],
     caseTitle: snapshot?.caseMeta?.title?.trim() || "Criminal case",
   };
 }

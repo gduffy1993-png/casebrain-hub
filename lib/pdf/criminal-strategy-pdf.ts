@@ -3,7 +3,39 @@
  * "Strategy on one page" – primary approach, burden map, pressure points, HRS, disclosure timeline, solicitor instructions.
  */
 
+import path from "node:path";
+import fs from "node:fs";
+import { createRequire } from "node:module";
 import PDFDocument from "pdfkit";
+
+const requireFromCwd = createRequire(path.join(process.cwd(), "package.json"));
+
+/** Resolve pdfkit AFM data directory so Helvetica.afm is found outside webpack chunks. */
+function resolvePdfkitDataDir(): string | null {
+  try {
+    const pkg = requireFromCwd.resolve("pdfkit/package.json");
+    const dataDir = path.join(path.dirname(pkg), "js", "data");
+    if (fs.existsSync(path.join(dataDir, "Helvetica.afm"))) return dataDir;
+  } catch {
+    /* fall through */
+  }
+  const alt = path.join(process.cwd(), "node_modules", "pdfkit", "js", "data");
+  if (fs.existsSync(path.join(alt, "Helvetica.afm"))) return alt;
+  return null;
+}
+
+function ensurePdfkitFontsResolvable(): void {
+  const dataDir = resolvePdfkitDataDir();
+  if (!dataDir) {
+    throw new Error(
+      "Strategy PDF export cannot locate Helvetica.afm (pdfkit font data). Ensure pdfkit is installed and serverExternalPackages includes pdfkit.",
+    );
+  }
+  const helvetica = path.join(dataDir, "Helvetica.afm");
+  if (!fs.existsSync(helvetica)) {
+    throw new Error(`Missing Helvetica.afm at ${helvetica}`);
+  }
+}
 
 export type CriminalStrategyExportData = {
   caseId: string;
@@ -24,6 +56,8 @@ export type CriminalStrategyExportData = {
   defenceNarrative?: string;
   /** Phase 6 optional: Risk–outcome matrix rows */
   riskOutcomeMatrix?: Array<{ option: string; outcomeSummary: string; riskLevel: string; isPrimary?: boolean }>;
+  /** Provenance limitations that must travel into the PDF exit (e.g. unknown page identity). */
+  provenanceLimitations?: string[];
 };
 
 function sectionHeader(doc: PDFKit.PDFDocument, title: string) {
@@ -71,6 +105,7 @@ function formatDate(dateStr: string): string {
 export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     try {
+      ensurePdfkitFontsResolvable();
       const doc = new PDFDocument({
         size: "A4",
         margin: 50,
@@ -207,6 +242,20 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
             .fontSize(9)
             .text(`${e.item} – ${e.action}${e.date ? ` (${formatDate(e.date)})` : ""}`, { indent: 10 });
           if (e.note) doc.fillColor(MUTED).fontSize(8).text(`  ${e.note}`, { indent: 10 });
+        }
+        doc.moveDown(0.5);
+        drawDivider(doc);
+      }
+
+      if (data.provenanceLimitations && data.provenanceLimitations.length > 0) {
+        doc.moveDown(0.5);
+        sectionHeader(doc, "Provenance limitations");
+        for (const limitation of data.provenanceLimitations.slice(0, 20)) {
+          doc
+            .fillColor(TEXT)
+            .fontSize(9)
+            .font("Helvetica")
+            .text(`• ${limitation}`, { indent: 10 });
         }
         doc.moveDown(0.5);
         drawDivider(doc);

@@ -24,6 +24,15 @@ import {
   ledgerMaterialsNeedingChase,
 } from "@/lib/criminal/bundle-truth-ledger";
 import type { BundleTruthLedger } from "@/lib/criminal/bundle-truth-types";
+import {
+  shouldSuppressChaseAsAlreadyOnFile,
+  type EvidenceStateRow,
+} from "@/lib/criminal/evidence-state-reconcile";
+import {
+  assertFindingProvenanceOrLimitation,
+  type FindingProvenance,
+} from "@/lib/criminal/finding-provenance";
+import { shouldChaseRequestAgainstServedAliases } from "@/lib/criminal/canonical-finding-model";
 import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import {
   confirmNoneLine,
@@ -162,7 +171,116 @@ export type DisclosureChaseItem = {
   draftChaseWording: string;
   courtLine: string;
   mergedFrom: string[];
+  /** Mandatory finding provenance — limitation when exact doc/page/state/scope unavailable. */
+  provenance?: FindingProvenance;
 };
+
+function chaseItemProvenance(input: {
+  label: string;
+  source: string;
+  baseStatus: ChaseItemStatus;
+  evidenceAnchor: string | null;
+  defendant?: string | null;
+  countNumber?: number | null;
+  sourceDocumentTitle?: string | null;
+  sourceDocumentType?: string | null;
+  sourcePage?: string | null;
+  compiledPage?: string | null;
+}): FindingProvenance {
+  return assertFindingProvenanceOrLimitation({
+    sourceDocumentTitle: input.sourceDocumentTitle ?? null,
+    sourceDocumentType: input.sourceDocumentType ?? null,
+    sourcePage: input.sourcePage ?? null,
+    compiledPage: input.compiledPage ?? null,
+    // Org chase-source labels (e.g. "Police / CCTV unit") are not document titles.
+    sourceFilename: null,
+    evidenceState: mapChaseStatusToEvidenceState(input.baseStatus),
+    defendant: input.defendant ?? null,
+    countNumber: input.countNumber ?? null,
+    unresolvedConflictOrLimitation: input.evidenceAnchor
+      ? `Evidence anchor noted (${input.evidenceAnchor}); exact document title/type and compiled/source page still required`
+      : undefined,
+  });
+}
+
+function mapChaseStatusToEvidenceState(status: ChaseItemStatus): string {
+  switch (status) {
+    case "Received":
+      return "served";
+    case "Overdue":
+    case "Due soon":
+    case "Outstanding":
+    case "Chased":
+      return "missing";
+    case "Not safely confirmed":
+    default:
+      return "not_safely_confirmed";
+  }
+}
+
+/**
+ * Shared served/referred/missing/incomplete reconciliation (read-only over the ledger).
+ * Served material is not chased as absent; incomplete material is shown as incomplete,
+ * not missing; genuinely missing material stays visible.
+ */
+export function reconcileChaseItemsAgainstServedMaterial(
+  items: DisclosureChaseItem[],
+  ledger: { materials: Array<{ label: string; detail?: string | null; status: string }> } | null,
+): DisclosureChaseItem[] {
+  if (!ledger?.materials?.length) return items;
+
+  const rows: EvidenceStateRow[] = ledger.materials.map((m) => ({
+    label: `${m.label}${m.detail ? ` ${m.detail}` : ""}`,
+    state: mapMaterialStatusToSharedState(m.status),
+  }));
+
+  return items
+    .map((item) => {
+      const aliasVerdict = shouldChaseRequestAgainstServedAliases(item.label, rows);
+      if (!aliasVerdict.chase) {
+        if (/incomplete/i.test(aliasVerdict.reason ?? "")) {
+          return {
+            ...item,
+            baseStatus: "Not safely confirmed" as ChaseItemStatus,
+            whyItMatters: item.whyItMatters,
+            evidenceAnchor: item.evidenceAnchor,
+          };
+        }
+        return null;
+      }
+      const verdict = shouldSuppressChaseAsAlreadyOnFile(item.label, rows);
+      if (!verdict.suppress) return item;
+      // Recording served but transcript incomplete → keep visible as incomplete, not missing.
+      if (/incomplete/i.test(verdict.reason ?? "")) {
+        return {
+          ...item,
+          baseStatus: "Not safely confirmed" as ChaseItemStatus,
+          whyItMatters: item.whyItMatters,
+          evidenceAnchor: item.evidenceAnchor,
+        };
+      }
+      return null;
+    })
+    .filter((i): i is DisclosureChaseItem => i !== null);
+}
+
+function mapMaterialStatusToSharedState(status: string): EvidenceStateRow["state"] {
+  switch (status) {
+    case "served":
+      return "served";
+    case "referred_only":
+      return "referred_only";
+    case "partial":
+    case "draft":
+    case "unsigned":
+      return "incomplete";
+    case "outstanding":
+    case "absent":
+      return "missing";
+    default:
+      return "not_safely_confirmed";
+  }
+}
 
 export type DisclosureChaseCounters = {
   total: number;
@@ -212,6 +330,17 @@ export type BuildDisclosureChaseBriefInput = {
   bundleText?: string | null;
   profileHint?: import("@/lib/criminal/pilot-workflow").WorkflowProfile | null;
   briefPlan?: CriminalBriefPlan | null;
+  /** Live canonical findings (referenced-absent etc.) feed chase / provenance. */
+  canonicalFindings?: Array<{
+    kind: string;
+    title: string;
+    summary: string;
+    unresolved: boolean;
+    provenanceLine: string;
+    referencedAbsent?: { referencedLabel: string } | null;
+  }>;
+  /** Evidence rows derived from document/page units — used for served-alias suppression. */
+  canonicalEvidenceRows?: EvidenceStateRow[];
 };
 
 function normalizeRawLabel(raw: string): string {
@@ -629,6 +758,12 @@ function groupAndMergeLabels(
       draftChaseWording: canonical.draftChaseWording ?? draftChaseWording(label, mergedFrom),
       courtLine: toCourtLine(label),
       mergedFrom,
+      provenance: chaseItemProvenance({
+        label,
+        source: def.source,
+        baseStatus,
+        evidenceAnchor: findEvidenceAnchor(fam.id, mergedFrom, battleboard, ledger),
+      }),
     });
   }
 
@@ -636,6 +771,7 @@ function groupAndMergeLabels(
   groups.delete("other");
   if (otherLabels.length) {
     const { label, mergedFrom } = mergeOtherFamily(otherLabels);
+    const evidenceAnchor = findEvidenceAnchor("other", mergedFrom, battleboard, ledger);
     items.push({
       id: "chase-family-other",
       familyId: "other",
@@ -645,17 +781,24 @@ function groupAndMergeLabels(
       baseStatus: "Not safely confirmed",
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      evidenceAnchor: findEvidenceAnchor("other", mergedFrom, battleboard, ledger),
+      evidenceAnchor,
       linkedRoute: battleboard?.primary_route?.title ?? null,
       draftChaseWording: draftChaseWording(label, mergedFrom),
       courtLine: toCourtLine(label),
       mergedFrom,
+      provenance: chaseItemProvenance({
+        label,
+        source: getFamilyDef("other").source,
+        baseStatus: "Not safely confirmed",
+        evidenceAnchor,
+      }),
     });
   }
 
   for (const [, leftover] of groups) {
     if (!leftover.length) continue;
     const { label, mergedFrom } = mergeOtherFamily(leftover);
+    const evidenceAnchor = findEvidenceAnchor("other", mergedFrom, battleboard, ledger);
     items.push({
       id: `chase-family-misc-${slugFromLabels(mergedFrom)}`,
       familyId: "other",
@@ -665,11 +808,17 @@ function groupAndMergeLabels(
       baseStatus: deadline.baseStatus,
       urgency: deadline.urgency,
       deadlineLabel: deadline.sharedLabel,
-      evidenceAnchor: findEvidenceAnchor("other", mergedFrom, battleboard, ledger),
+      evidenceAnchor,
       linkedRoute: null,
       draftChaseWording: draftChaseWording(label, mergedFrom),
       courtLine: toCourtLine(label),
       mergedFrom,
+      provenance: chaseItemProvenance({
+        label,
+        source: getFamilyDef("other").source,
+        baseStatus: deadline.baseStatus,
+        evidenceAnchor,
+      }),
     });
   }
 
@@ -873,6 +1022,14 @@ function normalizeDisclosureItem(item: DisclosureChaseItem): DisclosureChaseItem
           .filter(Boolean),
       ),
     ],
+    provenance:
+      item.provenance ??
+      chaseItemProvenance({
+        label: canonical.label,
+        source: item.source,
+        baseStatus: item.baseStatus,
+        evidenceAnchor: item.evidenceAnchor,
+      }),
   };
 }
 
@@ -948,6 +1105,12 @@ function mergeDisclosureItems(
       ),
     courtLine: toCourtLine(canonical.label),
     mergedFrom,
+    provenance: chaseItemProvenance({
+      label: canonical.label,
+      source: existing.source || incoming.source,
+      baseStatus: mergeStatus(existing.baseStatus, incoming.baseStatus),
+      evidenceAnchor: existing.evidenceAnchor ?? incoming.evidenceAnchor,
+    }),
   };
 }
 
@@ -1230,6 +1393,47 @@ export function buildDisclosureChaseBrief(input: BuildDisclosureChaseBriefInput)
     }));
   items = collapseDisclosureItemsByFamily(items);
   items = finalizeDisclosureChasePresentation(items);
+  items = reconcileChaseItemsAgainstServedMaterial(items, ledger);
+
+  // Alias-suppress using live document-derived evidence rows (not hardcoded assumptions).
+  if (input.canonicalEvidenceRows?.length) {
+    items = items.filter((item) => {
+      const verdict = shouldChaseRequestAgainstServedAliases(
+        item.label,
+        input.canonicalEvidenceRows!,
+      );
+      return verdict.chase;
+    });
+  }
+
+  // Attach provenance limitations from canonical findings onto matching chase labels.
+  if (input.canonicalFindings?.length) {
+    items = items.map((item) => {
+      const related = input.canonicalFindings!.find(
+        (f) =>
+          (f.referencedAbsent &&
+            item.label
+              .toLowerCase()
+              .includes(f.referencedAbsent.referencedLabel.toLowerCase().slice(0, 12))) ||
+          item.label.toLowerCase().includes(f.title.toLowerCase().slice(0, 10)),
+      );
+      if (!related) return item;
+      const provenance = assertFindingProvenanceOrLimitation({
+        sourceDocumentTitle: related.provenanceLine.split(" · ")[0] ?? null,
+        evidenceState: "missing",
+        unresolvedConflictOrLimitation: related.unresolved ? related.summary : null,
+      });
+      return {
+        ...item,
+        whyItMatters: item.whyItMatters
+          ? `${item.whyItMatters} [${related.provenanceLine}]`
+          : related.summary,
+        evidenceAnchor: item.evidenceAnchor ?? related.provenanceLine,
+        provenance,
+      };
+    });
+  }
+
   ({ primaryItems, additionalItems } = splitPrimaryAdditional(items));
 
   const linkedRoutes = [

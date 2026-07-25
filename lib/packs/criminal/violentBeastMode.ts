@@ -18,6 +18,8 @@ import { detectViolentChargeCandidates } from "./detectChargeCandidates";
 import { selectViolentEvidenceProfiles } from "./evidenceMapsViolent";
 import { getViolentChargeById } from "./violentCharges";
 import { dedupeStrings, dedupeByKey } from "@/lib/strategic/deduplication";
+import { gatePaceAffirmativeStatus } from "@/lib/criminal/pace-affirmative-gate";
+import { buildFindingProvenance } from "@/lib/criminal/finding-provenance";
 
 function normalizeText(s: string): string {
   return s.toLowerCase().replace(/\s+/g, " ").trim();
@@ -171,16 +173,19 @@ function computeProceduralIntegrity(corpus: string) {
   const complianceRisk: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL" =
     missing >= 3 ? "CRITICAL" : missing === 2 ? "HIGH" : missing === 1 ? "MEDIUM" : "LOW";
 
-  // Determine PACE status: UNKNOWN if critical evidence missing, CHECKED_NO_BREACHES if all present and no breaches detected, BREACH_FLAGGED if breaches exist
-  let paceStatus: "UNKNOWN" | "CHECKED_NO_BREACHES" | "BREACH_FLAGGED" = "UNKNOWN";
-  if (criticalPaceMissing) {
-    paceStatus = "UNKNOWN";
-  } else {
-    // If all critical evidence is present, check if breaches are detected
-    // For now, assume no breaches if all evidence present (actual breach detection would come from pace_compliance table)
-    // This will be updated by the API route that reads from pace_compliance
-    paceStatus = "CHECKED_NO_BREACHES";
-  }
+  // Determine PACE status via shared affirmative gate — never assume no-breach from presence alone.
+  const gate = gatePaceAffirmativeStatus({
+    custodyRecord: hasPatterns(corpus, ["custody record"]) ? "present" : "missing",
+    interviewRecording: hasPatterns(corpus, ["interview recording", "recorded interview"]) ? "present" : "missing",
+    legalAdviceLog: hasPatterns(corpus, ["legal advice", "solicitor present"]) ? "present" : "missing",
+    breachesDetected: [],
+    bundleText: corpus,
+    criticalMaterialMissing: criticalPaceMissing,
+    provenance: buildFindingProvenance({
+      evidenceState: criticalPaceMissing ? "missing" : "served",
+    }),
+  });
+  const paceStatus = gate.paceStatus;
 
   const deduplicatedChecklist = dedupeByKey(
     checklist.map((c) => ({ ...c, status: c.status as "PRESENT" | "MISSING" | "UNCLEAR" })),

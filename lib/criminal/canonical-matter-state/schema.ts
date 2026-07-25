@@ -114,6 +114,30 @@ export type CanonicalMatterStateV1 = {
     statusLabel: string;
     isSnapshot: boolean;
   };
+  /**
+   * Live document-relationship graph + findings when built from uploaded document/page units.
+   * Empty when callers do not supply documents (fingerprint remains stable).
+   */
+  documentRelationships: {
+    nodes: Array<{
+      id: string;
+      title: string | null;
+      role: string;
+      replacesDocumentId: string | null;
+      documentDate: string | null;
+      versionNumber: number | null;
+      uploadOrder: number;
+    }>;
+    operativeDocumentId: string | null;
+    supersededDocumentIds: string[];
+  };
+  findings: Array<{
+    kind: string;
+    title: string;
+    summary: string;
+    unresolved: boolean;
+    provenanceLine: string;
+  }>;
   /** Cross-surface equality proof — every migrated surface must echo this. */
   fingerprint: string;
 };

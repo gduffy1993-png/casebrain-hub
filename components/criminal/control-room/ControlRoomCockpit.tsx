@@ -19,6 +19,10 @@ import {
 import { pilotRouteStatusBadgeLabel } from "@/lib/criminal/pilot-workflow";
 import { isCriminalPilotMode } from "@/lib/pilot-mode";
 import { collapseHeaderCellDuplicates } from "@/lib/criminal/solicitor-display-dedupe";
+import {
+  assertFindingProvenanceOrLimitation,
+  formatFindingProvenanceLine,
+} from "@/lib/criminal/finding-provenance";
 import type { AboveFoldSummaryProps } from "./AboveFoldSummary";
 
 export type ControlRoomCockpitProps = AboveFoldSummaryProps & {
@@ -116,6 +120,11 @@ export function ControlRoomCockpit({
   const biggestRisk =
     defenceRisks[0] ??
     "Review served material — risks are provisional until solicitor confirms position.";
+  const courtLineProvenanceLine = formatFindingProvenanceLine(
+    assertFindingProvenanceOrLimitation({
+      evidenceState: "not_safely_confirmed",
+    }),
+  );
   const cardShell = pilotDark ? workflowPilotSurfaceCard : workflowCard;
   const titleClass = pilotDark ? "text-lg font-semibold text-slate-100 truncate" : "text-lg font-semibold text-slate-900 truncate";
   const subClass = pilotDark ? "text-sm text-slate-300 mt-0.5" : "text-sm text-slate-600 mt-0.5";
@@ -306,6 +315,11 @@ export function ControlRoomCockpit({
           <p className={`text-[10px] mt-2 ${pilotDark ? "text-slate-500" : "text-slate-500"}`}>
             Provisional · solicitor review · do not overstate
           </p>
+          {courtLineProvenanceLine ? (
+            <p className={`text-[10px] mt-1 ${pilotDark ? "text-slate-500" : "text-slate-500"}`}>
+              {courtLineProvenanceLine}
+            </p>
+          ) : null}
         </div>
       </div>
 

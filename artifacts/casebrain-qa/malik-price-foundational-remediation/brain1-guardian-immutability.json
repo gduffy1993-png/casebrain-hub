@@ -1,0 +1,163 @@
+{
+  "audit": "brain1-guardian-classification-immutability",
+  "methodology": "Git blob ID comparison via git rev-parse <ref>:<path> for origin/master vs HEAD. Working-tree bytes are not used (avoids CRLF/LF false positives).",
+  "base": "origin/master",
+  "head": "HEAD",
+  "headBranch": "programme/criminal-defence-integrity-corpus",
+  "headSha": "a059379e755b350905c4a4055883dae8c6793a31",
+  "baseSha": "cc7e6bb20945a1ae29333da86645781f6f254e89",
+  "expectations": {
+    "brain1": {
+      "identical": 7,
+      "different": 0
+    },
+    "guardian": {
+      "identical": 4,
+      "different": 0
+    },
+    "classification": {
+      "addedOnBranch": 4,
+      "different": 0,
+      "note": "Downstream additions on the programme branch — not Brain 1 mutations."
+    }
+  },
+  "brain1": {
+    "files": 7,
+    "identical": 7,
+    "different": 0,
+    "addedOnBranch": 0,
+    "rows": [
+      {
+        "file": "lib/criminal/strategy-fight-engine.ts",
+        "baseBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "headBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "status": "identical"
+      },
+      {
+        "file": "lib/criminal/strategy-fight-engine-generators.ts",
+        "baseBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "headBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "status": "identical"
+      },
+      {
+        "file": "lib/criminal/get-aggressive-defense.ts",
+        "baseBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "headBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "status": "identical"
+      },
+      {
+        "file": "lib/criminal/strategy-battleboard.ts",
+        "baseBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "headBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "status": "identical"
+      },
+      {
+        "file": "lib/criminal/strategy-routes.ts",
+        "baseBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "headBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "status": "identical"
+      },
+      {
+        "file": "lib/criminal/bundle-truth-ledger.ts",
+        "baseBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "headBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "status": "identical"
+      },
+      {
+        "file": "lib/criminal/bundle-material-normalizer.ts",
+        "baseBlobId": "87e461930bff253510eb62cb69a0be28a10232a8",
+        "headBlobId": "87e461930bff253510eb62cb69a0be28a10232a8",
+        "status": "identical"
+      }
+    ],
+    "gitDiffNameStatus": "(empty — no Brain 1 path changes)",
+    "verdict": "IMMUTABLE"
+  },
+  "guardian": {
+    "files": 4,
+    "identical": 4,
+    "different": 0,
+    "addedOnBranch": 0,
+    "rows": [
+      {
+        "file": "lib/criminal/source-truth-guardian/fingerprint.ts",
+        "baseBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "headBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "status": "identical"
+      },
+      {
+        "file": "lib/criminal/source-truth-guardian/guardian.ts",
+        "baseBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "headBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "status": "identical"
+      },
+      {
+        "file": "lib/criminal/source-truth-guardian/index.ts",
+        "baseBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "headBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "status": "identical"
+      },
+      {
+        "file": "lib/criminal/source-truth-guardian/types.ts",
+        "baseBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "headBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "status": "identical"
+      }
+    ],
+    "gitDiffNameStatus": "(empty — no Guardian path changes)",
+    "verdict": "IMMUTABLE"
+  },
+  "classification": {
+    "files": 4,
+    "identical": 0,
+    "different": 0,
+    "addedOnBranch": 4,
+    "rows": [
+      {
+        "file": "lib/criminal/offence-family-concept-registry/classify.ts",
+        "baseBlobId": null,
+        "headBlobId": "22ca85019194bc6c80d4a9864ac792988a640e03",
+        "status": "added_on_branch"
+      },
+      {
+        "file": "lib/criminal/offence-family-concept-registry/index.ts",
+        "baseBlobId": null,
+        "headBlobId": "762936836986c0ff5d5bc2551ed37112f0d82ec2",
+        "status": "added_on_branch"
+      },
+      {
+        "file": "lib/criminal/offence-family-concept-registry/schema.ts",
+        "baseBlobId": null,
+        "headBlobId": "e6b1bccd07f1f3b385b724621dbac72b826aa52d",
+        "status": "added_on_branch"
+      },
+      {
+        "file": "lib/criminal/solicitor-offence-family.ts",
+        "baseBlobId": null,
+        "headBlobId": "9c5bbb7665968293bd6fab140e453f5b4d85db0e",
+        "status": "added_on_branch"
+      }
+    ],
+    "gitDiffNameStatus": "A\tlib/criminal/offence-family-concept-registry/classify.ts\nA\tlib/criminal/offence-family-concept-registry/index.ts\nA\tlib/criminal/offence-family-concept-registry/schema.ts\nA\tlib/criminal/solicitor-offence-family.ts",
+    "disposition": "downstream_branch_additions_not_brain1_mutations",
+    "verdict": "ADDED_ON_BRANCH_OK"
+  },
+  "classificationIsolationFromBrain1Guardian": {
+    "ok": true,
+    "filesScanned": [
+      "lib/criminal/offence-family-concept-registry/classify.ts",
+      "lib/criminal/offence-family-concept-registry/index.ts",
+      "lib/criminal/offence-family-concept-registry/schema.ts",
+      "lib/criminal/solicitor-offence-family.ts"
+    ],
+    "brain1GuardianImportHits": [],
+    "writePathHits": []
+  },
+  "preCommitGate": {
+    "dirtyCoreFilesVsHead": [],
+    "thisUncommittedWorkMutatedCore": false,
+    "result": "PASS_NO_CORE_DIRTY_VS_HEAD"
+  },
+  "expectationsMet": true,
+  "programmePassSupported": false
+}

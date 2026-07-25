@@ -4,6 +4,11 @@ import { buildCaseContext } from "@/lib/case-context";
 import { extractCriminalCaseMeta } from "@/lib/criminal/structured-extractor";
 import { makeOk, makeGateFail, makeNotFound, makeError, type ApiResponse } from "@/lib/api/response";
 import { checkAnalysisGate } from "@/lib/analysis/text-gate";
+import {
+  buildStructuredChargeView,
+  chargeConfirmationLabel,
+  sanitizeChargeLocation,
+} from "@/lib/criminal/structured-charge-state";
 
 type RouteParams = {
   params: Promise<{ caseId: string }>;
@@ -87,8 +92,42 @@ export async function GET(_request: Request, { params }: RouteParams) {
       error = withoutOrg.error ?? withOrg.error;
     }
 
-    // If DB table is empty, extract from raw_text (same approach as Evidence Strength Analyzer)
+    // If DB table is empty, extract from uploaded document/page units via live canonical pipeline.
     if ((!charges || charges.length === 0) && context.documents.length > 0) {
+      const { mapCaseDocumentsToUploadedUnits } = await import(
+        "@/lib/criminal/authenticated-matter-canonical"
+      );
+      const { buildCanonicalPipelineFromDocumentUnits } = await import(
+        "@/lib/criminal/build-from-document-units"
+      );
+      const units = mapCaseDocumentsToUploadedUnits(context.documents as any[]);
+      if (units.length > 0) {
+        const pipeline = buildCanonicalPipelineFromDocumentUnits(units);
+        if (pipeline.charges.length > 0) {
+          charges = pipeline.charges.map((view, idx) => ({
+            id: `pipeline-${idx}`,
+            offence: view.offence,
+            section: view.statute,
+            chargeDate: null,
+            location: view.location,
+            value: null,
+            details: null,
+            status: view.status,
+            extracted: true,
+            confidence: view.confidence,
+            count: view.count,
+            defendants: view.defendants,
+            documentRole: view.documentRole,
+            particulars: view.particulars,
+            sourceDocumentTitle: view.sourceDocumentTitle,
+            sourceDocumentType: view.sourceDocumentType,
+            sourcePage: view.sourcePage,
+            compiledPage: view.compiledPage,
+            confirmationLabel: view.confirmationLabel,
+          }));
+        }
+      }
+
       // Combine all raw_text from documents
       let combinedText = "";
       for (const doc of context.documents) {
@@ -97,7 +136,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
         }
       }
 
-      if (combinedText.length > 100) {
+      if ((!charges || charges.length === 0) && combinedText.length > 100) {
         // Try structured extraction first
         const meta = extractCriminalCaseMeta({
           text: combinedText,
@@ -106,19 +145,46 @@ export async function GET(_request: Request, { params }: RouteParams) {
         });
 
         if (meta.charges.length > 0) {
-          // Convert extracted charges to response format
-          charges = meta.charges.map((c, idx) => ({
-            id: `extracted-${idx}`,
-            offence: c.offence,
-            section: c.statute,
-            chargeDate: c.chargeDate,
-            location: c.location,
-            value: null,
-            details: null,
-            status: c.status || "pending",
-            extracted: true,
-            confidence: c.confidence,
-          }));
+          // Convert extracted charges to response format (canonical structured charge state)
+          charges = meta.charges.map((c, idx) => {
+            const view = buildStructuredChargeView({
+              count: c.count,
+              offence: c.offence,
+              statute: c.statute,
+              location: c.location,
+              status: c.status || "pending",
+              defendants: c.defendants ?? [],
+              documentRole: c.documentRole ?? "unknown",
+              sourceDocumentTitle: c.source ?? null,
+              sourceDocumentType: c.sourceDocumentType ?? null,
+              sourcePage: c.sourcePage ?? null,
+              compiledPage: c.compiledPage ?? null,
+              confidence: c.confidence,
+              extracted: true,
+              countFallbackIndex: idx,
+            });
+            return {
+              id: `extracted-${idx}`,
+              offence: view.offence,
+              section: view.statute,
+              chargeDate: c.chargeDate,
+              location: view.location,
+              value: null,
+              details: null,
+              status: view.status,
+              extracted: true,
+              confidence: view.confidence,
+              count: view.count,
+              defendants: view.defendants,
+              documentRole: view.documentRole,
+              particulars: view.particulars,
+              sourceDocumentTitle: view.sourceDocumentTitle,
+              sourceDocumentType: view.sourceDocumentType,
+              sourcePage: view.sourcePage,
+              compiledPage: view.compiledPage,
+              confirmationLabel: view.confirmationLabel,
+            };
+          });
         } else {
           // Conservative fallback: parse ONLY explicit statute/section strings from document text
           // RULE: A valid extracted charge MUST include explicit section number (e.g. s18, s.20, section 18)
@@ -167,6 +233,14 @@ export async function GET(_request: Request, { params }: RouteParams) {
               extracted: true,
               confidence: 0.3, // LOW confidence for fallback extraction
               source: "AUTO_EXTRACTED", // Flag for fallback
+              count: idx + 1,
+              defendants: [],
+              documentRole: "unknown" as const,
+              particulars: null,
+              sourceDocumentTitle: null,
+              sourceDocumentType: null,
+              sourcePage: null,
+              compiledPage: null,
             }));
           }
         }
@@ -185,18 +259,43 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
     return makeOk(
       {
-        charges: (charges || []).map((c) => ({
-          id: c.id,
-          offence: c.offence,
-          section: c.section,
-          chargeDate: c.chargeDate || c.charge_date,
-          location: c.location,
-          value: c.value,
-          details: c.details,
-          status: c.status,
-          extracted: c.extracted || false,
-          confidence: c.confidence ?? null, // Include confidence if available
-        })),
+        charges: (charges || []).map((c, idx) => {
+          const status = (c.status || "pending") as string;
+          return {
+            id: c.id,
+            offence: c.offence,
+            section: c.section,
+            chargeDate: c.chargeDate || c.charge_date,
+            location: sanitizeChargeLocation(c.location),
+            value: c.value,
+            details: c.details,
+            status,
+            extracted: c.extracted || false,
+            confidence: c.confidence ?? null, // Include confidence if available
+            count: typeof c.count === "number" && c.count > 0 ? c.count : idx + 1,
+            defendants: Array.isArray(c.defendants) ? c.defendants : [],
+            documentRole: c.documentRole ?? "unknown",
+            particulars: c.particulars ?? null,
+            sourceDocumentTitle: c.sourceDocumentTitle ?? null,
+            sourceDocumentType: c.sourceDocumentType ?? null,
+            sourcePage: c.sourcePage ?? null,
+            compiledPage: c.compiledPage ?? null,
+            // Canonical confirmation — never CONFIRMED while status is pending.
+            confirmationLabel:
+              c.confirmationLabel ??
+              chargeConfirmationLabel({
+                status,
+                extracted: c.extracted || false,
+                confidence: c.confidence ?? null,
+                hasChargeSheet: false,
+                offence: c.offence,
+                particulars: c.particulars ?? null,
+                count: typeof c.count === "number" && c.count > 0 ? c.count : idx + 1,
+                defendants: Array.isArray(c.defendants) ? c.defendants : [],
+                documentRole: c.documentRole ?? "unknown",
+              }),
+          };
+        }),
       },
       context,
       caseId,

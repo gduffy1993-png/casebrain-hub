@@ -22,14 +22,33 @@ import { resolveSolicitorOffenceFamily } from "@/lib/criminal/solicitor-offence-
 import { resolveSolicitorHearingStatus } from "@/lib/criminal/solicitor-hearing-status";
 import { dedupeEvidenceAliases } from "@/lib/criminal/evidence-alias-dedupe";
 import type { FiveAnswersEvidenceRow } from "@/lib/criminal/five-answers/types";
+import {
+  buildCanonicalPipelineFromDocumentUnits,
+  type UploadedDocumentUnit,
+} from "@/lib/criminal/build-from-document-units";
+import { shouldChaseRequestAgainstServedAliases } from "@/lib/criminal/canonical-finding-model";
+import type { SharedEvidenceState } from "@/lib/criminal/evidence-state-reconcile";
 
-function stableId(prefix: string, parts: string[]): string {
-  const raw = parts.map((p) => normalizeSolicitorLineKey(p)).filter(Boolean).join("|");
-  const hash = sha256HexSlice(raw, 16);
-  return `${prefix}_${hash}`;
-}
+/**
+ * EXISTENCE_MAPPING_POLICY (CanonicalMatterState schema 1.1.0) — intentional rule.
+ *
+ * Raw FiveAnswersEvidenceExistence → CanonicalEvidenceExistence:
+ * - served / referred_only / missing: identity
+ * - incomplete: identity (if ever present on raw rows)
+ * - not_safely_confirmed → incomplete
+ *   Intentional: matches displayExistenceLabel() which presents raw NSC as "Incomplete"
+ *   on primary solicitor surfaces; overview Incomplete bucket absorbs that raw state.
+ * - unknown → not_safely_confirmed
+ *   Intentional: unknown is not a canonical existence; solicitor strip uses
+ *   "Not safely confirmed" for unresolved unknowns.
+ * - default → not_safely_confirmed
+ *
+ * Do not redefine these mappings without migration evidence + fingerprint impact analysis.
+ * See artifacts/.../existence-mapping-policy-migration.json for locked expectations.
+ */
+export const EXISTENCE_MAPPING_POLICY_ID = "canonical-existence-map@1.1.0" as const;
 
-function mapExistence(raw: string): CanonicalEvidenceExistence {
+export function mapRawExistenceToCanonical(raw: string): CanonicalEvidenceExistence {
   switch (raw) {
     case "served":
       return "served";
@@ -37,6 +56,8 @@ function mapExistence(raw: string): CanonicalEvidenceExistence {
       return "referred_only";
     case "missing":
       return "missing";
+    case "incomplete":
+      return "incomplete";
     case "not_safely_confirmed":
       return "incomplete";
     case "unknown":
@@ -44,6 +65,17 @@ function mapExistence(raw: string): CanonicalEvidenceExistence {
     default:
       return "not_safely_confirmed";
   }
+}
+
+/** @deprecated Use mapRawExistenceToCanonical — kept as private alias name in older call sites. */
+function mapExistence(raw: string): CanonicalEvidenceExistence {
+  return mapRawExistenceToCanonical(raw);
+}
+
+function stableId(prefix: string, parts: string[]): string {
+  const raw = parts.map((p) => normalizeSolicitorLineKey(p)).filter(Boolean).join("|");
+  const hash = sha256HexSlice(raw, 16);
+  return `${prefix}_${hash}`;
 }
 
 function countEvidence(items: CanonicalEvidenceItem[]): CanonicalEvidenceCounts {
@@ -172,40 +204,97 @@ export type BuildCanonicalMatterInput = {
     treatAsSnapshot?: boolean;
     asOf?: Date;
   };
+  /**
+   * Uploaded document/page units — when provided, documentRelationships + findings
+   * are built from the live pipeline and chase items are alias-suppressed.
+   */
+  documents?: UploadedDocumentUnit[] | null;
 };
 
 export function buildCanonicalMatterStateV1(input: BuildCanonicalMatterInput): CanonicalMatterStateV1 {
   const allegation = input.allegation?.trim() || null;
   const chargeWording = input.chargeWording?.trim() || null;
-  const bundleHay = input.bundleHay?.trim() || null;
+  let bundleHay = input.bundleHay?.trim() || null;
+
+  const pipeline =
+    input.documents && input.documents.length > 0
+      ? buildCanonicalPipelineFromDocumentUnits(input.documents)
+      : null;
+  if (pipeline) {
+    bundleHay = bundleHay ? `${bundleHay}\n${pipeline.bundleText}` : pipeline.bundleText;
+  }
 
   const offence = resolveSolicitorOffenceFamily({ allegation, chargeWording, bundleHay });
 
-  const deduped = dedupeEvidenceAliases(input.evidenceRows);
+  const mergedEvidenceRows: FiveAnswersEvidenceRow[] = [
+    ...input.evidenceRows,
+    ...(pipeline?.evidenceRows ?? []).map((r) => {
+      const row: FiveAnswersEvidenceRow = {
+        label: r.label,
+        existence: r.existence as FiveAnswersEvidenceRow["existence"],
+        reliability: "needs_review",
+      };
+      if (r.note) row.note = r.note;
+      return row;
+    }),
+  ];
+
+  const deduped = dedupeEvidenceAliases(mergedEvidenceRows);
   const evidenceItems: CanonicalEvidenceItem[] = deduped.map((row) => {
     const existence = mapExistence(row.existence);
     const id = stableId("ev", [row.label, existence]);
+    const fromDerived = pipeline?.evidenceRows.find(
+      (r) => r.label.toLowerCase() === row.label.toLowerCase() && r.existence === row.existence,
+    );
+    const fromPipeline = pipeline?.graph.nodes.find((n) =>
+      n.title && row.label.toLowerCase().includes(n.title.toLowerCase().slice(0, 12)),
+    );
     return {
       id,
       label: row.label,
       existence,
-      note: row.note ?? null,
-      sourceDocument: null,
-      sourcePage: null,
+      note: row.note ?? fromDerived?.note ?? null,
+      sourceDocument: fromDerived?.sourceDocumentTitle ?? fromPipeline?.title ?? null,
+      sourcePage: fromDerived?.sourcePage ?? fromPipeline?.sourcePage ?? null,
     };
   });
   const evidenceCounts = countEvidence(evidenceItems);
 
-  const chaseItems: CanonicalChaseItem[] = (input.chaseItems ?? []).map((item) => {
-    const status = mapChaseStatus(item.baseStatus ?? item.status ?? "not_started");
-    const id = item.id?.trim() || stableId("ch", [item.label, status]);
-    return {
-      id,
-      label: item.label,
-      status,
-      whyItMatters: item.whyItMatters ?? null,
-    };
+  // Alias-suppress chase when pipeline knows served aliases.
+  const servedForAlias: Array<{ label: string; state: SharedEvidenceState }> = evidenceItems
+    .filter((i) => i.existence === "served")
+    .map((i) => ({ label: i.label, state: "served" as const }));
+
+  const rawChase = input.chaseItems ?? [];
+  const chaseAfterAlias = rawChase.filter((item) => {
+    if (!pipeline) return true;
+    const verdict = shouldChaseRequestAgainstServedAliases(item.label, servedForAlias);
+    return verdict.chase;
   });
+  // Also drop labels the pipeline already marked suppressed.
+  const suppressed = new Set(pipeline?.suppressedChaseLabels ?? []);
+  const chaseItems: CanonicalChaseItem[] = chaseAfterAlias
+    .filter((item) => !suppressed.has(item.label))
+    .map((item) => {
+      const status = mapChaseStatus(item.baseStatus ?? item.status ?? "not_started");
+      const id = item.id?.trim() || stableId("ch", [item.label, status]);
+      return {
+        id,
+        label: item.label,
+        status,
+        whyItMatters: item.whyItMatters ?? null,
+      };
+    });
+  // Add remaining live chase labels from pipeline (missing master etc.)
+  for (const label of pipeline?.chaseLabels ?? []) {
+    if (chaseItems.some((c) => c.label === label)) continue;
+    chaseItems.push({
+      id: stableId("ch", [label, "not_started"]),
+      label,
+      status: "not_started",
+      whyItMatters: "Outstanding on papers — chase required",
+    });
+  }
   const chaseCounts = countChase(chaseItems);
 
   const mg11 = resolveMg11(evidenceItems);
@@ -220,6 +309,30 @@ export function buildCanonicalMatterStateV1(input: BuildCanonicalMatterInput): C
   });
 
   const provisional = Boolean(input.provisional ?? offence.failClosed);
+
+  const documentRelationships = {
+    nodes: (pipeline?.graph.nodes ?? []).map((n) => ({
+      id: n.id,
+      title: n.title,
+      role: n.role,
+      replacesDocumentId: n.replacesDocumentId,
+      documentDate: n.documentDate,
+      versionNumber: n.versionNumber,
+      uploadOrder: n.uploadOrder,
+    })),
+    operativeDocumentId: pipeline?.graph.nodes.find((n) => n.role === "operative" || n.role === "amended")?.id ?? null,
+    supersededDocumentIds: (pipeline?.graph.nodes ?? [])
+      .filter((n) => n.role === "superseded")
+      .map((n) => n.id),
+  };
+
+  const findings = (pipeline?.findings ?? []).map((f) => ({
+    kind: f.kind,
+    title: f.title,
+    summary: f.summary,
+    unresolved: f.unresolved,
+    provenanceLine: f.provenanceLine,
+  }));
 
   const fingerprint = fingerprintCanonicalMatter({
     schemaVersion: CANONICAL_MATTER_STATE_VERSION,
@@ -259,6 +372,8 @@ export function buildCanonicalMatterStateV1(input: BuildCanonicalMatterInput): C
       statusLabel: hearingResolved.statusLabel,
       isSnapshot: hearingResolved.isSnapshot,
     },
+    documentRelationships,
+    findings,
     fingerprint,
   };
 }

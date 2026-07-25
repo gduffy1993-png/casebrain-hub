@@ -1,0 +1,404 @@
+{
+  "programme": "assurance-engine",
+  "runId": "assurance_foundation_1785016135441",
+  "generatedAt": "2026-07-25T21:48:56.031Z",
+  "disclaimer": "Foundation hardening assurance receipts — not a corpus PASS. Do not commit / push / merge / deploy. Stop for review.",
+  "programmePassSupported": false,
+  "controls": [
+    {
+      "id": "AUD-PROV-UNKNOWN-PAGE",
+      "label": "Unknown page identity remains explicit across every exit",
+      "intent": "Unsplit whole-document text must set pageIdentityKnown=false, keep every page field null/absent, and declare that the supporting document is known but the exact page is unavailable — never report this as missing provenance entirely.",
+      "severity": "CRITICAL",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "likelyFiles": [
+        "lib/criminal/finding-provenance.ts",
+        "lib/criminal/build-from-document-units.ts",
+        "lib/criminal/canonical-live-surface-adapter.ts"
+      ]
+    },
+    {
+      "id": "AUD-PROV-FALSE-PAGE-DEFAULT",
+      "label": "No helper may default a finding to page 1",
+      "intent": "Helpers that previously fell back to pageNumber=1 / 'p.1' / 'page 1' / 'p.null' must refuse synthetic page references when page identity is unknown.",
+      "severity": "CRITICAL",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "likelyFiles": [
+        "lib/criminal/finding-provenance.ts",
+        "lib/criminal/build-from-document-units.ts",
+        "lib/criminal/authenticated-matter-canonical.ts"
+      ]
+    },
+    {
+      "id": "AUD-PROV-SOURCE-VS-COMPILED-PAGE",
+      "label": "Source and compiled page numbering stay distinct",
+      "intent": "Genuine page units preserve exact source-document and compiled-bundle page numbers side by side. Numbering must not shift or collapse one into the other.",
+      "severity": "HIGH",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api",
+        "pdf"
+      ],
+      "likelyFiles": [
+        "lib/criminal/finding-provenance.ts",
+        "lib/criminal/build-from-document-units.ts"
+      ]
+    },
+    {
+      "id": "AUD-DOC-OPERATIVE-PRECEDENCE",
+      "label": "Operative precedence follows documentary truth tiers",
+      "intent": "Precedence order is: explicit replacement → reliable operative status → document version/date → chronological upload order → stable id tie-break. Array/retrieval order never selects the operative instrument alone.",
+      "severity": "CRITICAL",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api"
+      ],
+      "likelyFiles": [
+        "lib/criminal/document-relationship-model.ts"
+      ]
+    },
+    {
+      "id": "AUD-DOC-UPLOAD-FALLBACK",
+      "label": "Upload order is only the final documentary fallback",
+      "intent": "uploadOrder may break ties after documentary signals are exhausted, but it is never a substitute for explicit replacement, status, date or version.",
+      "severity": "HIGH",
+      "affectedExits": [
+        "view",
+        "api"
+      ],
+      "likelyFiles": [
+        "lib/criminal/document-relationship-model.ts",
+        "lib/criminal/authenticated-matter-canonical.ts"
+      ]
+    },
+    {
+      "id": "AUD-DOC-DETERMINISTIC-TIE",
+      "label": "Equal or absent timestamps stay deterministic",
+      "intent": "Equal updated_at values, null timestamps and invalid timestamps must produce identical operative results across reruns via a stable id tie-break — never array position.",
+      "severity": "HIGH",
+      "affectedExits": [
+        "api",
+        "view"
+      ],
+      "likelyFiles": [
+        "lib/criminal/document-relationship-model.ts",
+        "lib/criminal/authenticated-matter-canonical.ts"
+      ]
+    },
+    {
+      "id": "AUD-DOC-SILENT-SUPERSESSION",
+      "label": "No silent supersession or charge cloning",
+      "intent": "A later-uploaded duplicate without supported relationship must not silently supersede an earlier instrument. Earlier wording remains visible as superseded (when supported) and is never cloned from the operative wording.",
+      "severity": "CRITICAL",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api"
+      ],
+      "likelyFiles": [
+        "lib/criminal/document-relationship-model.ts",
+        "lib/criminal/build-from-document-units.ts"
+      ]
+    }
+  ],
+  "receipts": [
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-PROV-UNKNOWN-PAGE",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "checkedAt": "2026-07-25T21:48:55.765Z",
+      "inputState": {
+        "scenario": "unsplit_fullText_with_page19_string",
+        "documentId": "unsplit-page19"
+      },
+      "expectedResult": "pageIdentityKnown=false; no p.1/p.19; limitation attached on all exits; not reported as missing provenance",
+      "actualResult": "completeness=known_document_unknown_page; line=Unsplit custody bundle (custody_record) · exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "notCheckedReason": null,
+      "detail": "Unsplit text containing 'Page 19' correctly treated as unknown page identity across exits"
+    },
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-PROV-SOURCE-VS-COMPILED-PAGE",
+      "status": "PASS",
+      "severity": "HIGH",
+      "checkedAt": "2026-07-25T21:48:55.773Z",
+      "inputState": {
+        "scenario": "mixed_known_plus_unsplit",
+        "knownSourcePages": [
+          4,
+          5
+        ],
+        "knownCompiledPages": [
+          40,
+          41
+        ]
+      },
+      "expectedResult": "source p.4/p.5 and compiled p.40/p.41 preserved; unsplit sibling stays page-null",
+      "actualResult": "draft.source=p.4; draft.compiled=p.40; unsplit.pageIdentityKnown=false",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api",
+        "pdf"
+      ],
+      "notCheckedReason": null,
+      "detail": "Source and compiled numbering kept distinct; fullText fallback did not shift pages"
+    },
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-PROV-FALSE-PAGE-DEFAULT",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "checkedAt": "2026-07-25T21:48:55.782Z",
+      "inputState": {
+        "scenario": "repeated_wording_blank_rotated_ocr",
+        "knifePages": [
+          7,
+          11
+        ],
+        "blankPages": [
+          8,
+          10
+        ]
+      },
+      "expectedResult": "anchors only on genuine matching pages 7 and 11; never page 1; blank/OCR pages skipped",
+      "actualResult": "knifePages=7,11; collisionPage=p.7",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "notCheckedReason": null,
+      "detail": "Repeated wording and blank/OCR pages handled; limitation=Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename a"
+    },
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-PROV-FALSE-PAGE-DEFAULT",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "checkedAt": "2026-07-25T21:48:55.783Z",
+      "inputState": {
+        "scenario": "helper_defaults",
+        "attemptedSourcePage": "1",
+        "attemptedCompiledPage": "p.null"
+      },
+      "expectedResult": "pageIdentityKnown=false forces every page field null; synthetic refs refused",
+      "actualResult": "line=Unsplit custody (custody_record) · exact page unavailable (unsplit whole-document text) · state: served · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; auth.pageNumber=null",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "notCheckedReason": null,
+      "detail": "Shared provenance helpers and authenticated mapper refuse page-1 defaults"
+    },
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-PROV-UNKNOWN-PAGE",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "checkedAt": "2026-07-25T21:48:55.866Z",
+      "inputState": {
+        "scenario": "all_exits",
+        "exits": [
+          "view",
+          "copy",
+          "export",
+          "api",
+          "pdf",
+          "composed_prose"
+        ]
+      },
+      "expectedResult": "every exit attaches unknown-page limitation; no p.1/p.null; factual text still visible",
+      "actualResult": "exitsChecked=view,copy,export,api,pdf,composed_prose; missingLimitation=0; falsePage=0",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "notCheckedReason": null,
+      "detail": "All-exit matrix closed for unknown page identity"
+    },
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-DOC-OPERATIVE-PRECEDENCE",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "checkedAt": "2026-07-25T21:48:55.867Z",
+      "inputState": {
+        "scenario": "amended_uploaded_earlier",
+        "amendedUploadOrder": 1,
+        "originalUploadOrder": 9,
+        "replacesDocumentId": "original-late"
+      },
+      "expectedResult": "amended-early operative via explicit_replacement despite lower uploadOrder",
+      "actualResult": "operative=amended-early; basis=explicit_replacement; superseded=original-late",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api"
+      ],
+      "notCheckedReason": null,
+      "detail": "Explicit replacement outranks upload order"
+    },
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-DOC-SILENT-SUPERSESSION",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "checkedAt": "2026-07-25T21:48:55.869Z",
+      "inputState": {
+        "scenario": "later_duplicate_no_relationship",
+        "earlierId": "charge-a",
+        "laterId": "charge-b"
+      },
+      "expectedResult": "later duplicate may be operative via upload_order fallback but earlier is not silently superseded",
+      "actualResult": "operative=charge-b; superseded=(none); unsupported=charge-a",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api"
+      ],
+      "notCheckedReason": null,
+      "detail": "Silent supersession closed — upload order is not documentary truth"
+    },
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-DOC-UPLOAD-FALLBACK",
+      "status": "PASS",
+      "severity": "HIGH",
+      "checkedAt": "2026-07-25T21:48:55.869Z",
+      "inputState": {
+        "scenario": "upload_order_fallback_only",
+        "basis": "upload_order"
+      },
+      "expectedResult": "basis=upload_order only when no replacement/status/date/version distinguishes candidates",
+      "actualResult": "basis=upload_order",
+      "affectedExits": [
+        "view",
+        "api"
+      ],
+      "notCheckedReason": null,
+      "detail": "Upload order used only as final fallback"
+    },
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-DOC-DETERMINISTIC-TIE",
+      "status": "PASS",
+      "severity": "HIGH",
+      "checkedAt": "2026-07-25T21:48:55.912Z",
+      "inputState": {
+        "scenario": "equal_updated_at",
+        "orderA": [
+          "doc-z",
+          "doc-a"
+        ],
+        "orderB": [
+          "doc-a",
+          "doc-z"
+        ]
+      },
+      "expectedResult": "identical operative result regardless of input array order",
+      "actualResult": "operative=doc-z; basis=upload_order",
+      "affectedExits": [
+        "api",
+        "view"
+      ],
+      "notCheckedReason": null,
+      "detail": "Equal timestamps resolve deterministically"
+    },
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-DOC-SILENT-SUPERSESSION",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "checkedAt": "2026-07-25T21:48:56.027Z",
+      "inputState": {
+        "scenario": "earlier_wording_visible_no_clone",
+        "operativeOffence": "Alex Stone is charged with robbery contrary to section 8(1) Theft Act 1968",
+        "supersededOffence": "Alex Stone is charged with robbery contrary to section 8 Theft Act 1968"
+      },
+      "expectedResult": "superseded charge extracted from earlier instrument; never cloned from operative",
+      "actualResult": "operativeDoc=Amended indictment; supersededDoc=Original indictment",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api"
+      ],
+      "notCheckedReason": null,
+      "detail": "Earlier wording preserved; no cloning"
+    },
+    {
+      "runId": "assurance_foundation_1785016135441",
+      "controlId": "AUD-DOC-OPERATIVE-PRECEDENCE",
+      "status": "PASS",
+      "severity": "CRITICAL",
+      "checkedAt": "2026-07-25T21:48:56.027Z",
+      "inputState": {
+        "scenario": "idempotent_rerun",
+        "basis": "explicit_replacement"
+      },
+      "expectedResult": "identical operative result on rerun; basis=explicit_replacement",
+      "actualResult": "{\"operativeDocumentId\":\"amd\",\"supersededDocumentIds\":[\"orig\"],\"basis\":\"explicit_replacement\",\"unsupportedSupersessionCandidates\":[],\"supersessionSupport\":[{\"id\":\"orig\",\"support\":\"explicit_replacement\"}]}",
+      "affectedExits": [
+        "view",
+        "copy",
+        "export",
+        "api"
+      ],
+      "notCheckedReason": null,
+      "detail": "Rerun identity and precedence tiers verified"
+    }
+  ],
+  "summary": {
+    "total": 11,
+    "pass": 11,
+    "partial": 0,
+    "fail": 0,
+    "notChecked": 0,
+    "criticalFails": 0,
+    "allMandatoryPass": true
+  },
+  "contractsPassed": 12
+}

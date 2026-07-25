@@ -17,6 +17,19 @@ export const PROTECTED_SOLICITOR_ACRONYMS = [
   "CPS",
   "CCTV",
   "DVLA",
+  "CAD",
+  "999",
+  "DNA",
+  "AFIS",
+  "PIN",
+  "YJS",
+  "KN/01",
+] as const;
+
+/** Multi-word labels that must keep title/list casing even inside chase sentences. */
+export const PROTECTED_SOLICITOR_PHRASES = [
+  { re: /\bbody-worn video\s*\(\s*bwv\s*\)/gi, canon: "Body-worn video (BWV)" },
+  { re: /\bcad\s*\/\s*999\b/gi, canon: "CAD / 999" },
 ] as const;
 
 export type SolicitorCopyQualityIssue =
@@ -48,11 +61,20 @@ const ACRONYM_LOWER_RES: Array<{ re: RegExp; label: string }> = [
   { re: /\bcps\b/, label: "CPS" },
   { re: /\bcctv\b/, label: "CCTV" },
   { re: /\bdvla\b/, label: "DVLA" },
+  { re: /\bcad\b/, label: "CAD" },
+  { re: /\bcAD\b/, label: "CAD" },
+  { re: /\bdna\b/, label: "DNA" },
+  { re: /\bafis\b/, label: "AFIS" },
+  { re: /\bpin\b/, label: "PIN" },
+  { re: /\byjs\b/, label: "YJS" },
 ];
 
-/** Restore canonical casing for protected solicitor acronyms. */
+const PROTECTED_START_RE =
+  /^(MG\d+[A-Z]?|BWV|ABE|PACE|SFR|ANPR|CPS|CCTV|DVLA|CAD|999|Body-worn video)\b/;
+
+/** Restore canonical casing for protected solicitor acronyms and phrases. */
 export function preserveProtectedAcronyms(text: string): string {
-  return text
+  let out = text
     .replace(/\bmg6c\b/gi, "MG6C")
     .replace(/\bmg(\d+[a-z]?)\b/gi, (_, n: string) => `MG${String(n).toUpperCase()}`)
     .replace(/\bbwv\b/gi, "BWV")
@@ -62,17 +84,33 @@ export function preserveProtectedAcronyms(text: string): string {
     .replace(/\banpr\b/gi, "ANPR")
     .replace(/\bcps\b/gi, "CPS")
     .replace(/\bcctv\b/gi, "CCTV")
-    .replace(/\bdvla\b/gi, "DVLA");
+    .replace(/\bdvla\b/gi, "DVLA")
+    .replace(/\bcad\b/gi, "CAD");
+  out = out
+    .replace(/\bdna\b/gi, "DNA")
+    .replace(/\bafis\b/gi, "AFIS")
+    .replace(/\bpin\b/gi, "PIN")
+    .replace(/\byjs\b/gi, "YJS")
+    .replace(/\bkn\s*\/\s*0*1\b/gi, "KN/01")
+    .replace(/\bcctv\b/gi, "CCTV");
+  for (const { re, canon } of PROTECTED_SOLICITOR_PHRASES) {
+    out = out.replace(re, canon);
+  }
+  return out;
 }
 
 /**
- * Lowercase only the first character when it is not part of a protected acronym.
- * Prevents "SFR drugs…" → "sFR drugs…" in chase drafts.
+ * Lowercase only the first character when it is not part of a protected acronym/phrase.
+ * Prevents "SFR drugs…" → "sFR drugs…" and "CAD / 999…" → "cAD / 999…" in chase drafts.
+ * Preserves "Body-worn video (BWV)" as a protected list/sentence label.
  */
 export function sentenceCasePreservingAcronyms(text: string): string {
   const t = text.trim();
   if (!t) return t;
-  if (/^(MG\d+[A-Z]?|BWV|ABE|PACE|SFR|ANPR|CPS|CCTV|DVLA)\b/.test(t)) {
+  if (/^body-worn video\b/i.test(t)) {
+    return preserveProtectedAcronyms(t.replace(/^body-worn video/i, "Body-worn video"));
+  }
+  if (PROTECTED_START_RE.test(t) || /^CAD\b/i.test(t) || /^999\b/.test(t)) {
     return preserveProtectedAcronyms(t);
   }
   return preserveProtectedAcronyms(t.charAt(0).toLowerCase() + t.slice(1));
@@ -115,7 +153,7 @@ export function describeCopyQualityIssues(issues: SolicitorCopyQualityIssue[]): 
         case "pipe_delimited_fragment":
           return "Pipe-delimited internal fragment leaked to solicitor copy.";
         case "protected_acronym_casing":
-          return "Protected acronym lost canonical casing (MG5/MG6/MG11/BWV/ABE/PACE/SFR/ANPR/CPS/CCTV/DVLA).";
+          return "Protected acronym lost canonical casing (MG5/MG6/MG11/BWV/ABE/PACE/SFR/ANPR/CPS/CCTV/DVLA/CAD).";
         case "still_chase_double_append":
           return "Duplicated 'still chase' append.";
         default:

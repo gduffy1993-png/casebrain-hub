@@ -10,6 +10,10 @@ import { dedupeEvidenceRowsByLabel } from "@/lib/criminal/overview-presentation"
 import { workflowPilotCard, workflowSectionTitle } from "@/components/criminal/workflow/workflowUi";
 import { humanizeEvidenceLabel } from "./evidence-display";
 import { EvidenceStateBadge, EvidenceStateLegend } from "./EvidenceStateBadge";
+import {
+  assertFindingProvenanceOrLimitation,
+  formatFindingProvenanceLine,
+} from "@/lib/criminal/finding-provenance";
 
 function dedupeRows(rows: FiveAnswersEvidenceRow[]): FiveAnswersEvidenceRow[] {
   return dedupeEvidenceRowsByLabel(rows);
@@ -68,6 +72,13 @@ export function EvidenceTruthMapPanel({ rows }: { rows: FiveAnswersEvidenceRow[]
                         {otherDef ? (
                           <span className="ml-1.5 text-[9px] text-slate-500 align-middle">· Other defendant</span>
                         ) : null}
+                        <p className="text-[10px] text-slate-500 mt-1 font-normal">
+                          {formatFindingProvenanceLine(
+                            assertFindingProvenanceOrLimitation({
+                              evidenceState: row.existence,
+                            }),
+                          )}
+                        </p>
                       </td>
                       <td className="py-2.5 pr-3 align-top">
                         <EvidenceStateBadge existence={row.existence} />

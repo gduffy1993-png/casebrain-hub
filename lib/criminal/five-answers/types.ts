@@ -5,6 +5,7 @@ export type EvidenceExistence =
   | "served"
   | "referred_only"
   | "missing"
+  | "incomplete"
   | "unknown"
   | "not_safely_confirmed";
 
@@ -114,5 +115,6 @@ export function mapSourceStateToExistence(state: SourceStateKind | null): Eviden
   if (!state) return "unknown";
   if (state === "provisional") return "unknown";
   if (state === "needs_review") return "not_safely_confirmed";
+  if (state === "incomplete") return "incomplete";
   return state;
 }

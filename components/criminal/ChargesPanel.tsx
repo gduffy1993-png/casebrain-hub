@@ -6,6 +6,12 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  chargeConfirmationLabel,
+  sanitizeChargeLocation,
+  summarizeChargeConfirmations,
+} from "@/lib/criminal/structured-charge-state";
+import { formatFindingProvenanceLine, assertFindingProvenanceOrLimitation } from "@/lib/criminal/finding-provenance";
 
 /** In normal mode: show "Source: X" from [AUTO_EXTRACTED] details; hide confidence. With ?debug=1 show raw. */
 function formatChargeDetails(details: string | null, debug: boolean): string | null {
@@ -14,6 +20,28 @@ function formatChargeDetails(details: string | null, debug: boolean): string | n
   const autoMatch = details.match(/\[AUTO_EXTRACTED\]\s*source=([^;]+)/i);
   if (autoMatch) return `Source: ${autoMatch[1].trim()}`;
   return null; // hide other raw technical lines in normal mode
+}
+
+function chargeProvenanceLine(charge: {
+  sourceDocumentTitle?: string | null;
+  sourceDocumentType?: string | null;
+  sourcePage?: string | null;
+  compiledPage?: string | null;
+  status: string;
+  defendants?: string[];
+  count?: number;
+}): string {
+  return formatFindingProvenanceLine(
+    assertFindingProvenanceOrLimitation({
+      sourceDocumentTitle: charge.sourceDocumentTitle,
+      sourceDocumentType: charge.sourceDocumentType,
+      sourcePage: charge.sourcePage,
+      compiledPage: charge.compiledPage,
+      evidenceState: charge.status,
+      defendant: charge.defendants?.[0] ?? null,
+      countNumber: charge.count ?? null,
+    }),
+  );
 }
 
 type Charge = {
@@ -28,6 +56,15 @@ type Charge = {
   extracted?: boolean;
   confidence?: number | null;
   aliases?: string[]; // Alternative offence names for same charge
+  count?: number;
+  defendants?: string[];
+  documentRole?: "operative" | "amended" | "superseded" | "unknown";
+  particulars?: string | null;
+  sourceDocumentTitle?: string | null;
+  sourceDocumentType?: string | null;
+  sourcePage?: string | null;
+  compiledPage?: string | null;
+  confirmationLabel?: "confirmed" | "unconfirmed" | "pending";
 };
 
 type ChargesPanelProps = {
@@ -87,6 +124,8 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
             const normalizedSection = normalizeSection(c.section);
             const altSection = extractAltSection(c.offence);
             
+            // Operative and superseded charge documents must never merge.
+            const roleKeyPart = c.documentRole && c.documentRole !== "unknown" ? c.documentRole : "";
             // Use normalized offence + section as key (e.g., "OAPA1861:s18")
             // Normalize statute so s18/s20 from different docs merge into one row per section
             const offenceLower = (c.offence || "").toLowerCase();
@@ -98,7 +137,9 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
             if (!statute && /^s(18|20)$/.test(normalizedSection) && (offenceLower.includes("gbh") || offenceLower.includes("wounding"))) {
               statute = "OAPA1861";
             }
-            const key = `${statute || normalizedOffence}:${normalizedSection}`.toLowerCase().trim();
+            const key = `${statute || normalizedOffence}:${normalizedSection}:${c.count ?? ""}:${roleKeyPart}`
+              .toLowerCase()
+              .trim();
             
             if (!dedupedMap.has(key)) {
               // First occurrence - store it
@@ -129,16 +170,17 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
             }
           });
 
-          // Clean location junk text and add aliases
+          // Sanitize location (corrupted strings must not render) and add aliases
           const cleaned = Array.from(dedupedMap.entries()).map(([key, c]) => {
             const loc = c.location || "";
-            const cleanedLocation = loc.includes("precision") && loc.toLowerCase().includes("not disclosed")
-              ? "Not disclosed"
-              : loc.replace(/precision\)\.?\s*Not disclosed/i, "Not disclosed");
+            const preCleaned =
+              loc.includes("precision") && loc.toLowerCase().includes("not disclosed")
+                ? "Not disclosed"
+                : loc.replace(/precision\)\.?\s*Not disclosed/i, "Not disclosed");
             const aliases = aliasesMap.get(key) || [];
-            return { 
-              ...c, 
-              location: cleanedLocation,
+            return {
+              ...c,
+              location: sanitizeChargeLocation(preCleaned),
               aliases: aliases.filter(a => a !== c.offence), // Exclude primary offence from aliases
             };
           });
@@ -211,19 +253,29 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
     );
   }
 
-  // Separate confirmed vs unconfirmed charges
-  const confirmedCharges = charges.filter(c => {
-    // A charge is confirmed if:
-    // 1. It has confidence >= 0.75 AND hasChargeSheet is true
-    // 2. OR it's not extracted (from DB, assumed confirmed)
-    const isConfirmed = !c.extracted || (c.confidence != null && c.confidence >= 0.75 && hasChargeSheet);
-    return isConfirmed;
-  });
-  
-  const unconfirmedCharges = charges.filter(c => {
-    const isUnconfirmed = c.extracted && (c.confidence == null || c.confidence < 0.75 || !hasChargeSheet);
-    return isUnconfirmed;
-  });
+  // Canonical charge state: status labels cannot show CONFIRMED while charges are PENDING.
+  const labelled = charges.map((c) => ({
+    charge: c,
+    confirmationLabel:
+      c.confirmationLabel ??
+      chargeConfirmationLabel({
+        status: c.status,
+        extracted: c.extracted,
+        confidence: c.confidence,
+        hasChargeSheet,
+        offence: c.offence,
+        particulars: c.particulars ?? null,
+        count: c.count ?? null,
+        defendants: c.defendants ?? [],
+        documentRole: c.documentRole ?? "unknown",
+      }),
+  }));
+  const counts = summarizeChargeConfirmations(labelled);
+  const confirmedCharges = labelled.filter((l) => l.confirmationLabel === "confirmed").map((l) => l.charge);
+  const pendingCharges = labelled.filter((l) => l.confirmationLabel === "pending").map((l) => l.charge);
+  const unconfirmedCharges = labelled
+    .filter((l) => l.confirmationLabel === "unconfirmed")
+    .map((l) => l.charge);
 
   return (
     <Card
@@ -231,12 +283,17 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
         <div className="flex items-center gap-2">
           <FileText className="h-4 w-4 text-primary" />
           <span>Charges & Offences</span>
-          {confirmedCharges.length > 0 && (
-            <Badge variant="secondary">{confirmedCharges.length} confirmed</Badge>
+          {counts.confirmed > 0 && (
+            <Badge variant="secondary">{counts.confirmed} confirmed</Badge>
           )}
-          {unconfirmedCharges.length > 0 && (
+          {counts.unconfirmed > 0 && (
             <Badge variant="outline" className="border-amber-500/30 text-amber-400">
-              {unconfirmedCharges.length} unconfirmed
+              {counts.unconfirmed} unconfirmed
+            </Badge>
+          )}
+          {counts.pending > 0 && (
+            <Badge variant="outline" className="border-slate-400/40 text-slate-400">
+              {counts.pending} pending
             </Badge>
           )}
         </div>
@@ -314,6 +371,9 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
                           const detailLine = formatChargeDetails(charge.details, debug);
                           return detailLine ? <p className="text-xs text-muted-foreground mt-1">{detailLine}</p> : null;
                         })()}
+                        <p className="text-[11px] text-muted-foreground mt-1">
+                          {chargeProvenanceLine(charge)}
+                        </p>
                       </div>
                       <Badge variant="secondary" className="text-xs">
                         {charge.status}
@@ -332,6 +392,53 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
             </div>
           )}
           
+          {/* Pending charges — status remains pending on the papers */}
+          {pendingCharges.length > 0 && (
+            <div>
+              <p className="text-xs uppercase tracking-wide text-slate-400/80 mb-2">Pending charges</p>
+              <div className="space-y-3">
+                {pendingCharges.map((charge) => (
+                  <div key={charge.id} className="p-3 rounded-lg border border-border bg-muted/20">
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {charge.count != null && (
+                            <Badge variant="outline" className="text-xs">Count {charge.count}</Badge>
+                          )}
+                          <h4 className="font-semibold text-sm">{charge.offence}</h4>
+                          {charge.documentRole === "superseded" && (
+                            <Badge variant="outline" className="text-xs border-slate-400/40 text-slate-400">
+                              Superseded document
+                            </Badge>
+                          )}
+                        </div>
+                        {charge.section && (
+                          <p className="text-xs text-muted-foreground mt-1">{charge.section}</p>
+                        )}
+                        {charge.defendants && charge.defendants.length > 0 && (
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Defendant{charge.defendants.length !== 1 ? "s" : ""}: {charge.defendants.join(", ")}
+                          </p>
+                        )}
+                        <p className="text-[11px] text-muted-foreground mt-1">
+                          {chargeProvenanceLine(charge)}
+                        </p>
+                      </div>
+                      <Badge variant="outline" className="text-xs">
+                        {charge.status}
+                      </Badge>
+                    </div>
+                    {charge.location && (
+                      <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
+                        <span>Location: {charge.location}</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Unconfirmed (Extracted) Charges */}
           {unconfirmedCharges.length > 0 && (
             <div>
@@ -354,6 +461,9 @@ export function ChargesPanel({ caseId }: ChargesPanelProps) {
                           const detailLine = formatChargeDetails(charge.details, debug);
                           return detailLine ? <p className="text-xs text-muted-foreground mt-1">{detailLine}</p> : null;
                         })()}
+                        <p className="text-[11px] text-muted-foreground mt-1">
+                          {chargeProvenanceLine(charge)}
+                        </p>
                         <p className="text-xs text-amber-400/80 mt-2">
                           Needs charge sheet/indictment
                           {debug && charge.confidence != null && charge.confidence < 0.75 && (

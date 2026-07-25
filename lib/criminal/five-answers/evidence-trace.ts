@@ -23,6 +23,7 @@ const EXISTENCE_LABELS: Record<EvidenceExistence, string> = {
   served: "Served",
   referred_only: "Referred only",
   missing: "Missing",
+  incomplete: "Incomplete",
   unknown: "Unknown",
   not_safely_confirmed: "Not safely confirmed",
 };
@@ -46,6 +47,8 @@ export function reliabilityForSourceState(
   switch (state) {
     case "served":
       return "needs_review";
+    case "incomplete":
+      return "weak";
     case "referred_only":
       return "weak";
     case "missing":

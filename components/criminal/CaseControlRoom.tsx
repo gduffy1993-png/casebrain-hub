@@ -164,6 +164,7 @@ type BundleSourceSummary = {
     exhibits: string | null;
   };
   caseMetadata?: ExtractedBundleCaseMetadata | null;
+  canonical?: import("@/lib/criminal/authenticated-matter-canonical").AuthenticatedMatterCanonicalPayload | null;
 };
 
 function formatGbDate(dateStr: string | null | undefined): string | null {
@@ -320,6 +321,7 @@ export function CaseControlRoom({
                 exhibits: d.snippets.exhibits ?? null,
               }
             : undefined,
+          canonical: (d as BundleSourceSummary).canonical ?? null,
         });
       })
       .catch(() => {})
@@ -339,8 +341,12 @@ export function CaseControlRoom({
     const snippet = bb
       ? `Battleboard primary: ${bb.title}. ${bb.hearing_line}`.slice(0, 400)
       : battleboard?.solicitor_safe_summary?.slice(0, 300) ?? "";
-    return [base, snippet].filter(Boolean).join("\n");
-  }, [defencePlan, battleboard]);
+    const findingLines = (bundleSource?.canonical?.findingSummaries ?? [])
+      .filter((f) => f.unresolved || f.severity === "critical")
+      .slice(0, 6)
+      .map((f) => `${f.title}: ${f.summary}`);
+    return [base, snippet, ...findingLines].filter(Boolean).join("\n");
+  }, [defencePlan, battleboard, bundleSource?.canonical?.findingSummaries]);
 
   const caseTitle = snapshot?.caseMeta?.title?.trim() || "Criminal case";
 

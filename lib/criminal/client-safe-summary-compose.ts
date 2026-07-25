@@ -3,10 +3,36 @@
  * Never hard-slice; never treat boundary containment as substantive repair.
  */
 
+import { attachFindingProvenance } from "@/lib/criminal/finding-provenance";
+
 export const CLIENT_SAFE_SUMMARY_TITLE = "CLIENT-SAFE SUMMARY";
 export const CLIENT_SAFE_SUMMARY_AUDIENCE = "(not for court or CPS)";
 export const CLIENT_SAFE_SUMMARY_DISCLAIMER =
   "[CaseBrain — client-safe summary. Evidence state: provisional. Not for court or CPS use.]";
+
+/** Disclaimer with explicit provenance limitation when exact doc/page/state/scope is unavailable. */
+export function clientSafeSummaryDisclaimerWithProvenance(input?: {
+  sourceDocumentTitle?: string | null;
+  sourceDocumentType?: string | null;
+  sourcePage?: string | null;
+  compiledPage?: string | null;
+  pageIdentityKnown?: boolean;
+  evidenceState?: string | null;
+  defendant?: string | null;
+  countNumber?: number | null;
+}): string {
+  const attached = attachFindingProvenance({
+    sourceDocumentTitle: input?.sourceDocumentTitle,
+    sourceDocumentType: input?.sourceDocumentType,
+    sourcePage: input?.sourcePage,
+    compiledPage: input?.compiledPage,
+    pageIdentityKnown: input?.pageIdentityKnown,
+    evidenceState: input?.evidenceState ?? "provisional",
+    defendant: input?.defendant,
+    countNumber: input?.countNumber,
+  });
+  return `[CaseBrain — client-safe summary. Evidence state: provisional. Provenance: ${attached.line}. Not for court or CPS use.]`;
+}
 
 export type ClientSummarySemanticUnits = {
   title: string;

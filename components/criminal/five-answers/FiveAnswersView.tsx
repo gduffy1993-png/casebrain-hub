@@ -60,6 +60,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
     primaryRouteTitle,
     bundleMeta,
     outputIntegrity,
+    canonical,
+    evidenceRowsOverride,
   } = useMatterBrief(caseId);
   const buildTabHref = usePilotMatterTabHref();
   const bundleHay = useMemo(
@@ -85,6 +87,8 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
       matterConfidence,
       doNotOverstate: filteredDoNotOverstate,
       bundleText: bundleMeta?.frontMatterScan ?? undefined,
+      evidenceRowsOverride: evidenceRowsOverride?.length ? evidenceRowsOverride : undefined,
+      canonicalFindings: canonical?.findingSummaries,
     });
 
     const gapRowsPolished = ensureDigitalHarassmentGapRows(
@@ -100,7 +104,7 @@ export function FiveAnswersView({ caseId }: { caseId: string }) {
         built.mustNotOverstate.map((line) => polishPresentationLine(line, bundleHay)),
       ),
     };
-  }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, bundleMeta?.frontMatterScan, bundleHay]);
+  }, [warRoom, chase, allegation, matterConfidence, filteredDoNotOverstate, bundleMeta?.frontMatterScan, bundleHay, evidenceRowsOverride, canonical?.findingSummaries]);
 
   const decisionBoard = useMemo(() => {
     if (!briefPlan || !warRoom || !chase) return null;

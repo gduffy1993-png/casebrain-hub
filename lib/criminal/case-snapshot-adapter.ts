@@ -13,6 +13,9 @@ import {
   type BundleCompletenessFlags,
   type CapabilityTier,
 } from "@/lib/criminal/bundle-completeness-score";
+import { assessBundleReadiness } from "@/lib/criminal/bundle-readiness";
+import { inferDocumentPageCount } from "@/lib/bundle/bundle-display-profile";
+import { sanitizeChargeLocation } from "@/lib/criminal/structured-charge-state";
 
 export type CaseSnapshot = {
   caseMeta: {
@@ -34,6 +37,12 @@ export type CaseSnapshot = {
     canShowStrategyPreview: boolean; // Minimal preview when strategy exists OR analysis version exists
     canShowStrategyFull: boolean; // Deep strategy UI only when extraction threshold met
     extractionOk?: boolean; // Exposed for status strip logic
+    /** Combined extracted text length (for bundle health). */
+    rawCharsTotal?: number;
+    /** Shared readiness — large single PDF is not thin. */
+    isThinPack?: boolean;
+    isLargeBundle?: boolean;
+    pageCount?: number | null;
     // Phase A: Bundle completeness (doc-metadata based)
     completenessScore: number; // 0–100
     completenessFlags: BundleCompletenessFlags;
@@ -202,11 +211,37 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
   const analysisData = analysisResult.data?.data || analysisResult.data || {};
   const analysisMode = analysisData.analysis_mode || (analysisData.version_number ? "complete" : "none") as "none" | "preview" | "complete";
   const hasVersion = analysisData.has_analysis_version === true || analysisData.version_number !== null;
-  const docCount = analysisData.docCount || analysisData.doc_count || undefined;
-  const rawCharsTotal = analysisData.rawCharsTotal || analysisData.raw_chars_total || 0;
-  
-  // Extraction threshold: docCount >= 2 AND rawCharsTotal >= 1000 (matches analysis gate logic)
-  const extractionOk = (docCount !== undefined && docCount >= 2) && rawCharsTotal >= 1000;
+  const documentsDataEarly = documentsResult.data?.data?.documents || documentsResult.data?.documents || [];
+  const documentsEarly = Array.isArray(documentsDataEarly) ? documentsDataEarly : [];
+  const combinedTextFromDocs = documentsEarly.reduce((sum: number, d: any) => {
+    const n =
+      typeof d.extractionCharCount === "number"
+        ? d.extractionCharCount
+        : typeof d.raw_text === "string"
+          ? d.raw_text.length
+          : 0;
+    return sum + n;
+  }, 0);
+  const analysisDocCount = analysisData.docCount || analysisData.doc_count;
+  const docCount =
+    typeof analysisDocCount === "number" && analysisDocCount > 0
+      ? analysisDocCount
+      : documentsEarly.length > 0
+        ? documentsEarly.length
+        : analysisDocCount;
+  const rawCharsTotal =
+    analysisData.rawCharsTotal || analysisData.raw_chars_total || combinedTextFromDocs || 0;
+  const pageCountSum = documentsEarly.reduce((sum: number, d: any) => {
+    const p = inferDocumentPageCount(d);
+    return p != null ? sum + p : sum;
+  }, 0);
+  const readiness = assessBundleReadiness({
+    documentCount: typeof docCount === "number" ? docCount : documentsEarly.length,
+    combinedTextLength: rawCharsTotal,
+    pageCount: pageCountSum > 0 ? pageCountSum : null,
+    docs: documentsEarly.map((d: any) => ({ name: d?.name, extracted_json: d?.extracted_json })),
+  });
+  const extractionOk = readiness.extractionOk;
   
   // Strategy data exists check - check all possible response shapes
   // Normalize to ONE canonical internal shape
@@ -282,6 +317,10 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     canShowStrategyPreview,
     canShowStrategyFull,
     extractionOk, // Expose for status strip logic
+    rawCharsTotal,
+    isThinPack: readiness.isThinPack,
+    isLargeBundle: readiness.isLargeBundle,
+    pageCount: readiness.pageCount,
   };
 
   // Normalize charges
@@ -292,7 +331,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
         offence: c.offence || "Unknown offence",
         section: c.section || null,
         status: c.status || "pending",
-        location: c.location || null,
+        location: sanitizeChargeLocation(c.location) || null,
         aliases: c.aliases || [],
       }))
     : [];
@@ -310,7 +349,7 @@ export async function buildCaseSnapshot(caseId: string): Promise<CaseSnapshot> {
     : [];
 
   // Normalize documents (pass through extraction feedback from API)
-  const documentsData = documentsResult.data?.data?.documents || documentsResult.data?.documents || [];
+  const documentsData = documentsEarly;
   const documents: DocItem[] = Array.isArray(documentsData)
     ? documentsData.map((doc: any) => ({
         id: doc.id || `doc-${Math.random()}`,
