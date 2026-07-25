@@ -1,0 +1,1058 @@
+{
+  "root": "docs/controlled-pdf-pilots",
+  "exists": true,
+  "fileCount": 175,
+  "totalBytes": 676743,
+  "files": [
+    {
+      "path": "docs/controlled-pdf-pilots/malik-price-150-page/acceptance-matrix.json",
+      "size": 9002,
+      "mtime": "2026-07-22T22:27:55.675Z",
+      "sha256": "b43f1ec86cded4553ca0b3ad8f18a993b9d5b04ecdff2c1b0bd918dfa0db0f38"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/malik-price-150-page/conflict-table.json",
+      "size": 7709,
+      "mtime": "2026-07-22T22:27:55.671Z",
+      "sha256": "0faa3fcb7b9d6661d99f378577d7b9a76784015e7aef2545945572ce6f8d203b"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/malik-price-150-page/FREEZE-HASH.txt",
+      "size": 373,
+      "mtime": "2026-07-22T22:31:36.736Z",
+      "sha256": "c63830474cfff04affac8849f885e5bcdebc18c5e327f7545f361ced8ffa8d85"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/malik-price-150-page/matter-skeleton.json",
+      "size": 7872,
+      "mtime": "2026-07-22T22:26:30.875Z",
+      "sha256": "b1bb2ebdabc67f999d8b4ef1db054580628dac4619c0b77ac85915c08c5586b4"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/malik-price-150-page/page-register.json",
+      "size": 9017,
+      "mtime": "2026-07-22T22:27:55.666Z",
+      "sha256": "2eea09f1bd99600c42217a8407124b5398d474f5055c937e670fd7417e3ee182"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/malik-price-150-page/README.md",
+      "size": 3450,
+      "mtime": "2026-07-22T22:32:10.710Z",
+      "sha256": "6fdd16d8566ca33d8cdd8a068401c11226c1ac0f2931b6f611997e6a152eb8b4"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/malik-price-150-page/STOP-FOR-REVIEW.json",
+      "size": 2390,
+      "mtime": "2026-07-22T22:32:08.767Z",
+      "sha256": "60eb199e0e8b16c6b0fe33eade030170abcfa64fc2ce545ae83d23bbf6a8e090"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/malik-price-150-page/truth-key.json",
+      "size": 10463,
+      "mtime": "2026-07-22T22:26:30.880Z",
+      "sha256": "cb6eb54f45aed7cc8f742330e9ca2b637152a399b4258086214dcd9fa29b8a5e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/master-18-core-blueprint-completion-summary.md",
+      "size": 6597,
+      "mtime": "2026-07-23T13:07:35.133Z",
+      "sha256": "3ec4461128852ec9bd30216617bdaf31a4aa927ca3cf7480dbd8890982fd3b4f"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/outstanding-qualified-review-register-ranks1-18.md",
+      "size": 10823,
+      "mtime": "2026-07-23T13:08:38.574Z",
+      "sha256": "32c4676ce6f743f260e1304ca8639ee4d7c9040678c93dd47c2b4d59596a9732"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank10-identification-canal-steps/acceptance-matrix.json",
+      "size": 1432,
+      "mtime": "2026-07-23T00:51:29.276Z",
+      "sha256": "4185b7cbc90844b7a50dd5c2fd58ee777d06b6ea982b7df5e41872fe5d6a4b44"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank10-identification-canal-steps/defendant-evidence-matrix.json",
+      "size": 2719,
+      "mtime": "2026-07-23T00:51:13.597Z",
+      "sha256": "34557af5f9a2418c1a57537b78a6d2bd7fcc0d7da53b091b79d5744c837c8c05"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank10-identification-canal-steps/matter-skeleton.json",
+      "size": 2395,
+      "mtime": "2026-07-23T00:51:08.435Z",
+      "sha256": "44508396db37f84e83258544c6c9b17b5b6c8580f8b882b517a5d9cc698b8e4b"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank10-identification-canal-steps/qualified-review-requirements.md",
+      "size": 1583,
+      "mtime": "2026-07-23T00:51:34.379Z",
+      "sha256": "8151effc6e2f32c15fe637434fd9f231b84905ddec2f8c430ce4683fa98ee32f"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank10-identification-canal-steps/README.md",
+      "size": 841,
+      "mtime": "2026-07-23T00:51:02.756Z",
+      "sha256": "5d0fdfa52e4725ccb7413855c0be46dd21af420c2d073dc2e76c18707beb0b9a"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank10-identification-canal-steps/source-document-realism-specifications.json",
+      "size": 14443,
+      "mtime": "2026-07-23T00:56:57.170Z",
+      "sha256": "48bd75f692555d6734654c1a1e262e9c9b412de0ba93d12b84fa3468d01ad6df"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank10-identification-canal-steps/source-document-register.json",
+      "size": 1664,
+      "mtime": "2026-07-23T00:51:18.975Z",
+      "sha256": "00b0f1d759e88f29ea32a46b46c9e6c0377acc07ee599f2da8fd38bc37ee0981"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank10-identification-canal-steps/STOP-FOR-REVIEW.json",
+      "size": 371,
+      "mtime": "2026-07-23T00:51:40.064Z",
+      "sha256": "638dbf4e13b320def37cacd0b7efebf0caf80608824dfc509c3411e88f28cdfc"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank10-identification-canal-steps/truth-key.json",
+      "size": 2274,
+      "mtime": "2026-07-23T00:51:24.132Z",
+      "sha256": "258649179f523ab0ede5cb9d704d76e990e6e7cfb19ebcdc1727793e208ecf59"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank11-mental-health-orchard-quay/acceptance-matrix.json",
+      "size": 1534,
+      "mtime": "2026-07-23T00:54:26.626Z",
+      "sha256": "86e5576b9a08f41bf88ba41738bd63234614faf3918a4003251d24ad778ad737"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank11-mental-health-orchard-quay/defendant-evidence-matrix.json",
+      "size": 2903,
+      "mtime": "2026-07-23T00:54:11.197Z",
+      "sha256": "d37b15ab94e83f8f2aef2a7adfbb5d36319dbbfa59c3350fa21d9ffb2d446847"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank11-mental-health-orchard-quay/matter-skeleton.json",
+      "size": 2717,
+      "mtime": "2026-07-23T00:54:05.464Z",
+      "sha256": "225bc3bb7fa82c8c921ca18e55721f55fd8e53d67d0ee06e72d9071572e1b626"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank11-mental-health-orchard-quay/qualified-review-requirements.md",
+      "size": 1723,
+      "mtime": "2026-07-23T00:54:32.732Z",
+      "sha256": "cbc16c62097356663e85f34261a807bed9408e649d2ccfa4bd5ff48f5a19e8fe"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank11-mental-health-orchard-quay/README.md",
+      "size": 890,
+      "mtime": "2026-07-23T00:54:00.390Z",
+      "sha256": "e7d8ce81787568c0fbc7c45ba2f0cf1b1932103b8519b33cf18216cac82af5e0"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank11-mental-health-orchard-quay/source-document-realism-specifications.json",
+      "size": 16748,
+      "mtime": "2026-07-23T00:58:10.712Z",
+      "sha256": "6706c43f1dfc64935e711ec26aa81db9aaa1ef310fc78ab82325ef4b82946d7a"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank11-mental-health-orchard-quay/source-document-register.json",
+      "size": 1986,
+      "mtime": "2026-07-23T00:54:16.022Z",
+      "sha256": "80ea10c3716e7e7e69c7362f252918b3c1e34627c3acba258d8975519e33bccc"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank11-mental-health-orchard-quay/STOP-FOR-REVIEW.json",
+      "size": 375,
+      "mtime": "2026-07-23T00:54:39.638Z",
+      "sha256": "28f4a6a8c1ec73ae741045fb4575094354313db25d90587904142d1a8ba40df8"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank11-mental-health-orchard-quay/truth-key.json",
+      "size": 2705,
+      "mtime": "2026-07-23T00:54:21.098Z",
+      "sha256": "34938370c60a703a525ab5429694caf45911b4d0212904e4f9a71556031c6e92"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank12-disclosure-pii-copper-lane/acceptance-matrix.json",
+      "size": 1613,
+      "mtime": "2026-07-23T01:06:49.872Z",
+      "sha256": "5556da38ba688854679c9783511192c56bd8b1621629b0d9c69a7c2a63cc48e0"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank12-disclosure-pii-copper-lane/defendant-evidence-matrix.json",
+      "size": 3268,
+      "mtime": "2026-07-23T01:06:33.670Z",
+      "sha256": "cf33360f8fefe006f4904f6eb53b4c21d6fc38edc2e0b9f5d906aa02eb490730"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank12-disclosure-pii-copper-lane/matter-skeleton.json",
+      "size": 2582,
+      "mtime": "2026-07-23T01:06:28.975Z",
+      "sha256": "751ef0773e9a9f38ff307a45a5f3f2908bd97b8d04205c30031e4485be073a41"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank12-disclosure-pii-copper-lane/qualified-review-requirements.md",
+      "size": 1829,
+      "mtime": "2026-07-23T01:06:55.118Z",
+      "sha256": "24cf45101b602fab4006b887fd5c4194436edc832b8eddd007fac05122adf644"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank12-disclosure-pii-copper-lane/README.md",
+      "size": 1061,
+      "mtime": "2026-07-23T01:06:23.067Z",
+      "sha256": "33b64e6c535c65b866e55feb2b38035454937078773d276b397488bc5072801a"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank12-disclosure-pii-copper-lane/source-document-realism-specifications.json",
+      "size": 16350,
+      "mtime": "2026-07-23T01:12:19.627Z",
+      "sha256": "7c08e9edf293e0ff4ea1f09a52741c6313a2f1852618030521fd76cd1ff34c1c"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank12-disclosure-pii-copper-lane/source-document-register.json",
+      "size": 2080,
+      "mtime": "2026-07-23T01:06:39.374Z",
+      "sha256": "f66772cab1ce4b417ad5c1411bd16fc97535806d7f74dc98bbc2cbe38baad746"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank12-disclosure-pii-copper-lane/STOP-FOR-REVIEW.json",
+      "size": 369,
+      "mtime": "2026-07-23T01:07:00.131Z",
+      "sha256": "9aeb38134d882f30202398b62caf03bb7d2f72d3ff21a9f4fe5f4e4fa439991d"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank12-disclosure-pii-copper-lane/truth-key.json",
+      "size": 2736,
+      "mtime": "2026-07-23T01:06:44.149Z",
+      "sha256": "97082dcb4816e0c94f9c374caf3eacaa7687bd07ae70e0c94b15db734b5d09a2"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank13-fatal-road-traffic-ember-junction/acceptance-matrix.json",
+      "size": 1545,
+      "mtime": "2026-07-23T01:08:50.686Z",
+      "sha256": "a89a1b59d216cf409716d32f54a4c41db456ed5ae4d980b3c72dc4a2bc10db78"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank13-fatal-road-traffic-ember-junction/defendant-evidence-matrix.json",
+      "size": 2603,
+      "mtime": "2026-07-23T01:08:36.330Z",
+      "sha256": "61365c391e9b76a077956e1b96328e8cb3c25cd2a763d65e0dbb1484ea5a8037"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank13-fatal-road-traffic-ember-junction/matter-skeleton.json",
+      "size": 2568,
+      "mtime": "2026-07-23T01:08:30.745Z",
+      "sha256": "d9e3d253f660ccdd8ee3b773c4d5244e554732e24847e58185e163df80c0bb7e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank13-fatal-road-traffic-ember-junction/qualified-review-requirements.md",
+      "size": 1612,
+      "mtime": "2026-07-23T01:08:55.414Z",
+      "sha256": "74028da3c772006b6f4244c36fe56df36e23a70b35d8a044fd12bb999d019873"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank13-fatal-road-traffic-ember-junction/README.md",
+      "size": 1076,
+      "mtime": "2026-07-23T01:08:25.473Z",
+      "sha256": "54edee748b3218af4adb2223020fdbab7d4c831f6531eb929e0b114f4faec900"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank13-fatal-road-traffic-ember-junction/source-document-realism-specifications.json",
+      "size": 16375,
+      "mtime": "2026-07-23T01:14:52.281Z",
+      "sha256": "346d5eafc039fc36e1654fbf0e878bb750ce192787e25a08b509e4ca9de19c7d"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank13-fatal-road-traffic-ember-junction/source-document-register.json",
+      "size": 1962,
+      "mtime": "2026-07-23T01:08:40.556Z",
+      "sha256": "209ca372f375d426b4b0f3af82f0bfc0394e81a8f5b361996b20b7c8cb0bdc2e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank13-fatal-road-traffic-ember-junction/STOP-FOR-REVIEW.json",
+      "size": 369,
+      "mtime": "2026-07-23T01:08:59.923Z",
+      "sha256": "32c776e6fec39f95408c4c2fd97c82d1bb9f29445d3f3da32efecf8aa1d0e18c"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank13-fatal-road-traffic-ember-junction/truth-key.json",
+      "size": 2559,
+      "mtime": "2026-07-23T01:08:45.911Z",
+      "sha256": "88e6093ec74a7b91ebaa442b6958e2488d5a7f12bdc69adcc23a2d3bb48eafa4"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank14-magistrates-market-house/acceptance-matrix.json",
+      "size": 1504,
+      "mtime": "2026-07-23T01:10:51.906Z",
+      "sha256": "c58d20133cd8a6d46e04553254d6f1a2911221e457bc5045a9af8d6d87a7aa3a"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank14-magistrates-market-house/defendant-evidence-matrix.json",
+      "size": 2706,
+      "mtime": "2026-07-23T01:10:35.097Z",
+      "sha256": "a16330c232ab1721564eaed854053d3d6c0049aeec5757edf041ff9a423bde17"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank14-magistrates-market-house/matter-skeleton.json",
+      "size": 2979,
+      "mtime": "2026-07-23T01:10:29.407Z",
+      "sha256": "1331f5d14507daaa9bb03b9aef4314f84d1769308c9d777d963234f98becade4"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank14-magistrates-market-house/qualified-review-requirements.md",
+      "size": 1774,
+      "mtime": "2026-07-23T01:10:57.671Z",
+      "sha256": "277b153a4951fe533c127038b8aaac1d178d0fe54a7d8caf4b0078cb63e41ccd"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank14-magistrates-market-house/README.md",
+      "size": 1108,
+      "mtime": "2026-07-23T01:10:24.262Z",
+      "sha256": "1cf3120816ebdf9079840fbc612639b258b8f5ac7d1fd621ed7909e86cb5fe97"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank14-magistrates-market-house/source-document-realism-specifications.json",
+      "size": 16483,
+      "mtime": "2026-07-23T01:16:28.448Z",
+      "sha256": "57bc250a1c4d9572f6d1992b54481fc50543cc1fab00bf32468aff26d40314bc"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank14-magistrates-market-house/source-document-register.json",
+      "size": 1911,
+      "mtime": "2026-07-23T01:10:40.518Z",
+      "sha256": "3e564120e945ba4ee63a50d948bb9f76f30ea9c94aa5dc776680cb9930e5dc1f"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank14-magistrates-market-house/STOP-FOR-REVIEW.json",
+      "size": 368,
+      "mtime": "2026-07-23T01:11:02.939Z",
+      "sha256": "dc9a9c133024978f88e7bf62cc198bcb958157fdef96b6ba7afed26f92624460"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank14-magistrates-market-house/truth-key.json",
+      "size": 2650,
+      "mtime": "2026-07-23T01:10:45.885Z",
+      "sha256": "f0e813a649927369835850d97b02da989896225761610cee0b39b0c048e03b33"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank15-bail-remand-crescent-wharf/acceptance-matrix.json",
+      "size": 1675,
+      "mtime": "2026-07-23T12:53:19.951Z",
+      "sha256": "51cb822339d856b765e524d47a21faf252eff56051a2e7a9f53fb7d6c1e75004"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank15-bail-remand-crescent-wharf/defendant-evidence-matrix.json",
+      "size": 3431,
+      "mtime": "2026-07-23T12:53:04.927Z",
+      "sha256": "ae83cd1e6fd523ffde9e34c7715f4fe36f5727c4720310a4a6edf8e29cb98ebe"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank15-bail-remand-crescent-wharf/matter-skeleton.json",
+      "size": 3022,
+      "mtime": "2026-07-23T12:52:59.975Z",
+      "sha256": "a561a02849a5dd87cdd6a64d4ebee325fd23c0c6a753264740351f4c22aa5259"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank15-bail-remand-crescent-wharf/qualified-review-requirements.md",
+      "size": 1745,
+      "mtime": "2026-07-23T12:53:24.551Z",
+      "sha256": "2050cca53cf2b9c93ab2076cccf1ac6e22acbc005c58712c0da84c3526cb1111"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank15-bail-remand-crescent-wharf/README.md",
+      "size": 1898,
+      "mtime": "2026-07-23T12:52:55.245Z",
+      "sha256": "64baa05dedaa8766ff8d7b3a4343f88d62f678e6e344f43b863cb8784487ce2e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank15-bail-remand-crescent-wharf/source-document-realism-specifications.json",
+      "size": 13506,
+      "mtime": "2026-07-23T12:54:44.739Z",
+      "sha256": "9700b72a284d475ec4b2b1b996094cf07402e59ba1a29aede0cd5a37dc8d46f5"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank15-bail-remand-crescent-wharf/source-document-register.json",
+      "size": 1821,
+      "mtime": "2026-07-23T12:53:09.687Z",
+      "sha256": "2c9dbb265231ab8b78c8c86278731d637b578532912600f3b32301a277c47979"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank15-bail-remand-crescent-wharf/STOP-FOR-REVIEW.json",
+      "size": 365,
+      "mtime": "2026-07-23T12:53:29.299Z",
+      "sha256": "b77f300bfedbb974131b6a043ba77e36d1ed6e99889de6f386da2a88b8428543"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank15-bail-remand-crescent-wharf/truth-key.json",
+      "size": 4117,
+      "mtime": "2026-07-23T12:53:14.446Z",
+      "sha256": "6c4c5c6501401074fc5d1473fe902acdf3d4ac136d93ee68de46341b96d448dd"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank16-sentencing-newton-hawthorn-house/acceptance-matrix.json",
+      "size": 1622,
+      "mtime": "2026-07-23T12:56:48.854Z",
+      "sha256": "8177d6ecdc53e026ee29b6eb9ce4ea74ad5e78b09214a7695ac5c619c2f37139"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank16-sentencing-newton-hawthorn-house/defendant-evidence-matrix.json",
+      "size": 3420,
+      "mtime": "2026-07-23T12:56:32.639Z",
+      "sha256": "a7c32c214993a5cab662a43940b67557bcff0936436d31f1ff1ce0427f851042"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank16-sentencing-newton-hawthorn-house/matter-skeleton.json",
+      "size": 3277,
+      "mtime": "2026-07-23T12:56:27.495Z",
+      "sha256": "c93db3f49c21059fa2073dc405c3955de46f4b0e044c63675b378cc37b1e4295"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank16-sentencing-newton-hawthorn-house/qualified-review-requirements.md",
+      "size": 1643,
+      "mtime": "2026-07-23T12:56:54.075Z",
+      "sha256": "d00eaa71dcddef3c556ea5956292942da47fcae24e9659eb7c2a7df6d6810f65"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank16-sentencing-newton-hawthorn-house/README.md",
+      "size": 1623,
+      "mtime": "2026-07-23T12:56:22.664Z",
+      "sha256": "d23e7a3df3f837d6f25b9b2efd92820f8e9b3e7e91725d5aa56b53d174911659"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank16-sentencing-newton-hawthorn-house/source-document-realism-specifications.json",
+      "size": 14630,
+      "mtime": "2026-07-23T12:58:10.271Z",
+      "sha256": "0952088196f950300f10d08f68679efb08c387161718e1e737ae12796091a640"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank16-sentencing-newton-hawthorn-house/source-document-register.json",
+      "size": 2173,
+      "mtime": "2026-07-23T12:56:37.486Z",
+      "sha256": "4fcccc241a484e96e0d6a470e7e4a7c6b509a01b750bd79c3a99b430a6e74639"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank16-sentencing-newton-hawthorn-house/STOP-FOR-REVIEW.json",
+      "size": 448,
+      "mtime": "2026-07-23T12:56:59.038Z",
+      "sha256": "c9690471b11eec0a76137b6c699fe5df0188310427410087149904b60be1f608"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank16-sentencing-newton-hawthorn-house/truth-key.json",
+      "size": 4375,
+      "mtime": "2026-07-23T12:56:42.865Z",
+      "sha256": "5419027b90332d7033c07dd72cd15bd51c1f57861198bd152e25e869cdf23a1e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank17-court-of-appeal-ivory-garage/acceptance-matrix.json",
+      "size": 1912,
+      "mtime": "2026-07-23T13:00:30.141Z",
+      "sha256": "338a41fd49a5a2f7ebb5ba6ce8270b17567c0c5148fdd6062149bfd3e0f87ba1"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank17-court-of-appeal-ivory-garage/defendant-evidence-matrix.json",
+      "size": 3603,
+      "mtime": "2026-07-23T13:00:14.335Z",
+      "sha256": "1f48e05db9efaa6f88aa5c5467b05fee62478d2a70c479536407fd56904dd914"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank17-court-of-appeal-ivory-garage/matter-skeleton.json",
+      "size": 3421,
+      "mtime": "2026-07-23T13:00:09.373Z",
+      "sha256": "2b47d20c22b03a2aaabee13f5203835cc194983cb2da8493aedf97c4cebb2bf9"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank17-court-of-appeal-ivory-garage/qualified-review-requirements.md",
+      "size": 1656,
+      "mtime": "2026-07-23T13:00:35.245Z",
+      "sha256": "77f1f0537dd4c527a2e230511f488084743ad93ad81553fea95509c369a2ccd5"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank17-court-of-appeal-ivory-garage/README.md",
+      "size": 1617,
+      "mtime": "2026-07-23T13:00:02.421Z",
+      "sha256": "d7d705f7ddb39227bec8014cf1fcc48f60430263026103f30a99ff95d1eb2698"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank17-court-of-appeal-ivory-garage/source-document-realism-specifications.json",
+      "size": 14243,
+      "mtime": "2026-07-23T13:01:52.909Z",
+      "sha256": "fc7892485f36f7df2eedf3cc5f042de3d7615a047d1b7b38bf6d533fcb3505d8"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank17-court-of-appeal-ivory-garage/source-document-register.json",
+      "size": 2155,
+      "mtime": "2026-07-23T13:00:20.262Z",
+      "sha256": "dc6d9d57a3cab05d122c1a5966b06874d04bf3174d555b356107c4b3695748dd"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank17-court-of-appeal-ivory-garage/STOP-FOR-REVIEW.json",
+      "size": 484,
+      "mtime": "2026-07-23T13:00:40.099Z",
+      "sha256": "46539a7b45e70f325d2b3eacaa4db28be4b8d82e6f4cfd621b4e6618f1ecfa49"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank17-court-of-appeal-ivory-garage/truth-key.json",
+      "size": 4834,
+      "mtime": "2026-07-23T13:00:25.234Z",
+      "sha256": "65f4bff6ffb7f74b9815efc2709efe462e0c722293da57ee24f3d71495880559"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank18-crown-appeal-larkfield/acceptance-matrix.json",
+      "size": 1918,
+      "mtime": "2026-07-23T13:04:23.122Z",
+      "sha256": "0a46a04573be2433a810e1cfb0ff1d029d33eb23a6aaa9305ac9d538a6df253e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank18-crown-appeal-larkfield/defendant-evidence-matrix.json",
+      "size": 3421,
+      "mtime": "2026-07-23T13:04:06.194Z",
+      "sha256": "cdb730b1baa5b5267c63d24c3d2b5e90b8249680c5197f499a70609042e11b3a"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank18-crown-appeal-larkfield/matter-skeleton.json",
+      "size": 3355,
+      "mtime": "2026-07-23T13:03:58.415Z",
+      "sha256": "4c0d238bbdaf0f26b671167a974349fb1e67e9df84164eeae470082b43792591"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank18-crown-appeal-larkfield/qualified-review-requirements.md",
+      "size": 1632,
+      "mtime": "2026-07-23T13:04:27.402Z",
+      "sha256": "0c3a11ba46c07f95da13b72defb1ccc14e62730ff20f74d8e0a2309312eb709a"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank18-crown-appeal-larkfield/README.md",
+      "size": 1657,
+      "mtime": "2026-07-23T13:03:53.719Z",
+      "sha256": "34bf45522044691f2e1b544443cd94a2aa0c93496aa8239113c29c877f944537"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank18-crown-appeal-larkfield/source-document-realism-specifications.json",
+      "size": 14622,
+      "mtime": "2026-07-23T13:05:39.120Z",
+      "sha256": "8015d76f558439941b4e01565a482c3e2aeda438ab7dd02f7fa341cd3cb5a587"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank18-crown-appeal-larkfield/source-document-register.json",
+      "size": 2136,
+      "mtime": "2026-07-23T13:04:11.674Z",
+      "sha256": "f6e0e8c8f466611c81c61a1b41765c9347babbd573d164a69f64f73b0fb71cbf"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank18-crown-appeal-larkfield/STOP-FOR-REVIEW.json",
+      "size": 445,
+      "mtime": "2026-07-23T13:04:32.318Z",
+      "sha256": "ccb0b0671e15bbe983dcf28ffd38da2f85c0b34b1603b42e8d793c58580fd91e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank18-crown-appeal-larkfield/truth-key.json",
+      "size": 4881,
+      "mtime": "2026-07-23T13:04:16.752Z",
+      "sha256": "af57e50ecbce7df4aadba46de3ace0fc73161efa7a2536624947054f28577f41"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/acceptance-matrix.json",
+      "size": 7008,
+      "mtime": "2026-07-22T23:57:58.448Z",
+      "sha256": "2c86d15bd9d13417a93a60ab440796a590c5614e92d1eef368cd9e47accb40b3"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/conflict-trap-register.json",
+      "size": 7358,
+      "mtime": "2026-07-22T23:56:00.520Z",
+      "sha256": "cb2dfa2ecff5a7c17f4b081e63aed10da8ab19b9af9e8f9269edae416512beb5"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/defendant-evidence-matrix.json",
+      "size": 17874,
+      "mtime": "2026-07-22T23:54:01.374Z",
+      "sha256": "b35ad987ab75a8b4cc033d43563c906325f480ebc768f2ae7dce4819999bb963"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/document-realism-page-quality.json",
+      "size": 12159,
+      "mtime": "2026-07-22T23:57:37.685Z",
+      "sha256": "f3e58a74383e066600449c6b7fd682b79d6bf8b3301506d61e382e9374abee95"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/expert-limitations.json",
+      "size": 5248,
+      "mtime": "2026-07-22T23:55:02.349Z",
+      "sha256": "041309573277e9d6b951587041c82e228de8fe4da7a261f56d6cbd8dca1b316c"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/legal-procedural-review-requirements.md",
+      "size": 11084,
+      "mtime": "2026-07-22T23:56:12.771Z",
+      "sha256": "3e108c1bfdf65286650a89b634b65a4e9af000d81a2f1e123090ad8c21019460"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/matter-skeleton.json",
+      "size": 5563,
+      "mtime": "2026-07-22T23:57:48.382Z",
+      "sha256": "f5c0aa7d4659c172d277769a1eb302d6b76676ab7283cced150188d7430461a1"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/proposed-charges.json",
+      "size": 4090,
+      "mtime": "2026-07-22T23:37:36.243Z",
+      "sha256": "c07569d957e67250755e2a5810de83ee87ad18e54de959f3e385e15ea3f72e69"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/qualified-review-bundle.md",
+      "size": 13566,
+      "mtime": "2026-07-23T00:04:48.121Z",
+      "sha256": "2c50ff14db848f3e2a7ce1b0515c85611e9d5c889b1f283be60ee45467905e02"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/README.md",
+      "size": 4121,
+      "mtime": "2026-07-22T23:57:53.798Z",
+      "sha256": "0b64fa55571624f3058d6cd7f6e06601cadcc85ec4f28e7cff35b6ecc637e0b8"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/source-document-register.json",
+      "size": 7557,
+      "mtime": "2026-07-22T23:57:43.408Z",
+      "sha256": "7d8a829ab6195a607537ecb07b17ff5a524beff30318645b073f25238f56a5c7"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/STOP-FOR-REVIEW.json",
+      "size": 1163,
+      "mtime": "2026-07-22T23:43:58.131Z",
+      "sha256": "095500dea873bf53e975fe360b09653e7364903cb9f1c1d43a5c4404c9e47b6f"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/truth-hierarchy.json",
+      "size": 4132,
+      "mtime": "2026-07-22T23:54:57.157Z",
+      "sha256": "716f5a5f7c34af84652a8f9a47795eb4904e6d7d72538b0e0028309785169d81"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank2-homicide-harbour-yard/truth-key.json",
+      "size": 9082,
+      "mtime": "2026-07-22T23:55:06.866Z",
+      "sha256": "13522171f901ca7529996ae55cef427d357c52148d78a180cdd69282748dce21"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank3-firearms-riverside-lockup/acceptance-matrix.json",
+      "size": 1228,
+      "mtime": "2026-07-23T00:17:54.471Z",
+      "sha256": "8f13e02042aee690aee7a9f236b46fadf0d776b2e5f8c6e8842516020274a94a"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank3-firearms-riverside-lockup/defendant-evidence-matrix.json",
+      "size": 2639,
+      "mtime": "2026-07-23T00:17:46.117Z",
+      "sha256": "63548c5539fc915cf2823402580f23ff708c73cb1c13c6f9f20f39dbaa35e670"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank3-firearms-riverside-lockup/document-realism-page-quality.json",
+      "size": 950,
+      "mtime": "2026-07-23T00:17:57.267Z",
+      "sha256": "2d9a8b7dac0328538afe322f357bf6e677995f69394018b1b019926a147c5d9b"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank3-firearms-riverside-lockup/matter-skeleton.json",
+      "size": 2370,
+      "mtime": "2026-07-23T00:17:42.105Z",
+      "sha256": "c5493a5ea0060e03f8516c0dc37a3bfccee4583327f44c6e1edf7b4501ca4a0c"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank3-firearms-riverside-lockup/qualified-review-requirements.md",
+      "size": 1571,
+      "mtime": "2026-07-23T00:17:59.917Z",
+      "sha256": "727bf156d6356388c09558a87c0453821f0246b5744b241f0c46e8518c51bea1"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank3-firearms-riverside-lockup/README.md",
+      "size": 1537,
+      "mtime": "2026-07-23T00:17:33.704Z",
+      "sha256": "43ab805c337b1c23327dbeda53a176a305f0ce4f140a85e2aa825f6c3bb5fe9a"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank3-firearms-riverside-lockup/source-document-register.json",
+      "size": 1917,
+      "mtime": "2026-07-23T00:17:49.112Z",
+      "sha256": "f1fab23ac39222fdfabda07b242eec79ffa78e59ba852da05ea16c694d3cd1f8"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank3-firearms-riverside-lockup/STOP-FOR-REVIEW.json",
+      "size": 255,
+      "mtime": "2026-07-23T00:18:02.633Z",
+      "sha256": "cee8bebd1e95c420a7b288e4b8bbecb8bd69b9f1b1f2b69e92b5bdb7f2422c27"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank3-firearms-riverside-lockup/truth-key.json",
+      "size": 1850,
+      "mtime": "2026-07-23T00:17:51.771Z",
+      "sha256": "f39cdb2179e87d2fa12196d162153bff8a8a15929f2a3c26f1cb089fdf0b40f1"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank4-fraud-poca-meridian-ledger/acceptance-matrix.json",
+      "size": 1239,
+      "mtime": "2026-07-23T00:19:47.004Z",
+      "sha256": "13d7ee0011c6c070486da95f528110ff388a3760f0f81414fadaed43197cef56"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank4-fraud-poca-meridian-ledger/defendant-evidence-matrix.json",
+      "size": 2599,
+      "mtime": "2026-07-23T00:19:39.919Z",
+      "sha256": "4072b1a601e5cd826d1e817de5e9c1712dd991a75461d71e64d8802c4a5643a8"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank4-fraud-poca-meridian-ledger/document-realism-page-quality.json",
+      "size": 979,
+      "mtime": "2026-07-23T00:19:49.314Z",
+      "sha256": "3e98c7ea7369e55d9d876862357dfed7286ecfd0f6bb95f5c012fc9e3b32e3b2"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank4-fraud-poca-meridian-ledger/matter-skeleton.json",
+      "size": 2578,
+      "mtime": "2026-07-23T00:19:37.423Z",
+      "sha256": "c3eb2fae95c12fc460a682c3dda0e4e18e5aeaa6923f5e5746c7a254e2294c29"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank4-fraud-poca-meridian-ledger/qualified-review-requirements.md",
+      "size": 1540,
+      "mtime": "2026-07-23T00:19:51.712Z",
+      "sha256": "0e0de3b9e5fe9f49139f81a03c15fc52f3cfdc439e0082c0a9ef2aabb2190177"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank4-fraud-poca-meridian-ledger/README.md",
+      "size": 944,
+      "mtime": "2026-07-23T00:19:34.601Z",
+      "sha256": "2c5d2e161ef4778417b2660372c136a2fe1931a47cdca1f173ab7a95fbf4b54e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank4-fraud-poca-meridian-ledger/source-document-register.json",
+      "size": 2055,
+      "mtime": "2026-07-23T00:19:42.239Z",
+      "sha256": "901367c29fa09202888ff148fe868abb45304cb13124616ef8b4c4711b767722"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank4-fraud-poca-meridian-ledger/STOP-FOR-REVIEW.json",
+      "size": 254,
+      "mtime": "2026-07-23T00:19:54.137Z",
+      "sha256": "87a9a886b730f46bfb675701c923625b26ebbd9e47d17ff74dec668107f3a06b"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank4-fraud-poca-meridian-ledger/truth-key.json",
+      "size": 2146,
+      "mtime": "2026-07-23T00:19:44.518Z",
+      "sha256": "3e21ab656e210465b6929132ffaebf6342e32706786d89e411bad37c8214d0ac"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank5-county-lines-ashgrove-route/acceptance-matrix.json",
+      "size": 1398,
+      "mtime": "2026-07-23T00:21:38.319Z",
+      "sha256": "67cc38a6d0e896051c8eaaae9639c84681b88090662fbc1a153f430500202d3d"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank5-county-lines-ashgrove-route/defendant-evidence-matrix.json",
+      "size": 3192,
+      "mtime": "2026-07-23T00:21:20.804Z",
+      "sha256": "b813018444eb73f6585152659a5e4e17c9e96f9750c6439b65ec8888d494650f"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank5-county-lines-ashgrove-route/document-realism-page-quality.json",
+      "size": 1134,
+      "mtime": "2026-07-23T00:21:43.445Z",
+      "sha256": "786fbc1acd1ba1df1a4db15a0f798a166109745212c137f77de8d7092f4497f5"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank5-county-lines-ashgrove-route/matter-skeleton.json",
+      "size": 2871,
+      "mtime": "2026-07-23T00:21:16.940Z",
+      "sha256": "d95230b34444764ef93b994f2c0c593bf96eaa14dfec7736e811bf292eaad6c7"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank5-county-lines-ashgrove-route/qualified-review-requirements.md",
+      "size": 1864,
+      "mtime": "2026-07-23T00:21:49.230Z",
+      "sha256": "60e99b01e8ee16842b32f55b95258d9b9988232456eb617ec780d04a2db24cf5"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank5-county-lines-ashgrove-route/README.md",
+      "size": 1057,
+      "mtime": "2026-07-23T00:21:14.585Z",
+      "sha256": "1529fdc15a26a2c551c32ac19b220df226a84f4e4eae8031fcc2bd3951909085"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank5-county-lines-ashgrove-route/source-document-register.json",
+      "size": 2177,
+      "mtime": "2026-07-23T00:21:26.143Z",
+      "sha256": "41e76d7983c3d43b85390421b373a0a3177af1ec2d95e0d36f8ae13afa04f460"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank5-county-lines-ashgrove-route/STOP-FOR-REVIEW.json",
+      "size": 289,
+      "mtime": "2026-07-23T00:21:53.371Z",
+      "sha256": "e3885d6130466d0ff280003c550b73550f1c94d171940b16ed1598891733ad28"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank5-county-lines-ashgrove-route/truth-key.json",
+      "size": 2659,
+      "mtime": "2026-07-23T00:21:31.283Z",
+      "sha256": "5be8403179a157c53ba419481504edca7d10d7fad4f84343698f32b1a2330a86"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank6-sexual-offence-silver-birch/acceptance-matrix.json",
+      "size": 1380,
+      "mtime": "2026-07-23T00:28:56.332Z",
+      "sha256": "bcfa1bb54e88e5aae85d3fce89dcb71732178107b4da2a55303d75b351376ffd"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank6-sexual-offence-silver-birch/document-realism-page-quality.json",
+      "size": 1056,
+      "mtime": "2026-07-23T00:29:01.623Z",
+      "sha256": "f2a2c19a9a0ffc0dacf0bc4e196fdc19ae974322cb0f73b54ea1dbe493d06117"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank6-sexual-offence-silver-birch/matter-skeleton.json",
+      "size": 2285,
+      "mtime": "2026-07-23T00:28:34.731Z",
+      "sha256": "4e18db19b0af16bec514606c6c48201d24d24c7fa849619b19e5bc13c0dcb398"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank6-sexual-offence-silver-birch/person-evidence-matrix.json",
+      "size": 3118,
+      "mtime": "2026-07-23T00:28:39.480Z",
+      "sha256": "a9087a79ce5fcb553464e087f7dace0d22cce0691602e0f0f5f2db25c90a818d"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank6-sexual-offence-silver-birch/qualified-review-requirements.md",
+      "size": 1821,
+      "mtime": "2026-07-23T00:29:07.438Z",
+      "sha256": "efbfadeb846b0204f8c3caf6780716f8bbc66c2088f6cc79466582e27db3fdf0"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank6-sexual-offence-silver-birch/README.md",
+      "size": 1024,
+      "mtime": "2026-07-23T00:28:29.897Z",
+      "sha256": "a1ea2c7a2b7732119eb2e57d0c59835e324c37e6fc616be13058b91d49e5f278"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank6-sexual-offence-silver-birch/source-document-realism-specifications.json",
+      "size": 21915,
+      "mtime": "2026-07-23T00:40:31.241Z",
+      "sha256": "a3f2f0f7b4aa110240e26d6f12b3472d2a62598b266b113106d66eaaa141f1a2"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank6-sexual-offence-silver-birch/source-document-register.json",
+      "size": 2101,
+      "mtime": "2026-07-23T00:28:44.454Z",
+      "sha256": "b55299d8a7951d63802cff307ff4fd5e85c01ef21d9babf170d2886f50d46597"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank6-sexual-offence-silver-birch/STOP-FOR-REVIEW.json",
+      "size": 325,
+      "mtime": "2026-07-23T00:29:12.706Z",
+      "sha256": "1fb0fa95573a31eba48db42dfa9b2fe41dd0bfc2797c48a79671a2f4a73db41f"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank6-sexual-offence-silver-birch/truth-key.json",
+      "size": 2402,
+      "mtime": "2026-07-23T00:28:50.115Z",
+      "sha256": "229ff6b7020ea8a295d4b208ca8d45ba2d45bd83137fc45b1fd1fdcef552702e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank7-youth-robbery-bryn-glas/acceptance-matrix.json",
+      "size": 1565,
+      "mtime": "2026-07-23T00:31:21.832Z",
+      "sha256": "c0d51c66bec47a731be3d2a767d41ab333069bc10efbf45b2e924db01ea07061"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank7-youth-robbery-bryn-glas/document-realism-page-quality.json",
+      "size": 1125,
+      "mtime": "2026-07-23T00:31:26.330Z",
+      "sha256": "f9cfa9340a8644a4f51f8352a7549524ecab7847c2a1a1f08b8b5943de64678e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank7-youth-robbery-bryn-glas/matter-skeleton.json",
+      "size": 2867,
+      "mtime": "2026-07-23T00:31:01.727Z",
+      "sha256": "e3e47d6b7fed8e9467618b40763bc77fc9431c7654cda9c9e5e8f04a6b1bcbcf"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank7-youth-robbery-bryn-glas/person-evidence-matrix.json",
+      "size": 3578,
+      "mtime": "2026-07-23T00:31:06.603Z",
+      "sha256": "a1ced74f5a170f86ff1b1212381c651d73cb0662607fd4f7b07322a9dc647de6"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank7-youth-robbery-bryn-glas/qualified-review-requirements.md",
+      "size": 1861,
+      "mtime": "2026-07-23T00:31:31.370Z",
+      "sha256": "9186a126c565400eb341fa90df30d209359d37e0d254d390bb4552c5d5715d13"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank7-youth-robbery-bryn-glas/README.md",
+      "size": 1205,
+      "mtime": "2026-07-23T00:30:56.867Z",
+      "sha256": "c94e7ecab4e8026c9b3571a48d388449713338190e812f87d82908ab44c79c77"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank7-youth-robbery-bryn-glas/source-document-realism-specifications.json",
+      "size": 20811,
+      "mtime": "2026-07-23T00:42:07.835Z",
+      "sha256": "699ecaad9adf13d52058728e10a1116eaf06da85ae64f2ba93d9a3131227dba9"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank7-youth-robbery-bryn-glas/source-document-register.json",
+      "size": 2144,
+      "mtime": "2026-07-23T00:31:12.006Z",
+      "sha256": "100e17f9d791cb1889e23f7e0120a5830f537db90facc1c7bae77f90e031750e"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank7-youth-robbery-bryn-glas/STOP-FOR-REVIEW.json",
+      "size": 402,
+      "mtime": "2026-07-23T00:31:36.316Z",
+      "sha256": "6baee15dd1a3fac112e7f5e54eb24faf8d674b7fbc3c6dca26b7a4751480e03d"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank7-youth-robbery-bryn-glas/truth-key.json",
+      "size": 2441,
+      "mtime": "2026-07-23T00:31:16.163Z",
+      "sha256": "f4f3318ccb0f6f354669c8c1da191822e5d622735161379259cdf59873b8febc"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank8-domestic-abuse-linden-court/acceptance-matrix.json",
+      "size": 1553,
+      "mtime": "2026-07-23T00:33:46.811Z",
+      "sha256": "b3b741139f9d1724fb9869c9b3ae7c70ddb5314cbd98065bbbf316c00de21241"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank8-domestic-abuse-linden-court/document-realism-page-quality.json",
+      "size": 1124,
+      "mtime": "2026-07-23T00:33:51.800Z",
+      "sha256": "5550a7c1d928a5d3dff5df8ce9db766c03acf548ec14e5ee32ec106003146305"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank8-domestic-abuse-linden-court/matter-skeleton.json",
+      "size": 3261,
+      "mtime": "2026-07-23T00:33:27.247Z",
+      "sha256": "e341ab8b2f06605ee22e0657940176121f9cdfdeeeb2e52ea6de6dafb787c35f"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank8-domestic-abuse-linden-court/person-evidence-matrix.json",
+      "size": 3920,
+      "mtime": "2026-07-23T00:33:32.823Z",
+      "sha256": "154b61e293d85e36a92bf78c60dadfc9667e6c7bca7e86c6efec787fca930508"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank8-domestic-abuse-linden-court/qualified-review-requirements.md",
+      "size": 1790,
+      "mtime": "2026-07-23T00:33:56.566Z",
+      "sha256": "eb5043d095719543d07e64aeff1527c5fc831a5c4b3f879533e67dda44258779"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank8-domestic-abuse-linden-court/README.md",
+      "size": 1102,
+      "mtime": "2026-07-23T00:33:22.467Z",
+      "sha256": "07c4b45f18f68c3786619dceb1d363133fc8b2ff07b259b69693e6af5edca9a5"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank8-domestic-abuse-linden-court/source-document-realism-specifications.json",
+      "size": 24926,
+      "mtime": "2026-07-23T00:43:51.140Z",
+      "sha256": "c27c097c9f4be780e0ce4315fb1c743d8d6e08e3b8294a09b710c859360cf2f2"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank8-domestic-abuse-linden-court/source-document-register.json",
+      "size": 2353,
+      "mtime": "2026-07-23T00:33:37.255Z",
+      "sha256": "cad7faade5f275c5302351cd25acc0d269a983be292b06c1c0f750b62fc8645d"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank8-domestic-abuse-linden-court/STOP-FOR-REVIEW.json",
+      "size": 372,
+      "mtime": "2026-07-23T00:34:01.480Z",
+      "sha256": "564a94541ba08235e80d457c96febe6d100f2ce0be6d9be06d8a66263c416cdf"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank8-domestic-abuse-linden-court/truth-key.json",
+      "size": 3015,
+      "mtime": "2026-07-23T00:33:41.916Z",
+      "sha256": "e1783c4493ea93515e39d51aa85f860f72e844cab3472f46b705157561494049"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank9-digital-attribution-northbridge-signal/acceptance-matrix.json",
+      "size": 1487,
+      "mtime": "2026-07-23T00:49:39.522Z",
+      "sha256": "2caa982fa2b7d92e3d489db32024ea45afcbe188f0bfbf9699bfa4e8090d06e5"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank9-digital-attribution-northbridge-signal/defendant-evidence-matrix.json",
+      "size": 2762,
+      "mtime": "2026-07-23T00:49:23.198Z",
+      "sha256": "8a35a20b555de6ac20bdeab9db2a17ff58b21b83c3396ed30910edd50bd61cfb"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank9-digital-attribution-northbridge-signal/matter-skeleton.json",
+      "size": 2611,
+      "mtime": "2026-07-23T00:49:17.782Z",
+      "sha256": "d470307aaca6ca516b521251a3f8d6489d4a8d51a6b630ee0ae49a1fb5fa9f0d"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank9-digital-attribution-northbridge-signal/qualified-review-requirements.md",
+      "size": 1682,
+      "mtime": "2026-07-23T00:49:44.617Z",
+      "sha256": "b6acfa762caef1412877d071aa4d0594a030ab00fa9745cc11608baa274f20c2"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank9-digital-attribution-northbridge-signal/README.md",
+      "size": 1075,
+      "mtime": "2026-07-23T00:49:12.686Z",
+      "sha256": "6341f63e88e24a66119de9d0de0db90ac98dfb35d056e3c45e5f419396d8bfd7"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank9-digital-attribution-northbridge-signal/source-document-realism-specifications.json",
+      "size": 15844,
+      "mtime": "2026-07-23T00:55:52.269Z",
+      "sha256": "b89a3b2cd39f6b67c12d089eb781eed1cae4d77c2a3657ad79409d499d84955c"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank9-digital-attribution-northbridge-signal/source-document-register.json",
+      "size": 2098,
+      "mtime": "2026-07-23T00:49:28.516Z",
+      "sha256": "c41afdd35eadb51dd74f501afd0eb12b5447a4d1fcecaef383e3a29792b3e3b8"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank9-digital-attribution-northbridge-signal/STOP-FOR-REVIEW.json",
+      "size": 370,
+      "mtime": "2026-07-23T00:49:49.537Z",
+      "sha256": "a37112ee02645e59dc30f3bc6592d96652ca1b7fdce7dc000e05bb28d8ad2bda"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/rank9-digital-attribution-northbridge-signal/truth-key.json",
+      "size": 2332,
+      "mtime": "2026-07-23T00:49:33.661Z",
+      "sha256": "d2d951a2dcb28579a7153fbc959c93ae16fa2f8d513e1da0bf245460400e9d25"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/ranks1-5-cross-case-coverage-comparison.md",
+      "size": 8100,
+      "mtime": "2026-07-23T00:27:00.866Z",
+      "sha256": "71e643c3ddb6653ca4cab68ec0eee6ad2da647e7c49572ca9af03c9d540c2fa6"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/ranks12-14-beyond-ranks1-11-comparison.md",
+      "size": 3966,
+      "mtime": "2026-07-23T01:17:07.970Z",
+      "sha256": "9f73b55d6a3088f68507deac94223b68f0312aa34306c9efb21f32c40da0fd80"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/ranks15-18-beyond-ranks1-14-comparison.md",
+      "size": 4006,
+      "mtime": "2026-07-23T13:07:28.110Z",
+      "sha256": "ddd9c112c3938d784ebed6727c4bdd805374a18dba01f213544e56ea47e41d10"
+    },
+    {
+      "path": "docs/controlled-pdf-pilots/ranks9-11-beyond-ranks1-8-comparison.md",
+      "size": 2449,
+      "mtime": "2026-07-23T00:58:31.751Z",
+      "sha256": "5e7a03e95dfeed3ef6cd9d9198a4ffdeaa163dfb7800a777e65bd32aa6616715"
+    }
+  ]
+}

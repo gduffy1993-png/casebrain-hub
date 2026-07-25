@@ -1,0 +1,32 @@
+{
+  "root": "artifacts/casebrain-qa/overview-summary-manual",
+  "exists": true,
+  "fileCount": 4,
+  "totalBytes": 630242,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/overview-summary-manual/01-overview.png",
+      "size": 284432,
+      "mtime": "2026-07-14T19:11:21.243Z",
+      "sha256": "1722893def196d3132197f44ca559603de565b406d272ff73bb5347884befe6a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/overview-summary-manual/02-summary.png",
+      "size": 337635,
+      "mtime": "2026-07-14T19:12:03.181Z",
+      "sha256": "a0c7c19fb1fc5681d70ad7e4adc72d328320253037cd676df3f76310c96dfa5a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/overview-summary-manual/check.ts",
+      "size": 6594,
+      "mtime": "2026-07-14T19:07:26.906Z",
+      "sha256": "1afcd8ade6ade3ac2efd847516e294ec8e50c48ecd285c7a210a3a1f924e849d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/overview-summary-manual/report.json",
+      "size": 1581,
+      "mtime": "2026-07-14T19:12:04.921Z",
+      "sha256": "0ae1cc74a6a06c8f0994d447c5d8b797329409fe2bcf7e718d34c2d0853351c6"
+    }
+  ]
+}

@@ -1,0 +1,869 @@
+{
+  "generatedAt": "2026-07-22T22:29:19.865Z",
+  "programmePassSupported": false,
+  "claimAll3000LegallyVerified": false,
+  "disclaimer": "Controlled/synthetic scale-3000 corpus inventory only. Does not claim that all 3,000 charges are legally verified. 'verified' means no known registry discrepancy pattern matched — not independent solicitor sign-off.",
+  "corpusRun": "run-v9",
+  "totalCasesScanned": 3000,
+  "uniqueChargeWordings": 44,
+  "statusTotals": {
+    "verified": 37,
+    "discrepancy": 7,
+    "unresolved": 0
+  },
+  "affectedCaseRollup": {
+    "verified": 2462,
+    "discrepancy": 538,
+    "unresolved": 0
+  },
+  "charges": [
+    {
+      "exactDisplayedWording": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+      "wordingHash": "88a9d0b09d94575cdf49fc07e28c6b0ce481b5906caf208c6d88e4bc89d4af1f",
+      "statutoryProvision": "section 1(1)",
+      "affectedCaseCount": 541,
+      "primarySourceFixture": "demo-audit-24-missing-pages-index",
+      "sourceFixtureCounts": {
+        "demo-audit-08-cctv-night-stills": 38,
+        "demo-audit-24-missing-pages-index": 133,
+        "demo-audit-22-youth-interview": 73,
+        "demo-audit-02-cctv-stills": 53,
+        "demo-audit-09-cctv-index-only": 78,
+        "demo-audit-29-youth-yjs-material": 95,
+        "demo-audit-30-layout-hearing-date": 71
+      },
+      "auditFamilyCounts": {
+        "robbery-cctv": 169,
+        "index-contradiction": 133,
+        "youth-vulnerability": 168,
+        "layout-ocr-duplication": 71
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+      "wordingHash": "a32fa3ea3304eb26af64c06b0841695836b4efc6dbe93747d7b5a44d45c7051a",
+      "statutoryProvision": "section 2 of the Protection from Harassment Act 1997",
+      "affectedCaseCount": 433,
+      "primarySourceFixture": "demo-audit-26-phone-referred-metadata",
+      "sourceFixtureCounts": {
+        "demo-audit-01-phone-harassment": 13,
+        "demo-audit-23-duplicate-pages": 78,
+        "demo-audit-07-phone-ocr-trap": 33,
+        "demo-audit-20-domestic-harassment": 58,
+        "demo-audit-26-phone-referred-metadata": 138,
+        "demo-audit-06-domestic-stalking": 93,
+        "demo-audit-41-translated-messages": 20
+      },
+      "auditFamilyCounts": {
+        "domestic-harassment": 104,
+        "layout-ocr-duplication": 78,
+        "phone-attribution": 138,
+        "domestic-stalking": 93,
+        "translated-messages": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1997/40",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "wordingHash": "abad8c35456942c7d48e7db032cdbaa904e751f044a74816a69556b51a374bae",
+      "statutoryProvision": "section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "affectedCaseCount": 297,
+      "primarySourceFixture": "demo-audit-10-bwv-public-order",
+      "sourceFixtureCounts": {
+        "demo-audit-03-bwv-custody": 63,
+        "demo-audit-10-bwv-public-order": 118,
+        "demo-audit-11-custody-pace-ocr": 38,
+        "demo-audit-27-custody-pace-missing": 78
+      },
+      "auditFamilyCounts": {
+        "robbery-bwv-custody": 63,
+        "public-order-bwv": 118,
+        "custody-pace": 116
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/2018/23",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Being concerned in the supply of a controlled drug of Class A, contrary to section 4(2)(b) of the Misuse of Drugs Act 1971",
+      "wordingHash": "bdcc7085b9210dc0a50d3b798d1f64bccbaa6400db8f71fb8d5359349c911916",
+      "statutoryProvision": "section 4(2)(",
+      "affectedCaseCount": 269,
+      "primarySourceFixture": "demo-audit-15-county-lines-runners",
+      "sourceFixtureCounts": {
+        "demo-audit-25-charge-bundle-mismatch": 98,
+        "demo-audit-14-encro-retail": 33,
+        "demo-audit-15-county-lines-runners": 138
+      },
+      "auditFamilyCounts": {
+        "charge-mismatch": 98,
+        "encro-handle-attribution": 33,
+        "drugs-county-lines": 138
+      },
+      "verificationStatus": "discrepancy",
+      "matchedRegistryIds": [
+        "mda_concerned_in_supply_s4_3_b"
+      ],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1971/38",
+      "qualifiedLegalReviewStillRequired": true,
+      "note": "Known citation discrepancy pattern matched — qualified legal review required; source wording retained."
+    },
+    {
+      "exactDisplayedWording": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
+      "wordingHash": "5fddd3fafeff5d368a318b0d10456c64ae086da764a8a75e066f4f32492f370d",
+      "statutoryProvision": "section 9(1)(",
+      "affectedCaseCount": 214,
+      "primarySourceFixture": "demo-audit-04-co-def-interview",
+      "sourceFixtureCounts": {
+        "demo-audit-04-co-def-interview": 73,
+        "demo-audit-12-multi-def-burglary": 63,
+        "demo-audit-13-co-def-index-trap": 38,
+        "demo-audit-37-interview-timing": 20,
+        "demo-audit-39-fingerprint-partial": 20
+      },
+      "auditFamilyCounts": {
+        "mixed-defendant": 174,
+        "interview-timing-contradiction": 20,
+        "forensic-fingerprint-gap": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "wordingHash": "a434f70b52dad5193024587ca35f673416cde7974c3d216dfcbd961177b2e127",
+      "statutoryProvision": "section 1 of the Fraud Act 2006",
+      "affectedCaseCount": 149,
+      "primarySourceFixture": "demo-audit-28-fraud-subscriber-trap",
+      "sourceFixtureCounts": {
+        "demo-audit-16-fraud-bank-statements": 53,
+        "demo-audit-17-fraud-transaction-export": 38,
+        "demo-audit-28-fraud-subscriber-trap": 58
+      },
+      "auditFamilyCounts": {
+        "fraud-bank-device": 149
+      },
+      "verificationStatus": "discrepancy",
+      "matchedRegistryIds": [
+        "fraud_false_representation_s2"
+      ],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/2006/35",
+      "qualifiedLegalReviewStillRequired": true,
+      "note": "Known citation discrepancy pattern matched — qualified legal review required; source wording retained."
+    },
+    {
+      "exactDisplayedWording": "Sexual assault, contrary to section 3 of the Sexual Offences Act 2003",
+      "wordingHash": "ff344e01462ba853a81e1180a3e6cdcfd2f1e170c1c7c8deb8dc4cb509cb7b0d",
+      "statutoryProvision": "section 3 of the Sexual Offences Act 2003",
+      "affectedCaseCount": 123,
+      "primarySourceFixture": "demo-audit-21-historic-sexual-abe",
+      "sourceFixtureCounts": {
+        "demo-audit-21-historic-sexual-abe": 123
+      },
+      "auditFamilyCounts": {
+        "abe-first-account-third-party": 123
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/2003/42",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988",
+      "wordingHash": "9ed9ea0986ebe03f89ab677b944c740b4e8c77cdd043fa60d361a8ed4104fa4b",
+      "statutoryProvision": "section 172(2) of the Road Traffic Act 1988",
+      "affectedCaseCount": 93,
+      "primarySourceFixture": "demo-audit-18-motoring-sjp-thin",
+      "sourceFixtureCounts": {
+        "demo-audit-18-motoring-sjp-thin": 93
+      },
+      "auditFamilyCounts": {
+        "motoring-sjp": 93
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1988/52",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Being concerned in the supply of a controlled drug of Class A, namely cocaine",
+      "wordingHash": "326c53c38a5ab78ce0dda2a74b45183c809591be65c1dbdc09eb7e44e83152ce",
+      "statutoryProvision": null,
+      "affectedCaseCount": 83,
+      "primarySourceFixture": "demo-audit-05-encro-attribution",
+      "sourceFixtureCounts": {
+        "demo-audit-05-encro-attribution": 83
+      },
+      "auditFamilyCounts": {
+        "encro-handle-attribution": 83
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": null,
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Robbery, contrary to section 8 of the Theft Act 1968",
+      "wordingHash": "b490962bd4d7a48b76c326519c1f8ee4714d996c3db700046ddf67f895f2a882",
+      "statutoryProvision": "section 8 of the Theft Act 1968",
+      "affectedCaseCount": 60,
+      "primarySourceFixture": "demo-audit-38-dna-expert-partial",
+      "sourceFixtureCounts": {
+        "demo-audit-38-dna-expert-partial": 20,
+        "demo-audit-64-youth-aa-intermediary": 20,
+        "demo-audit-66-robbery-cctv-anpr": 20
+      },
+      "auditFamilyCounts": {
+        "forensic-dna-gap": 20,
+        "youth-aa-intermediary": 20,
+        "robbery-cctv-anpr": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Drive with excess alcohol, contrary to section 5(1)(a) of the Road Traffic Act 1988",
+      "wordingHash": "ed42f532dfdc19a691dfa4d6437860e2581c9c6c46885d99c7f89cf3d9aebf38",
+      "statutoryProvision": "section 5(1)(",
+      "affectedCaseCount": 58,
+      "primarySourceFixture": "demo-audit-19-motoring-breath-specimen",
+      "sourceFixtureCounts": {
+        "demo-audit-19-motoring-breath-specimen": 58
+      },
+      "auditFamilyCounts": {
+        "medical-gap-motoring": 58
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1988/52",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Conspiracy to supply a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
+      "wordingHash": "1ceb00225a25747753f885fcad0a487882551b1564e985f6c7cea48c0b376f6f",
+      "statutoryProvision": "section 4(3) of the Misuse of Drugs Act 1971",
+      "affectedCaseCount": 40,
+      "primarySourceFixture": "demo-audit-40-cell-site-partial",
+      "sourceFixtureCounts": {
+        "demo-audit-40-cell-site-partial": 20,
+        "demo-audit-68-encro-social-overlap": 20
+      },
+      "auditFamilyCounts": {
+        "forensic-cell-site-gap": 20,
+        "encro-social-overlap": 20
+      },
+      "verificationStatus": "discrepancy",
+      "matchedRegistryIds": [
+        "conspiracy_supply_or_import_not_bare_s4_3"
+      ],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1971/38",
+      "qualifiedLegalReviewStillRequired": true,
+      "note": "Known citation discrepancy pattern matched — qualified legal review required; source wording retained."
+    },
+    {
+      "exactDisplayedWording": "Affray, contrary to section 3 of the Public Order Act 1986",
+      "wordingHash": "f93f4d7dad1f5ff6e2d288994cc92712a45aabebc6bedc449ee30df538496b60",
+      "statutoryProvision": "section 3 of the Public Order Act 1986",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-59-interview-summary-no-audio",
+      "sourceFixtureCounts": {
+        "demo-audit-59-interview-summary-no-audio": 20
+      },
+      "auditFamilyCounts": {
+        "interview-summary-no-audio": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1986/64",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Assault by beating, contrary to section 39 of the Criminal Justice Act 1988",
+      "wordingHash": "dee9068e26da0b6213565f0ca593b0a7fdc053b6909e330932b7654d1e5ac5b8",
+      "statutoryProvision": "section 39 of the Criminal Justice Act 1988",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-35-bwv-edited-footage",
+      "sourceFixtureCounts": {
+        "demo-audit-35-bwv-edited-footage": 20
+      },
+      "auditFamilyCounts": {
+        "edited-bwv-footage": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1988/33",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Assault occasioning actual bodily harm, contrary to section 47 of the Offences Against the Person Act 1861",
+      "wordingHash": "049abd149d518f89d8191b3c56227786e285ccc7d6aca49bd18462850b88bf5b",
+      "statutoryProvision": "section 47 of the Offences Against the Person Act 1861",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-42-vulnerable-complainant",
+      "sourceFixtureCounts": {
+        "demo-audit-42-vulnerable-complainant": 20
+      },
+      "auditFamilyCounts": {
+        "vulnerable-complainant": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/Vict/24-25/100",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Assault on an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "wordingHash": "f47e9462d0e57956afdb9fc5307f78ff23385325f01f451705d9592e624bdbcd",
+      "statutoryProvision": "section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-57-bwv-transcript-no-video",
+      "sourceFixtureCounts": {
+        "demo-audit-57-bwv-transcript-no-video": 20
+      },
+      "auditFamilyCounts": {
+        "bwv-transcript-no-video": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/2018/23",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
+      "wordingHash": "a25fbf4146cb30265ce72e0d0e2c6493b9182be1cdb851ae279c8942eded92e2",
+      "statutoryProvision": "section 39 of the Criminal Justice Act 1988",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-69-charge-mg5-hearing",
+      "sourceFixtureCounts": {
+        "demo-audit-69-charge-mg5-hearing": 20
+      },
+      "auditFamilyCounts": {
+        "charge-mg5-hearing-split": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1988/33",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Being concerned in supply of a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
+      "wordingHash": "18fbde9b1fce423677216de323bf5aca14f154018f6d0bbc5613f0b0e88ac548",
+      "statutoryProvision": "section 4(3) of the Misuse of Drugs Act 1971",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-67-drugs-runner-lab",
+      "sourceFixtureCounts": {
+        "demo-audit-67-drugs-runner-lab": 20
+      },
+      "auditFamilyCounts": {
+        "drugs-runner-lab": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1971/38",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Breach of a domestic violence protection notice, contrary to section 25 of the Crime and Security Act 2010",
+      "wordingHash": "4748bb62c31ec1d10f5626520aa7980365d478a1c548e844baa8a552f86edca2",
+      "statutoryProvision": "section 25 of the Crime and Security Act 2010",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-33-non-mol-dvpo-overlap",
+      "sourceFixtureCounts": {
+        "demo-audit-33-non-mol-dvpo-overlap": 20
+      },
+      "auditFamilyCounts": {
+        "civil-order-overlap": 20
+      },
+      "verificationStatus": "discrepancy",
+      "matchedRegistryIds": [
+        "dvpn_breach_qualified_review"
+      ],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/2010/17",
+      "qualifiedLegalReviewStillRequired": true,
+      "note": "Known citation discrepancy pattern matched — qualified legal review required; source wording retained."
+    },
+    {
+      "exactDisplayedWording": "Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997",
+      "wordingHash": "24252f167174c544a9b4829ae03c1a55decece473ed4ac0dd61a248f0f633b79",
+      "statutoryProvision": "section 5(5) of the Protection from Harassment Act 1997",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-32-restraining-order-breach",
+      "sourceFixtureCounts": {
+        "demo-audit-32-restraining-order-breach": 20
+      },
+      "auditFamilyCounts": {
+        "restraining-order-breach": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1997/40",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Breach of bail conditions, contrary to section 6(3) of the Bail Act 1976",
+      "wordingHash": "839b868de3bbf685ed4d0de00439b63df3e8cb5bdef26e030e64f501a8a536b5",
+      "statutoryProvision": "section 6(3) of the Bail Act 1976",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-31-bail-condition-breach",
+      "sourceFixtureCounts": {
+        "demo-audit-31-bail-condition-breach": 20
+      },
+      "auditFamilyCounts": {
+        "bail-condition-breach": 20
+      },
+      "verificationStatus": "discrepancy",
+      "matchedRegistryIds": [
+        "bail_generic_breach_not_s6_3"
+      ],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1976/63",
+      "qualifiedLegalReviewStillRequired": true,
+      "note": "Known citation discrepancy pattern matched — qualified legal review required; source wording retained."
+    },
+    {
+      "exactDisplayedWording": "Causing death by careless driving, contrary to section 2B of the Road Traffic Act 1988",
+      "wordingHash": "e29804c9ec4b9dab05c0e829edf394451bc0bf7565da697666e4643711975800",
+      "statutoryProvision": "section 2",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-48-vehicle-telematics",
+      "sourceFixtureCounts": {
+        "demo-audit-48-vehicle-telematics": 20
+      },
+      "auditFamilyCounts": {
+        "vehicle-telematics": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1988/52",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Child cruelty, contrary to section 1 of the Children and Young Persons Act 1933",
+      "wordingHash": "39f3d744f6003876d7372206d2d538090bbf4a96431558bfb5c7445e5f7adda6",
+      "statutoryProvision": "section 1 of the Children and Young Persons Act 1933",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-60-third-party-records",
+      "sourceFixtureCounts": {
+        "demo-audit-60-third-party-records": 20
+      },
+      "auditFamilyCounts": {
+        "third-party-records-gap": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": null,
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Common assault, contrary to section 39 of the Criminal Justice Act 1988",
+      "wordingHash": "bc80fc669443a054e80f8879cfb9826b4e5eb98de06fdc645c99509ae2b7afef",
+      "statutoryProvision": "section 39 of the Criminal Justice Act 1988",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-45-multiple-hearings",
+      "sourceFixtureCounts": {
+        "demo-audit-45-multiple-hearings": 20
+      },
+      "auditFamilyCounts": {
+        "multiple-hearings-listing": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1988/33",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Conspiracy to import a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
+      "wordingHash": "c58effd41ed62f7e24e0531030f4bb28a57f34fa08bd148479d794e0afc352ef",
+      "statutoryProvision": "section 4(3) of the Misuse of Drugs Act 1971",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-46-prison-calls",
+      "sourceFixtureCounts": {
+        "demo-audit-46-prison-calls": 20
+      },
+      "auditFamilyCounts": {
+        "prison-calls-attribution": 20
+      },
+      "verificationStatus": "discrepancy",
+      "matchedRegistryIds": [
+        "conspiracy_supply_or_import_not_bare_s4_3"
+      ],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1971/38",
+      "qualifiedLegalReviewStillRequired": true,
+      "note": "Known citation discrepancy pattern matched — qualified legal review required; source wording retained."
+    },
+    {
+      "exactDisplayedWording": "Controlling or coercive behaviour, contrary to section 76 of the Serious Crime Act 2015",
+      "wordingHash": "da7d9ae87ab6f25b8e1fa68677612a1d333d3b59e970c969313086cf7285d9a0",
+      "statutoryProvision": "section 76 of the Serious Crime Act 2015",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-56-edited-screenshots",
+      "sourceFixtureCounts": {
+        "demo-audit-56-edited-screenshots": 20
+      },
+      "auditFamilyCounts": {
+        "edited-screenshots-metadata": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": null,
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Criminal damage, contrary to section 1(1) of the Criminal Damage Act 1971",
+      "wordingHash": "8a78aff509786b1763990e42ca3c1fdc4e0c6f11520ec91e0a39a2c7caf9cb02",
+      "statutoryProvision": "section 1(1) of the Criminal Damage Act 1971",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-43-mental-health-fitness",
+      "sourceFixtureCounts": {
+        "demo-audit-43-mental-health-fitness": 20
+      },
+      "auditFamilyCounts": {
+        "mental-health-fitness": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1971/48",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Fraud by abuse of position, contrary to section 4 of the Fraud Act 2006",
+      "wordingHash": "01c8dd397a51e1d4a92326c6d982a393645eebc868165a073dd99a94cc275c28",
+      "statutoryProvision": "section 4 of the Fraud Act 2006",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-63-fraud-device-subscriber",
+      "sourceFixtureCounts": {
+        "demo-audit-63-fraud-device-subscriber": 20
+      },
+      "auditFamilyCounts": {
+        "fraud-device-subscriber": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/2006/35",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Fraud by false representation, contrary to section 2 of the Fraud Act 2006",
+      "wordingHash": "13d3562b9ed260b04b1e3be55d962a163e595701571bcafaf21c9e82219c030d",
+      "statutoryProvision": "section 2 of the Fraud Act 2006",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-52-exhibit-label-mismatch",
+      "sourceFixtureCounts": {
+        "demo-audit-52-exhibit-label-mismatch": 20
+      },
+      "auditFamilyCounts": {
+        "exhibit-label-mismatch": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/2006/35",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Handling stolen goods, contrary to section 22(1) of the Theft Act 1968",
+      "wordingHash": "8a9d2da25f5ace0d84ee54108c78b81277b2130050e2ba93031b510e9de54717",
+      "statutoryProvision": "section 22(1) of the Theft Act 1968",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-51-phone-other-suspect",
+      "sourceFixtureCounts": {
+        "demo-audit-51-phone-other-suspect": 20
+      },
+      "auditFamilyCounts": {
+        "phone-wrong-suspect": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
+      "wordingHash": "56645240a4d783b8af73659a118cef7288f9c39da96e3baf6cea859def0af954",
+      "statutoryProvision": "section 1 of the Malicious Communications Act 1988",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-47-social-media-handles",
+      "sourceFixtureCounts": {
+        "demo-audit-47-social-media-handles": 20
+      },
+      "auditFamilyCounts": {
+        "social-media-handles": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": null,
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Possession of a bladed article, contrary to section 1 of the Criminal Justice Act 1988",
+      "wordingHash": "565f83d4adba429b2b3830421df47c30369a9215832a3f97062c88f89bc5bc75",
+      "statutoryProvision": "section 1 of the Criminal Justice Act 1988",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-70-index-mg6c-absent",
+      "sourceFixtureCounts": {
+        "demo-audit-70-index-mg6c-absent": 20
+      },
+      "auditFamilyCounts": {
+        "index-mg6c-exhibit-absent": 20
+      },
+      "verificationStatus": "discrepancy",
+      "matchedRegistryIds": [
+        "bladed_article_not_cja1988_s1"
+      ],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1988/33",
+      "qualifiedLegalReviewStillRequired": true,
+      "note": "Known citation discrepancy pattern matched — qualified legal review required; source wording retained."
+    },
+    {
+      "exactDisplayedWording": "Possession of a controlled drug, contrary to section 5(2) of the Misuse of Drugs Act 1971",
+      "wordingHash": "7cd443aa6bd7af2d4c06b7fcd7c7c39d78b03f7c8e8747904274932275a5b64b",
+      "statutoryProvision": "section 5(2) of the Misuse of Drugs Act 1971",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-36-custody-clock-contradiction",
+      "sourceFixtureCounts": {
+        "demo-audit-36-custody-clock-contradiction": 20
+      },
+      "auditFamilyCounts": {
+        "custody-clock-contradiction": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1971/38",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Possession of an offensive weapon, contrary to section 1 of the Prevention of Crime Act 1953",
+      "wordingHash": "1b03f69c9776a8a023eaa05581baa6283dbf2dc521ce2ab9b3394880075acc6e",
+      "statutoryProvision": "section 1 of the Prevention of Crime Act 1953",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-55-unused-see-exhibit",
+      "sourceFixtureCounts": {
+        "demo-audit-55-unused-see-exhibit": 20
+      },
+      "auditFamilyCounts": {
+        "unused-schedule-exhibit": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": null,
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971",
+      "wordingHash": "2d522a7a2e9b731371caf942893e736ee5af7c68b9ec048454c1ceb10ce04ee4",
+      "statutoryProvision": "section 5(3) of the Misuse of Drugs Act 1971",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-50-lab-continuity-conflict",
+      "sourceFixtureCounts": {
+        "demo-audit-50-lab-continuity-conflict": 20
+      },
+      "auditFamilyCounts": {
+        "lab-continuity-conflict": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1971/38",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Rape, contrary to section 1 of the Sexual Offences Act 2003",
+      "wordingHash": "78e010e10c010e94f3871a02b6689d67ce6985b699a4fbcd5c61b96f4a8f8f8f",
+      "statutoryProvision": "section 1 of the Sexual Offences Act 2003",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-54-complainant-first-account",
+      "sourceFixtureCounts": {
+        "demo-audit-54-complainant-first-account": 20
+      },
+      "auditFamilyCounts": {
+        "complainant-first-account": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/2003/42",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Shoplifting, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+      "wordingHash": "d57f795d8a5fd33a779455e1daf3cb112fabef0cc240121cb053c19b3810b744",
+      "statutoryProvision": "section 1(1)",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-58-partial-custody-record",
+      "sourceFixtureCounts": {
+        "demo-audit-58-partial-custody-record": 20
+      },
+      "auditFamilyCounts": {
+        "partial-custody-record": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Stalking involving fear of violence, contrary to section 4A of the Protection from Harassment Act 1997",
+      "wordingHash": "935fc8f6d7f51af4e9d9dd6d70b7074bd3a63c2190e29e0ed9daa9a0fcc49677",
+      "statutoryProvision": "section 4",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-65-harassment-stalking-order",
+      "sourceFixtureCounts": {
+        "demo-audit-65-harassment-stalking-order": 20
+      },
+      "auditFamilyCounts": {
+        "domestic-order-stack": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1997/40",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
+      "wordingHash": "5202d6bb664f6d7ea92e85e299f521e2a8e135ea3bb608f72d65be31233dff64",
+      "statutoryProvision": "section 2",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-44-bad-redaction",
+      "sourceFixtureCounts": {
+        "demo-audit-44-bad-redaction": 20
+      },
+      "auditFamilyCounts": {
+        "bad-redaction-bundle": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1997/40",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Taking a vehicle without consent, contrary to section 12 of the Theft Act 1968",
+      "wordingHash": "e4e84705656fa6630aa713bb137c6aa727a9c814700eda4fdebad34aedbeae19",
+      "statutoryProvision": "section 12 of the Theft Act 1968",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-49-anpr-trap",
+      "sourceFixtureCounts": {
+        "demo-audit-49-anpr-trap": 20
+      },
+      "auditFamilyCounts": {
+        "anpr-attribution": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Theft from employer, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+      "wordingHash": "b2c866399e2a5b1095620c4f9168191e83c5a27f9d1a0651084e9690779da5b6",
+      "statutoryProvision": "section 1(1)",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-34-late-disclosure-hearing",
+      "sourceFixtureCounts": {
+        "demo-audit-34-late-disclosure-hearing": 20
+      },
+      "auditFamilyCounts": {
+        "late-disclosure-hearing": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Violent disorder, contrary to section 2(1) of the Public Order Act 1986",
+      "wordingHash": "b2e36f659384328dda7c70414afcdfdb09d004f1cc0ba9c5a04291fd87f81203",
+      "statutoryProvision": "section 2(1) of the Public Order Act 1986",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-62-public-order-assault-bwv",
+      "sourceFixtureCounts": {
+        "demo-audit-62-public-order-assault-bwv": 20
+      },
+      "auditFamilyCounts": {
+        "assault-public-order-bwv": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/1986/64",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Witness intimidation, contrary to section 51 of the Criminal Justice and Public Order Act 1994",
+      "wordingHash": "2d47122628f061bcbb10cb52f44553903e203279ade12f141125fa29a2e80a1c",
+      "statutoryProvision": "section 51 of the Criminal Justice and Public Order Act 1994",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-53-witness-signed-draft",
+      "sourceFixtureCounts": {
+        "demo-audit-53-witness-signed-draft": 20
+      },
+      "auditFamilyCounts": {
+        "witness-statement-conflict": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": null,
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    },
+    {
+      "exactDisplayedWording": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
+      "wordingHash": "bad4357c0aa475c3f700c027273ceccf08484db30672eb3a1d5b82908b6540e1",
+      "statutoryProvision": "section 18 of the Offences Against the Person Act 1861",
+      "affectedCaseCount": 20,
+      "primarySourceFixture": "demo-audit-61-medical-triage-partial",
+      "sourceFixtureCounts": {
+        "demo-audit-61-medical-triage-partial": 20
+      },
+      "auditFamilyCounts": {
+        "medical-triage-partial": 20
+      },
+      "verificationStatus": "verified",
+      "matchedRegistryIds": [],
+      "officialAuthorityUrl": "https://www.legislation.gov.uk/ukpga/Vict/24-25/100",
+      "qualifiedLegalReviewStillRequired": false,
+      "note": "Corpus detector found no known citation discrepancy pattern — not a claim of full legal verification."
+    }
+  ]
+}

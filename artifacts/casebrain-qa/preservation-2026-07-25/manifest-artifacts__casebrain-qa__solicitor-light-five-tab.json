@@ -1,0 +1,44 @@
+{
+  "root": "artifacts/casebrain-qa/solicitor-light-five-tab",
+  "exists": true,
+  "fileCount": 6,
+  "totalBytes": 833236,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/solicitor-light-five-tab/02-today.png",
+      "size": 250974,
+      "mtime": "2026-07-14T18:22:52.674Z",
+      "sha256": "f2b1f4b705c868ee30904d4b73e07e4830d136cb2527d66f9d98112c5448f6b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-light-five-tab/03-papers.png",
+      "size": 204871,
+      "mtime": "2026-07-14T18:23:19.356Z",
+      "sha256": "8f4c646471a8c29f1afd810e895acb5f18430a732cdbab4a68d73a405fa75485"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-light-five-tab/04-summary.png",
+      "size": 96035,
+      "mtime": "2026-07-14T18:23:48.736Z",
+      "sha256": "5de1a9b7cabbb5f2da36810462e449df073521a2a3eaddaad65587c56821dbd8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-light-five-tab/05-chase.png",
+      "size": 194108,
+      "mtime": "2026-07-14T18:24:24.442Z",
+      "sha256": "9c04654e8f9e6340146239c29032280bbae29c07b463070475afddcd5153e107"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-light-five-tab/fail-01-overview.png",
+      "size": 81188,
+      "mtime": "2026-07-14T18:22:18.967Z",
+      "sha256": "4584d17d3d5574fd3bdc49c6d2d9a62fd3ad82b027ebbdf7c8a0438b2f9fa412"
+    },
+    {
+      "path": "artifacts/casebrain-qa/solicitor-light-five-tab/report.json",
+      "size": 6060,
+      "mtime": "2026-07-14T18:24:27.344Z",
+      "sha256": "aa7be13b32908169ae178b092863634397f92bcf84d476906266a4c27b4d1575"
+    }
+  ]
+}

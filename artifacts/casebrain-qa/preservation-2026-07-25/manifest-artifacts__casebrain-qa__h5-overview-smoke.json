@@ -1,0 +1,62 @@
+{
+  "root": "artifacts/casebrain-qa/h5-overview-smoke",
+  "exists": true,
+  "fileCount": 9,
+  "totalBytes": 3262147,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/h5-overview-smoke/01-post-upload-landing.png",
+      "size": 867066,
+      "mtime": "2026-07-13T00:46:08.358Z",
+      "sha256": "fad3e180a6c30fe799ad72b00e8e475f4ec4cbbd0ac108c79ae78cd0e052c4dc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/h5-overview-smoke/02-overview-desktop.png",
+      "size": 1280617,
+      "mtime": "2026-07-13T00:46:11.115Z",
+      "sha256": "62683fef4b0974e81428383299da91137af056bade268eeeb29542b81113c24d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/h5-overview-smoke/03-today.png",
+      "size": 83909,
+      "mtime": "2026-07-13T00:47:01.184Z",
+      "sha256": "285330e5ac0ffe84ac90bf41599dcae925c54f0a27c9a810cd8fcc3c3737727e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/h5-overview-smoke/04-chase.png",
+      "size": 62149,
+      "mtime": "2026-07-13T00:47:05.481Z",
+      "sha256": "5af314c997b8da4bb2e5f75570d47da20c63a220e1247dbe00ef0e0c29807331"
+    },
+    {
+      "path": "artifacts/casebrain-qa/h5-overview-smoke/05-summary.png",
+      "size": 98197,
+      "mtime": "2026-07-13T00:47:08.888Z",
+      "sha256": "763da58224a0bf7562406d8b2624445d1ef52c331d60da45ab696eddf1cabcdf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/h5-overview-smoke/06-overview-mobile.png",
+      "size": 782840,
+      "mtime": "2026-07-13T00:47:32.832Z",
+      "sha256": "20c8b6113730090a9a4e02262c93285ab52ffd4ebbdfd26c3ca130cec24521aa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/h5-overview-smoke/fail-shell-tab-today-court-today.png",
+      "size": 83909,
+      "mtime": "2026-07-13T00:47:00.493Z",
+      "sha256": "285330e5ac0ffe84ac90bf41599dcae925c54f0a27c9a810cd8fcc3c3737727e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/h5-overview-smoke/latest-account.json",
+      "size": 197,
+      "mtime": "2026-07-13T00:47:33.174Z",
+      "sha256": "c83b7ab1a9fba5a5b279881c60ad2d2964e43ac59d1b56c749fe7144fa48964c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/h5-overview-smoke/report.json",
+      "size": 3263,
+      "mtime": "2026-07-13T00:47:33.173Z",
+      "sha256": "488adfccbdf6c76c2c4803d8537902ce3319d94c241bd7f6f1ea742b28b57556"
+    }
+  ]
+}

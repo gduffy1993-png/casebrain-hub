@@ -1,0 +1,138 @@
+{
+  "generatedAt": "2026-07-25T22:08:52.860Z",
+  "dateTag": "2026-07-25",
+  "branch": "programme/criminal-defence-integrity-corpus",
+  "head": "b9d30c12afb31fbe3f0ed351c663017aed2f79a4",
+  "stagedCount": 0,
+  "statusLineCount": 2109,
+  "evidenceRoots": [
+    {
+      "root": "artifacts/casebrain-qa/h5-overview-smoke",
+      "exists": true,
+      "fileCount": 9,
+      "totalBytes": 3262147,
+      "totalBytesHuman": "3.11 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory",
+      "exists": true,
+      "fileCount": 2,
+      "totalBytes": 50651,
+      "totalBytesHuman": "0.05 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation",
+      "exists": true,
+      "fileCount": 228,
+      "totalBytes": 925586120,
+      "totalBytesHuman": "882.71 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/malik-price-generation-v2-authorised-fresh-analysis-2026-07-25",
+      "exists": true,
+      "fileCount": 73,
+      "totalBytes": 13609386,
+      "totalBytesHuman": "12.98 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/malik-price-generation-v2-cursor-fixes-rerun-2026-07-25",
+      "exists": true,
+      "fileCount": 135,
+      "totalBytes": 33003142,
+      "totalBytesHuman": "31.47 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/malik-price-generation-v2-untouched-run",
+      "exists": true,
+      "fileCount": 141,
+      "totalBytes": 44450049,
+      "totalBytesHuman": "42.39 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/overview-summary-manual",
+      "exists": true,
+      "fileCount": 4,
+      "totalBytes": 630242,
+      "totalBytesHuman": "0.60 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/solicitor-duplicate-display-smoke",
+      "exists": true,
+      "fileCount": 7,
+      "totalBytes": 1451450,
+      "totalBytesHuman": "1.38 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/solicitor-light-five-tab",
+      "exists": true,
+      "fileCount": 6,
+      "totalBytes": 833236,
+      "totalBytesHuman": "0.79 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/solicitor-overview-summary-prove",
+      "exists": true,
+      "fileCount": 3,
+      "totalBytes": 577354,
+      "totalBytesHuman": "0.55 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/solicitor-warmup-five-tab",
+      "exists": true,
+      "fileCount": 8,
+      "totalBytes": 1982782,
+      "totalBytesHuman": "1.89 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/strategy-pdf-smoke",
+      "exists": true,
+      "fileCount": 1,
+      "totalBytes": 2714,
+      "totalBytesHuman": "0.00 MB"
+    },
+    {
+      "root": "artifacts/casebrain-qa/taylor-solicitor-inspect",
+      "exists": true,
+      "fileCount": 7,
+      "totalBytes": 1964370,
+      "totalBytesHuman": "1.87 MB"
+    },
+    {
+      "root": "artifacts/casebrain-startup-diagnostic",
+      "exists": true,
+      "fileCount": 1,
+      "totalBytes": 9270,
+      "totalBytesHuman": "0.01 MB"
+    },
+    {
+      "root": "docs/cb-fresh-adversarial",
+      "exists": true,
+      "fileCount": 3,
+      "totalBytes": 51070,
+      "totalBytesHuman": "0.05 MB"
+    },
+    {
+      "root": "docs/controlled-pdf-pilots",
+      "exists": true,
+      "fileCount": 175,
+      "totalBytes": 676743,
+      "totalBytesHuman": "0.65 MB"
+    },
+    {
+      "root": "output",
+      "exists": true,
+      "fileCount": 1211,
+      "totalBytes": 118996587,
+      "totalBytesHuman": "113.48 MB"
+    },
+    {
+      "root": "scripts/pilots",
+      "exists": true,
+      "fileCount": 8,
+      "totalBytes": 524667,
+      "totalBytesHuman": "0.50 MB"
+    }
+  ],
+  "evidenceTotalBytes": 1147661980,
+  "evidenceTotalFiles": 2022
+}

@@ -1,0 +1,14 @@
+{
+  "root": "artifacts/casebrain-qa/strategy-pdf-smoke",
+  "exists": true,
+  "fileCount": 1,
+  "totalBytes": 2714,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/strategy-pdf-smoke/strategy-export-smoke.pdf",
+      "size": 2714,
+      "mtime": "2026-07-25T21:21:20.595Z",
+      "sha256": "afa1b30ab93ef448c5bdc4a0a792894233c91cc36afae9709a8ad267a55c8750"
+    }
+  ]
+}

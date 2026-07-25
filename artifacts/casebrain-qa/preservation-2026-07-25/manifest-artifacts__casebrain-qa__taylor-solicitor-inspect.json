@@ -1,0 +1,50 @@
+{
+  "root": "artifacts/casebrain-qa/taylor-solicitor-inspect",
+  "exists": true,
+  "fileCount": 7,
+  "totalBytes": 1964370,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/taylor-solicitor-inspect/01-overview.png",
+      "size": 867168,
+      "mtime": "2026-07-10T09:51:40.224Z",
+      "sha256": "071f60172ed86452b9d1344d61b6ae4b7d16e325fca4febf117bc07cf6c9b15e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/taylor-solicitor-inspect/02-today.png",
+      "size": 261333,
+      "mtime": "2026-07-10T09:51:45.542Z",
+      "sha256": "d989f0ccd5ec723d394216a7e8c793f988a5eb953a6323dd728c3b388ac884c9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/taylor-solicitor-inspect/03-chase.png",
+      "size": 319354,
+      "mtime": "2026-07-10T09:51:50.908Z",
+      "sha256": "841486985774f0cd9f8fc0a3baeb04da3b4f4954cec366b9a3fbf7a25c5c173f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/taylor-solicitor-inspect/04-summary.png",
+      "size": 122958,
+      "mtime": "2026-07-10T09:51:56.146Z",
+      "sha256": "7faa1517fd80b1b2c41b878a4ade9aa5f3e5f35429ef161221aa024b1a10398e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/taylor-solicitor-inspect/05-papers.png",
+      "size": 275953,
+      "mtime": "2026-07-10T09:52:01.253Z",
+      "sha256": "b87234ef2fb37e0dd3f0744a275e028968eb674dc8d7efcd06264e3b32be924e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/taylor-solicitor-inspect/06-file.png",
+      "size": 115321,
+      "mtime": "2026-07-10T09:52:06.050Z",
+      "sha256": "e0f50a052212aaf0075391300b7268717c4f70304fbbe7ef8415e2a14baa787d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/taylor-solicitor-inspect/report.json",
+      "size": 2283,
+      "mtime": "2026-07-10T09:52:06.261Z",
+      "sha256": "f89bf3417e0d03b82cc9b1dae6f43204a6b042ddcb78297df6a8b2babc98a9e9"
+    }
+  ]
+}
