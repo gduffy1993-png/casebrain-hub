@@ -1,0 +1,68 @@
+{
+  "matterId": "rank2-homicide-harbour-yard",
+  "version": "design-freeze-draft-v0.1",
+  "status": "DRAFT_QUALITY_SPECIFICATION_NO_GENERATION",
+  "pagePolicy": {
+    "approvedBand": [250, 500],
+    "workingMapPages": 360,
+    "workingMapIsQuota": false,
+    "rule": "The final compiled total may fall below 360, but not below 250, when authentic non-duplicative content does not justify 360 pages. Any revised total requires a continuous repaginated register and review; content must never be padded to hit a target.",
+    "prohibited": [
+      "filler text",
+      "repeated boilerplate used to create pages",
+      "duplicate narrative presented as new evidence",
+      "oversized headings or whitespace used for artificial page inflation",
+      "gratuitous repeated exhibits or screenshots",
+      "invented appendices with no evidential or procedural purpose"
+    ]
+  },
+  "densityLegend": {
+    "prose_light": "approximately 150–300 substantive words on a prose page, allowing authentic forms/signatures/spacing",
+    "prose_standard": "approximately 300–550 substantive words on a prose page",
+    "prose_dense": "approximately 500–750 substantive words where authentic for reports/transcripts",
+    "table_light": "approximately 5–12 meaningful rows per table page",
+    "table_standard": "approximately 10–25 meaningful rows per table page",
+    "table_dense": "approximately 20–45 meaningful rows per schedule/log page where legible",
+    "image_light": "one principal image/diagram or 2–4 smaller images with caption/source/scale where relevant",
+    "mixed": "purpose-led combination of prose, tables and images without crowding"
+  },
+  "documents": [
+    {"docId":"DOC_BUNDLE_INDEX","contentPurpose":"Navigate document boundaries, versions and compiled pages; expose missing/replaced items.","expectedDensity":"table_dense","approximateDensity":"20–40 index rows/page where legible","appendices":[],"qualityNotes":"No evidential narrative or service inference."},
+    {"docId":"DOC_PROPOSED_INDICTMENT","contentPurpose":"Present visibly non-operative proposed counts and defendant allocation for qualified review.","expectedDensity":"prose_light","approximateDensity":"1–3 proposed counts plus status banner/version metadata; use only pages genuinely needed","appendices":[],"qualityNotes":"Six working pages are a ceiling, not a reason to pad; charge status repeated only where needed for safety."},
+    {"docId":"DOC_MG5_CASE_SUMMARY","contentPurpose":"Summarise prosecution allegation, chronology, issues and evidential overview without replacing sources.","expectedDensity":"mixed","approximateDensity":"300–550 words or 10–20 chronology rows/page","appendices":["chronology table","witness/exhibit cross-reference"],"qualityNotes":"No repeated source-document prose copied wholesale."},
+    {"docId":"DOC_MG6_SERIES","contentPurpose":"Record unused/sensitive material descriptions, decisions, service and review states.","expectedDensity":"table_dense","approximateDensity":"18–40 meaningful schedule rows/page plus decision notes","appendices":["expert unused-material index","disclosure decision log"],"qualityNotes":"Rows must be distinct and purpose-bearing; no cloned entries."},
+    {"docId":"DOC_SCENE_EXHIBIT_LOG","contentPurpose":"Record scene actions, exhibit recovery, packaging, seals, transfers and image references.","expectedDensity":"mixed","approximateDensity":"15–35 log rows/page; 1–4 relevant images on image pages","appendices":["scene plan","photo register","continuity table"],"qualityNotes":"Every image/log row needs distinct evidential purpose and provenance."},
+    {"docId":"DOC_CAD_999_TRANSCRIPTS","contentPurpose":"Preserve native event log and faithful call transcript with speaker/time uncertainty.","expectedDensity":"prose_dense","approximateDensity":"450–750 transcript words or 20–45 CAD rows/page","appendices":["audio file manifest","transcription conventions"],"qualityNotes":"No transcript padding; pauses/inaudible markers only where source design requires."},
+    {"docId":"DOC_MG11_HOLT_DRAFT","contentPurpose":"Preserve the material draft account and version differences.","expectedDensity":"prose_standard","approximateDensity":"300–550 words/page","appendices":[],"qualityNotes":"Draft status prominent; no boilerplate beyond realistic statement fields."},
+    {"docId":"DOC_MG11_HOLT_SIGNED","contentPurpose":"Present the signed account and enable line-level comparison to the draft.","expectedDensity":"prose_standard","approximateDensity":"300–550 words/page","appendices":["exhibit references if genuinely used"],"qualityNotes":"Do not repeat irrelevant background solely to lengthen the statement."},
+    {"docId":"DOC_MG11_FERRIS","contentPurpose":"Present D2-relevant observation with visibility and recollection limits.","expectedDensity":"prose_standard","approximateDensity":"300–550 words/page","appendices":["witness position sketch"],"qualityNotes":"Sketch only if it clarifies line of sight."},
+    {"docId":"DOC_OTHER_WITNESSES","contentPurpose":"Provide distinct venue, first-response and background accounts.","expectedDensity":"prose_standard","approximateDensity":"300–550 words/page per separately identified statement","appendices":["individual exhibit references only"],"qualityNotes":"No duplicated shared narrative; each witness must add distinct evidence or a material contradiction."},
+    {"docId":"DOC_D1_CUSTODY_INTERVIEW","contentPurpose":"Record D1 custody events, interview metadata and complete question/answer account.","expectedDensity":"mixed","approximateDensity":"20–40 custody rows or 450–750 transcript words/page","appendices":["recording manifest","rights/clock status sheet"],"qualityNotes":"Separate custody record from transcript; no repeated caution boilerplate beyond authentic events."},
+    {"docId":"DOC_D2_CUSTODY_INTERVIEW","contentPurpose":"Record D2 custody events, interview and clarification note.","expectedDensity":"mixed","approximateDensity":"20–40 custody rows or 450–750 transcript words/page","appendices":["recording manifest","clarification note"],"qualityNotes":"D2-specific; co-defendant allegations labelled and not converted into admissions."},
+    {"docId":"DOC_CCTV_BWV_SCHEDULE","contentPurpose":"Map clips/stills, continuity, timing offset, occlusion and metadata limitations.","expectedDensity":"mixed","approximateDensity":"12–30 schedule rows/page or 1–4 captioned stills/page","appendices":["clip manifest","clock comparison","camera plan"],"qualityNotes":"No near-duplicate stills; full context around selected stills documented."},
+    {"docId":"DOC_PHONE_LOCATION_MESSAGES","contentPurpose":"Separate handset/account/user/authorship and present relevant location/message material.","expectedDensity":"mixed","approximateDensity":"15–35 message/location rows or 250–500 explanatory words/page","appendices":["extraction manifest","timezone table","missing-context register"],"qualityNotes":"No screenshot repetition; derived schedules trace to native-like source identifiers."},
+    {"docId":"DOC_AMBULANCE_HOSPITAL_RECORD","contentPurpose":"Provide proportionate fictional primary clinical observations, imaging reports and treatment events.","expectedDensity":"mixed","approximateDensity":"authentic form density, typically 8–25 entries or 250–500 words/page","appendices":["imaging report list","medication administration extract"],"qualityNotes":"Minimise irrelevant medical detail; no invented full notes merely to add pages."},
+    {"docId":"DOC_CLINICAL_TIMELINE","contentPurpose":"Reconcile source timestamps without silently resolving discrepancies.","expectedDensity":"table_standard","approximateDensity":"12–30 sourced events/page","appendices":["timestamp conflict table"],"qualityNotes":"Every row cites a primary source; no narrative duplication."},
+    {"docId":"DOC_POST_MORTEM","contentPurpose":"Record examination, injuries, samples, medical cause/mechanism opinion and limitations.","expectedDensity":"mixed","approximateDensity":"350–650 words on report pages; 1–3 necessary diagrams/images on visual pages","appendices":["injury diagram","sample register","photo register","materials considered"],"qualityNotes":"Sensitive visuals use only purpose-led fictional diagrams; no decorative or repeated images."},
+    {"docId":"DOC_NEUROPATH_ADDENDUM","contentPurpose":"Address neuropathological timing/mechanism questions and limits.","expectedDensity":"prose_standard","approximateDensity":"350–600 words/page","appendices":["materials and imaging considered"],"qualityNotes":"Only new/specialist analysis; do not repeat the full post-mortem report."},
+    {"docId":"DOC_TOXICOLOGY_REPORT","contentPurpose":"Report samples, methods, analytical findings, uncertainty and quality status.","expectedDensity":"mixed","approximateDensity":"10–25 analytical rows or 300–550 words/page","appendices":["sample table","method/quality summary"],"qualityNotes":"Analytical results separated from behavioural or causal interpretation."},
+    {"docId":"DOC_TOXICOLOGY_ADDENDUM","contentPurpose":"Provide limited interpretation of alcohol/medication findings and treatment context.","expectedDensity":"prose_standard","approximateDensity":"300–550 words/page","appendices":["assumptions/limitations table"],"qualityNotes":"Do not repeat analytical tables unless required to explain an opinion change."},
+    {"docId":"DOC_FORENSIC_TORCH_REPORT","contentPurpose":"Record item examination, continuity, biology result and transfer/use limitations.","expectedDensity":"mixed","approximateDensity":"300–550 words or 10–20 result rows/page; up to 2 necessary images/page","appendices":["continuity table","result table","image references"],"qualityNotes":"No categorical weapon-use wording or decorative close-ups."},
+    {"docId":"DOC_DEFENCE_PATHOLOGY","contentPurpose":"State the defence expert's individual pathology position, materials and limitations.","expectedDensity":"prose_standard","approximateDensity":"350–650 words/page","appendices":["materials considered","issues table"],"qualityNotes":"Address disagreement without reproducing prosecution report wholesale; privilege/service state visible."},
+    {"docId":"DOC_EXPERT_JOINT_STATEMENT","contentPurpose":"Authoritatively record expert agreements/disagreements at its date and unresolved questions.","expectedDensity":"table_standard","approximateDensity":"8–20 substantive issue rows/page with concise reasons","appendices":["report/version list"],"qualityNotes":"No party submissions, verdict language or artificial issue fragmentation."},
+    {"docId":"DOC_HEARING_CASE_MANAGEMENT","contentPurpose":"Record sending, PTPH listing and operative directions/application/ruling states.","expectedDensity":"mixed","approximateDensity":"authentic court-form density, 8–25 fields/directions per page","appendices":["direction compliance/status table if needed"],"qualityNotes":"Orders/notices separated from drafts and party proposals."},
+    {"docId":"DOC_ADMISSIONS_AGREED_FACTS","contentPurpose":"Show exact admission/agreed-fact text, owner, scope, version and procedural state.","expectedDensity":"table_standard","approximateDensity":"8–20 substantive propositions/status rows/page","appendices":["version/status audit"],"qualityNotes":"Four pages are a maximum working allocation; no repeated propositions to fill space."}
+  ],
+  "futureGenerationQA": {
+    "required": [
+      "duplication scan across and within documents, including near-duplicate paragraphs, table rows and images",
+      "density review against each document's purpose and expected density, with justified exceptions",
+      "full-page visual QA of every generated page at readable scale, including clipping, overflow, blank/near-blank pages, tables, captions, headers, footers and pagination",
+      "appendix purpose/provenance review",
+      "continuous pagination and source-register reconciliation",
+      "professional readability review without artificial whitespace or cramped text"
+    ],
+    "prohibitsSamplingOnlyVisualQA": true,
+    "generationCurrentlyAuthorised": false
+  }
+}

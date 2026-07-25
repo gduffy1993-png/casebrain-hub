@@ -1,0 +1,84 @@
+{
+  "matterId": "rank2-homicide-harbour-yard",
+  "version": "design-freeze-draft-v0.1",
+  "status": "DRAFT_PENDING_REVIEW",
+  "principle": "Authority is field-specific. No document class wins every question, and a later document does not silently erase an earlier conflict.",
+  "hierarchies": {
+    "chargeAndCountState": [
+      "sealed_or_court_approved_indictment_when_one_later_exists",
+      "latest_proposed_indictment_clearly_labelled_non_operative",
+      "sending_record_for_sent_charge_context",
+      "MG5_as_allegation_summary_only"
+    ],
+    "hearingAndDirections": [
+      "latest_court_order_or_notice",
+      "court_record_or_approved_case_management_form",
+      "party_correspondence",
+      "MG5_or_police_summary"
+    ],
+    "eventContent": [
+      "native_media_or_primary_record_with_continuity",
+      "contemporaneous_signed_or_authenticated_record",
+      "signed_witness_statement_preserving_prior_versions",
+      "derived_schedule_with_traceable_anchors",
+      "prosecution_or_defence_summary"
+    ],
+    "medicalTimeline": [
+      "timestamped_clinical_primary_record_or_image_header",
+      "ambulance_primary_record",
+      "later_clinical_summary_with_source_citation",
+      "derived_case_chronology"
+    ],
+    "expertOpinion": [
+      "joint_statement_is_authoritative_for_the_agreements_and_disagreements_it_records_at_its_date",
+      "latest_individual_report_or_addendum_governs_that_experts_individual_position_where_not_superseded_or_covered_by_the_joint_statement",
+      "earlier_individual_reports_remain_visible_for_opinion_changes",
+      "service_state_is_recorded_separately_and_does_not_prove_admissibility",
+      "judicial_ruling_governs_permitted_use_but_does_not_rewrite_scientific_observation_or_opinion",
+      "party_summary_never_substitutes_for_expert_words"
+    ],
+    "analyticalResult": [
+      "validated_instrument_or_laboratory_result_with_quality_and_continuity_record",
+      "signed_expert_analytical_report",
+      "interpretive_addendum",
+      "derived_schedule"
+    ],
+    "serviceAndDisclosureState": [
+      "service_receipt_or_court_record",
+      "disclosure_record",
+      "MG6_schedule_entry_as_schedule_state_not_content_proof",
+      "bundle_index_as_navigation_only"
+    ],
+    "admissionState": [
+      "court_record_of_admission_or_admitted_fact",
+      "signed_and_served_admission_with_scope",
+      "accepted_party_version_with_audit_history",
+      "proposal_or_draft",
+      "summary_reference"
+    ],
+    "agreedFactState": [
+      "court_record_of_fact_admitted_in_evidence",
+      "signed_final_agreed_facts_document",
+      "accepted_but_unsigned_text",
+      "proposed_agreed_fact",
+      "party_summary"
+    ]
+  },
+  "nonSubstitutionRules": [
+    "A bundle index cannot prove that an item was served or is complete.",
+    "MG5 cannot replace witness, media, medical or expert source material.",
+    "A joint expert statement is authoritative for the expert agreements/disagreements it records at its date; it is not a verdict or legal-causation ruling.",
+    "The latest individual report/addendum governs that expert's individual position only where the joint statement has not superseded or covered the point.",
+    "Service does not prove admissibility; judicial rulings govern permitted use, not scientific truth.",
+    "A later signed witness statement does not erase a disclosed draft difference.",
+    "A derived chronology cannot silently resolve differing source timestamps.",
+    "A proposed charge cannot become operative through repetition on another surface.",
+    "A party's proposed admission or agreed fact is not binding until the applicable state is evidenced.",
+    "An expert's opinion on mechanism cannot identify the actor or determine intent."
+  ],
+  "conflictPresentation": {
+    "required": ["field", "sourceA", "sourceB", "values", "authorityReason", "currentResolutionState", "audienceSafeExplanation"],
+    "allowedStates": ["open", "provisionally_preferred", "resolved_by_later_authoritative_source", "resolved_by_agreement", "resolved_by_court", "not_material"],
+    "silentResolutionForbidden": true
+  }
+}

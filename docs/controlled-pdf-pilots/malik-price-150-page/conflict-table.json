@@ -1,0 +1,172 @@
+{
+  "pilotId": "malik-price-150-page",
+  "version": "design-freeze-v1.1",
+  "rule": "When documents conflict, apply the winner. Always surface the losing document's existence and the nature of the conflict. If peers conflict with no higher source, fail closed / review-required — never pick a favourite.",
+  "hierarchyOrder": [
+    {
+      "rank": 1,
+      "sourceClass": "court_order_or_amended_indictment",
+      "governs": ["operative_charge", "operative_hearing_position_when_court_notice"]
+    },
+    {
+      "rank": 2,
+      "sourceClass": "native_exhibit_or_primary_record",
+      "governs": ["evidential_content", "media_content", "clock_on_native_stream_subject_to_flagged_offset"]
+    },
+    {
+      "rank": 3,
+      "sourceClass": "signed_statement",
+      "governs": ["current_account_of_witness"],
+      "mustStillSurface": "draft_differences"
+    },
+    {
+      "rank": 4,
+      "sourceClass": "disclosure_schedule",
+      "governs": ["service_status_claims_only"],
+      "mustNotGovern": ["proof_of_underlying_fact"]
+    },
+    {
+      "rank": 5,
+      "sourceClass": "mg5_prosecution_summary",
+      "governs": ["prosecution_narrative_summary_only"],
+      "mustNotGovern": ["substitute_for_source_evidence"]
+    },
+    {
+      "rank": 6,
+      "sourceClass": "bundle_index",
+      "governs": ["navigation_only"],
+      "mustNotGovern": ["conclusive_proof_item_served"]
+    }
+  ],
+  "conflicts": [
+    {
+      "conflictId": "CF-INDICTMENT-DATE",
+      "trapId": "TRAP-INDICTMENT-WRONG-DATE",
+      "documents": ["DOC-INDICTMENT-ORIGINAL", "DOC-INDICTMENT-AMENDED"],
+      "winner": "DOC-INDICTMENT-AMENDED",
+      "mustStillSurface": "Earlier indictment exists; wrong incident date on original (1 June 2026 vs 3 June 2026)",
+      "failIf": "original_date_used_as_operative_or_original_hidden"
+    },
+    {
+      "conflictId": "CF-INDEX-VS-CCTV-MASTER",
+      "trapId": "TRAP-INDEX-CCTV-MASTER-SERVED",
+      "documents": ["DOC-INDEX", "DOC-CCTV-BWV-CAD"],
+      "winner": "DOC-CCTV-BWV-CAD",
+      "mustStillSurface": "Index erroneously marks master CCTV as served; master missing; clips may be served",
+      "failIf": "master_treated_as_served_because_of_index"
+    },
+    {
+      "conflictId": "CF-MG5-VS-CCTV",
+      "trapId": "TRAP-MG5-OVERSTATES-CCTV",
+      "documents": ["DOC-MG5-V1", "DOC-MG5-REVISED", "DOC-CCTV-BWV-CAD"],
+      "winner": "DOC-CCTV-BWV-CAD",
+      "mustStillSurface": "MG5 overstates what CCTV shows; CCTV does not clearly show stabbing",
+      "failIf": "mg5_narrative_treated_as_what_cctv_proves"
+    },
+    {
+      "conflictId": "CF-DRAFT-VS-SIGNED-MG11",
+      "trapId": "TRAP-CLOTHING-DESCRIPTION-CHANGE",
+      "documents": ["DOC-MG11-DRAFT-C1", "DOC-MG11-SIGNED-C1"],
+      "winnerForCurrentAccount": "DOC-MG11-SIGNED-C1",
+      "mustStillSurface": "Draft clothing description differs; signed does not erase inconsistency",
+      "failIf": "draft_inconsistency_suppressed_or_described_as_resolved"
+    },
+    {
+      "conflictId": "CF-HEARING-VS-MG5",
+      "trapId": "TRAP-HEARING-VS-MG5-DATETIME",
+      "documents": ["DOC-HEARING-NOTICE-PTPH", "DOC-MG5-V1"],
+      "winner": "DOC-HEARING-NOTICE-PTPH",
+      "mustStillSurface": "Older MG5 lists different date/time; explain discrepancy",
+      "failIf": "mg5_datetime_used_as_operative_ptph_or_conflict_hidden"
+    },
+    {
+      "conflictId": "CF-SCHEDULE-VS-FACT",
+      "documents": ["DOC-MG6", "DOC-MG6C", "native_exhibits"],
+      "winnerForServiceStatus": "schedule_and_native_reconciliation",
+      "winnerForFact": "native_exhibit_or_primary_record",
+      "mustStillSurface": "Schedule is not proof of the underlying fact",
+      "failIf": "schedule_row_treated_as_proof_of_fact"
+    },
+    {
+      "conflictId": "CF-EMAIL-ATTACHMENT",
+      "trapId": "TRAP-EMAIL-ATTACHMENT-ABSENT",
+      "documents": ["DOC-DISCLOSURE-CORRESPONDENCE"],
+      "winner": "absence_of_attachment",
+      "mustStillSurface": "Email refers to attachment that is not in the bundle",
+      "failIf": "attachment_treated_as_served_because_email_mentions_it"
+    },
+    {
+      "conflictId": "CF-PHONE-AUTHORSHIP",
+      "trapId": "TRAP-PHONE-ASSOCIATION-NOT-AUTHORSHIP",
+      "documents": ["DOC-PHONE-ATTRIBUTION"],
+      "winner": "attribution_limits_in_report",
+      "mustStillSurface": "Association ≠ authorship",
+      "failIf": "malik_stated_as_author_of_messages"
+    },
+    {
+      "conflictId": "CF-KNIFE-INFERENCE",
+      "trapId": "TRAP-KNIFE-CONTINUITY-GAP",
+      "documents": ["DOC-POLICE-STATEMENTS", "DOC-INDICTMENT-AMENDED"],
+      "winner": "separate_counts_and_continuity_record",
+      "mustStillSurface": "Continuity gap on Price knife exhibit; possession count separate; no wound-causation inference",
+      "failIf": "knife_inferred_as_weapon_used_in_s18_or_robbery"
+    },
+    {
+      "conflictId": "CF-INTERVIEW-COMPLETENESS",
+      "trapId": "TRAP-INTERVIEW-TRANSCRIPT-PAGE-MISSING",
+      "documents": ["DOC-INTERVIEW-MALIK"],
+      "winner": "audio_served_transcript_incomplete",
+      "mustStillSurface": "Missing transcript page 97",
+      "failIf": "labelled_interview_missing_or_transcript_treated_as_complete"
+    },
+    {
+      "conflictId": "CF-CUSTODY-VS-INTERVIEW-CLOCK",
+      "trapId": "TRAP-CUSTODY-INTERVIEW-CLOCK-CONFLICT",
+      "documents": ["DOC-CUSTODY-PACE", "DOC-INTERVIEW-MALIK"],
+      "winner": "neither_silently_preferred",
+      "disposition": "review_required_surface_both_times",
+      "mustStillSurface": "Custody clock and interview record times conflict",
+      "failIf": "one_clock_silently_corrected_to_match_the_other"
+    },
+    {
+      "conflictId": "CF-ALIAS-SERVED",
+      "trapId": "TRAP-ALIAS-ALREADY-SERVED-CHASE",
+      "documents": ["DOC-PHONE-ATTRIBUTION", "DOC-DISCLOSURE-CORRESPONDENCE", "DOC-MG6"],
+      "winner": "reconcile_alias_to_served_item",
+      "mustStillSurface": "Request duplicates already-served material under different label",
+      "failIf": "alias_request_shown_as_new_missing_without_reconciliation"
+    },
+    {
+      "conflictId": "CF-CODEF-BLEED",
+      "trapId": "TRAP-CODEF-EVIDENCE-BLEED",
+      "documents": ["DOC-MG6C", "DOC-INTERVIEW-MALIK", "DOC-INTERVIEW-PRICE"],
+      "winner": "strict_defendant_segregation",
+      "mustStillSurface": "Planted bleed lines quarantined or excluded from wrong-defendant surfaces with disclosure",
+      "failIf": "price_only_material_on_malik_surface_or_reverse_without_clear_joint_basis"
+    },
+    {
+      "conflictId": "CF-EXHIBIT-LABEL",
+      "trapId": "TRAP-EXHIBIT-LABEL-COLLISION",
+      "documents": ["DOC-POLICE-STATEMENTS"],
+      "winner": "neither_label_collision_nor_silence",
+      "mustStillSurface": "NJ/1 used for photograph and bag log — collision flagged",
+      "failIf": "treated_as_single_clean_continuity_chain_without_warning"
+    },
+    {
+      "conflictId": "CF-CCTV-CLOCK",
+      "trapId": "TRAP-CCTV-CLOCK-PLUS-7",
+      "documents": ["DOC-CCTV-BWV-CAD", "DOC-CUSTODY-PACE", "DOC-CCTV-BWV-CAD"],
+      "winner": "native_cctv_stream_times_with_offset_flag",
+      "mustStillSurface": "CCTV clock seven minutes fast — do not silently normalise",
+      "failIf": "times_quietly_adjusted_without_flag"
+    },
+    {
+      "conflictId": "CF-MEDICAL-SCOPE",
+      "trapId": "TRAP-MEDICAL-INJURY-NOT-IDENTITY-OR-INTENT",
+      "documents": ["DOC-MEDICAL-FORENSIC"],
+      "winner": "medical_for_injury_findings_only",
+      "mustStillSurface": "Identity and intent not established by medical evidence alone",
+      "failIf": "medical_used_to_prove_identity_or_intent"
+    }
+  ]
+}

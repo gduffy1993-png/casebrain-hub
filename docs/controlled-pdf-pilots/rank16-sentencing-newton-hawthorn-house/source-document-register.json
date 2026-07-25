@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":190,"approved_band":"120-250","rule":"Authentic content governs; flexible ranges are not quotas; overlapping material is referenced rather than duplicated."},
+  "planned_documents":[
+    {"id":"S01","structure":"controlled sentencing overview, non-operative counts, plea/basis/Newton/sentence chronology","pages":"10-14","purpose":"neutral issue, evidence, hearing, finding and order map"},
+    {"id":"S02","structure":"indictment/count record, plea hearing, written basis, prosecution response and agreed/disputed schedule","pages":"15-22","purpose":"plea and factual-basis lifecycle"},
+    {"id":"S03","structure":"prosecution Newton evidence: protected child account, W1 statement, contextual exhibits and chronology","pages":"18-28","purpose":"source-specific disputed prosecution propositions"},
+    {"id":"S04","structure":"defence Newton evidence: D1 account, records, contextual witnesses and challenged chronology","pages":"16-24","purpose":"source-specific defence propositions without implied acceptance"},
+    {"id":"S05","structure":"Newton directions, hearing transcript/extracts, exhibits, submissions, factual ruling and reasons","pages":"22-34","purpose":"issue-by-issue evidential hearing and judicial-finding record"},
+    {"id":"S06","structure":"PSR, risk/needs source schedule, dangerousness submissions and any assessment addendum","pages":"18-26","purpose":"assessment, recommendation, party submission and judicial finding separation"},
+    {"id":"S07","structure":"victim personal statement, child medical records, paediatric report/addendum and limitations","pages":"14-20","purpose":"impact, medical fact and expert opinion boundaries"},
+    {"id":"S08","structure":"antecedents, references, employment/care evidence and financial-means documents","pages":"16-24","purpose":"verified sentencing history and personal/financial material"},
+    {"id":"S09","structure":"guideline/source index, prosecution and defence submissions, sentence remarks, ancillary orders and appeal/deadline record","pages":"18-27","purpose":"guideline inputs, decision provenance and final-order consistency"}
+  ]
+}

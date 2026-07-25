@@ -1,0 +1,107 @@
+{
+  "schema_version":"1.0",
+  "matter_id":"R14-MARKET-HOUSE",
+  "status":"design-only",
+  "matching_rule":"Exactly one specification per planned document ID; no extras.",
+  "specifications":[
+    {
+      "document_id":"S01",
+      "expected_professional_structure_and_purpose":"Compact controlled cover, persons, non-operative counts, incident/procedure chronology, live-count map, issue list and statutory-deadline tracker; neutral trial orientation.",
+      "realistic_page_range_and_information_density":"8-12 pages; 300-500 words per narrative page or 10-24 sourced events/rows per table page.",
+      "required_fields_headings_and_provenance":["matter/version/preparer/reviewer","defendant/witness IDs","count/allegation/non-operative status","count lifecycle/disposal","event/time/source locator","issue/application state","deadline source/trigger/calculation","unknown/supersession"],
+      "native_scan_or_media_characteristics":"Born-digital accessible PDF with searchable text, stable source links and compact repeated headers.",
+      "legitimate_imperfections_and_version_history":"Pending witness state, corrected date and later count disposal retained in dated versions.",
+      "confidentiality_redaction_and_audience_restrictions":"Open orientation excludes privileged advice, protected contact data and unserved application material; role variants follow permissions.",
+      "prohibited_filler_duplication_and_padding":"No copied statements, generic summary-trial guidance, repeated chronology or blank padding.",
+      "document_specific_visual_and_content_checks":["charges visibly non-operative","live/discontinued/dismissed/acquitted states distinct","deadlines source-linked","allegation not fact","tables fit page","links and redactions safe"]
+    },
+    {
+      "document_id":"S02",
+      "expected_professional_structure_and_purpose":"Signed complainant/witness/officer statements, 999 and body-worn-video registers, native-media references, transcripts and continuity; records observation, availability and media completeness.",
+      "realistic_page_range_and_information_density":"18-26 pages; statements 250-450 words/page, transcripts 350-600 words/page, registers 8-22 rows/page and few necessary stills.",
+      "required_fields_headings_and_provenance":["maker/role/date/signature","statement status/service","call/media/exhibit ID","master/hash/handler","capture time/clock offset","segment/transcript locator","continuity","availability/contact-attempt state","person/count relevance/redaction/version"],
+      "native_scan_or_media_characteristics":"Mixed signed statement scans, native audio/BWV retained externally, searchable transcripts and born-digital media/continuity registers.",
+      "legitimate_imperfections_and_version_history":"Witness uncertainty, inaudible passage, BWV activation gap and corrected speaker label allowed with traceable history.",
+      "confidentiality_redaction_and_audience_restrictions":"Contact data, bystander imagery and irrelevant audio minimised; only served evidence reaches defence/client/court; masters restricted.",
+      "prohibited_filler_duplication_and_padding":"No repeated statements, near-identical stills, transcript/media duplication, irrelevant BWV or decorative screenshots.",
+      "document_specific_visual_and_content_checks":["maker account remains allegation","audio/transcript time links resolve","BWV gap explicit","availability not attendance order","signatures visible","hash/continuity reconciles","redactions irreversible"]
+    },
+    {
+      "document_id":"S03",
+      "expected_professional_structure_and_purpose":"Damage complainant/owner statements, exhibit register, photographs, repair estimates/value records, CCTV media and continuity; tests ownership, damage, value and event identity separately.",
+      "realistic_page_range_and_information_density":"12-18 pages; statements/records at authentic density, schedules 8-20 rows/page and 1-4 evidential images/page.",
+      "required_fields_headings_and_provenance":["owner/property/exhibit IDs","maker/date/signature","pre/post condition source","image/media master/hash/time","estimate/invoice/provider/date/amount","payment/repair state","continuity","person/count relevance","service/redaction/version"],
+      "native_scan_or_media_characteristics":"Signed statement and trade-document scans, native CCTV referenced by hash, original photographs with metadata and born-digital exhibit schedule.",
+      "legitimate_imperfections_and_version_history":"Estimate rather than invoice, uncertain prior mark, camera-clock offset and corrected property label allowed with history.",
+      "confidentiality_redaction_and_audience_restrictions":"Commercial/contact details and unrelated CCTV content minimised; served relevant evidence follows audience permissions.",
+      "prohibited_filler_duplication_and_padding":"No repetitive damage images, fabricated invoices, decorative CCTV stills, duplicate exhibits or price-list padding.",
+      "document_specific_visual_and_content_checks":["estimate/invoice/payment distinct","ownership source shown","prior condition uncertainty retained","image source/time labelled","continuity complete","value does not prove maker","count relevance accurate"]
+    },
+    {
+      "document_id":"S04",
+      "expected_professional_structure_and_purpose":"Custody record, rights/caution/legal-advice/rest/health and intoxication observations, interview plan, native audio register, whole transcript and completeness/gap log; primary safeguard and alleged-confession source.",
+      "realistic_page_range_and_information_density":"20-28 pages; custody/forms retain authentic whitespace, transcript 350-600 words/page and event/gap logs 8-20 rows/page.",
+      "required_fields_headings_and_provenance":["custody/person/reference","arrest/arrival/detention/review/release times","rights/caution/legal advice request/contact/consultation","fitness/rest/health/intoxication observation source","interview start/end/persons","audio file/segment/hash/time","speaker/utterance locator","gap/cause/recovery","signature/service/version"],
+      "native_scan_or_media_characteristics":"Scanned signed custody/forms where realistic, native interview audio retained by hash, born-digital searchable transcript and gap/completeness register.",
+      "legitimate_imperfections_and_version_history":"Inaudible passage, short recording loss, conflicting intoxication observations and corrected transcript label allowed; no invented confession text.",
+      "confidentiality_redaction_and_audience_restrictions":"Legal-advice content remains privileged; health data minimised; served interview material follows application/ruling and audience state.",
+      "prohibited_filler_duplication_and_padding":"No repeated transcript, reconstructed missing audio, boilerplate custody pages, invented advice or artificial safeguard defects.",
+      "document_specific_visual_and_content_checks":["whole-interview context preserved","audio/transcript hashes and times resolve","gap visibly bounded","advice occurrence not content","observation sources conflict honestly","admission maker-specific","service not admissibility"]
+    },
+    {
+      "document_id":"S05",
+      "expected_professional_structure_and_purpose":"Defence section 76/78 application, prosecution response, evidence tendered on admissibility, hearing record, judicial ruling and permitted-use map; maintains application, ruling and evidential truth as separate states.",
+      "realistic_page_range_and_information_density":"14-22 pages; applications/responses 300-500 words/page, rulings 200-450 words/page and use maps 6-16 passages/rows/page.",
+      "required_fields_headings_and_provenance":["court/matter/count","applicant/ground/legal source pending review","passage/audio-time locator","supporting source/witness","file/service/hearing state","response/party/date","hearing/judge/attendance/evidence","ruling/reasons/scope","admitted/excluded/limited use","implementation/version"],
+      "native_scan_or_media_characteristics":"Born-digital filed application/response, signed or sealed hearing/ruling record, and source-linked permitted-use schedule; no transcript text silently removed.",
+      "legitimate_imperfections_and_version_history":"Amended ground, adjourned hearing, oral clarification and later corrected use map permitted with full history.",
+      "confidentiality_redaction_and_audience_restrictions":"Privileged draft/advice restricted; filed/served materials available by role; client output explains state without privileged strategy.",
+      "prohibited_filler_duplication_and_padding":"No generic PACE essay, invented judicial reasons, repeated transcript, duplicate applications or concealment presented as repair.",
+      "document_specific_visual_and_content_checks":["application not ruling","section 76 and 78 grounds distinct","passages source-linked","ruling scope exact","excluded wording not composed as fact","underlying source remains auditable","operative version obvious"]
+    },
+    {
+      "document_id":"S06",
+      "expected_professional_structure_and_purpose":"Witness contact/availability log, warning and response, summons application, supporting grounds, court decision/order, service/attempts, attendance and compliance outcome; tracks each procedural transition.",
+      "realistic_page_range_and_information_density":"8-14 pages; contact/service logs 8-22 events/page and applications/orders at authentic sparse form density.",
+      "required_fields_headings_and_provenance":["witness ID without unsafe contact detail","contact actor/method/date/outcome","availability reason/source","warning/request","application maker/date/ground/hearing","court decision/judge/date","order scope/conditions","service method/person/time/result","attendance/compliance/failure","version"],
+      "native_scan_or_media_characteristics":"Born-digital controlled logs, signed application and sealed/scanned order or refusal; service proof retained in native or scanned form.",
+      "legitimate_imperfections_and_version_history":"Failed contact, changed availability, refused then renewed application and unsuccessful service permitted with history.",
+      "confidentiality_redaction_and_audience_restrictions":"Witness addresses/contact routes restricted; client/court/CPS views reveal only necessary procedural status; internal safety notes remain controlled.",
+      "prohibited_filler_duplication_and_padding":"No invented contact attempts, duplicate logs, generic summons prose, repeated order pages or unsafe address replication.",
+      "document_specific_visual_and_content_checks":["availability concern not unavailability fact","application/order/service/attendance distinct","decision scope legible","contact sequence chronological","address redaction safe","service evidence linked","latest status clear"]
+    },
+    {
+      "document_id":"S07",
+      "expected_professional_structure_and_purpose":"Preparation for effective trial form/case-management record, hearsay and bad-character applications/responses, authorities index, hearing note and resulting orders; keeps party submissions and judicial permissions separate.",
+      "realistic_page_range_and_information_density":"12-18 pages; forms/orders at authentic density, applications 300-500 words/page and authorities index 8-18 entries/page.",
+      "required_fields_headings_and_provenance":["court/matter/hearing/date","issue/admission/witness/time estimate","application type/party/count/evidence","legal source/version pending review","file/service/response","hearing/judge/attendance","ruling/order/reasons/scope","authority title/citation/link/date checked","deadline/compliance/supersession"],
+      "native_scan_or_media_characteristics":"Born-digital prescribed-style forms and applications, public-authority links/index, plus signed or sealed court records; no copied judgments.",
+      "legitimate_imperfections_and_version_history":"Amended time estimate, late response, withdrawn limb and varied direction allowed with complete history.",
+      "confidentiality_redaction_and_audience_restrictions":"Filed/served documents role-available; privileged preparation notes and internal authority analysis restricted; client version uses appropriate explanation.",
+      "prohibited_filler_duplication_and_padding":"No copied legal authorities, boilerplate legal tests, duplicate forms/orders, fake citations or artificial issue pages.",
+      "document_specific_visual_and_content_checks":["application not permission","authority links resolve at review date","count/evidence scope exact","operative directions visible","withdrawn limbs not live","service/deadline states separate","forms readable"]
+    },
+    {
+      "document_id":"S08",
+      "expected_professional_structure_and_purpose":"PC3 discontinuance notice and service, prosecution opening/closure state, defence no-case submission, response, ruling, verdict reasons and count-level dismissal/acquittal/final orders; preserves distinct termination routes.",
+      "realistic_page_range_and_information_density":"12-18 pages; notices/orders at authentic density, submissions 300-500 words/page and count-state tables 5-12 rows/page.",
+      "required_fields_headings_and_provenance":["court/matter/count","notice/decision actor/date/reason state","file/service/receipt","revival/continuation state if applicable","prosecution close/time","submission party/ground/source","response/hearing/judge","ruling/reasons/count scope","verdict/reasons/date","dismissal/acquittal/conviction/final order/version"],
+      "native_scan_or_media_characteristics":"Born-digital notices/submissions and signed or sealed court records; concise count-lifecycle schedule links each operative source.",
+      "legitimate_imperfections_and_version_history":"Corrected count reference, reserved ruling and later perfected reasons allowed without changing earlier state silently.",
+      "confidentiality_redaction_and_audience_restrictions":"Filed/open outcomes available appropriately; privileged draft submission restricted; victim/witness personal data minimised.",
+      "prohibited_filler_duplication_and_padding":"No invented verdict reasons, repeated orders, generic no-case law, duplicate count tables or hidden unsafe wording counted as repair.",
+      "document_specific_visual_and_content_checks":["discontinuance/dismissal/acquittal distinct","submission not ruling","count-level scope exact","final order source-linked","reasons not inferred","superseded records marked","all exits preserve disposal wording"]
+    },
+    {
+      "document_id":"S09",
+      "expected_professional_structure_and_purpose":"Non-sensitive disclosure schedules, service logs, defence statement state, statutory-time-limit and court-deadline tracker, hearing record and trial/sentence preparation; compact readiness control.",
+      "realistic_page_range_and_information_density":"12-18 pages; schedules/trackers 10-25 rows/page, statements 250-450 words/page and forms at authentic density.",
+      "required_fields_headings_and_provenance":["item ID/description/source/holder","relevance/inspection/decision/service","defence draft/signed/served/version","offence/alleged date","time-limit legal source pending review","trigger/calculation/last day/filing proof","court deadline/order/compliance","hearing/plea/verdict/sentence state","action/owner/version"],
+      "native_scan_or_media_characteristics":"Born-digital schedules/trackers and signed/scanned defence or court forms where realistic; stable row IDs and no hidden spreadsheet content.",
+      "legitimate_imperfections_and_version_history":"Supplemental item, amended defence statement, corrected calculation and varied direction allowed with audit trail.",
+      "confidentiality_redaction_and_audience_restrictions":"Privileged defence drafts/internal advice restricted; served statement and disclosure follow authorised audiences; personal sentencing data minimised.",
+      "prohibited_filler_duplication_and_padding":"No empty schedule rows, repeated deadline tables, generic disclosure prose, duplicate forms or speculative sentence outcome.",
+      "document_specific_visual_and_content_checks":["item IDs unique","revelation/decision/service distinct","draft/signed/served defence states distinct","deadline inputs/source visible","filing proof linked","time limit not inferred as expired","latest court order governs"]
+    }
+  ]
+}

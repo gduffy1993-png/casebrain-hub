@@ -1,0 +1,104 @@
+{
+  "schema_version":"1.0","matter_id":"R7-BRYN-GLAS","status":"design-only; no generation authority","matching_rule":"Exactly one specification for every planned document ID in source-document-register.json; no extra IDs.",
+  "specifications":[
+    {
+      "document_id":"S01",
+      "expected_professional_structure_and_purpose":"Child-safe professional case summary with restricted cover, child-first terminology, participants, age and proposed-charge states, short allegation summary, sourced chronology, participation/weapon issues, venue/remand/support state table and unresolved decisions. A separate child-facing explanation uses plain language without changing legal state.",
+      "realistic_page_range_and_information_density":"8-12 pages; professional narrative 280-480 words/page, chronology 8-18 sourced rows/page and child-facing pages 120-260 words with functional whitespace.",
+      "required_fields_headings_and_provenance":["matter/version/preparer/reviewer","child pseudonym and age source/state","proposed-charge warning","person/count allocation","source locator per event","venue/remand/application state","reporting restriction","Welsh-language preference where relevant","unknowns and next decisions","supersession record"],
+      "native_scan_or_media_characteristics":"Born-digital accessible PDF planned from controlled source; tagged headings, readable tables, selectable text and a separately marked child-facing section; not a scan.",
+      "legitimate_imperfections_and_version_history":"Short incomplete action fields and a revised chronology are legitimate when dated; child-facing phrasing may differ from professional wording but the underlying state and references remain identical.",
+      "confidentiality_redaction_and_audience_restrictions":"Reporting-restricted child material. Y1 solicitor receives full served summary; Y1 gets age-appropriate own-case content; parent/carer receives authorised context only; court/CPS versions exclude unnecessary school/family detail.",
+      "prohibited_filler_duplication_and_padding":"No duplicated professional and child-facing narratives, repeated welfare boilerplate, generic youth-law extracts, decorative timelines or empty pages added for readability.",
+      "document_specific_visual_and_content_checks":["child-first terminology throughout","age and proposed-charge banners visible","plain-language version preserves state","Y2 conduct never attributed to Y1","source locators resolve","tables fit at readable size","reporting-restricted identifiers absent from inappropriate outputs"]
+    },
+    {
+      "document_id":"S02",
+      "expected_professional_structure_and_purpose":"Age and custody suite: certified/verified age records, custody record, rights and entitlements, appropriate-adult notification/attendance, solicitor contact/advice state, detention reviews, interview audio index/transcript and release/charge record. It proves safeguard timing and the designed no-confession negative control.",
+      "realistic_page_range_and_information_density":"24-32 pages; custody forms preserve authentic whitespace, event logs 10-24 entries/page and interview transcript 35-70 turns/page.",
+      "required_fields_headings_and_provenance":["child/custody/exhibit ID","declared and verified age/source","arrest/arrival/authorisation times","rights/food/rest/health events","AA identity/eligibility/contact/arrival/departure","solicitor request/contact/private-advice state without content","reviewing officer/time","interview start/end/breaks/participants","audio/transcript version","release/charge/court time"],
+      "native_scan_or_media_characteristics":"Mixed scanned custody forms and born-digital logs; native interview audio remains external with a timed transcript; handwritten entries may appear but must be legible or marked unreadable.",
+      "legitimate_imperfections_and_version_history":"Ordinary corrections initialled/dated, delayed AA arrival, transcript inaudibles and one reconciled clock discrepancy are permitted. The source history remains; no invented breach or repaired timestamp.",
+      "confidentiality_redaction_and_audience_restrictions":"Child health, family contacts and legal-advice content restricted. AA identity/contact minimised; privileged consultation excluded; client/court/CPS receive only authorised custody and interview material.",
+      "prohibited_filler_duplication_and_padding":"No repeated rights text per page, invented custody events, duplicate transcript excerpts, blank form repetitions or padded detention logs.",
+      "document_specific_visual_and_content_checks":["all clocks reconcile or conflict is explicit","AA and solicitor presence at interview visible","audio duration matches transcript","denial is not labelled confession","no section 78 application/ruling appears","age source and event-age calculation agree","signatures/initials and page continuations are legible"]
+    },
+    {
+      "document_id":"S03",
+      "expected_professional_structure_and_purpose":"Witness section with statement covers, complainant and independent witness accounts, first-description records, identification-status notes, signature/declaration pages and later clarification history. It records accounts without deciding participation or identity.",
+      "realistic_page_range_and_information_density":"12-18 pages; 250-450 substantive words/page, first-description tables 8-16 entries/page and authentic sparse declaration pages allowed.",
+      "required_fields_headings_and_provenance":["witness pseudonym/role","statement date/time/place/taker","age and appropriate support where relevant","signature/declaration state","first-description exact source/time","person allegedly described and confidence wording as actually recorded","exhibit references","clarification/version/date","availability/restriction state"],
+      "native_scan_or_media_characteristics":"Signed scanned statements with typed or handwritten continuation pages; born-digital first-description comparison table; original document order and page identifiers preserved.",
+      "legitimate_imperfections_and_version_history":"Natural uncertainty, inconsistent detail, spelling correction and a later clarification are preserved as separate versions; handwriting or scan shadow acceptable if content remains reviewable.",
+      "confidentiality_redaction_and_audience_restrictions":"All children reporting-restricted; addresses, school and family details redacted by audience. Cross-child statements served only where lawful/relevant; client output avoids unnecessary complainant personal detail.",
+      "prohibited_filler_duplication_and_padding":"No repeated account summaries, fabricated certainty scales, duplicate declarations, generic witness guidance or empty continuation sheets.",
+      "document_specific_visual_and_content_checks":["first and later descriptions remain distinct","witness words not rewritten as findings","signatures/dates visible or explicitly redacted","child identifiers consistently masked","continuation pages link to maker","no Y2 allegation becomes Y1 admission","scan rotation/cropping/contrast acceptable"]
+    },
+    {
+      "document_id":"S04",
+      "expected_professional_structure_and_purpose":"CCTV evidence section with exhibit and camera register, acquisition/continuity statements, site map, native-file metadata, clip/still index, selected properly captioned stills, timing-offset analysis and quality limitations. It addresses presence and sequence, not intent.",
+      "realistic_page_range_and_information_density":"16-22 pages; camera register 8-18 rows/page, one site map/page and one to four necessary stills/page with readable captions; narrative 250-450 words/page.",
+      "required_fields_headings_and_provenance":["camera/source owner","exhibit/native file ID","acquisition date/person/method","native duration/format/frame rate where known","camera clock and verified offset","clip start/end","still source time/frame","map orientation/scale/source","continuity transfers","quality/occlusion/recognition limitation"],
+      "native_scan_or_media_characteristics":"Native CCTV remains external; born-digital register and map; stills retain aspect ratio and source-time labels. Ordinary compression, low light or occlusion may exist but are not artificially degraded.",
+      "legitimate_imperfections_and_version_history":"Real camera-clock offset, occlusion, variable frame rate and a later corrected map annotation are allowed when documented; master files remain unchanged and derivatives versioned.",
+      "confidentiality_redaction_and_audience_restrictions":"Child and bystander identities restricted; public/client extracts minimise unrelated faces and locations. Full-quality media accessible only to authorised teams/court subject to directions.",
+      "prohibited_filler_duplication_and_padding":"No repeated near-identical stills, decorative maps, stretched images, invented enhancement, one-frame-per-page padding or unsupported facial labels.",
+      "document_specific_visual_and_content_checks":["aspect ratio and resolution preserved","clock offset applied consistently","still labels resolve to native file/time","map and camera directions agree","faces/redactions do not leak through layers","presence not described as participation","clip register totals and continuity reconcile"]
+    },
+    {
+      "document_id":"S05",
+      "expected_professional_structure_and_purpose":"Phone acquisition/extraction report and message schedule with device/account/person distinction, selection scope, chronological conversation tables, attachment references, deleted/missing-event notes and analyst limitations. It tests alleged planning without presuming agreement.",
+      "realistic_page_range_and_information_density":"14-20 pages; methodology 250-450 words/page and 10-24 meaningful message/call rows/page with compact but legible identifiers.",
+      "required_fields_headings_and_provenance":["device/exhibit ID","seizure/acquisition date","operator/tool/version","account/display identity and verification state","conversation/message ID","timestamp/timezone","sender/recipient attribution state","content/attachment locator","deleted/missing/edited state","selection rationale","integrity/hash state","limitations"],
+      "native_scan_or_media_characteristics":"Native extraction external; searchable born-digital schedule; limited screenshots only as linked visual aids with authentic handset cropping/scaling.",
+      "legitimate_imperfections_and_version_history":"Timezone correction, truncated preview, changed display name, missing attachment and later expanded selection allowed when logged and versioned.",
+      "confidentiality_redaction_and_audience_restrictions":"Unrelated school, family and peer chats minimised. Y2/separate-matter content served only where relevant; child-client output uses necessary extracts and plain explanation.",
+      "prohibited_filler_duplication_and_padding":"No repeated screenshot/schedule content, irrelevant chat sequences, one-message-per-page layouts, invented metadata or artificial emoji/image pages.",
+      "document_specific_visual_and_content_checks":["timestamps/timezones verified","long text wraps without clipping","native locator samples resolve","display name not treated as verified author","attachment IDs reconcile","Y1/Y2 content isolated","messages not equated with intent without qualification","no cross-matter data"]
+    },
+    {
+      "document_id":"S06",
+      "expected_professional_structure_and_purpose":"Focused youth-justice material: school/local-authority request and scope, verified age/attendance and support extracts, YJS assessment sections, welfare/remand alternatives, family-context minimisation log and source/version index. It supports child-specific decisions, not offence proof.",
+      "realistic_page_range_and_information_density":"12-18 pages; structured assessments 200-420 words/page, tables 8-18 rows/page and authentic forms retain purposeful whitespace.",
+      "required_fields_headings_and_provenance":["record holder and record ID","child pseudonym","author/role/organisation/date","request scope and lawful purpose","record date range","source of age/need assertion","assessment method/materials","child and parent/carer views distinguished","recommendation and limitations","redaction reason","version/service/audience state"],
+      "native_scan_or_media_characteristics":"Mixed born-digital YJS forms/reports and focused scanned school/local-authority extracts; original institutional layout may vary, with an authoritative source index joining them.",
+      "legitimate_imperfections_and_version_history":"Differing institutional terminology, incomplete attendance period, later corrected age entry and updated recommendation are preserved with author/date; uncertainty is legitimate.",
+      "confidentiality_redaction_and_audience_restrictions":"Highly confidential child/family/education data. Only necessary extracts are included; parent/carer receives appropriate context but not legal-client or unrestricted evidential access; court/CPS/defence versions are purpose-limited.",
+      "prohibited_filler_duplication_and_padding":"No wholesale school file, repeated safeguarding boilerplate, generic developmental text, decorative assessment charts or irrelevant family history.",
+      "document_specific_visual_and_content_checks":["age source hierarchy visible","needs/recommendations not described as culpability","author/role/date on every assessment","child and parent views separated","redactions remove collateral children safely","version changes remain visible","remand alternative is not shown as order","forms are readable without over-scaling"]
+    },
+    {
+      "document_id":"S07",
+      "expected_professional_structure_and_purpose":"Effective-participation suite: referral/need record, specialist/intermediary assessment, materials considered, child communication profile, recommendations, application, responses, ground-rules agenda, court direction and implementation log. Each stage remains distinct.",
+      "realistic_page_range_and_information_density":"8-14 pages; assessment 250-450 words/page, recommendation/action tables 6-15 rows/page and court direction 150-350 words/page.",
+      "required_fields_headings_and_provenance":["assessor identity/discipline/qualification","referrer/date/question","materials/interview dates","needs and functional observations","limitations","recommendations by hearing task","application/filer/service state","response","hearing/judge/date","direction terms","implementation owner/status"],
+      "native_scan_or_media_characteristics":"Born-digital assessment/application/direction planned, with signed scan only if authentic to origin; accessible headings and child-readable implementation sheet.",
+      "legitimate_imperfections_and_version_history":"Provisional recommendation, changed need after reassessment, partial acceptance and a revised ground-rules plan are legitimate when dated; earlier versions retained.",
+      "confidentiality_redaction_and_audience_restrictions":"Health/learning/family detail minimised. Full assessment limited to authorised professionals; child gets understandable participation arrangements; parent receives only authorised support information.",
+      "prohibited_filler_duplication_and_padding":"No generic disability descriptions, repeated recommendations, fabricated test scores, blank application forms or multiple cosmetic versions.",
+      "document_specific_visual_and_content_checks":["need/assessment/recommendation/application/direction visually distinct","qualifications and limitations present","recommendation not presented as order","child-facing plan matches operative direction","confidential content absent from open/client-inappropriate exits","tables and form fields do not clip"]
+    },
+    {
+      "document_id":"S08",
+      "expected_professional_structure_and_purpose":"Court-language and procedural section: controlled Welsh notice, linked controlled English counterpart, issuer/version certificate, language-preference record, venue representations/decision, bail/remand material, reporting-restriction notice/order and service/action history.",
+      "realistic_page_range_and_information_density":"12-18 pages; notices/orders use authentic field density and whitespace, representations 250-450 words/page and procedural chronology 8-18 events/page. Welsh and English counterparts need not have identical pagination.",
+      "required_fields_headings_and_provenance":["issuing court and case ID","Welsh/English document identifiers","language/source status","issuer/authorised translator or Welsh-language reviewer","issue/service date","version and counterpart linkage","hearing date/place","venue representation and decision/reasons","bail/remand proposal/objection/order","reporting restriction basis/terms","supersession status"],
+      "native_scan_or_media_characteristics":"Born-digital controlled bilingual records; official-looking text is prohibited until qualified/HMCTS-style review. Each language remains a separate, accessible file with explicit counterpart relation, not overlaid machine text.",
+      "legitimate_imperfections_and_version_history":"Natural pagination/line-break differences between languages, corrected hearing time and superseded notice are legitimate with issue history. No artificial mistranslation may be seeded.",
+      "confidentiality_redaction_and_audience_restrictions":"Reporting-restricted child case. Notices distributed only to authorised recipients; address/contact and unrelated child data minimised. Welsh source and controlled English counterpart remain available to proper recipients.",
+      "prohibited_filler_duplication_and_padding":"No side-by-side repeated full text solely to add pages, no machine translation represented as official/certified, no duplicate notices without a real version event, no decorative Welsh language content.",
+      "document_specific_visual_and_content_checks":["qualified Welsh-language review field remains blank until genuine review","language and issuer labels prominent","counterpart/version links bidirectional","dates/names/order terms align substantively","Welsh typography/diacritics render correctly","no clipping or fallback glyphs","operative and superseded notices distinct","reporting warning survives every exit"]
+    },
+    {
+      "document_id":"S09",
+      "expected_professional_structure_and_purpose":"Child-specific trial/sentence and disclosure section: disclosure schedules/decisions, defence statement, YJS/pre-sentence materials, victim statement where authorised, sentence options/means/requirements, counsel extracts and hearing/outcome records. It keeps preparation, recommendation and judicial outcome separate.",
+      "realistic_page_range_and_information_density":"12-18 pages; schedules 10-22 rows/page, professional reports/advice 280-500 words/page and authentic sentence forms/orders may be sparse.",
+      "required_fields_headings_and_provenance":["schedule/item/source IDs","sensitivity/disclosure decision/service state","defence statement maker/date/signature/count scope","YJS author/role/date/materials","child circumstances and views","recommendation/requirements/limitations","victim material permission/audience","counsel author/date/version/audience","hearing/judge/order terms/date","appeal/advice state if later relevant"],
+      "native_scan_or_media_characteristics":"Born-digital schedules/reports with signed scanned defence or court documents where appropriate; stable row IDs and accessible headings; no native spreadsheet dependency.",
+      "legitimate_imperfections_and_version_history":"Late disclosure item, amended defence statement, updated YJS recommendation and adjourned sentence are legitimate when versioned. Earlier positions remain auditable.",
+      "confidentiality_redaction_and_audience_restrictions":"Sensitive schedules, child/family data and counsel advice are role-limited; privileged advice has zero CPS/court leakage; child receives comprehensible own-outcome material; parent receives authorised context only.",
+      "prohibited_filler_duplication_and_padding":"No generic sentencing essays, repeated background history, boilerplate schedule items, duplicate report summaries, invented references or blank outcome forms.",
+      "document_specific_visual_and_content_checks":["recommendation not shown as sentence","defence draft/signed/served states clear","disclosure row IDs unique","privilege filters pass all exits","child-facing outcome matches operative order","reporting restrictions persist","versions and hearing chronology reconcile","no dismissed/unapproved charge drives sentence material"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":240,"approved_band":"120-250","rule":"authentic need controls total; may fall below plan; no padding"},
+  "planned_documents":[
+    {"id":"S01","structure":"case summary, proposed charges, collision and procedural chronology","pages":"14-20","purpose":"neutral driving, evidence, causation and issue map"},
+    {"id":"S02","structure":"incident response, witness statements, dashcam/CCTV, photographs and continuity","pages":"28-40","purpose":"event observations and media provenance"},
+    {"id":"S03","structure":"collision scene survey, reconstruction report, calculations, plans and addendum","pages":"35-48","purpose":"speed, movement, visibility, perception-response and braking limits"},
+    {"id":"S04","structure":"vehicle retention, inspection, brake/mechanical tests, EDR/ECU download and reports","pages":"30-42","purpose":"vehicle state, digital records, defect and knowledge evidence"},
+    {"id":"S05","structure":"phone, navigation and telematics native CSV/XLSX, provider statements and schedules","pages":"28-40 rendered equivalent","purpose":"journey/event timing and attribution without driver-use inference"},
+    {"id":"S06","structure":"medical/pathology, emergency treatment, post-mortem and causation limitations","pages":"22-32","purpose":"injury and medical-cause evidence without legal conclusion"},
+    {"id":"S07","structure":"road layout, signal controller logs, lighting/weather, traffic orders and mapping","pages":"20-30","purpose":"authoritative junction and environmental state"},
+    {"id":"S08","structure":"custody/interview, defence statement, admissions and agreed-facts lifecycle","pages":"20-30","purpose":"maker-specific position and binding-state separation"},
+    {"id":"S09","structure":"disclosure, expert directions/joint statement, hearings, bail, plea, sentence and deadlines","pages":"28-40","purpose":"procedural, expert and later-stage provenance"}
+  ]
+}

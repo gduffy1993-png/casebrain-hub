@@ -1,0 +1,38 @@
+{
+  "status": "STOP_FOR_REVIEW",
+  "matterId": "rank2-homicide-harbour-yard",
+  "version": "design-freeze-draft-v0.1",
+  "checkpoint": "rank2_homicide_design_freeze_preparation",
+  "programmePassSupported": false,
+  "charges": {
+    "status": "proposed_non_operative_pending_genuine_qualified_review",
+    "humanDecisionsRecorded": 0,
+    "generationBlocked": true
+  },
+  "sourceDocumentsCreated": false,
+  "pdfsCreated": false,
+  "holdoutsCreated": false,
+  "doNot": [
+    "generate_source_documents",
+    "generate_pdf",
+    "modify_approved_matrix_or_companions",
+    "modify_malik_price_freeze",
+    "modify_live_application",
+    "remediate_code",
+    "create_holdouts",
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "claim_programme_pass"
+  ],
+  "requiredBeforeAnyGeneration": [
+    "independent qualified criminal-law review and exact charge disposition",
+    "specialist pathology/neuropathology review",
+    "specialist toxicology review",
+    "expert/disclosure/procedural review",
+    "design amendments versioned without erasing this draft",
+    "new reviewed design freeze and hash",
+    "separate explicit generation authorisation"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":220,"approved_band":"120-250","rule":"authentic need controls length; no padding to target"},
+  "planned_documents":[
+    {"id":"S01","structure":"case summary, proposed charges, chronology and issues","pages":"12-18","purpose":"neutral orientation with allegation state labels"},
+    {"id":"S02","structure":"first-account statements, 999/BWV media indices and continuity","pages":"18-28","purpose":"source/time/speaker and account evolution"},
+    {"id":"S03","structure":"ABE recording register, transcript, captions, edit schedule and access log","pages":"45-60","purpose":"master/derivative/transcript states and evidence-in-chief preparation"},
+    {"id":"S04","structure":"SARC/medical statements, records extract and expert limitations","pages":"25-38","purpose":"clinical observations without consent/guilt conclusions"},
+    {"id":"S05","structure":"phone extraction and selected communication schedules","pages":"25-35","purpose":"proportionate context and authorship"},
+    {"id":"S06","structure":"third-party request, response, viewing log and disclosure decision","pages":"20-30","purpose":"necessity, proportionality, minimisation and state provenance"},
+    {"id":"S07","structure":"suspect interview and defence statement","pages":"20-28","purpose":"maker-specific defence position"},
+    {"id":"S08","structure":"special-measures, section 41, witness-availability and case-management records","pages":"25-38","purpose":"draft/filed/heard/ruling and permitted-use states"},
+    {"id":"S09","structure":"disclosure schedules, counsel/expert extracts and trial preparation","pages":"20-30","purpose":"unused material, limitations and audience-specific preparation"}
+  ],
+  "format_mix":["born-digital PDF","controlled scanned records","video/audio metadata","timed transcript","accessibility captions","evidence photographs","phone-message schedule","original-language audio plus certified translation"],
+  "not_in_scope":["full interpreter lifecycle","Welsh court material","malicious media","source documents","PDF generation"]
+}

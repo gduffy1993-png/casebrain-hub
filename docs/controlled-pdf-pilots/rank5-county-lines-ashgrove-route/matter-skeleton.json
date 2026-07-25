@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0","matter_id":"R5-ASHGROVE-ROUTE","fiction_notice":"All names, places, devices, drugs, events and identifiers are fictional.","status":"design-only; proposed charges non-operative and pending qualified review","venue":"Adult defendants: Crown Court proposed. Child's charging/venue state deliberately unresolved pending specialist review.",
+  "scenario":"Two adults are alleged to direct a fictional drug-supply line between two towns. A 16-year-old is stopped with packages and a handset after missing episodes and alleged debt threats. Attribution, substance/quantity, agreement, roles, compulsion, safeguarding and legal consequences are disputed.",
+  "persons":[
+    {"id":"D1","name":"Ivo Penn","age_state":"adult","role_alleged":"line controller","position":"denies handset attribution and agreement"},
+    {"id":"D2","name":"Rhea Moss","age_state":"adult","role_alleged":"local coordinator","position":"accepts contact with child but disputes drugs purpose and coercion"},
+    {"id":"Y1","name":"Cal Rowan","age_state":"16 throughout designed events","role_state":"initial suspect and possible exploited child; neither guilt nor victim status established","position":"account changes across safeguard states; reliability and circumstances require review"}
+  ],
+  "proposed_charges":[
+    {"id":"PC1","label":"conspiracy to supply a controlled Class A drug","persons":["D1","D2"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","review_needed":"drug, date/place span, agreement, intent, roles, particulars, joinder and evidence sufficiency"},
+    {"id":"PC2","label":"possession with intent to supply controlled drugs","persons":["D2"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","review_needed":"possession, substance/classification, intent, duplication and particulars"},
+    {"id":"PC-Y1","label":"no operative proposal: child's charging decision reserved","persons":["Y1"],"status":"WITHHELD/PENDING CHILD-SPECIFIC CHARGING, SAFEGUARDING, NRM AND SECTION 45 REVIEW","review_needed":"evidence, public interest, age/venue, exploitation, statutory defence, consent and specialist procedure"}
+  ],
+  "procedure":["multi-force disclosure and cross-matter isolation","child custody/voluntary-attendance chronology","appropriate-adult and legal-advice states","interview admissibility challenge state","bail/remand and safeguarding placement kept distinct","NRM lifecycle","section 45 legal issue","special measures/intermediary consideration","conspiracy particulars","late telecom disclosure"],
+  "unique_challenges":["fictional encrypted-message export","device/subscriber/user attribution","cell-site limits","surveillance recognition","drug laboratory sampling","cash and deal-line schedules","missing-person and social-care records","child account changes before/after safeguards","cuckooed-address privacy"]
+}

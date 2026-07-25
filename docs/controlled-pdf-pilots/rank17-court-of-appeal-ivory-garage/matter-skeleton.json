@@ -1,0 +1,24 @@
+{
+  "schema_version":"1.0","matter_id":"R17-IVORY-GARAGE","fiction_notice":"Entirely fictional appeal and trial record; no real-case facts.","status":"design-only","venue":"fictional Crown Court trial and Court of Appeal Criminal Division",
+  "scenario":"Amina Vale was designed as convicted after trial of moving a hatchback and deleting messages after another person's serious offence. The prosecution case relied on garage CCTV, a mechanic's account and a phone extraction. The defence said the vehicle movement was routine and deletion predated knowledge of any investigation. After trial, W2 provides a new workshop account and an independent vehicle-data expert identifies a clock/configuration limitation not addressed at trial. Whether either item is fresh, admissible, credible or material—and whether any conviction is unsafe—remains blank.",
+  "persons":[
+    {"id":"A1","name":"Amina Vale","role":"appellant/fictional trial defendant","position":"maintains appeal grounds through counsel; no design conclusion on guilt or safety"},
+    {"id":"W1","name":"Colin Rusk","role":"trial mechanic witness","position":"trial account retained exactly with credibility not re-decided by AI"},
+    {"id":"W2","name":"Soraya Kent","role":"proposed fresh witness","position":"late workshop account; availability, explanation, credibility and materiality unruled"},
+    {"id":"X1","name":"Dr Tobias Ren","role":"proposed vehicle-data expert","position":"clock/configuration opinion within technical limits; no opinion on guilt or conviction safety"}
+  ],
+  "proposed_charges":[
+    {"id":"PC1","label":"perverting the course of public justice allegation","against":["A1"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","trial_outcome_state":"designed conviction record only"},
+    {"id":"PC2","label":"assisting an offender allegation in the alternative","against":["A1"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","trial_outcome_state":"designed verdict/count route requires review"}
+  ],
+  "procedure_hearings_deadlines":[
+    {"event":"trial record assembly","state":"indictment, rulings, evidence, summing-up, verdict and sentence retain source order and version"},
+    {"event":"advice and grounds","state":"privileged advice, signed grounds and filed notice separately controlled"},
+    {"event":"appeal deadline/extension","state":"trigger, calculation, delay explanation, application and decision blank pending review"},
+    {"event":"permission","state":"trial-judge certificate if any, single-judge decision and renewal state distinct"},
+    {"event":"fresh evidence","state":"statement/report, due-diligence explanation, application, response, admissibility ruling and permitted use distinct"},
+    {"event":"substantive appeal","state":"argument, judgment, conviction-safety conclusion and consequential order blank"},
+    {"event":"post-judgment","state":"quash/substitute/retrial/acquit/dismiss/order/service and any further route separately recorded"}
+  ],
+  "unique_challenges":["first direct conviction-appeal blueprint","historical trial-record fidelity and transcript gaps","privileged counsel advice versus filed grounds","late notice/extension and permission/renewal lifecycle","fresh witness and expert evidence with due-diligence/materiality states","digital signature status on appeal documents","count-level quashing, substitution, acquittal or retrial outcomes"]
+}

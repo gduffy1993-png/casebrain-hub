@@ -1,0 +1,104 @@
+{
+  "schema_version":"1.0","matter_id":"R16-HAWTHORN-HOUSE","status":"design-only","matching_rule":"Exactly one specification per planned document ID; no extras.",
+  "specifications":[
+    {
+      "document_id":"S01",
+      "expected_professional_structure_and_purpose":"Controlled cover, people/non-operative counts, plea and basis state, disputed-fact list, Newton/sentence chronology, source and order map.",
+      "realistic_page_range_and_information_density":"10-14 pages; 300-500 words per narrative page or 10-22 sourced rows/events per table page.",
+      "required_fields_headings_and_provenance":["matter/version/preparer/reviewer","person/count/status","plea/basis state","issue/source/party","hearing/ruling/order","expert/PSR state","deadline/action/unknown"],
+      "native_scan_or_media_characteristics":"Born-digital accessible PDF with searchable text, stable source links and controlled repeated headers.",
+      "legitimate_imperfections_and_version_history":"Unresolved Newton issue, late report and draft-order conflict retained in dated versions.",
+      "confidentiality_redaction_and_audience_restrictions":"Child identity, health, PSR and privileged strategy restricted; audience variants receive minimum authorised detail.",
+      "prohibited_filler_duplication_and_padding":"No copied evidence, generic sentencing law, repeated chronology or blank padding.",
+      "document_specific_visual_and_content_checks":["charges/workflow plea non-operative","each disputed proposition attributed","hearing/finding/order states distinct","child identifiers controlled","source links work","unknown decisions remain blank"]
+    },
+    {
+      "document_id":"S02",
+      "expected_professional_structure_and_purpose":"Count/indictment record, plea hearing, defence written basis, prosecution response and proposition-by-proposition agreed/disputed schedule.",
+      "realistic_page_range_and_information_density":"15-22 pages; forms at authentic density, bases/responses 300-500 words/page and issue tables 6-16 propositions/page.",
+      "required_fields_headings_and_provenance":["court/count/version","plea tender/date/maker","acceptance/conviction record state","basis maker/signature/date","proposition/count/source","prosecution accepted/rejected/qualified","court acceptance/Newton state","file/service/supersession"],
+      "native_scan_or_media_characteristics":"Born-digital filed documents and signed/scanned basis where realistic; hearing record source-linked.",
+      "legitimate_imperfections_and_version_history":"Amended basis, qualified prosecution response and corrected count reference retained with history.",
+      "confidentiality_redaction_and_audience_restrictions":"Privileged drafts/advice excluded from CPS/court; served basis controlled for child identity.",
+      "prohibited_filler_duplication_and_padding":"No repeated charge text, generic plea guidance, unsigned basis shown as agreed or artificial issue rows.",
+      "document_specific_visual_and_content_checks":["proposition scope/maker preserved","draft/signed/served distinct","rejection not factual finding","count links accurate","signatures/dates legible","superseded basis marked"]
+    },
+    {
+      "document_id":"S03",
+      "expected_professional_structure_and_purpose":"Protected prosecution Newton evidence: Y1 account register/extracts, W1 signed statement, contextual records/exhibits and disputed chronology.",
+      "realistic_page_range_and_information_density":"18-28 pages; statements/transcripts 300-550 words/page, chronology 10-22 events/page and few necessary exhibits.",
+      "required_fields_headings_and_provenance":["maker/role/date/signature","recording/file/hash/segment","event/date certainty/source","exhibit/holder/continuity","proposition/count/issue","service/redaction","availability/special measure state","version"],
+      "native_scan_or_media_characteristics":"Mixed signed scans, protected native recording referenced by hash, searchable extracts and born-digital chronology.",
+      "legitimate_imperfections_and_version_history":"Child language, uncertain dates, inaudible passage and W1 frequency uncertainty retained without smoothing.",
+      "confidentiality_redaction_and_audience_restrictions":"Strict child identity/content and witness-contact controls; client receives only authorised preparation material.",
+      "prohibited_filler_duplication_and_padding":"No full repeated interview, decorative stills, reconstructed words, duplicated chronology or advocacy inserted into evidence.",
+      "document_specific_visual_and_content_checks":["accounts remain maker-specific","date uncertainty visible","media/extract links resolve","child redactions safe","service/use state shown","no factual finding labels"]
+    },
+    {
+      "document_id":"S04",
+      "expected_professional_structure_and_purpose":"Defence Newton evidence: D1 statement, contextual records and signed witnesses with a challenged chronology and source schedule.",
+      "realistic_page_range_and_information_density":"16-24 pages; statements 250-450 words/page, records at authentic density and chronologies 10-22 events/page.",
+      "required_fields_headings_and_provenance":["maker/role/date/signature","D1 proposition/qualification","record issuer/date/reference","witness source/relationship","event/time/source","issue/count relevance","file/service","privilege/redaction/version"],
+      "native_scan_or_media_characteristics":"Mixed signed statements and authentic record extracts; born-digital schedule links originals without reproduction.",
+      "legitimate_imperfections_and_version_history":"Changing recollection, incomplete record period and corrected event date allowed with explicit history.",
+      "confidentiality_redaction_and_audience_restrictions":"Defence drafts/advice privileged; only authorised served evidence reaches prosecution/court; third-party data minimised.",
+      "prohibited_filler_duplication_and_padding":"No character-reference bulk, repeated D1 account, invented corroboration, duplicate records or unsigned material presented as served.",
+      "document_specific_visual_and_content_checks":["D1 admissions narrowly scoped","defence claim not fact","record gaps visible","signatures/service clear","chronology conflicts preserved","privilege boundaries intact"]
+    },
+    {
+      "document_id":"S05",
+      "expected_professional_structure_and_purpose":"Newton issue/directions order, hearing transcript or proportionate extracts, exhibit list, party submissions, issue-specific factual ruling and reasons.",
+      "realistic_page_range_and_information_density":"22-34 pages; transcript 350-600 words/page, submissions/ruling 250-500 words/page and issue tables 5-14 rows/page.",
+      "required_fields_headings_and_provenance":["court/judge/date","issue/direction/burden/standard pending review","witness/evidence/exhibit","transcript speaker/page/time","submission party/proposition","ruling/finding/reason/issue scope","adjournment/order","signature/seal/version"],
+      "native_scan_or_media_characteristics":"Born-digital transcript/submissions and signed/sealed directions/ruling; audio source referenced if any.",
+      "legitimate_imperfections_and_version_history":"Reserved decision, corrected transcript and perfected ruling after oral reasons retained without silent replacement.",
+      "confidentiality_redaction_and_audience_restrictions":"Child reporting/privacy restrictions persist; privileged preparation excluded; public and controlled versions separated.",
+      "prohibited_filler_duplication_and_padding":"No fabricated testimony/reasons, duplicated transcript, copied legal tests or unresolved issue shown as found.",
+      "document_specific_visual_and_content_checks":["directions/submission/finding distinct","finding is issue-specific","transcript locators resolve","oral/perfected reasons reconciled","child restrictions visible","operative ruling obvious"]
+    },
+    {
+      "document_id":"S06",
+      "expected_professional_structure_and_purpose":"Pre-sentence report, source and verification schedule, risk/needs assessment, recommendation, addendum and party dangerousness submissions.",
+      "realistic_page_range_and_information_density":"18-26 pages; PSR 300-500 words/page, assessment tables 6-16 domains/page and concise sourced addendum.",
+      "required_fields_headings_and_provenance":["author/role/qualification/date","interview/source list","fact/self-report/verification state","risk tool/version/input","needs/protective factors","assessment/limitation","recommendation","dangerousness submission party","service/addendum/version"],
+      "native_scan_or_media_characteristics":"Born-digital controlled report with signed declaration and structured tables; source records referenced, not embedded wholesale.",
+      "legitimate_imperfections_and_version_history":"Unverified self-report, unavailable collateral source and later addendum allowed with transparent status.",
+      "confidentiality_redaction_and_audience_restrictions":"PSR and safeguarding content restricted to proper recipients; client copy removes third-party contact detail, not material conclusions.",
+      "prohibited_filler_duplication_and_padding":"No repeated offence narrative, unsupported actuarial score, generic recommendations, bulk source records or statutory finding language.",
+      "document_specific_visual_and_content_checks":["source/self-report/assessment distinct","tool/version and limits visible","recommendation not sentence","dangerousness remains submission/finding blank","addendum changes clear","restricted markings present"]
+    },
+    {
+      "document_id":"S07",
+      "expected_professional_structure_and_purpose":"Victim personal statement, focused child clinical extracts, paediatric report/addendum and source/limitations schedule; separates impact, observation and opinion.",
+      "realistic_page_range_and_information_density":"14-20 pages; VPS/clinical/report pages at authentic density, tabular clinical chronology 8-18 events/page and images only if essential.",
+      "required_fields_headings_and_provenance":["Y1 protected ID","VPS maker/date/support","impact period/source","clinical author/role/time/entry","specimen/image/continuity if used","expert qualifications/duty/instructions","finding/opinion/alternative/limitation","report/addendum/service/ruling"],
+      "native_scan_or_media_characteristics":"Signed/scanned VPS and certified clinical extracts; born-digital expert report; any medical image separately restricted and hashed.",
+      "legitimate_imperfections_and_version_history":"Clinical abbreviation, amended entry and narrowed expert opinion retained with audit trail.",
+      "confidentiality_redaction_and_audience_restrictions":"Maximum child-health and image controls; unnecessary diagnoses/contact detail excluded; use follows ruling.",
+      "prohibited_filler_duplication_and_padding":"No unrelated medical history, repeated observations, decorative images, generic paediatrics or impact treated as conduct proof.",
+      "document_specific_visual_and_content_checks":["VPS impact not merits finding","clinical facts source-linked","expert alternatives/limits prominent","addendum change traced","images controlled","identifiers consistent"]
+    },
+    {
+      "document_id":"S08",
+      "expected_professional_structure_and_purpose":"Certified antecedents, identity reconciliation, references, employment/caring records and current financial-means evidence.",
+      "realistic_page_range_and_information_density":"16-24 pages; official records/forms at authentic density, references 250-400 words/page and financial tables 8-20 entries/page.",
+      "required_fields_headings_and_provenance":["record custodian/reference/date","identity match","conviction/disposal/date","reference maker/relationship/date","employment/care source/period","means form/date/signature","income/asset/liability/source","verification/staleness","redaction/version"],
+      "native_scan_or_media_characteristics":"Mixed certified records, signed letters and native/born-digital means schedule with narrowly selected supporting scans.",
+      "legitimate_imperfections_and_version_history":"Same-name mismatch, dated reference, changed employment and stale means entry allowed when flagged.",
+      "confidentiality_redaction_and_audience_restrictions":"Financial identifiers and third-party details minimised; references and records distributed only for sentence.",
+      "prohibited_filler_duplication_and_padding":"No duplicated antecedents, mass references, full bank statements, unverified praise or stale figure silently treated as current.",
+      "document_specific_visual_and_content_checks":["identity matching shown","conviction/disposal distinct","reference opinion attributed","means date prominent","totals/source reconcile","redactions safe"]
+    },
+    {
+      "document_id":"S09",
+      "expected_professional_structure_and_purpose":"Current guideline/source index, prosecution and defence sentencing submissions, hearing record, remarks, ancillary-order applications/decisions, perfected order and appeal/deadline record.",
+      "realistic_page_range_and_information_density":"18-27 pages; submissions/remarks 300-500 words/page, orders/forms authentic and source/index tables 8-18 entries/page.",
+      "required_fields_headings_and_provenance":["guideline title/version/effective date/link","fact/category source","submission party/date","credit/totality proposition","dangerousness position/finding","ancillary application/response/ruling","sentence remarks/date","perfected order/service","advice/appeal decision/notice/deadline"],
+      "native_scan_or_media_characteristics":"Born-digital submissions/index and signed/sealed court records; public links preserved; drafts visibly non-operative.",
+      "legitimate_imperfections_and_version_history":"Updated guideline check, oral clarification and perfected-order correction retained with history.",
+      "confidentiality_redaction_and_audience_restrictions":"Privileged advice restricted; child identifiers controlled in open remarks/order; filed materials role-available.",
+      "prohibited_filler_duplication_and_padding":"No copied guideline text, invented judicial remarks, duplicate orders, speculative appeal advice or artificial factors.",
+      "document_specific_visual_and_content_checks":["guideline edition/date visible","party category positions not finding","remarks/order reconcile or conflict shown","ancillary scope exact","appeal fields blank unless sourced","operative order obvious"]
+    }
+  ]
+}

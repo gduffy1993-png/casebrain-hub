@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":230,"approved_band":"120-300","rule":"Authentic appellate record and necessary extracts govern; no duplicated trial bundle or artificial transcript padding."},
+  "planned_documents":[
+    {"id":"S01","structure":"controlled appeal overview, non-operative counts, trial/appeal chronology, grounds, fresh evidence and order map","pages":"10-14","purpose":"neutral record and live-state orientation"},
+    {"id":"S02","structure":"indictment/count history, trial case-management record, admissions, exhibit and witness index","pages":"16-22","purpose":"historical trial framework and count provenance"},
+    {"id":"S03","structure":"certified trial transcript extracts and missing/requested-transcript register","pages":"35-50","purpose":"source-faithful evidence and submission record without reconstruction"},
+    {"id":"S04","structure":"trial rulings, summing-up, jury questions, verdicts, sentence remarks and perfected orders","pages":"22-30","purpose":"authoritative trial directions, outcomes and count states"},
+    {"id":"S05","structure":"privileged advice register, signed grounds, appeal notice, extension explanation/application and filing proof","pages":"18-25","purpose":"advice/ground/notice/deadline state separation"},
+    {"id":"S06","structure":"fresh-witness statement, provenance, availability and due-diligence chronology","pages":"12-18","purpose":"late witness source and explanation without credibility finding"},
+    {"id":"S07","structure":"vehicle-data materials, expert instructions, report/addendum, native-data register and limitations","pages":"22-30","purpose":"fresh technical opinion and source integrity"},
+    {"id":"S08","structure":"prosecution respondent notice/skeleton, record-completeness responses, disclosure and agreed chronology","pages":"15-22","purpose":"respondent position and appellate record management"},
+    {"id":"S09","structure":"permission/single-judge/renewal records, fresh-evidence application/ruling, appeal hearing, judgment and consequential orders","pages":"22-30","purpose":"appellate decision and count-level outcome lifecycle"}
+  ]
+}

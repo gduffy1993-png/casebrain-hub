@@ -1,0 +1,63 @@
+{
+  "status": "STOP_FOR_REVIEW",
+  "pilotId": "malik-price-150-page",
+  "version": "design-freeze-v1.1",
+  "freezeHashSha256": "75b4df080358baa20bd44a80344dff181e6cb623981bed69f192d133e992773e",
+  "freezeHashInputs": [
+    "matter-skeleton.json",
+    "page-register.json",
+    "truth-key.json",
+    "conflict-table.json",
+    "acceptance-matrix.json"
+  ],
+  "programmePassSupported": false,
+  "generatedAt": "2026-07-22",
+  "doNot": [
+    "generate_pdf",
+    "modify_live_application",
+    "commit",
+    "push",
+    "merge",
+    "deploy"
+  ],
+  "count3Correction": {
+    "specimenStatementOfOffence": "Having an article with a blade or point in a public place, contrary to section 139(1) of the Criminal Justice Act 1988.",
+    "specimenParticulars": "Jordan Price, on 3 June 2026, at Merton Parade, Northgate, had with him in a public place a locking knife, being an article which had a blade or was sharply pointed.",
+    "changesFromV1": [
+      "folding knife → locking knife",
+      "removed without good reason or lawful authority from particulars (statutory defence)"
+    ]
+  },
+  "artefactsFrozen": [
+    "README.md",
+    "matter-skeleton.json",
+    "page-register.json",
+    "truth-key.json",
+    "conflict-table.json",
+    "acceptance-matrix.json",
+    "STOP-FOR-REVIEW.json"
+  ],
+  "blockingBeforeGeneration": [
+    "Independent legal check of specimen charge wording (Robbery s.8(1); OAPA s.18; CJA 1988 s.139(1) as corrected)"
+  ],
+  "relatedCorpusInventory": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/",
+  "lockedDecisionsSummary": {
+    "bundle": "separate source docs + compiled 150-page PDF; compiled pages authoritative",
+    "counts": "robbery both; s18 Malik only; bladed article Price only (locking knife particulars)",
+    "knife": "separate possession; no wound/use/knowledge inferences",
+    "interviews": "PACE both; Malik recording served / transcript incomplete; no ABE defendants",
+    "hearing": "latest court notice operative PTPH; MG5 conflict preserved",
+    "extraTraps": [
+      "co-defendant bleed",
+      "exhibit-label collision",
+      "custody/interview clock conflict",
+      "alias already-served chase"
+    ],
+    "deferred": [
+      "youth",
+      "ABE",
+      "remaining optional traps"
+    ],
+    "hardPass": "as acceptance-matrix.json"
+  }
+}

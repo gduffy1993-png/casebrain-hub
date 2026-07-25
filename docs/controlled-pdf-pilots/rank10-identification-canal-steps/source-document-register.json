@@ -1,0 +1,13 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":180,"approved_band":"120-250","rule":"authentic need controls total; no padding"},
+  "planned_documents":[
+    {"id":"S01","structure":"case summary, proposed charges, identification and procedural chronology","pages":"12-18","purpose":"neutral issue map and identity-source separation"},
+    {"id":"S02","structure":"incident, first descriptions and witness statements/clarifications","pages":"25-35","purpose":"observation, description, delay and contamination history"},
+    {"id":"S03","structure":"PACE Code D/video-identification procedure records and image set register","pages":"28-40","purpose":"administrator, foils, instructions, response and audit trail"},
+    {"id":"S04","structure":"CCTV masters/clips/stills, metadata, continuity and image-quality report","pages":"30-42","purpose":"native/derivative quality and recognition limits"},
+    {"id":"S05","structure":"scene, lighting, visibility, distance, duration and mapping records","pages":"15-24","purpose":"observation-condition reconstruction without identity conclusion"},
+    {"id":"S06","structure":"custody/interview, defence statement, alibi and transport records","pages":"20-30","purpose":"defence position and independent timing evidence"},
+    {"id":"S07","structure":"identification/image expert reports, addenda and joint issues extract","pages":"18-28","purpose":"method, image limits, agreements and disagreements"},
+    {"id":"S08","structure":"disclosure, exclusion/no-case applications, rulings, trial directions, hearings and deadlines","pages":"28-40","purpose":"application/outcome/count and procedural provenance"}
+  ]
+}

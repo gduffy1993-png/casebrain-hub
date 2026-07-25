@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "R3-RIVERSIDE-LOCKUP",
+  "fiction_notice": "All names, places, identifiers and facts are fictional.",
+  "status": "design-only; proposed charges non-operative and pending qualified review",
+  "venue": "Crown Court (proposed; allocation and joinder require review)",
+  "scenario": "Police recover a disputed weapon and cartridges from a commercial storage unit after an unrelated alarm. Three adults have different alleged links to the unit, vehicle movements and messages. Classification, access, knowledge, possession/control and any agreement remain contested.",
+  "defendants": [
+    {"id":"D1","name":"Mara Venn","role_alleged":"unit account holder","position":"denies knowing the recovered items were present"},
+    {"id":"D2","name":"Joel Armit","role_alleged":"alleged transporter","position":"accepts one visit but disputes purpose and contents"},
+    {"id":"D3","name":"Sorin Vale","role_alleged":"alleged communications participant","position":"disputes attribution and agreement"}
+  ],
+  "proposed_charges": [
+    {"id":"PC1","label":"conspiracy concerning possession of a prohibited firearm","defendants":["D1","D2","D3"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","review_needed":"exact offence, intent, particulars, date span, firearm classification, evidential sufficiency and joinder"},
+    {"id":"PC2","label":"possession/control firearm count","defendants":["D1"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","review_needed":"classification, possession/control, knowledge, alternative/duplicative count analysis"},
+    {"id":"PC3","label":"ammunition possession/control count","defendants":["D1"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","review_needed":"classification, compatibility, possession/control and drafting"}
+  ],
+  "procedural_challenges": ["conspiracy particulars","joinder/severance","bad-character and hearsay application states","expert admissibility and limitations","continuity challenge","bail/remand risk evidence","late forensic addendum","agreed facts and admissions kept distinct"],
+  "unique_challenges": ["weapon classification","operability and conversion history","GSR transfer/persistence limitations","touch-DNA mixture","locker access logs versus physical key evidence","message authorship","CCTV/ANPR timeline reconciliation"]
+}

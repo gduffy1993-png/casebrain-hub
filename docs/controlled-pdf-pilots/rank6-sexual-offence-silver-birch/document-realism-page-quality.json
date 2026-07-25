@@ -1,0 +1,5 @@
+{
+  "schema_version":"1.0","principles":["current public professional structures","fictional content only","trauma-informed neutral language","no copied real-case facts","no filler/repeated boilerplate/artificial inflation","counsel and expert extracts mandatory where relevant"],
+  "density_profiles":{"narrative":"280-500 substantive words/page","ABE_transcript":"timed speaker turns with pauses/inaudible markers and natural density","forms":"authentic field density and legitimate whitespace","medical":"focused extract with provenance; no decorative clinical detail","media_register":"8-20 meaningful items/page","appendices":"only necessary edit, continuity, disclosure or methodology schedules"},
+  "future_QA_required":["duplicate/near-duplicate and filler scan","full-page visual QA","transcript/audio duration sampling","caption/transcript/translation differentiation","redaction/anonymity inspection","medical/counselling minimisation review","index/pagination/exhibit links","restricted-media access-path test"],"generation_authorised":false
+}

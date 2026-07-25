@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":130,"approved_band":"80-150","rule":"authentic need controls total; no padding"},
+  "planned_documents":[
+    {"id":"S01","structure":"summary case outline, proposed charges, count/disposal and deadline chronology","pages":"8-12","purpose":"neutral compact orientation and live-count/time-limit map"},
+    {"id":"S02","structure":"complainant/witness/officer statements, 999/BWV registers and transcripts","pages":"18-26","purpose":"incident accounts, availability and media provenance"},
+    {"id":"S03","structure":"damage exhibits, repair/value evidence, photographs, CCTV and continuity","pages":"12-18","purpose":"property/damage and independent event evidence"},
+    {"id":"S04","structure":"custody, rights/legal-advice/rest/health records, interview audio/transcript and gap log","pages":"20-28","purpose":"whole-interview confession and safeguard source"},
+    {"id":"S05","structure":"section 76/78 application, admissibility evidence, hearing record, ruling and permitted-use map","pages":"14-22","purpose":"primary confession/exclusion state lifecycle"},
+    {"id":"S06","structure":"witness availability, contact, summons application/order/service/compliance records","pages":"8-14","purpose":"attendance concern through outcome states"},
+    {"id":"S07","structure":"case management, hearsay/bad-character applications, legal authorities index and orders","pages":"12-18","purpose":"summary-trial application and order provenance"},
+    {"id":"S08","structure":"PC3 discontinuance, no-case submission, verdict reasons, dismissal/acquittal and final count orders","pages":"12-18","purpose":"distinct disposal and live-count transitions"},
+    {"id":"S09","structure":"disclosure, defence statement, hearing/deadline tracker and trial/sentence preparation","pages":"12-18","purpose":"service, statutory timing and compact trial readiness"}
+  ]
+}

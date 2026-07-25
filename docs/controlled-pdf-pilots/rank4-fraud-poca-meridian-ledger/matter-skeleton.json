@@ -1,0 +1,13 @@
+{
+  "schema_version":"1.0","matter_id":"R4-MERIDIAN-LEDGER","fiction_notice":"All entities, people, transactions and identifiers are fictional.","status":"design-only; proposed charges non-operative and pending qualified review","venue":"Crown Court (proposed)",
+  "scenario":"A regional facilities company alleges that supplier records and approval workflows were manipulated over eighteen months. Payments passed through two fictional businesses. The alleged representation, authority, dishonesty, attribution, loss, benefit, asset ownership and proceeds states remain contested.",
+  "defendants":[{"id":"D1","name":"Elian Frost","role_alleged":"procurement manager","position":"accepts approvals but disputes falsity, dishonesty and collusion"},{"id":"D2","name":"Nadia Quill","role_alleged":"supplier-company controller","position":"disputes invoice authorship, knowledge and common plan"}],
+  "third_parties":[{"id":"T1","name":"Lumen Reach Ltd","interest":"company account and equipment; ownership/control disputed"},{"id":"T2","name":"Perrin Quill","interest":"claimed beneficial interest in residence; not a defendant"}],
+  "proposed_charges":[
+    {"id":"PC1","label":"fraud by false representation","defendants":["D1","D2"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","review_needed":"each representation, maker, date, falsity/knowledge, dishonesty, intent, participation and specimen/rolled-up drafting"},
+    {"id":"PC2","label":"fraud by abuse of position","defendants":["D1"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","review_needed":"position, expected safeguarding conduct, abuse, dishonesty, intent and overlap"},
+    {"id":"PC3","label":"money-laundering offence concerning identified transfers","defendants":["D2"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","review_needed":"precise statutory route, criminal property, knowledge/suspicion, transaction particulars and duplication"}
+  ],
+  "procedure":["digital disclosure and native-format inspection","restraint chronology and variation","legal-professional-privilege review","third-party ownership representations","plea basis","Newton-hearing contingency","confiscation timetable and section-specific human review","appeal-deadline recording"],
+  "unique_challenges":["XLSX formula versus cached display","hidden rows/sheets and workbook metadata","CSV locale/date/rounding","ZIP manifest and hashes","EML/MSG threading and attachments","bank transaction reconciliation","company-control versus asset ownership","loss/benefit/available amount separation"]
+}

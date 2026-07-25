@@ -1,0 +1,23 @@
+{
+  "schema_version":"1.0","matter_id":"R18-LARKFIELD-APPEAL","fiction_notice":"Entirely fictional Magistrates' and Crown Court appeal record.","status":"design-only","venue":"fictional Magistrates' Court and Crown Court appellate jurisdiction",
+  "scenario":"Omar Diriye is designed as having been stopped after a minor parking-area collision. At custody he attempted breath samples. Operator entries, device printouts and audio differ on the number and timing of attempts. D1 reported respiratory symptoms; a custody assessment is brief. The Magistrates' Court design records conviction and disqualification. A notice of appeal is filed after an address/service problem, with an extension explanation. A respiratory expert is later instructed for a Crown Court rehearing. No charge, excuse, appeal or outcome is decided.",
+  "persons":[
+    {"id":"A1","name":"Omar Diriye","role":"appellant/fictional Magistrates' defendant","position":"accepts attempts occurred; disputes wilful failure and relies on a medically bounded explanation"},
+    {"id":"O1","name":"PC Harriet Lowe","role":"breath-test operator/prosecution witness","position":"records instructions and attempts; timing conflicts with device/audio source"},
+    {"id":"H1","name":"Nurse Imani Shore","role":"custody healthcare practitioner","position":"contemporaneous limited observations; no retrospective legal conclusion"},
+    {"id":"X1","name":"Dr Celia Wynn","role":"respiratory expert","position":"proposed opinion on condition and capacity limits; no reasonable-excuse or appeal-outcome conclusion"}
+  ],
+  "proposed_charges":[
+    {"id":"PC1","label":"failure without reasonable excuse to provide a specimen of breath for analysis allegation","against":["A1"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","magistrates_outcome_state":"designed conviction only; exact offence/particulars review blank"}
+  ],
+  "procedure_hearings_deadlines":[
+    {"event":"Magistrates' proceedings","state":"charge, plea, evidence, submissions, reasons, conviction, sentence and order separately modelled"},
+    {"event":"notice of appeal","state":"conviction/sentence scope, trigger, deadline, service, filing and receipt separate"},
+    {"event":"late notice/extension","state":"reason/evidence/application/response/decision blank pending review"},
+    {"event":"suspension/stay/bail","state":"request, jurisdiction, interim effect and order separately recorded; no automatic stay inferred"},
+    {"event":"record transfer/directions","state":"Magistrates' materials, respondent pack, expert directions and witness attendance versioned"},
+    {"event":"Crown Court rehearing","state":"evidence/submissions, reasonable-excuse finding, appeal result and reasons blank"},
+    {"event":"consequential order","state":"conviction/sentence/disqualification/costs and service consequences count/order-specific"}
+  ],
+  "unique_challenges":["Magistrates-to-Crown rehearing route distinct from rank 17","breath-device native printout/operator/audio reconciliation","medical inability versus reasonable-excuse legal finding","15-working-day-style public guidance treated only as review input, not hard-coded truth","late notice/extension and no-automatic-stay control","original and appellate orders coexisting until authoritative outcome","mandatory respiratory-expert and counsel extracts"]
+}

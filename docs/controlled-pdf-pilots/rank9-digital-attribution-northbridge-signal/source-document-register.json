@@ -1,0 +1,15 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":300,"approved_band":"250-500","rule":"authentic need controls total; no padding"},
+  "planned_documents":[
+    {"id":"S01","structure":"case summary, proposed charges, communication and access chronology","pages":"18-26","purpose":"neutral allegation, statutory-version and attribution map"},
+    {"id":"S02","structure":"complainant/household/provider statements and original-message exhibit register","pages":"25-38","purpose":"receipt, impact, device access and source context"},
+    {"id":"S03","structure":"device seizure, forensic image/acquisition, hash manifest and examination report","pages":"45-65","purpose":"native continuity, scope, recovered/deleted artefacts and limits"},
+    {"id":"S04","structure":"native-like platform JSON, schema/data dictionary and human-readable render","pages":"45-70 rendered equivalent","purpose":"schema, event, message and account provenance"},
+    {"id":"S05","structure":"EML/MSG messages, header/attachment/forward-chain register and render","pages":"30-45 rendered equivalent","purpose":"email source, transport and content attribution"},
+    {"id":"S06","structure":"CSV login/session/IP/subscriber schedules and platform returns","pages":"35-50 rendered equivalent","purpose":"time, network, account and device correlation without author inference"},
+    {"id":"S07","structure":"audio/video masters, clips, transcript and metadata register","pages":"20-32","purpose":"media lineage, speaker and event-attribution limits"},
+    {"id":"S08","structure":"interview, defence statement and competing digital-expert reports/addenda","pages":"35-50","purpose":"party positions, methods, limitations and opinion changes"},
+    {"id":"S09","structure":"disclosure schedules, applications/rulings, hearing/deadline and trial-preparation records","pages":"35-50","purpose":"service, admissibility, late return and procedural provenance"}
+  ],
+  "boundary":"Valid evidential files only. Malicious uploads, corrupt/polyglot files, archive abuse and parser attacks remain the separate security harness."
+}

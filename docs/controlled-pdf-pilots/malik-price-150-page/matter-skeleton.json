@@ -1,0 +1,190 @@
+{
+  "pilotId": "malik-price-150-page",
+  "version": "design-freeze-v1.1",
+  "status": "DESIGN_FROZEN_PENDING_CHARGE_CITATION_CHECK",
+  "programmePassSupported": false,
+  "generationAuthorised": false,
+  "controlledSyntheticOnly": true,
+  "bundleStrategy": {
+    "sourceDocuments": "separate_realistic_files_retained",
+    "compiledBundle": "single_continuous_150_page_pdf",
+    "authoritativePagination": "compiled_pdf_page_numbers"
+  },
+  "matter": {
+    "workingTitle": "R v Malik Hassan and Jordan Price — Northgate Crown Court PTPH pilot",
+    "court": "Northgate Crown Court",
+    "venue": "crown",
+    "stage": "PTPH",
+    "operativeHearingSource": "latest_court_notice",
+    "operativeHearing": {
+      "type": "Plea and Trial Preparation Hearing",
+      "dateIso": "2026-09-14",
+      "timeLocal": "10:00",
+      "courtroom": "Court 3",
+      "sourceDocId": "DOC-HEARING-NOTICE-PTPH",
+      "compiledPages": [149, 150]
+    },
+    "nonOperativeHearingOnOlderMg5": {
+      "dateIso": "2026-08-28",
+      "timeLocal": "14:00",
+      "sourceDocId": "DOC-MG5-V1",
+      "compiledPages": [7, 13],
+      "status": "superseded_conflict_must_be_surfaced"
+    }
+  },
+  "parties": {
+    "defendants": [
+      {
+        "id": "D1",
+        "fullName": "Malik Hassan",
+        "shortName": "Malik",
+        "role": "defendant",
+        "ageBand": "adult",
+        "custodyStatus": "remanded_in_custody",
+        "counts": ["COUNT_1_ROBBERY", "COUNT_2_S18"]
+      },
+      {
+        "id": "D2",
+        "fullName": "Jordan Price",
+        "shortName": "Price",
+        "role": "defendant",
+        "ageBand": "adult",
+        "custodyStatus": "bailed_conditional",
+        "counts": ["COUNT_1_ROBBERY", "COUNT_3_BLADED_ARTICLE"]
+      }
+    ],
+    "complainant": {
+      "id": "C1",
+      "fullName": "Daniel Okeke",
+      "shortName": "Okeke",
+      "role": "complainant"
+    },
+    "independentWitnesses": [
+      { "id": "W1", "fullName": "Priya Shah", "role": "eye_witness" },
+      { "id": "W2", "fullName": "Callum Briggs", "role": "eye_witness" }
+    ],
+    "officers": [
+      { "id": "O1", "fullName": "PC Leah Morton", "role": "officer_in_case" },
+      { "id": "O2", "fullName": "DC Amir Khan", "role": "interviewing_officer" },
+      { "id": "O3", "fullName": "Sgt Helen Rowe", "role": "custody_sergeant" }
+    ]
+  },
+  "counts": [
+    {
+      "countId": "COUNT_1_ROBBERY",
+      "label": "Robbery",
+      "defendants": ["D1", "D2"],
+      "joint": true,
+      "citationCheckRequiredBeforeGeneration": true
+    },
+    {
+      "countId": "COUNT_2_S18",
+      "label": "Wounding with intent",
+      "defendants": ["D1"],
+      "joint": false,
+      "citationCheckRequiredBeforeGeneration": true,
+      "notes": "Malik only. Must not be attributed to Price."
+    },
+    {
+      "countId": "COUNT_3_BLADED_ARTICLE",
+      "label": "Possession of a bladed article in a public place",
+      "defendants": ["D2"],
+      "joint": false,
+      "citationCheckRequiredBeforeGeneration": true,
+      "notes": "Price only. Separate possession allegation. Must not infer use in wounding, causation of wound, or knowledge of any other weapon held by Malik."
+    }
+  ],
+  "incidentGroundTruth": {
+    "place": "outside 14 Merton Parade, Northgate",
+    "trueIncidentDateIso": "2026-06-03",
+    "trueApproxTimeLocal": "21:40",
+    "narrativeForAuthorsOnly": "Controlled fiction: alleged street robbery culminating in Okeke sustaining a knife wound. CCTV clips show approach and aftermath but do not clearly show the stabbing act. Clock on CCTV stream is +7 minutes fast versus custody/CAD timebase. Price is associated with a recovered locking knife exhibit with a continuity gap; that exhibit must not be treated as proving Price inflicted the wound or that Price used a knife during the robbery. Malik is associated with a phone account; ownership/association must not be treated as message authorship.",
+    "wrongDateOnOriginalIndictment": "2026-06-01",
+    "cctvClockOffsetMinutes": 7,
+    "cctvClockDirection": "fast"
+  },
+  "defendantEvidenceMatrixRules": {
+    "everyEvidenceRowMustDeclare": ["malik_only", "price_only", "joint", "unclear"],
+    "hardFailOn": "any_solicitor_visible_line_that_attributes_price_only_material_to_malik_or_vice_versa",
+    "knifeExhibit": {
+      "scope": "price_only",
+      "forbiddenInferences": [
+        "knife_caused_the_wound",
+        "price_used_the_knife_in_the_robbery_or_wounding",
+        "price_knew_malik_had_another_weapon"
+      ]
+    },
+    "telephone": {
+      "scope": "malik_associated_account",
+      "separationsRequired": [
+        "handset_ownership",
+        "account_association",
+        "message_authorship"
+      ],
+      "forbiddenInference": "malik_authored_each_message"
+    }
+  },
+  "interviewRules": {
+    "type": "PACE_suspect_interview",
+    "abeForDefendants": false,
+    "malik": {
+      "audio": "served_complete",
+      "transcript": "incomplete_one_page_missing",
+      "requiredPresentation": "recording served / transcript incomplete",
+      "forbiddenPresentation": "interview missing"
+    },
+    "price": {
+      "audio": "served",
+      "transcript": "served"
+    }
+  },
+  "sourceDocumentSet": [
+    { "docId": "DOC-COVER", "title": "Bundle cover" },
+    { "docId": "DOC-INDEX", "title": "Bundle index (deliberate error)" },
+    { "docId": "DOC-MG5-V1", "title": "MG5 version 1" },
+    { "docId": "DOC-MG5-REVISED", "title": "Revised MG5" },
+    { "docId": "DOC-INDICTMENT-ORIGINAL", "title": "Original indictment" },
+    { "docId": "DOC-INDICTMENT-AMENDED", "title": "Amended indictment" },
+    { "docId": "DOC-MG6", "title": "MG6 disclosure schedule" },
+    { "docId": "DOC-MG6C", "title": "MG6C unused schedule" },
+    { "docId": "DOC-MG11-DRAFT-C1", "title": "Complainant draft MG11" },
+    { "docId": "DOC-MG11-SIGNED-C1", "title": "Complainant signed MG11" },
+    { "docId": "DOC-MG11-W1", "title": "Independent witness MG11 — Priya Shah" },
+    { "docId": "DOC-MG11-W2", "title": "Independent witness MG11 — Callum Briggs" },
+    { "docId": "DOC-POLICE-STATEMENTS", "title": "Police statements and exhibit continuity" },
+    { "docId": "DOC-INTERVIEW-MALIK", "title": "PACE interview — Malik Hassan" },
+    { "docId": "DOC-INTERVIEW-PRICE", "title": "PACE interview — Jordan Price" },
+    { "docId": "DOC-CUSTODY-PACE", "title": "Custody and PACE material" },
+    { "docId": "DOC-CCTV-BWV-CAD", "title": "CCTV, BWV, CAD and 999 records" },
+    { "docId": "DOC-MEDICAL-FORENSIC", "title": "Medical and forensic evidence" },
+    { "docId": "DOC-PHONE-ATTRIBUTION", "title": "Telephone extraction and attribution" },
+    { "docId": "DOC-DISCLOSURE-CORRESPONDENCE", "title": "Disclosure correspondence" },
+    { "docId": "DOC-HEARING-NOTICE-PTPH", "title": "Hearing notice — PTPH" }
+  ],
+  "trapsThisPilot": [
+    "TRAP-INDEX-CCTV-MASTER-SERVED",
+    "TRAP-INDICTMENT-WRONG-DATE",
+    "TRAP-CCTV-CLOCK-PLUS-7",
+    "TRAP-CLOTHING-DESCRIPTION-CHANGE",
+    "TRAP-MG5-OVERSTATES-CCTV",
+    "TRAP-PHONE-ASSOCIATION-NOT-AUTHORSHIP",
+    "TRAP-KNIFE-CONTINUITY-GAP",
+    "TRAP-INTERVIEW-TRANSCRIPT-PAGE-MISSING",
+    "TRAP-EMAIL-ATTACHMENT-ABSENT",
+    "TRAP-HEARING-VS-MG5-DATETIME",
+    "TRAP-DUPLICATE-WITNESS-INDEX-REFS",
+    "TRAP-MEDICAL-INJURY-NOT-IDENTITY-OR-INTENT",
+    "TRAP-CODEF-EVIDENCE-BLEED",
+    "TRAP-EXHIBIT-LABEL-COLLISION",
+    "TRAP-CUSTODY-INTERVIEW-CLOCK-CONFLICT",
+    "TRAP-ALIAS-ALREADY-SERVED-CHASE"
+  ],
+  "deferredToLaterPilots": [
+    "youth_venue",
+    "abe_complainant_or_witness",
+    "unused_then_served_schedule_flip",
+    "redaction_residual_misleading_phrase",
+    "cad_vs_cctv_multi_timebase_extra",
+    "partial_media_alias_non_collapse_extra_variants"
+  ]
+}

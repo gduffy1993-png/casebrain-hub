@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0","target_pages":{"planned":130,"approved_band":"80-150","rule":"authentic need controls length; no quota padding"},
+  "planned_documents":[
+    {"id":"S01","structure":"child-safe case summary, proposed charges and chronology","pages":"8-12","purpose":"neutral orientation with age/charge states"},
+    {"id":"S02","structure":"age proof, custody record, AA/legal-advice logs and interview","pages":"24-32","purpose":"authoritative child safeguard timeline and no-confession negative control"},
+    {"id":"S03","structure":"complainant/other witness statements and first descriptions","pages":"12-18","purpose":"event accounts without turning them into findings"},
+    {"id":"S04","structure":"CCTV register, stills, continuity and mapping","pages":"16-22","purpose":"presence and event sequence with quality limits"},
+    {"id":"S05","structure":"phone extraction report and message schedules","pages":"14-20","purpose":"authorship, context and alleged participation"},
+    {"id":"S06","structure":"school/local-authority/YJS focused extracts","pages":"12-18","purpose":"age, needs, welfare and alternatives with minimisation"},
+    {"id":"S07","structure":"effective-participation/intermediary assessment and ground-rules material","pages":"8-14","purpose":"need, recommendation, application and decision states"},
+    {"id":"S08","structure":"bilingual Welsh/English court notice, venue, bail/remand and reporting-restriction records","pages":"12-18","purpose":"source-language/version/issuer plus procedural decisions"},
+    {"id":"S09","structure":"disclosure, defence statement, YJS/sentence and counsel extracts","pages":"12-18","purpose":"child-specific preparation and later outcome states"}
+  ],
+  "format_mix":["born-digital PDF","scanned custody forms","audio/transcript index","CCTV stills","phone schedule","structured YJS records","controlled Welsh/English court material"],
+  "welsh_control":"Welsh source, English controlled counterpart, issuer, date and version stay linked but distinct. Only qualified/HMCTS-controlled text may be labelled official; machine output is forbidden from that status."
+}

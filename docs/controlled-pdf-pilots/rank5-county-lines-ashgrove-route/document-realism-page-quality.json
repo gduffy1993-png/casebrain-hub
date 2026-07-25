@@ -1,0 +1,5 @@
+{
+  "schema_version":"1.0","principles":["current public professional structures","all facts fictional","no copied real-case facts","no filler, repeated boilerplate or artificial inflation","counsel/expert extracts mandatory where relevant","child material uses appropriate readable presentation without sanitising evidential conflict"],
+  "density_profiles":{"narrative":"280-520 substantive words/page","message_schedules":"8-22 meaningful messages/page with author/time/source fields","custody_forms":"authentic entries and legitimate whitespace","maps_images":"one to four labelled visuals/page with scale/limitations","tables":"10-28 meaningful rows/page","appendices":"only necessary extraction, laboratory, chronology or disclosure material"},
+  "future_QA_required":["duplicate/near-duplicate and boilerplate scan","density/padding review","full-page visual QA","child readability and privacy-mask review","audio/transcript duration reconciliation","message JSON-to-render sampling","map legend/scale/clipping checks","pagination/index/exhibit cross-references","cross-matter identifier scan"],"generation_authorised":false
+}

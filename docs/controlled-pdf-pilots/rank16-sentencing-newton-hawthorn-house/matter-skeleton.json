@@ -1,0 +1,23 @@
+{
+  "schema_version":"1.0","matter_id":"R16-HAWTHORN-HOUSE","fiction_notice":"Entirely fictional matter; child identity and all facts invented.","status":"design-only","venue":"fictional Crown Court sentencing jurisdiction",
+  "scenario":"Marcus Ellery was the temporary caregiver of Y1. The design records a guilty plea to proposed counts while preserving disagreement about duration, repeated conduct, awareness of injury, use of an implement and the mechanism of a fracture. The prosecution does not accept the proposed defence basis. Witness, medical and contextual evidence is listed for a possible Newton hearing. PSR, victim statement, antecedents, references, means and possible ancillary orders follow, with every conclusion blank.",
+  "persons":[
+    {"id":"D1","name":"Marcus Ellery","role":"adult defendant/offender only if qualified charge and workflow assumptions approved","position":"accepts limited neglect and one push in the designed basis; disputes duration, implement, repeated assaults and awareness"},
+    {"id":"Y1","name":"Child Y1","role":"fictional protected child/complainant","position":"accounts and impact remain source-specific; no audience receives unnecessary identity detail"},
+    {"id":"W1","name":"Priya Holt","role":"neighbour witness","position":"reports sounds and a later observation; dates and frequency uncertain"},
+    {"id":"M1","name":"Dr Erin Cole","role":"paediatric expert","position":"opines within injury/mechanism/timing limitations; does not determine intent, truthfulness, guideline facts or guilt"}
+  ],
+  "proposed_charges":[
+    {"id":"PC1","label":"child cruelty allegation","against":["D1"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","workflow_plea_state":"designed guilty plea event only; legal validity blank"},
+    {"id":"PC2","label":"assault occasioning actual bodily harm allegation","against":["D1"],"status":"PROPOSED/NON-OPERATIVE/PENDING QUALIFIED REVIEW","workflow_plea_state":"designed guilty plea event only; legal validity blank"}
+  ],
+  "procedure_hearings_deadlines":[
+    {"event":"arraignment/plea","state":"proposed charge, plea tender, acceptance and conviction record separately modelled"},
+    {"event":"basis of plea","state":"draft, signed, served, prosecution response, agreed/disputed and court acceptance states distinct"},
+    {"event":"Newton decision and directions","state":"need, issues, evidence, witnesses, disclosure, listing and order blank pending review"},
+    {"event":"Newton hearing","state":"evidence, submissions, burden/standard review, factual ruling and reasons separately sourced"},
+    {"event":"sentence","state":"guideline selection, category facts, dangerousness, mitigation, credit, ancillary order and final order separately recorded"},
+    {"event":"appeal/advice deadline","state":"advice, decision, notice and deadline calculations remain unfilled"}
+  ],
+  "unique_challenges":["post-plea truth without converting a party basis into fact","Newton evidence and finding lifecycle","child-impact and medical limitations at sentencing","PSR assessment versus judicial dangerousness finding","guideline facts and category selection provenance","means, references, antecedents and ancillary-order state","sentence remarks/order/advice consistency"]
+}
