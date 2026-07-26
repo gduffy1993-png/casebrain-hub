@@ -28,6 +28,11 @@ import {
   type AttributionPageInput,
 } from "@/lib/criminal/attribution-model";
 import {
+  rankAnchorsForQuery,
+  type RankablePage,
+  type RankedPageAnchor,
+} from "@/lib/criminal/finding-anchor-rank";
+import {
   buildCanonicalEvidenceState,
   type CanonicalEvidenceState,
   type EvidenceObservation,
@@ -291,6 +296,52 @@ export function anchorsOrDocumentOnly(
 
 function primaryAnchor(anchors: PageTextAnchor[]): PageTextAnchor | null {
   return anchors[0] ?? null;
+}
+
+/** Flatten every genuine page unit into a rankable page for provenance binding. */
+export function rankablePagesFromDocuments(documents: UploadedDocumentUnit[]): RankablePage[] {
+  return documents.flatMap((doc) =>
+    resolvePageUnits(doc).map((p) => {
+      const refs = pageRefsForUnit(p);
+      return {
+        sourceDocumentTitle: doc.title,
+        sourceDocumentType: doc.documentType ?? inferDocType(doc.title, p.text),
+        sourcePage: refs.sourcePage,
+        compiledPage: refs.compiledPage,
+        pageIdentityKnown: refs.pageIdentityKnown,
+        text: p.text,
+      };
+    }),
+  );
+}
+
+function rankedToPageAnchor(a: RankedPageAnchor): PageTextAnchor {
+  return {
+    sourceDocumentTitle: a.sourceDocumentTitle,
+    sourceDocumentType: a.sourceDocumentType,
+    sourcePage: a.sourcePage,
+    compiledPage: a.compiledPage,
+    pageNumber: a.sourcePage ? parseInt(a.sourcePage.replace(/\D+/g, ""), 10) || null : null,
+    pageIdentityKnown: a.pageIdentityKnown,
+    snippet: a.snippet,
+  };
+}
+
+/**
+ * Bind using ranked signals. Generic needles refuse to bind. Ambiguous matches
+ * return every candidate and leave the finding unresolved.
+ */
+export function bindFindingAnchors(
+  documents: UploadedDocumentUnit[],
+  query: Parameters<typeof rankAnchorsForQuery>[1],
+): { primary: PageTextAnchor | null; all: PageTextAnchor[]; limitation: string | null; unresolved: boolean } {
+  const ranked = rankAnchorsForQuery(rankablePagesFromDocuments(documents), query);
+  return {
+    primary: ranked.primary ? rankedToPageAnchor(ranked.primary) : null,
+    all: ranked.candidates.map(rankedToPageAnchor),
+    limitation: ranked.limitation,
+    unresolved: ranked.unresolved,
+  };
 }
 
 function observationFromAnchor(
@@ -715,6 +766,26 @@ export function buildCanonicalPipelineFromDocumentUnits(
     : [];
 
   const rt = recordingTranscriptFromPages(ordered);
+  const recordingBind = bindFindingAnchors(ordered, {
+    relationshipPhrase: "interview recording served",
+    needle: "interview recording",
+    preferredDocumentType: "interview_record",
+    modality: "interview",
+  });
+  const transcriptBind = bindFindingAnchors(ordered, {
+    relationshipPhrase: "transcript incomplete",
+    needle: "interview transcript",
+    preferredDocumentType: "interview_record",
+    modality: "transcript",
+  });
+  // Fall back to the page-walk anchors when ranked binding finds nothing — still
+  // refuse a generic-only "recording"/"transcript" bind.
+  const rtRecordingAnchor =
+    recordingBind.primary ??
+    (rt ? primaryAnchor(rt.anchors.filter((a) => /recording/i.test(a.snippet))) : null);
+  const rtTranscriptAnchor =
+    transcriptBind.primary ??
+    (rt ? primaryAnchor(rt.anchors.filter((a) => /transcript/i.test(a.snippet))) : null);
 
   // Attribution is derived from the same page units, so defendant/device/account/
   // authorship scope carries the same provenance as every other finding.
@@ -795,17 +866,27 @@ export function buildCanonicalPipelineFromDocumentUnits(
     })),
     ...(rt
       ? [
-          observationFromAnchor("Interview recording", rt.recordingState, primaryAnchor(rt.anchors)),
-          observationFromAnchor("Interview transcript", rt.transcriptState, primaryAnchor(rt.anchors)),
+          observationFromAnchor(
+            "Interview recording",
+            rt.recordingState,
+            rtRecordingAnchor,
+          ),
+          observationFromAnchor(
+            "Interview transcript",
+            rt.transcriptState,
+            rtTranscriptAnchor,
+          ),
         ]
       : []),
     ...referencedAbsentAll.map((ref) => {
-      const anchors = ordered.flatMap((d) =>
-        anchorsOrDocumentOnly(d, ref.referencedLabel.slice(0, 40)),
-      );
+      const bind = bindFindingAnchors(ordered, {
+        uniqueLabel: ref.referencedLabel,
+        relationshipPhrase: `see attached: ${ref.referencedLabel}`.slice(0, 80),
+        needle: ref.referencedLabel,
+      });
       const state: SharedEvidenceState =
         ref.onFileState === "referred_only" ? "referred_only" : "missing";
-      return observationFromAnchor(ref.referencedLabel, state, primaryAnchor(anchors));
+      return observationFromAnchor(ref.referencedLabel, state, bind.primary);
     }),
   ];
 
@@ -900,13 +981,26 @@ export function buildCanonicalPipelineFromDocumentUnits(
           recordingState: rt.recordingState,
           transcriptState: rt.transcriptState,
           provenance: {
-            sourceDocumentTitle: primaryAnchor(rt.anchors)?.sourceDocumentTitle ?? null,
-            sourceDocumentType: primaryAnchor(rt.anchors)?.sourceDocumentType ?? "custody_interview",
-            sourcePage: primaryAnchor(rt.anchors)?.sourcePage ?? null,
-            compiledPage: primaryAnchor(rt.anchors)?.compiledPage ?? null,
-            pageIdentityKnown: primaryAnchor(rt.anchors)?.pageIdentityKnown ?? true,
+            sourceDocumentTitle:
+              rtRecordingAnchor?.sourceDocumentTitle ??
+              rtTranscriptAnchor?.sourceDocumentTitle ??
+              null,
+            sourceDocumentType:
+              rtRecordingAnchor?.sourceDocumentType ??
+              rtTranscriptAnchor?.sourceDocumentType ??
+              "interview_record",
+            sourcePage: rtRecordingAnchor?.sourcePage ?? rtTranscriptAnchor?.sourcePage ?? null,
+            compiledPage:
+              rtRecordingAnchor?.compiledPage ?? rtTranscriptAnchor?.compiledPage ?? null,
+            pageIdentityKnown:
+              rtRecordingAnchor?.pageIdentityKnown ??
+              rtTranscriptAnchor?.pageIdentityKnown ??
+              false,
             evidenceState: rt.transcriptState,
-            unresolvedConflictOrLimitation: formatMultiPageLimitation(rt.anchors),
+            unresolvedConflictOrLimitation:
+              recordingBind.limitation ??
+              transcriptBind.limitation ??
+              formatMultiPageLimitation(rt.anchors),
           },
         }
       : null,
@@ -961,14 +1055,28 @@ export function buildCanonicalPipelineFromDocumentUnits(
     const f = findings[i]!;
     if (f.kind === "referenced_absent_attachment" && f.referencedAbsent) {
       const label = f.referencedAbsent.referencedLabel;
-      const anchors = ordered.flatMap((d) => anchorsOrDocumentOnly(d, label.slice(0, 40)));
-      const a = primaryAnchor(anchors);
+      const bind = bindFindingAnchors(ordered, {
+        uniqueLabel: label,
+        relationshipPhrase: `see attached: ${label}`.slice(0, 80),
+        needle: label,
+      });
+      const a = bind.primary ?? primaryAnchor(bind.all);
       if (a) {
         findings[i] = rebindFindingToAnchor(f, a, {
           evidenceState: f.referencedAbsent.onFileState,
-          extraLimitation: formatMultiPageLimitation(anchors),
-          allAnchors: anchors,
+          extraLimitation: bind.limitation ?? formatMultiPageLimitation(bind.all),
+          allAnchors: bind.all.length ? bind.all : [a],
         });
+      } else if (bind.limitation) {
+        findings[i] = {
+          ...f,
+          unresolved: true,
+          provenance: {
+            ...f.provenance,
+            unresolvedConflictOrLimitation: bind.limitation,
+          },
+          provenanceLine: `${f.provenanceLine} · ${bind.limitation}`,
+        };
       }
     }
     if (f.kind === "exhibit_label_collision" && f.exhibitCollision) {
@@ -1066,11 +1174,19 @@ export function buildCanonicalPipelineFromDocumentUnits(
   const chaseLabels = evidenceState.chaseRequests.map((r) => r.label);
   const suppressedChaseLabels = evidenceState.suppressed.map((s) => s.label);
 
-  // Defendant scope on every evidence row, from explicit naming only.
-  const scopedEvidenceRows: DerivedEvidenceRow[] = evidenceRows.map((r) => ({
-    ...r,
-    defendants: defendantScopeForLabel(r.label, bundleText, attribution.defendants),
-  }));
+  // Defendant scope on every evidence row — same-document/same-span ONLY.
+  // Never search the whole bundle: that broadcast every roster name onto every row.
+  const scopedEvidenceRows: DerivedEvidenceRow[] = evidenceRows.map((r) => {
+    const sameDocText = ordered
+      .filter((d) => d.title === r.sourceDocumentTitle)
+      .map((d) => documentText(d))
+      .join("\n");
+    const span = `${r.label}\n${r.note ?? ""}\n${sameDocText.slice(0, 4000)}`;
+    return {
+      ...r,
+      defendants: defendantScopeForLabel(r.label, span, attribution.defendants),
+    };
+  });
 
   return {
     graph: { ...graph, nodes: precedence.nodes },

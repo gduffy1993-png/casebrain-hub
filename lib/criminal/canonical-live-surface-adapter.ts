@@ -35,8 +35,9 @@ import { buildCanonicalMatterStateV1 } from "@/lib/criminal/canonical-matter-sta
 import type { CanonicalMatterStateV1 } from "@/lib/criminal/canonical-matter-state/schema";
 import type { StructuredChargeView } from "@/lib/criminal/structured-charge-state";
 import {
-  scanCrossExitConsistency,
+  enforceCrossExitConsistency,
   type CrossExitScanResult,
+  type EnforcementAction,
 } from "@/lib/criminal/cross-exit-contradiction-scanner";
 
 export type LiveProductionSurfaces = {
@@ -81,6 +82,8 @@ export type LiveProductionSurfaces = {
   requiredLimitations: string[];
   /** Result of scanning every exit against the canonical state. */
   crossExit: CrossExitScanResult;
+  /** Enforcement actions that removed or rewrote unsafe legacy prose. */
+  crossExitEnforcement: EnforcementAction[];
 };
 
 /**
@@ -296,7 +299,14 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     dateIso: pipeline.hearingLifecycle.latest?.hearingDateIso ?? null,
   };
 
-  const crossExit = scanCrossExitConsistency(
+  const paceConflict = pipeline.findings.some(
+    (f) => f.kind === "custody_interview_clock" && f.custodyInterviewClock?.conflict,
+  );
+  const attributionEstablished = pipeline.attribution.messageAuthorship.some(
+    (m) => m.basis === "explicit_statement" && m.person,
+  );
+
+  const enforcement = enforceCrossExitConsistency(
     [
       {
         exit: "control_room",
@@ -346,9 +356,8 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     ],
     {
       evidence: pipeline.evidenceState,
-      requiredLimitations,
+      requiredLimitations: composedLimitations,
       support: {
-        // Nothing below is asserted by the pipeline itself; exits must earn it.
         identification: false,
         intent: false,
         pleaAdvice: false,
@@ -357,8 +366,54 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
         ),
       },
       hearing,
+      paceConflict,
+      attributionEstablished,
     },
   );
+
+  const sanitizedChase = enforcement.sanitizedExits.find((e) => e.exit === "disclosure_chase");
+  const sanitizedProse = enforcement.sanitizedExits.find((e) => e.exit === "composed_prose");
+  const sanitizedCopy = enforcement.sanitizedExits.find((e) => e.exit === "copy");
+
+  // Drop chase items whose labels are served under a supported alias, or whose
+  // draft wording was rewritten away from an unsafe recording-missing chase.
+  const enforcedChaseItems = disclosureChase.items.filter((item) => {
+    const canonical = pipeline.evidenceState.items.find(
+      (i) =>
+        i.label.toLowerCase() === item.label.toLowerCase() ||
+        i.aliases.some((a) => a.toLowerCase() === item.label.toLowerCase()),
+    );
+    if (canonical?.state === "served") return false;
+    // Recording served → never keep a chase row for the recording itself.
+    if (
+      /recording/i.test(item.label) &&
+      !/transcript/i.test(item.label) &&
+      pipeline.evidenceState.items.some(
+        (i) => /recording/i.test(i.label) && i.state === "served",
+      )
+    ) {
+      return false;
+    }
+    return true;
+  });
+
+  const enforcedDisclosureChase = {
+    ...disclosureChase,
+    items: enforcedChaseItems,
+  };
+
+  const proseTexts = sanitizedProse?.texts ?? [];
+  const enforcedComposedProse = {
+    courtLine: proseTexts[0] || (courtCompose.ok ? courtCompose.text : null),
+    cpsChase: proseTexts[1] || (cpsCompose.ok ? cpsCompose.text : null),
+    clientDisclaimer: proseTexts[2] || clientDisclaimer,
+    limitations: composedLimitations,
+  };
+
+  const enforcedCopyLines = copyLines.map((line, idx) => ({
+    ...line,
+    text: sanitizedCopy?.texts[idx] ?? line.text,
+  }));
 
   return {
     pipeline,
@@ -366,20 +421,15 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     charges: pipeline.charges,
     keyFacts,
     truthMap,
-    disclosureChase,
+    disclosureChase: enforcedDisclosureChase,
     warRoom,
     exportPack,
     controlRoom: {
       signals: controlSignals,
       findings: serialized,
     },
-    copyLines,
-    composedProse: {
-      courtLine: courtCompose.ok ? courtCompose.text : null,
-      cpsChase: cpsCompose.ok ? cpsCompose.text : null,
-      clientDisclaimer,
-      limitations: composedLimitations,
-    },
+    copyLines: enforcedCopyLines,
+    composedProse: enforcedComposedProse,
     pdf: {
       provenanceLines: pipeline.findings.map((f) => f.provenanceLine),
       limitations: composedLimitations,
@@ -396,8 +446,9 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
       attribution: pipeline.attribution,
       hearingLifecycle: pipeline.hearingLifecycle,
     },
-    requiredLimitations,
-    crossExit,
+    requiredLimitations: composedLimitations,
+    crossExit: enforcement.scan,
+    crossExitEnforcement: enforcement.actions,
   };
 }
 

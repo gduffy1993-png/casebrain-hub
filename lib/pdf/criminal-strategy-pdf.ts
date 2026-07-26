@@ -64,6 +64,37 @@ export function pdfSafeText(value: string): string {
   return out.replace(WINANSI_SAFE, "");
 }
 
+/**
+ * Replace machine-like route / token labels with solicitor-readable wording.
+ * Does not invent legal advice — only humanises internal identifiers.
+ */
+export function solicitorReadableLabel(raw: string): string {
+  const map: Record<string, string> = {
+    live_integration: "Live matter review",
+    live_integration_case: "Live matter",
+    disclosure_chase: "Disclosure chase",
+    war_room: "Hearing war room",
+    control_room: "Control room",
+    truth_map: "Truth map",
+    key_facts: "Key facts",
+    master_media: "Master media export",
+    clip_or_still: "Clips / stills",
+    not_safely_confirmed: "Not safely confirmed",
+    referred_only: "Referred only",
+    page_identity_unknown: "Exact page unavailable",
+  };
+  const key = raw.trim().toLowerCase().replace(/\s+/g, "_");
+  if (map[key]) return map[key];
+  // Only rewrite machine tokens (underscore/hyphen identifiers). Human phrases pass through.
+  if (!/[_-]/.test(raw)) return raw;
+  return raw
+    .replace(/[_-]+/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .replace(/\bCctv\b/g, "CCTV")
+    .replace(/\bPace\b/g, "PACE")
+    .replace(/\bMg(\d+)/gi, "MG$1");
+}
+
 export type CriminalStrategyChargeRow = {
   count: number | null;
   offence: string;
@@ -241,11 +272,11 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
 
       doc.moveDown(0.5);
       sectionHeader(doc, "Strategy at a glance");
-      infoRow(doc, "Primary approach", data.primaryStrategy ?? "—");
+      infoRow(doc, "Primary approach", solicitorReadableLabel(data.primaryStrategy ?? "—"));
       infoRow(doc, "Offence", data.offenceLabel ?? "—");
       infoRow(doc, "Next hearing", data.nextHearingType && data.nextHearingDate
-        ? `${data.nextHearingType} – ${formatDate(data.nextHearingDate)}`
-        : data.nextHearingType ?? "—");
+        ? `${solicitorReadableLabel(data.nextHearingType)} – ${formatDate(data.nextHearingDate)}`
+        : data.nextHearingType ? solicitorReadableLabel(data.nextHearingType) : "—");
       if (data.confidence) infoRow(doc, "Confidence", data.confidence);
       if (data.hearingLifecycleNote?.trim()) {
         bodyLine(doc, data.hearingLifecycleNote.trim(), { color: MUTED, size: 8 });
@@ -333,7 +364,7 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
         doc.moveDown(0.3);
         for (const p of data.pressurePoints.slice(0, 12)) {
           const pri = p.priority ? ` [${p.priority}]` : "";
-          bodyLine(doc, `\u2022 ${p.label}${pri}`, { indent: 15, color: TEXT });
+          bodyLine(doc, `\u2022 ${solicitorReadableLabel(p.label)}${pri}`, { indent: 15, color: TEXT });
           if (p.reason) bodyLine(doc, p.reason, { indent: 25, color: MUTED, size: 8 });
         }
         doc.moveDown(0.5);
@@ -348,7 +379,7 @@ export function generateCriminalStrategyPdf(data: CriminalStrategyExportData): P
           doc.moveDown(0.3);
         }
         for (const item of data.hrsChecklist) {
-          bodyLine(doc, `[ ] ${item}`, { indent: 15, color: TEXT });
+          bodyLine(doc, `[ ] ${solicitorReadableLabel(item)}`, { indent: 15, color: TEXT });
         }
         doc.moveDown(0.5);
         drawDivider(doc);

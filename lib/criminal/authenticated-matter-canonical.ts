@@ -5,7 +5,11 @@
  */
 
 import { buildBundleSourcePayload } from "@/lib/bundle/parse-bundle-display";
-import { pageUnitsFromExtractedText } from "@/lib/upload/pdf-page-units";
+import {
+  pageUnitsFromExtractedText,
+  type ExtractedPageUnit,
+} from "@/lib/upload/pdf-page-units";
+import { splitPageUnitsIntoLogicalDocuments } from "@/lib/criminal/compiled-bundle-segmentation";
 import {
   buildCanonicalPipelineFromDocumentUnits,
   type DerivedEvidenceRow,
@@ -176,13 +180,30 @@ function uploadOrderByDocumentId(docs: CaseDocumentRow[]): Map<string, number> {
   return new Map(ranked.map((entry, rank) => [String(entry.doc.id), rank + 1]));
 }
 
+function toExtractedPageUnits(pages: UploadedPageUnit[]): ExtractedPageUnit[] {
+  return pages.map((p, i) => ({
+    compiledPage:
+      typeof p.compiledPage === "number" && p.compiledPage > 0 ? p.compiledPage : i + 1,
+    sourcePage: typeof p.pageNumber === "number" && p.pageNumber > 0 ? p.pageNumber : null,
+    sourcePageTotal: null,
+    text: p.text,
+    textLayerEmpty: !p.text.replace(/\s+/g, "").length,
+  }));
+}
+
 /**
  * Map authenticated case documents to uploaded document/page units.
- * Preserves page units when available; fullText never discards pages.
+ *
+ * When a single uploaded file carries many page units (a compiled PDF), those pages
+ * are split into logical child documents using evidenced header/footer boundaries.
+ * unitCount then reflects logical documents, not the parent upload count. Pages with
+ * no supported boundary stay under a parent-only child rather than inventing a title.
  */
 export function mapCaseDocumentsToUploadedUnits(docs: CaseDocumentRow[]): UploadedDocumentUnit[] {
   const units: UploadedDocumentUnit[] = [];
   const uploadOrders = uploadOrderByDocumentId(docs);
+  let orderCursor = 0;
+
   docs.forEach((doc, idx) => {
     const text = bodyText(doc);
     if (!text) return;
@@ -198,16 +219,51 @@ export function mapCaseDocumentsToUploadedUnits(docs: CaseDocumentRow[]): Upload
             pageIdentityKnown: false,
           },
         ];
+
+    const parentId = String(doc.id ?? `doc-${idx}`);
+    const parentTitle = String(doc.name ?? doc.title ?? `Document ${idx + 1}`);
+    const baseOrder = uploadOrders.get(String(doc.id)) ?? docs.length - idx;
+
+    // Multi-page compiled PDFs expand into logical children. A single unsplit page
+    // (or unknown-page whole document) stays as one unit.
+    const hasCompiledPages =
+      pages.length > 1 && pages.every((p) => typeof p.compiledPage === "number" && p.compiledPage > 0);
+
+    if (hasCompiledPages) {
+      const drafts = splitPageUnitsIntoLogicalDocuments({
+        parentId,
+        parentTitle,
+        pageUnits: toExtractedPageUnits(pages),
+      });
+      if (drafts.length > 0) {
+        for (const draft of drafts) {
+          orderCursor += 1;
+          units.push({
+            id: draft.id,
+            title: draft.title,
+            documentType: draft.documentType ?? doc.document_type ?? null,
+            documentDate: doc.document_date ?? null,
+            versionNumber: doc.version_number ?? null,
+            replacesDocumentId: doc.replaces_document_id ?? null,
+            uploadOrder: baseOrder * 1000 + orderCursor,
+            pages: draft.pages,
+            fullText: draft.pages.map((p) => p.text).join("\f"),
+          });
+        }
+        return;
+      }
+    }
+
+    orderCursor += 1;
     units.push({
-      id: String(doc.id ?? `doc-${idx}`),
-      title: String(doc.name ?? doc.title ?? `Document ${idx + 1}`),
+      id: parentId,
+      title: parentTitle,
       documentType: doc.document_type ?? null,
       documentDate: doc.document_date ?? null,
       versionNumber: doc.version_number ?? null,
       replacesDocumentId: doc.replaces_document_id ?? null,
-      uploadOrder: uploadOrders.get(String(doc.id)) ?? docs.length - idx,
+      uploadOrder: baseOrder * 1000 + orderCursor,
       pages,
-      // Keep fullText for search/fallback — pages remain authoritative for provenance.
       fullText: text,
     });
   });

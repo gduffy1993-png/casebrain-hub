@@ -297,3 +297,224 @@ export function assertNoCrossExitContradictions(
   const result = scanCrossExitConsistency(exits, context);
   return result;
 }
+
+const PACE_SAFE_ASSERTION =
+  /\b(?:PACE\s+(?:is\s+)?(?:OK|safe|compliant)|no\s+breach|interview\s+was\s+(?:lawful|safe)|custody\s+was\s+(?:lawful|safe))\b/i;
+const STRONG_ID =
+  /\bidentification\b[^.]{0,60}?\b(?:is|remains|appears)\s+(?:strong|compelling|robust|reliable|sound)\b/i;
+const MEDICAL_INTENT =
+  /\b(?:medical|clinical)\b[^.]{0,120}?\bintent\w*\b|\bintent\w*[^.]{0,120}?\b(?:medical|clinical)\b/i;
+const MEDICAL_ID =
+  /\b(?:medical|clinical)\b[^.]{0,120}?\bidentif\w*|\bidentif\w*[^.]{0,120}?\b(?:medical|clinical)\b/i;
+const PLEA_REC =
+  /\b(?:advise|recommend|suggest)\b[^.]{0,80}?\b(?:guilty plea|plea of guilty|early plea|plea action)\b/i;
+const RECORDING_MISSING_CHASE =
+  /\b(?:please\s+(?:provide|serve)|chase|outstanding|missing|not\s+served)\b[^.]{0,80}?\b(?:interview\s+)?recording\b|\b(?:interview\s+)?recording\b[^.]{0,80}?\b(?:missing|outstanding|not\s+served|please\s+provide)\b/i;
+const MASTER_SERVED_FALSE =
+  /\bmaster\s+(?:cctv|footage|export|media)\b[^.]{0,60}?\b(?:has been served|is served|is on file|is complete|received)\b/i;
+
+export type EnforcementAction = {
+  exit: ExitName;
+  original: string;
+  replacement: string | null;
+  reason: string;
+  code: CrossExitContradiction["code"] | "pace_unknown_blocked" | "attribution_unestablished";
+};
+
+export type CrossExitEnforcementResult = {
+  ok: boolean;
+  scan: CrossExitScanResult;
+  actions: EnforcementAction[];
+  /** Texts per exit after unsafe prose was removed or rewritten. */
+  sanitizedExits: ExitSnapshot[];
+};
+
+/**
+ * Enforcement boundary: scan, then remove or rewrite unsafe legacy prose so it
+ * cannot leave the production surface. Useful case information is retained;
+ * only the contradicting assertion is replaced with a fail-closed sentence.
+ */
+export function enforceCrossExitConsistency(
+  exits: ExitSnapshot[],
+  context: CrossExitCanonicalContext & {
+    paceConflict?: boolean;
+    attributionEstablished?: boolean;
+  },
+): CrossExitEnforcementResult {
+  const actions: EnforcementAction[] = [];
+  const sanitizedExits: ExitSnapshot[] = exits.map((exit) => {
+    const texts: string[] = [];
+    for (const text of exit.texts) {
+      if (!text?.trim()) {
+        texts.push(text);
+        continue;
+      }
+      let next = text;
+      let blocked = false;
+
+      if (context.paceConflict && PACE_SAFE_ASSERTION.test(next)) {
+        actions.push({
+          exit: exit.exit,
+          original: next,
+          replacement:
+            "PACE status is unknown / conflicted on the custody and interview clocks — do not treat the interview as SAFE or as no-breach.",
+          reason: "PACE UNKNOWN/conflicted cannot become SAFE",
+          code: "pace_unknown_blocked",
+        });
+        next =
+          "PACE status is unknown / conflicted on the custody and interview clocks — do not treat the interview as SAFE or as no-breach.";
+        blocked = true;
+      }
+
+      if (!context.support.identification && STRONG_ID.test(next)) {
+        actions.push({
+          exit: exit.exit,
+          original: text,
+          replacement:
+            "Identification is not established as strong on current canonical material.",
+          reason: "Unsupported strong-identification claim removed",
+          code: "unsupported_recommendation",
+        });
+        next =
+          "Identification is not established as strong on current canonical material.";
+        blocked = true;
+      }
+
+      if (!context.support.intent && (MEDICAL_INTENT.test(next) || MEDICAL_ID.test(next))) {
+        actions.push({
+          exit: exit.exit,
+          original: text,
+          replacement:
+            "Medical material may support injury or clinical causation where sourced; it does not establish identification or intent.",
+          reason: "Medical overreach into identity/intent blocked",
+          code: "medical_overreach",
+        });
+        next =
+          "Medical material may support injury or clinical causation where sourced; it does not establish identification or intent.";
+        blocked = true;
+      }
+
+      if (!context.support.pleaAdvice && PLEA_REC.test(next)) {
+        actions.push({
+          exit: exit.exit,
+          original: text,
+          replacement: null,
+          reason: "Unsupported plea recommendation removed",
+          code: "unsupported_recommendation",
+        });
+        next = "";
+        blocked = true;
+      }
+
+      // Recording served → never chase recording as missing.
+      const recordingItem = context.evidence.items.find(
+        (i) => /recording/i.test(i.label) && i.state === "served",
+      );
+      if (recordingItem && RECORDING_MISSING_CHASE.test(next) && !/transcript/i.test(next)) {
+        actions.push({
+          exit: exit.exit,
+          original: text,
+          replacement:
+            "Interview recording is served on the papers; chase the incomplete transcript, not the recording.",
+          reason: "Served recording must not be chased as missing",
+          code: "alias_rechased",
+        });
+        next =
+          "Interview recording is served on the papers; chase the incomplete transcript, not the recording.";
+        blocked = true;
+      }
+
+      const masterMissing = context.evidence.items.find(
+        (i) => i.modality === "master_media" && (i.state === "missing" || i.state === "incomplete"),
+      );
+      if (masterMissing && MASTER_SERVED_FALSE.test(next)) {
+        actions.push({
+          exit: exit.exit,
+          original: text,
+          replacement: `${masterMissing.label} remains ${masterMissing.state.replace(/_/g, " ")} — served clips do not satisfy the master export.`,
+          reason: "Master missing cannot be marked served because clips exist",
+          code: "served_state_contradicted",
+        });
+        next = `${masterMissing.label} remains ${masterMissing.state.replace(/_/g, " ")} — served clips do not satisfy the master export.`;
+        blocked = true;
+      }
+
+      // Alias served → do not chase identical item.
+      for (const item of context.evidence.items) {
+        if (item.state !== "served") continue;
+        const labelRe = new RegExp(
+          `\\b${item.label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").slice(0, 40)}`,
+          "i",
+        );
+        if (
+          labelRe.test(next) &&
+          /\b(?:please\s+(?:provide|serve)|chase|outstanding|missing|not\s+served)\b/i.test(next)
+        ) {
+          actions.push({
+            exit: exit.exit,
+            original: text,
+            replacement: `${item.label} is already on file under a supported alias — do not chase as absent.`,
+            reason: "Served alias re-chase blocked",
+            code: "alias_rechased",
+          });
+          next = `${item.label} is already on file under a supported alias — do not chase as absent.`;
+          blocked = true;
+          break;
+        }
+      }
+
+      if (context.attributionEstablished === false && /\battribut(?:ed|ion)\b[^.]*\b(?:is|as)\s+fact\b/i.test(next)) {
+        actions.push({
+          exit: exit.exit,
+          original: text,
+          replacement:
+            "Attribution of individual messages is not established on current material.",
+          reason: "Unestablished attribution cannot be stated as fact",
+          code: "attribution_unestablished",
+        });
+        next =
+          "Attribution of individual messages is not established on current material.";
+        blocked = true;
+      }
+
+      if (!blocked) {
+        // Still strip synthetic page refs.
+        if (containsSyntheticPageReference(next)) {
+          actions.push({
+            exit: exit.exit,
+            original: text,
+            replacement: null,
+            reason: "Synthetic page reference removed",
+            code: "synthetic_page_reference",
+          });
+          next = next.replace(
+            /\b(?:compiled\s*)?p(?:age)?\.?\s*(?:null|undefined|nan|none|0+)\b/gi,
+            "exact page unavailable",
+          );
+        }
+      }
+
+      if (next.trim()) texts.push(next);
+    }
+
+    const limitations = Array.from(
+      new Set([...(exit.limitations ?? []), ...context.requiredLimitations]),
+    );
+
+    return {
+      ...exit,
+      texts,
+      limitations,
+      hearing: context.hearing ?? exit.hearing,
+    };
+  });
+
+  const scan = scanCrossExitConsistency(sanitizedExits, context);
+  return {
+    ok: scan.ok,
+    scan,
+    actions,
+    sanitizedExits,
+  };
+}
+

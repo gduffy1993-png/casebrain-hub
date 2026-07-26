@@ -30,17 +30,19 @@ export type ExtractedPageUnit = {
 const MIN_TEXT_LAYER_CHARS = 12;
 
 /**
- * Printed pagination in a header/footer band. Anchored to line start/end so that
- * "page 3 of the transcript" in body prose cannot be mistaken for pagination.
+ * Printed pagination in a header/footer band. Prefer whole-line matches so that
+ * "page 3 of the transcript" in body prose cannot be mistaken for pagination; also
+ * accept "source page N of M" embedded in denser court-bundle headers.
  */
 const PRINTED_PAGINATION_PATTERNS: RegExp[] = [
   /^\s*(?:page|pg\.?|p\.)\s*(\d{1,4})\s*(?:of|\/)\s*(\d{1,4})\s*$/i,
   /^\s*(?:page|pg\.?|p\.)\s*(\d{1,4})\s*$/i,
   /^\s*-\s*(\d{1,4})\s*-\s*$/,
+  /\bsource\s+page\s*(\d{1,4})\s*(?:of|\/)\s*(\d{1,4})(?=\D|$)/i,
 ];
 
 /** Number of leading/trailing lines treated as the header/footer band. */
-const HEADER_FOOTER_BAND = 3;
+const HEADER_FOOTER_BAND = 6;
 
 export function pageHasTextLayer(text: string): boolean {
   return text.replace(/\s+/g, "").length >= MIN_TEXT_LAYER_CHARS;
