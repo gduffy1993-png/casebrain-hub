@@ -27,6 +27,8 @@ import {
   shouldSuppressChaseAsAlreadyOnFile,
   type EvidenceStateRow,
 } from "@/lib/criminal/evidence-state-reconcile";
+import { AUTHORSHIP_NOT_ESTABLISHED_LIMITATION } from "@/lib/criminal/attribution-model";
+import type { HearingLifecycle } from "@/lib/criminal/hearing-notice-lifecycle";
 import {
   detectCustodyInterviewClockConflict,
   detectCustodyInterviewClockFromText,
@@ -43,6 +45,9 @@ export type CanonicalFindingKind =
   | "alias_already_served"
   | "exhibit_label_collision"
   | "custody_interview_clock"
+  | "hearing_notice_lifecycle"
+  | "evidence_state_contradiction"
+  | "message_attribution"
   | "provenance_incomplete"
   | "generic";
 
@@ -69,6 +74,35 @@ export type CanonicalFinding = {
   } | null;
   defendant?: string | null;
   countNumber?: number | null;
+  /**
+   * Every page that could support this finding. Populated when wording was located on
+   * more than one page so no exit silently presents a single chosen anchor as certain.
+   */
+  supportingAnchors?: Array<{
+    sourceDocumentTitle: string;
+    sourceDocumentType: string | null;
+    sourcePage: string | null;
+    compiledPage: string | null;
+    pageIdentityKnown: boolean;
+  }>;
+  /** Defendant/device/account/authorship scope, when the papers evidence it. */
+  attribution?: FindingAttribution | null;
+};
+
+/**
+ * Attribution scope carried by a finding. Each element is independently sourced:
+ * possession of a device never implies authorship of its messages.
+ */
+export type FindingAttribution = {
+  defendants: string[];
+  /** True when material relates to a co-defendant and may contaminate this defendant. */
+  coDefendantContamination: boolean;
+  deviceOwner: string | null;
+  accountHolder: string | null;
+  messageAuthor: string | null;
+  /** Why authorship is or is not established. */
+  authorshipBasis: "attributed" | "not_established" | "not_applicable";
+  limitation: string | null;
 };
 
 export type CustodyInterviewClockInput = {
@@ -272,6 +306,105 @@ export function findingForCustodyInterviewClock(input: {
 }
 
 /**
+ * Hearing lifecycle: the later notice governs, the earlier notice stays visible, and a
+ * disagreement about the hearing date stays unresolved rather than being overwritten.
+ */
+export function findingForHearingLifecycle(input: {
+  lifecycle: HearingLifecycle;
+  provenance?: FindingProvenanceInput;
+}): CanonicalFinding {
+  const { latest, superseded, conflict, conflictDescription, basis } = input.lifecycle;
+  const latestLabel = latest
+    ? `${latest.documentTitle}${latest.hearingDateRaw ? ` (${latest.hearingDateRaw})` : ""}`
+    : "no notice identified";
+  const earlierLabel = superseded
+    .map((n) => `${n.documentTitle}${n.hearingDateRaw ? ` (${n.hearingDateRaw})` : ""}`)
+    .join("; ");
+  const summary = superseded.length
+    ? `Latest hearing notice: ${latestLabel} (selected by ${basis.replace(/_/g, " ")}). Earlier notice preserved: ${earlierLabel}.${conflict ? ` ${conflictDescription}` : ""}`
+    : `Hearing notice: ${latestLabel}.`;
+
+  return baseFinding(
+    "hearing_notice_lifecycle",
+    "Hearing notice lifecycle",
+    summary,
+    {
+      ...(input.provenance ?? {}),
+      evidenceState: input.provenance?.evidenceState ?? (conflict ? "not_safely_confirmed" : "served"),
+      unresolvedConflictOrLimitation:
+        input.provenance?.unresolvedConflictOrLimitation ?? conflictDescription ?? null,
+    },
+    {
+      severity: conflict ? "critical" : "info",
+      unresolved: conflict,
+    },
+  );
+}
+
+/**
+ * A served/missing disagreement about the same item is never silently resolved —
+ * it is reported so no exit can present either state as settled.
+ */
+export function findingForEvidenceStateContradiction(input: {
+  label: string;
+  states: string[];
+  description: string;
+  provenance?: FindingProvenanceInput;
+}): CanonicalFinding {
+  return baseFinding(
+    "evidence_state_contradiction",
+    "Contradictory evidence state",
+    input.description,
+    {
+      ...(input.provenance ?? {}),
+      evidenceState: "not_safely_confirmed",
+      unresolvedConflictOrLimitation:
+        input.provenance?.unresolvedConflictOrLimitation ?? input.description,
+    },
+    { severity: "critical", unresolved: true },
+  );
+}
+
+/**
+ * Authorship of individual messages. Device possession and account association are
+ * carried as separate facts and must never be read as authorship.
+ */
+export function findingForMessageAttribution(input: {
+  person: string;
+  ownsDevice: boolean;
+  holdsAccount: boolean;
+  authorshipEstablished: boolean;
+  provenance?: FindingProvenanceInput;
+  attribution?: FindingAttribution | null;
+}): CanonicalFinding {
+  const facts: string[] = [];
+  if (input.ownsDevice) facts.push("device attributed to this person");
+  if (input.holdsAccount) facts.push("account/subscriber associated with this person");
+  const summary = input.authorshipEstablished
+    ? `Message authorship is expressly attributed to ${input.person}${facts.length ? ` (${facts.join("; ")})` : ""}.`
+    : `${facts.length ? `${facts.join("; ")} for ${input.person}. ` : ""}Authorship of individual messages is not established — possession of a device or association with an account does not show who wrote a message.`;
+
+  return baseFinding(
+    "message_attribution",
+    "Device, account and message authorship",
+    summary,
+    {
+      ...(input.provenance ?? {}),
+      defendant: input.provenance?.defendant ?? input.person,
+      evidenceState: input.provenance?.evidenceState ?? "not_safely_confirmed",
+      unresolvedConflictOrLimitation: input.authorshipEstablished
+        ? (input.provenance?.unresolvedConflictOrLimitation ?? null)
+        : AUTHORSHIP_NOT_ESTABLISHED_LIMITATION,
+    },
+    {
+      severity: input.authorshipEstablished ? "review" : "critical",
+      unresolved: !input.authorshipEstablished,
+      attribution: input.attribution ?? null,
+    },
+  );
+}
+
+/**
  * Safety: never chase an alias already proved to be the same served item.
  */
 export function shouldChaseRequestAgainstServedAliases(
@@ -316,6 +449,24 @@ export function buildCanonicalFindings(input: {
     analysis?: ClockAnalysisResult | null;
     provenance?: FindingProvenanceInput;
   } | null;
+  hearingLifecycle?: {
+    lifecycle: HearingLifecycle;
+    provenance?: FindingProvenanceInput;
+  } | null;
+  evidenceStateContradictions?: Array<{
+    label: string;
+    states: string[];
+    description: string;
+    provenance?: FindingProvenanceInput;
+  }>;
+  messageAttribution?: Array<{
+    person: string;
+    ownsDevice: boolean;
+    holdsAccount: boolean;
+    authorshipEstablished: boolean;
+    provenance?: FindingProvenanceInput;
+    attribution?: FindingAttribution | null;
+  }>;
   defendant?: string | null;
   countNumber?: number | null;
 }): CanonicalFinding[] {
@@ -356,6 +507,15 @@ export function buildCanonicalFindings(input: {
   if (input.custodyInterviewClock) {
     findings.push(findingForCustodyInterviewClock(input.custodyInterviewClock));
   }
+  if (input.hearingLifecycle?.lifecycle.latest) {
+    findings.push(findingForHearingLifecycle(input.hearingLifecycle));
+  }
+  for (const contradiction of input.evidenceStateContradictions ?? []) {
+    findings.push(findingForEvidenceStateContradiction(contradiction));
+  }
+  for (const attribution of input.messageAttribution ?? []) {
+    findings.push(findingForMessageAttribution(attribution));
+  }
 
   // Any finding without sufficient provenance stays unresolved and visible.
   return findings.map((f) =>
@@ -381,6 +541,13 @@ export function serializeCanonicalFindingForSurface(f: CanonicalFinding): {
   pageIdentityKnown: boolean;
   pageIdentityNote: string | null;
   provenanceCompleteness: ProvenanceCompleteness;
+  candidateAnchors: Array<{
+    sourceDocumentTitle: string;
+    sourcePage: string | null;
+    compiledPage: string | null;
+    pageIdentityKnown: boolean;
+  }>;
+  attribution: FindingAttribution | null;
 } {
   const page = pageProvenanceForSurface(f.provenance);
   return {
@@ -397,5 +564,12 @@ export function serializeCanonicalFindingForSurface(f: CanonicalFinding): {
     pageIdentityKnown: page.pageIdentityKnown,
     pageIdentityNote: page.pageIdentityNote,
     provenanceCompleteness: classifyProvenanceCompleteness(f.provenance),
+    candidateAnchors: (f.supportingAnchors ?? []).map((a) => ({
+      sourceDocumentTitle: a.sourceDocumentTitle,
+      sourcePage: a.sourcePage,
+      compiledPage: a.compiledPage,
+      pageIdentityKnown: a.pageIdentityKnown,
+    })),
+    attribution: f.attribution ?? null,
   };
 }

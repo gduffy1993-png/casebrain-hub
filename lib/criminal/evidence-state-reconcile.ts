@@ -34,12 +34,14 @@ export type EvidenceStateRow = {
 
 /** Order matters: specific families are resolved before the generic "recording". */
 const MODALITY_PATTERNS: Array<{ modality: EvidenceModality; re: RegExp }> = [
-  { modality: "clip_or_still", re: /\b(clip|stills?|screenshot|excerpt|snippet)\b/i },
+  { modality: "clip_or_still", re: /\b(clips?|stills?|screenshots?|excerpts?|snippets?)\b/i },
   { modality: "master_media", re: /\b(master(?:\s+(?:cctv|footage|export|recording))?|full\s+(?:cctv|footage|video|export))\b/i },
   { modality: "transcript", re: /\btranscript\b/i },
   { modality: "bwv", re: /\b(bwv|body[-\s]?worn)\b/i },
   { modality: "cad_999", re: /\b(999|cad|dispatch|control\s*room)\b/i },
   { modality: "custody", re: /\b(custody\s+record|custody\s+log|detention\s+log)\b/i },
+  // A qualifier wins over the bare noun: "interview recording" belongs to the
+  // interview family, so a served body-worn recording cannot stand in for it.
   { modality: "interview", re: /\b(pace\s+interview|interview)\b/i },
   { modality: "medical", re: /\b(medical|hospital|A&E|injury\s+report|GP\s+notes?|clinical)\b/i },
   { modality: "recording", re: /\b(recording|audio\s+file|interview\s+tape|digital\s+recording)\b/i },

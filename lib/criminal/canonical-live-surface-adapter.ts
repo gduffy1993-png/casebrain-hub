@@ -34,6 +34,10 @@ import { buildControlRoomComputedSupervisorSignals } from "@/lib/criminal/superv
 import { buildCanonicalMatterStateV1 } from "@/lib/criminal/canonical-matter-state/build";
 import type { CanonicalMatterStateV1 } from "@/lib/criminal/canonical-matter-state/schema";
 import type { StructuredChargeView } from "@/lib/criminal/structured-charge-state";
+import {
+  scanCrossExitConsistency,
+  type CrossExitScanResult,
+} from "@/lib/criminal/cross-exit-contradiction-scanner";
 
 export type LiveProductionSurfaces = {
   pipeline: LiveCanonicalPipelineResult;
@@ -69,8 +73,33 @@ export type LiveProductionSurfaces = {
     findings: ReturnType<typeof serializeCanonicalFindingForSurface>[];
     documentRoles: Array<{ id: string; title: string | null; role: string }>;
     charges: StructuredChargeView[];
+    evidenceState: LiveCanonicalPipelineResult["evidenceState"];
+    attribution: LiveCanonicalPipelineResult["attribution"];
+    hearingLifecycle: LiveCanonicalPipelineResult["hearingLifecycle"];
   };
+  /** Limitations that must survive on every solicitor-facing exit. */
+  requiredLimitations: string[];
+  /** Result of scanning every exit against the canonical state. */
+  crossExit: CrossExitScanResult;
 };
+
+/**
+ * Limitations that no exit may drop: unresolved finding limitations plus every
+ * unreconciled evidence-state contradiction.
+ */
+function requiredLimitationsFor(pipeline: LiveCanonicalPipelineResult): string[] {
+  return Array.from(
+    new Set(
+      [
+        ...pipeline.findings
+          .filter((f) => f.unresolved)
+          .map((f) => f.provenance.unresolvedConflictOrLimitation),
+        ...pipeline.evidenceState.contradictions.map((c) => c.description),
+        pipeline.hearingLifecycle.conflictDescription,
+      ].filter((x): x is string => Boolean(x)),
+    ),
+  );
+}
 
 function evidenceRowsForFiveAnswers(
   pipeline: LiveCanonicalPipelineResult,
@@ -149,9 +178,13 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     snapshotMissing: pipeline.chaseLabels.map((label) => ({ label, status: "Outstanding" })),
     bundleText: pipeline.bundleText,
     canonicalFindings: pipeline.findings,
-    canonicalEvidenceRows: pipeline.evidenceRows.map((r) => ({
-      label: r.label,
-      state: r.existence,
+    // Reconciled canonical items, not the raw per-page observations: chase must not
+    // re-ask for anything the reconciled state already treats as served.
+    canonicalEvidenceRows: pipeline.evidenceState.items.map((i) => ({
+      label: i.label,
+      state: i.state,
+      modality: i.modality,
+      aliases: i.aliases,
     })),
   });
 
@@ -244,6 +277,88 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
   });
 
   const serialized = pipeline.findings.map(serializeCanonicalFindingForSurface);
+  const requiredLimitations = requiredLimitationsFor(pipeline);
+
+  // Every exit carries the same limitation set, so a limitation cannot be lost by
+  // travelling through copy, export, PDF or composed prose.
+  const composedLimitations = Array.from(
+    new Set([
+      ...requiredLimitations,
+      ...pipeline.findings
+        .filter((f) => f.unresolved)
+        .map((f) => f.provenance.unresolvedConflictOrLimitation || f.provenanceLine)
+        .filter((x): x is string => Boolean(x)),
+    ]),
+  );
+
+  const hearing = {
+    status: warRoom.hearingStatus ?? null,
+    dateIso: pipeline.hearingLifecycle.latest?.hearingDateIso ?? null,
+  };
+
+  const crossExit = scanCrossExitConsistency(
+    [
+      {
+        exit: "control_room",
+        texts: serialized.map((f) => f.summary),
+        limitations: composedLimitations,
+        hearing,
+      },
+      {
+        exit: "war_room",
+        texts: findingSummariesForProductionSurfaces(pipeline.findings),
+        limitations: composedLimitations,
+        hearing,
+      },
+      {
+        exit: "disclosure_chase",
+        texts: disclosureChase.items.map(
+          (i) => `${i.label} ${i.whyItMatters} ${i.draftChaseWording} ${i.courtLine}`,
+        ),
+        limitations: composedLimitations,
+        hearing,
+      },
+      {
+        exit: "copy",
+        texts: copyLines.map((c) => c.text),
+        limitations: composedLimitations,
+      },
+      {
+        exit: "composed_prose",
+        texts: [
+          courtCompose.ok ? (courtCompose.text ?? "") : "",
+          cpsCompose.ok ? (cpsCompose.text ?? "") : "",
+          clientDisclaimer,
+        ],
+        limitations: composedLimitations,
+      },
+      {
+        exit: "pdf",
+        texts: pipeline.findings.map((f) => f.provenanceLine),
+        limitations: composedLimitations,
+      },
+      {
+        exit: "api",
+        texts: serialized.map((f) => f.provenanceLine),
+        limitations: composedLimitations,
+        hearing,
+      },
+    ],
+    {
+      evidence: pipeline.evidenceState,
+      requiredLimitations,
+      support: {
+        // Nothing below is asserted by the pipeline itself; exits must earn it.
+        identification: false,
+        intent: false,
+        pleaAdvice: false,
+        medicalInjury: pipeline.evidenceState.items.some(
+          (i) => i.modality === "medical" && i.state === "served",
+        ),
+      },
+      hearing,
+    },
+  );
 
   return {
     pipeline,
@@ -263,16 +378,11 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
       courtLine: courtCompose.ok ? courtCompose.text : null,
       cpsChase: cpsCompose.ok ? cpsCompose.text : null,
       clientDisclaimer,
-      limitations: pipeline.findings
-        .filter((f) => f.unresolved)
-        .map((f) => f.provenance.unresolvedConflictOrLimitation || f.provenanceLine)
-        .filter(Boolean) as string[],
+      limitations: composedLimitations,
     },
     pdf: {
       provenanceLines: pipeline.findings.map((f) => f.provenanceLine),
-      limitations: pipeline.findings
-        .map((f) => f.provenance.unresolvedConflictOrLimitation)
-        .filter((x): x is string => Boolean(x)),
+      limitations: composedLimitations,
     },
     api: {
       findings: serialized,
@@ -282,7 +392,12 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
         role: n.role,
       })),
       charges: pipeline.charges,
+      evidenceState: pipeline.evidenceState,
+      attribution: pipeline.attribution,
+      hearingLifecycle: pipeline.hearingLifecycle,
     },
+    requiredLimitations,
+    crossExit,
   };
 }
 

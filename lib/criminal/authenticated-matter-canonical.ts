@@ -5,6 +5,7 @@
  */
 
 import { buildBundleSourcePayload } from "@/lib/bundle/parse-bundle-display";
+import { pageUnitsFromExtractedText } from "@/lib/upload/pdf-page-units";
 import {
   buildCanonicalPipelineFromDocumentUnits,
   type DerivedEvidenceRow,
@@ -65,6 +66,13 @@ function bodyText(doc: CaseDocumentRow): string {
   return (raw.trim() || ext.trim() || "").trim();
 }
 
+/**
+ * Read persisted page units.
+ *
+ * The array index is the compiled-bundle position, which is a real page identity.
+ * The source document's own pagination is only adopted when it was actually recorded
+ * (printed on the page at extraction time) — never synthesised from the index.
+ */
 function pagesFromExtractedJson(json: unknown): UploadedPageUnit[] | null {
   if (!json || typeof json !== "object") return null;
   const root = json as Record<string, unknown>;
@@ -74,10 +82,10 @@ function pagesFromExtractedJson(json: unknown): UploadedPageUnit[] | null {
     const pages: UploadedPageUnit[] = [];
     for (let i = 0; i < c.length; i++) {
       const p = c[i];
-      if (typeof p === "string" && p.trim()) {
+      if (typeof p === "string") {
         pages.push({
-          pageNumber: i + 1,
-          compiledPage: null,
+          pageNumber: null,
+          compiledPage: i + 1,
           text: p,
           pageIdentityKnown: true,
         });
@@ -90,41 +98,47 @@ function pagesFromExtractedJson(json: unknown): UploadedPageUnit[] | null {
           (typeof o.content === "string" && o.content) ||
           (typeof o.body === "string" && o.body) ||
           "";
-        if (!text.trim()) continue;
-        const pageNumber =
-          typeof o.pageNumber === "number"
-            ? o.pageNumber
-            : typeof o.page === "number"
-              ? o.page
-              : i + 1;
+        const sourcePage =
+          typeof o.sourcePage === "number" && o.sourcePage > 0
+            ? o.sourcePage
+            : typeof o.pageNumber === "number" && o.pageNumber > 0
+              ? o.pageNumber
+              : typeof o.page === "number" && o.page > 0
+                ? o.page
+                : null;
         const compiled =
-          typeof o.compiledPage === "number"
+          typeof o.compiledPage === "number" && o.compiledPage > 0
             ? o.compiledPage
-            : typeof o.compiled_page === "number"
+            : typeof o.compiled_page === "number" && o.compiled_page > 0
               ? o.compiled_page
-              : null;
+              : i + 1;
         pages.push({
-          pageNumber,
+          pageNumber: sourcePage,
           compiledPage: compiled,
           text,
           pageIdentityKnown: true,
         });
       }
     }
-    if (pages.length) return pages;
+    // Scanned pages carry no text but must keep their compiled identity, so they are
+    // retained here and only dropped if the whole document yielded nothing.
+    if (pages.some((p) => p.text.trim())) return pages;
   }
   return null;
 }
 
-/** Split on form-feed when present so multi-page PDFs keep page identity. */
+/**
+ * Split on form-feed when present so multi-page PDFs keep page identity.
+ * Only the compiled position is asserted; printed source pagination is recovered
+ * separately from the page text.
+ */
 function pagesFromFormFeed(text: string): UploadedPageUnit[] | null {
-  if (!text.includes("\f")) return null;
-  const parts = text.split("\f").map((p) => p.trim()).filter(Boolean);
-  if (parts.length < 2) return null;
-  return parts.map((t, i) => ({
-    pageNumber: i + 1,
-    compiledPage: null,
-    text: t,
+  const units = pageUnitsFromExtractedText(text);
+  if (!units?.length) return null;
+  return units.map((u) => ({
+    pageNumber: u.sourcePage,
+    compiledPage: u.compiledPage,
+    text: u.text,
     pageIdentityKnown: true,
   }));
 }
@@ -249,6 +263,22 @@ export function buildAuthenticatedMatterCanonicalFromDocuments(
     suppressedChaseLabels: [],
     timestampObservations: [],
     bundleText: "",
+    evidenceState: { items: [], contradictions: [], chaseRequests: [], suppressed: [] },
+    attribution: {
+      defendants: [],
+      countAllocations: [],
+      deviceOwnership: [],
+      accountAssociation: [],
+      messageAuthorship: [],
+      contamination: [],
+    },
+    hearingLifecycle: {
+      latest: null,
+      superseded: [],
+      conflict: false,
+      conflictDescription: null,
+      basis: "none",
+    },
     precedence: {
       operativeDocumentId: null,
       supersededDocumentIds: [],

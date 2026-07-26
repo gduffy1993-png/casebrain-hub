@@ -24,6 +24,7 @@ import { normalizePracticeArea } from "@/lib/types/casebrain";
 import { expandZipsToFolderCaseGroups } from "@/lib/upload/zip-to-case-groups";
 import { evalPackNameForStorage, inferEvalPackFromTitle, parseEvalPackId } from "@/lib/eval-packs";
 import { extractTextAndMetaFromFile } from "@/lib/upload/extract-text-from-file";
+import { toPersistedPageUnits, type ExtractedPageUnit } from "@/lib/upload/pdf-page-units";
 
 export const runtime = "nodejs";
 
@@ -445,11 +446,15 @@ export async function POST(request: Request) {
     // Extract text with error handling for corrupted PDFs
     let text: string;
     let pageCount: number | null = null;
+    let pageUnits: ExtractedPageUnit[] = [];
+    let textLayerLimitation: string | null = null;
     let extractionError: string | null = null;
     try {
       const meta = await extractTextAndMetaFromFile(file, buffer);
       text = meta.text;
       pageCount = meta.pageCount;
+      pageUnits = meta.pageUnits;
+      textLayerLimitation = meta.textLayerLimitation;
     } catch (error) {
       console.error(`[upload] Failed to extract text from ${file.name}`, error);
       extractionError = error instanceof Error ? error.message : "Unknown extraction error";
@@ -475,6 +480,26 @@ export async function POST(request: Request) {
       text,
       env.REDACTION_SECRET,
     );
+
+    // Page units are persisted so later matter loads keep exact-page provenance even
+    // when AI enrichment was unavailable. Redacted with the same secret as the body.
+    const redactedPageUnits = toPersistedPageUnits(
+      pageUnits.map((unit) => ({
+        ...unit,
+        text: redact(unit.text, env.REDACTION_SECRET).redactedText,
+      })),
+    );
+    const pageProvenance =
+      redactedPageUnits.length > 0
+        ? {
+            pages: redactedPageUnits,
+            pageProvenance: {
+              compiledPageCount: redactedPageUnits.length,
+              pagesWithoutTextLayer: redactedPageUnits.filter((p) => p.textLayerEmpty).length,
+              ...(textLayerLimitation ? { textLayerLimitation } : {}),
+            },
+          }
+        : {};
     
     // Only attempt AI extraction if we have valid text (not an error message)
     let extracted;
@@ -497,6 +522,7 @@ export async function POST(request: Request) {
         aiSummary: null,
         extractionError,
         ...(pageCount != null ? { pageCount } : {}),
+        ...pageProvenance,
       };
     } else {
       try {
@@ -514,6 +540,7 @@ export async function POST(request: Request) {
           ...extracted,
           aiSummary: summary,
           ...(pageCount != null ? { pageCount } : {}),
+          ...pageProvenance,
         };
       } catch (error) {
         console.error(`[upload] Failed to extract case facts from ${file.name}`, error);
@@ -532,6 +559,7 @@ export async function POST(request: Request) {
           aiSummary: null,
           extractionError: error instanceof Error ? error.message : "AI extraction failed",
           ...(pageCount != null ? { pageCount } : {}),
+          ...pageProvenance,
         };
       }
     }

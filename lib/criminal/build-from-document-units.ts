@@ -18,10 +18,29 @@ import {
 import {
   buildCanonicalFindings,
   findingForCustodyInterviewClock,
-  shouldChaseRequestAgainstServedAliases,
   type CanonicalFinding,
 } from "@/lib/criminal/canonical-finding-model";
-import { attachFindingProvenance } from "@/lib/criminal/finding-provenance";
+import {
+  buildAttributionModel,
+  authorshipVerdict,
+  defendantScopeForLabel,
+  type AttributionModel,
+  type AttributionPageInput,
+} from "@/lib/criminal/attribution-model";
+import {
+  buildCanonicalEvidenceState,
+  type CanonicalEvidenceState,
+  type EvidenceObservation,
+} from "@/lib/criminal/evidence-state-canonical";
+import {
+  extractHearingNotices,
+  resolveHearingLifecycle,
+  type HearingLifecycle,
+} from "@/lib/criminal/hearing-notice-lifecycle";
+import {
+  attachFindingProvenance,
+  INSUFFICIENT_PROVENANCE_LIMITATION,
+} from "@/lib/criminal/finding-provenance";
 import {
   analyseCustodyInterviewClocks,
   observeTimestampsFromPage,
@@ -69,6 +88,8 @@ export type DerivedEvidenceRow = {
   sourcePage: string | null;
   compiledPage: string | null;
   pageIdentityKnown: boolean;
+  /** Defendant scope — every evidence row states who it relates to, or nobody. */
+  defendants?: string[];
 };
 
 export type PageTextAnchor = {
@@ -90,6 +111,11 @@ export type LiveCanonicalPipelineResult = {
   suppressedChaseLabels: string[];
   timestampObservations: TimestampObservation[];
   bundleText: string;
+  /** One reconciled evidence state that every surface — including chase — must read. */
+  evidenceState: CanonicalEvidenceState;
+  /** Defendant / device / account / authorship scope derived from the same page units. */
+  attribution: AttributionModel;
+  hearingLifecycle: HearingLifecycle;
   /** Auditable record of how the operative instrument was chosen. */
   precedence: {
     operativeDocumentId: string | null;
@@ -111,9 +137,16 @@ export function resolvePageUnits(doc: UploadedDocumentUnit): UploadedPageUnit[] 
   return [];
 }
 
-/** True only for genuine page units carrying a real source-document page number. */
+/**
+ * True for genuine page units. A compiled-bundle page number is an exact page identity
+ * in its own right: when a document is supplied as a compiled PDF its own pagination is
+ * often absent, but the compiled page is still precisely citable.
+ */
 export function isPageIdentityKnown(page: UploadedPageUnit): boolean {
-  return page.pageIdentityKnown !== false && typeof page.pageNumber === "number" && page.pageNumber > 0;
+  if (page.pageIdentityKnown === false) return false;
+  const hasSource = typeof page.pageNumber === "number" && page.pageNumber > 0;
+  const hasCompiled = typeof page.compiledPage === "number" && page.compiledPage > 0;
+  return hasSource || hasCompiled;
 }
 
 /**
@@ -130,10 +163,13 @@ export function pageRefsForUnit(page: UploadedPageUnit): {
   if (!isPageIdentityKnown(page)) {
     return { pageNumber: null, sourcePage: null, compiledPage: null, pageIdentityKnown: false };
   }
+  const hasSource = typeof page.pageNumber === "number" && page.pageNumber > 0;
+  const hasCompiled = typeof page.compiledPage === "number" && page.compiledPage > 0;
   return {
-    pageNumber: page.pageNumber!,
-    sourcePage: `p.${page.pageNumber}`,
-    compiledPage: page.compiledPage != null && page.compiledPage > 0 ? `p.${page.compiledPage}` : null,
+    // Source pagination is never synthesised from the compiled position.
+    pageNumber: hasSource ? page.pageNumber! : null,
+    sourcePage: hasSource ? `p.${page.pageNumber}` : null,
+    compiledPage: hasCompiled ? `p.${page.compiledPage}` : null,
     pageIdentityKnown: true,
   };
 }
@@ -146,7 +182,10 @@ export function documentText(doc: UploadedDocumentUnit): string {
       .map((p) => {
         const refs = pageRefsForUnit(p);
         if (!refs.pageIdentityKnown) return `[whole document — page identity unknown]\n${p.text}`;
-        return `[${refs.sourcePage}${refs.compiledPage ? ` / compiled ${refs.compiledPage}` : ""}]\n${p.text}`;
+        const label = refs.sourcePage
+          ? `${refs.sourcePage}${refs.compiledPage ? ` / compiled ${refs.compiledPage}` : ""}`
+          : `compiled ${refs.compiledPage}`;
+        return `[${label}]\n${p.text}`;
       })
       .join("\n\n");
   }
@@ -207,6 +246,27 @@ export function documentOnlyAnchor(doc: UploadedDocumentUnit): PageTextAnchor | 
 }
 
 /**
+ * Anchor for a document-level fact such as "this instrument is on file in role X".
+ * The supporting evidence is the document itself, so the page it starts on is a
+ * genuine anchor — unlike a text finding, which must be bound to the page carrying
+ * the words. Falls back to document-only provenance for unsplit text.
+ */
+export function documentStartAnchor(doc: UploadedDocumentUnit): PageTextAnchor | null {
+  const first = resolvePageUnits(doc).find(isPageIdentityKnown);
+  if (!first) return documentOnlyAnchor(doc);
+  const refs = pageRefsForUnit(first);
+  return {
+    sourceDocumentTitle: doc.title,
+    sourceDocumentType: doc.documentType ?? inferDocType(doc.title, first.text),
+    sourcePage: refs.sourcePage,
+    compiledPage: refs.compiledPage,
+    pageNumber: refs.pageNumber,
+    pageIdentityKnown: true,
+    snippet: first.text.slice(0, 160),
+  };
+}
+
+/**
  * Anchors for a needle, falling back to document-only provenance when the
  * supporting document was supplied unsplit. Never returns a synthetic page.
  */
@@ -233,23 +293,65 @@ function primaryAnchor(anchors: PageTextAnchor[]): PageTextAnchor | null {
   return anchors[0] ?? null;
 }
 
+function observationFromAnchor(
+  label: string,
+  state: SharedEvidenceState,
+  anchor: PageTextAnchor | null,
+): EvidenceObservation {
+  return {
+    label,
+    state,
+    sourceDocumentTitle: anchor?.sourceDocumentTitle ?? null,
+    sourceDocumentType: anchor?.sourceDocumentType ?? null,
+    sourcePage: anchor?.sourcePage ?? null,
+    compiledPage: anchor?.compiledPage ?? null,
+    pageIdentityKnown: anchor?.pageIdentityKnown ?? false,
+  };
+}
+
 /**
  * Repeated wording must list every page it was found on — never silently pick one.
  * Anchors without page identity are counted as document-level occurrences.
  */
-function formatMultiPageLimitation(anchors: PageTextAnchor[]): string | undefined {
-  const pageRefs = Array.from(
-    new Set(
-      anchors.filter((a) => a.pageIdentityKnown && a.sourcePage).map((a) => a.sourcePage as string),
-    ),
+function anchorPageRef(a: PageTextAnchor): string | null {
+  if (!a.pageIdentityKnown) return null;
+  if (a.sourcePage && a.compiledPage) return `${a.sourcePage} (compiled ${a.compiledPage})`;
+  if (a.sourcePage) return a.sourcePage;
+  if (a.compiledPage) return `compiled ${a.compiledPage}`;
+  return null;
+}
+
+/** Distinct citable page references across every candidate anchor. */
+export function candidateAnchorPageRefs(anchors: PageTextAnchor[]): string[] {
+  return Array.from(
+    new Set(anchors.map(anchorPageRef).filter((r): r is string => Boolean(r))),
   );
+}
+
+function formatMultiPageLimitation(anchors: PageTextAnchor[]): string | undefined {
+  const pageRefs = candidateAnchorPageRefs(anchors);
   const documentOnly = anchors.filter((a) => !a.pageIdentityKnown).length;
   const parts: string[] = [];
-  if (pageRefs.length > 1) parts.push(`Anchors on pages: ${pageRefs.join(", ")}`);
+  if (pageRefs.length > 1) {
+    parts.push(
+      `Wording appears on ${pageRefs.length} pages — all candidate anchors preserved: ${pageRefs.join(", ")}`,
+    );
+  }
   if (documentOnly > 0 && pageRefs.length > 0) {
     parts.push("plus whole-document text with no page identity");
   }
   return parts.length ? parts.join(" · ") : undefined;
+}
+
+/** Serialisable candidate anchors carried on the finding for every downstream exit. */
+function toSupportingAnchors(anchors: PageTextAnchor[]): CanonicalFinding["supportingAnchors"] {
+  return anchors.map((a) => ({
+    sourceDocumentTitle: a.sourceDocumentTitle,
+    sourceDocumentType: a.sourceDocumentType,
+    sourcePage: a.sourcePage,
+    compiledPage: a.compiledPage,
+    pageIdentityKnown: a.pageIdentityKnown,
+  }));
 }
 
 /**
@@ -259,8 +361,23 @@ function formatMultiPageLimitation(anchors: PageTextAnchor[]): string | undefine
 function rebindFindingToAnchor(
   f: CanonicalFinding,
   a: PageTextAnchor,
-  opts: { evidenceState: string; extraLimitation?: string | undefined },
+  opts: {
+    evidenceState: string;
+    extraLimitation?: string | undefined;
+    allAnchors?: PageTextAnchor[];
+  },
 ): CanonicalFinding {
+  const allAnchors = opts.allAnchors ?? [a];
+  const ambiguousAnchor = candidateAnchorPageRefs(allAnchors).length > 1;
+  // The generic "nothing citable yet" placeholder must not survive once a real anchor
+  // is bound, or it would hide the more precise multi-anchor limitation.
+  const priorLimitation =
+    f.provenance.unresolvedConflictOrLimitation &&
+    f.provenance.unresolvedConflictOrLimitation !== INSUFFICIENT_PROVENANCE_LIMITATION
+      ? f.provenance.unresolvedConflictOrLimitation
+      : null;
+  const limitation =
+    [opts.extraLimitation, priorLimitation].filter(Boolean).join(" · ") || null;
   const attached = attachFindingProvenance({
     sourceDocumentTitle: a.sourceDocumentTitle,
     sourceDocumentType: a.sourceDocumentType ?? "document",
@@ -270,14 +387,15 @@ function rebindFindingToAnchor(
     evidenceState: opts.evidenceState,
     defendant: f.provenance.defendant,
     countNumber: f.provenance.countNumber,
-    unresolvedConflictOrLimitation:
-      f.provenance.unresolvedConflictOrLimitation ?? opts.extraLimitation ?? null,
+    unresolvedConflictOrLimitation: limitation,
   });
   return {
     ...f,
     provenance: attached.provenance,
     provenanceLine: attached.line,
-    unresolved: f.unresolved || attached.unresolved,
+    // Repeated wording is not silently resolved to the first hit.
+    unresolved: f.unresolved || attached.unresolved || ambiguousAnchor,
+    supportingAnchors: toSupportingAnchors(allAnchors),
   };
 }
 
@@ -561,7 +679,7 @@ export function buildCanonicalPipelineFromDocumentUnits(
     const roleAnchor =
       primaryAnchor(findPageAnchorsForText(d, /\b(amended|superseded|replaces|operative)\b/i)) ??
       primaryAnchor(findPageAnchorsForText(d, d.title.slice(0, 24))) ??
-      documentOnlyAnchor(d);
+      documentStartAnchor(d);
     return buildDocumentRelationshipNode({
       id: d.id,
       title: d.title,
@@ -598,6 +716,43 @@ export function buildCanonicalPipelineFromDocumentUnits(
 
   const rt = recordingTranscriptFromPages(ordered);
 
+  // Attribution is derived from the same page units, so defendant/device/account/
+  // authorship scope carries the same provenance as every other finding.
+  const attributionPages: AttributionPageInput[] = ordered.flatMap((d) =>
+    resolvePageUnits(d).map((p) => {
+      const refs = pageRefsForUnit(p);
+      return {
+        text: p.text,
+        sourceDocumentTitle: d.title,
+        sourceDocumentType: d.documentType ?? null,
+        sourcePage: refs.sourcePage,
+        compiledPage: refs.compiledPage,
+        pageIdentityKnown: refs.pageIdentityKnown,
+      };
+    }),
+  );
+  const attribution = buildAttributionModel(attributionPages);
+
+  const hearingLifecycle = resolveHearingLifecycle(
+    extractHearingNotices(
+      ordered.flatMap((d) =>
+        resolvePageUnits(d).map((p) => {
+          const refs = pageRefsForUnit(p);
+          return {
+            documentId: d.id,
+            documentTitle: d.title,
+            documentType: d.documentType ?? null,
+            uploadOrder: d.uploadOrder,
+            text: p.text,
+            sourcePage: refs.sourcePage,
+            compiledPage: refs.compiledPage,
+            pageIdentityKnown: refs.pageIdentityKnown,
+          };
+        }),
+      ),
+    ),
+  );
+
   const timestampObservations = ordered.flatMap((d) =>
     resolvePageUnits(d).flatMap((p) => {
       const refs = pageRefsForUnit(p);
@@ -620,8 +775,110 @@ export function buildCanonicalPipelineFromDocumentUnits(
     : [];
   const draftPrimary = primaryAnchor(draftAnchors);
 
+  // Single reconciled evidence state: derived rows, recording/transcript modality
+  // states and referenced-but-absent material all resolve here before anything is
+  // chased, so no surface can chase what another surface reports as served.
+  const referencedAbsentAll = graph.referencedAbsentAttachments.length
+    ? graph.referencedAbsentAttachments
+    : detectReferencedAbsentAttachments(bundleText, onFileLabels);
+
+  const evidenceObservations: EvidenceObservation[] = [
+    ...evidenceRows.map((r) => ({
+      label: r.label,
+      state: r.existence,
+      sourceDocumentTitle: r.sourceDocumentTitle,
+      sourceDocumentType: r.sourceDocumentType,
+      sourcePage: r.sourcePage,
+      compiledPage: r.compiledPage,
+      pageIdentityKnown: r.pageIdentityKnown,
+      defendant: r.defendants?.[0] ?? null,
+    })),
+    ...(rt
+      ? [
+          observationFromAnchor("Interview recording", rt.recordingState, primaryAnchor(rt.anchors)),
+          observationFromAnchor("Interview transcript", rt.transcriptState, primaryAnchor(rt.anchors)),
+        ]
+      : []),
+    ...referencedAbsentAll.map((ref) => {
+      const anchors = ordered.flatMap((d) =>
+        anchorsOrDocumentOnly(d, ref.referencedLabel.slice(0, 40)),
+      );
+      const state: SharedEvidenceState =
+        ref.onFileState === "referred_only" ? "referred_only" : "missing";
+      return observationFromAnchor(ref.referencedLabel, state, primaryAnchor(anchors));
+    }),
+  ];
+
+  const evidenceState = buildCanonicalEvidenceState(evidenceObservations);
+
+  const attributionFindingInputs = Array.from(
+    new Set([
+      ...attribution.deviceOwnership.map((d) => d.person),
+      ...attribution.accountAssociation.map((a) => a.person),
+    ]),
+  )
+    .filter((p): p is string => Boolean(p))
+    .map((person) => {
+      const verdict = authorshipVerdict(attribution, person);
+      const anchor =
+        attribution.deviceOwnership.find((d) => d.person === person) ??
+        attribution.accountAssociation.find((a) => a.person === person)!;
+      return {
+        person,
+        ownsDevice: attribution.deviceOwnership.some((d) => d.person === person),
+        holdsAccount: attribution.accountAssociation.some((a) => a.person === person),
+        authorshipEstablished: verdict.attributed,
+        provenance: {
+          sourceDocumentTitle: anchor.sourceDocumentTitle,
+          sourceDocumentType: "telecoms_report",
+          sourcePage: anchor.sourcePage,
+          compiledPage: anchor.compiledPage,
+          pageIdentityKnown: anchor.pageIdentityKnown,
+          defendant: person,
+        },
+        attribution: {
+          defendants: attribution.defendants,
+          coDefendantContamination: attribution.contamination.some((c) => c.defendant === person),
+          deviceOwner: attribution.deviceOwnership.find((d) => d.person === person)?.person ?? null,
+          accountHolder: attribution.accountAssociation.find((a) => a.person === person)?.person ?? null,
+          messageAuthor: verdict.attributed ? person : null,
+          authorshipBasis: verdict.attributed ? ("attributed" as const) : ("not_established" as const),
+          limitation: verdict.limitation,
+        },
+      };
+    });
+
   const findings = buildCanonicalFindings({
     documentNodes: precedence.nodes,
+    hearingLifecycle: hearingLifecycle.latest
+      ? {
+          lifecycle: hearingLifecycle,
+          provenance: {
+            sourceDocumentTitle: hearingLifecycle.latest.documentTitle,
+            sourceDocumentType: "hearing_notice",
+            sourcePage: hearingLifecycle.latest.sourcePage,
+            compiledPage: hearingLifecycle.latest.compiledPage,
+            pageIdentityKnown: hearingLifecycle.latest.pageIdentityKnown,
+          },
+        }
+      : null,
+    evidenceStateContradictions: evidenceState.contradictions.map((c) => {
+      const item = evidenceState.items.find((i) => i.label === c.label);
+      const obs = item?.observations[0];
+      return {
+        label: c.label,
+        states: c.states,
+        description: c.description,
+        provenance: {
+          sourceDocumentTitle: obs?.sourceDocumentTitle ?? null,
+          sourceDocumentType: obs?.sourceDocumentType ?? null,
+          sourcePage: obs?.sourcePage ?? null,
+          compiledPage: obs?.compiledPage ?? null,
+          pageIdentityKnown: obs?.pageIdentityKnown ?? false,
+        },
+      };
+    }),
+    messageAttribution: attributionFindingInputs,
     draftVersusSigned: draftSigned
       ? {
           draftLabel: draftSigned.draft.title,
@@ -653,9 +910,7 @@ export function buildCanonicalPipelineFromDocumentUnits(
           },
         }
       : null,
-    referencedAbsent: graph.referencedAbsentAttachments.length
-      ? graph.referencedAbsentAttachments
-      : detectReferencedAbsentAttachments(bundleText, onFileLabels),
+    referencedAbsent: referencedAbsentAll,
     exhibitCollisions: graph.exhibitCollisions.length
       ? graph.exhibitCollisions
       : detectExhibitLabelCollisions(
@@ -712,16 +967,22 @@ export function buildCanonicalPipelineFromDocumentUnits(
         findings[i] = rebindFindingToAnchor(f, a, {
           evidenceState: f.referencedAbsent.onFileState,
           extraLimitation: formatMultiPageLimitation(anchors),
+          allAnchors: anchors,
         });
       }
     }
     if (f.kind === "exhibit_label_collision" && f.exhibitCollision) {
-      const match = exhibitEntries.find((e) => e.label === f.exhibitCollision!.label);
-      const a = match?.anchors[0];
+      // A collision is evidenced by every page carrying the label, not just the first
+      // description that happened to be extracted.
+      const collisionAnchors = exhibitEntries
+        .filter((e) => e.label === f.exhibitCollision!.label)
+        .flatMap((e) => e.anchors);
+      const a = collisionAnchors[0];
       if (a) {
         findings[i] = rebindFindingToAnchor(f, a, {
           evidenceState: "not_safely_confirmed",
-          extraLimitation: formatMultiPageLimitation(match?.anchors ?? []),
+          extraLimitation: formatMultiPageLimitation(collisionAnchors),
+          allAnchors: collisionAnchors,
         });
       }
     }
@@ -788,41 +1049,41 @@ export function buildCanonicalPipelineFromDocumentUnits(
     }
   }
 
-  // Chase candidates only from detected missing/incomplete evidence + referenced-absent findings.
-  const chaseCandidates = [
-    ...evidenceRows
-      .filter((r) => r.existence === "missing" || r.existence === "incomplete")
-      .map((r) => r.label),
-    ...findings
-      .filter((f) => f.kind === "referenced_absent_attachment" && f.referencedAbsent)
-      .map((f) => f.referencedAbsent!.referencedLabel),
-  ];
-
-  const servedRows = evidenceRows
-    .filter((r) => r.existence === "served")
-    .map((r) => ({ label: r.label, state: r.existence as SharedEvidenceState }));
-
-  const chaseLabels: string[] = [];
-  const suppressedChaseLabels: string[] = [];
-  const seenChase = new Set<string>();
-  for (const label of chaseCandidates) {
-    const key = label.toLowerCase();
-    if (seenChase.has(key)) continue;
-    seenChase.add(key);
-    const verdict = shouldChaseRequestAgainstServedAliases(label, servedRows);
-    if (!verdict.chase) suppressedChaseLabels.push(label);
-    else chaseLabels.push(label);
+  // Defendant allocation per count, from the charge instruments themselves. A count
+  // with no named defendant stays explicitly unallocated rather than inheriting one.
+  for (let i = 0; i < charges.length; i++) {
+    const charge = charges[i]!;
+    if (charge.count == null) continue;
+    if (charge.defendants?.length) continue;
+    const allocation = attribution.countAllocations.find((a) => a.countNumber === charge.count);
+    if (allocation?.defendants.length) {
+      charges[i] = { ...charge, defendants: allocation.defendants };
+    }
   }
+
+  // Chase requests come only from the reconciled canonical state — nothing here
+  // regenerates its own view of what is outstanding.
+  const chaseLabels = evidenceState.chaseRequests.map((r) => r.label);
+  const suppressedChaseLabels = evidenceState.suppressed.map((s) => s.label);
+
+  // Defendant scope on every evidence row, from explicit naming only.
+  const scopedEvidenceRows: DerivedEvidenceRow[] = evidenceRows.map((r) => ({
+    ...r,
+    defendants: defendantScopeForLabel(r.label, bundleText, attribution.defendants),
+  }));
 
   return {
     graph: { ...graph, nodes: precedence.nodes },
     findings,
     charges,
-    evidenceRows,
+    evidenceRows: scopedEvidenceRows,
     chaseLabels,
     suppressedChaseLabels,
     timestampObservations,
     bundleText,
+    evidenceState,
+    attribution,
+    hearingLifecycle,
     precedence: {
       operativeDocumentId: precedence.operative?.id ?? null,
       supersededDocumentIds: precedence.superseded.map((n) => n.id),

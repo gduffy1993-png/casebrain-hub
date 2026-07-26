@@ -14,6 +14,13 @@
 export const UNKNOWN_PAGE_IDENTITY_LIMITATION =
   "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page";
 
+/**
+ * Placeholder applied when nothing citable is available yet. It is superseded once a
+ * real anchor is bound, so it must never crowd out a more precise limitation.
+ */
+export const INSUFFICIENT_PROVENANCE_LIMITATION =
+  "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof";
+
 /** Phrase rendered inline on every exit in place of a page reference. */
 export const UNKNOWN_PAGE_IDENTITY_PHRASE =
   "exact page unavailable (unsplit whole-document text)";
@@ -166,11 +173,16 @@ export function pageProvenanceForSurface(p: FindingProvenance): {
   return {
     page: primary,
     pageNumber: digits ? parseInt(digits, 10) : null,
-    // Keep both numbering systems when both are known — never collapse one into the other.
+    // Keep both numbering systems when both are known — never collapse one into the
+    // other, and never present a compiled-bundle page as source-document pagination.
     pageLabel:
       p.sourcePage && p.compiledPage
         ? `${p.sourcePage} (compiled ${p.compiledPage})`
-        : primary,
+        : p.sourcePage
+          ? p.sourcePage
+          : p.compiledPage
+            ? `compiled ${p.compiledPage}`
+            : null,
     sourcePage: p.sourcePage,
     compiledPage: p.compiledPage,
     pageIdentityKnown: true,
@@ -209,8 +221,7 @@ export function assertFindingProvenanceOrLimitation(
   return {
     ...p,
     unresolvedConflictOrLimitation:
-      p.unresolvedConflictOrLimitation ??
-      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      p.unresolvedConflictOrLimitation ?? INSUFFICIENT_PROVENANCE_LIMITATION,
   };
 }
 
