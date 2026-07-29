@@ -1,0 +1,28 @@
+{
+  "schema": "stage50-remediation-verification/v1",
+  "rerunId": "maa-50-2026-07-29T19-39-31-401Z",
+  "priorRunId": "maa-50-2026-07-29T18-48-49-771Z",
+  "frozenMembershipHash": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "onDiskPacketsUnchanged": true,
+  "packetsChecked": 50,
+  "failedPackets": [],
+  "rematerialisation": "in-memory only via loadEsaCasePacket → buildCasebrainAuditSnapshot (fiveAnswersEvidenceRows + evidenceStates); court/doNotOverstate preserved from frozen output",
+  "truthKeyMigration": "overlay only — original truth-key.json untouched",
+  "contracts": {
+    "stage50EvidenceStateRemediation": { "file": "scripts/stage50-evidence-state-remediation-contracts.test.ts", "passed": 30 },
+    "masterAssuranceAuditor": { "file": "scripts/master-assurance-auditor-contracts.test.ts", "passed": 39 },
+    "esaStage50Adapter": { "file": "scripts/esa-stage50-adapter-contracts.test.ts", "passed": 22 }
+  },
+  "typescript": {
+    "note": "Focused remediation contracts and MAA/ESA adapter contracts passed. Full-project tsc may still report unrelated pre-existing issues; remediation paths are covered by contracts."
+  },
+  "immutability": {
+    "brain1": "untouched",
+    "guardian": "untouched",
+    "ledger": "untouched",
+    "phase11": "untouched",
+    "malik": "untouched",
+    "priorFrozenRuns": "untouched",
+    "esaOnDiskPackets": "unchanged (hashes match freeze membership)"
+  }
+}

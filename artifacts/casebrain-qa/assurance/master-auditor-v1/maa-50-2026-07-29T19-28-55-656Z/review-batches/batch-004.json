@@ -1,0 +1,856 @@
+{
+  "batchIndex": 4,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "56a38eb619f209c90838bd2bff014f8070cafa55378990b49f418e0552f68dfd",
+      "templateHash": "5e399730286393fc6a89c6d8fbb39ac653ee8324f2dbd5e163ad41acdd4ad626",
+      "text": "MG6C/CHR — chronology — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-56a38eb619f2"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "49d427670d3780ee6d2b65a12136166487341cafd39ef6f63af2638395359c3f",
+      "templateHash": "96c3bc4f3359b50f54be387846273185258992a791f3c43e70d91fcad57e55dc",
+      "text": "MG6C/INT — intent evidence — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-49d427670d37"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "2f4587f508c8531fd9add47e1af4486b0147f923d6cdf3c0645102e0a7760854",
+      "templateHash": "300a6948efa19a9bec20d8dfd5f1ae23983a50e05b5999fd1528d38dba173e25",
+      "text": "Outstanding: chronology; intent evidence. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-142",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-142-disclosure_chase-2f4587f508c8"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "96babf5d599e9aa4bfb95070972e2a2136b12a4a6ab8e06bb07d3282cfe5d49d",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-055-truth_map-96babf5d599e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6837ee55474bbe7e2132d0caca9af11ef43e3a16de2c9f3791aa8b8c502ec38d",
+      "templateHash": "a5728df57177a18cd450475becd12316aaa5f4fac3afc01f91a3950a7b84ff2a",
+      "text": "Served material | 5+ | MG5; officer MG11; custody summary extract · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-6837ee55474b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e1758ee6774b7c9b3c7b164748d50b0e321872244136ce357de7e1d3903935aa",
+      "templateHash": "e888b550faf106112bf2820f3bfb36b8fdfbec8086d9c358a705fce8d9a63999",
+      "text": "Between 1 January 2026 and 28 February 2026 at Marketgate Magistrates Court — particulars per MG5. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-e1758ee6774b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "2c7d9b1b903830ebc5f727bee95dbfec0b8056de0f501ac6770c0cf1cab6622a",
+      "templateHash": "3791c637e4249d0093d1cebd8d35d57671467af37929c9acd69e78c4781259a8",
+      "text": "MG6C/BWV — BWV export — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-2c7d9b1b9038"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3658677ee719c15847d5b43d6c46993f1e64f27e2f188a303255290419fecd34",
+      "templateHash": "a9531e906f2bdc5d79fff6d25f971b042148e4e09754a87842941c495ff3e0b6",
+      "text": "MG6C/RIS — risk assessment — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-3658677ee719"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0ceb51c08c6d23b2bc86135ebd8840d4bf8a8b25b13a694cf7f579a3d1ccc38b",
+      "templateHash": "e7469396604778923611cc45ad8cbf6e1d195bd9abdef36f96dd337d6a737f10",
+      "text": "MG6C/USE — use-of-force record — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-0ceb51c08c6d"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "66aa9f55eff38d376a939289f270310e8de79cd0b9426d12b805e53cd5538379",
+      "templateHash": "0a0603d16ead11523be3c2bb90b713f5302de9c8f58c5f8958eb99bbf72ac415",
+      "text": "Outstanding: BWV export; full custody record; risk assessment; interview recording; use-of-force record. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-66aa9f55eff3"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0d0773f362318eeea7029da321311bbbd48ad1c66b85b31a0282c2c618716acf",
+      "templateHash": "9948582d3df1426c9dcf81041513b10802f1b1bc7212cee01a5c16ca7730eac0",
+      "text": "Provisional — partial cctv stills on index only bwv papers · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-0d0773f36231"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a316e49ad49582557fe53729f6d7a5f60a58cce7cabc95d9f8d8ea1f2f587539",
+      "templateHash": "1f2b2b676acbe036c2d3b0ddb75124885150ef4237042c5a7f3e43559bacc34a",
+      "text": "MG6C/CON — continuity — Vance Birch — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-a316e49ad495"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "239fb3d44ef93e292a34796bdd8341c35fe81c344d808474cf43e0e65dd1f915",
+      "templateHash": "df4e29754cfb5b3e5873e85749ae23acd2eb977a34f9c3862da090d90068823d",
+      "text": "MG6C/ENC — encro handle mapping annex (Birch / folio 172) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-172",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-172-disclosure_chase-239fb3d44ef9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e2880209784fc21468df6a924bdd8a14289721d9ef24fcfccfce9fc3f51d5e8c",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-048",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-048-truth_map-e2880209784f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ae88cbdbd38da77e1f6f4cdafe6883c3c0d34a86b1d19b87da3fa68480408fe3",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-048",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-048-truth_map-ae88cbdbd38d"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "49193496069163b82474722f3af40f37ad93357edbd0463314e0b32f04bb3d65",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-048",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-048-truth_map-491934960691"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d3f0cf7f8966be92345f2139efcc16b272cbbe7c09f47c49be1142f11b005139",
+      "templateHash": "fe4f4c0a93a4bbe67a23b15e6013fcefb34653bf97723bb141771da5671cafdd",
+      "text": "Between 1 January 2026 and 28 February 2026 at Hillchester Crown Court — particulars per MG5. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-d3f0cf7f8966"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c68dab0ce694c99ddf8eb6ea38726885756c986fa8a264ad728c03e8892c5b56",
+      "templateHash": "3166df13f9e81dadd802f6606280068130a3eade9701266c9cda2ea7526cd38a",
+      "text": "MG6C/ABE — ABE video/transcript — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-c68dab0ce694"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "784d30880f8eb6283b26308f04b9d20569921b5ecbd2c5f708b090062fd2477d",
+      "templateHash": "7bbf1a63d40a51ca69020b65813c68b0aca429c024614893559a0d7df5c690b9",
+      "text": "MG6C/FIR — first account material — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-784d30880f8e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fa24ea704a78ceba4cb25e557f46642792eb00efdfcdbe41eadb6c5c79254dd7",
+      "templateHash": "eb8d56ab2b014784f7dffe9263e8df26dd947c0b24b80b804937f19d344fa28e",
+      "text": "MG6C/THI — third-party records schedule — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-fa24ea704a78"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8be78a9021cdaa627ea562892555898255940b4bb45cdbf1a1cefa432aa7bc81",
+      "templateHash": "c642ed9f5f05bd545e1278f5f1e1a8255c44e003b6f68deade31e040a68bdd6c",
+      "text": "MG6C/DIS — disclosure officer note — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-8be78a9021cd"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0ff2327cc2a4778289a7ca238aee229b8b844f5b9209521a2eaa934aeb75cc60",
+      "templateHash": "34e66b2c6e19fbea0b9d86a0d97db3d0772d1d6c56eeffd91c8954b2d6419cb9",
+      "text": "Outstanding: ABE video/transcript; first account material; third-party records schedule; disclosure officer note. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-048",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-048-disclosure_chase-0ff2327cc2a4"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c43eb929700165c81839e1ba474b0f9d947f7ee20a86296471363fb63ff6fce8",
+      "templateHash": "51a4846bb01d3a57c9d8fa7696262ba36bb79e49c6f218a2636b8e8701c39a07",
+      "text": "MG6C/INT — interview summary — served on bundle. · served · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-063",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-state_mismatch-sim-063-truth_map-c43eb9297001"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7644ca30fba62564a89344105b8021de950d804fbc60a130d283d4087429775d",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-063",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-063-truth_map-7644ca30fba6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "4514ac68fbd6ae5249f3518e911cad4ea6d9c8098b93ad42fc0daa007475da28",
+      "templateHash": "68219dd8112873eb7a98f9fda312384fad310f87f8d8c4a865b26cfab09e5520",
+      "text": "Between 1 January 2026 and 28 February 2026 at Rosedale Magistrates Court — particulars per MG5. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-4514ac68fbd6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fc39d160053b59667348d48dd0d6bcbf8479b33285a36124a1280370ef044bb0",
+      "templateHash": "5c5f2f2dc9313fcefc66d2be394de8c3807fc7e5857162a4f0578f7a368cd117",
+      "text": "The allegation depends on agency records and notification history not fully served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-fc39d160053b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b32783dda29cadf0efa6aa8d06f8bf188df528db337f415985f0d33364c23f7b",
+      "templateHash": "9619101affc0ef48f131d696b1a31c7471d09bd3cee4eff07a7e75531c7260db",
+      "text": "MG6C/FUL — full claim history — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-b32783dda29c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "58a2b1882a522ca7f1cf483f57faa029711442dd9df2b8d0c021dd3575fd56bf",
+      "templateHash": "a56d976b86af748dd43e2bfee4010d8981238ff0d079366a50a433532b03b568",
+      "text": "MG6C/NOT — notification logs — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-58a2b1882a52"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "4dc93cf18b883035f5f4e1e422a9f66f2e7dc554d61c496ce03676aec360a548",
+      "templateHash": "ef6c6670a055ce356ed52b088349b8d0daa3898ea32d2983fbdfca4a87f4e9fe",
+      "text": "MG6C/OVE — overpayment calculation — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-4dc93cf18b88"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d051af4f4eed2220bb6ce78ac6fae16a9e653849c1580478ca830053d81cf200",
+      "templateHash": "6587267bdb7f544d1f6573c3d92db8b7283232c613da999e591a59f8a2dd964e",
+      "text": "Main issue: The allegation depends on agency records and notification history not fully served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-063",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-063-disclosure_chase-d051af4f4eed"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "439e99d37bdf20cf3474e9b4ce1db4b181aeb8a8f6546492aba111e2a82e8890",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-038",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-038-truth_map-439e99d37bdf"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "4624218cb8b94adfa795086bbc4dcbc19db1fbc7d6f73d759ec868b6b95429e9",
+      "templateHash": "dd33b99ae41d6354a125e3cf3da578e98577aca6182b566994f837ff854effd6",
+      "text": "MG6C/DEV — device attribution evidence — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-4624218cb8b9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "38b0628813affc436d2900935ee2fe65e324e19ce841b4af5919aeba449f3fb6",
+      "templateHash": "bd06c6dc321f7949b0efa780b796b0018dfee722af3279d9c3cd06fe19298a4b",
+      "text": "MG6C/DOW — download continuity — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-38b0628813af"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "dcc14e7c48aa09f35a2077652c45979e7d89abcb571d921bcad206884a045ec1",
+      "templateHash": "0dd4a48d0cc18481d4bac11ef036b39243499e6984552313329b5195e0480f4c",
+      "text": "MG6C/CEL — cellsite linking defendant to device — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-dcc14e7c48aa"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "30bf63eaf9167fd3820523da5f11b49144fde847c368bde1def664c5e23b1b6f",
+      "templateHash": "bc33a0a144361558501762afe3e3af83055dfdc923401135e6985be843e519b7",
+      "text": "MG6C/EXP — expert methodology — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-30bf63eaf916"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fe4ec7440fb38a312d3d293b0e135d3576e92e1444e24bb6ca1a01e234171e16",
+      "templateHash": "0531568c18ff7c1afc12985803ca5a3c1d5dc8e470e5447ae10bcbfc391d22e9",
+      "text": "Outstanding: device attribution evidence; download continuity; cellsite linking defendant to device; expert methodology. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-038",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-038-disclosure_chase-fe4ec7440fb3"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d8b56050692b575a62b0965625f316281f5943586283164a88deb4cc196e6a3d",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-020",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-020-truth_map-d8b56050692b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "16ae0b83827be1e7ced2c252ee723e56707e96083f8e109d44bbb7f3f918ab18",
+      "templateHash": "400b3b2ab7ef6337b23cd8d1aeb1ff090d4fcf71ad013e97fc328ca2f93c54cf",
+      "text": "Uncertain on papers: two MG11 versions. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-020",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-020-disclosure_chase-16ae0b83827b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8badbb68be85a1630b3be39fc2ccbf9889c924510658ba152c16d19c45b0ec26",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-073-truth_map-8badbb68be85"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3be2a841f30100491fe42cde1d955363c942cf5dc0aeb4b40ba595490763c983",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-073-truth_map-3be2a841f301"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "51bdb8d2e89815e8fafd9616fa7ff69fe94b562c3516a4e2f17879394b0e15e4",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-073-truth_map-51bdb8d2e898"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5c74bab2f19713b08b95ba3f876d965730bd1a4825dd58aba75c137dac959acf",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-073-truth_map-5c74bab2f197"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fcf36b1a2944bae96d8418ee44c68cbd75c194677ead236c39adba8b1e9c9d65",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-073-truth_map-fcf36b1a2944"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "03d64d8b2148e1e11a144c3634e5df94b8599b085b76f3d2d7dcffca5200a63d",
+      "templateHash": "292bc14d953cf99d57a7f13d054eb9b24d5845f707e622a8d7a48c134f5cd965",
+      "text": "Between 1 January 2026 and 28 February 2026 at Middenton Youth Court — particulars per MG5. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-03d64d8b2148"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "48054770ce2aa299544f410c77e7bf76fd94b35631b4a8b7615688c34b529d54",
+      "templateHash": "3115c9e60b2838a3e9a25d9387e8aef6a374eae001499f51934c26e53d292ddd",
+      "text": "Youth and mental-health vulnerabilities are flagged but appropriate adult, custody, and interview records are incomplete. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-48054770ce2a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7ba4a1e33672d0ceadab473145540a4c7caf303b1cc5f0f286ff35386274929f",
+      "templateHash": "078565eef5c76522bb265b6d1fe4433633eed3cab91235de048f75bfcfded16c",
+      "text": "Do not treat interview admissions as safe without custody and safeguard material. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-7ba4a1e33672"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "791a902abcdb6524799ee7dc0f949f93d61f0b97eb01cb7c85a9f7aef9771377",
+      "templateHash": "fa4e8da9caefb2d7b576b1fadc483dddd2c16e45e61288a2c8a8a489d09cf198",
+      "text": "Uncertain on papers: fitness, safeguards, and reliability of interview account. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-791a902abcdb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "dae1bce12fd533bae8e967f6d3bc9b623d750a7dc35bee861e027fbba1c6cba3",
+      "templateHash": "0fae4e65740cbe1096ba34ab6517883830752dc2c24f9402869bfe4fc9437313",
+      "text": "MG6C/APP — appropriate adult attendance record — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-dae1bce12fd5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5c4e2c84bdf74b2f3e5e453e5287e1a658e514da21e55ad984794adba122a950",
+      "templateHash": "7095d2488cc16500c6a122aa45e88e00b4fbb6bc71b0472e13e9b81e1d6aadf4",
+      "text": "MG6C/MEN — mental health triage — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-5c4e2c84bdf7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "61551e6dcfb79da9b267ffb089e6f5e63bf24375f524df8e9c265e1946dc6a85",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-138",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-138-truth_map-61551e6dcfb7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

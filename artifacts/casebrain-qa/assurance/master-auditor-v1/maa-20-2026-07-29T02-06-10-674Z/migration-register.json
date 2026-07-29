@@ -1,0 +1,311 @@
+[
+  {
+    "migrationId": "MIG-001",
+    "originalSource": "lib/eval/assurance/controls.ts AUD-PROV-UNKNOWN-PAGE",
+    "originalVersion": "foundation-hardening-v1",
+    "disposition": "retained",
+    "reason": "Unknown page identity must remain explicit across exits.",
+    "newControlId": "MAA-PROVENANCE",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "foundation-hardening-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "unsplit fullText never claims p.1"
+    ],
+    "knownLimitations": [
+      "Requires pageIdentityKnown fields on materialisation surfaces"
+    ]
+  },
+  {
+    "migrationId": "MIG-002",
+    "originalSource": "lib/eval/assurance/controls.ts AUD-PROV-FALSE-PAGE-DEFAULT",
+    "originalVersion": "foundation-hardening-v1",
+    "disposition": "retained",
+    "reason": "Synthetic page defaults remain forbidden.",
+    "newControlId": "MAA-PROVENANCE",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "foundation-hardening-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "p.null / page 1 default defects"
+    ],
+    "knownLimitations": []
+  },
+  {
+    "migrationId": "MIG-003",
+    "originalSource": "lib/eval/assurance/controls.ts AUD-PROV-SOURCE-VS-COMPILED-PAGE",
+    "originalVersion": "foundation-hardening-v1",
+    "disposition": "retained",
+    "reason": "Source and compiled numbering must stay distinct.",
+    "newControlId": "MAA-PROVENANCE",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "foundation-hardening-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "Malik compiled-page provenance"
+    ],
+    "knownLimitations": [
+      "Gold packets often lack compiledPage fields — then not_exercised"
+    ]
+  },
+  {
+    "migrationId": "MIG-004",
+    "originalSource": "lib/eval/assurance/controls.ts AUD-DOC-*",
+    "originalVersion": "foundation-hardening-v1",
+    "disposition": "upgraded",
+    "reason": "Operative precedence folded into document-lifecycle lane with relationship model.",
+    "newControlId": "MAA-DOC-LIFECYCLE",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "foundation-hardening-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "silent supersession defects"
+    ],
+    "knownLimitations": [
+      "Saved gold summaries may omit full relationship graphs"
+    ]
+  },
+  {
+    "migrationId": "MIG-005",
+    "originalSource": "lib/criminal/solicitor-visible-boundary-profiles.ts",
+    "originalVersion": "scale3000-run-v6+",
+    "disposition": "retained",
+    "reason": "Surface-aware bullet/header profiles prevent thousands of mid-sentence false positives.",
+    "newControlId": "MAA-COMPLETENESS",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "phase11-remediation.test.ts",
+    "historicalCasesOrFindings": [
+      "boundary_mid_sentence_cut detector_false_positive on truth_map/case_header"
+    ],
+    "knownLimitations": [
+      "Profiles cover contracted solicitor surfaces; unknown surfaces fall back carefully"
+    ]
+  },
+  {
+    "migrationId": "MIG-006",
+    "originalSource": "lib/criminal/solicitor-visible-boundary.ts hasIncompleteRequiredDisclaimer",
+    "originalVersion": "phase11-remediation-v4+",
+    "disposition": "retained",
+    "reason": "GOLD-11-039 class incomplete disclaimer FN must remain detectable.",
+    "newControlId": "MAA-COMPLETENESS",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "phase11-remediation.test.ts",
+    "historicalCasesOrFindings": [
+      "GOLD-11-039"
+    ],
+    "knownLimitations": []
+  },
+  {
+    "migrationId": "MIG-007",
+    "originalSource": "lib/criminal/absolute-proof-wording.ts",
+    "originalVersion": "solicitor absolute-proof gate",
+    "disposition": "retained",
+    "reason": "Absolute-proof affirmative copy remains blocked.",
+    "newControlId": "MAA-HALLUCINATION",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "malik-shared-root-remediation-round2-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "scale3000 zeroCopyableAbsoluteProof"
+    ],
+    "knownLimitations": [
+      "Warning/do-not-say lists may contain banned phrases by design"
+    ]
+  },
+  {
+    "migrationId": "MIG-008",
+    "originalSource": "lib/criminal/cross-exit-contradiction-scanner.ts",
+    "originalVersion": "Malik shared-root round 1–2",
+    "disposition": "upgraded",
+    "reason": "Scan + enforce used as cross-exit lane; enforcement meaning preserved.",
+    "newControlId": "MAA-CROSS-EXIT",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "malik-shared-root-remediation-round2-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "PACE UNKNOWN→SAFE",
+      "served recording chased"
+    ],
+    "knownLimitations": [
+      "Requires ExitSnapshot construction from saved surfaces"
+    ]
+  },
+  {
+    "migrationId": "MIG-009",
+    "originalSource": "lib/criminal/attribution-model.ts",
+    "originalVersion": "Malik round 2",
+    "disposition": "retained",
+    "reason": "Fail-closed attribution; no defendant broadcast.",
+    "newControlId": "MAA-PARTIES-ATTRIBUTION",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "malik-shared-root-remediation-round2-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "Daniel Okeke / OCR glue broadcast defect class"
+    ],
+    "knownLimitations": [
+      "Gold packets lack full attribution model dump — text heuristics used"
+    ]
+  },
+  {
+    "migrationId": "MIG-010",
+    "originalSource": "lib/criminal/evidence-state-reconcile.ts",
+    "originalVersion": "evidence-state audit + Malik round 1",
+    "disposition": "retained",
+    "reason": "Distinct evidence units and chase rules.",
+    "newControlId": "MAA-EVIDENCE-STATE",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "malik-shared-root-remediation-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "recording served / transcript incomplete",
+      "master vs clips"
+    ],
+    "knownLimitations": []
+  },
+  {
+    "migrationId": "MIG-011",
+    "originalSource": "phase-6 occurrence ledger balance",
+    "originalVersion": "phase-6",
+    "disposition": "retained",
+    "reason": "Exact/template/occurrence/case denominators must stay separate.",
+    "newControlId": "MAA-RESILIENCE",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "phase6-validator-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "72/28 vs 42/55 unit mixing errors"
+    ],
+    "knownLimitations": [
+      "Auditor reports denominators separately; does not rebalance Phase 6 ledger"
+    ]
+  },
+  {
+    "migrationId": "MIG-012",
+    "originalSource": "phase-10 mutation adversarial 31/31",
+    "originalVersion": "phase-10",
+    "disposition": "retained",
+    "reason": "Mutation inventory remains the resilience regression backbone.",
+    "newControlId": "MAA-RESILIENCE",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "phase10-mutation-adversarial.test.ts",
+    "historicalCasesOrFindings": [
+      "31 contracted surfaces mutations"
+    ],
+    "knownLimitations": [
+      "Master auditor does not re-implement mutations; invokes existing suite"
+    ]
+  },
+  {
+    "migrationId": "MIG-013",
+    "originalSource": "scale3000-solicitor-materialisation finding schema",
+    "originalVersion": "run-v1..v9",
+    "disposition": "upgraded",
+    "reason": "Finding schema expanded with full evidence-backed fields; IDs remain stable-hash based.",
+    "newControlId": "MAA-COMPLETENESS",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "master-assurance-auditor-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "FIND-TRUNC-*",
+      "disposition maps"
+    ],
+    "knownLimitations": [
+      "Does not mutate run-v1 artefacts"
+    ]
+  },
+  {
+    "migrationId": "MIG-014",
+    "originalSource": "scale3000 v1 finding dispositions detector_false_positive",
+    "originalVersion": "run-v2+",
+    "disposition": "retained",
+    "reason": "Historical FP classes (bullet/header mid-sentence) must not be reintroduced.",
+    "newControlId": "MAA-COMPLETENESS",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "master-assurance-auditor-contracts.test.ts#boundary-fp",
+    "historicalCasesOrFindings": [
+      "v1-finding-disposition-map detector_false_positive rows"
+    ],
+    "knownLimitations": []
+  },
+  {
+    "migrationId": "MIG-015",
+    "originalSource": "lib/criminal/pace-affirmative-gate.ts",
+    "originalVersion": "foundation + Malik",
+    "disposition": "retained",
+    "reason": "PACE UNKNOWN/conflicted can never become SAFE.",
+    "newControlId": "MAA-CHRONOLOGY-HEARING",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "malik-shared-root-remediation-round2-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "PACE UNKNOWN blocked"
+    ],
+    "knownLimitations": []
+  },
+  {
+    "migrationId": "MIG-016",
+    "originalSource": "lib/criminal/solicitor-charge-model.ts",
+    "originalVersion": "scale3000 run-v8/v9",
+    "disposition": "retained",
+    "reason": "No silent charge rewriting; recorded wording visible.",
+    "newControlId": "MAA-CHARGE-MODEL",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "scale3000-run-v9-acceptance-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "zeroSilentChargeRewriting"
+    ],
+    "knownLimitations": [
+      "Gold actual-summary may only expose allegation line"
+    ]
+  },
+  {
+    "migrationId": "MIG-017",
+    "originalSource": "scale3000 run-v9 internal language scan",
+    "originalVersion": "run-v9",
+    "disposition": "retained",
+    "reason": "Fixture IDs / Source pack esa leaks forbidden on solicitor surfaces.",
+    "newControlId": "MAA-SECURITY-PRIVACY",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "scale3000-run-v9-acceptance-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "run-v8 case_header_charge_copy Source pack leak"
+    ],
+    "knownLimitations": []
+  },
+  {
+    "migrationId": "MIG-018",
+    "originalSource": "lib/eval/casebrain-auditor (release gate lineage)",
+    "originalVersion": "casebrain-auditor",
+    "disposition": "superseded",
+    "reason": "Release-gate AuditorIssue fingerprints superseded by MasterAuditorFinding schema for assurance programme; casebrain-auditor remains for playback/canary.",
+    "newControlId": "MAA-ACTION-QUALITY",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": null,
+    "historicalCasesOrFindings": [],
+    "knownLimitations": [
+      "Do not delete casebrain-auditor; different consumer"
+    ]
+  },
+  {
+    "migrationId": "MIG-019",
+    "originalSource": "generic mid-sentence punctuation heuristic without profiles",
+    "originalVersion": "scale3000 run-v1",
+    "disposition": "rejected",
+    "reason": "Produced thousands of false positives on bullets/headers; replaced by profiles.",
+    "newControlId": "MAA-COMPLETENESS",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "master-assurance-auditor-contracts.test.ts#boundary-fp",
+    "historicalCasesOrFindings": [
+      "v1 boundary_mid_sentence_cut FP mass"
+    ],
+    "knownLimitations": [
+      "Rejected heuristic must not be re-enabled"
+    ]
+  },
+  {
+    "migrationId": "MIG-020",
+    "originalSource": "gold-manual-proof-set-v1 expected vs actual",
+    "originalVersion": "gold-manual-proof-set-v1",
+    "disposition": "upgraded",
+    "reason": "Becomes primary 20-case calibration corpus for master auditor.",
+    "newControlId": "MAA-EVIDENCE-STATE",
+    "newControlVersion": "1.0.0",
+    "regressionTestOrMutation": "master-assurance-auditor-contracts.test.ts",
+    "historicalCasesOrFindings": [
+      "CASE-01..CASE-20"
+    ],
+    "knownLimitations": [
+      "Human solicitor checklists remain unsigned — blank human fields stay blank"
+    ]
+  }
+]

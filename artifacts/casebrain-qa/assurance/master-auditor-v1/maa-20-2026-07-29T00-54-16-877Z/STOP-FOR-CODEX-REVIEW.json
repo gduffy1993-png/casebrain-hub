@@ -1,0 +1,273 @@
+{
+  "status": "STOP_FOR_CODEX_REVIEW",
+  "programmePassSupported": false,
+  "doNot": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "claim_programme_PASS",
+    "start_stage_50",
+    "start_stage_150",
+    "start_stage_300",
+    "start_stage_3000",
+    "rerun_malik"
+  ],
+  "runId": "maa-20-2026-07-29T00-54-16-877Z",
+  "pipelineVersion": "master-assurance-auditor@v1",
+  "stageCompleted": "20",
+  "nextCommand": "npx tsx scripts/assurance/run-master-assurance-auditor.ts --stage=50 --resume=false",
+  "startedAt": "2026-07-29T00:54:16.879Z",
+  "stoppedAt": "2026-07-29T00:54:17.189Z",
+  "totals": {
+    "cases": 20,
+    "surfaces": 462,
+    "findings": 781,
+    "defects": 31,
+    "containment": 0,
+    "unresolved": 106,
+    "pass": 607,
+    "notExercised": 37,
+    "detectorFalsePositives": 0,
+    "designFindings": 20
+  },
+  "controls": [
+    {
+      "controlId": "MAA-INGEST-COVERAGE",
+      "laneId": "LANE-01-INGESTION",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-DOC-LIFECYCLE",
+      "laneId": "LANE-02-DOCUMENT-IDENTITY",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-PARTIES-ATTRIBUTION",
+      "laneId": "LANE-03-PARTIES-ATTRIBUTION",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 22,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-CHARGE-MODEL",
+      "laneId": "LANE-04-CHARGE-MODEL",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-EVIDENCE-STATE",
+      "laneId": "LANE-05-EVIDENCE-STATE",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 174,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "laneId": "LANE-06-CHRONOLOGY-HEARING",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-PROVENANCE",
+      "laneId": "LANE-07-PROVENANCE",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-RELIABILITY",
+      "laneId": "LANE-08-RELIABILITY",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 112,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "laneId": "LANE-09-COMPLETENESS",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-DEFENCE-LENS",
+      "laneId": "LANE-10-DEFENCE-LENS",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-PROSECUTION-LENS",
+      "laneId": "LANE-11-PROSECUTION-LENS",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-JUDICIAL-LENS",
+      "laneId": "LANE-12-JUDICIAL-LENS",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "laneId": "LANE-13-LEGAL-CURRENTNESS",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-AUDIENCE-WORDING",
+      "laneId": "LANE-14-AUDIENCE-WORDING",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-ACTION-QUALITY",
+      "laneId": "LANE-15-ACTION-QUALITY",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-CROSS-EXIT",
+      "laneId": "LANE-16-CROSS-EXIT",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 33,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-CROSS-SURFACE",
+      "laneId": "LANE-17-CROSS-SURFACE",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 22,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-CHASE-QUALITY",
+      "laneId": "LANE-18-CHASE-QUALITY",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 71,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-HALLUCINATION",
+      "laneId": "LANE-19-HALLUCINATION",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "laneId": "LANE-20-SECURITY-PRIVACY",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-RESILIENCE",
+      "laneId": "LANE-21-RESILIENCE",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-OUTPUT-DESIGN",
+      "laneId": "LANE-22-OUTPUT-DESIGN",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "laneId": "LANE-23-HUMAN-SUPERVISION",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    },
+    {
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "laneId": "LANE-24-BIAS-FAIRNESS",
+      "status": "exercised",
+      "casesTouched": 20,
+      "findingsEmitted": 20,
+      "notExercisedReason": null
+    }
+  ],
+  "gate": {
+    "stage": "20",
+    "allowedToProgress": false,
+    "stopReason": "STOP FOR CODEX REVIEW — stage 20 complete; do not start 50/150/300/3000 until review passes",
+    "nextStage": "50",
+    "checks": {
+      "manifestValid": true,
+      "hashesValid": true,
+      "crashCount": 0,
+      "corruptRecordCount": 0,
+      "casesProcessed": 20,
+      "expectedCases": 20,
+      "controlsExercised": 24,
+      "controlsTotal": 24,
+      "knownSafetyCriticalFn": 0,
+      "humanConfirmationRate": "unavailable",
+      "detectorFalsePositiveRate": "unavailable",
+      "defectFindings": 31
+    }
+  },
+  "preserved": [
+    "brain1",
+    "guardian",
+    "bundle-truth-ledger",
+    "phase11",
+    "scale3000-run-v1",
+    "malik-evidence",
+    "occurrence-ledger"
+  ],
+  "artefactPaths": [
+    "INPUT-MANIFEST.json",
+    "EVIDENCE-LEDGER.json",
+    "findings.jsonl",
+    "control-registry.json",
+    "migration-register.json",
+    "coverage-report.md",
+    "calibration-20-report.md",
+    "remediation-grouping.json",
+    "cross-exit-matrix.json",
+    "cross-surface-matrix.json",
+    "fp-fn-calibration-record.json",
+    "before-after-baseline.json",
+    "review-batches/",
+    "STOP-FOR-CODEX-REVIEW.json"
+  ]
+}

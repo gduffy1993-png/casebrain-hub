@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "note": "Detector false positives are not auto-labeled. Historical FP class (generic mid-sentence on bullets/headers) is suppressed via solicitor-visible-boundary-profiles. Human dispositions remain blank.",
+  "knownFalsePositiveClasses": [
+    {
+      "id": "FP-BOUNDARY-BULLET-HEADER",
+      "disposition": "suppressed_by_profile",
+      "source": "scale3000 v1 boundary_mid_sentence_cut → detector_false_positive",
+      "control": "MAA-COMPLETENESS"
+    }
+  ],
+  "knownFalseNegativeClasses": [
+    {
+      "id": "FN-INCOMPLETE-DISCLAIMER",
+      "disposition": "detector_active",
+      "source": "GOLD-11-039",
+      "control": "MAA-COMPLETENESS"
+    }
+  ],
+  "humanLabeledFalsePositives": 0,
+  "humanLabeledFalseNegatives": 0,
+  "unavailableEvidenceLanes": [
+    "Full authenticated attribution dump",
+    "Full hearing lifecycle surfaces on gold packets",
+    "Offence-label registry live trace for every citation"
+  ]
+}

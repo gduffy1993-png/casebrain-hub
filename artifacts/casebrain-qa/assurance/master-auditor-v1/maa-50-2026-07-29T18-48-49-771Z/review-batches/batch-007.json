@@ -1,0 +1,856 @@
+{
+  "batchIndex": 7,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "27b520510c2730fced65f47bd822071688562d130d2f16afe5b14e8acc963e13",
+      "templateHash": "27b520510c2730fced65f47bd822071688562d130d2f16afe5b14e8acc963e13",
+      "text": "medical report · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-27b520510c27"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "1eb12f9d9bcd1ab4807e12e01aa7b356883dbd12a6b2a89c0abeda7b394aaf1b",
+      "templateHash": "e2658aa09087cb38d054dccd96f5aa398bb0241283a31b4d8fc00b4905d24d3b",
+      "text": "CCTV/BWV · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-1eb12f9d9bcd"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9af755ed45940b56b38ecca10347be4465e0f424355adae7749bd2a8f40feefe",
+      "templateHash": "8e8049379f00c6ebc8d699aa6249c7a25901a60bd374764b0580fbfca3f3a2c6",
+      "text": "MG11 statements · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-9af755ed4594"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "09d5667e16cedaa949418c13c6788182ef6486c56a261e8ad8cddc12a38a0c31",
+      "templateHash": "5e96ae1f644aa7794c54e08264fdc602138df4724facb4961006f6a34cfe5f94",
+      "text": "999/CAD · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-007",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-007-disclosure_chase-09d5667e16ce"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b72883ff38fcbc8ad7193187c1d96b5803a72e779bb932d90420289652c5f894",
+      "templateHash": "ca917166f8d0cad5e9c0b81d9f78f0b188e7dd78b7aa60ac9c32f3b7f5de7f2d",
+      "text": "MG6C/SHO — short interview summary — served on bundle. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-b72883ff38fc"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "79806ef5d3267c2517ee325f2b529bc7b63f0df154d7cfa70f1ffa810f9bfe4b",
+      "templateHash": "ae86ffdace3eff804c4c8cc9a05db50385dd1c4e164624a5a4ae19692e5c6c1a",
+      "text": "Served on bundle: MG5; youth court charge sheet; short interview summary. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-79806ef5d326"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "48054770ce2aa299544f410c77e7bf76fd94b35631b4a8b7615688c34b529d54",
+      "templateHash": "3115c9e60b2838a3e9a25d9387e8aef6a374eae001499f51934c26e53d292ddd",
+      "text": "Youth and mental-health vulnerabilities are flagged but appropriate adult, custody, and interview records are incomplete. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-48054770ce2a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7ba4a1e33672d0ceadab473145540a4c7caf303b1cc5f0f286ff35386274929f",
+      "templateHash": "078565eef5c76522bb265b6d1fe4433633eed3cab91235de048f75bfcfded16c",
+      "text": "Do not treat interview admissions as safe without custody and safeguard material. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-7ba4a1e33672"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "791a902abcdb6524799ee7dc0f949f93d61f0b97eb01cb7c85a9f7aef9771377",
+      "templateHash": "fa4e8da9caefb2d7b576b1fadc483dddd2c16e45e61288a2c8a8a489d09cf198",
+      "text": "Uncertain on papers: fitness, safeguards, and reliability of interview account. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-791a902abcdb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "cae2699b60ab256569c35daf1e801fede0c459d1995c64b9cb261f408196d13d",
+      "templateHash": "f6cf2c59e33d7463749e29a8682f8379a50cfb4d0649bd454318bea8eebf691c",
+      "text": "MG6C/APP — appropriate adult notes — referred on MG6 — export not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-cae2699b60ab"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "504c71b2e05ade333bbd57f9046527a6aac260111ddf4ecee574bd77e21e0691",
+      "templateHash": "0fb15da699b0b6cb34631c0c27fb95a2b1d062d5da1881beb0d47d2624b43617",
+      "text": "MG6C/MEN — mental health triage — referred on MG6 — export not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-504c71b2e05a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "dae1bce12fd533bae8e967f6d3bc9b623d750a7dc35bee861e027fbba1c6cba3",
+      "templateHash": "0fae4e65740cbe1096ba34ab6517883830752dc2c24f9402869bfe4fc9437313",
+      "text": "MG6C/APP — appropriate adult attendance record — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-dae1bce12fd5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5c4e2c84bdf74b2f3e5e453e5287e1a658e514da21e55ad984794adba122a950",
+      "templateHash": "7095d2488cc16500c6a122aa45e88e00b4fbb6bc71b0472e13e9b81e1d6aadf4",
+      "text": "MG6C/MEN — mental health triage — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-5c4e2c84bdf7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7e86d29ebafa28bffd22e785fba460d0ccb643c893f87c6293fd0cfd8d5960e3",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-138",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-138-truth_map-7e86d29ebafa"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9e58ee6130ba69f11f1f895832ababc0ea4166dff1a392441f73a567a1070721",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-138",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-138-truth_map-9e58ee6130ba"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9dbad35c8301ee981da5837ff5f1b4a7acf828146c6f8c8087809688b92dd247",
+      "templateHash": "025a882b72bd9768f8b02e52efa041b98ca9ac59cb58b001e448927d152ae8bc",
+      "text": "MG6C/CON — confirmed listing — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-9dbad35c8301"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ff02f147e535002bf0c9175fd96cfca09ecde7e839f80a8765bd5eae4b2d18b3",
+      "templateHash": "6022f62226eefc5d73ea04cf2e3103778584e15ab73140b61562a78da9322e0b",
+      "text": "MG6C/COU — count linkage — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-ff02f147e535"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "add36a02e2fb673865322c3ba18c7adcbec7e9b1a1c4c2ea7232fb24f3dec184",
+      "templateHash": "e8eac29bc15f046011c55d81b17e32d9bbb87fd31ce7d3717aea09944221987a",
+      "text": "Outstanding: confirmed listing; count linkage. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-add36a02e2fb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "82503d388b9e2d32cff51c8e935c50351963f10c2528bef6566b2b3c2c20352b",
+      "templateHash": "82503d388b9e2d32cff51c8e935c50351963f10c2528bef6566b2b3c2c20352b",
+      "text": "confirmed listing · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-82503d388b9e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "f9bb2d1a91a92720266416d3d89083b26447cc80e1d802dd7b993e1055b8a2f2",
+      "templateHash": "f9bb2d1a91a92720266416d3d89083b26447cc80e1d802dd7b993e1055b8a2f2",
+      "text": "count linkage · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-f9bb2d1a91a9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7254ec0bd279e3c5b8869afd0b8717add402dbf42696e9fb2d11df4b0c9cd776",
+      "templateHash": "7254ec0bd279e3c5b8869afd0b8717add402dbf42696e9fb2d11df4b0c9cd776",
+      "text": "court listing · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-7254ec0bd279"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "bc07f1200f6e8721d9bd0abf45b8cc7d7f5421acee83eee10672a1c0ab5d06e0",
+      "templateHash": "bc07f1200f6e8721d9bd0abf45b8cc7d7f5421acee83eee10672a1c0ab5d06e0",
+      "text": "listing confirmation · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-138",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-138-disclosure_chase-bc07f1200f6e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "76713b045d46946ad0e707cf29e9fad4e74a5e347cb3a6b0da2ca689e4a5878c",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-265-truth_map-76713b045d46"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ac5b296012398495332449bb3170fc5cbfff9967a8c563c7cf0d7beedd940a7e",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-265-truth_map-ac5b29601239"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "10fdf9a6ca046bf2b20bd1fee659839774b9a0f14b42a4adbbb4a0bddb96ddda",
+      "templateHash": "22ae63db6b645d69bc8b7c1e0acd81a62b0132ac24fb3f03bcbcbe315e1eca91",
+      "text": "Provisional — vulnerable witness marker on thin sjp scan papers · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-10fdf9a6ca04"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "854fe9bafe3a96af54476bde368648e0b19a002bcdcddcf04fe789d11571a10a",
+      "templateHash": "49af840853c3eed87d2f7c11ba64a0a23b8173ec897150e51872081dd0f57bfe",
+      "text": "MG6C/ABE — ABE interview — Lysander Rill — referred on MG6 — export not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-854fe9bafe3a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8e611eae6f8900bd9827ea724f8dbccb7bf780b5f3ca3187ae0dd5325c63a432",
+      "templateHash": "1629063713d0e0365756494b23e1786c160301ce75f82f1244182b500e23703f",
+      "text": "MG6C/ABE — ABE recording — Lysander Rill — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-8e611eae6f89"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "bce039fbbe7ce3355602052fa045685ae4146aede535e819ec54ef4dd5fe84ec",
+      "templateHash": "62e169ed98cadefc3579ef88373dafc65eb0c27b6c739872519ee1541f367340",
+      "text": "MG6C/SPE — special measures application — Lysander Rill — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-bce039fbbe7c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6aee4ebc4cef499c2fca7e7dcd5a244462998ad9b6d0084f7eb3e2eafe483a21",
+      "templateHash": "7c2a996e4eb925aeaeaefc4f43982783cd138746ce8d47de86cc836f66d2d3bb",
+      "text": "MG6C/APP — appropriate adult sign-in sheet (Rill / folio 265) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-6aee4ebc4cef"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5d992ecdeb536f652d56f4353eea6d63770876be24010675081be20ba38c623a",
+      "templateHash": "19799c2d2f6faaef5e69c5cca66445d69ba3c00bd91b5c8bc93fe4fad32ee616",
+      "text": "Outstanding: ABE recording — Lysander Rill; special measures application — Lysander Rill; appropriate adult sign-in sheet (Rill / folio 265). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-5d992ecdeb53"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "22d40ac831d19d2bec4f2b70584aeb1f66e1399499d45625b49dc94fc9b73e80",
+      "templateHash": "7c6476ce8db480849d7677fcc867e112fd685eeba88738689e7c7e103ec25ba9",
+      "text": "ABE recording — Lysander Rill · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-22d40ac831d1"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "39cc82cc7cb61c66d2098e71915fdad12cda31713bb77aab17d150be14bfbb14",
+      "templateHash": "c688906039c4b5e7837119a647df7c4e2fec3113bcff5e4ebf085c169b7161b4",
+      "text": "special measures application — Lysander Rill · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-39cc82cc7cb6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "55e416d134779d2caada8d66938996457321f68cb7f9e381ecb630f2195ce46d",
+      "templateHash": "d89b94b4882089d5935233dcf3f794fb6ef2c3d6e2c7ec505decff2b55afdad2",
+      "text": "appropriate adult sign-in sheet (Rill / folio 265) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-55e416d13477"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a25f8b112522dd8058d09d73311fa9490f26dc8a99d6147574e99b828f4b1ba0",
+      "templateHash": "c7d486baac30cf32aa12f1af11037b77d0e0c032d08dbc8677402a2f44f454bb",
+      "text": "ABE interview — Lysander Rill · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-a25f8b112522"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3e7b04652d821f27d73ec9797d69e279bb0c1b1d26f537eaa23a7ae29d4a0f66",
+      "templateHash": "a07f85824578004aa06953bfc7f98f654f754262f4493db3d5bc208e1b542f84",
+      "text": "special measures docs — Lysander Rill · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-265",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-265-disclosure_chase-3e7b04652d82"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "4e6f1f31767fb18d291b5badab80ba2df6ebb91c12cd667f1f5ddcd007e8da54",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-072-truth_map-4e6f1f31767f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "bd733f56a8eb0ec530e47fb20ffc9a664a409c03b7473da32b9681c40937581d",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-072-truth_map-bd733f56a8eb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7f182302e6d0d0d4d86fa088f160067d5e82f28339f608590e16a03303bce931",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-072-truth_map-7f182302e6d0"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c7b7c5162af77d8620ed49f4443d0c5273909a9d2b661d17a7d9305d9a34e39f",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-072-truth_map-c7b7c5162af7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "330a5fb6c7fa5109c323d799d8bfd145fb31efa1b6ca5fad67b331eea1831901",
+      "templateHash": "c6d461a078222803b74a824ef3f8f97121ff6bf9f237fb339eaecac46d0cb8be",
+      "text": "MG6C/HOM — Home Office status check — referred on MG6 — export not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-330a5fb6c7fa"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6d47c0125f09ad5f44b963d8fa354d112cdc9b2053deed143a047db22537cb44",
+      "templateHash": "81394182516a0fceba08d0d6c8ccfb73da415565ba83ae3e37b64ee64aab1a38",
+      "text": "MG6C/DOC — document expert report — referred on MG6 — export not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-6d47c0125f09"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a2d0ee5aa1db829a3fbc4f24d4cac0dd9175e73e0f53bf4ca78497c4f21f1b10",
+      "templateHash": "87b023d1a4ce1021b9ebc90fb0887b82b1f53ce5033de4916d7581750ef6b4e3",
+      "text": "MG6C/EXP — expert report — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-a2d0ee5aa1db"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b486aa70dafa6542a45034d3ac8581646f8d74dfb4039b405a54b77782973cd5",
+      "templateHash": "fc97ff9b8587238a410f74813a25d59b024f8391845175cc57c914ec8678923e",
+      "text": "MG6C/STA — status check — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-b486aa70dafa"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "cd19d39afd6434a5da39ae1d9fdacd7063e7a5dc428fc1a88e0a56f3291c5224",
+      "templateHash": "a12df9f51ae4975ffc01cf1e13cecb95d3b8b624104557376a7b36b3251b65a9",
+      "text": "MG6C/KNO — knowledge/intent evidence — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-cd19d39afd64"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5d12968bde314fa2fa9e422949a7ec418e73fe7e517d3b2ceb44c3374bced4aa",
+      "templateHash": "3eeb6daebaad6f7486866a7d6bbcaaf4c205687ce0e7a80b5fa3954b7b4e47ad",
+      "text": "Outstanding: expert report; status check; interview recording; knowledge/intent evidence. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-5d12968bde31"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "46c2d16f70c9678bfb4f40875dc76cc62a3824e680c344194a73baf36555c75f",
+      "templateHash": "46c2d16f70c9678bfb4f40875dc76cc62a3824e680c344194a73baf36555c75f",
+      "text": "expert report · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-46c2d16f70c9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "1b6563d4dd3103e7c7046f3afac4c32a0051caa8f3c77dbe1177ced37d84ad5a",
+      "templateHash": "1b6563d4dd3103e7c7046f3afac4c32a0051caa8f3c77dbe1177ced37d84ad5a",
+      "text": "status check · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-1b6563d4dd31"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "33af6d43e9b85403f3cd56a19ee2bf1cf4438782b74c6072dd01f7b120cddd8f",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-387-truth_map-33af6d43e9b8"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "53dd13a664a8c878c1e2306771df31612b7d4cd27266edad25766bd62b4d2df3",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-387-truth_map-53dd13a664a8"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ccefd1ffa089b465f5de591fed841cb4c565777d8b95ad6e2a346a639f7fda9a",
+      "templateHash": "72aa0340e9fe1e16dfef2c678f92a7d30b00cdafae072428ef294b8c1a5af5b4",
+      "text": "MG6C/USA — usage attribution — Fay Moss — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-387",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-387-disclosure_chase-ccefd1ffa089"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

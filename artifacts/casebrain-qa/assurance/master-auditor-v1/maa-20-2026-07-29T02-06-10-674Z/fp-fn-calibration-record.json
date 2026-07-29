@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.1.0",
+  "safetyFn": {
+    "knownSafetyCriticalFn": null,
+    "knowledgeState": "unknown",
+    "registerPath": "artifacts/casebrain-qa/assurance/master-auditor-v1/known-fn-register.json",
+    "entries": [
+      {
+        "id": "FN-INCOMPLETE-DISCLAIMER",
+        "controlId": "MAA-COMPLETENESS",
+        "status": "open",
+        "note": "GOLD-11-039 class incomplete disclaimer. Detector contracts exercise complete pass, mid-disclaimer truncation defect, disclaimer absent defect, and non-copyable containment recorded separately. Corpus coverage remains unreviewed — reviewed=false; no human/legal sign-off invented."
+      }
+    ]
+  },
+  "humanRates": {
+    "humanConfirmationRate": null,
+    "detectorFalsePositiveRate": null,
+    "knowledgeState": "unavailable",
+    "reviewedSampleCount": 0,
+    "confirmedDefectCount": 0,
+    "detectorFalsePositiveCount": 0,
+    "blankOrUnverifiedCount": 0,
+    "reviewerIds": [],
+    "denominators": {
+      "reviewedSamples": 0,
+      "dispositionedSamples": 0
+    }
+  },
+  "note": "Detector FPs are never auto-labeled. Rates exist only after blinded reviewed dispositions are imported. Safety-FN count is null while known-fn register remains unreviewed.",
+  "knownFalsePositiveClasses": [
+    {
+      "id": "FP-BOUNDARY-BULLET-HEADER",
+      "disposition": "suppressed_by_profile",
+      "source": "scale3000 v1 boundary_mid_sentence_cut → detector_false_positive",
+      "control": "MAA-COMPLETENESS"
+    }
+  ],
+  "knownFalseNegativeClasses": [
+    {
+      "id": "FN-INCOMPLETE-DISCLAIMER",
+      "controlId": "MAA-COMPLETENESS",
+      "status": "open",
+      "note": "GOLD-11-039 class incomplete disclaimer. Detector contracts exercise complete pass, mid-disclaimer truncation defect, disclaimer absent defect, and non-copyable containment recorded separately. Corpus coverage remains unreviewed — reviewed=false; no human/legal sign-off invented."
+    }
+  ]
+}

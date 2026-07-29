@@ -1,0 +1,1116 @@
+{
+  "batchIndex": 2,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "1fbeece4590294681e2cb71495f1a2e23cdb32806fde6d088fe367a4997f85a7",
+      "templateHash": "6bf12542743807544e17e1eef5321e83bf73e7147f97e83df3ed2221a417337a",
+      "text": "Medical / expert report — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0006a",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0006a-truth_map-1fbeece45902"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-1fbeece45902"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0002e-truth_map-1fbeece45902"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-1fbeece45902"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "02fb5f2a8e8fafd86d515dd24645798d2a1ef0ccb16c2765d82eb67f4460cec2",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-0002d-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-0006a-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sc-0002e-truth_map-02fb5f2a8e8f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e30b96d9a0ed75637b5ebd102217985b213362b5754c2fafcc0b521f45f6f2e1",
+      "templateHash": "7464c527201e968ab61a75f7152bab0515b3208f97e67b7067a06cbc023ba530",
+      "text": "*Source section:** Charge sheet / MG5 / witness material · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-e30b96d9a0ed"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-e30b96d9a0ed"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-e30b96d9a0ed"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fadfd80ed217cd6def9ca1a43fedb2bbbf5d66b4b000af32725db85c30673eae",
+      "templateHash": "09680584988e860bce85a27b6a14cb3b69bb5c4521b7419f422f337ab5f42247",
+      "text": "*Source basis:** Particulars date: 14 March 2024 (charge sheet) conflicts with MG5 narrative: evening of 15 March 2024 · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-fadfd80ed217"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-fadfd80ed217"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-fadfd80ed217"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "858c42c8c9152961e65882cbec33ccf2217efa159e3c6d8105ce2055449a7c4a",
+      "templateHash": "5a798adc4c941d70e44a0fbb7db00b319abc27ee1614fb2a4cfc5572a07093b5",
+      "text": "complainant MG11 · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-858c42c8c915"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-858c42c8c915"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-858c42c8c915"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b62b7b0309c670d1b89b1c459a0fe08180aa5fbeddf235b507e59761704a8881",
+      "templateHash": "55c519cb619aecfd87a5fc7c343aa3b47e6bfb8fd5635f6c4c957d93bd1d1e52",
+      "text": "CAD/999 · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-b62b7b0309c6"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-b62b7b0309c6"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-b62b7b0309c6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "952a08beb72a27f98060b00544a77f6f464d0baf6f41041ff01123ee6baca656",
+      "templateHash": "56772dd45184c6d5122e45e1fc36baa9218042757c0527018610bb5e11f58dd6",
+      "text": "Prosecution summary on current papers remains provisional. Core identification, attribution, and continuity material may be outstanding. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-952a08beb72a"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-952a08beb72a"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-952a08beb72a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d29b8110de4b299d4cc04003ed8bc265dae5180c8e421ea9d66ca327d3e16e28",
+      "templateHash": "69e8c08f03e0a4f053d54f7c20b4b0514417c8bb5e1278cebf2ca94de68aad9e",
+      "text": "CCTV continuity / export log — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0002d-truth_map-d29b8110de4b"
+        },
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-d29b8110de4b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7a829dc32cabe0128e8bcd4eeade1e25cbeef8cd1901e2281ee6f03549917e33",
+      "templateHash": "75f61c412ca2b0208ae736bc1d5c053036b846a90f055e5a4a2442b525d89444",
+      "text": "999 / CAD timing material — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0002d-truth_map-7a829dc32cab"
+        },
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-7a829dc32cab"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "f3ef5e2f1a1224bc742e80a2cac13ba413dbf2790bbae06dad6fdc4529f7f6c1",
+      "templateHash": "b3e5b4bb0bb3b80cd63bfc84c4a3c1a0025ee91d056cb188ba0336cebe5336ff",
+      "text": "| 999 summary without audio recording Outstanding Chase before fixing hearing position. | · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-f3ef5e2f1a12"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-f3ef5e2f1a12"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "78bc4b000259ca385b6345d4c55eb0d9834d837bbbcc2db0ffee42065c49b0b6",
+      "templateHash": "cb3e82e18e02fa46fafaec284eb96ca0b7809c9cab12b165ce62fce512bd2d53",
+      "text": "Full bank export / source statements — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-00025-truth_map-78bc4b000259"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-78bc4b000259"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9dffe859a684a24ab0b008df075b96342299d4a08e6903eb682fc0a1cc218d22",
+      "templateHash": "267b388596c18da8f9a1e105d5581b4b5ec8182e122fe5f82c9f2698aa63c799",
+      "text": "Device / login audit material — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-00025-truth_map-9dffe859a684"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-9dffe859a684"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a01278cea7c6713de08ac82930396a85fc49690bd54d2ff6b1312168d9201774",
+      "templateHash": "8e328a6233111843e3b31c52d5595d1c81df45016c02551bd033c4b406b919a4",
+      "text": "Mailbox export — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-00025-truth_map-a01278cea7c6"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-a01278cea7c6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "95f380e7efc1fea6080664f4dc6053c2f3678cf70ffce5925730c9f0f4c759d8",
+      "templateHash": "c5f19d19ce936c411ff272103e059391ff9c8ada1975c70ee244e4000fef261d",
+      "text": "MG6 schedule incomplete — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-00025-truth_map-95f380e7efc1"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-95f380e7efc1"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6a1d17104678a3f962c75bf43b609faefeecfafba6aba0dd94e746c26d71c4b9",
+      "templateHash": "e09afb6c080559bf3aefcc7eec027f33275be40d5777e8b2b96bf2b440789179",
+      "text": "Custody / PACE material limited on export — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-00025-truth_map-6a1d17104678"
+        },
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-6a1d17104678"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "54fb52263da653de8069d3789fcd162ef165b3271c7eb4000a021ad62fc77257",
+      "templateHash": "4497ccb8e8d29a3d900e72724d5a2d8c06e561d970879014dd73e8d86a6515a0",
+      "text": "*Counts:** 4 counts on indictment — verify particulars on file. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-54fb52263da6"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-54fb52263da6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3a962d4f396357b6577d31ddc5046de890c76b1c253e9a907d83aef7afb7c987",
+      "templateHash": "c9b9c1b684116b1f809c7fe6d274118379c95de2a6030bb9786e6f7e66e2ea3a",
+      "text": "## CONTRADICTION — sequence timing — CAD extract vs officer attendance · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-3a962d4f3963"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-3a962d4f3963"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d00a5aea436b212c28967b82e07666f88c1941e1c36ac7327e7f002f8dd65d78",
+      "templateHash": "fc1da2f78f53055ff445b53f7631528672b8b061c46638fa46620f2fdc3927ba",
+      "text": "*Source A (Partial CAD extract):** Particulars date: 14 March 2024 (charge sheet) · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-d00a5aea436b"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-d00a5aea436b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fccd721a5a4cb6c2e4b2e60cfec109339091b9469b03b8a2a60c0ba8b8475760",
+      "templateHash": "82f60876350b2494d5e7169cb954590742fe98fc9c5b0f02dea494565213e692",
+      "text": "*Source B (Officer MG11):** MG5 narrative: evening of 15 March 2024 · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-00025",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-00025-disclosure_chase-fccd721a5a4c"
+        },
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-fccd721a5a4c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ac1d9fc2870851ade4e3223e297a8712b152e34a535956d42f7bbbeb51b78f9e",
+      "templateHash": "685b2b355a1359fa714401b982b42fbd5c3235799d2bdc065a4ff59cddc6d6dd",
+      "text": "MG11 — COMPLAINANT (not served — first account outstanding) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-104",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-104-disclosure_chase-ac1d9fc28708"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-ac1d9fc28708"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3933af30c525fffcf976e6d4577504ff9d340b30b0e873a95071ad66f40c364c",
+      "templateHash": "52747f62e6ed3c08dd1f216df20f97da675e1d41877b11e20fa027eb8229d4e2",
+      "text": "ABE recording/transcript · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-104",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-104-disclosure_chase-3933af30c525"
+        },
+        {
+          "caseId": "sim-198",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-198-disclosure_chase-3933af30c525"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "846aadf71483fb21fc615a67d0ffa2597bedc8c395c72fb8f00c36689a9022d0",
+      "templateHash": "5b3b45f159ae0479925dbe3692bec213f7e1fe03b121a447fd6a9217e3cfe166",
+      "text": "MG5 relies on redacted unused MG6 item — primary unused material not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-373",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-373-disclosure_chase-846aadf71483"
+        },
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-846aadf71483"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "467192f88a198ec84fb22c74f2fae6b0563476a5807ac0c2780493142d95b4f7",
+      "templateHash": "467192f88a198ec84fb22c74f2fae6b0563476a5807ac0c2780493142d95b4f7",
+      "text": "message exports · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-373",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-373-disclosure_chase-467192f88a19"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-354-disclosure_chase-467192f88a19"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ad61973690aac06eaced874f7b2515ed450a32a68ba8b81c829ad5e6b1f555f5",
+      "templateHash": "ad61973690aac06eaced874f7b2515ed450a32a68ba8b81c829ad5e6b1f555f5",
+      "text": "full complainant statement · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-373",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-373-disclosure_chase-ad61973690aa"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-354-disclosure_chase-ad61973690aa"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ce6b8b1ed2c60ef643a2018c6320d0f6625d7cd190dd19d23e9f443a86b100e6",
+      "templateHash": "ce6b8b1ed2c60ef643a2018c6320d0f6625d7cd190dd19d23e9f443a86b100e6",
+      "text": "call logs · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-373",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-373-disclosure_chase-ce6b8b1ed2c6"
+        },
+        {
+          "caseId": "sim-354",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-354-disclosure_chase-ce6b8b1ed2c6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b631baa4c9907b8b08e1417c418415f27863b74dc49518de0064399cc155a160",
+      "templateHash": "472570ea7f566b8a4bcb8d735668570537ac1d6530796f95d386533ea515622f",
+      "text": "Between 1 January 2026 and 28 February 2026 at Northgate Youth Court — particulars per MG5. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-321",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-321-disclosure_chase-b631baa4c990"
+        },
+        {
+          "caseId": "sim-360",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-360-disclosure_chase-b631baa4c990"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b4c1fdab91b256d2a0eb8a8b7fb5c83d42b149da946d96a55868c6ccadd6c17a",
+      "templateHash": "e3a2f168dc73c3fa71ce953b8411f44f1fd32accb9c4a517b99fd2f4ffb4eaf7",
+      "text": "MG5 infers sender identity from phone proximity — not primary proof. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-182",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-182-disclosure_chase-b4c1fdab91b2"
+        },
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-b4c1fdab91b2"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "159fd05e6cd95ec29becc3f7566ffb5e4e69e103477cd1a20d75cab173c94b81",
+      "templateHash": "775ccfc946508876182ebe340fba0d5690e21e764464baa58b4fa96dd2f2a036",
+      "text": "MG6C/FUL — full custody record — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-159fd05e6cd9"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-159fd05e6cd9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ba00f26a0f52cede30badcde19ddc9d5c7d6f094feadce7ea97d795a011493eb",
+      "templateHash": "7cfe7aeb291fdd79b6d1d58e46a5beef12486c3af47e4e3d2d32e2047c5112fd",
+      "text": "MG6C/INT — interview recording — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-ba00f26a0f52"
+        },
+        {
+          "caseId": "sim-072",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-072-disclosure_chase-ba00f26a0f52"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8e8ce0c9bb4b8cdc023bb840b2fe4a6f0d381bf6d7ea96889ab91d68e955ac7f",
+      "templateHash": "8e8ce0c9bb4b8cdc023bb840b2fe4a6f0d381bf6d7ea96889ab91d68e955ac7f",
+      "text": "full custody record · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-8e8ce0c9bb4b"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-145-disclosure_chase-8e8ce0c9bb4b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "66d2920c2761f398694dd2608d688939d33b11e230130f654648105b917c4384",
+      "templateHash": "970f515580a68dbd399a93ea305708fe2b938031a958f56aac00db371347f7d2",
+      "text": "PACE interview recording · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-66d2920c2761"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-145-disclosure_chase-66d2920c2761"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "eb4cb67d3331e0fbb046d33cada31ae584122da8488c937d2a5236cef0847883",
+      "templateHash": "eb4cb67d3331e0fbb046d33cada31ae584122da8488c937d2a5236cef0847883",
+      "text": "custody risk assessments · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-055",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-055-disclosure_chase-eb4cb67d3331"
+        },
+        {
+          "caseId": "sim-145",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-145-disclosure_chase-eb4cb67d3331"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3e4df457dc3e243d4f45c86d9e4a2405b3b4c8392d6d0884634b27808de45335",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-063",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-063-truth_map-3e4df457dc3e"
+        },
+        {
+          "caseId": "sim-073",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-073-truth_map-3e4df457dc3e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "43836efea40ce7b7fe11a877e41370ce4a680b8f404365c3b9fe11c9d3c2baf9",
+      "templateHash": "a3602ca83bd68bd5733674b4c89b7582f5de4aa96bbb67e944e4f5deac7472ad",
+      "text": "CCTV master · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-073",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-073-disclosure_chase-43836efea40c"
+        },
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-43836efea40c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b002c0bf7e4fb23f6f5f110ec9e31d352de5bb3eb86c37fc06254fe06b281424",
+      "templateHash": "010cda3f8a32181ab385bfd7423900a746496a7e6bad50d9a2d3702d4d39ff14",
+      "text": "MG6C header present — line-level unused material detail not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-332",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-332-disclosure_chase-b002c0bf7e4f"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-b002c0bf7e4f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8cda9a391a10d0116c8ce2fcf652a8e10b8e63af8c0fd53e512aa25351f99806",
+      "templateHash": "8b0a1c90e3841cc5f55b704d34990ec1eca9fb35f3515cf7fb763f4a53cd1e32",
+      "text": "Handle SHADOW-22 on thread; mapping certificate to defendant not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-8cda9a391a10"
+        },
+        {
+          "caseId": "sim-389",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-389-disclosure_chase-8cda9a391a10"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0efe66f3080478122fab57795f699531d1e465deeaecbaf22734762ecdb9c4c4",
+      "templateHash": "ee52c49f1c981c5e3f4ed105e20f0bb08ba7eca642fc0acf7978e917a9fdba70",
+      "text": "Body worn video — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0006a",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0006a-truth_map-0efe66f30804"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0002e-truth_map-0efe66f30804"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8fd424c2996cd912d153b213f8ee5a3d15cbf690d6d4904c4956442a263759ab",
+      "templateHash": "19a6cf6d769620d6088763a163d54612dd205aadd4fe33f494225a66f82079c7",
+      "text": "Medical / expert source report · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-8fd424c2996c"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-8fd424c2996c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6a05ffdfc33345c43e13abe2b89713afb7e787e8a6bc9252478bf53b4cc21737",
+      "templateHash": "4eea3b4df8f72c9c5598499d085e206f380bc4a6e08c8c235f7d68ed87824c60",
+      "text": "Exhibit mapping / provenance · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-6a05ffdfc333"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-6a05ffdfc333"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "db5e0acafc5ac724267cb385f0605eefd0eb372fd952b713c17dda4075c9a983",
+      "templateHash": "e15200809e8de7a5134cf8ecd6aca47ee76bacedaded7fd54176bbd99a6907e5",
+      "text": "| CCTV export and continuity Outstanding Chase before fixing hearing position. | · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-db5e0acafc5a"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-db5e0acafc5a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5ae453ef9f6871a5ba704ff1baffe5d568b508335d5142067b3afec38729252a",
+      "templateHash": "5345f3a2acc5cfe8a2875409f513225abcaafc5c6ef412300ebef28712f3dbc8",
+      "text": "| Full 999/CAD Outstanding Chase before fixing hearing position. | · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-5ae453ef9f68"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-5ae453ef9f68"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "cebb630292ec9a246abcc3730f9c1b6231ce20c6ea555ee92c60c9cdafe36a2b",
+      "templateHash": "4d7ef8349d13c608dfc0d17b4d9b5b26214f9645e5a2a35877fcce4f2885d9ca",
+      "text": "| Medical / expert report Outstanding Chase before fixing hearing position. | · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0006a",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0006a-disclosure_chase-cebb630292ec"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-cebb630292ec"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d5c7a638541778fa1416d363d124b9f058708dc2c6f31f69450b3cfa45464739",
+      "templateHash": "9f16116e20ba163f0d695f383d3913f918e90283837ca9ae429211b4f74ac8aa",
+      "text": "CAD summary without full CAD log — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0002e-truth_map-d5c7a6385417"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-d5c7a6385417"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "bb0aab79736bf207177c0fc8ffd5b6fe514ad9fdd589a3b1a68d23799a75d768",
+      "templateHash": "65625a4891d6620c168612b3be406676c5465f1b48e46c7cb5713f51452cf2c1",
+      "text": "CCTV partial extract only — outstanding · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002e",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0002e-truth_map-bb0aab79736b"
+        },
+        {
+          "caseId": "sc-0002e",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002e-disclosure_chase-bb0aab79736b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "47e3fc02fd54d6406181fdc2282abfb8fa3bd744495d42f0a1de4ea5dbbbfbad",
+      "templateHash": "efc0bd3658a12549f8e507de12ee4b6aacbebbe551a9d0c160ede273c3cdda50",
+      "text": "Full CCTV master footage — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-outstanding_alone_unresolved-sc-0002d-truth_map-47e3fc02fd54"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7f064fdbf5e912a13a722c7d8721f518d006a4311354995988ab9c86da9c850c",
+      "templateHash": "ffe6a559773675c4f2160bb1361f0194b73db92f131ea06a0aebba003f53e201",
+      "text": "*Note:** Compare particulars with MG5 — dates/wording may conflict on export. · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-7f064fdbf5e9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d7217337fe33b951d5d993b07696b64c4da43b0655886e001449cf5f1433174a",
+      "templateHash": "e82173c45cd176c3bf6f58d3fbcb48f6e5e8486a644acee0a43bca00f53f1de0",
+      "text": "## CONTRADICTION — incident timing — charge particulars vs MG5 narrative · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-d7217337fe33"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5699f7f9416f86b5028ab5bd36fe1804e1886e9669ef3c6bfb44a28fe5817d76",
+      "templateHash": "2befb3a6730497fcbe550b152dc7744665166e35e43744c90276e849a73bb840",
+      "text": "*Source A (Charge sheet particulars):** Particulars date: 14 March 2024 (charge sheet) · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-5699f7f9416f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "83848621e3c9ad8c2fa66e3e5c336f0286f3e847cf4c121fbf16115debe6dd80",
+      "templateHash": "ced762965e683f3bb30944e5cd870d7bc3f89f906f3878400e9946beff9dddbd",
+      "text": "*Source B (MG5 narrative):** MG5 narrative: evening of 15 March 2024 · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-83848621e3c9"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "2043a759b85c8f058dfe43bd2d9fe2958286f4ec135b030b46f33677e4423c1e",
+      "templateHash": "46bf19c5505a9a1c8cffb2bd076ac8db6ac95d3137126ad05df318dd7eb0efd6",
+      "text": "ID procedure material — outstanding · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sc-0002d",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sc-0002d-disclosure_chase-2043a759b85c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

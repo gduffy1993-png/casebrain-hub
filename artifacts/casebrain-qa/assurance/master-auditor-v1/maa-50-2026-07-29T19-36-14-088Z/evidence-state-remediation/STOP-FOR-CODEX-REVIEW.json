@@ -1,0 +1,83 @@
+{
+  "status": "STOP_FOR_CODEX_REVIEW",
+  "triageCheckpoint": "stage50-evidence-state-remediation-rerun",
+  "programmePassSupported": false,
+  "doNot": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "claim_programme_PASS",
+    "start_stage_150",
+    "modify_frozen_packets",
+    "modify_brain1_guardian_ledger_phase11_malik"
+  ],
+  "priorRunId": "maa-50-2026-07-29T18-48-49-771Z",
+  "rerunId": "maa-50-2026-07-29T19-36-14-088Z",
+  "frozenMembershipHash": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "freezeHashVerifiedBeforeAndAfter": true,
+  "acceptance": {
+    "knownDetectorFalsePositivesEliminated": true,
+    "confirmedAppDefectsCorrected": true,
+    "truthKeyDefectsMigrated": true,
+    "unresolvedRemainUnresolved": true,
+    "freezeHashUnchanged": true,
+    "zeroFixtureSpecificPatches": true,
+    "newDefectCount": 0,
+    "addedDefectCount": 0,
+    "fpEliminated": true,
+    "appCorrected": true,
+    "tkMigrated": true,
+    "unresolvedNotDefect": true,
+    "overallGate": true
+  },
+  "dispositionOutcomes": {
+    "unresolved_source": {
+      "count": 21,
+      "defect_to_pass": 1,
+      "defect_to_unresolved": 20,
+      "defect_retained": 0,
+      "removed_no_successor": 0,
+      "other": 0
+    },
+    "detector_false_positive": {
+      "count": 22,
+      "defect_to_pass": 16,
+      "defect_to_unresolved": 6,
+      "defect_retained": 0,
+      "removed_no_successor": 0,
+      "other": 0
+    },
+    "truth_key_defect": {
+      "count": 7,
+      "defect_to_pass": 0,
+      "defect_to_unresolved": 0,
+      "defect_retained": 0,
+      "removed_no_successor": 7,
+      "other": 0
+    },
+    "confirmed_app_defect": {
+      "count": 43,
+      "defect_to_pass": 43,
+      "defect_to_unresolved": 0,
+      "defect_retained": 0,
+      "removed_no_successor": 0,
+      "other": 0
+    }
+  },
+  "newDefectCount": 0,
+  "addedDefectCount": 0,
+  "truthKeyMigration": {
+    "version": "truth-key-migration-v1-partial-not-served",
+    "registerHash": "3ad236cb3102bd42bc2ab0bd0ed093b055512b54a0f6a895de5545136d2787f8",
+    "entryCount": 7
+  },
+  "artefacts": {
+    "beforeAfter": "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-50-2026-07-29T19-36-14-088Z/evidence-state-remediation/before-after-finding-map.json",
+    "truthKeyMigration": "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-50-2026-07-29T19-36-14-088Z/evidence-state-remediation/truth-key-migration-register.json",
+    "allExitMatrix": "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-50-2026-07-29T19-36-14-088Z/evidence-state-remediation/all-exit-acceptance-matrix.json",
+    "summary": "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-50-2026-07-29T19-36-14-088Z/evidence-state-remediation/remediation-rerun-summary.md",
+    "rerunDir": "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-50-2026-07-29T19-36-14-088Z"
+  },
+  "next": "Codex independent review — no Stage 150 until cleared"
+}

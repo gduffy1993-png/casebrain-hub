@@ -1,0 +1,856 @@
+{
+  "batchIndex": 9,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "d79ab3231527d0289d700777662027b89b84e86980cdc6d29efef805bf2eadaa",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-337-truth_map-d79ab3231527"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0b13526e2dce14b345f324d212e2ffd1a250f9f3cbaa563b67c29671f3d02848",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-337-truth_map-0b13526e2dce"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a937452726fa4a2ec715c76e9bad033c748f90ba565245e9e942969f56c889dd",
+      "templateHash": "f17805e10dd5bc335abed52bfb86c86b690753aa879f604befd286ab1006d218",
+      "text": "MG6C/HAN — handle mapping certificate — Gwen Noll — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-a937452726fa"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5ff4d531e0188d7e310602cbed92a79c25d80c00df1499fc4b6e5e5b3cafdc6a",
+      "templateHash": "c902da3208cde3a0b3f599c3b954ce803aff7a6cdb82b03aec09415dde356395",
+      "text": "MG6C/CON — continuity — Gwen Noll — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-5ff4d531e018"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "cd3d09559bed766716be1933b5f4d6dd9dcbbbb006703890d399aef5c2b8e02f",
+      "templateHash": "26878c548106f27ea7cb3334f990ccfb0aeb3ba9717184568f51721924712b43",
+      "text": "MG6C/BRE — breath procedure MGDDB copy (Noll / folio 337) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-cd3d09559bed"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "29d5ec1cf4393fcb63b489c9eab4ee93df06e2923835dcbc0d5b7f88cac61f6d",
+      "templateHash": "9874e2d42368c0ba7a530255435bdafeeee61391593e8a3588e59311536c89db",
+      "text": "Outstanding: handle mapping certificate — Gwen Noll; continuity — Gwen Noll; breath procedure MGDDB copy (Noll / folio 337). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-29d5ec1cf439"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "955c9e35f13a4ed2a646d727f15def343ef8b2ff6a030d5eaf089c2fe8bcaeee",
+      "templateHash": "318e2e209ff61cf4634d4841c0fe650dc0d05fe09ed2b74f8e478c6c49ebe820",
+      "text": "handle mapping certificate — Gwen Noll · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-955c9e35f13a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "13c1aeee7e94fd424e4d57f09d428b6f95e6fed139a136868253ca775aaf96dd",
+      "templateHash": "e5546b87bb0392e3e31da00e31249a53f2d7d20e1c4aca7ab90659f3aa7ed87d",
+      "text": "continuity — Gwen Noll · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-13c1aeee7e94"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6f4eb95f74fbdbc708bcb53f42fd788578b064a8b9a7c8025239c9742ec20b72",
+      "templateHash": "0fcd95c4240437d37dff79420adc5b08a30d55eef537c2f6eea962f5f66d3145",
+      "text": "breath procedure MGDDB copy (Noll / folio 337) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-6f4eb95f74fb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "17e90a15e2d48c46127b03ea7f53fdba82c6985bd36b088728df710ccd37cfa3",
+      "templateHash": "2b94ab40758322959bd91161e7e2e149905bc7ecd25f12b69a5a55c29457fca9",
+      "text": "platform extraction — Gwen Noll · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-337",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-337-disclosure_chase-17e90a15e2d4"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d945cc1e4507c9046a32fc68db2a79e34bef00be27cc541ddeabbd836eee0032",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-366-truth_map-d945cc1e4507"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "24c5d69d071bd56cfb17aa00eefaebc1465c320aae52327b5c32bf54a34d5dde",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-366-truth_map-24c5d69d071b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "50c528666ccaf11365d68810cd75267c5d9cd0da9541175a7c057dd77aed75cc",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-366-truth_map-50c528666cca"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "6c2fbbaeb176dde8ebf872ee08f52f3551626ff2da303eb2a30e688af886651f",
+      "templateHash": "87ebf024809eea2a32c2ea4bd5074e88d9d2cbab4e7ecf5b10d2201cd2dff0c7",
+      "text": "Provisional — date time disclosure offence on huge bundle partial papers · incomplete · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-6c2fbbaeb176"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d5b2f56e1dbfd57d2d301c2c62a97584eee432db83aca63ee3b837f6dbcd828d",
+      "templateHash": "42fa5c55899332a02cf8a5a5fa03129c2daced87d861d4a2cd5fb4360797009e",
+      "text": "MG6C/CHA — charge sheet clarity — Jade Quench — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-d5b2f56e1dbf"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "2f5c4e374c994cf812454500bcd528c19d2d26a918edf392e4a86c74b1b08849",
+      "templateHash": "b7c107cca7d7547b14ea1b45c6f13380037b8375e6c70e58f3cd853a535faf87",
+      "text": "MG6C/OFF — offence date particulars — Jade Quench — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-2f5c4e374c99"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5dad3bc78b5ca835825a60fb1f5c6a9a7ed67e68ccde2c1ac07e94b394e1c47e",
+      "templateHash": "adbdff61cc6c0396b2cb687e2a559ed806c27c5421d902ce5fd270ab1f3f39d9",
+      "text": "MG6C/IMA — image-only scan text layer (Quench / folio 366) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-5dad3bc78b5c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "089454529ac80fbc33efa8a6c7f4b0656add44028c35509d779c81de8d9fac8e",
+      "templateHash": "a7616c6e0db0bbbf7ffba6899cca066e7bd3cd4c89af645f7ecbe4d322084b14",
+      "text": "Outstanding: charge sheet clarity — Jade Quench; offence date particulars — Jade Quench; image-only scan text layer (Quench / folio 366). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-089454529ac8"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b785c0f5bdc65b62234fca0c48f7829713231e3e6c1e57e49db79d0ac6bd0d2d",
+      "templateHash": "da16aed304d42a214253b7e2a3d1a0b37c205f8025326cea1d10cd8a8e3d3b0a",
+      "text": "charge sheet clarity — Jade Quench · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-b785c0f5bdc6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7128a319f5e61665ecc85bf3b2dc5f5bf74a175c160c9f1c9cc5d08921c2ae40",
+      "templateHash": "a1c02fa3c8164a30c649fe44d784379b573f124d3ec25d88d8dd2b388222aa10",
+      "text": "offence date particulars — Jade Quench · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-7128a319f5e6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "1cb7f02edd53d1ca84704be17dd648d7d49b477de6b242056793cfc4e30b38c1",
+      "templateHash": "2bc84850e1654e4682ca5806a60c5908d59428d11e3f919c7cd0224ebc83d980",
+      "text": "image-only scan text layer (Quench / folio 366) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-1cb7f02edd53"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "32ab4cbbd4d6902bb6d00674f8b61f420657a408409b3a0636c3e304b7bd6196",
+      "templateHash": "56d492b2689563e5281d27c06bcff59a225bd1223f889e405af18dba9251cc5e",
+      "text": "original MG5 — Jade Quench · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-32ab4cbbd4d6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "883ec5aa7af83b4e1a320d13ee650ccff46692ee109b0b131075ac2673891c5f",
+      "templateHash": "d74ccd5730f9a219a927dd2a4175697760cd182ca8ba52b89615c23ad4b40a45",
+      "text": "charge sheet — Jade Quench · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-366",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-366-disclosure_chase-883ec5aa7af8"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "4a2a7166add40a3a9bf5d6260eadbfef623c1554ce07edae5024b03da563619d",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-336-truth_map-4a2a7166add4"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "99ebde61a3e5530ccff3d584f6ff783ac9909d34102829751c6009e7e2e55704",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-336-truth_map-99ebde61a3e5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "11eb0c2c773dcaf26948b2f34354c211f9e3690ed362996769da39d5aaed347d",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-336-truth_map-11eb0c2c773d"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ca24460992aa850b80cc48fd6c84d1525303d8cc3f3caa57ae83f9e346ce74af",
+      "templateHash": "d931e23715b3703edeb688314a489146e3dba6e256a0ac55dd9ca7e8edd513b9",
+      "text": "MG6C/ANP — ANPR/CCTV — Fintan Mire — referred on MG6 — export not served. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-ca24460992aa"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "322dbeb60f7180fdda8fb4b1eb62d199c070adb8b12da8dba4ce049e860d1462",
+      "templateHash": "ec44344723d86f596a341a3d9b4a3216d6a37cb0150f0031b08bc209690a9167",
+      "text": "MG6C/DRI — driver identification — Fintan Mire — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-322dbeb60f71"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "88b253acfb61c3c5aaf6b50e8098c48de17c810f90242e8d167ad566be0fa6c0",
+      "templateHash": "cf376be961a3f05f25083ad7cd20ba0c70c0f8e0ceebf07990c2414c2c50c923",
+      "text": "MG6C/INS — insurance policy — Fintan Mire — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-88b253acfb61"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "bb02c76cb650e2ce4ca9931292ce3c302a0dd71a5fadf4c84ba315e1b6608ec7",
+      "templateHash": "0f650a037dc209a35db76ac1f902c5608fb0f7a9cde363cb875324b03f7c6843",
+      "text": "MG6C/CUS — custody risk triage form (Mire / folio 336) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-bb02c76cb650"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "818b7d175d8b5a88783fb6d5d4a20136a0c2813a9da0e641cd86d6504a53d9d3",
+      "templateHash": "68fada3469b6c8f205336150faf43373ce37b486639dd66e03b9fef88bffc773",
+      "text": "Outstanding: driver identification — Fintan Mire; insurance policy — Fintan Mire; custody risk triage form (Mire / folio 336). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-818b7d175d8b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "45348f8c61843c5856cf2732b2d0a11f04849782b222692fe6d5b9cd611bc3d5",
+      "templateHash": "079bdb350d4e0ba0410f1a20548a6b9c5946208164bd214991d039c244e82e37",
+      "text": "driver identification — Fintan Mire · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-45348f8c6184"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "f13f0b6b6dbb129cfddb8383c1ecd28397ea74743f2d09563761bd37e057f62b",
+      "templateHash": "862fe2fdc2c2cbefa380ebf17c9a9516500492bc3cab672dabbad4b4b96b5cfc",
+      "text": "insurance policy — Fintan Mire · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-f13f0b6b6dbb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "b0b833bb3f42150ed334754969e3554321979ba6215abd6a85b7cd1d767d51bd",
+      "templateHash": "3b16e6dc4e32073176d81293cff28141fb7817700d9f3c1014b0cbd0c5577438",
+      "text": "custody risk triage form (Mire / folio 336) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-b0b833bb3f42"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0f1b41fc3a8a7349e91f4b6f7e553cda413db172a2ee871852e8a46e507ea60e",
+      "templateHash": "dabef54da8589e8776c176c914a94591a7105da45b230d45b751a1fbf2650a43",
+      "text": "ANPR/CCTV — Fintan Mire · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-0f1b41fc3a8a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a8a860699cfe19f1c893cac766947c53bd71aa6a4a27249e94e4466c249ce895",
+      "templateHash": "e7af3e3f50177876605cca8e9f042d335e204f406c85ce3db366bfff412dbdce",
+      "text": "driver ID evidence — Fintan Mire · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-336",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-336-disclosure_chase-a8a860699cfe"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "eae9f793303f78ec024b6ef68ae026345f181462e4845e4ca51724a60ca86b8d",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-286-truth_map-eae9f793303f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "bf2b8645922ce76bdaaeed9174ffbe1a057e1be6b71990f8ca5349b207ca2e34",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-286-truth_map-bf2b8645922c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3e9fd8caf33db1e6b69424af92a516584005c37a04b53c80139559b2b3c6424e",
+      "templateHash": "3edbea2d2dc0326421090e49fa6f610cdcc27cb6ecee413cec8249aa9f5dfc21",
+      "text": "MG6C/SUB — subscriber data — Hattie Onyx — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-3e9fd8caf33d"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3b3d89a3dd87b886d715015f104cdf2fc68ef4e5fc2e3b2ac00f4cbb86a97d61",
+      "templateHash": "9bfe19002aea53e4eb0a67486418a0b57d9e771706ffd1136d9f858251d4c77a",
+      "text": "MG6C/MES — message export — Hattie Onyx — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-3b3d89a3dd87"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8974ed64421acca18835416b2156014e3fdf914e484b69577d08187f29998c1c",
+      "templateHash": "28b816aad3b190b4a8d9c44cb2fa6efe958d0f5c6a81ffb2d0d416b2c5106bdb",
+      "text": "MG6C/NRM — NRM referral outcome letter (Onyx / folio 286) — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-8974ed64421a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3e1a0247f32ec340b3c91f6184927d8a56fe8cd00d24e836070b993c1ee26128",
+      "templateHash": "79b452c77455330d661ec4c3f684ab92b33c69cbba2cd40c6f1c83954a4c6858",
+      "text": "Outstanding: subscriber data — Hattie Onyx; message export — Hattie Onyx; NRM referral outcome letter (Onyx / folio 286). · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-3e1a0247f32e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "81f769ba8bffc246a88189d58fe3091dbfe1807a2806884775f31b2f4428b9a6",
+      "templateHash": "a1c6619ca72c53833793d4e434a8e52608aa40ee075dd372f100f814e7bd9ce7",
+      "text": "subscriber data — Hattie Onyx · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-81f769ba8bff"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "40652c44725735b2941aada120de0be234b2790f99342fd05275228aecb0b315",
+      "templateHash": "74186964ffcf139f35c32a593bab0c0ae3a90cbc920bf1d2db32fec65f1c274b",
+      "text": "message export — Hattie Onyx · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-40652c447257"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "03ce6af9c0737f83cf81047cd1e23bdd3f78c41a7ce0935ee8634394e2e63da2",
+      "templateHash": "71fefeb22998644dd6e785fa8ca645c1861235ccade1d0444abab74deec79213",
+      "text": "NRM referral outcome letter (Onyx / folio 286) · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-03ce6af9c073"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9850ce1932cfa09504148b1def40a8a37b90c353d2cdfb17fa186853297502a9",
+      "templateHash": "5e795ea97c9dca45c7aca0aa872059900dade250120d4e13ef5439aa9f8a7737",
+      "text": "handset download — Hattie Onyx · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-9850ce1932cf"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "51ce794dd67e089cd6cc38864ac0df3b743fb5826f9701dcfdc8968a6f61c326",
+      "templateHash": "beab07928afb8d44f3b5225729bc90f5cfde523a6d8b78ab1da88e1a636c9547",
+      "text": "subscriber records — Hattie Onyx · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-286",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-286-disclosure_chase-51ce794dd67e"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "895d5806679b7745f852d938226ed4a81366fd1a8946532e81a6b515416a3653",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-199",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-199-truth_map-895d5806679b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3c04678260ad005797e7dc49a0f4b0c9aa8cb21b63fe3794fcb33f54e3ece5bf",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-199",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-sim-199-truth_map-3c04678260ad"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "3e9815dfdde10dc839a5d14650548a40c6bb491f663d23c4f60a16f5764e8b4b",
+      "templateHash": "c8d349bf92167c0e65a801a7491c9258400c230dff1f23a5c11bea64ca50cdd6",
+      "text": "MG6C/BAN — bank export — Xyla Coven — outstanding — not on bundle. · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "sim-199",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-sim-199-disclosure_chase-3e9815dfdde1"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

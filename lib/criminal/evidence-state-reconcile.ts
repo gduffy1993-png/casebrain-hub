@@ -63,6 +63,92 @@ export function inferEvidenceModality(label: string): EvidenceModality {
   return "generic";
 }
 
+/**
+ * True when wording proves referred/listed/scheduled but not served/attached.
+ * Outstanding alone is NOT enough.
+ */
+export function wordingIndicatesReferredOnly(text: string): boolean {
+  const hay = text.toLowerCase();
+  if (
+    /\boutstanding\b/.test(hay) &&
+    !/\breferred\b/.test(hay) &&
+    !/\b(?:listed|scheduled)\b/.test(hay)
+  ) {
+    return false;
+  }
+  if (/^uncertain(?:\s+on\s+papers)?\s*:/i.test(text.trim())) return false;
+  if (/^referred\s+only\s*:/i.test(text.trim()) || /\breferred\s+only\b/.test(hay)) return true;
+  if (/\breferred\s+on\s+(?:mg6c?|schedule|index|disclosure)\b/.test(hay)) return true;
+  if (/\breferred\s+to\b/.test(hay)) return true;
+  if (/\b(?:listed|scheduled)\b[^.\n]{0,40}\bnot\s+(?:served|attached)\b/.test(hay)) return true;
+  if (
+    /\breferred\b/.test(hay) &&
+    /\b(?:export\s+not\s+served|not\s+attached|not\s+included|not\s+on\s+bundle)\b/.test(hay)
+  ) {
+    return true;
+  }
+  // "confirm on file" alone is organisational chase boilerplate — not referred proof
+  if (/\bmentioned but\b|\bnot safely served\b|\bnot safely on file\b/.test(hay)) return true;
+  if (/\bnot\s+included\b|\bnot\s+attached\b|\bsummary\s+only\b/.test(hay)) return true;
+  return false;
+}
+
+export function wordingIndicatesPartialIncomplete(text: string): boolean {
+  return /\bincomplete\b|\bpartial\b|\blimited on (?:export|file)\b|\bdraft\b|\bunsigned\b/i.test(
+    text,
+  );
+}
+
+/**
+ * Canonicalise existence from label + raw state.
+ * Shared across view/copy/export/API/PDF/composed and ESA rematerialisation.
+ * Never invents served. Outstanding alone does not become referred_only.
+ */
+export function canonicalizeEvidenceExistence(input: {
+  label: string;
+  rawExistence?: string | null;
+  source?: string;
+  baseStatus?: string;
+}): SharedEvidenceState | "other_defendant_only" | "unknown" {
+  const raw = (input.rawExistence ?? "").toLowerCase().replace(/\s+/g, "_");
+  if (raw === "other_defendant_only") return "other_defendant_only";
+
+  const hay = `${input.label} ${input.source ?? ""} ${input.baseStatus ?? ""}`;
+
+  // Explicit co-def precision preserved
+  if (/\bco-defendant-only\b|\bnot this defendant\b/i.test(hay)) {
+    return "other_defendant_only";
+  }
+
+  // Referred/listed language wins over missing/incomplete collapse (F01/F02)
+  if (wordingIndicatesReferredOnly(hay)) {
+    // Partial extract that is also referred stays incomplete only when the unit
+    // itself is a partial artefact AND there is no explicit referred-on-MG6 clause.
+    if (
+      wordingIndicatesPartialIncomplete(hay) &&
+      !/\breferred\s+on\s+(?:mg6c?|schedule)\b/i.test(hay) &&
+      !/^referred\s+only\s*:/i.test(input.label.trim())
+    ) {
+      return "incomplete";
+    }
+    return "referred_only";
+  }
+
+  if (raw === "served" || raw === "received") return "served";
+  if (raw === "referred_only" || raw === "referred") return "referred_only";
+  if (raw === "incomplete" || raw === "partial") return "incomplete";
+  if (raw === "missing" || raw === "outstanding" || raw === "absent") return "missing";
+  if (raw === "not_safely_confirmed" || raw === "unclear") return "not_safely_confirmed";
+  if (raw === "unknown") return "unknown";
+
+  return reconcileEvidenceState({
+    label: input.label,
+    source: input.source,
+    baseStatus: input.baseStatus,
+    explicitState: input.rawExistence,
+  });
+}
+
 /** Normalize chase/status text into shared evidence state — incomplete ≠ missing. */
 export function reconcileEvidenceState(input: {
   label: string;
@@ -73,6 +159,7 @@ export function reconcileEvidenceState(input: {
 }): SharedEvidenceState {
   if (input.explicitState) {
     const e = input.explicitState.toLowerCase().replace(/\s+/g, "_");
+    if (e === "other_defendant_only") return "referred_only"; // live shared enum lacks ODO
     if (e === "served" || e === "received") return "served";
     if (e === "referred_only" || e === "referred") return "referred_only";
     if (e === "incomplete" || e === "partial") return "incomplete";
@@ -80,18 +167,22 @@ export function reconcileEvidenceState(input: {
     if (e === "not_safely_confirmed" || e === "unclear") return "not_safely_confirmed";
   }
 
-  const hay = `${input.label} ${input.source ?? ""} ${input.evidenceAnchor ?? ""} ${input.baseStatus ?? ""}`.toLowerCase();
+  // Do not use organisational chase-source labels (e.g. "CPS / expert source (confirm on file)")
+  // as evidence-state proof — only label, baseStatus, and evidenceAnchor.
+  const hay = `${input.label} ${input.evidenceAnchor ?? ""} ${input.baseStatus ?? ""}`;
 
-  if (/\bincomplete\b|\bpartial\b|\blimited on (?:export|file)\b|\bdraft\b|\bunsigned\b/.test(hay)) {
-    return "incomplete";
-  }
-  if (/\breferred(?:\s+only)?\b|\bmentioned but\b|\bnot safely\b|\bconfirm on file\b/.test(hay)) {
+  // Referred/listed/scheduled-not-served BEFORE outstanding/not-served (F01)
+  if (wordingIndicatesReferredOnly(hay)) {
     return "referred_only";
   }
-  if (/\boutstanding\b|\bnot served\b|\bmissing\b|\babsent\b|\bnot provided\b/.test(hay)) {
+  // Partial/incomplete for the unit itself (not referred-only aggregates)
+  if (wordingIndicatesPartialIncomplete(hay)) {
+    return "incomplete";
+  }
+  if (/\boutstanding\b|\bnot served\b|\bmissing\b|\babsent\b|\bnot provided\b/i.test(hay)) {
     return "missing";
   }
-  if ((input.baseStatus ?? "").toLowerCase() === "received" || /\bserved\b/.test(hay)) {
+  if ((input.baseStatus ?? "").toLowerCase() === "received" || /\bserved\b/i.test(hay)) {
     return "served";
   }
   return "not_safely_confirmed";

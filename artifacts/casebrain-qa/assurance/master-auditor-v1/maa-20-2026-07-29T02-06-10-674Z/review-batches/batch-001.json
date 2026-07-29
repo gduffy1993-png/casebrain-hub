@@ -1,0 +1,1261 @@
+{
+  "batchIndex": 1,
+  "humanReviewDisposition": null,
+  "items": [
+    {
+      "textHash": "02fb5f2a8e8fafd86d515dd24645798d2a1ef0ccb16c2765d82eb67f4460cec2",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-01",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-02",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-03",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-04",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-05",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-06",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-07",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-07-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-08",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-08-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-09",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-09-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-10",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-10-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-11",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-11-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-12",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-12-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-13",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-13-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-14",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-14-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-15",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-16",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-16-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-17",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-17-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-18",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-18-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-19",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-19-truth_map-02fb5f2a8e8f"
+        },
+        {
+          "caseId": "CASE-20",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-02fb5f2a8e8f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7990a69f3d946794ecb6e44c35a2d21c94af60ea5298efe20fda9e84b8b2dda4",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-01",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-02",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-03",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-04",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-05",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-06",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-07",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-07-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-09",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-09-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-10",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-10-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-11",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-11-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-12",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-12-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-13",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-13-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-14",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-14-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-15",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-16",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-16-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-17",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-17-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-18",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-18-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-19",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-19-truth_map-7990a69f3d94"
+        },
+        {
+          "caseId": "CASE-20",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-7990a69f3d94"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "23022c3b1fe5497dc88a7c11b4fe34a9d040c88845a9fa7b4d8c32e8a7a3092d",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-01",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-02",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-03",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-04",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-05",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-06",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-07",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-07-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-09",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-09-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-10",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-10-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-11",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-11-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-12",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-12-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-13",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-13-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-14",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-14-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-15",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-16",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-16-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-17",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-17-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-18",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-18-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-19",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-19-truth_map-23022c3b1fe5"
+        },
+        {
+          "caseId": "CASE-20",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-23022c3b1fe5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "998b72c6657ada49df5c6bba97d7b2b6e488fc4cac3db326bb133fee6070a59b",
+      "templateHash": "ba3ef32d4c3abc341102a9eb33926237a0d0bf1d28ca33490b94bd91df8e9d89",
+      "text": "witness MG11 · not_safely_confirmed · unsafe",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-07",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-07-disclosure_chase-998b72c6657a"
+        },
+        {
+          "caseId": "CASE-08",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-08-disclosure_chase-998b72c6657a"
+        },
+        {
+          "caseId": "CASE-09",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-09-disclosure_chase-998b72c6657a"
+        },
+        {
+          "caseId": "CASE-10",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-10-disclosure_chase-998b72c6657a"
+        },
+        {
+          "caseId": "CASE-13",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-13-disclosure_chase-998b72c6657a"
+        },
+        {
+          "caseId": "CASE-16",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-16-disclosure_chase-998b72c6657a"
+        },
+        {
+          "caseId": "CASE-17",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-17-disclosure_chase-998b72c6657a"
+        },
+        {
+          "caseId": "CASE-18",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-18-disclosure_chase-998b72c6657a"
+        },
+        {
+          "caseId": "CASE-19",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-19-disclosure_chase-998b72c6657a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "f933adb40907a584c8e5dc4b4c1ea5e94b9201d01afa0069505aa78d3c6c5bab",
+      "templateHash": "f933adb40907a584c8e5dc4b4c1ea5e94b9201d01afa0069505aa78d3c6c5bab",
+      "text": "custody extract · not_safely_confirmed · unsafe",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-07",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-07-disclosure_chase-f933adb40907"
+        },
+        {
+          "caseId": "CASE-08",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-08-disclosure_chase-f933adb40907"
+        },
+        {
+          "caseId": "CASE-09",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-09-disclosure_chase-f933adb40907"
+        },
+        {
+          "caseId": "CASE-10",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-10-disclosure_chase-f933adb40907"
+        },
+        {
+          "caseId": "CASE-13",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-13-disclosure_chase-f933adb40907"
+        },
+        {
+          "caseId": "CASE-16",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-16-disclosure_chase-f933adb40907"
+        },
+        {
+          "caseId": "CASE-17",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-17-disclosure_chase-f933adb40907"
+        },
+        {
+          "caseId": "CASE-18",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-18-disclosure_chase-f933adb40907"
+        },
+        {
+          "caseId": "CASE-19",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-19-disclosure_chase-f933adb40907"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "88a9d0b09d94575cdf49fc07e28c6b0ce481b5906caf208c6d88e4bc89d4af1f",
+      "templateHash": "fd18ad2ba581472ff181d2e4dba8caa4776b18489c646c18adc2b01eab545686",
+      "text": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-04",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-04-allegation-88a9d0b09d94"
+        },
+        {
+          "caseId": "CASE-11",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-11-allegation-88a9d0b09d94"
+        },
+        {
+          "caseId": "CASE-20",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-20-allegation-88a9d0b09d94"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "61e52c3be7eed88bb47d860a7186c271a3ea0a506c7abb60c036d501f650f0fe",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-01",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-61e52c3be7ee"
+        },
+        {
+          "caseId": "CASE-05",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-61e52c3be7ee"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "fabcca1bab8f211e89d4daa46ba05be993d0c92231dce2b99c0543985018930e",
+      "templateHash": "c0807f755d34756f2dd0e55a9526caa264552f8e65beda124aae25e3dd94518c",
+      "text": "Complainant MG11 (draft) · served · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-01",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-01-truth_map-fabcca1bab8f"
+        },
+        {
+          "caseId": "CASE-12",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-12-truth_map-fabcca1bab8f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a32fa3ea3304eb26af64c06b0841695836b4efc6dbe93747d7b5a44d45c7051a",
+      "templateHash": "c01844c8bff4d384a68ddded2378d8055290d9281a4b1415819011652969c64e",
+      "text": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-01",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-01-allegation-a32fa3ea3304"
+        },
+        {
+          "caseId": "CASE-10",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-10-allegation-a32fa3ea3304"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "8572b9bd74c4bef7f8ff3ebfb76fc172ce1f0d1d4954f27aadaed11c31e6ac2e",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-02",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-02-truth_map-8572b9bd74c4"
+        },
+        {
+          "caseId": "CASE-03",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-03-truth_map-8572b9bd74c4"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "596b41fa5f485164b358ac236069904bcaf6a5a76aa4b16490c0d8ab5bb231f5",
+      "templateHash": "5b0ab9a73f8fc86615319d0e69cfbde350967d9423565595843713c6b5679236",
+      "text": "Custody record extract · served · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-02",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-02-truth_map-596b41fa5f48"
+        },
+        {
+          "caseId": "CASE-03",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-03-truth_map-596b41fa5f48"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "abad8c35456942c7d48e7db032cdbaa904e751f044a74816a69556b51a374bae",
+      "templateHash": "b59488b626a75a614a059d8ea5b5ac420285db92b1d0294a6f14a8b727f9bbcb",
+      "text": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-02",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-02-allegation-abad8c354569"
+        },
+        {
+          "caseId": "CASE-03",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-03-allegation-abad8c354569"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0e2ca2e3dd559135db5f382856120feaa4e99b49ee25c4d93a95502539362752",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-04",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-0e2ca2e3dd55"
+        },
+        {
+          "caseId": "CASE-20",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-0e2ca2e3dd55"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e88a344ed30c8d28a31258a5f37cb5cc328ccd95b7f482f4402f78559c075020",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-04",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-04-truth_map-e88a344ed30c"
+        },
+        {
+          "caseId": "CASE-20",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-e88a344ed30c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "338462537cd18ffdc03c63db6b81fe8739cb6d843d8e24e717bf0b05caae8a54",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-01",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-338462537cd1"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d3217ba94123d9fa14448a06b394bfa572755b714577a3905755a1cc844af2eb",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-01",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-d3217ba94123"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "f1cac2d0fcf5eea7cf85f9453817c5cba371bf889b336fa2f756fdead3bc2a12",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-01",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-01-truth_map-f1cac2d0fcf5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "07b000d9a450aca1b2ba945003b4376faf408536078e47bcf278753b516cc54d",
+      "templateHash": "bcdd3acd3c2e3b6224f558e3d161bf094305a821ea2cb2c271d64be3b2d7dac8",
+      "text": "Attribution / subscriber material · not_safely_confirmed · unsafe",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-01",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-01-disclosure_chase-07b000d9a450"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c0d088d98610b3cafec8a8747c25882c30f09e07599b3eee083c81631c45af97",
+      "templateHash": "42ba570f1f9601e55b4f6a1b36c8506780f06e938a232c029d7cd93c1390779c",
+      "text": "Interview audio · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-02",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-02-disclosure_chase-c0d088d98610"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "bbf0c79d47481bdabecdd1b36ee328689a0ad0e4117c88ccb9ff56aaae313849",
+      "templateHash": "e7185f2c19a38f96d4e5b47dbd05597e357d95a932f258b362a4b99f3cc20aec",
+      "text": "PACE safeguards detail · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-02",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-02-disclosure_chase-bbf0c79d4748"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "747b8fb95891a2ef6a3dc8ec1d174967609e91b80ad191f6443e519800e925f6",
+      "templateHash": "36a24e5e1333956e81d050047ab9120f46d6c54a2a10e5123c1cfe2d90ab0d22",
+      "text": "CCTV audit trail / source hash record · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-04",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-04-disclosure_chase-747b8fb95891"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "52d6b1b3908db713f766fbb092c3c0955ae451fe8c123a83552afd3b896bef5e",
+      "templateHash": "8dbf1c6d3036a59abc5cbf040fc52958035945a25c698d4f03c19fb364525539",
+      "text": "Recognition / ID basis · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-04",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-04-disclosure_chase-52d6b1b3908d"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0e201e7c64019a10868e52ffd642f692831c130f72ba3a896d6986387c8b6132",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-05",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-0e201e7c6401"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a3c0192b7b5ccc6b49222e3095ae637e646b1619930c5b416b4b5711ddb972a3",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-05",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-a3c0192b7b5c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e1c1a24e646aa0b789360a05c5da2650bc41aa20db6d3a0250ee957d1c6e30af",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-05",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-05-truth_map-e1c1a24e646a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7d3bf1f22e0466bf2a60ea0b07cf5d6bb7586622cf61d1ff718c41dc028c64e8",
+      "templateHash": "7d3bf1f22e0466bf2a60ea0b07cf5d6bb7586622cf61d1ff718c41dc028c64e8",
+      "text": "co-defendant material · missing · needs_review",
+      "verdict": "unresolved",
+      "controlId": "MAA-CROSS-SURFACE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-05",
+          "surface": "disclosure_chase",
+          "findingId": "MAA-CROSS-SURFACE-missing_not_chased-CASE-05-disclosure_chase-7d3bf1f22e04"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ea0bc385643c3b979741650093af44acb7a5ecd4ce1197565d255d356e872eaa",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-06",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-ea0bc385643c"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c979b37084a3dda7dacab4dc2174e74f2937a1962db8f110aed87355152b639a",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-06",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-c979b37084a3"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d71d59deffc739e4e6fed112da16ddd921ce66d45e3d3a69d6c686aa925496ba",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-06",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-d71d59deffc7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5acccc6b4420ebf59b6e09dafa93d9264678f6548cfc75c3680f30dd94dbdbe5",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-06",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-06-truth_map-5acccc6b4420"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5fddd3fafeff5d368a318b0d10456c64ae086da764a8a75e066f4f32492f370d",
+      "templateHash": "5c889440e46c23be7aded5f9fa0e4c61398ee3469ee04f859144dfb2bd44d7f5",
+      "text": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-06",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-06-allegation-5fddd3fafeff"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "5202d6bb664f6d7ea92e85e299f521e2a8e135ea3bb608f72d65be31233dff64",
+      "templateHash": "b59b2f145aeb1405fcdb1bf7865c7955321bb8e70c52a1f42203da8e1711c299",
+      "text": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-07",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-07-allegation-5202d6bb664f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "7b7fe09d4a8a94bfa8cbc1bfb97d9ec93034263f95e5eb2b8775d3b8d95da476",
+      "templateHash": "7b7fe09d4a8a94bfa8cbc1bfb97d9ec93034263f95e5eb2b8775d3b8d95da476",
+      "text": "corrected charge sheet · missing · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-08",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-08-truth_map-7b7fe09d4a8a"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "d34843a648b5485cbfa67b9024024501989a9eebbfe86c72e1633cc92c2cd2e0",
+      "templateHash": "d34843a648b5485cbfa67b9024024501989a9eebbfe86c72e1633cc92c2cd2e0",
+      "text": "updated mg5 · missing · needs_review",
+      "verdict": "defect",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-08",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-08-truth_map-d34843a648b5"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a25fbf4146cb30265ce72e0d0e2c6493b9182be1cdb851ae279c8942eded92e2",
+      "templateHash": "5e25a11052c13ada0fcc8d6ca0958bc00d4c3a7d60827ee221f8234e527bdb5c",
+      "text": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-08",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-08-allegation-a25fbf4146cb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "24252f167174c544a9b4829ae03c1a55decece473ed4ac0dd61a248f0f633b79",
+      "templateHash": "8773c671fd490c69a5ce4f194bc1778956ba1888619cd85abe01ed2f677d3f2e",
+      "text": "Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-09",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-09-allegation-24252f167174"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "ff344e01462ba853a81e1180a3e6cdcfd2f1e170c1c7c8deb8dc4cb509cb7b0d",
+      "templateHash": "80668e6da0b1c34503f401414aebe24c75c713d76dd4c7a60105f0a3f954484b",
+      "text": "Sexual assault, contrary to section 3 of the Sexual Offences Act 2003",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-12",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-12-allegation-ff344e01462b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "2d522a7a2e9b731371caf942893e736ee5af7c68b9ec048454c1ceb10ce04ee4",
+      "templateHash": "341ef23e14ef86158033c75a6df2e0c7785f3ebe089e8a2749e7c87688139e40",
+      "text": "Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-13",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-13-allegation-2d522a7a2e9b"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "a434f70b52dad5193024587ca35f673416cde7974c3d216dfcbd961177b2e127",
+      "templateHash": "5cae2554e13462aae3594020a357787bf7be4979a09c205e2861ab1a421d9365",
+      "text": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-14",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-14-allegation-a434f70b52da"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "f854005c79d7397d397b22e6dae4469a32696fee8c9a75f2433d574e1190411c",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-15",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-f854005c79d7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "193125cfed90b8e2bf300d2c9fc20ca0a95f15daf418f649a0c805ed80f96ad9",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-15",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-193125cfed90"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "0889d39b75759654be1e143bcc93c8d4b2d1a5e40f3d95191d5e9c1954986f01",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-15",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-0889d39b7575"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "1a1cc4a139153d7bececaddd39cdfb863ed0730cfe43f3cbb23dfb55e377dbf8",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-15",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-1a1cc4a13915"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "53b7991f27310a2a7c1e680ef8b5faf9099756f44f187149f31059467b75315f",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-15",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-15-truth_map-53b7991f2731"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "9ed9ea0986ebe03f89ab677b944c740b4e8c77cdd043fa60d361a8ed4104fa4b",
+      "templateHash": "0d23f6b0610c843792ed444191395a228eb1701a364d6d4ad370ff410241a4f4",
+      "text": "Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-15",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-15-allegation-9ed9ea0986eb"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "e4e84705656fa6630aa713bb137c6aa727a9c814700eda4fdebad34aedbeae19",
+      "templateHash": "4346e0f00ea2783d67e3bfabed82808ab4922b3dec9ec179d4735d7ceb879044",
+      "text": "Taking a vehicle without consent, contrary to section 12 of the Theft Act 1968",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-16",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-16-allegation-e4e84705656f"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "bad4357c0aa475c3f700c027273ceccf08484db30672eb3a1d5b82908b6540e1",
+      "templateHash": "b6a94bbaa41c368b79c9437e97b0fe6fa6464e4624245115c2427d6631e07b47",
+      "text": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-17",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-17-allegation-bad4357c0aa4"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "c58effd41ed62f7e24e0531030f4bb28a57f34fa08bd148479d794e0afc352ef",
+      "templateHash": "a52d75f54e63725a7bc7d28c51f1fbb0638586ebb346a73aef2c4bee485d36cb",
+      "text": "Conspiracy to import a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-18",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-18-allegation-c58effd41ed6"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "56645240a4d783b8af73659a118cef7288f9c39da96e3baf6cea859def0af954",
+      "templateHash": "941eabeb3b74c3ff89cb058d09a19d4d2a371388fd00b0dc960c6d5a7a66f7cc",
+      "text": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
+      "verdict": "unresolved",
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-19",
+          "surface": "allegation",
+          "findingId": "MAA-LEGAL-CURRENTNESS-citation_present_needs_registry-CASE-19-allegation-56645240a4d7"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    },
+    {
+      "textHash": "93d2e1dc76bdc4fff47e47b43abf50cec619fefa811fd001432ceed3ff0aa9d0",
+      "templateHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": "",
+      "verdict": "unresolved",
+      "controlId": "MAA-EVIDENCE-STATE",
+      "designFinding": false,
+      "occurrences": [
+        {
+          "caseId": "CASE-20",
+          "surface": "truth_map",
+          "findingId": "MAA-EVIDENCE-STATE-expected_item_absent-CASE-20-truth_map-93d2e1dc76bd"
+        }
+      ],
+      "humanReviewDisposition": null,
+      "humanReviewer": null
+    }
+  ]
+}

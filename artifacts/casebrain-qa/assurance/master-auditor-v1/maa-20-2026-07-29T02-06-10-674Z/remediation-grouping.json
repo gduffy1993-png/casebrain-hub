@@ -1,0 +1,15 @@
+[
+  {
+    "rootCauseFamily": "evidence_state_candidate",
+    "count": 6,
+    "suggestedRemediation": "Confirm against source bundle before treating as programme defect.",
+    "findingIds": [
+      "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-01-truth_map-fabcca1bab8f",
+      "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-02-truth_map-596b41fa5f48",
+      "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-03-truth_map-596b41fa5f48",
+      "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-08-truth_map-7b7fe09d4a8a",
+      "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-08-truth_map-d34843a648b5",
+      "MAA-EVIDENCE-STATE-candidate_pending_source-CASE-12-truth_map-fabcca1bab8f"
+    ]
+  }
+]

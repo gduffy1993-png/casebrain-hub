@@ -43,7 +43,7 @@ const MG6_HEAD_RE =
   /\b(?:mg6\s+disclosure\s+schedule|mg6\s+corrected|mg6\s+continuation|mg6\s+disclosure|mg6c|disclosure\s+schedule|unused\s+material\s+schedule)\b/i;
 
 const ITEM_RE =
-  /\b(?:cctv|bwv|999(?:\s+audio)?|cad(?:\s+log)?|scene\s+photos?|forensic|witness|medical|interview|transcript|mg11|statement|footage|recording|export\s+log|continuity)\b/i;
+  /\b(?:cctv|bwv|999(?:\s+audio)?|cad(?:\s+log)?|scene\s+photos?|forensic|witness|medical|interview|transcript|mg11|statement|footage|recording|export\s+log|continuity|indictment|charge\s+sheet|mg5)\b/i;
 
 const DRAFT_STATUS_RE =
   /\b(?:summary\s+only|extract\s+served\s+only|extract\s+only|partial|screenshots?\s*\/\s*summary|screenshots?\b|only\s+screenshots|later\s+note\s+suggests|draft\s+note|draft\s+only|\bdraft\b|unclear|served\s*\?\s*unclear|requires?\s+oic\s+check|sensitive\s+schedule\s+exists)\b/i;
@@ -76,6 +76,12 @@ const ABSENT_ON_PAPERS_RE =
   /\bno\s+full\s+witness\s+pack\b|\bnot\s+contained\s+in\s+the\s+papers\b|\bis\s+not\s+contained\b/i;
 
 function hasNegativeOrLimitingSignal(line: string): boolean {
+  // Screenshots/summary served on bundle are limited artefacts but still positively served —
+  // do not treat the mere word "screenshots" as a negative that blocks served classification.
+  const servedOnBundle = /\bserved on bundle\b/i.test(line);
+  if (servedOnBundle && !/\bpartial\b|\bincomplete\b|\bnot\s+(?:served|attached|included)\b/i.test(line)) {
+    return false;
+  }
   if (NEVER_IN_SERVED_RE.test(line)) return true;
   if (DRAFT_STATUS_RE.test(line)) return true;
   if (OUTSTANDING_STATUS_RE.test(line)) return true;
@@ -85,25 +91,62 @@ function hasNegativeOrLimitingSignal(line: string): boolean {
 }
 
 function isCleanPositiveServedLine(line: string): boolean {
-  if (!ITEM_RE.test(line)) return false;
+  if (!ITEM_RE.test(line) && !/\bMG6C?\//i.test(line)) return false;
   if (hasNegativeOrLimitingSignal(line)) return false;
   if (!POSITIVE_SERVED_RE.test(line)) return false;
   return true;
+}
+
+/**
+ * Referred / listed / scheduled but not served-or-attached.
+ * Checked before outstanding so "referred on MG6 — export not served" is not
+ * collapsed to outstanding/missing.
+ */
+export function lineIndicatesReferredOnly(line: string): boolean {
+  const l = compact(line);
+  if (!l) return false;
+  // Outstanding (without referred/listed/scheduled) is never referred_only
+  if (
+    /\boutstanding\b/i.test(l) &&
+    !/\breferred\b/i.test(l) &&
+    !/\b(?:listed|scheduled)\b/i.test(l)
+  ) {
+    return false;
+  }
+  // Uncertainty prose is not referred proof
+  if (/^uncertain(?:\s+on\s+papers)?\s*:/i.test(l)) return false;
+  if (/^referred\s+only\s*:/i.test(l)) return true;
+  if (/\breferred\s+only\b/i.test(l)) return true;
+  if (/\breferred\s+on\s+(?:mg6c?|schedule|index|disclosure)\b/i.test(l)) return true;
+  if (/\breferred\s+to\b/i.test(l)) return true;
+  if (/\b(?:listed|scheduled)\b[^.\n]{0,40}\bnot\s+(?:served|attached)\b/i.test(l)) return true;
+  if (
+    /\breferred\b/i.test(l) &&
+    /\b(?:export\s+not\s+served|not\s+attached|not\s+included|not\s+on\s+bundle)\b/i.test(l)
+  ) {
+    return true;
+  }
+  if (/\bmentioned but\b|\bnot\s+included\b|\bnot\s+attached\b|\bsummary\s+only\b/i.test(l)) {
+    return true;
+  }
+  return false;
 }
 
 export function classifyMaterialStatus(line: string): MaterialStatus | null {
   const l = compact(line);
   if (!l || l.length < 8) return null;
   if (UNSIGNED_RE.test(l)) return "unsigned";
-  if (/\b(?:referred\s+to|mentioned|not\s+included|not\s+attached|summary\s+only|extract\s+only)\b/i.test(l)) {
+  // Referred/listed/scheduled-not-served before outstanding — shared F01/F02 root.
+  if (lineIndicatesReferredOnly(l)) {
     return "referred_only";
   }
+  // Clean served-on-bundle / positive served lines beat draft/screenshot heuristics
+  if (isCleanPositiveServedLine(l)) return "served";
   if (DRAFT_STATUS_RE.test(l)) return "draft";
   if (OUTSTANDING_STATUS_RE.test(l)) return "outstanding";
   if (ABSENT_ON_PAPERS_RE.test(l)) return "absent";
   if (/\babsent\b/i.test(l)) return "absent";
   if (/\bpartial\b/i.test(l)) return "partial";
-  if (isCleanPositiveServedLine(l)) return "served";
   if (ITEM_RE.test(l) && !hasNegativeOrLimitingSignal(l)) return "unclear";
   return null;
 }

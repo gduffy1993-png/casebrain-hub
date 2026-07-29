@@ -1,0 +1,316 @@
+{
+  "planVersion": "corpus-plan-v1",
+  "stage": "50",
+  "adapterId": "esa-local-materialised",
+  "requiredUniqueCases": 50,
+  "uniqueCaseCount": 50,
+  "membership": [
+    {
+      "caseId": "sc-0002d",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002d"
+    },
+    {
+      "caseId": "sim-120",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-120"
+    },
+    {
+      "caseId": "sim-250",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-250"
+    },
+    {
+      "caseId": "sim-345",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-345"
+    },
+    {
+      "caseId": "sc-00025",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-00025"
+    },
+    {
+      "caseId": "sim-104",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-104"
+    },
+    {
+      "caseId": "sim-373",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-373"
+    },
+    {
+      "caseId": "sim-377",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-377"
+    },
+    {
+      "caseId": "sim-321",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-321"
+    },
+    {
+      "caseId": "sim-182",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-182"
+    },
+    {
+      "caseId": "sim-224",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-224"
+    },
+    {
+      "caseId": "sim-222",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-222"
+    },
+    {
+      "caseId": "sim-190",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-190"
+    },
+    {
+      "caseId": "sim-142",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-142"
+    },
+    {
+      "caseId": "sim-018",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-018"
+    },
+    {
+      "caseId": "sim-055",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-055"
+    },
+    {
+      "caseId": "sim-172",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-172"
+    },
+    {
+      "caseId": "sim-048",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-048"
+    },
+    {
+      "caseId": "sim-063",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-063"
+    },
+    {
+      "caseId": "sim-038",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-038"
+    },
+    {
+      "caseId": "sim-017",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-017"
+    },
+    {
+      "caseId": "sim-014",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-014"
+    },
+    {
+      "caseId": "sim-015",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-015"
+    },
+    {
+      "caseId": "sim-020",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-020"
+    },
+    {
+      "caseId": "sim-007",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-007"
+    },
+    {
+      "caseId": "sim-073",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-073"
+    },
+    {
+      "caseId": "sim-138",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-138"
+    },
+    {
+      "caseId": "sim-265",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-265"
+    },
+    {
+      "caseId": "sim-072",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-072"
+    },
+    {
+      "caseId": "sim-387",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-387"
+    },
+    {
+      "caseId": "sim-128",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-128"
+    },
+    {
+      "caseId": "sim-332",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-332"
+    },
+    {
+      "caseId": "sim-329",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-329"
+    },
+    {
+      "caseId": "sim-198",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-198"
+    },
+    {
+      "caseId": "sim-337",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-337"
+    },
+    {
+      "caseId": "sim-366",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-366"
+    },
+    {
+      "caseId": "sim-336",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-336"
+    },
+    {
+      "caseId": "sim-286",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-286"
+    },
+    {
+      "caseId": "sim-199",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-199"
+    },
+    {
+      "caseId": "sim-354",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-354"
+    },
+    {
+      "caseId": "sim-145",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-145"
+    },
+    {
+      "caseId": "sim-257",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-257"
+    },
+    {
+      "caseId": "sim-245",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-245"
+    },
+    {
+      "caseId": "sim-395",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-395"
+    },
+    {
+      "caseId": "sim-271",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-271"
+    },
+    {
+      "caseId": "sim-389",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-389"
+    },
+    {
+      "caseId": "sim-360",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-360"
+    },
+    {
+      "caseId": "sc-0006a",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0006a"
+    },
+    {
+      "caseId": "sc-0002e",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002e"
+    },
+    {
+      "caseId": "sim-024",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-024"
+    }
+  ],
+  "refused": false,
+  "refuseReason": null,
+  "denominators": {
+    "uniqueCases": 50,
+    "duplicateCaseIdsDropped": 0,
+    "surfaces": 1762
+  }
+}

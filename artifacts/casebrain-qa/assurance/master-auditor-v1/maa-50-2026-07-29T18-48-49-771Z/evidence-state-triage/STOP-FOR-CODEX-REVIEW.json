@@ -1,0 +1,53 @@
+{
+  "status": "STOP_FOR_CODEX_REVIEW",
+  "triageCheckpoint": "stage50-evidence-state-triage",
+  "programmePassSupported": false,
+  "doNot": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "claim_programme_PASS",
+    "start_stage_150",
+    "repair_casebrain",
+    "modify_frozen_packets",
+    "modify_truth_keys",
+    "modify_brain1_guardian_ledger_phase11_malik"
+  ],
+  "runId": "maa-50-2026-07-29T18-48-49-771Z",
+  "frozenMembershipHash": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "freezeHashVerified": true,
+  "findingCount": 93,
+  "dispositionCounts": {
+    "confirmed_app_defect": 43,
+    "detector_false_positive": 22,
+    "unresolved_source": 21,
+    "truth_key_defect": 7
+  },
+  "unitCounts": {
+    "occurrenceFindings": 93,
+    "uniqueStrings": 76,
+    "templates": 76,
+    "cases": 44,
+    "note": "Counts kept separate — do not equate occurrence, unique-string, template, or case units."
+  },
+  "familyCounts": {
+    "F01_mg6_referred_not_served_as_missing": 26,
+    "F03_outstanding_alone_vs_referred_only": 21,
+    "F02_referred_only_label_as_incomplete": 15,
+    "F05_unit_conflation_aggregate_or_meta_row": 11,
+    "F04_partial_incomplete_vs_served": 7,
+    "F07_recording_transcript_or_unknown_identity": 5,
+    "F06_mg6_clarification_vs_mg6_document": 4,
+    "F08_co_defendant_only_more_precise": 2,
+    "F10_other_edge": 1,
+    "F09_truth_expects_served_source_partial_or_absent": 1
+  },
+  "artefacts": {
+    "triageJson": "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-50-2026-07-29T18-48-49-771Z/evidence-state-triage/stage50-evidence-state-triage.json",
+    "triageMd": "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-50-2026-07-29T18-48-49-771Z/evidence-state-triage/stage50-evidence-state-triage.md",
+    "rootCause": "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-50-2026-07-29T18-48-49-771Z/evidence-state-triage/root-cause-family-summary.json",
+    "remediation": "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-50-2026-07-29T18-48-49-771Z/evidence-state-triage/proposed-remediation-order.md"
+  },
+  "next": "Codex independent review of dispositions — no Stage 150 until cleared"
+}

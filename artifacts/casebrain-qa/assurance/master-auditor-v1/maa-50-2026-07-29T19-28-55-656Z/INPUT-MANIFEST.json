@@ -1,0 +1,720 @@
+{
+  "schemaVersion": "1.1.0",
+  "runId": "maa-50-2026-07-29T19-28-55-656Z",
+  "createdAt": "2026-07-29T19:29:07.820Z",
+  "stage": "50",
+  "corpusRoot": "artifacts/evidence-state-audit-local",
+  "planVersion": "corpus-plan-v1",
+  "adapterId": "esa-local-materialised",
+  "requiredUniqueCases": 50,
+  "membership": [
+    {
+      "caseId": "sc-0002d",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002d"
+    },
+    {
+      "caseId": "sim-120",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-120"
+    },
+    {
+      "caseId": "sim-250",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-250"
+    },
+    {
+      "caseId": "sim-345",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-345"
+    },
+    {
+      "caseId": "sc-00025",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-00025"
+    },
+    {
+      "caseId": "sim-104",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-104"
+    },
+    {
+      "caseId": "sim-373",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-373"
+    },
+    {
+      "caseId": "sim-377",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-377"
+    },
+    {
+      "caseId": "sim-321",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-321"
+    },
+    {
+      "caseId": "sim-182",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-182"
+    },
+    {
+      "caseId": "sim-224",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-224"
+    },
+    {
+      "caseId": "sim-222",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-222"
+    },
+    {
+      "caseId": "sim-190",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-190"
+    },
+    {
+      "caseId": "sim-142",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-142"
+    },
+    {
+      "caseId": "sim-018",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-018"
+    },
+    {
+      "caseId": "sim-055",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-055"
+    },
+    {
+      "caseId": "sim-172",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-172"
+    },
+    {
+      "caseId": "sim-048",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-048"
+    },
+    {
+      "caseId": "sim-063",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-063"
+    },
+    {
+      "caseId": "sim-038",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-038"
+    },
+    {
+      "caseId": "sim-017",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-017"
+    },
+    {
+      "caseId": "sim-014",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-014"
+    },
+    {
+      "caseId": "sim-015",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-015"
+    },
+    {
+      "caseId": "sim-020",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-020"
+    },
+    {
+      "caseId": "sim-007",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-007"
+    },
+    {
+      "caseId": "sim-073",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-073"
+    },
+    {
+      "caseId": "sim-138",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-138"
+    },
+    {
+      "caseId": "sim-265",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-265"
+    },
+    {
+      "caseId": "sim-072",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-072"
+    },
+    {
+      "caseId": "sim-387",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-387"
+    },
+    {
+      "caseId": "sim-128",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-128"
+    },
+    {
+      "caseId": "sim-332",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-332"
+    },
+    {
+      "caseId": "sim-329",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-329"
+    },
+    {
+      "caseId": "sim-198",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-198"
+    },
+    {
+      "caseId": "sim-337",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-337"
+    },
+    {
+      "caseId": "sim-366",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-366"
+    },
+    {
+      "caseId": "sim-336",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-336"
+    },
+    {
+      "caseId": "sim-286",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-286"
+    },
+    {
+      "caseId": "sim-199",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-199"
+    },
+    {
+      "caseId": "sim-354",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-354"
+    },
+    {
+      "caseId": "sim-145",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-145"
+    },
+    {
+      "caseId": "sim-257",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-257"
+    },
+    {
+      "caseId": "sim-245",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-245"
+    },
+    {
+      "caseId": "sim-395",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-395"
+    },
+    {
+      "caseId": "sim-271",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-271"
+    },
+    {
+      "caseId": "sim-389",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-389"
+    },
+    {
+      "caseId": "sim-360",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-360"
+    },
+    {
+      "caseId": "sc-0006a",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0006a"
+    },
+    {
+      "caseId": "sc-0002e",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002e"
+    },
+    {
+      "caseId": "sim-024",
+      "sourceCaseId": null,
+      "adapterId": "esa-local-materialised",
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-024"
+    }
+  ],
+  "entries": [
+    {
+      "caseId": "sc-0002d",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002d",
+      "actualHash": "c8598fa492848200e90cc2daf7876a895e857a14082b7a2c569d2cafe0382868",
+      "expectedHash": "40a4e5f9aae801816fe45583b89caa5da0ba20e767db2cdbd0c5688df6da762a",
+      "bundleHash": "b6beb8cefc86c7e1de89f57e329cb1684cb18a3fc3b93b113aed797b38c7f46d"
+    },
+    {
+      "caseId": "sim-120",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-120",
+      "actualHash": "a511abac6d97d61281f4f0a6eda0fe9ae0b60aa9126c8460154d5b04cd292018",
+      "expectedHash": "4131057fd66d347eb039a3ab391cac63f9225d505f4317997be499ec789c2fdb",
+      "bundleHash": "39c52c623fa25e5f6dc5cd006cb92504891522a59ab5b7f6f0588825f31510ae"
+    },
+    {
+      "caseId": "sim-250",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-250",
+      "actualHash": "d50506a82b4dddd748d71a90c1a526fdb08eaa6bcf2dc366c5fba29f5dbe5197",
+      "expectedHash": "bd63f577172d798afbe257876e3f91b39e2c32dda53a5d1061814f850b8f75b3",
+      "bundleHash": "2efd0cc039a122ee027aed36f8c27067ccc78c25fcecdbcf4b980d71f8c221e5"
+    },
+    {
+      "caseId": "sim-345",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-345",
+      "actualHash": "61ba07edba54f37f76e5ffb856bc7990624a5e562506a499c3d85f5720875b4e",
+      "expectedHash": "3176d7058282f58c3603a223b06d13b53ea08452cf620fa3f9da377ccb729994",
+      "bundleHash": "212e0101372547001b5598e91d588aad908341e21c2e11cfa130e76fa4980eca"
+    },
+    {
+      "caseId": "sc-00025",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-00025",
+      "actualHash": "2fe4f2c71e13780f32f8a9a39f2d24a21ec533b923f74d9ea9ca61b0bb668111",
+      "expectedHash": "e79efcc9d9c0bb7743a81ae8dc19c98f6c78f0ee2d6090bbeb5e6227ef864410",
+      "bundleHash": "716879d63ecdf748834b481f79fa056f1a54c1136c0412817e2b0602b7bdabfd"
+    },
+    {
+      "caseId": "sim-104",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-104",
+      "actualHash": "bd96c99d45094946e59b96de1f61caa772219ce03116e681c214cf676c91d986",
+      "expectedHash": "9eae0041a73d97442bfb0b4eb7960ab0d1f06bdcc6f3475ca05026c129b1caee",
+      "bundleHash": "618b3559194080f68e23072d930fc1737f120509bea66cf3919fb42e9b410f06"
+    },
+    {
+      "caseId": "sim-373",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-373",
+      "actualHash": "f8911646004dac1a36ef4434774539eab79062baa99e12e0b3ff739fc97322ac",
+      "expectedHash": "4421a743502d02d596ae944f56d79d9a5d3dd188bc8a3fdf7a5822664944fa02",
+      "bundleHash": "6c89b6776cb41dbfc8488bf97ad3325999157c42bdfbd0793105e7ba5064bf7d"
+    },
+    {
+      "caseId": "sim-377",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-377",
+      "actualHash": "5f419bddb3f9a6a756e742815f06aacfdb3a8912849e45df2511f967b01ddc84",
+      "expectedHash": "576602779e279c9e6e651fc2a98d43b0d2587bc69ba02c1505df3f5cbf1cf225",
+      "bundleHash": "24a607b7f7ab1b3e34e8dda26d055fb94c57e3cf565e0e1e88b105f0f6c0522b"
+    },
+    {
+      "caseId": "sim-321",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-321",
+      "actualHash": "0975ed87bc8486f862f214d803691bdc7a3e9defd50180c63ce19e9eb9ed1588",
+      "expectedHash": "fe3679820b26adece72d1f5c352860cb6fe4d5ff48d53a0899a6592529297b07",
+      "bundleHash": "9e28dbeba6886b8592b27426b4e834be0f9a461579e2e41220174845ba4d52fa"
+    },
+    {
+      "caseId": "sim-182",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-182",
+      "actualHash": "00a1caa5e31907bb0c1ad06a5d5d819e04b411176687f13cdea8cc691fe82819",
+      "expectedHash": "ac1f835d18fffe78997397c9c2c75b6c40baca4d1b443c0b2f4021253f29306f",
+      "bundleHash": "80319ef76656c17ba3ede588033608b47c570d176f205b664246a08765bf1fac"
+    },
+    {
+      "caseId": "sim-224",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-224",
+      "actualHash": "d013835dc5515435473c1777aa91f66c408689bd0180e48d2a2ad9c9310d3c2d",
+      "expectedHash": "f31a747802afa53adace7e05de0777245f8dafc35de7b1a09cb531f4ac3043bb",
+      "bundleHash": "57577bdb504faf6efb424938504b82a11ca88663e3afb65c6b52c610502ec034"
+    },
+    {
+      "caseId": "sim-222",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-222",
+      "actualHash": "70583d072789e93d7e6812a35b78f167b69276ed760672e925b0a063a5507f9a",
+      "expectedHash": "27cb84f129ca14203a4ab7889770e2734cb596d3964d991e346232bca7cffa57",
+      "bundleHash": "b72645ae5659aa7bc58e21515eefd2ea19c3e329640c0709322e59effe847a16"
+    },
+    {
+      "caseId": "sim-190",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-190",
+      "actualHash": "a9dbbfebd80ad82045bd1e6d24708fd9893694a49208b3c4d8eafaa703fcdff0",
+      "expectedHash": "578df5880045d406ab2265b05332870bc068c5ba3d70083943c754202fafb6df",
+      "bundleHash": "c779861bb34a23fc7699ae515e7e8e60dfab53d16a281fc74150c73bdd59bef6"
+    },
+    {
+      "caseId": "sim-142",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-142",
+      "actualHash": "4bd129f2995b4baa36d2aba61117ba3559539b04f23390d90af494a090c274ec",
+      "expectedHash": "d07ef8e8fd0c5811b8a252444fc0909f87eee41ea28e61b69d24dc97ef698f91",
+      "bundleHash": "bc07e99e846b5481cc753139c2964f1a6ea818c504426261ee82570d6a23eb46"
+    },
+    {
+      "caseId": "sim-018",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-018",
+      "actualHash": "2b8b0fac106e93091f2a98fbf6e394dd3ec0b57bf3f031e937d103a8cdabdd68",
+      "expectedHash": "08ee4cbac0c2ba0d6f62a9312264a2db9f7d79ce8f53c57dc0ed2af5101c39cd",
+      "bundleHash": "f5ccc370a548a84d107209f28a4b73f55a4600cebbe9427dc4553b8f35621059"
+    },
+    {
+      "caseId": "sim-055",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-055",
+      "actualHash": "7eea1eef87efbb2c7b59aae2d507bd370c787ddf2b351b8200fe75cfe122fcbf",
+      "expectedHash": "47da45d448709871515533043880765f99fc5beb1cab9ae0382a2b92add71586",
+      "bundleHash": "e0d3db95e073a910ffb2e95c54bb4c91074ff039b2870b63eb4c559db9f4f0b7"
+    },
+    {
+      "caseId": "sim-172",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-172",
+      "actualHash": "f88facff6edb85d08041213c264569cf730bf02b8bccb0e6acb696b6300a42d1",
+      "expectedHash": "1c2c202f4764522f71e39e9feb9b916f071f7a264f759be1f4ebb38eeeedbfd9",
+      "bundleHash": "69562aa9da9397dd6a5bf588e655ab9ec2eb0354b19e79e64f1e78b602efd26b"
+    },
+    {
+      "caseId": "sim-048",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-048",
+      "actualHash": "c57c88513b8a08bdc11ce8bdca3a3471e279c339878be8ae946ecf47a43a2382",
+      "expectedHash": "8a4f6f21ff0e7b89c5ed2a6fb165866418aa73e3528fc65536719e2683b041d3",
+      "bundleHash": "3e4d3e8fce79f59d796dddaaa8e6686229a5831a2c7098b807b6ba9392235293"
+    },
+    {
+      "caseId": "sim-063",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-063",
+      "actualHash": "2c08108f49ceb1543a886729d62bcd15b6c1d761c231a820b1bfb8bf70632f5f",
+      "expectedHash": "ce9c446b260f5fb64156f713bc19d16099bde1f45d8fbc158d41ad11844ce875",
+      "bundleHash": "67b979eca5dbd718bd4d20efc121ca460f2718621ef8198494a807946e2b7e87"
+    },
+    {
+      "caseId": "sim-038",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-038",
+      "actualHash": "ef70e189d1d19cc052736a2ac183ee67f364b5102042f65e00fcebee0af8f393",
+      "expectedHash": "9887be342b84d5c96285ad1d300f0e25a1fe9c54bbf443937a66852ff40cb93e",
+      "bundleHash": "125a806b68b25b724d5a75a278a720c3ce56d263eaf5d5ec3da90927cbd71b69"
+    },
+    {
+      "caseId": "sim-017",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-017",
+      "actualHash": "8ecdcf83f12004296b6b7d4a6c9228feeb4a8a72ae093a4d8b69e89979a47372",
+      "expectedHash": "b788fbbaf3d653ca2fe7538ccf02485009d45998f524c21f8533fdca91e5067c",
+      "bundleHash": "ed34c9d0b646e230385005eb1a6286b412baca5d8feb8792073a9da6b22a5d68"
+    },
+    {
+      "caseId": "sim-014",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-014",
+      "actualHash": "aeafc2f1a06de29ce4647596cb619bb848ab7a038f692e6295450c235d6eaabd",
+      "expectedHash": "ef331fb14bc693fff1432e0a365dfbc7d978f5516dc63c49f0329910bdd996be",
+      "bundleHash": "e88be9186a19a2ff667865289601c0913c9ddb4f5528b82d9b6200dec2c4cecd"
+    },
+    {
+      "caseId": "sim-015",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-015",
+      "actualHash": "de366bcd23c82cadf914e5dc2031fe0e26807ee1910fe1f7143313bcfa39458f",
+      "expectedHash": "a3c0cc4a7db3b1951fce2a7bbf00d72d35c69fe19ed2174e25549072ef8f8213",
+      "bundleHash": "f01f223f8d412cdf28e2e2ecc9739fbd823b00ca34cc030a407601218002990b"
+    },
+    {
+      "caseId": "sim-020",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-020",
+      "actualHash": "b335594df9d058d52b1338c40ae110583dccee060fe57c6de801bea0a19b627f",
+      "expectedHash": "31574edc15901fd3718593ef6fcd60901d0c98192c0a5b7aea6f3a120c3cc29a",
+      "bundleHash": "e21d3181c8e095aa6cb98a31ee030a202cde0c346ef0394064783eb9fb367db7"
+    },
+    {
+      "caseId": "sim-007",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-007",
+      "actualHash": "f9c254d21cdb71da3ce86414f1856916bd9c24f7cd0d5b5acdc3b8efcaa7fbd2",
+      "expectedHash": "9b16f1342be6458160e94b7f236a0d58fc7c27782ad5c5f71ddcdd19ec5f7d0c",
+      "bundleHash": "f8e583318f83d2f0227d4d8e17a07106450de4408bdd34aea7833da240052494"
+    },
+    {
+      "caseId": "sim-073",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-073",
+      "actualHash": "818d36d2bee8a9411222625900df3e3b1ec70274ca0313569356c0b503a51130",
+      "expectedHash": "5ce47df39d3fbdc0f9a6f0a09257278390548deb7a71cd9e616c8e53d87755c0",
+      "bundleHash": "65fc2dbbc787a002df7422f85c94fe387aa911e1ae01ddc9df5688b5350180f0"
+    },
+    {
+      "caseId": "sim-138",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-138",
+      "actualHash": "941f09c530f1d54663053dd5ab7c695bde691bb583fa471ae64a91c586504a7d",
+      "expectedHash": "1f9407be5754af3496c48f7fb8201ffedd9146dd480143fd2883a66069ef49b0",
+      "bundleHash": "819dbc0617b0e48d485abefee80a3150162b6d0402e4a7178f48094ab6686db5"
+    },
+    {
+      "caseId": "sim-265",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-265",
+      "actualHash": "d76a686ca304caeffad3b6050a9fc1794b6b4128d03f401192dafc940c4205ae",
+      "expectedHash": "44f9f11e46b1ebe7c18b44f943b2440b6611533f294b0418f61b3b19a9c133e7",
+      "bundleHash": "1db6e047a30f8385b8075103a06d85493a45bbaf7b152b6d6a58feabfe222eab"
+    },
+    {
+      "caseId": "sim-072",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-072",
+      "actualHash": "86bd880ad2a7ada7aec26a1affeb832277112803570f24d30d193242b3d47600",
+      "expectedHash": "331d6b26fd03341da9509f663caa3147571209cdf09e11968c4ed8a8963f2602",
+      "bundleHash": "9a61ae84f655738d9fc15fdc2ff89ea74f5b5f208757ade03c82e91bc7678e1d"
+    },
+    {
+      "caseId": "sim-387",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-387",
+      "actualHash": "28b774a6039a353660e82dd4a8582b8b74e38ee41c872238f03924e822b5e4e4",
+      "expectedHash": "315b2d951d4e252e0c31e3b35f3e74018013434131f5a1736b155400f7e4a5bb",
+      "bundleHash": "f93965a0de243ec80b5b1e3a8f8c13e840238372bf9597ee74b7a94bbfb3a16f"
+    },
+    {
+      "caseId": "sim-128",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-128",
+      "actualHash": "22ee5f678ab9e3eee0f533db7aec83ac4f4d3163588aba4f40059893d6b3990d",
+      "expectedHash": "ae023e53a2c395bb938e6f9ab5053e678e74fbffb96f086faf181802bf1b5ca6",
+      "bundleHash": "fa8a78cc8fc39f06b99c1a414605606c0aab7a5da6d7e7e592c436cb3cbeb2f7"
+    },
+    {
+      "caseId": "sim-332",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-332",
+      "actualHash": "4ba87d80e133e2d64bbe7f8b48f555802158ec92cb9405a6a90cbcb857728e20",
+      "expectedHash": "5c954ce821ab728c984ad2a56ddf6409ed9bf5facf1146f1e63fe6940585df3e",
+      "bundleHash": "d03d1e731e998356c6f86abe07bab9c976f4c1e0f7530807507709534e0b030f"
+    },
+    {
+      "caseId": "sim-329",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-329",
+      "actualHash": "ef42607390e13e178af839cb2d81e817f567c416c30232827f9bc1c0d0d8f35b",
+      "expectedHash": "49f5196288789b73ee1aec292085dedb8ac9febf6b2562aa4616df81b0b5d731",
+      "bundleHash": "028a47b514fcf2cf735898202d7989d0fb18de69342a8e3169eb623f092ed4a8"
+    },
+    {
+      "caseId": "sim-198",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-198",
+      "actualHash": "7bf017feaebfe8608c0e4c0ccbc142fa1060d3b545cfc4b6678f0e27b71a3cba",
+      "expectedHash": "aa5bd3fb5024b34a890f044902a36009edf5601c003e4700b3c9f26545c2bc9b",
+      "bundleHash": "9922c8b93161793e09c03f5eb68376d9aa8e4f80411c61324fe06d4003a070ac"
+    },
+    {
+      "caseId": "sim-337",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-337",
+      "actualHash": "a41bbd4c5585a6777d8b5f0bb4d81685e714c7ea38b7ceb83c1061a83b01b62c",
+      "expectedHash": "b23dab5bc03056332565270f2d1461d046aa99f312dcb0d7b31639c91c0f3595",
+      "bundleHash": "249148acbff349338459dab36fa3bdbbc6117ad9bf6d5c157f6b63fe3dfeb81e"
+    },
+    {
+      "caseId": "sim-366",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-366",
+      "actualHash": "ac9db9cc1905a595a482ac3a07f1b17be40889ad0b300e30a246a093d60e8660",
+      "expectedHash": "8b319566b5ef4744e0a4e275c3b0956f9cae7d876f2ee0ff00871b88d6fb2d8e",
+      "bundleHash": "23e6eaa2cc4dde3d5c9335d1dfb0f151b616c4be7a28ae68b7ee01709c221c97"
+    },
+    {
+      "caseId": "sim-336",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-336",
+      "actualHash": "2c5e3df2da25bc23d3b4543e913b44cfe6c42204787a03527420c20eb6e484d9",
+      "expectedHash": "c8248c0b49a99cadee7ae26e5c851c37f29d2b0e1a0804b8e9e8830345d25e21",
+      "bundleHash": "87af7d50ca8829ce70074ea893651c5a8f299696831ed5c535a358a297106991"
+    },
+    {
+      "caseId": "sim-286",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-286",
+      "actualHash": "73f2336c4594a2b56236c508b917226284c0d7d8ee36f035077330f0b873f0f0",
+      "expectedHash": "c7c7aa49fd2bb30d2a3a3d25e435e4c022b4c93a320a80aeba76353b46840025",
+      "bundleHash": "c9fc16891717c03db82986e1118ba8701051ac08156cf0bf9fa716fa1c46787f"
+    },
+    {
+      "caseId": "sim-199",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-199",
+      "actualHash": "f4f4679c3a3dadca063a41cc5ac58c6035c9a91788b3e3d1796814dfe9ce2f42",
+      "expectedHash": "d8ff8923747119ecbe6d4ea0ad4cea610df4af7da444b6387870d0d8daf79beb",
+      "bundleHash": "be91e6090e695bd548fdc31f4c7365d56d913ba68a2191d3f02e42858b1351ad"
+    },
+    {
+      "caseId": "sim-354",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-354",
+      "actualHash": "d858c4d3500ed1cc1122821965b4ba5a2debdf2a7b4c24f743f44d1ebf77c625",
+      "expectedHash": "db0df8bc95c99eac50c1cf9b6f244b3f3e243dc795c60252d08d016e6c8d4af8",
+      "bundleHash": "c1f2eaf3c06e25f73f6f5b02dea10d2a362f54b760b366c77c314ddf7c423d8d"
+    },
+    {
+      "caseId": "sim-145",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-145",
+      "actualHash": "61853639298331cea7cd90db57cf96c9a94eeb2004ff21f464567c3723e768ff",
+      "expectedHash": "eda0247dcc89527d6b19a82bc2570cf5a15bc6f1829ff36142a014333edd0748",
+      "bundleHash": "f03ff668a0f27b379e6cc64f88518ec1421c557c9a7a09a2baefe287a9c2579a"
+    },
+    {
+      "caseId": "sim-257",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-257",
+      "actualHash": "a8cebf6d148fe3dc32a11eef78b468fda3708dd7a417fd17ab82659792fe3c7e",
+      "expectedHash": "76e4a9ff80da51739c5f59f66d06d1c636ff803413fa479b3e52eda4e6f15f42",
+      "bundleHash": "351f68a5b1cf8b75a60cc18153d70787bfa53bc40e672b89bfb02e42681502a5"
+    },
+    {
+      "caseId": "sim-245",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-245",
+      "actualHash": "1f398562391add8e9b7bf142a5e821feb4fef2f9206654d9f35f07a5ed26f540",
+      "expectedHash": "65b8318ba6682acc0756258a769e2a50e877876a980f760b194a3828ea861e2c",
+      "bundleHash": "c9c196923b0a3ae8502218b980a39fc2f51d71587661b84d8833640ea7c2f0e4"
+    },
+    {
+      "caseId": "sim-395",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-395",
+      "actualHash": "01782a01c16274643695c73875cbd5e3543548135d7f7f89d04cd1af7255e189",
+      "expectedHash": "f417c96dbf5d7b8b161545b759d6337f7fa09726ad1f4b4a60f3431282fdf9cb",
+      "bundleHash": "826e3fa13a15a77b95ac9d37c894ad0c52b57565986e093e348d8c453e388479"
+    },
+    {
+      "caseId": "sim-271",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-271",
+      "actualHash": "0365c31a9c2012017a5cc863ccb756d0657914972657e7875772e670a37ef1bd",
+      "expectedHash": "25361a8c98d79c329be77fe7e6c6cedb6ac475942abcbf0116371721eebb6211",
+      "bundleHash": "334a3bf157ac637325b7ec2d799df6655f1303b156764c853de7d4ab45b81b00"
+    },
+    {
+      "caseId": "sim-389",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-389",
+      "actualHash": "15c6a0b4e88e9f9a97c14f6512c864149aaaa519473a2e5a2b716c6b6a16ead4",
+      "expectedHash": "07647df74dddb1cd51104d4caeb695059cc570952591895f56b1980cb87580c1",
+      "bundleHash": "baacdda4bbdf20615ef6c1ccffd9cf248a36da7480976f4d2b250e6356f2390a"
+    },
+    {
+      "caseId": "sim-360",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-360",
+      "actualHash": "5c9879aabd03a502924ba584d81de4218e34fdf35dee1f0fd07a3543b50f80e5",
+      "expectedHash": "24d6595bed988bc4a054d32b5547780f419e1d4afb45404a833c3b484b32b6ba",
+      "bundleHash": "7e6cdf389ae71bff63ad73da875b9d387b924aec6b8cdc604153341587847c3e"
+    },
+    {
+      "caseId": "sc-0006a",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0006a",
+      "actualHash": "a423a1d8b078d9e8e47a750e014795da7ab4f79e8960bc28ddf68eb464d438d4",
+      "expectedHash": "52e6fc40ce7a160d0a2600616355269c576ff285bb610631e34d15e868cb060c",
+      "bundleHash": "8042abdb0bc406656b2203a82b665d0c0486e0f6301532f9b0a5959aaa3d9f34"
+    },
+    {
+      "caseId": "sc-0002e",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sc-0002e",
+      "actualHash": "cd06f696655119b38d6c768855939ebd42a69128602b4c44179022801562317d",
+      "expectedHash": "a7d9579153cb8c709e9c30702d4027d81fd3c6e1439a7544cd8f61e962adf90f",
+      "bundleHash": "1c77c39bbf6ed820bf5a8383c9a712990a1e91fc06ae746e00b4bec4e88dddbc"
+    },
+    {
+      "caseId": "sim-024",
+      "sourceCaseId": null,
+      "packetPath": "artifacts/evidence-state-audit-local/cases/sim-024",
+      "actualHash": "96899fb6bf7966f6a94c3de367d95f79ca4ab47b93a47d8208baf403e4d62486",
+      "expectedHash": "1cd3a834deccab95471a85af934184b3f3a940a886e4f06f71107ef8d221dfd4",
+      "bundleHash": "107096b3f5fc9bb9783abfb2057c6943b5373cbc5c205300e70c5192fe423575"
+    }
+  ],
+  "corpusHash": "b25dcd608d73615295448dafa249c9efdfaf41e3d38540d21592944bc1961d93",
+  "denominators": {
+    "uniqueCases": 50,
+    "duplicateCaseIdsDropped": 0,
+    "surfaces": 1587
+  }
+}

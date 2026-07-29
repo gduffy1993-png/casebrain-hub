@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewed": false,
+  "reviewedAt": null,
+  "reviewer": null,
+  "entries": [
+    {
+      "id": "FN-INCOMPLETE-DISCLAIMER",
+      "controlId": "MAA-COMPLETENESS",
+      "status": "open",
+      "safetyCritical": true,
+      "note": "GOLD-11-039 class incomplete disclaimer. Detector contracts exercise complete pass, mid-disclaimer truncation defect, disclaimer absent defect, and non-copyable containment recorded separately. Corpus coverage remains unreviewed — reviewed=false; no human/legal sign-off invented.",
+      "historicalRef": "GOLD-11-039"
+    }
+  ]
+}

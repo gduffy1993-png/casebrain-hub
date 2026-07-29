@@ -1,0 +1,516 @@
+[
+  {
+    "id": "MAA-INGEST-COVERAGE",
+    "version": "1.0.0",
+    "laneId": "LANE-01-INGESTION",
+    "label": "Ingestion coverage and extraction quality",
+    "intent": "Every saved packet/page/surface is accounted for; missing actual/expected pairs and empty surfaces are defects; unread or unavailable source is not-exercised, not pass.",
+    "severity": "HIGH",
+    "affectedExits": [
+      "view",
+      "api",
+      "export"
+    ],
+    "reusedModules": [
+      "lib/upload/pdf-page-units.ts",
+      "lib/criminal/compiled-bundle-segmentation.ts"
+    ],
+    "historicalSources": [
+      "phase-7 extraction provenance",
+      "messy-pdf-proof scale runners"
+    ],
+    "mutationOrContract": "master-assurance-auditor-contracts.test.ts#ingestion"
+  },
+  {
+    "id": "MAA-DOC-LIFECYCLE",
+    "version": "1.0.0",
+    "laneId": "LANE-02-DOCUMENT-IDENTITY",
+    "label": "Document identity and lifecycle without unsafe collapse",
+    "intent": "Operative/amended/superseded/draft/signed/attachment/exhibit/alias relationships must not silently collapse distinct units.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "copy",
+      "api",
+      "export"
+    ],
+    "reusedModules": [
+      "lib/criminal/document-relationship-model.ts",
+      "lib/eval/assurance/controls.ts"
+    ],
+    "historicalSources": [
+      "AUD-DOC-* foundation controls",
+      "Malik round-2 segmentation"
+    ],
+    "mutationOrContract": "foundation-hardening-contracts.test.ts"
+  },
+  {
+    "id": "MAA-PARTIES-ATTRIBUTION",
+    "version": "1.0.0",
+    "laneId": "LANE-03-PARTIES-ATTRIBUTION",
+    "label": "Parties and attribution separation",
+    "intent": "Defendant/witness/officer/device/account/authorship remain distinct; zero cross-person evidence bleed; no broadcast defendant scope.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "copy",
+      "api",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/attribution-model.ts"
+    ],
+    "historicalSources": [
+      "Malik shared-root round 2 attribution fail-closed"
+    ],
+    "mutationOrContract": "malik-shared-root-remediation-round2-contracts.test.ts"
+  },
+  {
+    "id": "MAA-CHARGE-MODEL",
+    "version": "1.0.0",
+    "laneId": "LANE-04-CHARGE-MODEL",
+    "label": "Charge model exact wording and precedence",
+    "intent": "Exact recorded wording visible; count/defendant/source allocation; no silent rewriting or invented citation.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "copy",
+      "api",
+      "pdf"
+    ],
+    "reusedModules": [
+      "lib/criminal/solicitor-charge-model.ts",
+      "lib/criminal/structured-charge-state.ts"
+    ],
+    "historicalSources": [
+      "scale3000 run-v8/v9 charge-state acceptance"
+    ],
+    "mutationOrContract": "scale3000-run-v9-acceptance-contracts.test.ts"
+  },
+  {
+    "id": "MAA-EVIDENCE-STATE",
+    "version": "1.0.0",
+    "laneId": "LANE-05-EVIDENCE-STATE",
+    "label": "Evidence-state distinct units",
+    "intent": "Served/referred/requested/missing/incomplete/quarantined/unknown preserved; master≠still≠clip; recording≠transcript; draft≠signed.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "copy",
+      "api",
+      "export"
+    ],
+    "reusedModules": [
+      "lib/criminal/evidence-state-reconcile.ts",
+      "lib/criminal/evidence-state-canonical.ts"
+    ],
+    "historicalSources": [
+      "evidence-state audit",
+      "Malik round-1 evidence state"
+    ],
+    "mutationOrContract": "malik-shared-root-remediation-contracts.test.ts"
+  },
+  {
+    "id": "MAA-CHRONOLOGY-HEARING",
+    "version": "1.0.0",
+    "laneId": "LANE-06-CHRONOLOGY-HEARING",
+    "label": "Chronology and hearing logic",
+    "intent": "Source timestamps, conflicts, latest operative notice; no false affirmative PACE position.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "copy",
+      "api",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/timestamp-chronology.ts",
+      "lib/criminal/hearing-notice-lifecycle.ts",
+      "lib/criminal/pace-affirmative-gate.ts"
+    ],
+    "historicalSources": [
+      "phase-8 hearing/time",
+      "PACE affirmative gate"
+    ],
+    "mutationOrContract": "phase8-hearing-time.test.ts"
+  },
+  {
+    "id": "MAA-PROVENANCE",
+    "version": "1.0.0",
+    "laneId": "LANE-07-PROVENANCE",
+    "label": "Exact provenance and unknown-page discipline",
+    "intent": "Substantive statements link to source/page when available; unknown page stays unknown; source≠compiled; no synthetic p.1/p.null.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "copy",
+      "export",
+      "api",
+      "pdf",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/finding-provenance.ts",
+      "lib/eval/assurance/controls.ts"
+    ],
+    "historicalSources": [
+      "AUD-PROV-*",
+      "foundation hardening"
+    ],
+    "mutationOrContract": "foundation-hardening-contracts.test.ts"
+  },
+  {
+    "id": "MAA-RELIABILITY",
+    "version": "1.0.0",
+    "laneId": "LANE-08-RELIABILITY",
+    "label": "Reliability and limitations",
+    "intent": "Explain why evidence is unreliable — missing source, incomplete transcript, conflicting timestamps, uncertain authorship, absent attachment.",
+    "severity": "HIGH",
+    "affectedExits": [
+      "view",
+      "copy",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/solicitor-visible-quality.ts"
+    ],
+    "historicalSources": [
+      "gold-manual reliability fields",
+      "phase-11 remediation"
+    ],
+    "mutationOrContract": "master-assurance-auditor-contracts.test.ts#reliability"
+  },
+  {
+    "id": "MAA-COMPLETENESS",
+    "version": "1.0.0",
+    "laneId": "LANE-09-COMPLETENESS",
+    "label": "Completeness and truncation",
+    "intent": "No mid-word/mid-sentence cuts on copyable surfaces; incomplete disclaimers; no unqualified partial totals. Surface-aware boundary profiles suppress known FPs.",
+    "severity": "HIGH",
+    "affectedExits": [
+      "copy",
+      "export",
+      "view"
+    ],
+    "reusedModules": [
+      "lib/criminal/solicitor-visible-boundary.ts",
+      "lib/criminal/solicitor-visible-boundary-profiles.ts"
+    ],
+    "historicalSources": [
+      "scale3000 boundary_mid_sentence_cut FP reclassification",
+      "phase11-remediation-v6",
+      "GOLD-11-039 incomplete disclaimer"
+    ],
+    "mutationOrContract": "phase11-remediation.test.ts"
+  },
+  {
+    "id": "MAA-DEFENCE-LENS",
+    "version": "1.0.0",
+    "laneId": "LANE-10-DEFENCE-LENS",
+    "label": "Defence lens without invented facts",
+    "intent": "Defence issues, alternative explanations and safe next actions without inventing facts or deciding legal questions.",
+    "severity": "MEDIUM",
+    "affectedExits": [
+      "view",
+      "composed_prose",
+      "copy"
+    ],
+    "reusedModules": [
+      "lib/criminal/canonical-live-surface-adapter.ts"
+    ],
+    "historicalSources": [
+      "gold-manual doNotOverstate",
+      "strategy fight surfaces"
+    ],
+    "mutationOrContract": "master-assurance-auditor-contracts.test.ts#defence"
+  },
+  {
+    "id": "MAA-PROSECUTION-LENS",
+    "version": "1.0.0",
+    "laneId": "LANE-11-PROSECUTION-LENS",
+    "label": "Prosecution lens kept separate",
+    "intent": "Strongest prosecution case and missing proof requirements kept separate from defence analysis.",
+    "severity": "MEDIUM",
+    "affectedExits": [
+      "view",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/canonical-live-surface-adapter.ts"
+    ],
+    "historicalSources": [
+      "five-answers / control room separation"
+    ],
+    "mutationOrContract": "master-assurance-auditor-contracts.test.ts#prosecution"
+  },
+  {
+    "id": "MAA-JUDICIAL-LENS",
+    "version": "1.0.0",
+    "laneId": "LANE-12-JUDICIAL-LENS",
+    "label": "Judicial/procedural lens",
+    "intent": "Neutral issues, hearing readiness, admissibility/weight/state separation; matters for judicial or solicitor determination stay unresolved.",
+    "severity": "MEDIUM",
+    "affectedExits": [
+      "view",
+      "copy",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/solicitor-hearing-status.ts"
+    ],
+    "historicalSources": [
+      "phase-8",
+      "hearing war room"
+    ],
+    "mutationOrContract": "phase8-hearing-time.test.ts"
+  },
+  {
+    "id": "MAA-LEGAL-CURRENTNESS",
+    "version": "1.0.0",
+    "laneId": "LANE-13-LEGAL-CURRENTNESS",
+    "label": "Legal propositions traceable to registry",
+    "intent": "Citations/propositions traceable to controlled registry; stale/uncertain/unsupported → solicitor verification.",
+    "severity": "HIGH",
+    "affectedExits": [
+      "view",
+      "copy",
+      "pdf",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/offence-label-registry.ts"
+    ],
+    "historicalSources": [
+      "scale3000 charge wording inventory",
+      "offence family registry"
+    ],
+    "mutationOrContract": "master-assurance-auditor-contracts.test.ts#legal"
+  },
+  {
+    "id": "MAA-AUDIENCE-WORDING",
+    "version": "1.0.0",
+    "laneId": "LANE-14-AUDIENCE-WORDING",
+    "label": "Audience-separated wording",
+    "intent": "Solicitor, client, court, CPS and internal-review language stay separated; no internal audit phrases on solicitor exits.",
+    "severity": "HIGH",
+    "affectedExits": [
+      "view",
+      "copy",
+      "export",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/solicitor-visible-sanitization.ts"
+    ],
+    "historicalSources": [
+      "scale3000 run-v9 internal language scan"
+    ],
+    "mutationOrContract": "scale3000-run-v9-acceptance-contracts.test.ts"
+  },
+  {
+    "id": "MAA-ACTION-QUALITY",
+    "version": "1.0.0",
+    "laneId": "LANE-15-ACTION-QUALITY",
+    "label": "Solicitor action quality",
+    "intent": "Solicitor can answer charge, evidence present, missing/incomplete/quarantined, safe to say, and what happens next.",
+    "severity": "HIGH",
+    "affectedExits": [
+      "view",
+      "copy"
+    ],
+    "reusedModules": [
+      "lib/criminal/five-answers/build-five-answers-view.ts"
+    ],
+    "historicalSources": [
+      "gold-manual actionability",
+      "foundational shared contracts"
+    ],
+    "mutationOrContract": "foundational-shared-contracts.test.ts"
+  },
+  {
+    "id": "MAA-CROSS-EXIT",
+    "version": "1.0.0",
+    "laneId": "LANE-16-CROSS-EXIT",
+    "label": "Cross-exit consistency enforcement",
+    "intent": "View/copy/export/api/pdf/composed prose must not contradict; warnings attached to disputed content; no safer UI with unsafe copy.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "copy",
+      "export",
+      "api",
+      "pdf",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/cross-exit-contradiction-scanner.ts"
+    ],
+    "historicalSources": [
+      "Malik round-2 enforceCrossExitConsistency"
+    ],
+    "mutationOrContract": "malik-shared-root-remediation-round2-contracts.test.ts"
+  },
+  {
+    "id": "MAA-CROSS-SURFACE",
+    "version": "1.0.0",
+    "laneId": "LANE-17-CROSS-SURFACE",
+    "label": "Cross-surface consistency",
+    "intent": "Charges, Control Room, War Room, Key Facts, Five Answers, truth map, Disclosure Chase, client summary and strategy must not contradict.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "copy",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/canonical-live-surface-adapter.ts"
+    ],
+    "historicalSources": [
+      "phase-6 31 surfaces",
+      "canonical live integration"
+    ],
+    "mutationOrContract": "canonical-live-integration-contracts.test.ts"
+  },
+  {
+    "id": "MAA-CHASE-QUALITY",
+    "version": "1.0.0",
+    "laneId": "LANE-18-CHASE-QUALITY",
+    "label": "Chase quality",
+    "intent": "Supported provenance-linked requests only; procedural vs evidence vs quarantined; no broad family-template invention; no chase of served aliases.",
+    "severity": "HIGH",
+    "affectedExits": [
+      "view",
+      "copy",
+      "export"
+    ],
+    "reusedModules": [
+      "lib/criminal/evidence-state-reconcile.ts",
+      "lib/criminal/cross-exit-contradiction-scanner.ts"
+    ],
+    "historicalSources": [
+      "Malik chase quality",
+      "evidence-state audit"
+    ],
+    "mutationOrContract": "malik-shared-root-remediation-contracts.test.ts"
+  },
+  {
+    "id": "MAA-HALLUCINATION",
+    "version": "1.0.0",
+    "laneId": "LANE-19-HALLUCINATION",
+    "label": "Hallucination and overstatement",
+    "intent": "Invented facts, absolute-proof wording, unsupported served/complete/PACE compliant/no breach claims.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "copy",
+      "export",
+      "pdf",
+      "composed_prose"
+    ],
+    "reusedModules": [
+      "lib/criminal/absolute-proof-wording.ts",
+      "lib/criminal/pace-affirmative-gate.ts"
+    ],
+    "historicalSources": [
+      "absolute-proof gate",
+      "Malik PACE UNKNOWN"
+    ],
+    "mutationOrContract": "malik-shared-root-remediation-round2-contracts.test.ts"
+  },
+  {
+    "id": "MAA-SECURITY-PRIVACY",
+    "version": "1.0.0",
+    "laneId": "LANE-20-SECURITY-PRIVACY",
+    "label": "Security and privacy leakage",
+    "intent": "No internal fixture IDs, filesystem paths, developer/audit text, prompt injection residue or cross-tenant material on solicitor surfaces.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "copy",
+      "export",
+      "pdf"
+    ],
+    "reusedModules": [
+      "lib/criminal/solicitor-visible-sanitization.ts"
+    ],
+    "historicalSources": [
+      "scale3000 run-v9 internal language",
+      "run-v8 case_header leak"
+    ],
+    "mutationOrContract": "scale3000-run-v9-acceptance-contracts.test.ts"
+  },
+  {
+    "id": "MAA-RESILIENCE",
+    "version": "1.0.0",
+    "laneId": "LANE-21-RESILIENCE",
+    "label": "Resilience and determinism",
+    "intent": "AI unavailable/429 fallback, malformed files, partial OCR, deterministic finding IDs and reproducible results across reruns.",
+    "severity": "HIGH",
+    "affectedExits": [
+      "api",
+      "view"
+    ],
+    "reusedModules": [
+      "lib/criminal/build-from-document-units.ts"
+    ],
+    "historicalSources": [
+      "canonical finding AI-unavailable fallback",
+      "phase-10 mutations"
+    ],
+    "mutationOrContract": "canonical-finding-model-contracts.test.ts"
+  },
+  {
+    "id": "MAA-OUTPUT-DESIGN",
+    "version": "1.0.0",
+    "laneId": "LANE-22-OUTPUT-DESIGN",
+    "label": "Output design (separate from factual defects)",
+    "intent": "Hierarchy, density, warning visibility, progressive disclosure and urgent-answer findability. Recorded as designFinding=true.",
+    "severity": "LOW",
+    "affectedExits": [
+      "view"
+    ],
+    "reusedModules": [],
+    "historicalSources": [
+      "solicitor overview smoke",
+      "H5 overview"
+    ],
+    "mutationOrContract": "master-assurance-auditor-contracts.test.ts#design"
+  },
+  {
+    "id": "MAA-HUMAN-SUPERVISION",
+    "version": "1.0.0",
+    "laneId": "LANE-23-HUMAN-SUPERVISION",
+    "label": "Human supervision and governance",
+    "intent": "Distinguish automated prediction from human judgment; never fabricate sign-off; blank human-review fields remain blank.",
+    "severity": "CRITICAL",
+    "affectedExits": [
+      "view",
+      "export",
+      "api"
+    ],
+    "reusedModules": [],
+    "historicalSources": [
+      "gold-manual solicitor review required",
+      "phase-11 awaiting human gold"
+    ],
+    "mutationOrContract": "master-assurance-auditor-contracts.test.ts#governance"
+  },
+  {
+    "id": "MAA-BIAS-FAIRNESS",
+    "version": "1.0.0",
+    "laneId": "LANE-24-BIAS-FAIRNESS",
+    "label": "Bias and fairness flags",
+    "intent": "Flag protected-characteristic inference and prejudicial language without claiming automated scanning proves fairness.",
+    "severity": "MEDIUM",
+    "affectedExits": [
+      "view",
+      "copy",
+      "composed_prose"
+    ],
+    "reusedModules": [],
+    "historicalSources": [
+      "integrity programme fairness notes"
+    ],
+    "mutationOrContract": "master-assurance-auditor-contracts.test.ts#bias"
+  }
+]

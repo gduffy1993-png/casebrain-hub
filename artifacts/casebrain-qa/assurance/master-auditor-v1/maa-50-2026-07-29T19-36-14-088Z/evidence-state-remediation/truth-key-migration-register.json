@@ -1,0 +1,84 @@
+{
+  "version": "truth-key-migration-v1-partial-not-served",
+  "registerHash": "3ad236cb3102bd42bc2ab0bd0ed093b055512b54a0f6a895de5545136d2787f8",
+  "originalPacketsUnchanged": true,
+  "entries": [
+    {
+      "caseId": "sc-0002d",
+      "evidenceItem": "mg11 officer",
+      "oldExpectation": "served",
+      "newExpectation": "incomplete",
+      "sourceExcerpt": "5. **MG11 officer** — partial on export",
+      "reason": "Source labels MG11 officer as partial on export. Partial extract must not be expected as fully served.",
+      "findingIdFromTriage": "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-a21728817d67",
+      "migrationId": "TKM-V1-sc-0002d-mg11_officer",
+      "migrationHash": "6c5225b6d65108d83861a5d87a3978d3403d0e72706484e624c4c202751d9d63"
+    },
+    {
+      "caseId": "sc-0002d",
+      "evidenceItem": "mg11 witness",
+      "oldExpectation": "served",
+      "newExpectation": "incomplete",
+      "sourceExcerpt": "6. MG11 witness (partial)",
+      "reason": "Source labels MG11 witness as partial. Partial extract must not be expected as fully served.",
+      "findingIdFromTriage": "MAA-EVIDENCE-STATE-state_mismatch-sc-0002d-truth_map-e288055ba799",
+      "migrationId": "TKM-V1-sc-0002d-mg11_witness",
+      "migrationHash": "a14ec070e3cb7ce3b7358de1b4bc6e78ec3d178e13e174bc38a4d119d8367199"
+    },
+    {
+      "caseId": "sc-00025",
+      "evidenceItem": "mg11 officer",
+      "oldExpectation": "served",
+      "newExpectation": "incomplete",
+      "sourceExcerpt": "5. **MG11 officer** — partial on export",
+      "reason": "Source labels MG11 officer as partial on export. Partial extract must not be expected as fully served.",
+      "findingIdFromTriage": "MAA-EVIDENCE-STATE-state_mismatch-sc-00025-truth_map-a21728817d67",
+      "migrationId": "TKM-V1-sc-00025-mg11_officer",
+      "migrationHash": "fe12511ee9c5efdf4c1407e9b7a1aaf07dbd0d37e70addb14d4ec6745a74b247"
+    },
+    {
+      "caseId": "sc-0006a",
+      "evidenceItem": "mg11 officer",
+      "oldExpectation": "served",
+      "newExpectation": "incomplete",
+      "sourceExcerpt": "5. **MG11 officer** — partial on export",
+      "reason": "Source labels MG11 officer as partial on export. Partial extract must not be expected as fully served.",
+      "findingIdFromTriage": "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-a21728817d67",
+      "migrationId": "TKM-V1-sc-0006a-mg11_officer",
+      "migrationHash": "e040481d914a0359f2bb02ddbddc9afb25bbfb1ae9d22fe39036090fb839df26"
+    },
+    {
+      "caseId": "sc-0006a",
+      "evidenceItem": "mg11 witness",
+      "oldExpectation": "served",
+      "newExpectation": "incomplete",
+      "sourceExcerpt": "6. MG11 witness (partial)",
+      "reason": "Source labels MG11 witness as partial. Partial extract must not be expected as fully served.",
+      "findingIdFromTriage": "MAA-EVIDENCE-STATE-state_mismatch-sc-0006a-truth_map-e288055ba799",
+      "migrationId": "TKM-V1-sc-0006a-mg11_witness",
+      "migrationHash": "a20d4c352c072213e6a926d3973d6ccb1b82912339735057f037a583631b2971"
+    },
+    {
+      "caseId": "sc-0002e",
+      "evidenceItem": "mg11 officer",
+      "oldExpectation": "served",
+      "newExpectation": "incomplete",
+      "sourceExcerpt": "5. **MG11 officer** — partial on export",
+      "reason": "Source labels MG11 officer as partial on export. Partial extract must not be expected as fully served.",
+      "findingIdFromTriage": "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-a21728817d67",
+      "migrationId": "TKM-V1-sc-0002e-mg11_officer",
+      "migrationHash": "0d438a8411877e26ff5c4c820d5ecd243bb8d4150745b471daa78383f7e98042"
+    },
+    {
+      "caseId": "sc-0002e",
+      "evidenceItem": "mg11 witness",
+      "oldExpectation": "served",
+      "newExpectation": "incomplete",
+      "sourceExcerpt": "6. MG11 witness (partial)",
+      "reason": "Source labels MG11 witness as partial. Partial extract must not be expected as fully served.",
+      "findingIdFromTriage": "MAA-EVIDENCE-STATE-state_mismatch-sc-0002e-truth_map-e288055ba799",
+      "migrationId": "TKM-V1-sc-0002e-mg11_witness",
+      "migrationHash": "ecf95aa6b850e1d138b40ca5d78ec635371eda119192927cfe4dc6b28759fb50"
+    }
+  ]
+}

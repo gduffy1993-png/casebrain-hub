@@ -9,6 +9,7 @@ import { buildMatterConfidence } from "@/lib/criminal/matter-confidence/build-ma
 import { inferChaseItemSourceState } from "@/lib/criminal/trust/copy-safe";
 import { evidenceExistenceLabel } from "@/lib/criminal/five-answers/evidence-trace";
 import { mapSourceStateToExistence } from "@/lib/criminal/five-answers/types";
+import { canonicalizeEvidenceExistence } from "@/lib/criminal/evidence-state-reconcile";
 import { normalizeLabel } from "./normalize";
 import {
   coDefendantSegregationNote,
@@ -137,7 +138,7 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
       label: item.label,
       inferredSourceState: state,
       existenceLabel: evidenceExistenceLabel(mapSourceStateToExistence(state)),
-      sendability: item.sendabilityLabel ?? null,
+      sendability: null,
       baseStatus: item.baseStatus,
       source: item.source,
       evidenceAnchor: item.evidenceAnchor ?? null,
@@ -146,7 +147,20 @@ export function buildCasebrainAuditSnapshot(input: BuildAuditSnapshotInput): Cas
 
   const fiveAnswersEvidenceRows = segregateCoDefendantEvidenceRows(
     mergeBriefPlanEvidenceRows(five.evidenceState.rows, briefPlan),
-  );
+  ).map((row) => {
+    const existence = canonicalizeEvidenceExistence({
+      label: row.label,
+      rawExistence: row.existence,
+    });
+    return {
+      ...row,
+      existence: String(existence),
+      note:
+        existence === "referred_only" && row.existence !== "referred_only"
+          ? "Referred/listed but not served — canonicalised from source wording."
+          : row.note,
+    };
+  });
 
   const sanitizedEvidenceStates = inferredStates.map((row) => ({
     ...row,
@@ -237,9 +251,11 @@ function mergeBriefPlanEvidenceRows(fiveRows: FiveRow[], briefPlan: ReturnType<t
     });
   }
 
-  const upsertLedger = (label: string, bucket: "served" | "limited" | "missing") => {
+  const upsertLedger = (label: string, bucket: "served" | "limited" | "missing", materialState?: string) => {
     const key = normalizeLabel(label);
-    const existence = inferLedgerRowExistence(label, bucket);
+    // Prefer material-row state when it is referred_only (F01/F02 shared)
+    let existence = inferLedgerRowExistence(label, bucket);
+    if (materialState === "referred_only") existence = "referred_only";
     const existing = byKey.get(key);
     if (existing) {
       if (existence === "incomplete" && existing.existence === "served") {
@@ -247,6 +263,12 @@ function mergeBriefPlanEvidenceRows(fiveRows: FiveRow[], briefPlan: ReturnType<t
           ...existing,
           existence: "incomplete",
           note: partialMediaNote(label),
+        });
+      } else if (existence === "referred_only" && existing.existence !== "referred_only") {
+        byKey.set(key, {
+          ...existing,
+          existence: "referred_only",
+          note: "Referred/listed but not served — brief plan ledger.",
         });
       }
       return;
@@ -256,15 +278,17 @@ function mergeBriefPlanEvidenceRows(fiveRows: FiveRow[], briefPlan: ReturnType<t
       existence,
       reliability: "needs_review",
       note:
-        bucket === "missing"
-          ? "Outstanding on bundle — brief plan ledger."
-          : partialMediaNote(label),
+        existence === "referred_only"
+          ? "Referred/listed but not served — brief plan ledger."
+          : bucket === "missing"
+            ? "Outstanding on bundle — brief plan ledger."
+            : partialMediaNote(label),
     });
   };
 
-  for (const item of briefPlan.servedEvidence) upsertLedger(item.label, "served");
-  for (const item of briefPlan.limitedEvidence) upsertLedger(item.label, "limited");
-  for (const item of briefPlan.missingEvidence) upsertLedger(item.label, "missing");
+  for (const item of briefPlan.servedEvidence) upsertLedger(item.label, "served", item.state);
+  for (const item of briefPlan.limitedEvidence) upsertLedger(item.label, "limited", item.state);
+  for (const item of briefPlan.missingEvidence) upsertLedger(item.label, "missing", item.state);
 
   return [...byKey.values()];
 }
