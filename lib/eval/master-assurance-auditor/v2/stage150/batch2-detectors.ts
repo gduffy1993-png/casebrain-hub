@@ -585,9 +585,10 @@ export function evaluateBatch2WordingChase(ctx: Stage150EvalContext): Stage150Hi
       );
     }
     if (
-      /\b(internal\s+only|audit\s+trail|DEBUG|fixture|CaseBrain\s+internal|do\s+not\s+show\s+client)\b/i.test(
+      /\b(internal\s+only|audit\s+trail|DEBUG|CaseBrain\s+internal|do\s+not\s+show\s+client)\b/i.test(
         w.text,
-      )
+      ) ||
+      (/\bfixture\b/i.test(w.text) && /\b(CaseBrain|syn-|harness|dev\b|test\s+packet)\b/i.test(w.text))
     ) {
       hits.push(
         hit({

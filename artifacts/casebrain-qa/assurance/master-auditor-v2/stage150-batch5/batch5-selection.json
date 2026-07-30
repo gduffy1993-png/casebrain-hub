@@ -1,0 +1,253 @@
+{
+  "schemaVersion": "batch5-selection@1.0.0",
+  "selectedCount": 6,
+  "selected": [
+    {
+      "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "selected": true,
+      "rank": 1,
+      "totalScore": 48,
+      "reason": "High safety/usefulness; control-specific placeholder/dev-leak logic on included solicitor-visible wording; ESA inputs non-synthetic; clear positive/negative shape.",
+      "requiredContracts": [
+        "positive",
+        "multiple_safe_negatives",
+        "unavailable_input",
+        "mutation"
+      ],
+      "esaInputBasis": "casebrain-output.json + included_solicitor_visible_wording (non-synthetic ESA packets)"
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "selected": true,
+      "rank": 2,
+      "totalScore": 48,
+      "reason": "Safety-critical absolute-proof ban; wording-only ESA inputs; deterministic string detector.",
+      "requiredContracts": [
+        "positive",
+        "multiple_safe_negatives",
+        "unavailable_input",
+        "mutation"
+      ],
+      "esaInputBasis": "casebrain-output.json + included_solicitor_visible_wording (non-synthetic ESA packets)"
+    },
+    {
+      "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "selected": true,
+      "rank": 3,
+      "totalScore": 42,
+      "reason": "Solicitor-visible truncation defects; ESA wording; requires FP triage on hyphenated endings before promotion.",
+      "requiredContracts": [
+        "positive",
+        "multiple_safe_negatives",
+        "unavailable_input",
+        "mutation"
+      ],
+      "esaInputBasis": "casebrain-output.json + included_solicitor_visible_wording (non-synthetic ESA packets)"
+    },
+    {
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "selected": true,
+      "rank": 4,
+      "totalScore": 48,
+      "reason": "Highest safety: internal/audit language must never leak to solicitor-visible exits; Batch-2 detector on ESA wording.",
+      "requiredContracts": [
+        "positive",
+        "multiple_safe_negatives",
+        "unavailable_input",
+        "mutation"
+      ],
+      "esaInputBasis": "casebrain-output.json + included_solicitor_visible_wording (non-synthetic ESA packets)"
+    },
+    {
+      "controlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "selected": true,
+      "rank": 5,
+      "totalScore": 48,
+      "reason": "Charge-integrity allege→fact collapse; ESA wording; existing intelligence contracts to extend with mutation.",
+      "requiredContracts": [
+        "positive",
+        "multiple_safe_negatives",
+        "unavailable_input",
+        "mutation"
+      ],
+      "esaInputBasis": "casebrain-output.json + included_solicitor_visible_wording (non-synthetic ESA packets)"
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "selected": true,
+      "rank": 6,
+      "totalScore": 48,
+      "reason": "Most advanced prior calibration path (occurrence-aware); ESA wording; freeze-before-source pattern already proven in Batch-2/3.",
+      "requiredContracts": [
+        "positive",
+        "multiple_safe_negatives",
+        "unavailable_input",
+        "mutation"
+      ],
+      "esaInputBasis": "casebrain-output.json + included_solicitor_visible_wording (non-synthetic ESA packets)"
+    }
+  ],
+  "notSelectedCount": 100,
+  "notSelectedSampleReasons": [
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "reason": "Not in Batch-5 priority cohort this unit — remains partially_implemented"
+    }
+  ]
+}

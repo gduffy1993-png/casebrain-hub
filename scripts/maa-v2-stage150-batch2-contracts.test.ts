@@ -71,13 +71,15 @@ describe("Batch-2 registry / selection / matrix", () => {
     }
   });
 
-  it("matrix totals: expanded partials, 0 fully implemented Stage-150", () => {
+  it("matrix totals: expanded partials; Batch-5 may promote some to implemented", () => {
     const matrix = buildStage150ImplementationCapabilityMatrix();
     assert.equal(matrix.totals.stage150ControlCount, 161);
-    assert.ok(matrix.totals.partially_implemented >= 106);
-    assert.equal(matrix.totals.implemented, 0);
+    assert.ok(matrix.totals.partially_implemented + matrix.totals.implemented >= 106);
+    assert.ok(matrix.totals.implemented >= 0);
     assert.equal(
-      matrix.totals.partially_implemented + matrix.totals.specified_not_implemented,
+      matrix.totals.partially_implemented +
+        matrix.totals.specified_not_implemented +
+        matrix.totals.implemented,
       161,
     );
   });

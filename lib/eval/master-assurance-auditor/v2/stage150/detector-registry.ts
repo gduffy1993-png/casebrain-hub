@@ -22,6 +22,7 @@ import type { ImplementationStatusV22, SharedEngineId } from "../every-word/type
 import type { ControlHandlerDef } from "../every-word/types";
 import { STAGE150_BATCH2_HANDLERS } from "./batch2-registry";
 import { STAGE150_BATCH3_HANDLERS } from "./batch3-registry";
+import { BATCH5_IMPLEMENTED_IDS } from "./batch5-implemented";
 /** Batch-4 scaffolds are adapter_foundation_only — not registered as packet-local handlers. */
 
 export type Stage150HandlerDef = ControlHandlerDef & {
@@ -474,11 +475,18 @@ export function statusForStage150Control(args: {
       reason: "Prompt-injection ownership is SEC-01 (activation stage 300) — not Stage-150 packet-local.",
     };
   }
+  if (BATCH5_IMPLEMENTED_IDS.has(args.controlId)) {
+    return {
+      status: "implemented",
+      reason:
+        "Batch-5 immutable promotion registry: control-specific runtime, ESA non-synthetic inputs, resolving contracts, 499 calibration + freeze/triage. currentlyRunnableOnStage150 remains false; Stage-150 selection/execution gates remain FALSE. Denominator approval PENDING_REVIEW.",
+    };
+  }
   if (STAGE150_PARTIAL_IDS.has(args.controlId)) {
     return {
       status: "partially_implemented",
       reason:
-        "Packet-local detector + contracts + adapters exist; not Stage-150 executable until global readiness gate / freeze prerequisites proven. CurrentlyRunnable remains false.",
+        "Packet-local detector + contracts + adapters exist; not fully implemented until Batch-5 acceptance bar (contracts+calibration+triage) proven. CurrentlyRunnable remains false.",
     };
   }
   if (args.familyCode === "ELD") {

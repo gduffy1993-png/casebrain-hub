@@ -609,7 +609,7 @@ export function evaluateProfessionalWording(ctx: Stage150EvalContext): Stage150H
   const hits: Stage150Hit[] = [];
   for (const w of includedWordingLeaves(ctx.leaves)) {
     const t = w.text;
-    if (/\{\{[a-zA-Z0-9_.]+\}\}/.test(t) || /\bTODO\b|\bFIXME\b|\bfixture\b|\bCaseBrain\s+dev\b/i.test(t)) {
+    if (/\{\{[a-zA-Z0-9_.]+\}\}/.test(t) || /\bTODO\b|\bFIXME\b|\bCaseBrain\s+dev\b/i.test(t)) {
       hits.push(
         hit({
           engineId: "professional_wording",
@@ -623,23 +623,40 @@ export function evaluateProfessionalWording(ctx: Stage150EvalContext): Stage150H
           evidenceRefs: [w.ref],
         }),
       );
-    }
-    if (/\bproves beyond (all )?doubt\b/i.test(t) || /\babsolutely proves\b/i.test(t)) {
+    } else if (/\bfixture\b/i.test(t) && /\b(CaseBrain|syn-|dev\b|test\s+harness|synthetic)\b/i.test(t)) {
       hits.push(
         hit({
           engineId: "professional_wording",
-          handlerId: "absolute_proof_ban",
-          controlId: "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
-          findingCode: "WRD_ABSOLUTE_PROOF",
+          handlerId: "placeholder_or_dev_leak",
+          controlId: "MAA2-WRD-10-NO-PLACEHOLDERS",
+          findingCode: "WRD_PLACEHOLDER_OR_DEV",
           occurrenceRef: w.ref,
           exactWording: t,
           candidateClass: "candidate_defect",
-          plainEnglish: "Unsupported absolute-proof wording.",
+          plainEnglish: "Developer/fixture language on solicitor-visible wording.",
           evidenceRefs: [w.ref],
         }),
       );
     }
-    if (/[A-Za-z]{3,}-\s*$/.test(t)) {
+    if (/\bproves beyond (all )?doubt\b/i.test(t) || /\babsolutely proves\b/i.test(t)) {
+      if (!/\bdo\s+not\s+(state|say|claim)\b/i.test(t)) {
+        hits.push(
+          hit({
+            engineId: "professional_wording",
+            handlerId: "absolute_proof_ban",
+            controlId: "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+            findingCode: "WRD_ABSOLUTE_PROOF",
+            occurrenceRef: w.ref,
+            exactWording: t,
+            candidateClass: "candidate_defect",
+            plainEnglish: "Unsupported absolute-proof wording.",
+            evidenceRefs: [w.ref],
+          }),
+        );
+      }
+    }
+    // Mid-word truncation: lowercase letter immediately before trailing hyphen (soft-wrap cut)
+    if (/[a-z]{3,}-\s*$/.test(t) && !/^[A-Z][A-Za-z]{0,20}-\s*$/.test(t.trim())) {
       hits.push(
         hit({
           engineId: "professional_wording",

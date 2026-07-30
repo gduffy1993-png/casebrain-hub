@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "stage150-implementation-totals@1.5.0",
+  "baselineCommit": "6000d156b51dc13191d9edaeb2854c82534e3b25",
+  "before": {
+    "partially_implemented": 106,
+    "specified_not_implemented": 55,
+    "implemented": 0
+  },
+  "after": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 101,
+    "specified_not_implemented": 55,
+    "implemented": 5,
+    "other": 0
+  },
+  "batch5Promoted": [
+    "MAA2-WRD-10-NO-PLACEHOLDERS",
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+    "MAA2-WRD-02-NO-MID-TRUNCATION",
+    "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+    "MAA2-LSL-02-NO-ALLEGE-TO-FACT"
+  ],
+  "note": "Stage-150 currentlyRunnable remains false on all rows. Promotion via immutable registry only."
+}

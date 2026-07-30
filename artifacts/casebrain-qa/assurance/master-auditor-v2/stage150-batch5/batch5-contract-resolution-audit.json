@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "batch5-contract-resolution-audit@1.0.0",
+  "allResolve": true,
+  "rows": [
+    {
+      "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_ph_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_ph_negatives",
+      "mutationContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#wrd10_mutation",
+      "unavailableContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#wrd10_unavailable",
+      "positiveResolves": true,
+      "negativesResolve": true,
+      "mutationResolves": true,
+      "unavailableResolves": true
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_abs_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_abs_negatives",
+      "mutationContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#wrd15_mutation",
+      "unavailableContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#wrd15_unavailable",
+      "positiveResolves": true,
+      "negativesResolve": true,
+      "mutationResolves": true,
+      "unavailableResolves": true
+    },
+    {
+      "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_trunc_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#wrd_trunc_negatives",
+      "mutationContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#wrd02_mutation",
+      "unavailableContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#wrd02_unavailable",
+      "positiveResolves": true,
+      "negativesResolve": true,
+      "mutationResolves": true,
+      "unavailableResolves": true
+    },
+    {
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "positiveContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch2-contracts.test.ts#MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK_negatives",
+      "mutationContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#aud07_mutation",
+      "unavailableContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#aud07_unavailable",
+      "positiveResolves": true,
+      "negativesResolve": true,
+      "mutationResolves": true,
+      "unavailableResolves": true
+    },
+    {
+      "controlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#lsl_allege_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#lsl_allege_negatives",
+      "mutationContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#lsl02_mutation",
+      "unavailableContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#lsl02_unavailable",
+      "positiveResolves": true,
+      "negativesResolve": true,
+      "mutationResolves": true,
+      "unavailableResolves": true
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "positiveContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#fid_quote_positive",
+      "negativeContract": "scripts/maa-v2-stage150-intelligence-contracts.test.ts#fid_quote_negatives",
+      "mutationContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#fid10_mutation",
+      "unavailableContract": "scripts/maa-v2-stage150-batch5-contracts.test.ts#fid10_unavailable",
+      "positiveResolves": true,
+      "negativesResolve": true,
+      "mutationResolves": true,
+      "unavailableResolves": true
+    }
+  ]
+}

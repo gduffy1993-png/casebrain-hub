@@ -115,11 +115,12 @@ describe("Batch-3 selection / registry", () => {
     assert.ok(BATCH3_BLOCKED_REMAINING_SNI.some((b) => b.blocker === "eld_adapter_absent"));
   });
 
-  it("matrix partial count includes Batch-3 selection (Batch-4 may add further partials)", () => {
+  it("matrix partial count includes Batch-3 selection (Batch-5 may promote some to implemented)", () => {
     const matrix = buildStage150ImplementationCapabilityMatrix();
     assert.equal(matrix.totals.stage150ControlCount, 161);
-    assert.ok(matrix.totals.partially_implemented >= 55 + BATCH3_SELECTED.length);
-    assert.equal(matrix.totals.implemented, 0);
+    assert.ok(
+      matrix.totals.partially_implemented + matrix.totals.implemented >= 55 + BATCH3_SELECTED.length,
+    );
     assert.ok(STAGE150_PACKET_LOCAL_HANDLERS.length >= 55 + BATCH3_SELECTED.length);
     assert.equal(STAGE150_BATCH3_HANDLERS.length, BATCH3_SELECTED.length);
   });

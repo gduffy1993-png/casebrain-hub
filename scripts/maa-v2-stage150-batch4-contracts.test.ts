@@ -92,8 +92,9 @@ describe("Batch-4 honesty classification of 55 controls", () => {
     assert.equal(STAGE150_BATCH4_FOUNDATION_SCAFFOLDS.length, 48);
     const matrix = buildStage150ImplementationCapabilityMatrix();
     assert.equal(matrix.totals.stage150ControlCount, 161);
-    assert.equal(matrix.totals.partially_implemented, 106);
-    assert.equal(matrix.totals.implemented, 0);
+    // Batch-5 immutable promotions: 5 implemented; remaining packet-local partials = 101
+    assert.equal(matrix.totals.partially_implemented, 101);
+    assert.equal(matrix.totals.implemented, 5);
     assert.equal(matrix.totals.specified_not_implemented, 55);
     assert.equal(STAGE150_PACKET_LOCAL_HANDLERS.length, 55 + 51);
     assert.equal(batch4DispositionCounts().stage150_essential_implement, 48);
