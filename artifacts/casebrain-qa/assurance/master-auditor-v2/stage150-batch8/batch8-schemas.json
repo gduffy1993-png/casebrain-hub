@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "maa-v2-stage150-batch8-structured-adapter@1.1.0",
+  "adapters": [
+    "charge_instruments",
+    "evidence_units",
+    "chronology_events",
+    "provenance",
+    "chase_relationships",
+    "exit_snapshots"
+  ],
+  "rules": [
+    "Missing information stays null/unresolved/not_exercised",
+    "Free-text similarity cannot create identity, defendant allocation or version links",
+    "Reject fabricated/defaulted IDs or page numbers",
+    "Metadata must not be represented as a real exit payload",
+    "Truth keys are never opened during capability/adaptation",
+    "Aggregate eligibility: every applicable record complete",
+    "Exact-label ambiguity: zero=unresolved; >1=ambiguous no selected target; never last-row wins",
+    "Exit honesty: track view/copy/export/api/pdf/composed_prose/authenticated_browser independently"
+  ]
+}

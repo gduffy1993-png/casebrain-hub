@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "batch8-adapter-capability-summary@1.1.0",
+  "countsByAdapter": {
+    "charge_instruments": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 499
+    },
+    "evidence_units": {
+      "eligible": 0,
+      "partial": 499,
+      "unavailable": 0
+    },
+    "chronology_events": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 499
+    },
+    "provenance": {
+      "eligible": 0,
+      "partial": 499,
+      "unavailable": 0
+    },
+    "chase_relationships": {
+      "eligible": 0,
+      "partial": 499,
+      "unavailable": 0
+    },
+    "exit_snapshots": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 499
+    }
+  },
+  "previousPreRemediationCounts": {
+    "charge_instruments": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 499
+    },
+    "evidence_units": {
+      "eligible": 0,
+      "partial": 499,
+      "unavailable": 0
+    },
+    "chronology_events": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 499
+    },
+    "provenance": {
+      "eligible": 0,
+      "partial": 499,
+      "unavailable": 0
+    },
+    "chase_relationships": {
+      "eligible": 0,
+      "partial": 499,
+      "unavailable": 0
+    },
+    "exit_snapshots": {
+      "eligible": 0,
+      "partial": 499,
+      "unavailable": 0
+    }
+  },
+  "countDeltasFromPreRemediation": {
+    "charge_instruments": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 0
+    },
+    "evidence_units": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 0
+    },
+    "chronology_events": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 0
+    },
+    "provenance": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 0
+    },
+    "chase_relationships": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 0
+    },
+    "exit_snapshots": {
+      "eligible": 0,
+      "partial": -499,
+      "unavailable": 499
+    }
+  },
+  "expectedEsaPatternAfterRemediation": {
+    "charge_instruments": "unavailable×499",
+    "evidence_units": "partial×499",
+    "chronology_events": "unavailable×499",
+    "provenance": "partial×499",
+    "chase_relationships": "partial×499 (or unavailable if empty chase)",
+    "exit_snapshots": "unavailable×499 (metadata ≠ genuine exit exercise)"
+  },
+  "remediationRules": [
+    "Eligible only when every applicable/required record is complete",
+    "One complete record must not upgrade an otherwise partial adapter",
+    "Exit adapter eligible only when all seven required exits have genuine payload receipts",
+    "Exact-label chase link valid only with exactly one evidence match; preserve all candidates",
+    "Chase complete requires requestId + explicit evidenceUnitId + resolutionState per applicable row"
+  ]
+}

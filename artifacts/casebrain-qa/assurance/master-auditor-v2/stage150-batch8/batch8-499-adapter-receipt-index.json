@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "batch8-499-adapter-receipt-index@1.0.0",
+  "relativePath": "raw-receipts/batch8-499-adapter-receipts.jsonl",
+  "sha256": "08196a468a8fefc2d533b3eb3220bb6b1326e9aac7aa92f1712bf71c83f4f909",
+  "byteLength": 2054115,
+  "lineCount": 2994,
+  "regenerable": true,
+  "gitPolicy": "gitignore_regenerate",
+  "truthContentsOpened": false
+}

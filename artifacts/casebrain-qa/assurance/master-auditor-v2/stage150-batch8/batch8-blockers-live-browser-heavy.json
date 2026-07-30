@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "batch8-blockers@1.0.0",
+  "blockers": [
+    {
+      "lane": "live_instrument_graph",
+      "requires": "Operative charge instrument bags with version/supersession and defendant allocation",
+      "adapters": [
+        "charge_instruments"
+      ]
+    },
+    {
+      "lane": "identity_binding",
+      "requires": "subjectDefendantId/personId and evidenceUnitId/sourceEvidenceId on units",
+      "adapters": [
+        "evidence_units",
+        "chase_relationships"
+      ]
+    },
+    {
+      "lane": "page_identity",
+      "requires": "sourcePage/compiledPage with pageIdentityKnown from document units",
+      "adapters": [
+        "provenance",
+        "evidence_units"
+      ]
+    },
+    {
+      "lane": "chronology_clock",
+      "requires": "Structured chronologyEvents with timezone and competing-event groups",
+      "adapters": [
+        "chronology_events"
+      ]
+    },
+    {
+      "lane": "real_exit_payloads",
+      "requires": "view/copy/export/API/PDF/composed/browser payload identity receipts",
+      "adapters": [
+        "exit_snapshots"
+      ]
+    },
+    {
+      "lane": "authenticated_browser",
+      "requires": "Authenticated browser capture receipts (Stage-300+)",
+      "adapters": [
+        "exit_snapshots"
+      ]
+    },
+    {
+      "lane": "heavy_source",
+      "requires": "Original binaries + OCR visual metadata (Batch-4 heavySourceDocumentEvidence)",
+      "adapters": [
+        "provenance"
+      ]
+    }
+  ]
+}
