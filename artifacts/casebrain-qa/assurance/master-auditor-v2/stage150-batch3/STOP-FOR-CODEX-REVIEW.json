@@ -1,0 +1,778 @@
+{
+  "schemaVersion": "maa-v2-stage150-batch3-stop@1.1.0",
+  "title": "STOP FOR CODEX REVIEW — MAA V2 Stage-150 Intelligence Batch 3 (remediated)",
+  "status": "STAGE150_BATCH3_UNCOMMITTED",
+  "createdAt": "2026-07-30T14:19:42.653Z",
+  "elapsedMs": 28629,
+  "baselineCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
+  "headCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
+  "remediation": {
+    "probeVsNamedControlSeparation": true,
+    "controlSpecificNamedPrerequisites": true,
+    "exactPrerequisiteEvidenceRefsValidated": true,
+    "batch3ClassificationCounts": {
+      "genuine_structured_detector": 3,
+      "genuine_string_quality_detector": 13,
+      "phrase_probe_only": 35,
+      "unavailable_missing_adapter": 0
+    },
+    "note": "Probe evaluation ≠ named-control exercise. Control-specific named prerequisites replace shared family bags. exactPrerequisiteEvidenceRefs are validated with evidence paths + field summaries; absent prerequisites fail closed to named not_exercised. Contextual phrase probes without source/context comparison remain phrase_probe_only."
+  },
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "programmePassSupported": false,
+  "applicationBehaviourChanged": false,
+  "caseBrainRepaired": false,
+  "committed": false,
+  "pushed": false,
+  "merged": false,
+  "deployed": false,
+  "freezeHashStage50Preserved": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "implementationTotals": {
+    "before": {
+      "partially_implemented": 55,
+      "specified_not_implemented": 106,
+      "implemented": 0
+    },
+    "after": {
+      "partially_implemented": 106,
+      "specified_not_implemented": 55,
+      "implemented": 0
+    }
+  },
+  "fid10SourceReview": {
+    "freezeReceipt": "stage150-fid10-output-freeze-receipt.json",
+    "freezeDigestSha256": "c9a25044ed8052a8fea89c884cdc26ac51c90b0f837f9df381c7244da6ebc26a",
+    "units": {
+      "occurrenceCount": 19,
+      "uniqueStringCount": 13,
+      "caseCount": 2,
+      "sourceDocumentCount": 2,
+      "duplicateLinkedCount": 6,
+      "ownerFindingCount": 13
+    },
+    "dispositionCounts": {
+      "source_supported_but_provenance_binding_missing": 11,
+      "duplicate_occurrence": 6,
+      "safe_qualified_paraphrase": 2
+    },
+    "rootCauseFamilies": [
+      {
+        "family": "missing_structured_provenance_binding_on_supported_quote",
+        "occurrenceCount": 11,
+        "sharedRemediation": "Shared: emit/bind sourceEvidenceId or documentId+page on quotation rows when source text is known; never self-certify from quote wording."
+      },
+      {
+        "family": "duplicate_surface_repetition",
+        "occurrenceCount": 6,
+        "sharedRemediation": "Shared: retain all duplicate surface occurrences; link via duplicateOfFindingId/groupId to one owner finding; preserve occurrence count and exit exposure."
+      },
+      {
+        "family": "qualified_do_not_overstate_paraphrase",
+        "occurrenceCount": 2,
+        "sharedRemediation": "Shared: treat do-not-invent / hard-rule paraphrases citing MG6/list status as safe_qualified_paraphrase when source-supported."
+      }
+    ],
+    "duplicatePolicy": "Retain every solicitor-visible surface occurrence; link duplicates via duplicateOfFindingId/groupId — never delete.",
+    "caseBrainRepaired": false
+  },
+  "newControls": [
+    "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+    "MAA2-BND-03-REPLACEMENT-LINKS",
+    "MAA2-BND-04-VERSION-PRECEDENCE",
+    "MAA2-BND-05-MISSING-ATTACHMENTS",
+    "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+    "MAA2-BND-13-CODEFENDANT-ONLY",
+    "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+    "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+    "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+    "MAA2-FID-05-EXHIBIT-DOC-REFS",
+    "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+    "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+    "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+    "MAA2-CHG-07-STATUTORY-PROVISION",
+    "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+    "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+    "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+    "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+    "MAA2-EVS-04-REASON-TAXONOMY",
+    "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+    "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+    "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+    "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+    "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+    "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+    "MAA2-PRC-01-STAGE-TAGGING",
+    "MAA2-PRC-02-WRONG-STAGE-DETECT",
+    "MAA2-CHS-01-FIVE-PART-FINDING",
+    "MAA2-CHS-03-PROVENANCE-LINK",
+    "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+    "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+    "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+    "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+    "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+    "MAA2-WRD-01-GRAMMAR-SENTENCES",
+    "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+    "MAA2-WRD-05-TEMPLATE-JOINS",
+    "MAA2-WRD-06-SPACES-PUNCTUATION",
+    "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+    "MAA2-WRD-08-CAPITALISATION",
+    "MAA2-WRD-09-PROTECTED-ACRONYMS",
+    "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+    "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+    "MAA2-AUD-01-SOLICITOR-COMPLETE",
+    "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+    "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+    "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+    "MAA2-PRI-03-PRIORITY-CHECKLIST",
+    "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+    "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+    "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION"
+  ],
+  "batch3ControlReclassifications": [
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "classification": "genuine_structured_detector"
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "classification": "genuine_structured_detector"
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "classification": "genuine_structured_detector"
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "classification": "phrase_probe_only"
+    }
+  ],
+  "blockedRemainingSni": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "familyCode": "FID",
+      "blocker": "semantic_alignment_model_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "familyCode": "LSL",
+      "blocker": "legal_category_taxonomy_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "familyCode": "ATR",
+      "blocker": "device_account_attribution_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "familyCode": "ATR",
+      "blocker": "possession_knowledge_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "familyCode": "CHR",
+      "blocker": "dob_age_calc_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "familyCode": "CHR",
+      "blocker": "calc_input_ledger_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "familyCode": "PRC",
+      "blocker": "structured_youth_state_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "familyCode": "PRC",
+      "blocker": "structured_fitness_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "familyCode": "PRC",
+      "blocker": "structured_pii_disclosure_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "familyCode": "XEX",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    }
+  ],
+  "receiptTotals": {
+    "evaluated": 52849,
+    "unresolved": 45,
+    "not_exercised": 0,
+    "total": 52894
+  },
+  "probeTotals": {
+    "evaluated": 52849,
+    "unresolved": 45,
+    "not_exercised": 0,
+    "total": 52894
+  },
+  "namedControlExerciseTotals": {
+    "fully_exercised": 0,
+    "partially_exercised": 6487,
+    "not_exercised": 46407,
+    "total": 52894
+  },
+  "exitCapability": [
+    {
+      "exit": "view",
+      "populationDenominator": 499,
+      "exercisableCount": 499,
+      "partialCount": 0,
+      "notExercisedCount": 0
+    },
+    {
+      "exit": "copy",
+      "populationDenominator": 499,
+      "exercisableCount": 499,
+      "partialCount": 0,
+      "notExercisedCount": 0
+    },
+    {
+      "exit": "export",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 499,
+      "notExercisedCount": 0
+    },
+    {
+      "exit": "api",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499
+    },
+    {
+      "exit": "pdf",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499
+    },
+    {
+      "exit": "composed_prose",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499
+    },
+    {
+      "exit": "authenticated_browser",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499
+    }
+  ],
+  "approvalCounts": {
+    "PENDING_APPROVAL": 105,
+    "BLOCKED_MISSING_INPUT": 55,
+    "BLOCKED_UNRESOLVED_PROVENANCE": 1,
+    "PENDING_SOURCE_REVIEW": 0,
+    "BLOCKED_DETECTOR_NOISE": 0,
+    "APPROVED_FOR_CALIBRATION": 0,
+    "APPROVED_FOR_FROZEN_RUN": 0
+  },
+  "eldStatus": "specified_not_implemented",
+  "protectedAssets": {
+    "brain1GuardianBlobUnchanged": true,
+    "rows": [
+      {
+        "path": "lib/criminal/strategy-fight-engine.ts",
+        "baselineBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "headBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-fight-engine-generators.ts",
+        "baselineBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "headBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/get-aggressive-defense.ts",
+        "baselineBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "headBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-battleboard.ts",
+        "baselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "headBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-routes.ts",
+        "baselineBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "headBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/bundle-truth-ledger.ts",
+        "baselineBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "headBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/bundle-material-normalizer.ts",
+        "baselineBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+        "headBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/fingerprint.ts",
+        "baselineBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "headBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/guardian.ts",
+        "baselineBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "headBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/index.ts",
+        "baselineBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "headBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/types.ts",
+        "baselineBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "headBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "blobUnchanged": true
+      }
+    ]
+  },
+  "typescript": {
+    "exitCode": 1,
+    "stage150PathErrors": 0
+  },
+  "blockers": [
+    "partially_implemented remains blocking (0 fully implemented of 161)",
+    "FID-10 BLOCKED_UNRESOLVED_PROVENANCE after source review (19 occurrences retained; duplicates linked, not deleted; no CaseBrain repair)",
+    "55 SNI controls honestly blocked on missing adapters",
+    "namedControlExercise not_exercised receipts: 46407 (probe evaluated ≠ named exercised)",
+    "denominator minima PENDING_APPROVAL / not complete",
+    "Stage-150 selection/execution gates false",
+    "api/pdf/composed_prose/authenticated_browser not_exercised without structured receipts"
+  ]
+}

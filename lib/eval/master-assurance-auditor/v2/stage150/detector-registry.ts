@@ -21,11 +21,26 @@
 import type { ImplementationStatusV22, SharedEngineId } from "../every-word/types";
 import type { ControlHandlerDef } from "../every-word/types";
 import { STAGE150_BATCH2_HANDLERS } from "./batch2-registry";
+import { STAGE150_BATCH3_HANDLERS } from "./batch3-registry";
 
 export type Stage150HandlerDef = ControlHandlerDef & {
   intelligenceFamily: string;
-  /** Exact prerequisite tokens consumed by eligibility.ts */
+  /** Exact prerequisite tokens consumed by eligibility.ts for *probe* evaluation */
   requiredInputs: string[];
+  /**
+   * Stricter prerequisites for named-control exercise.
+   * When absent → namedControlExerciseStatus=not_exercised even if probe evaluated.
+   */
+  namedControlRequiredInputs?: string[];
+  detectorClassification?:
+    | "genuine_structured_detector"
+    | "genuine_string_quality_detector"
+    | "phrase_probe_only"
+    | "unavailable_missing_adapter";
+  capabilityScope?: string;
+  exercisedInvariant?: string;
+  unexercisedInvariant?: string;
+  exactPrerequisiteEvidenceRefs?: string[];
   unavailableVerdict: "not_exercised" | "unresolved";
   /** When true, empty/absent structured field is itself a finding (still requires parent surfaces). */
   absenceIsFinding?: boolean;
@@ -433,10 +448,11 @@ export const STAGE150_BATCH1_HANDLERS: Stage150HandlerDef[] = [
   },
 ];
 
-/** Batch-1 + Batch-2 packet-local handlers (55). */
+/** Batch-1 + Batch-2 + Batch-3 packet-local handlers. */
 export const STAGE150_PACKET_LOCAL_HANDLERS: Stage150HandlerDef[] = [
   ...STAGE150_BATCH1_HANDLERS,
   ...(STAGE150_BATCH2_HANDLERS as Stage150HandlerDef[]),
+  ...(STAGE150_BATCH3_HANDLERS as Stage150HandlerDef[]),
 ];
 
 export const STAGE150_PARTIAL_IDS = new Set(STAGE150_PACKET_LOCAL_HANDLERS.map((h) => h.controlId));

@@ -1,305 +1,696 @@
 {
-  "schemaVersion": "maa-v2-integrated-lanes-stop@1.0.0",
-  "title": "STOP FOR CODEX REVIEW — Regenerated denominator readiness (integrated)",
-  "status": "STOP_FOR_CODEX_REVIEW",
-  "createdAt": "2026-07-30T12:37:26.375Z",
-  "baselineCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
-  "headCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+  "schemaVersion": "maa-v2-stage150-batch3-stop@1.1.0",
+  "title": "STOP FOR CODEX REVIEW — Denominator readiness after Batch 3",
+  "status": "STAGE150_BATCH3_UNCOMMITTED",
+  "createdAt": "2026-07-30T14:19:42.653Z",
+  "elapsedMs": 28629,
+  "baselineCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
+  "headCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
+  "remediation": {
+    "probeVsNamedControlSeparation": true,
+    "controlSpecificNamedPrerequisites": true,
+    "exactPrerequisiteEvidenceRefsValidated": true,
+    "batch3ClassificationCounts": {
+      "genuine_structured_detector": 3,
+      "genuine_string_quality_detector": 13,
+      "phrase_probe_only": 35,
+      "unavailable_missing_adapter": 0
+    },
+    "note": "Probe evaluation ≠ named-control exercise. Control-specific named prerequisites replace shared family bags. exactPrerequisiteEvidenceRefs are validated with evidence paths + field summaries; absent prerequisites fail closed to named not_exercised. Contextual phrase probes without source/context comparison remain phrase_probe_only."
+  },
   "stage150SampleSelectionAllowed": false,
   "stage150ExecutionAllowed": false,
   "programmePassSupported": false,
   "applicationBehaviourChanged": false,
+  "caseBrainRepaired": false,
   "committed": false,
   "pushed": false,
   "merged": false,
   "deployed": false,
   "freezeHashStage50Preserved": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
-  "lanes": {
-    "batch2": {
-      "accepted": true,
-      "corrected": [
-        "FID-10 exact provenance requires independent structured binding",
-        "quotation MG5/MG6 self-mention cannot certify linked provenance",
-        "occurrence disposition JSONL regenerated",
-        "499 packet-local exit capability receipts + aggregate map"
-      ],
-      "selected30": [
-        "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
-        "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
-        "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
-        "MAA2-CHG-06-AMENDMENT-HISTORY",
-        "MAA2-CHG-10-WARNING-INSEPARABLE",
-        "MAA2-FID-02-COUNT-NUMBERS",
-        "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
-        "MAA2-FID-06-PRESERVE-NEGATIVES",
-        "MAA2-FID-07-PRESERVE-QUALIFIERS",
-        "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
-        "MAA2-BND-02-INSTRUMENT-STATUS",
-        "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
-        "MAA2-BND-08-EXTRACT-VS-FULL",
-        "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
-        "MAA2-BND-14-QUARANTINED-CONFLICTING",
-        "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
-        "MAA2-EVS-01-DIMENSION-SEPARATION",
-        "MAA2-ATR-08-NO-DEFENDANT-BLEED",
-        "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
-        "MAA2-CHR-01-EXACT-DATES-TZ",
-        "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
-        "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
-        "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
-        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
-        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
-        "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
-        "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
-        "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
-        "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
-        "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP"
-      ],
+  "implementationTotals": {
+    "before": {
       "partially_implemented": 55,
       "specified_not_implemented": 106,
-      "implemented": 0,
-      "receipts": {
-        "evaluated": 27434,
-        "unresolved": 11,
-        "not_exercised": 0,
-        "total": 27445
-      },
-      "exitCapabilityReceipts": 499,
-      "exitMapPopulation": 499
-    },
-    "multiExitAdapters": {
-      "accepted": true,
-      "corrected": [
-        "canCopy alone insufficient",
-        "view requires solicitor-visible non-empty string",
-        "structured artefact receipts require valid SHA-256/schema/ISO/run+capture",
-        "stage150/multi-exit-map derived from 499 packet receipts (not representative packet)",
-        "evidenceObserved / evidenceRequired / evidenceMissing separated"
-      ],
-      "rejected": [
-        "Independent Batch-2 multi-exit algorithm (superseded)",
-        "Representative synthetic packet as programme evidence",
-        "evidenceOnEsa for absent API/PDF/browser artefacts"
-      ],
-      "exitMatrix": [
-        {
-          "exit": "view",
-          "populationDenominator": 499,
-          "exercisableCount": 499,
-          "partialCount": 0,
-          "notExercisedCount": 0,
-          "evidenceObservedUnion": [
-            "/courtNote/text",
-            "/evidenceStates",
-            "/fiveAnswersEvidenceRows",
-            "/warningsAndGaps/doNotOverstate"
-          ],
-          "evidenceRequired": [
-            "/courtNote/text",
-            "/fiveAnswersEvidenceRows",
-            "/evidenceStates",
-            "/warningsAndGaps/doNotOverstate"
-          ],
-          "evidenceMissingUnion": [],
-          "missingAdapterCounts": {},
-          "note": "view: aggregated from 499 packet-local capability receipts."
-        },
-        {
-          "exit": "copy",
-          "populationDenominator": 499,
-          "exercisableCount": 499,
-          "partialCount": 0,
-          "notExercisedCount": 0,
-          "evidenceObservedUnion": [
-            "/courtNote/canCopy",
-            "/warningsAndGaps/chaseItems/*/copySuggestion"
-          ],
-          "evidenceRequired": [
-            "/courtNote/canCopy",
-            "/warningsAndGaps/chaseItems/*/copySuggestion",
-            "/courtNote/canCopy=true_or_nonempty_copySuggestion"
-          ],
-          "evidenceMissingUnion": [],
-          "missingAdapterCounts": {},
-          "note": "copy: aggregated from 499 packet-local capability receipts."
-        },
-        {
-          "exit": "export",
-          "populationDenominator": 499,
-          "exercisableCount": 0,
-          "partialCount": 499,
-          "notExercisedCount": 0,
-          "evidenceObservedUnion": [
-            "/exportVersion/blockedReason",
-            "/exportVersion/reviewFooter",
-            "/exportVersion/sendability"
-          ],
-          "evidenceRequired": [
-            "/exportVersion/reviewFooter",
-            "/exportVersion/sendability",
-            "/exportVersion/blockedReason",
-            "full_export_exit_payload_bytes"
-          ],
-          "evidenceMissingUnion": [
-            "full_export_exit_payload_bytes"
-          ],
-          "missingAdapterCounts": {
-            "full_export_exit_payload_bytes": 499
-          },
-          "note": "export: aggregated from 499 packet-local capability receipts."
-        },
-        {
-          "exit": "api",
-          "populationDenominator": 499,
-          "exercisableCount": 0,
-          "partialCount": 0,
-          "notExercisedCount": 499,
-          "evidenceObservedUnion": [],
-          "evidenceRequired": [
-            "api_exit_payload",
-            "api_response_headers_receipt"
-          ],
-          "evidenceMissingUnion": [
-            "api_exit_payload",
-            "api_response_headers_receipt"
-          ],
-          "missingAdapterCounts": {
-            "api_exit_adapter": 499
-          },
-          "note": "api: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
-        },
-        {
-          "exit": "pdf",
-          "populationDenominator": 499,
-          "exercisableCount": 0,
-          "partialCount": 0,
-          "notExercisedCount": 499,
-          "evidenceObservedUnion": [],
-          "evidenceRequired": [
-            "pdf_exit_payload_bytes",
-            "pdf_text_extraction_receipt"
-          ],
-          "evidenceMissingUnion": [
-            "pdf_exit_payload_bytes",
-            "pdf_text_extraction_receipt"
-          ],
-          "missingAdapterCounts": {
-            "pdf_exit_adapter": 499
-          },
-          "note": "pdf: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
-        },
-        {
-          "exit": "composed_prose",
-          "populationDenominator": 499,
-          "exercisableCount": 0,
-          "partialCount": 0,
-          "notExercisedCount": 499,
-          "evidenceObservedUnion": [],
-          "evidenceRequired": [
-            "composed_prose_exit_payload"
-          ],
-          "evidenceMissingUnion": [
-            "composed_prose_exit_payload"
-          ],
-          "missingAdapterCounts": {
-            "composed_prose_exit_adapter": 499
-          },
-          "note": "composed_prose: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
-        },
-        {
-          "exit": "authenticated_browser",
-          "populationDenominator": 499,
-          "exercisableCount": 0,
-          "partialCount": 0,
-          "notExercisedCount": 499,
-          "evidenceObservedUnion": [],
-          "evidenceRequired": [
-            "browser_session_receipt",
-            "authenticated_screenshot_hash",
-            "dom_text_extraction_receipt",
-            "exit_click_path_receipt"
-          ],
-          "evidenceMissingUnion": [
-            "authenticated_screenshot_hash",
-            "browser_session_receipt",
-            "dom_text_extraction_receipt",
-            "exit_click_path_receipt"
-          ],
-          "missingAdapterCounts": {
-            "authenticated_browser_evidence_adapter": 499
-          },
-          "note": "authenticated_browser: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
-        }
-      ]
-    },
-    "eldFoundation": {
-      "accepted": true,
-      "corrected": [
-        "graph validation: duplicates, cycles, changed-nodes, direction, identity"
-      ],
-      "status": "specified_not_implemented",
-      "controls": 14,
-      "currentlyRunnable": false,
-      "connectedToLiveDrafting": false,
-      "canonicalSpec": "eld-dependency-specification@1.1.0"
-    },
-    "denominatorReadiness": {
-      "accepted": false,
-      "corrected": true,
-      "rejectedStale": true,
-      "note": "Regenerated; FID-10 unresolved uses BLOCKED_UNRESOLVED_PROVENANCE (not detector noise). Approvals remain PENDING.",
-      "approvalCounts": {
-        "PENDING_APPROVAL": 54,
-        "BLOCKED_MISSING_INPUT": 106,
-        "BLOCKED_DETECTOR_NOISE": 0,
-        "BLOCKED_UNRESOLVED_PROVENANCE": 1,
-        "PENDING_SOURCE_REVIEW": 0,
-        "APPROVED_FOR_CALIBRATION": 0,
-        "APPROVED_FOR_FROZEN_RUN": 0
-      }
-    }
-  },
-  "fid10": {
-    "before": {
-      "unresolvedCandidateOccurrences": 915,
-      "casesWithUnresolvedCandidates": 474,
-      "populationUniqueValid": 499,
-      "source": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-intelligence/stage150-fid10-calibration-disclosure.json"
+      "implemented": 0
     },
     "after": {
-      "unresolvedCandidateOccurrences": 19,
-      "casesWithUnresolvedCandidates": 2,
-      "populationUniqueValid": 499,
-      "quoteOccurrenceTotal": 1043,
-      "casesWithAnyQuoteSurface": 499
-    },
-    "familyCounts": {
-      "substantive_quote_needs_provenance": 16,
-      "heading_label_formatting": 0,
-      "provenance_in_linked_field": 0,
-      "qualified_unknown_provenance": 1,
-      "detector_false_positive": 1023,
-      "genuinely_unresolved": 3
-    },
-    "automaticConfirmedDefectDecisions": 0,
-    "occurrenceDispositionJsonl": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch2/stage150-fid10-occurrence-dispositions.jsonl",
-    "occurrenceCount": 1043
+      "partially_implemented": 106,
+      "specified_not_implemented": 55,
+      "implemented": 0
+    }
   },
-  "controlTotalsByStatus": {
-    "stage150ControlCount": 161,
-    "partially_implemented": 55,
-    "specified_not_implemented": 106,
-    "implemented": 0,
-    "eldNonRunnable": 14
+  "fid10SourceReview": {
+    "freezeReceipt": "stage150-fid10-output-freeze-receipt.json",
+    "freezeDigestSha256": "c9a25044ed8052a8fea89c884cdc26ac51c90b0f837f9df381c7244da6ebc26a",
+    "units": {
+      "occurrenceCount": 19,
+      "uniqueStringCount": 13,
+      "caseCount": 2,
+      "sourceDocumentCount": 2,
+      "duplicateLinkedCount": 6,
+      "ownerFindingCount": 13
+    },
+    "dispositionCounts": {
+      "source_supported_but_provenance_binding_missing": 11,
+      "duplicate_occurrence": 6,
+      "safe_qualified_paraphrase": 2
+    },
+    "rootCauseFamilies": [
+      {
+        "family": "missing_structured_provenance_binding_on_supported_quote",
+        "occurrenceCount": 11,
+        "sharedRemediation": "Shared: emit/bind sourceEvidenceId or documentId+page on quotation rows when source text is known; never self-certify from quote wording."
+      },
+      {
+        "family": "duplicate_surface_repetition",
+        "occurrenceCount": 6,
+        "sharedRemediation": "Shared: retain all duplicate surface occurrences; link via duplicateOfFindingId/groupId to one owner finding; preserve occurrence count and exit exposure."
+      },
+      {
+        "family": "qualified_do_not_overstate_paraphrase",
+        "occurrenceCount": 2,
+        "sharedRemediation": "Shared: treat do-not-invent / hard-rule paraphrases citing MG6/list status as safe_qualified_paraphrase when source-supported."
+      }
+    ],
+    "duplicatePolicy": "Retain every solicitor-visible surface occurrence; link duplicates via duplicateOfFindingId/groupId — never delete.",
+    "caseBrainRepaired": false
   },
-  "blockers": [
-    "partially_implemented detectors remain blocking (0 fully implemented of 161)",
-    "denominator minima PENDING_APPROVAL / not complete",
-    "FID-10 BLOCKED_UNRESOLVED_PROVENANCE: 19 unresolved candidates / 2 cases",
-    "ELD 14 specified_not_implemented — adapters absent",
-    "api/pdf/composed_prose/authenticated_browser not_exercised without structured receipts",
-    "Stage-150 selection/execution gates false"
+  "newControls": [
+    "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+    "MAA2-BND-03-REPLACEMENT-LINKS",
+    "MAA2-BND-04-VERSION-PRECEDENCE",
+    "MAA2-BND-05-MISSING-ATTACHMENTS",
+    "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+    "MAA2-BND-13-CODEFENDANT-ONLY",
+    "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+    "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+    "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+    "MAA2-FID-05-EXHIBIT-DOC-REFS",
+    "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+    "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+    "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+    "MAA2-CHG-07-STATUTORY-PROVISION",
+    "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+    "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+    "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+    "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+    "MAA2-EVS-04-REASON-TAXONOMY",
+    "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+    "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+    "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+    "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+    "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+    "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+    "MAA2-PRC-01-STAGE-TAGGING",
+    "MAA2-PRC-02-WRONG-STAGE-DETECT",
+    "MAA2-CHS-01-FIVE-PART-FINDING",
+    "MAA2-CHS-03-PROVENANCE-LINK",
+    "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+    "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+    "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+    "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+    "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+    "MAA2-WRD-01-GRAMMAR-SENTENCES",
+    "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+    "MAA2-WRD-05-TEMPLATE-JOINS",
+    "MAA2-WRD-06-SPACES-PUNCTUATION",
+    "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+    "MAA2-WRD-08-CAPITALISATION",
+    "MAA2-WRD-09-PROTECTED-ACRONYMS",
+    "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+    "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+    "MAA2-AUD-01-SOLICITOR-COMPLETE",
+    "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+    "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+    "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+    "MAA2-PRI-03-PRIORITY-CHECKLIST",
+    "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+    "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+    "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION"
   ],
+  "batch3ControlReclassifications": [
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "classification": "genuine_structured_detector"
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "classification": "genuine_structured_detector"
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "classification": "genuine_structured_detector"
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "classification": "genuine_string_quality_detector"
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "classification": "phrase_probe_only"
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "classification": "phrase_probe_only"
+    }
+  ],
+  "blockedRemainingSni": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "familyCode": "FID",
+      "blocker": "semantic_alignment_model_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "familyCode": "LSL",
+      "blocker": "legal_category_taxonomy_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "familyCode": "ATR",
+      "blocker": "device_account_attribution_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "familyCode": "ATR",
+      "blocker": "possession_knowledge_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "familyCode": "CHR",
+      "blocker": "dob_age_calc_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "familyCode": "CHR",
+      "blocker": "calc_input_ledger_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "familyCode": "PRC",
+      "blocker": "structured_youth_state_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "familyCode": "PRC",
+      "blocker": "structured_fitness_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "familyCode": "PRC",
+      "blocker": "structured_pii_disclosure_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "familyCode": "XEX",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    }
+  ],
+  "receiptTotals": {
+    "evaluated": 52849,
+    "unresolved": 45,
+    "not_exercised": 0,
+    "total": 52894
+  },
+  "probeTotals": {
+    "evaluated": 52849,
+    "unresolved": 45,
+    "not_exercised": 0,
+    "total": 52894
+  },
+  "namedControlExerciseTotals": {
+    "fully_exercised": 0,
+    "partially_exercised": 6487,
+    "not_exercised": 46407,
+    "total": 52894
+  },
+  "exitCapability": [
+    {
+      "exit": "view",
+      "populationDenominator": 499,
+      "exercisableCount": 499,
+      "partialCount": 0,
+      "notExercisedCount": 0
+    },
+    {
+      "exit": "copy",
+      "populationDenominator": 499,
+      "exercisableCount": 499,
+      "partialCount": 0,
+      "notExercisedCount": 0
+    },
+    {
+      "exit": "export",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 499,
+      "notExercisedCount": 0
+    },
+    {
+      "exit": "api",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499
+    },
+    {
+      "exit": "pdf",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499
+    },
+    {
+      "exit": "composed_prose",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499
+    },
+    {
+      "exit": "authenticated_browser",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499
+    }
+  ],
+  "approvalCounts": {
+    "PENDING_APPROVAL": 105,
+    "BLOCKED_MISSING_INPUT": 55,
+    "BLOCKED_UNRESOLVED_PROVENANCE": 1,
+    "PENDING_SOURCE_REVIEW": 0,
+    "BLOCKED_DETECTOR_NOISE": 0,
+    "APPROVED_FOR_CALIBRATION": 0,
+    "APPROVED_FOR_FROZEN_RUN": 0
+  },
+  "eldStatus": "specified_not_implemented",
   "protectedAssets": {
     "brain1GuardianBlobUnchanged": true,
     "rows": [
@@ -371,38 +762,17 @@
       }
     ]
   },
-  "staleArtefactsExcludedOrSuperseded": [
-    "denominator-readiness STOP claiming FID-10 915/474 (superseded by corrected scan)",
-    "stage150/multi-exit-map.ts independent algorithm (now derived from 499 receipts)",
-    "name-only artefact bags as exit evidence (rejected)",
-    "length-alone FID-10 heading exemption (rejected)",
-    "quotation self-mention of MG5/MG6 as exact provenance (rejected)",
-    "BLOCKED_DETECTOR_NOISE for genuine unresolved provenance (rejected)",
-    "representative synthetic ESA packet as programme exit evidence (rejected)"
-  ],
-  "verification": {
-    "contractsCommand": "npx tsx --test scripts/maa-v2-stage150-batch2-contracts.test.ts scripts/maa-v2-multiexit-adapter-contracts.test.ts scripts/maa-v2-eld-foundation-contracts.test.ts scripts/maa-v2-stage150-intelligence-contracts.test.ts scripts/maa-v2-every-word-foundation-contracts.test.ts scripts/maa-v2-execution-readiness-contracts.test.ts",
-    "contractsPassCount": 122,
-    "productionBuild": "npm run build — passed (this correction unit)",
-    "typescriptDelta": {
-      "schemaVersion": "stage150-typescript-delta@1.0.0",
-      "baselineCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
-      "comparison": "vs stage150-intelligence/typescript-baseline.json from accepted tip",
-      "priorStdoutSha256": "9488dc47ff1948968634ca1d57409e53a0bf383f9f4ca4543d0f22782f19961b",
-      "currentStdoutSha256": "23954300782b971c157991f67474a8a07d8778272bf77fab33d78453a72175c2",
-      "delta": "changed_hash_preexisting_unrelated",
-      "stage150PathErrors": 0,
-      "multiExitAdapterPathErrors": 0,
-      "eldPathErrors": 0,
-      "note": "Repo-wide tsc still exits non-zero on pre-existing unrelated eval/simulator paths; integrated correction sources introduce no new tsc errors under stage150/multi-exit-adapters/eld paths."
-    },
-    "brain1GuardianBlobUnchanged": true,
-    "protectedPathWorkingTreeDirty": false,
-    "stage150Gates": {
-      "sampleSelectionAllowed": false,
-      "executionAllowed": false,
-      "programmePassSupported": false
-    },
-    "committed": false
-  }
+  "typescript": {
+    "exitCode": 1,
+    "stage150PathErrors": 0
+  },
+  "blockers": [
+    "partially_implemented remains blocking (0 fully implemented of 161)",
+    "FID-10 BLOCKED_UNRESOLVED_PROVENANCE after source review (19 occurrences retained; duplicates linked, not deleted; no CaseBrain repair)",
+    "55 SNI controls honestly blocked on missing adapters",
+    "namedControlExercise not_exercised receipts: 46407 (probe evaluated ≠ named exercised)",
+    "denominator minima PENDING_APPROVAL / not complete",
+    "Stage-150 selection/execution gates false",
+    "api/pdf/composed_prose/authenticated_browser not_exercised without structured receipts"
+  ]
 }

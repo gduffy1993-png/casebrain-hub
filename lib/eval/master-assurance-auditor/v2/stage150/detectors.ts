@@ -14,6 +14,7 @@ import {
 } from "../every-word/independent-leaf-inventory";
 import { classifyFid10Quotation } from "./fid10-calibration";
 import { evaluateAllBatch2 } from "./batch2-detectors";
+import { evaluateAllBatch3 } from "./batch3-detectors";
 
 export type Stage150EvalContext = {
   caseId: string;
@@ -758,6 +759,7 @@ export function evaluateAllStage150Intelligence(ctx: Stage150EvalContext): Stage
     ...evaluateProfessionalWording(ctx),
     ...evaluatePerspectives(ctx),
     ...evaluateAllBatch2(ctx),
+    ...evaluateAllBatch3(ctx),
   ];
 }
 

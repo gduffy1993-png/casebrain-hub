@@ -1,16 +1,6 @@
 {
   "schemaVersion": "stage150-selection-key-custody@1.0.0",
-  "policy": "design_only_150_case_blinded_selection",
   "selectionPerformed": false,
   "freezePerformed": false,
-  "requirements": {
-    "keyAndSeedRemainExternal": true,
-    "committedHashReceiptProvesKeyVersion": true,
-    "authorisedReviewerCanReproduceMembership": true,
-    "truthAndVerdictForbiddenDuringSelection": true,
-    "algo": "HMAC-SHA256",
-    "messageTemplate": "stage150-v1|{caseId}|{packetContentHash}|{stratumCanonicalJson}",
-    "custody": "review_chair_external_key_not_in_repo"
-  },
-  "note": "150-case policy is design only — do not select cases in this unit."
+  "note": "150-case policy remains design only — do not select cases in this unit."
 }

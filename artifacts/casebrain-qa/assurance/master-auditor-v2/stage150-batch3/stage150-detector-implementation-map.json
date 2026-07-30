@@ -1,0 +1,5321 @@
+{
+  "schemaVersion": "stage150-detector-implementation-map@v1.0.0",
+  "registryVersion": "2.2.0",
+  "stage150ControlCount": 161,
+  "implementedSubstantiveDetectorCount": 0,
+  "rows": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "implementationStatus": "specified_not_implemented",
+      "detectorEntrypoint": null,
+      "requiredInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "actualAvailableInputFields": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "missingInputs": [],
+      "supportedExits": [
+        "view",
+        "copy"
+      ],
+      "unsupportedExits": [
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "receiptValidator": null,
+      "contractCoverage": null,
+      "expectedVerdictWhenPrerequisitesAbsent": "not_exercised",
+      "runnableOnCurrentEsaCorpus": false,
+      "reason": "No substantive detector for MAA2 controlId; schema/registry validator is not a substantive detector.",
+      "schemaRegistryValidatorIsNotSubstantiveDetector": true,
+      "substantiveDetector": false
+    }
+  ]
+}

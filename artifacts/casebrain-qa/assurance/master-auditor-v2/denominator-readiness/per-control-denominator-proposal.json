@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "per-control-denominator-proposal@1.1.0",
-  "baselineCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+  "schemaVersion": "per-control-denominator-proposal@1.2.0",
+  "baselineCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
   "rows": [
     {
       "controlId": "MAA2-SRC-07-REDACTION-DETECT",
@@ -10,9 +10,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "source_binary_ocr_adapter_absent",
+      "note": "Blocked: source_binary_ocr_adapter_absent"
     },
     {
       "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
@@ -22,9 +21,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "source_binary_ocr_adapter_absent",
+      "note": "Blocked: source_binary_ocr_adapter_absent"
     },
     {
       "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
@@ -34,8 +32,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -46,9 +43,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "source_binary_ocr_adapter_absent",
+      "note": "Blocked: source_binary_ocr_adapter_absent"
     },
     {
       "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
@@ -58,8 +54,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -70,21 +65,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "source_binary_ocr_adapter_absent",
+      "note": "Blocked: source_binary_ocr_adapter_absent"
     },
     {
       "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
       "familyCode": "BND",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
@@ -94,57 +87,52 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
       "familyCode": "BND",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
       "familyCode": "BND",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
       "familyCode": "BND",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
       "familyCode": "BND",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
@@ -154,8 +142,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -166,8 +153,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -178,8 +164,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -190,8 +175,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -202,8 +186,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -214,21 +197,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
       "familyCode": "BND",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
@@ -238,8 +219,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -250,33 +230,30 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
       "familyCode": "BND",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
       "familyCode": "FID",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-FID-02-COUNT-NUMBERS",
@@ -286,8 +263,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -298,33 +274,30 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
       "familyCode": "FID",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
       "familyCode": "FID",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
@@ -334,8 +307,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -346,21 +318,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
       "familyCode": "FID",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
@@ -370,8 +340,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -382,9 +351,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "Corrected FID-10 unresolved=19 across 2 cases (was 915/474). Still calibration blocker; zero automatic confirmed defects."
+      "blocker": "unresolved_provenance_binding",
+      "note": "Source review complete for 19 candidates; structured provenance remediation not applied; still calibration blocker."
     },
     {
       "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
@@ -394,9 +362,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "semantic_alignment_model_adapter_absent",
+      "note": "Blocked: semantic_alignment_model_adapter_absent"
     },
     {
       "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
@@ -406,8 +373,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -418,8 +384,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -430,21 +395,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
       "familyCode": "LSL",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
@@ -454,9 +417,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "legal_category_taxonomy_adapter_absent",
+      "note": "Blocked: legal_category_taxonomy_adapter_absent"
     },
     {
       "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
@@ -466,8 +428,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -478,21 +439,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
       "familyCode": "CHG",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
@@ -502,8 +461,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -514,8 +472,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -526,33 +483,30 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
       "familyCode": "CHG",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
       "familyCode": "CHG",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
@@ -562,45 +516,41 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
       "familyCode": "CHG",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
       "familyCode": "CHG",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
       "familyCode": "CHG",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
@@ -610,8 +560,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -622,8 +571,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -634,21 +582,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
       "familyCode": "EVS",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
@@ -658,33 +604,30 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
       "familyCode": "ATR",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
       "familyCode": "ATR",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
@@ -694,9 +637,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "device_account_attribution_adapter_absent",
+      "note": "Blocked: device_account_attribution_adapter_absent"
     },
     {
       "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
@@ -706,33 +648,30 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "possession_knowledge_adapter_absent",
+      "note": "Blocked: possession_knowledge_adapter_absent"
     },
     {
       "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
       "familyCode": "ATR",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
       "familyCode": "ATR",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
@@ -742,8 +681,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -754,8 +692,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -766,8 +703,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -778,8 +714,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -790,8 +725,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -802,8 +736,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -814,8 +747,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -826,21 +758,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "dob_age_calc_adapter_absent",
+      "note": "Blocked: dob_age_calc_adapter_absent"
     },
     {
       "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
       "familyCode": "CHR",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
@@ -850,21 +780,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
       "familyCode": "CHR",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
@@ -874,9 +802,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "calc_input_ledger_adapter_absent",
+      "note": "Blocked: calc_input_ledger_adapter_absent"
     },
     {
       "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
@@ -886,9 +813,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "pinned_authority_registry_absent",
+      "note": "Blocked: pinned_authority_registry_absent"
     },
     {
       "controlId": "MAA2-LEG-02-JURISDICTION",
@@ -898,9 +824,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "pinned_authority_registry_absent",
+      "note": "Blocked: pinned_authority_registry_absent"
     },
     {
       "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
@@ -910,9 +835,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "pinned_authority_registry_absent",
+      "note": "Blocked: pinned_authority_registry_absent"
     },
     {
       "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
@@ -922,9 +846,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "pinned_authority_registry_absent",
+      "note": "Blocked: pinned_authority_registry_absent"
     },
     {
       "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
@@ -934,9 +857,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "pinned_authority_registry_absent",
+      "note": "Blocked: pinned_authority_registry_absent"
     },
     {
       "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
@@ -946,9 +868,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "pinned_authority_registry_absent",
+      "note": "Blocked: pinned_authority_registry_absent"
     },
     {
       "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
@@ -958,9 +879,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "pinned_authority_registry_absent",
+      "note": "Blocked: pinned_authority_registry_absent"
     },
     {
       "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
@@ -970,33 +890,30 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "pinned_authority_registry_absent",
+      "note": "Blocked: pinned_authority_registry_absent"
     },
     {
       "controlId": "MAA2-PRC-01-STAGE-TAGGING",
       "familyCode": "PRC",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
       "familyCode": "PRC",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-PRC-03-YOUTH-STATE",
@@ -1006,9 +923,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "structured_youth_state_adapter_absent",
+      "note": "Blocked: structured_youth_state_adapter_absent"
     },
     {
       "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
@@ -1018,9 +934,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "structured_fitness_adapter_absent",
+      "note": "Blocked: structured_fitness_adapter_absent"
     },
     {
       "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
@@ -1030,21 +945,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "structured_pii_disclosure_adapter_absent",
+      "note": "Blocked: structured_pii_disclosure_adapter_absent"
     },
     {
       "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
       "familyCode": "CHS",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
@@ -1054,45 +967,41 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
       "familyCode": "CHS",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
       "familyCode": "CHS",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
       "familyCode": "CHS",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
@@ -1102,57 +1011,52 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
       "familyCode": "CHS",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
       "familyCode": "CHS",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
       "familyCode": "CHS",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
       "familyCode": "WRD",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
@@ -1162,21 +1066,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
       "familyCode": "WRD",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
@@ -1186,69 +1088,63 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
       "familyCode": "WRD",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
       "familyCode": "WRD",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
       "familyCode": "WRD",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-08-CAPITALISATION",
       "familyCode": "WRD",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
       "familyCode": "WRD",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
@@ -1258,8 +1154,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -1270,8 +1165,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -1282,33 +1176,30 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
       "familyCode": "WRD",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
       "familyCode": "WRD",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
@@ -1318,21 +1209,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
       "familyCode": "AUD",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
@@ -1342,9 +1231,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "multi_audience_exit_adapter_absent",
+      "note": "Blocked: multi_audience_exit_adapter_absent"
     },
     {
       "controlId": "MAA2-AUD-03-COURT-PRECISE",
@@ -1354,9 +1242,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "multi_audience_exit_adapter_absent",
+      "note": "Blocked: multi_audience_exit_adapter_absent"
     },
     {
       "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
@@ -1366,9 +1253,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "multi_audience_exit_adapter_absent",
+      "note": "Blocked: multi_audience_exit_adapter_absent"
     },
     {
       "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
@@ -1378,9 +1264,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "multi_audience_exit_adapter_absent",
+      "note": "Blocked: multi_audience_exit_adapter_absent"
     },
     {
       "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
@@ -1390,8 +1275,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -1402,9 +1286,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "multi_audience_exit_adapter_absent",
+      "note": "Blocked: multi_audience_exit_adapter_absent"
     },
     {
       "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
@@ -1414,8 +1297,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -1426,21 +1308,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
       "familyCode": "XEX",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
@@ -1450,21 +1330,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "pinned_authority_registry_absent",
+      "note": "Blocked: pinned_authority_registry_absent"
     },
     {
       "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
       "familyCode": "XEX",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
@@ -1474,8 +1352,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -1486,8 +1363,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -1498,8 +1374,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -1510,57 +1385,52 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
       "familyCode": "PRI",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
       "familyCode": "PRI",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
       "familyCode": "CTX",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
       "familyCode": "CTX",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
@@ -1570,21 +1440,19 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
       "familyCode": "DEF",
-      "implementationStatus": "specified_not_implemented",
-      "approvalState": "BLOCKED_MISSING_INPUT",
+      "implementationStatus": "partially_implemented",
+      "approvalState": "PENDING_APPROVAL",
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": null,
+      "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
       "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
@@ -1594,9 +1462,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "multi_perspective_adapter_absent",
+      "note": "Blocked: multi_perspective_adapter_absent"
     },
     {
       "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
@@ -1606,9 +1473,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "multi_perspective_adapter_absent",
+      "note": "Blocked: multi_perspective_adapter_absent"
     },
     {
       "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
@@ -1618,9 +1484,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "multi_perspective_adapter_absent",
+      "note": "Blocked: multi_perspective_adapter_absent"
     },
     {
       "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
@@ -1630,9 +1495,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "multi_perspective_adapter_absent",
+      "note": "Blocked: multi_perspective_adapter_absent"
     },
     {
       "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
@@ -1642,9 +1506,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "multi_perspective_adapter_absent",
+      "note": "Blocked: multi_perspective_adapter_absent"
     },
     {
       "controlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
@@ -1654,8 +1517,7 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
+      "blocker": null,
       "note": "Packet-local partial detector present; denominators PENDING_APPROVAL."
     },
     {
@@ -1666,9 +1528,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "frozen_run_reproducibility_adapter_absent",
+      "note": "Blocked: frozen_run_reproducibility_adapter_absent"
     },
     {
       "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
@@ -1678,9 +1539,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "frozen_run_reproducibility_adapter_absent",
+      "note": "Blocked: frozen_run_reproducibility_adapter_absent"
     },
     {
       "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
@@ -1690,9 +1550,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "frozen_run_reproducibility_adapter_absent",
+      "note": "Blocked: frozen_run_reproducibility_adapter_absent"
     },
     {
       "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
@@ -1702,9 +1561,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "frozen_run_reproducibility_adapter_absent",
+      "note": "Blocked: frozen_run_reproducibility_adapter_absent"
     },
     {
       "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
@@ -1714,9 +1572,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "frozen_run_reproducibility_adapter_absent",
+      "note": "Blocked: frozen_run_reproducibility_adapter_absent"
     },
     {
       "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
@@ -1726,9 +1583,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "frozen_run_reproducibility_adapter_absent",
+      "note": "Blocked: frozen_run_reproducibility_adapter_absent"
     },
     {
       "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
@@ -1738,9 +1594,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "frozen_run_reproducibility_adapter_absent",
+      "note": "Blocked: frozen_run_reproducibility_adapter_absent"
     },
     {
       "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
@@ -1750,9 +1605,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "frozen_run_reproducibility_adapter_absent",
+      "note": "Blocked: frozen_run_reproducibility_adapter_absent"
     },
     {
       "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
@@ -1762,9 +1616,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "No packet-local handler / adapters absent."
+      "blocker": "frozen_run_reproducibility_adapter_absent",
+      "note": "Blocked: frozen_run_reproducibility_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
@@ -1774,9 +1627,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
@@ -1786,9 +1638,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
@@ -1798,9 +1649,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
@@ -1810,9 +1660,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
@@ -1822,9 +1671,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
@@ -1834,9 +1682,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
@@ -1846,9 +1693,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
@@ -1858,9 +1704,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
@@ -1870,9 +1715,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
@@ -1882,9 +1726,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
@@ -1894,9 +1737,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
@@ -1906,9 +1748,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
@@ -1918,9 +1759,8 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     },
     {
       "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
@@ -1930,19 +1770,18 @@
       "proposalStatus": "PROPOSED_PENDING_CODEX_REVIEW",
       "frozenRunAllowed": false,
       "calibrationRunAllowed": false,
-      "approvedBy": null,
-      "approvedAt": null,
-      "note": "ELD foundation only — adapters absent; not runnable."
+      "blocker": "eld_adapter_absent",
+      "note": "Blocked: eld_adapter_absent"
     }
   ],
   "approvalCounts": {
-    "PENDING_APPROVAL": 54,
-    "BLOCKED_MISSING_INPUT": 106,
-    "BLOCKED_DETECTOR_NOISE": 0,
+    "PENDING_APPROVAL": 105,
+    "BLOCKED_MISSING_INPUT": 55,
     "BLOCKED_UNRESOLVED_PROVENANCE": 1,
     "PENDING_SOURCE_REVIEW": 0,
+    "BLOCKED_DETECTOR_NOISE": 0,
     "APPROVED_FOR_CALIBRATION": 0,
     "APPROVED_FOR_FROZEN_RUN": 0
   },
-  "note": "Regenerated after FID-10 correction + adapter/ELD integration. Approvals blank/PENDING."
+  "note": "Batch-3 regenerate; approvals remain PENDING / blocked. No denominator approval."
 }

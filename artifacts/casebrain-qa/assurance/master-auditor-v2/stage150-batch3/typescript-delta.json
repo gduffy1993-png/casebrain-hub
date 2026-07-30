@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "stage150-typescript-delta@1.0.0",
+  "baselineCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
+  "comparison": "Batch-3 vs accepted integrated tip",
+  "currentStdoutSha256": "b811239b99bd615c4621607f7029b322119c3d9c5dd87208c56c5a689be4674a",
+  "stage150PathErrors": 0,
+  "multiExitAdapterPathErrors": 0,
+  "eldPathErrors": 0,
+  "note": "Repo-wide tsc may remain non-zero on unrelated paths; Batch-3 stage150 path errors must be 0."
+}

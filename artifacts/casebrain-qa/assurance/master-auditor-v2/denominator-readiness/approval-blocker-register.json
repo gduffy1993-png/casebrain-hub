@@ -1,22 +1,26 @@
 {
-  "schemaVersion": "approval-blocker-register@1.1.0",
-  "baselineCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+  "schemaVersion": "approval-blocker-register@1.2.0",
+  "baselineCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
   "approvalCounts": {
-    "PENDING_APPROVAL": 54,
-    "BLOCKED_MISSING_INPUT": 106,
-    "BLOCKED_DETECTOR_NOISE": 0,
+    "PENDING_APPROVAL": 105,
+    "BLOCKED_MISSING_INPUT": 55,
     "BLOCKED_UNRESOLVED_PROVENANCE": 1,
     "PENDING_SOURCE_REVIEW": 0,
+    "BLOCKED_DETECTOR_NOISE": 0,
     "APPROVED_FOR_CALIBRATION": 0,
     "APPROVED_FOR_FROZEN_RUN": 0
   },
   "fid10Blocker": {
     "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
     "state": "BLOCKED_UNRESOLVED_PROVENANCE",
-    "unresolvedOccurrences": 19,
-    "cases": 2,
+    "sourceReviewComplete": true,
+    "dispositionCounts": {
+      "source_supported_but_provenance_binding_missing": 11,
+      "duplicate_occurrence": 6,
+      "safe_qualified_paraphrase": 2
+    },
     "confirmedDefects": false,
-    "note": "Genuine unresolved provenance candidates — not detector false-positive noise."
+    "note": "Source dispositions recorded; CaseBrain not repaired; binding remediation register pending shared fix."
   },
   "eldBlocker": {
     "controls": 14,
@@ -28,5 +32,282 @@
       "revision_ledger",
       "full_exit_block_matrix"
     ]
-  }
+  },
+  "batch3Blocked": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "familyCode": "FID",
+      "blocker": "semantic_alignment_model_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "familyCode": "LSL",
+      "blocker": "legal_category_taxonomy_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "familyCode": "ATR",
+      "blocker": "device_account_attribution_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "familyCode": "ATR",
+      "blocker": "possession_knowledge_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "familyCode": "CHR",
+      "blocker": "dob_age_calc_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "familyCode": "CHR",
+      "blocker": "calc_input_ledger_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "familyCode": "PRC",
+      "blocker": "structured_youth_state_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "familyCode": "PRC",
+      "blocker": "structured_fitness_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "familyCode": "PRC",
+      "blocker": "structured_pii_disclosure_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "familyCode": "XEX",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    }
+  ]
 }

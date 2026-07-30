@@ -1,0 +1,3535 @@
+{
+  "schemaVersion": "stage150-exact-dependency-input-map@1.1.0",
+  "baselineCommit": "d92e28c25a1dcc239f3c0d434174cc45851fd908",
+  "adapters": [
+    {
+      "adapterId": "solicitor_visible_wording",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Collect solicitor-visible strings from court/chase/fiveAnswers/evidenceStates/export footer",
+      "requiredFields": [
+        "casebrain-output.json"
+      ],
+      "optionalFields": [
+        "/courtNote/text",
+        "/fiveAnswersEvidenceRows/*/label",
+        "/fiveAnswersEvidenceRows/*/note",
+        "/evidenceStates/*/label",
+        "/evidenceStates/*/existenceLabel",
+        "/evidenceStates/*/evidenceAnchor",
+        "/warningsAndGaps/chaseItems/*/label",
+        "/warningsAndGaps/chaseItems/*/copySuggestion",
+        "/warningsAndGaps/doNotOverstate/*",
+        "/exportVersion/reviewFooter"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Primary packet-local wording surface for Stage-150 partial detectors."
+    },
+    {
+      "adapterId": "evidence_state_rows",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Evidence identity/state rows without collapsing aliases",
+      "requiredFields": [
+        "/evidenceStates"
+      ],
+      "optionalFields": [
+        "/evidenceStates/*/inferredSourceState",
+        "/evidenceStates/*/evidenceAnchor",
+        "/evidenceStates/*/existenceLabel"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Unknown state tokens → unresolved; never PASS on missing array."
+    },
+    {
+      "adapterId": "five_answers_truth_map",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Five-answer evidence map for reliability/perspective checks",
+      "requiredFields": [
+        "/fiveAnswersEvidenceRows"
+      ],
+      "optionalFields": [
+        "/fiveAnswersEvidenceRows/*/existence",
+        "/fiveAnswersEvidenceRows/*/reliability",
+        "/fiveAnswersEvidenceRows/*/note"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Does not open truth-key.json; uses materialised output rows only."
+    },
+    {
+      "adapterId": "chase_and_warnings",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Chase drafts and do-not-overstate warnings for attachment/wording controls",
+      "requiredFields": [
+        "/warningsAndGaps"
+      ],
+      "optionalFields": [
+        "/warningsAndGaps/chaseItems",
+        "/warningsAndGaps/doNotOverstate"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Empty chase draft is a defect when chaseItems present with blank copySuggestion."
+    },
+    {
+      "adapterId": "cross_exit_packet_surfaces",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Compare court sendability vs export footer on available exits only",
+      "requiredFields": [
+        "/courtNote",
+        "/exportVersion"
+      ],
+      "optionalFields": [
+        "/courtNote/sendabilityLabel",
+        "/exportVersion/reviewFooter"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "API/PDF/composed_prose exits remain not_exercised — never PASS."
+    },
+    {
+      "adapterId": "eld_version_graph",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Evidence-locked drafting dependency graph",
+      "requiredFields": [
+        "source_to_sentence_graph",
+        "version_pairs",
+        "approval_receipts",
+        "revision_ledger",
+        "full_exit_block_matrix"
+      ],
+      "optionalFields": [],
+      "source": "absent",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "All 14 ELD controls stay specified_not_implemented until this adapter exists."
+    },
+    {
+      "adapterId": "authority_currency_pin",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Pinned local authority/currency registry for LEG controls",
+      "requiredFields": [
+        "pinned_authority_registry"
+      ],
+      "optionalFields": [],
+      "source": "absent",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Without pinned local authority data, LEG/currency controls are not_exercised."
+    },
+    {
+      "adapterId": "source_binary_security",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Original PDF/binary openability, OCR visual metadata, security tool receipts",
+      "requiredFields": [
+        "original_source_documents",
+        "ocr_visual_metadata",
+        "security_tool_evidence"
+      ],
+      "optionalFields": [],
+      "source": "absent",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Unsupported formats and missing binaries → not_exercised/unresolved, never PASS."
+    }
+  ],
+  "perControlRequiredInputs": [
+    {
+      "controlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "unresolved"
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "unresolved"
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/sendabilityLabel",
+        "/exportVersion/reviewFooter"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/sendabilityLabel",
+        "/exportVersion/reviewFooter"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "/courtNote/sendabilityLabel",
+        "/exportVersion/reviewFooter"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array_allow_empty:/fiveAnswersEvidenceRows"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array_allow_empty:/fiveAnswersEvidenceRows"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array_allow_empty:/fiveAnswersEvidenceRows"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/evidenceStates"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/fiveAnswersEvidenceRows"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "array:/warningsAndGaps/doNotOverstate"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "nonempty:/evidenceStates"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "/courtNote/text",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "nonempty:/evidenceStates"
+      ],
+      "detectorClassification": null,
+      "capabilityScope": null,
+      "exercisedInvariant": null,
+      "unexercisedInvariant": null,
+      "exactPrerequisiteEvidenceRefs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "nonempty:/evidenceStates"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates",
+        "inventory_completeness_state_fields"
+      ],
+      "detectorClassification": "genuine_structured_detector",
+      "capabilityScope": "evidenceStates/fiveAnswers inventory completeness collapse cues",
+      "exercisedInvariant": "Structured inventory rows present with completeness vs missing state fields",
+      "unexercisedInvariant": "No structured inventory completeness/missing state fields",
+      "exactPrerequisiteEvidenceRefs": [
+        "/evidenceStates",
+        "/fiveAnswersEvidenceRows",
+        "inventory_completeness_state_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "document_relationship_version_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue for replacement/supersession without link language",
+      "exercisedInvariant": "Document relationship graph with prior/replacement instrument ids",
+      "unexercisedInvariant": "Only free-text replacement wording without instrument graph",
+      "exactPrerequisiteEvidenceRefs": [
+        "document_relationship_version_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "two_identified_document_versions_with_ordering"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue mentioning ≥2 version N tokens without precedence words",
+      "exercisedInvariant": "≥2 identified document versions plus ordering/operative state",
+      "unexercisedInvariant": "Version words in prose without version identity + ordering fields",
+      "exactPrerequisiteEvidenceRefs": [
+        "/documentVersions",
+        "two_identified_document_versions_with_ordering"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attachment_reference_plus_inventory_state"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue attachment claimed present and missing",
+      "exercisedInvariant": "Explicit attachment reference plus inventory state",
+      "unexercisedInvariant": "Attachment words without inventory attachment records",
+      "exactPrerequisiteEvidenceRefs": [
+        "attachment_reference_plus_inventory_state"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "same_exhibit_label_across_two_document_ids"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue for duplicate exhibit label language",
+      "exercisedInvariant": "Same normalised exhibit label on ≥2 distinct document identities",
+      "unexercisedInvariant": "Collision phrase without same-label/multi-document identity records",
+      "exactPrerequisiteEvidenceRefs": [
+        "same_exhibit_label_across_two_document_ids"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue co-defendant-only treated as shared",
+      "exercisedInvariant": "Party-scoped evidence ownership fields",
+      "unexercisedInvariant": "Ownership words without party allocation records",
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "document_relationship_version_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue inventing same-document relationship",
+      "exercisedInvariant": "Source-backed document relationship edges",
+      "unexercisedInvariant": "Inferred relationship prose without relationship edges",
+      "exactPrerequisiteEvidenceRefs": [
+        "document_relationship_version_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "defendant_roster_plus_count_allocation"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unclear defendant allocation",
+      "exercisedInvariant": "Defendant roster plus count/document allocation",
+      "unexercisedInvariant": "Allocation words without defendant roster + count map",
+      "exactPrerequisiteEvidenceRefs": [
+        "defendant_roster_plus_count_allocation"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_particulars_change_records"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue silent particular drift",
+      "exercisedInvariant": "Particular fields with source-linked prior/current values",
+      "unexercisedInvariant": "Drift words without particular change records",
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/particulars",
+        "/chargeInstrument/amendmentHistory",
+        "charge_particulars_change_records"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "resolvable_exhibit_document_bindings"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unresolved exhibit/document reference",
+      "exercisedInvariant": "Resolvable exhibit/document identity binding",
+      "unexercisedInvariant": "Vague reference prose without identity binding",
+      "exactPrerequisiteEvidenceRefs": [
+        "resolvable_exhibit_document_bindings"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue allegation→proven-fact collapse (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving allegation strengthened vs source",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue hypothesis presented as advice (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving hypothesis elevated to advice",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_statement_and_particulars_identities"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue collapsing statement into charge particulars",
+      "exercisedInvariant": "Distinct statement vs charge-instrument identities",
+      "unexercisedInvariant": "Collapse words without instrument/statement ids",
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/particulars",
+        "/statementIdentity",
+        "charge_statement_and_particulars_identities"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_statutory_provision_field"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue offence without statutory provision tokens",
+      "exercisedInvariant": "Charge instrument with statutory provision field",
+      "unexercisedInvariant": "Offence words / instrumentId without statutoryProvision field",
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/statutoryProvision",
+        "charge_statutory_provision_field"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_discrepancy_state_records"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue discrepancy resolved without stated state",
+      "exercisedInvariant": "Discrepancy records with explicit state",
+      "unexercisedInvariant": "Discrepancy words / instrumentId without discrepancy state records",
+      "exactPrerequisiteEvidenceRefs": [
+        "charge_discrepancy_state_records"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue registry/meta as operative charge (no source comparison)",
+      "exercisedInvariant": "Source/context comparison plus operative instrument fields",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_source_and_required_action_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue charge-source issue without action",
+      "exercisedInvariant": "Charge source issue + required action fields",
+      "unexercisedInvariant": "Source-issue words / instrumentId without source+action fields",
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/sourceIssue",
+        "/chargeInstrument/requiredAction",
+        "charge_source_and_required_action_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Generic verify/replace charge instruction wording",
+      "exercisedInvariant": "Included wording ledger",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates",
+        "evidence_state_reason_taxonomy_fields"
+      ],
+      "detectorClassification": "genuine_structured_detector",
+      "capabilityScope": "evidenceStates unknown/unclear without taxonomy reason",
+      "exercisedInvariant": "Evidence state rows with reason taxonomy fields",
+      "unexercisedInvariant": "No evidenceStates reason taxonomy fields",
+      "exactPrerequisiteEvidenceRefs": [
+        "evidence_state_reason_taxonomy_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unclear document ownership",
+      "exercisedInvariant": "Document ownership attribution fields",
+      "unexercisedInvariant": "Ownership words without attribution fields",
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue statement ownership collapse",
+      "exercisedInvariant": "Statement speaker ownership records",
+      "unexercisedInvariant": "Collapse words without speaker ownership records",
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue group→individual attribution collapse",
+      "exercisedInvariant": "Group vs individual attribution graph",
+      "unexercisedInvariant": "Attribution words without group/individual graph",
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue inference presented as proven (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving inference elevated to proven",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue deadline without date",
+      "exercisedInvariant": "Underlying event/date plus applicable deadline state",
+      "unexercisedInvariant": "Deadline words without event/date + deadline state",
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue duplicate/omitted chronology event",
+      "exercisedInvariant": "Chronology event identity records",
+      "unexercisedInvariant": "Event words without chronology event records",
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue untagged procedural stage",
+      "exercisedInvariant": "Procedural stage tags on events",
+      "unexercisedInvariant": "Stage words without stage-tag fields",
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue wrong procedural stage",
+      "exercisedInvariant": "Recorded vs actual stage fields",
+      "unexercisedInvariant": "Wrong-stage words without stage comparison fields",
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/warningsAndGaps/chaseItems"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_five_part_finding_schema"
+      ],
+      "detectorClassification": "genuine_structured_detector",
+      "capabilityScope": "Chase rows validated against five-part finding schema",
+      "exercisedInvariant": "Non-empty chase rows with what/why/fromWhom/byWhen/ifNot fields",
+      "unexercisedInvariant": "Chase row or empty copySuggestion without five-part schema",
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_five_part_finding_schema"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_to_evidence_provenance_links"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Chase/request wording without provenance cue",
+      "exercisedInvariant": "Chase rows linked to evidence via provenance fields",
+      "unexercisedInvariant": "Chase words without chase-to-evidence provenance links",
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_to_evidence_provenance_links"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_evidential_procedural_type_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue evidential chase collapsed to procedural",
+      "exercisedInvariant": "Chase rows with explicit evidential/procedural chaseType",
+      "unexercisedInvariant": "evidenceRef alone without chaseType field",
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_evidential_procedural_type_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Template placeholders in chase/solicitor wording",
+      "exercisedInvariant": "Included wording ledger",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_service_state_with_update_history"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue stale chase after service change",
+      "exercisedInvariant": "Prior/current service state plus update history on chase/evidence",
+      "unexercisedInvariant": "Service-change words without prior/current state + history",
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_service_state_with_update_history"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "excluded_quarantined_rows_and_disclosed_counts"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue excluded material omitted from chase",
+      "exercisedInvariant": "Excluded/quarantined request rows plus disclosed counts",
+      "unexercisedInvariant": "Excluded words without excluded rows + disclosed counts",
+      "exactPrerequisiteEvidenceRefs": [
+        "excluded_quarantined_rows_and_disclosed_counts"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Unprofessional/hostile CPS chase language in wording",
+      "exercisedInvariant": "Included wording ledger",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Broken/duplicate-token sentences on every-word ledger",
+      "exercisedInvariant": "Included solicitor-visible wording",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Truncated disclaimer endings on every-word ledger",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Template join artefacts {{ [[ <% in wording",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Spacing/punctuation corruption patterns",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Pipe-list fragments leaked into prose",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Hostile shouting caps in solicitor-visible text",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Corrupted protected legal acronyms (mG11/cCtv/…)",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Do-not-state warning without action cue",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Excess stacked disclaimers obscuring substance",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "solicitor_expected_and_observed_surface_inventory"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue solicitor surface incomplete (no inventory comparison)",
+      "exercisedInvariant": "Expected solicitor-surface inventory vs observed surface inventory",
+      "unexercisedInvariant": "Completeness words without expected+observed surface inventories",
+      "exactPrerequisiteEvidenceRefs": [
+        "solicitor_expected_and_observed_surface_inventory"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "comparable_exit_receipts"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue detached attribution limitation",
+      "exercisedInvariant": "Comparable exit receipts with attribution-limit attachment",
+      "unexercisedInvariant": "Limit words without comparable exit receipts",
+      "exactPrerequisiteEvidenceRefs": [
+        "comparable_exit_receipts"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "detectorClassification": "genuine_string_quality_detector",
+      "capabilityScope": "Inferred date wording without qualification tokens",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "surface_position_order_metadata"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue priority buried/footer-only",
+      "exercisedInvariant": "Surface position/order metadata for priority items",
+      "unexercisedInvariant": "Burial words without position/order metadata",
+      "exactPrerequisiteEvidenceRefs": [
+        "surface_position_order_metadata"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "surface_position_order_metadata"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue priority checklist missing",
+      "exercisedInvariant": "Priority checklist structure present or explicitly absent-as-finding",
+      "unexercisedInvariant": "Checklist words without checklist structure",
+      "exactPrerequisiteEvidenceRefs": [
+        "surface_position_order_metadata"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "contradiction_records_with_classification"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unclassified contradiction",
+      "exercisedInvariant": "Contradiction records with explicit classification fields",
+      "unexercisedInvariant": "Contradiction words without classification fields",
+      "exactPrerequisiteEvidenceRefs": [
+        "contradiction_records_with_classification"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "two_contradiction_records_with_comparable_rank"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue low-rank elevated over material issue",
+      "exercisedInvariant": "≥2 contradiction records with comparable materiality/rank",
+      "unexercisedInvariant": "Classification-only or single contradiction without comparable ranks",
+      "exactPrerequisiteEvidenceRefs": [
+        "two_contradiction_records_with_comparable_rank"
+      ],
+      "unavailableVerdict": "not_exercised"
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "detectorClassification": "phrase_probe_only",
+      "capabilityScope": "Wording cue defence conclusion as neutral summary (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving conclusion presented as neutral",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "unavailableVerdict": "not_exercised"
+    }
+  ],
+  "batch3Classifications": [
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "classification": "genuine_structured_detector",
+      "capabilityScope": "evidenceStates/fiveAnswers inventory completeness collapse cues",
+      "exercisedInvariant": "Structured inventory rows present with completeness vs missing state fields",
+      "unexercisedInvariant": "No structured inventory completeness/missing state fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates",
+        "inventory_completeness_state_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/evidenceStates",
+        "/fiveAnswersEvidenceRows",
+        "inventory_completeness_state_fields"
+      ],
+      "note": "Structured inventory probe; full BND-01 still needs complete inventory adapter."
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue for replacement/supersession without link language",
+      "exercisedInvariant": "Document relationship graph with prior/replacement instrument ids",
+      "unexercisedInvariant": "Only free-text replacement wording without instrument graph",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "document_relationship_version_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "document_relationship_version_fields"
+      ],
+      "note": "Phrase probe only — named control needs instrument relationship graph."
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue mentioning ≥2 version N tokens without precedence words",
+      "exercisedInvariant": "≥2 identified document versions plus ordering/operative state",
+      "unexercisedInvariant": "Version words in prose without version identity + ordering fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "two_identified_document_versions_with_ordering"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/documentVersions",
+        "two_identified_document_versions_with_ordering"
+      ],
+      "note": "Literal 'version 1 and version 2' wording is not named-control exercise."
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue attachment claimed present and missing",
+      "exercisedInvariant": "Explicit attachment reference plus inventory state",
+      "unexercisedInvariant": "Attachment words without inventory attachment records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attachment_reference_plus_inventory_state"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "attachment_reference_plus_inventory_state"
+      ],
+      "note": "Phrase probe; named control needs attachment inventory state."
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue for duplicate exhibit label language",
+      "exercisedInvariant": "Same normalised exhibit label on ≥2 distinct document identities",
+      "unexercisedInvariant": "Collision phrase without same-label/multi-document identity records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "same_exhibit_label_across_two_document_ids"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "same_exhibit_label_across_two_document_ids"
+      ],
+      "note": "Requires same exhibit label across two document IDs — two different labels alone are insufficient."
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue co-defendant-only treated as shared",
+      "exercisedInvariant": "Party-scoped evidence ownership fields",
+      "unexercisedInvariant": "Ownership words without party allocation records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "note": "Phrase probe; named control needs party-scoped ownership graph."
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue inventing same-document relationship",
+      "exercisedInvariant": "Source-backed document relationship edges",
+      "unexercisedInvariant": "Inferred relationship prose without relationship edges",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "document_relationship_version_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "document_relationship_version_fields"
+      ],
+      "note": "Phrase probe only."
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unclear defendant allocation",
+      "exercisedInvariant": "Defendant roster plus count/document allocation",
+      "unexercisedInvariant": "Allocation words without defendant roster + count map",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "defendant_roster_plus_count_allocation"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "defendant_roster_plus_count_allocation"
+      ],
+      "note": "Named control requires roster + allocation fields."
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue silent particular drift",
+      "exercisedInvariant": "Particular fields with source-linked prior/current values",
+      "unexercisedInvariant": "Drift words without particular change records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_particulars_change_records"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/particulars",
+        "/chargeInstrument/amendmentHistory",
+        "charge_particulars_change_records"
+      ],
+      "note": "Phrase probe; named control needs particulars change records — instrumentId alone insufficient."
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unresolved exhibit/document reference",
+      "exercisedInvariant": "Resolvable exhibit/document identity binding",
+      "unexercisedInvariant": "Vague reference prose without identity binding",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "resolvable_exhibit_document_bindings"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "resolvable_exhibit_document_bindings"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue allegation→proven-fact collapse (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving allegation strengthened vs source",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "note": "Reclassified phrase_probe_only — wording alone cannot establish full named invariant."
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue hypothesis presented as advice (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving hypothesis elevated to advice",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "note": "Reclassified phrase_probe_only — wording alone cannot establish full named invariant."
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue collapsing statement into charge particulars",
+      "exercisedInvariant": "Distinct statement vs charge-instrument identities",
+      "unexercisedInvariant": "Collapse words without instrument/statement ids",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_statement_and_particulars_identities"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/particulars",
+        "/statementIdentity",
+        "charge_statement_and_particulars_identities"
+      ],
+      "note": "Needs statement + particulars identities — instrumentId alone insufficient."
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue offence without statutory provision tokens",
+      "exercisedInvariant": "Charge instrument with statutory provision field",
+      "unexercisedInvariant": "Offence words / instrumentId without statutoryProvision field",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_statutory_provision_field"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/statutoryProvision",
+        "charge_statutory_provision_field"
+      ],
+      "note": "Statutory provision field required — instrumentId alone does not exercise this control."
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue discrepancy resolved without stated state",
+      "exercisedInvariant": "Discrepancy records with explicit state",
+      "unexercisedInvariant": "Discrepancy words / instrumentId without discrepancy state records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_discrepancy_state_records"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "charge_discrepancy_state_records"
+      ],
+      "note": "Discrepancy state records required — instrumentId alone insufficient."
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue registry/meta as operative charge (no source comparison)",
+      "exercisedInvariant": "Source/context comparison plus operative instrument fields",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "note": "Reclassified phrase_probe_only — wording alone cannot establish full named invariant."
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue charge-source issue without action",
+      "exercisedInvariant": "Charge source issue + required action fields",
+      "unexercisedInvariant": "Source-issue words / instrumentId without source+action fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "charge_source_and_required_action_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "/chargeInstrument/sourceIssue",
+        "/chargeInstrument/requiredAction",
+        "charge_source_and_required_action_fields"
+      ],
+      "note": "Source and required-action fields required — instrumentId alone insufficient."
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Generic verify/replace charge instruction wording",
+      "exercisedInvariant": "Included wording ledger",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "String-level generic-instruction detector."
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "classification": "genuine_structured_detector",
+      "capabilityScope": "evidenceStates unknown/unclear without taxonomy reason",
+      "exercisedInvariant": "Evidence state rows with reason taxonomy fields",
+      "unexercisedInvariant": "No evidenceStates reason taxonomy fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/evidenceStates"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/evidenceStates",
+        "evidence_state_reason_taxonomy_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "evidence_state_reason_taxonomy_fields"
+      ],
+      "note": "Structured EVS probe; full taxonomy adapter still pending for complete exercise."
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unclear document ownership",
+      "exercisedInvariant": "Document ownership attribution fields",
+      "unexercisedInvariant": "Ownership words without attribution fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "note": "Phrase probe; named control needs attribution graph."
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue statement ownership collapse",
+      "exercisedInvariant": "Statement speaker ownership records",
+      "unexercisedInvariant": "Collapse words without speaker ownership records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue group→individual attribution collapse",
+      "exercisedInvariant": "Group vs individual attribution graph",
+      "unexercisedInvariant": "Attribution words without group/individual graph",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "attribution_graph_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "attribution_graph_fields"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue inference presented as proven (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving inference elevated to proven",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "note": "Reclassified phrase_probe_only — wording alone cannot establish full named invariant."
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue deadline without date",
+      "exercisedInvariant": "Underlying event/date plus applicable deadline state",
+      "unexercisedInvariant": "Deadline words without event/date + deadline state",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "note": "Named control needs deadline state records."
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue duplicate/omitted chronology event",
+      "exercisedInvariant": "Chronology event identity records",
+      "unexercisedInvariant": "Event words without chronology event records",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue untagged procedural stage",
+      "exercisedInvariant": "Procedural stage tags on events",
+      "unexercisedInvariant": "Stage words without stage-tag fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue wrong procedural stage",
+      "exercisedInvariant": "Recorded vs actual stage fields",
+      "unexercisedInvariant": "Wrong-stage words without stage comparison fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "event_date_plus_deadline_state"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "event_date_plus_deadline_state"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "classification": "genuine_structured_detector",
+      "capabilityScope": "Chase rows validated against five-part finding schema",
+      "exercisedInvariant": "Non-empty chase rows with what/why/fromWhom/byWhen/ifNot fields",
+      "unexercisedInvariant": "Chase row or empty copySuggestion without five-part schema",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording",
+        "nonempty:/warningsAndGaps/chaseItems"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_five_part_finding_schema"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_five_part_finding_schema"
+      ],
+      "note": "Named exercise requires actual five-part schema — empty copySuggestion alone is insufficient."
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Chase/request wording without provenance cue",
+      "exercisedInvariant": "Chase rows linked to evidence via provenance fields",
+      "unexercisedInvariant": "Chase words without chase-to-evidence provenance links",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_to_evidence_provenance_links"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_to_evidence_provenance_links"
+      ],
+      "note": "Named control needs chase↔evidence provenance links."
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue evidential chase collapsed to procedural",
+      "exercisedInvariant": "Chase rows with explicit evidential/procedural chaseType",
+      "unexercisedInvariant": "evidenceRef alone without chaseType field",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_evidential_procedural_type_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_evidential_procedural_type_fields"
+      ],
+      "note": "evidenceRef without chaseType remains named not_exercised."
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Template placeholders in chase/solicitor wording",
+      "exercisedInvariant": "Included wording ledger",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "String-level template artefact detector."
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue stale chase after service change",
+      "exercisedInvariant": "Prior/current service state plus update history on chase/evidence",
+      "unexercisedInvariant": "Service-change words without prior/current state + history",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "nonempty:/warningsAndGaps/chaseItems",
+        "chase_service_state_with_update_history"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "chase_service_state_with_update_history"
+      ],
+      "note": "Requires prior/current service state plus update history."
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue excluded material omitted from chase",
+      "exercisedInvariant": "Excluded/quarantined request rows plus disclosed counts",
+      "unexercisedInvariant": "Excluded words without excluded rows + disclosed counts",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "excluded_quarantined_rows_and_disclosed_counts"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "excluded_quarantined_rows_and_disclosed_counts"
+      ],
+      "note": "Requires excluded/quarantined rows and disclosed counts."
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Unprofessional/hostile CPS chase language in wording",
+      "exercisedInvariant": "Included wording ledger",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "String-level professional-language detector."
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Broken/duplicate-token sentences on every-word ledger",
+      "exercisedInvariant": "Included solicitor-visible wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Truncated disclaimer endings on every-word ledger",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Template join artefacts {{ [[ <% in wording",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Spacing/punctuation corruption patterns",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Pipe-list fragments leaked into prose",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Hostile shouting caps in solicitor-visible text",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Corrupted protected legal acronyms (mG11/cCtv/…)",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Do-not-state warning without action cue",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Excess stacked disclaimers obscuring substance",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "Genuine string-quality detector."
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue solicitor surface incomplete (no inventory comparison)",
+      "exercisedInvariant": "Expected solicitor-surface inventory vs observed surface inventory",
+      "unexercisedInvariant": "Completeness words without expected+observed surface inventories",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "solicitor_expected_and_observed_surface_inventory"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "solicitor_expected_and_observed_surface_inventory"
+      ],
+      "note": "Reclassified phrase_probe_only — requires expected and observed surface inventories."
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue detached attribution limitation",
+      "exercisedInvariant": "Comparable exit receipts with attribution-limit attachment",
+      "unexercisedInvariant": "Limit words without comparable exit receipts",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "comparable_exit_receipts"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "comparable_exit_receipts"
+      ],
+      "note": "Cross-exit control — ESA packets lack comparable exit receipts."
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "classification": "genuine_string_quality_detector",
+      "capabilityScope": "Inferred date wording without qualification tokens",
+      "exercisedInvariant": "Included wording",
+      "unexercisedInvariant": "No included wording",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "included_solicitor_visible_wording"
+      ],
+      "note": "String-level qualification detector."
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue priority buried/footer-only",
+      "exercisedInvariant": "Surface position/order metadata for priority items",
+      "unexercisedInvariant": "Burial words without position/order metadata",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "surface_position_order_metadata"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "surface_position_order_metadata"
+      ],
+      "note": "Named control needs position/order metadata — not phrase alone."
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue priority checklist missing",
+      "exercisedInvariant": "Priority checklist structure present or explicitly absent-as-finding",
+      "unexercisedInvariant": "Checklist words without checklist structure",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "surface_position_order_metadata"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "surface_position_order_metadata"
+      ],
+      "note": "Phrase probe."
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue unclassified contradiction",
+      "exercisedInvariant": "Contradiction records with explicit classification fields",
+      "unexercisedInvariant": "Contradiction words without classification fields",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "contradiction_records_with_classification"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "contradiction_records_with_classification"
+      ],
+      "note": "CTX-01 classification data does not exercise CTX-02 ranking."
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue low-rank elevated over material issue",
+      "exercisedInvariant": "≥2 contradiction records with comparable materiality/rank",
+      "unexercisedInvariant": "Classification-only or single contradiction without comparable ranks",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "two_contradiction_records_with_comparable_rank"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "two_contradiction_records_with_comparable_rank"
+      ],
+      "note": "Requires ≥2 ranked contradiction records — CTX-01 classification alone insufficient."
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "classification": "phrase_probe_only",
+      "capabilityScope": "Wording cue defence conclusion as neutral summary (no source comparison)",
+      "exercisedInvariant": "Source/context comparison proving conclusion presented as neutral",
+      "unexercisedInvariant": "Visible wording alone without source/context comparison",
+      "probeRequiredInputs": [
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "namedControlRequiredInputs": [
+        "casebrain-output.json",
+        "source_context_comparison_fields"
+      ],
+      "exactPrerequisiteEvidenceRefs": [
+        "source_context_comparison_fields"
+      ],
+      "note": "Reclassified phrase_probe_only — wording alone cannot establish full named invariant."
+    }
+  ],
+  "batch3ClassificationCounts": {
+    "genuine_structured_detector": 3,
+    "genuine_string_quality_detector": 13,
+    "phrase_probe_only": 35,
+    "unavailable_missing_adapter": 0
+  },
+  "blockedControls": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "familyCode": "SRC",
+      "blocker": "source_binary_ocr_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "familyCode": "FID",
+      "blocker": "semantic_alignment_model_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "familyCode": "LSL",
+      "blocker": "legal_category_taxonomy_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "familyCode": "ATR",
+      "blocker": "device_account_attribution_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "familyCode": "ATR",
+      "blocker": "possession_knowledge_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "familyCode": "CHR",
+      "blocker": "dob_age_calc_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "familyCode": "CHR",
+      "blocker": "calc_input_ledger_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "familyCode": "LEG",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "familyCode": "PRC",
+      "blocker": "structured_youth_state_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "familyCode": "PRC",
+      "blocker": "structured_fitness_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "familyCode": "PRC",
+      "blocker": "structured_pii_disclosure_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "familyCode": "AUD",
+      "blocker": "multi_audience_exit_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "familyCode": "XEX",
+      "blocker": "pinned_authority_registry_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "familyCode": "XPP",
+      "blocker": "multi_perspective_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "familyCode": "VDR",
+      "blocker": "frozen_run_reproducibility_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "familyCode": "ELD",
+      "blocker": "eld_adapter_absent"
+    }
+  ]
+}
