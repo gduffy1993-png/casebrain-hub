@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "esa-multi-exit-capability-map@1.2.0",
+  "baselineCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+  "sourceOfTruth": "lib/eval/master-assurance-auditor/v2/multi-exit-adapters + 499 packet receipts",
+  "rule": "Never invent exits. Programme map derived only from packet-local receipts over the ESA unique-valid population. Representative synthetic packets are test fixtures only. Separate evidenceObserved / evidenceRequired / evidenceMissing.",
+  "populationDenominator": 499,
+  "exits": [
+    {
+      "exit": "view",
+      "populationDenominator": 499,
+      "exercisableCount": 499,
+      "partialCount": 0,
+      "notExercisedCount": 0,
+      "evidenceObservedUnion": [
+        "/courtNote/text",
+        "/evidenceStates",
+        "/fiveAnswersEvidenceRows",
+        "/warningsAndGaps/doNotOverstate"
+      ],
+      "evidenceRequired": [
+        "/courtNote/text",
+        "/fiveAnswersEvidenceRows",
+        "/evidenceStates",
+        "/warningsAndGaps/doNotOverstate"
+      ],
+      "evidenceMissingUnion": [],
+      "missingAdapterCounts": {},
+      "note": "view: aggregated from 499 packet-local capability receipts."
+    },
+    {
+      "exit": "copy",
+      "populationDenominator": 499,
+      "exercisableCount": 499,
+      "partialCount": 0,
+      "notExercisedCount": 0,
+      "evidenceObservedUnion": [
+        "/courtNote/canCopy",
+        "/warningsAndGaps/chaseItems/*/copySuggestion"
+      ],
+      "evidenceRequired": [
+        "/courtNote/canCopy",
+        "/warningsAndGaps/chaseItems/*/copySuggestion",
+        "/courtNote/canCopy=true_or_nonempty_copySuggestion"
+      ],
+      "evidenceMissingUnion": [],
+      "missingAdapterCounts": {},
+      "note": "copy: aggregated from 499 packet-local capability receipts."
+    },
+    {
+      "exit": "export",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 499,
+      "notExercisedCount": 0,
+      "evidenceObservedUnion": [
+        "/exportVersion/blockedReason",
+        "/exportVersion/reviewFooter",
+        "/exportVersion/sendability"
+      ],
+      "evidenceRequired": [
+        "/exportVersion/reviewFooter",
+        "/exportVersion/sendability",
+        "/exportVersion/blockedReason",
+        "full_export_exit_payload_bytes"
+      ],
+      "evidenceMissingUnion": [
+        "full_export_exit_payload_bytes"
+      ],
+      "missingAdapterCounts": {
+        "full_export_exit_payload_bytes": 499
+      },
+      "note": "export: aggregated from 499 packet-local capability receipts."
+    },
+    {
+      "exit": "api",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499,
+      "evidenceObservedUnion": [],
+      "evidenceRequired": [
+        "api_exit_payload",
+        "api_response_headers_receipt"
+      ],
+      "evidenceMissingUnion": [
+        "api_exit_payload",
+        "api_response_headers_receipt"
+      ],
+      "missingAdapterCounts": {
+        "api_exit_adapter": 499
+      },
+      "note": "api: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+    },
+    {
+      "exit": "pdf",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499,
+      "evidenceObservedUnion": [],
+      "evidenceRequired": [
+        "pdf_exit_payload_bytes",
+        "pdf_text_extraction_receipt"
+      ],
+      "evidenceMissingUnion": [
+        "pdf_exit_payload_bytes",
+        "pdf_text_extraction_receipt"
+      ],
+      "missingAdapterCounts": {
+        "pdf_exit_adapter": 499
+      },
+      "note": "pdf: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+    },
+    {
+      "exit": "composed_prose",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499,
+      "evidenceObservedUnion": [],
+      "evidenceRequired": [
+        "composed_prose_exit_payload"
+      ],
+      "evidenceMissingUnion": [
+        "composed_prose_exit_payload"
+      ],
+      "missingAdapterCounts": {
+        "composed_prose_exit_adapter": 499
+      },
+      "note": "composed_prose: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+    },
+    {
+      "exit": "authenticated_browser",
+      "populationDenominator": 499,
+      "exercisableCount": 0,
+      "partialCount": 0,
+      "notExercisedCount": 499,
+      "evidenceObservedUnion": [],
+      "evidenceRequired": [
+        "browser_session_receipt",
+        "authenticated_screenshot_hash",
+        "dom_text_extraction_receipt",
+        "exit_click_path_receipt"
+      ],
+      "evidenceMissingUnion": [
+        "authenticated_screenshot_hash",
+        "browser_session_receipt",
+        "dom_text_extraction_receipt",
+        "exit_click_path_receipt"
+      ],
+      "missingAdapterCounts": {
+        "authenticated_browser_evidence_adapter": 499
+      },
+      "note": "authenticated_browser: absent on ESA packets — not_exercised unless structured receipts supplied; never listed as evidenceObserved."
+    }
+  ],
+  "futureAdaptersRequired": {
+    "authenticated_browser": [
+      "browser_session_receipt",
+      "authenticated_screenshot_hash",
+      "dom_text_extraction_receipt",
+      "exit_click_path_receipt"
+    ],
+    "heavy_bundle": [
+      "original_source_pdf_binary",
+      "ocr_visual_metadata",
+      "page_unit_segmentation",
+      "security_tool_scan_receipt"
+    ]
+  },
+  "xex08Binding": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED must emit not_exercised / defect-if-claimed for api/pdf/composed_prose until structured adapters exist."
+}

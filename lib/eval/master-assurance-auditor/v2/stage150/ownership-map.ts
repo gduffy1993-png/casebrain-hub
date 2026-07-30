@@ -200,4 +200,29 @@ export const STAGE150_OWNERSHIP_EDGES: OwnershipEdge[] = [
     relationship: "sibling",
     note: "Form-collapse controls are siblings under document_relationship; distinct finding codes.",
   },
+  // Batch-2 ownership / deduplication
+  {
+    ownerControlId: "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+    consumerControlId: "MAA2-CHG-10-WARNING-INSEPARABLE",
+    relationship: "sibling",
+    note: "XEX-01 owns cross-output charge-warning detachment; CHG-10 owns charge-family inseparability with distinct finding code.",
+  },
+  {
+    ownerControlId: "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+    consumerControlId: "MAA2-FID-07-PRESERVE-QUALIFIERS",
+    relationship: "sibling",
+    note: "Allegation→fact vs qualifier stripping are sibling charge/fidelity risks; separate finding codes.",
+  },
+  {
+    ownerControlId: "MAA2-ATR-01-DEFENDANT-SEPARATION",
+    consumerControlId: "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+    relationship: "sibling",
+    note: "Co-defendant attribution vs wrong-matter bleed are sibling attribution controls.",
+  },
+  {
+    ownerControlId: "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+    consumerControlId: "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+    relationship: "sibling",
+    note: "Empty chase draft vs already-served chase are sibling chase controls.",
+  },
 ];

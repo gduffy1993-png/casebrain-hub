@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "approval-blocker-register@1.1.0",
+  "baselineCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+  "approvalCounts": {
+    "PENDING_APPROVAL": 54,
+    "BLOCKED_MISSING_INPUT": 106,
+    "BLOCKED_DETECTOR_NOISE": 0,
+    "BLOCKED_UNRESOLVED_PROVENANCE": 1,
+    "PENDING_SOURCE_REVIEW": 0,
+    "APPROVED_FOR_CALIBRATION": 0,
+    "APPROVED_FOR_FROZEN_RUN": 0
+  },
+  "fid10Blocker": {
+    "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+    "state": "BLOCKED_UNRESOLVED_PROVENANCE",
+    "unresolvedOccurrences": 19,
+    "cases": 2,
+    "confirmedDefects": false,
+    "note": "Genuine unresolved provenance candidates — not detector false-positive noise."
+  },
+  "eldBlocker": {
+    "controls": 14,
+    "state": "BLOCKED_MISSING_INPUT",
+    "adapters": [
+      "source_to_sentence_graph",
+      "version_pairs",
+      "approval_receipts",
+      "revision_ledger",
+      "full_exit_block_matrix"
+    ]
+  }
+}

@@ -16,7 +16,7 @@ import {
 } from "./detector-registry";
 import {
   buildEvalContext,
-  evaluateControl,
+  evaluateAllStage150Intelligence,
   includedWordingLeaves,
   reconcileInventory,
   type Stage150Hit,
@@ -249,6 +249,15 @@ export function scanCaseEligibility(
   // reuse leaves already on ctx
   ctx.leaves = leaves;
 
+  // Evaluate all packet-local detectors once, then distribute per control.
+  const allHits = evaluateAllStage150Intelligence(ctx);
+  const hitsByControl = new Map<string, Stage150Hit[]>();
+  for (const hit of allHits) {
+    const bucket = hitsByControl.get(hit.controlId) ?? [];
+    bucket.push(hit);
+    hitsByControl.set(hit.controlId, bucket);
+  }
+
   const receipts: ControlReceipt[] = [];
   for (const h of handlers) {
     const missing = missingPrerequisite(h, output, leaves);
@@ -256,8 +265,7 @@ export function scanCaseEligibility(
       receipts.push(receiptFromHits(caseId, h, [], missing));
       continue;
     }
-    const hits = evaluateControl(ctx, h.controlId);
-    receipts.push(receiptFromHits(caseId, h, hits, null));
+    receipts.push(receiptFromHits(caseId, h, hitsByControl.get(h.controlId) ?? [], null));
   }
 
   return {

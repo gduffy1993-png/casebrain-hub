@@ -1,0 +1,472 @@
+{
+  "schemaVersion": "maa-v2-stage150-batch2-stop@1.0.0",
+  "title": "STOP FOR CODEX REVIEW — MAA V2 Priority Intelligence Batch 2",
+  "status": "STAGE150_BATCH2_UNCOMMITTED",
+  "createdAt": "2026-07-30T12:17:39.566Z",
+  "elapsedMs": 29792,
+  "baselineCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+  "headCommit": "17361223248b41d719c8de2b98c1eaf2cb4125f6",
+  "pr": 65,
+  "registryVersion": "2.2.0",
+  "effectiveDate": "2026-07-29",
+  "programmePassSupported": false,
+  "stage150Started": false,
+  "stage150SampleFrozen": false,
+  "stage150ControlsRun": false,
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "overallAllowed": false,
+  "applicationBehaviourChanged": false,
+  "committed": false,
+  "pushed": false,
+  "merged": false,
+  "deployed": false,
+  "freezeHashStage50Preserved": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "selected30": [
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "familyCode": "CHG",
+      "intelligenceFamily": "charge_integrity",
+      "reason": "Recorded charge source visibility on ESA court/chase wording; high solicitor safety."
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "familyCode": "CHG",
+      "intelligenceFamily": "charge_integrity",
+      "reason": "Charge truncation on primary surfaces; deterministic string cue."
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "familyCode": "CHG",
+      "intelligenceFamily": "charge_integrity",
+      "reason": "Operative vs draft/amended instrument cues in wording/evidence labels."
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "familyCode": "CHG",
+      "intelligenceFamily": "charge_integrity",
+      "reason": "Amendment/supersession language without history cue."
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "familyCode": "CHG",
+      "intelligenceFamily": "charge_integrity",
+      "reason": "Charge warning inseparability using court + doNotOverstate."
+    },
+    {
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "familyCode": "FID",
+      "intelligenceFamily": "charge_integrity",
+      "reason": "Count-number fidelity cues on solicitor-visible wording."
+    },
+    {
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "familyCode": "FID",
+      "intelligenceFamily": "charge_integrity",
+      "reason": "Charge particulars completeness cues."
+    },
+    {
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "familyCode": "FID",
+      "intelligenceFamily": "charge_integrity",
+      "reason": "Negation stripping risk on court/chase wording."
+    },
+    {
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "familyCode": "FID",
+      "intelligenceFamily": "charge_integrity",
+      "reason": "Qualifier stripping (alleged/possible) risk."
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "familyCode": "LSL",
+      "intelligenceFamily": "charge_integrity",
+      "reason": "Statement classification collapse cues."
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "familyCode": "BND",
+      "intelligenceFamily": "evidence_identity_state",
+      "reason": "Operative/amended/superseded/draft instrument status on labels."
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "familyCode": "BND",
+      "intelligenceFamily": "evidence_identity_state",
+      "reason": "Unsafe alias collapse sibling to BND-09 ownership."
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "familyCode": "BND",
+      "intelligenceFamily": "evidence_identity_state",
+      "reason": "Extract vs full download collapse on wording."
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "familyCode": "BND",
+      "intelligenceFamily": "evidence_identity_state",
+      "reason": "Complete vs partial disclosure contradiction on ESA states."
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "familyCode": "BND",
+      "intelligenceFamily": "evidence_identity_state",
+      "reason": "Quarantined vs served conflict using evidenceStates."
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "familyCode": "BND",
+      "intelligenceFamily": "evidence_identity_state",
+      "reason": "Excluded-row totals vs visible counts."
+    },
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "familyCode": "EVS",
+      "intelligenceFamily": "evidence_identity_state",
+      "reason": "Existence vs reliability dimension separation on fiveAnswers."
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "familyCode": "ATR",
+      "intelligenceFamily": "evidence_identity_state",
+      "reason": "Defendant bleed / wrong-matter attribution cues."
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "familyCode": "ATR",
+      "intelligenceFamily": "provenance_reliability",
+      "reason": "Source-linked limitation refinement over EVS reliability owner."
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "familyCode": "CHR",
+      "intelligenceFamily": "chronology_procedure",
+      "reason": "Exact date/timezone identity cues in wording."
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "familyCode": "CHR",
+      "intelligenceFamily": "chronology_procedure",
+      "reason": "Custody/interview clock cues on ESA text."
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "familyCode": "CHR",
+      "intelligenceFamily": "chronology_procedure",
+      "reason": "Hearing-notice lifecycle wording cues."
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "familyCode": "CHR",
+      "intelligenceFamily": "chronology_procedure",
+      "reason": "Evidence/page/doc total consistency cues."
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "familyCode": "XEX",
+      "intelligenceFamily": "cross_output_consistency",
+      "reason": "Partial evidence warning attachment across court/warnings."
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "familyCode": "XEX",
+      "intelligenceFamily": "cross_output_consistency",
+      "reason": "Quarantine partial vs total disclosure consistency."
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "familyCode": "XEX",
+      "intelligenceFamily": "cross_output_consistency",
+      "reason": "Force not_exercised for absent exits — never invent."
+    },
+    {
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "familyCode": "WRD",
+      "intelligenceFamily": "professional_wording",
+      "reason": "Duplicate phrase hygiene on included wording."
+    },
+    {
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "familyCode": "WRD",
+      "intelligenceFamily": "professional_wording",
+      "reason": "Hostile/sensational tone on solicitor surfaces."
+    },
+    {
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "familyCode": "AUD",
+      "intelligenceFamily": "professional_wording",
+      "reason": "Internal/audit language leakage into solicitor-visible wording."
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "familyCode": "CHS",
+      "intelligenceFamily": "professional_wording",
+      "reason": "Chase of already-served or alias-duplicate items."
+    }
+  ],
+  "implementationTotals": {
+    "schemaVersion": "stage150-implementation-totals@1.1.0",
+    "stage150ControlCount": 161,
+    "old": {
+      "partially_implemented": 25,
+      "specified_not_implemented": 136,
+      "implemented": 0
+    },
+    "new": {
+      "partially_implemented": 55,
+      "specified_not_implemented": 106,
+      "implemented": 0,
+      "other": 0
+    },
+    "packetLocalHandlerCount": 55,
+    "batch1": 25,
+    "batch2": 30,
+    "eldNonRunnable": 14,
+    "note": "partially_implemented remains blocking and never counts as fully exercised."
+  },
+  "fid10": {
+    "before": {
+      "unresolvedCandidateOccurrences": 915,
+      "casesWithUnresolvedCandidates": 474,
+      "populationUniqueValid": 499,
+      "source": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-intelligence/stage150-fid10-calibration-disclosure.json"
+    },
+    "after": {
+      "unresolvedCandidateOccurrences": 19,
+      "casesWithUnresolvedCandidates": 2,
+      "populationUniqueValid": 499,
+      "quoteOccurrenceTotal": 1043,
+      "casesWithAnyQuoteSurface": 499
+    },
+    "familyCounts": {
+      "substantive_quote_needs_provenance": 16,
+      "heading_label_formatting": 0,
+      "provenance_in_linked_field": 0,
+      "qualified_unknown_provenance": 1,
+      "detector_false_positive": 1023,
+      "genuinely_unresolved": 3
+    },
+    "remainingUnresolved": 19,
+    "automaticConfirmedDefects": 0
+  },
+  "receiptTotals": {
+    "evaluated": 27434,
+    "unresolved": 11,
+    "not_exercised": 0,
+    "total": 27445
+  },
+  "candidateFamilies": [
+    "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK::AUD_INTERNAL_AUDIT_LEAK",
+    "MAA2-BND-09-STILL-CLIP-VS-MASTER::BND_STILL_MASTER_COLLAPSE",
+    "MAA2-CHG-06-AMENDMENT-HISTORY::CHG_AMENDMENT_WITHOUT_HISTORY",
+    "MAA2-FID-10-QUOTATION-FIDELITY::FID_QUOTATION_WITHOUT_SOURCE",
+    "MAA2-WRD-04-NO-DUPLICATE-PHRASES::WRD_DUPLICATE_PHRASE"
+  ],
+  "multiExit": {
+    "populationDenominator": 499,
+    "receiptCount": 499,
+    "exits": [
+      {
+        "exit": "view",
+        "populationDenominator": 499,
+        "exercisableCount": 499,
+        "partialCount": 0,
+        "notExercisedCount": 0,
+        "evidenceObserved": [
+          "/courtNote/text",
+          "/evidenceStates",
+          "/fiveAnswersEvidenceRows",
+          "/warningsAndGaps/doNotOverstate"
+        ],
+        "evidenceRequired": [
+          "/courtNote/text",
+          "/fiveAnswersEvidenceRows",
+          "/evidenceStates",
+          "/warningsAndGaps/doNotOverstate"
+        ],
+        "evidenceMissing": [],
+        "missingAdapterCounts": {}
+      },
+      {
+        "exit": "copy",
+        "populationDenominator": 499,
+        "exercisableCount": 499,
+        "partialCount": 0,
+        "notExercisedCount": 0,
+        "evidenceObserved": [
+          "/courtNote/canCopy",
+          "/warningsAndGaps/chaseItems/*/copySuggestion"
+        ],
+        "evidenceRequired": [
+          "/courtNote/canCopy",
+          "/warningsAndGaps/chaseItems/*/copySuggestion",
+          "/courtNote/canCopy=true_or_nonempty_copySuggestion"
+        ],
+        "evidenceMissing": [],
+        "missingAdapterCounts": {}
+      },
+      {
+        "exit": "export",
+        "populationDenominator": 499,
+        "exercisableCount": 0,
+        "partialCount": 499,
+        "notExercisedCount": 0,
+        "evidenceObserved": [
+          "/exportVersion/blockedReason",
+          "/exportVersion/reviewFooter",
+          "/exportVersion/sendability"
+        ],
+        "evidenceRequired": [
+          "/exportVersion/reviewFooter",
+          "/exportVersion/sendability",
+          "/exportVersion/blockedReason",
+          "full_export_exit_payload_bytes"
+        ],
+        "evidenceMissing": [
+          "full_export_exit_payload_bytes"
+        ],
+        "missingAdapterCounts": {
+          "full_export_exit_payload_bytes": 499
+        }
+      },
+      {
+        "exit": "api",
+        "populationDenominator": 499,
+        "exercisableCount": 0,
+        "partialCount": 0,
+        "notExercisedCount": 499,
+        "evidenceObserved": [],
+        "evidenceRequired": [
+          "api_exit_payload",
+          "api_response_headers_receipt"
+        ],
+        "evidenceMissing": [
+          "api_exit_payload",
+          "api_response_headers_receipt"
+        ],
+        "missingAdapterCounts": {
+          "api_exit_adapter": 499
+        }
+      },
+      {
+        "exit": "pdf",
+        "populationDenominator": 499,
+        "exercisableCount": 0,
+        "partialCount": 0,
+        "notExercisedCount": 499,
+        "evidenceObserved": [],
+        "evidenceRequired": [
+          "pdf_exit_payload_bytes",
+          "pdf_text_extraction_receipt"
+        ],
+        "evidenceMissing": [
+          "pdf_exit_payload_bytes",
+          "pdf_text_extraction_receipt"
+        ],
+        "missingAdapterCounts": {
+          "pdf_exit_adapter": 499
+        }
+      },
+      {
+        "exit": "composed_prose",
+        "populationDenominator": 499,
+        "exercisableCount": 0,
+        "partialCount": 0,
+        "notExercisedCount": 499,
+        "evidenceObserved": [],
+        "evidenceRequired": [
+          "composed_prose_exit_payload"
+        ],
+        "evidenceMissing": [
+          "composed_prose_exit_payload"
+        ],
+        "missingAdapterCounts": {
+          "composed_prose_exit_adapter": 499
+        }
+      },
+      {
+        "exit": "authenticated_browser",
+        "populationDenominator": 499,
+        "exercisableCount": 0,
+        "partialCount": 0,
+        "notExercisedCount": 499,
+        "evidenceObserved": [],
+        "evidenceRequired": [
+          "browser_session_receipt",
+          "authenticated_screenshot_hash",
+          "dom_text_extraction_receipt",
+          "exit_click_path_receipt"
+        ],
+        "evidenceMissing": [
+          "authenticated_screenshot_hash",
+          "browser_session_receipt",
+          "dom_text_extraction_receipt",
+          "exit_click_path_receipt"
+        ],
+        "missingAdapterCounts": {
+          "authenticated_browser_evidence_adapter": 499
+        }
+      }
+    ]
+  },
+  "readinessGateBlockingReasons": [
+    "detectorImplementationComplete",
+    "inputReadinessComplete",
+    "denominatorReadinessComplete",
+    "adapterReadinessComplete",
+    "receiptValidationComplete",
+    "contractReadinessComplete"
+  ],
+  "brain1BlobUnchanged": true,
+  "guardianBlobUnchanged": true,
+  "typescriptExitCode": 1,
+  "blockers": [
+    "implementedSubstantiveDetectorCount = 0 of 161 (partials blocking)",
+    "Stage-150 denominator minima PENDING_APPROVAL",
+    "ELD (14) / LEG / VDR / heavy SRC adapters absent",
+    "api/pdf/composed_prose exits not_exercised — missing adapters",
+    "FID-10 remaining unresolved candidates: 19 (not confirmed defects)",
+    "adapterReadinessComplete=false"
+  ],
+  "changedFiles": [
+    "lib/eval/master-assurance-auditor/v2/stage150/fid10-calibration.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/detectors.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/detector-registry.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch2-selection.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch2-registry.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch2-detectors.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/multi-exit-map.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/ownership-map.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/eligibility.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/implementation-matrix.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+    "scripts/assurance/emit-maa-v2-stage150-batch2.ts",
+    "scripts/maa-v2-stage150-batch2-contracts.test.ts",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch2/"
+  ],
+  "nextSafeCommand": "After Codex accept: do not freeze/run Stage 150; commit Batch 2 only if accepted.",
+  "reviewAsks": [
+    "Confirm exact 30 selected controls and reasons.",
+    "Confirm FID-10 before/after with zero automatic confirmed defects.",
+    "Confirm 499×55 receipts; empty hits ≠ PASS; truthOpened=false.",
+    "Confirm multi-exit map never invents absent exits.",
+    "Confirm Stage-150 gates remain false; Brain1/Guardian unchanged."
+  ],
+  "deliverables": [
+    "batch2-selected-30.json",
+    "esa-multi-exit-capability-map.json",
+    "esa-499-exit-capability-receipts.jsonl",
+    "stage150-fid10-calibration-report.json",
+    "stage150-fid10-occurrence-dispositions.jsonl",
+    "stage150-fid10-before-after-map.json",
+    "stage150-fid10-remaining-unresolved.json",
+    "stage150-fid10-fp-families.json",
+    "stage150-499-eligibility-report.json",
+    "stage150-499-control-receipts.json",
+    "stage150-499-eligibility-case-index.json",
+    "stage150-candidate-review-batches.json",
+    "stage150-coverage-gap-register.json",
+    "stage150-implementation-totals.json",
+    "STOP-FOR-CODEX-REVIEW.json"
+  ]
+}

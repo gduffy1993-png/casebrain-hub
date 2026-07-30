@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "eligibility-vs-denominator-matrix@1.1.0",
+  "packetLocalHandlerCount": 55,
+  "receiptTotals": {
+    "evaluated": 27434,
+    "unresolved": 11,
+    "not_exercised": 0,
+    "total": 27445
+  },
+  "fid10After": {
+    "unresolvedCandidateOccurrences": 19,
+    "casesWithUnresolvedCandidates": 2,
+    "populationUniqueValid": 499,
+    "quoteOccurrenceTotal": 1043,
+    "casesWithAnyQuoteSurface": 499
+  },
+  "note": "Eligibility observations from integrated 499×55 shadow; denominators still PENDING_APPROVAL."
+}

@@ -41,7 +41,8 @@ export function buildStage150ImplementationCapabilityMatrix() {
   const handlerById = new Map(STAGE150_PACKET_LOCAL_HANDLERS.map((h) => [h.controlId, h]));
 
   const rows = controls.map((c) => {
-    const engineId = mapEngine(c.familyCode);
+    const handler = handlerById.get(c.controlId) ?? null;
+    const engineId = (handler?.engineId as SharedEngineId | undefined) ?? mapEngine(c.familyCode);
     const classed = statusForStage150Control({
       controlId: c.controlId,
       familyCode: c.familyCode,
@@ -49,7 +50,6 @@ export function buildStage150ImplementationCapabilityMatrix() {
       preservedFromV1: Boolean(c.preservedFromV1),
       engineId,
     });
-    const handler = handlerById.get(c.controlId) ?? null;
     const family =
       STAGE150_INTELLIGENCE_FAMILIES.find((f) => f.familyCodes.includes(c.familyCode)) ?? null;
     const adapters = STAGE150_INPUT_ADAPTERS.filter((a) =>

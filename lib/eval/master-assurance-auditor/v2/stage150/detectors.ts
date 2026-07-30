@@ -12,6 +12,8 @@ import {
   isIncludedDisposition,
   type SourceLeaf,
 } from "../every-word/independent-leaf-inventory";
+import { classifyFid10Quotation } from "./fid10-calibration";
+import { evaluateAllBatch2 } from "./batch2-detectors";
 
 export type Stage150EvalContext = {
   caseId: string;
@@ -417,12 +419,8 @@ export function evaluateProvenanceReliability(ctx: Stage150EvalContext): Stage15
   });
 
   for (const w of includedWordingLeaves(ctx.leaves)) {
-    if (
-      /[“”"]/.test(w.text) &&
-      w.text.replace(/[^“”"]/g, "").length >= 2 &&
-      !/\b(source|exhibit|mg\s?\d|statement|page\s+\d+)\b/i.test(w.text) &&
-      !/\b(unknown\s+page|page\s+unknown|provenance\s+unresolved)\b/i.test(w.text)
-    ) {
+    const classified = classifyFid10Quotation({ ref: w.ref, text: w.text, output: ctx.output });
+    if (classified.emitUnresolvedCandidate) {
       hits.push(
         hit({
           engineId: "source_provenance",
@@ -432,7 +430,7 @@ export function evaluateProvenanceReliability(ctx: Stage150EvalContext): Stage15
           occurrenceRef: w.ref,
           exactWording: w.text,
           candidateClass: "unresolved",
-          plainEnglish: "Quoted material without exhibit/source/page provenance cue.",
+          plainEnglish: `${classified.reason} Family=${classified.family}. Unresolved candidate — not a confirmed defect.`,
           evidenceRefs: [w.ref],
         }),
       );
@@ -759,6 +757,7 @@ export function evaluateAllStage150Intelligence(ctx: Stage150EvalContext): Stage
     ...evaluateCrossOutput(ctx),
     ...evaluateProfessionalWording(ctx),
     ...evaluatePerspectives(ctx),
+    ...evaluateAllBatch2(ctx),
   ];
 }
 

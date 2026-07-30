@@ -20,6 +20,7 @@
 
 import type { ImplementationStatusV22, SharedEngineId } from "../every-word/types";
 import type { ControlHandlerDef } from "../every-word/types";
+import { STAGE150_BATCH2_HANDLERS } from "./batch2-registry";
 
 export type Stage150HandlerDef = ControlHandlerDef & {
   intelligenceFamily: string;
@@ -35,7 +36,7 @@ const C = "scripts/maa-v2-stage150-intelligence-contracts.test.ts";
 
 const WORDING = ["casebrain-output.json", "included_solicitor_visible_wording"] as const;
 
-export const STAGE150_PACKET_LOCAL_HANDLERS: Stage150HandlerDef[] = [
+export const STAGE150_BATCH1_HANDLERS: Stage150HandlerDef[] = [
   {
     controlId: "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
     engineId: "charge_legal_state",
@@ -430,6 +431,12 @@ export const STAGE150_PACKET_LOCAL_HANDLERS: Stage150HandlerDef[] = [
     unavailableVerdict: "not_exercised",
     ownershipNote: "Defence opportunity buried under strong court wording + missing rows.",
   },
+];
+
+/** Batch-1 + Batch-2 packet-local handlers (55). */
+export const STAGE150_PACKET_LOCAL_HANDLERS: Stage150HandlerDef[] = [
+  ...STAGE150_BATCH1_HANDLERS,
+  ...(STAGE150_BATCH2_HANDLERS as Stage150HandlerDef[]),
 ];
 
 export const STAGE150_PARTIAL_IDS = new Set(STAGE150_PACKET_LOCAL_HANDLERS.map((h) => h.controlId));

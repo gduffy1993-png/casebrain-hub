@@ -257,14 +257,33 @@ describe("MAA V2 Stage-150 — evidence / provenance", () => {
         ctxFrom(base({ courtNote: { text: 'He said "I was not there" without further detail.', sendabilityLabel: "x" } })),
       ).some((h) => h.findingCode === "FID_QUOTATION_WITHOUT_SOURCE"),
     );
+    // Inline parenthetical in the same wording is NOT separate provenance.
     assert.ok(
-      !evaluateProvenanceReliability(
+      evaluateProvenanceReliability(
         ctxFrom(
           base({
             courtNote: {
               text: 'He said "I was not there" (exhibit MG11 page 4).',
               sendabilityLabel: "x",
             },
+          }),
+        ),
+      ).some((h) => h.findingCode === "FID_QUOTATION_WITHOUT_SOURCE"),
+    );
+    // Genuine independent structured binding clears the unresolved candidate.
+    assert.ok(
+      !evaluateProvenanceReliability(
+        ctxFrom(
+          base({
+            evidenceStates: [
+              {
+                inferredSourceState: "served",
+                label: 'He said "I was not there"',
+                existenceLabel: "served",
+                evidenceAnchor: "exhibit MG11 page 4",
+                sourceEvidenceId: "src-mg11-001",
+              },
+            ],
           }),
         ),
       ).some((h) => h.findingCode === "FID_QUOTATION_WITHOUT_SOURCE"),
