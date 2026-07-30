@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "evidence-locked-drafting-family@1.0.0",
+  "familyCode": "ELD",
+  "controlCount": 14,
+  "statuses": {
+    "specified_not_implemented": 14
+  },
+  "adapterRequired": "version_pairs | source_to_sentence_graph | approval_receipts | full_exit_block_matrix | revision_ledger",
+  "esaRunnable": false
+}

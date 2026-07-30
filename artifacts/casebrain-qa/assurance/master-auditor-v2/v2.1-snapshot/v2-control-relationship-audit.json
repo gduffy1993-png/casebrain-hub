@@ -1,0 +1,4898 @@
+{
+  "schemaVersion": "v2-control-relationship-audit@v1.0.0",
+  "totalControls": 347,
+  "controlsWithNonIndependentRelationships": 233,
+  "controlsExplicitlyIndependent": 114,
+  "unresolvedRelationshipClassification": 0,
+  "zeroUnresolvedRequired": true,
+  "zeroUnresolvedSatisfied": true,
+  "duplicateRiskClusterCount": 56,
+  "duplicateRiskClusters": [
+    {
+      "familyCode": "BND",
+      "subfamily": "lifecycle",
+      "controlIds": [
+        "MAA2-BND-02-INSTRUMENT-STATUS",
+        "MAA2-BND-03-REPLACEMENT-LINKS"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "BND",
+      "subfamily": "identity",
+      "controlIds": [
+        "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+        "MAA2-BND-07-ALIAS-SAFE-COLLAPSE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "BND",
+      "subfamily": "media_forms",
+      "controlIds": [
+        "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+        "MAA2-BND-10-RECORDING-VS-TRANSCRIPT"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "FID",
+      "subfamily": "charge_claims",
+      "controlIds": [
+        "MAA2-FID-02-COUNT-NUMBERS",
+        "MAA2-FID-03-CHARGE-WORDING-PARTICULARS"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "LSL",
+      "subfamily": "category_collapse",
+      "controlIds": [
+        "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+        "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+        "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "CHG",
+      "subfamily": "provision",
+      "controlIds": [
+        "MAA2-CHG-07-STATUTORY-PROVISION",
+        "MAA2-CHG-08-JURISDICTION-EFFECTIVE-DATE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "CHG",
+      "subfamily": "actionability",
+      "controlIds": [
+        "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+        "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "EVS",
+      "subfamily": "reliability",
+      "controlIds": [
+        "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+        "MAA2-EVS-04-REASON-TAXONOMY"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "ATR",
+      "subfamily": "ownership",
+      "controlIds": [
+        "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+        "MAA2-ATR-03-STATEMENT-OWNERSHIP"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "CHR",
+      "subfamily": "deadlines",
+      "controlIds": [
+        "MAA2-CHR-07-LIMITATION-PERIODS",
+        "MAA2-CHR-08-PROCEDURAL-DEADLINES"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "LEG",
+      "subfamily": "traceability",
+      "controlIds": [
+        "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+        "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "LEG",
+      "subfamily": "meta",
+      "controlIds": [
+        "MAA2-LEG-02-JURISDICTION",
+        "MAA2-LEG-03-EFFECTIVE-DATE",
+        "MAA2-LEG-05-RETRIEVAL-DATE",
+        "MAA2-LEG-06-REGISTRY-VERSION-ID"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "LEG",
+      "subfamily": "currency",
+      "controlIds": [
+        "MAA2-LEG-04-AMENDMENT-REPEAL-STATUS",
+        "MAA2-LEG-09-NO-OUTDATED-AS-CURRENT"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "PRC",
+      "subfamily": "stage_model",
+      "controlIds": [
+        "MAA2-PRC-01-STAGE-TAGGING",
+        "MAA2-PRC-02-WRONG-STAGE-DETECT"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "PRC",
+      "subfamily": "special_states",
+      "controlIds": [
+        "MAA2-PRC-03-YOUTH-STATE",
+        "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "MAA2-PRC-05-NRM-STATE",
+        "MAA2-PRC-06-SPECIAL-MEASURES",
+        "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+        "MAA2-PRC-08-INTERPRETER-STATE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "CHS",
+      "subfamily": "chase_content",
+      "controlIds": [
+        "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+        "MAA2-CHS-03-PROVENANCE-LINK",
+        "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+        "MAA2-CHS-05-NO-TEMPLATE-ONLY"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "WRD",
+      "subfamily": "mechanics",
+      "controlIds": [
+        "MAA2-WRD-01-GRAMMAR-SENTENCES",
+        "MAA2-WRD-02-NO-MID-TRUNCATION",
+        "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+        "MAA2-WRD-05-TEMPLATE-JOINS",
+        "MAA2-WRD-06-SPACES-PUNCTUATION",
+        "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+        "MAA2-WRD-08-CAPITALISATION"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "WRD",
+      "subfamily": "disclaimers",
+      "controlIds": [
+        "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+        "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "XEX",
+      "subfamily": "attachment",
+      "controlIds": [
+        "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+        "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+        "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+        "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "PRI",
+      "subfamily": "hierarchy",
+      "controlIds": [
+        "MAA2-PRI-03-PRIORITY-CHECKLIST",
+        "MAA2-PRI-04-PROGRESSIVE-DISCLOSURE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "XPP",
+      "subfamily": "panel",
+      "controlIds": [
+        "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+        "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+        "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+        "MAA2-XPP-04-CLIENT-COMPREHENSION",
+        "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "BIA",
+      "subfamily": "fairness",
+      "controlIds": [
+        "MAA2-BIA-01-NO-PRESUMPTION-OF-GUILT",
+        "MAA2-BIA-02-SILENCE-NOT-GUILT",
+        "MAA2-BIA-03-NO-PROTECTED-CHARACTERISTIC-SHORTCUT",
+        "MAA2-BIA-04-NO-STATE-CULPABILITY-CONFLATION",
+        "MAA2-BIA-06-NO-FIRST-ACCOUNT-PRIVILEGE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "BIA",
+      "subfamily": "interpretation",
+      "controlIds": [
+        "MAA2-BIA-07-ORIGINAL-VS-TRANSLATION",
+        "MAA2-BIA-08-CERTIFIED-VS-INFORMAL",
+        "MAA2-BIA-09-INTERPRETER-IDENTITY-CONTINUITY",
+        "MAA2-BIA-10-WELSH-LANGUAGE",
+        "MAA2-BIA-11-UNTRANSLATED-NOT-FACT"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "PRV",
+      "subfamily": "privilege",
+      "controlIds": [
+        "MAA2-PRV-01-LPP-DETECTION",
+        "MAA2-PRV-02-LITIGATION-PRIVILEGE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "PRV",
+      "subfamily": "sensitive",
+      "controlIds": [
+        "MAA2-PRV-03-UNUSED-SENSITIVE",
+        "MAA2-PRV-05-MEDICAL-COUNSELLING",
+        "MAA2-PRV-06-YOUTH-INFO",
+        "MAA2-PRV-07-PROTECTED-IDENTITIES"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "PRV",
+      "subfamily": "access",
+      "controlIds": [
+        "MAA2-PRV-09-CROSS-ORG-ACCESS",
+        "MAA2-PRV-10-EXPORT-DOWNLOAD-PERMS",
+        "MAA2-PRV-12-AUDIT-ACCESS"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "SEC",
+      "subfamily": "adversarial",
+      "controlIds": [
+        "MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+        "MAA2-SEC-02-MALICIOUS-PDF",
+        "MAA2-SEC-03-FILETYPE-SPOOFING",
+        "MAA2-SEC-04-ZIP-BOMB-OVERSIZE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "SEC",
+      "subfamily": "leakage",
+      "controlIds": [
+        "MAA2-SEC-05-PATH-ID-LEAKAGE",
+        "MAA2-SEC-06-SECRET-TOKEN-LEAKAGE"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "SEC",
+      "subfamily": "authz",
+      "controlIds": [
+        "MAA2-SEC-07-API-AUTHORISATION",
+        "MAA2-SEC-08-TENANT-ISOLATION",
+        "MAA2-SEC-09-ROLE-ESCALATION",
+        "MAA2-SEC-10-IDOR",
+        "MAA2-SEC-11-CROSS-ORG-SEARCH-DOWNLOAD"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "IAM",
+      "subfamily": "identity",
+      "controlIds": [
+        "MAA2-IAM-01-UNIQUE-USER-IDENTITY",
+        "MAA2-IAM-02-MFA-READINESS"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "IAM",
+      "subfamily": "federation",
+      "controlIds": [
+        "MAA2-IAM-03-ENTERPRISE-SSO",
+        "MAA2-IAM-04-IDP-VALIDATION"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "IAM",
+      "subfamily": "access",
+      "controlIds": [
+        "MAA2-IAM-05-RBAC-LEAST-PRIVILEGE",
+        "MAA2-IAM-07-ADMIN-SEPARATION"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "RES",
+      "subfamily": "inventory",
+      "controlIds": [
+        "MAA2-RES-01-PRIMARY-DB-REGION",
+        "MAA2-RES-02-OBJECT-STORAGE-REGION",
+        "MAA2-RES-03-BACKUP-DR-REGION",
+        "MAA2-RES-04-LOGGING-ANALYTICS-REGION",
+        "MAA2-RES-05-TEMP-PROCESSING",
+        "MAA2-RES-06-AI-PROVIDER-LOCATIONS",
+        "MAA2-RES-07-SUBPROCESSORS"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "OPS",
+      "subfamily": "fallback",
+      "controlIds": [
+        "MAA2-OPS-01-AI-QUOTA-FAILURE",
+        "MAA2-OPS-02-DETERMINISTIC-FALLBACK"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "OPS",
+      "subfamily": "recovery",
+      "controlIds": [
+        "MAA2-OPS-03-INTERRUPTED-ANALYSIS",
+        "MAA2-OPS-04-RESTART-RESUME"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "OPS",
+      "subfamily": "idempotency",
+      "controlIds": [
+        "MAA2-OPS-05-DUPLICATE-UPLOADS",
+        "MAA2-OPS-06-IDEMPOTENCY-RETRY"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "OPS",
+      "subfamily": "dr",
+      "controlIds": [
+        "MAA2-OPS-09-BACKUP-RESTORE",
+        "MAA2-OPS-10-DISASTER-RECOVERY"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "HVY",
+      "subfamily": "metrics",
+      "controlIds": [
+        "MAA2-HVY-01-LIMITS-MEASURED",
+        "MAA2-HVY-02-MEMORY-RUNTIME"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "HVY",
+      "subfamily": "quality",
+      "controlIds": [
+        "MAA2-HVY-03-SEGMENTATION-UNDER-STRESS",
+        "MAA2-HVY-04-PAGE-ATTRIBUTION-STRESS",
+        "MAA2-HVY-05-TABLE-MEDIA-EXTRACTION"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "HVY",
+      "subfamily": "failure",
+      "controlIds": [
+        "MAA2-HVY-08-TIMEOUT-FAILURE",
+        "MAA2-HVY-09-NO-OUTPUT-TRUNCATION"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "BRW",
+      "subfamily": "authz",
+      "controlIds": [
+        "MAA2-BRW-02-VALID-ROLE",
+        "MAA2-BRW-03-INVALID-ROLE",
+        "MAA2-BRW-04-ORG-BOUNDARIES"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "DSN",
+      "subfamily": "layout",
+      "controlIds": [
+        "MAA2-DSN-02-CLEAR-HIERARCHY",
+        "MAA2-DSN-03-MEANINGFUL-CARDS",
+        "MAA2-DSN-04-NO-GIANT-WALL"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "DSN",
+      "subfamily": "navigation",
+      "controlIds": [
+        "MAA2-DSN-06-STABLE-NAV",
+        "MAA2-DSN-07-DISCOVERABLE-UPLOAD"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "A11Y",
+      "subfamily": "keyboard",
+      "controlIds": [
+        "MAA2-A11Y-01-KEYBOARD-NAV",
+        "MAA2-A11Y-02-VISIBLE-FOCUS"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "A11Y",
+      "subfamily": "names",
+      "controlIds": [
+        "MAA2-A11Y-04-CONTROL-LABELS",
+        "MAA2-A11Y-05-SR-NAMES"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "A11Y",
+      "subfamily": "visual",
+      "controlIds": [
+        "MAA2-A11Y-07-CONTRAST",
+        "MAA2-A11Y-08-ZOOM-REFLOW"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "PERF",
+      "subfamily": "timings",
+      "controlIds": [
+        "MAA2-PERF-01-UPLOAD-TIME",
+        "MAA2-PERF-02-EXTRACTION-TIME",
+        "MAA2-PERF-03-ANALYSIS-TIME",
+        "MAA2-PERF-04-FIRST-USEFUL-RESULT",
+        "MAA2-PERF-05-NAV-COPY-EXPORT-PDF-TIME"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "PERF",
+      "subfamily": "scale",
+      "controlIds": [
+        "MAA2-PERF-06-LARGE-BUNDLE-RESPONSE",
+        "MAA2-PERF-09-CONCURRENCY"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "HUM",
+      "subfamily": "gold",
+      "controlIds": [
+        "MAA2-HUM-01-BLINDED-SUBSTANTIVE",
+        "MAA2-HUM-02-PROFESSIONAL-USEFULNESS"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "HUM",
+      "subfamily": "fp_fn",
+      "controlIds": [
+        "MAA2-HUM-03-OVERBLOCKING",
+        "MAA2-HUM-04-MISSED-UNSAFE",
+        "MAA2-HUM-05-SAFETY-CRITICAL-FN"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "HUM",
+      "subfamily": "governance",
+      "controlIds": [
+        "MAA2-HUM-06-DISAGREEMENT-ADJUDICATION",
+        "MAA2-HUM-07-REVIEWER-META",
+        "MAA2-HUM-08-EXCLUSIONS-DENOMS"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "VDR",
+      "subfamily": "run_meta",
+      "controlIds": [
+        "MAA2-VDR-01-SOURCE-CASE-HASHES",
+        "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+        "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+        "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+        "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+        "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+        "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "VDR",
+      "subfamily": "drift",
+      "controlIds": [
+        "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+        "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "EXT",
+      "subfamily": "roadmap",
+      "controlIds": [
+        "MAA2-EXT-01-INDEPENDENT-SOLICITOR-REVIEW",
+        "MAA2-EXT-02-PENTEST-RETEST",
+        "MAA2-EXT-03-DPIA-PRIVACY-REVIEW",
+        "MAA2-EXT-04-SUBPROCESSOR-TRANSFER-REVIEW",
+        "MAA2-EXT-05-ACCESSIBILITY-REVIEW",
+        "MAA2-EXT-06-ISO27001-READINESS",
+        "MAA2-EXT-07-SOC2-READINESS",
+        "MAA2-EXT-08-SSO-IMPLEMENTATION",
+        "MAA2-EXT-09-CONFIGURABLE-RESIDENCY"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "SCL",
+      "subfamily": "scale_3000",
+      "controlIds": [
+        "MAA2-SCL-01-SCALE-CONSISTENCY",
+        "MAA2-SCL-02-RARE-PATTERN-DISCOVERY",
+        "MAA2-SCL-03-TEMPLATE-STRING-ANALYSIS",
+        "MAA2-SCL-04-OFFENCE-PROCEDURE-EVIDENCE-DIVERSITY",
+        "MAA2-SCL-05-REGRESSION-SCALE-STABILITY"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    },
+    {
+      "familyCode": "SCL",
+      "subfamily": "diverse_corpus",
+      "controlIds": [
+        "MAA2-SCL-06-DIVERSE-GAP-FILL-ONLY",
+        "MAA2-SCL-07-SYNTHETIC-LINEAGE-EXPLICIT",
+        "MAA2-SCL-08-MULTI-LAYOUT-WORDING"
+      ],
+      "occurrenceOwnershipRule": "Each finding occurrence owned by occurrenceOwnerControlId on the relationship; refiners defer to related V1/owner control to prevent duplicate defect inflation unless evidence units genuinely differ.",
+      "relationshipRequired": "sibling|cross_checks|refines|extends|depends_on|independent"
+    }
+  ],
+  "controls": [
+    {
+      "controlId": "MAA-INGEST-COVERAGE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-DOC-LIFECYCLE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-PARTIES-ATTRIBUTION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-CHARGE-MODEL",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-EVIDENCE-STATE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-EVIDENCE-STATE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-PROVENANCE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-RELIABILITY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-RELIABILITY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-DEFENCE-LENS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-DEFENCE-LENS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-PROSECUTION-LENS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-PROSECUTION-LENS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-JUDICIAL-LENS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-AUDIENCE-WORDING",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-AUDIENCE-WORDING"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-ACTION-QUALITY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-ACTION-QUALITY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-CROSS-EXIT",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-CROSS-EXIT"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-CROSS-SURFACE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-CROSS-SURFACE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-CHASE-QUALITY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-CHASE-QUALITY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-HALLUCINATION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-HALLUCINATION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-RESILIENCE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-OUTPUT-DESIGN",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-HUMAN-SUPERVISION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-SRC-01-OCR-CONFIDENCE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-02-BLANK-UNREADABLE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-03-ROTATED-SKEW-LOWRES",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-04-HANDWRITING-ANNOTATIONS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-05-TABLES-MULTICOLUMN",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-06-STAMPS-SIGNATURES-MARGINS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-08-PAGE-DUPLICATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "refines",
+          "note": "Page identity discipline",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-11-LOGICAL-DOC-SEGMENTATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Compiled-bundle segmentation",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-14-MIXED-TYPES-MEDIA",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-15-LANGUAGE-TRANSLATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-16-ENGINE-DISAGREEMENT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-INGEST-COVERAGE",
+          "relationship": "refines",
+          "note": "Expands V1 ingestion lane",
+          "occurrenceOwnerControlId": "MAA-INGEST-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HALLUCINATION",
+          "relationship": "refines",
+          "note": "Source-bound extraction",
+          "occurrenceOwnerControlId": "MAA-HALLUCINATION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-EVIDENCE-STATE",
+          "relationship": "refines",
+          "note": "Media form separation",
+          "occurrenceOwnerControlId": "MAA-EVIDENCE-STATE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PARTIES-ATTRIBUTION",
+          "relationship": "refines",
+          "note": "Co-defendant only material",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DOC-LIFECYCLE",
+          "relationship": "refines",
+          "note": "Expands document lifecycle",
+          "occurrenceOwnerControlId": "MAA-DOC-LIFECYCLE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "extends",
+          "note": "Exact claim fidelity",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "extends",
+          "note": "Exact claim fidelity",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Exact particulars",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "extends",
+          "note": "Exact claim fidelity",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "extends",
+          "note": "Exact claim fidelity",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "extends",
+          "note": "Exact claim fidelity",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "extends",
+          "note": "Exact claim fidelity",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "extends",
+          "note": "Exact claim fidelity",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "extends",
+          "note": "Exact claim fidelity",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "extends",
+          "note": "Exact claim fidelity",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PROVENANCE",
+          "relationship": "extends",
+          "note": "Exact claim fidelity",
+          "occurrenceOwnerControlId": "MAA-PROVENANCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HALLUCINATION",
+          "relationship": "sibling",
+          "note": "Category discipline vs overstatement",
+          "occurrenceOwnerControlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HALLUCINATION",
+          "relationship": "sibling",
+          "note": "Category discipline vs overstatement",
+          "occurrenceOwnerControlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HALLUCINATION",
+          "relationship": "sibling",
+          "note": "Category discipline vs overstatement",
+          "occurrenceOwnerControlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HALLUCINATION",
+          "relationship": "sibling",
+          "note": "Category discipline vs overstatement",
+          "occurrenceOwnerControlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HALLUCINATION",
+          "relationship": "sibling",
+          "note": "Category discipline vs overstatement",
+          "occurrenceOwnerControlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-08-JURISDICTION-EFFECTIVE-DATE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHARGE-MODEL",
+          "relationship": "refines",
+          "note": "Charge & provision expansion",
+          "occurrenceOwnerControlId": "MAA-CHARGE-MODEL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-EVIDENCE-STATE",
+          "relationship": "refines",
+          "note": "Dimensioned evidence-state expansion",
+          "occurrenceOwnerControlId": "MAA-EVIDENCE-STATE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-EVIDENCE-STATE",
+          "relationship": "refines",
+          "note": "Dimensioned evidence-state expansion",
+          "occurrenceOwnerControlId": "MAA-EVIDENCE-STATE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RELIABILITY",
+          "relationship": "refines",
+          "note": "Reason-required reliability",
+          "occurrenceOwnerControlId": "MAA-RELIABILITY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-EVIDENCE-STATE",
+          "relationship": "refines",
+          "note": "Dimensioned evidence-state expansion",
+          "occurrenceOwnerControlId": "MAA-EVIDENCE-STATE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PARTIES-ATTRIBUTION",
+          "relationship": "refines",
+          "note": "Attribution expansion",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PARTIES-ATTRIBUTION",
+          "relationship": "refines",
+          "note": "Attribution expansion",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PARTIES-ATTRIBUTION",
+          "relationship": "refines",
+          "note": "Attribution expansion",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PARTIES-ATTRIBUTION",
+          "relationship": "refines",
+          "note": "Attribution expansion",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PARTIES-ATTRIBUTION",
+          "relationship": "refines",
+          "note": "Attribution expansion",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PARTIES-ATTRIBUTION",
+          "relationship": "refines",
+          "note": "Attribution expansion",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PARTIES-ATTRIBUTION",
+          "relationship": "refines",
+          "note": "Attribution expansion",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PARTIES-ATTRIBUTION",
+          "relationship": "refines",
+          "note": "Attribution expansion",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-PARTIES-ATTRIBUTION",
+          "relationship": "refines",
+          "note": "Attribution expansion",
+          "occurrenceOwnerControlId": "MAA-PARTIES-ATTRIBUTION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-07-LIMITATION-PERIODS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-10-FINANCIAL-CALCULATIONS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHRONOLOGY-HEARING",
+          "relationship": "refines",
+          "note": "Chronology expansion",
+          "occurrenceOwnerControlId": "MAA-CHRONOLOGY-HEARING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-LEGAL-CURRENTNESS",
+          "relationship": "refines",
+          "note": "Authority currency expansion",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-LEGAL-CURRENTNESS",
+          "relationship": "refines",
+          "note": "Authority currency expansion",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-LEGAL-CURRENTNESS",
+          "relationship": "refines",
+          "note": "Authority currency expansion",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LEG-04-AMENDMENT-REPEAL-STATUS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-LEGAL-CURRENTNESS",
+          "relationship": "refines",
+          "note": "Authority currency expansion",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-LEGAL-CURRENTNESS",
+          "relationship": "refines",
+          "note": "Authority currency expansion",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-LEGAL-CURRENTNESS",
+          "relationship": "refines",
+          "note": "Authority currency expansion",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-LEGAL-CURRENTNESS",
+          "relationship": "refines",
+          "note": "Authority currency expansion",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-LEGAL-CURRENTNESS",
+          "relationship": "refines",
+          "note": "Authority currency expansion",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LEG-09-NO-OUTDATED-AS-CURRENT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-LEGAL-CURRENTNESS",
+          "relationship": "refines",
+          "note": "Authority currency expansion",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-LEGAL-CURRENTNESS",
+          "relationship": "refines",
+          "note": "Authority currency expansion",
+          "occurrenceOwnerControlId": "MAA-LEGAL-CURRENTNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Stage-aware recommendations",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Stage-aware recommendations",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Stage-aware recommendations",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Stage-aware recommendations",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRC-05-NRM-STATE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Stage-aware recommendations",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRC-06-SPECIAL-MEASURES",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Stage-aware recommendations",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Stage-aware recommendations",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRC-08-INTERPRETER-STATE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Stage-aware recommendations",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-ACTION-QUALITY",
+          "relationship": "sibling",
+          "note": "Actionability overlap declared",
+          "occurrenceOwnerControlId": "MAA2-CHS-01-FIVE-PART-FINDING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHASE-QUALITY",
+          "relationship": "refines",
+          "note": "Chase expansion",
+          "occurrenceOwnerControlId": "MAA-CHASE-QUALITY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHASE-QUALITY",
+          "relationship": "refines",
+          "note": "Chase expansion",
+          "occurrenceOwnerControlId": "MAA-CHASE-QUALITY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHASE-QUALITY",
+          "relationship": "refines",
+          "note": "Chase expansion",
+          "occurrenceOwnerControlId": "MAA-CHASE-QUALITY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHASE-QUALITY",
+          "relationship": "refines",
+          "note": "Chase expansion",
+          "occurrenceOwnerControlId": "MAA-CHASE-QUALITY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHASE-QUALITY",
+          "relationship": "refines",
+          "note": "Chase expansion",
+          "occurrenceOwnerControlId": "MAA-CHASE-QUALITY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHASE-QUALITY",
+          "relationship": "refines",
+          "note": "Chase expansion",
+          "occurrenceOwnerControlId": "MAA-CHASE-QUALITY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHASE-QUALITY",
+          "relationship": "refines",
+          "note": "Chase expansion",
+          "occurrenceOwnerControlId": "MAA-CHASE-QUALITY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CHASE-QUALITY",
+          "relationship": "refines",
+          "note": "Chase expansion",
+          "occurrenceOwnerControlId": "MAA-CHASE-QUALITY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "sibling",
+          "note": "Leakage overlap declared",
+          "occurrenceOwnerControlId": "MAA2-WRD-10-NO-PLACEHOLDERS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "extends",
+          "note": "Wording quality beyond truncation",
+          "occurrenceOwnerControlId": "MAA-COMPLETENESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HALLUCINATION",
+          "relationship": "refines",
+          "note": "Absolute-proof wording",
+          "occurrenceOwnerControlId": "MAA-HALLUCINATION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-AUDIENCE-WORDING",
+          "relationship": "refines",
+          "note": "Audience expansion",
+          "occurrenceOwnerControlId": "MAA-AUDIENCE-WORDING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-AUDIENCE-WORDING",
+          "relationship": "refines",
+          "note": "Audience expansion",
+          "occurrenceOwnerControlId": "MAA-AUDIENCE-WORDING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-AUDIENCE-WORDING",
+          "relationship": "refines",
+          "note": "Audience expansion",
+          "occurrenceOwnerControlId": "MAA-AUDIENCE-WORDING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-AUDIENCE-WORDING",
+          "relationship": "refines",
+          "note": "Audience expansion",
+          "occurrenceOwnerControlId": "MAA-AUDIENCE-WORDING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-AUDIENCE-WORDING",
+          "relationship": "refines",
+          "note": "Audience expansion",
+          "occurrenceOwnerControlId": "MAA-AUDIENCE-WORDING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-AUD-06-EXPERT-BOUNDED",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-AUDIENCE-WORDING",
+          "relationship": "refines",
+          "note": "Audience expansion",
+          "occurrenceOwnerControlId": "MAA-AUDIENCE-WORDING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-AUDIENCE-WORDING",
+          "relationship": "refines",
+          "note": "Audience expansion",
+          "occurrenceOwnerControlId": "MAA-AUDIENCE-WORDING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-AUDIENCE-WORDING",
+          "relationship": "refines",
+          "note": "Audience expansion",
+          "occurrenceOwnerControlId": "MAA-AUDIENCE-WORDING"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CROSS-EXIT",
+          "relationship": "refines",
+          "note": "Warning attachment expansion",
+          "occurrenceOwnerControlId": "MAA-CROSS-EXIT"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CROSS-EXIT",
+          "relationship": "refines",
+          "note": "Warning attachment expansion",
+          "occurrenceOwnerControlId": "MAA-CROSS-EXIT"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CROSS-EXIT",
+          "relationship": "refines",
+          "note": "Warning attachment expansion",
+          "occurrenceOwnerControlId": "MAA-CROSS-EXIT"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CROSS-EXIT",
+          "relationship": "refines",
+          "note": "Warning attachment expansion",
+          "occurrenceOwnerControlId": "MAA-CROSS-EXIT"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CROSS-EXIT",
+          "relationship": "refines",
+          "note": "Warning attachment expansion",
+          "occurrenceOwnerControlId": "MAA-CROSS-EXIT"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CROSS-EXIT",
+          "relationship": "refines",
+          "note": "Warning attachment expansion",
+          "occurrenceOwnerControlId": "MAA-CROSS-EXIT"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CROSS-EXIT",
+          "relationship": "refines",
+          "note": "Warning attachment expansion",
+          "occurrenceOwnerControlId": "MAA-CROSS-EXIT"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CROSS-EXIT",
+          "relationship": "refines",
+          "note": "Warning attachment expansion",
+          "occurrenceOwnerControlId": "MAA-CROSS-EXIT"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "extends",
+          "note": "Priority & load",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        },
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "sibling",
+          "note": "Completeness overlap declared",
+          "occurrenceOwnerControlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "extends",
+          "note": "Priority & load",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        },
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "sibling",
+          "note": "Completeness overlap declared",
+          "occurrenceOwnerControlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "extends",
+          "note": "Priority & load",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        },
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "sibling",
+          "note": "Completeness overlap declared",
+          "occurrenceOwnerControlId": "MAA2-PRI-03-PRIORITY-CHECKLIST"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRI-04-PROGRESSIVE-DISCLOSURE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "extends",
+          "note": "Priority & load",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        },
+        {
+          "relatedControlId": "MAA-COMPLETENESS",
+          "relationship": "sibling",
+          "note": "Completeness overlap declared",
+          "occurrenceOwnerControlId": "MAA2-PRI-04-PROGRESSIVE-DISCLOSURE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CROSS-SURFACE",
+          "relationship": "extends",
+          "note": "Ranked contradictions",
+          "occurrenceOwnerControlId": "MAA-CROSS-SURFACE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-CROSS-SURFACE",
+          "relationship": "extends",
+          "note": "Ranked contradictions",
+          "occurrenceOwnerControlId": "MAA-CROSS-SURFACE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DEFENCE-LENS",
+          "relationship": "refines",
+          "note": "Opportunity coverage without conclusions",
+          "occurrenceOwnerControlId": "MAA-DEFENCE-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DEFENCE-LENS",
+          "relationship": "refines",
+          "note": "Opportunity coverage without conclusions",
+          "occurrenceOwnerControlId": "MAA-DEFENCE-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DEFENCE-LENS",
+          "relationship": "extends",
+          "note": "Panel includes defence",
+          "occurrenceOwnerControlId": "MAA-DEFENCE-LENS"
+        },
+        {
+          "relatedControlId": "MAA-PROSECUTION-LENS",
+          "relationship": "extends",
+          "note": "Panel includes prosecution",
+          "occurrenceOwnerControlId": "MAA-PROSECUTION-LENS"
+        },
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Panel includes judicial",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DEFENCE-LENS",
+          "relationship": "extends",
+          "note": "Panel includes defence",
+          "occurrenceOwnerControlId": "MAA-DEFENCE-LENS"
+        },
+        {
+          "relatedControlId": "MAA-PROSECUTION-LENS",
+          "relationship": "extends",
+          "note": "Panel includes prosecution",
+          "occurrenceOwnerControlId": "MAA-PROSECUTION-LENS"
+        },
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Panel includes judicial",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DEFENCE-LENS",
+          "relationship": "extends",
+          "note": "Panel includes defence",
+          "occurrenceOwnerControlId": "MAA-DEFENCE-LENS"
+        },
+        {
+          "relatedControlId": "MAA-PROSECUTION-LENS",
+          "relationship": "extends",
+          "note": "Panel includes prosecution",
+          "occurrenceOwnerControlId": "MAA-PROSECUTION-LENS"
+        },
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Panel includes judicial",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DEFENCE-LENS",
+          "relationship": "extends",
+          "note": "Panel includes defence",
+          "occurrenceOwnerControlId": "MAA-DEFENCE-LENS"
+        },
+        {
+          "relatedControlId": "MAA-PROSECUTION-LENS",
+          "relationship": "extends",
+          "note": "Panel includes prosecution",
+          "occurrenceOwnerControlId": "MAA-PROSECUTION-LENS"
+        },
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Panel includes judicial",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DEFENCE-LENS",
+          "relationship": "extends",
+          "note": "Panel includes defence",
+          "occurrenceOwnerControlId": "MAA-DEFENCE-LENS"
+        },
+        {
+          "relatedControlId": "MAA-PROSECUTION-LENS",
+          "relationship": "extends",
+          "note": "Panel includes prosecution",
+          "occurrenceOwnerControlId": "MAA-PROSECUTION-LENS"
+        },
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Panel includes judicial",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-DEFENCE-LENS",
+          "relationship": "extends",
+          "note": "Panel includes defence",
+          "occurrenceOwnerControlId": "MAA-DEFENCE-LENS"
+        },
+        {
+          "relatedControlId": "MAA-PROSECUTION-LENS",
+          "relationship": "extends",
+          "note": "Panel includes prosecution",
+          "occurrenceOwnerControlId": "MAA-PROSECUTION-LENS"
+        },
+        {
+          "relatedControlId": "MAA-JUDICIAL-LENS",
+          "relationship": "extends",
+          "note": "Panel includes judicial",
+          "occurrenceOwnerControlId": "MAA-JUDICIAL-LENS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-01-NO-PRESUMPTION-OF-GUILT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-02-SILENCE-NOT-GUILT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-03-NO-PROTECTED-CHARACTERISTIC-SHORTCUT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-04-NO-STATE-CULPABILITY-CONFLATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-05-NO-LOADED-LANGUAGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-06-NO-FIRST-ACCOUNT-PRIVILEGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-07-ORIGINAL-VS-TRANSLATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-08-CERTIFIED-VS-INFORMAL",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-09-INTERPRETER-IDENTITY-CONTINUITY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-10-WELSH-LANGUAGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-BIA-11-UNTRANSLATED-NOT-FACT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-BIAS-FAIRNESS",
+          "relationship": "refines",
+          "note": "Bias & language expansion",
+          "occurrenceOwnerControlId": "MAA-BIAS-FAIRNESS"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-01-LPP-DETECTION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-02-LITIGATION-PRIVILEGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-03-UNUSED-SENSITIVE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-04-PII-MINIMUM",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-05-MEDICAL-COUNSELLING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-06-YOUTH-INFO",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-07-PROTECTED-IDENTITIES",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-08-AUDIENCE-LEAKAGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-09-CROSS-ORG-ACCESS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-10-EXPORT-DOWNLOAD-PERMS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-11-RETENTION-DELETION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-PRV-12-AUDIT-ACCESS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Privilege & privacy expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-02-MALICIOUS-PDF",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-03-FILETYPE-SPOOFING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-04-ZIP-BOMB-OVERSIZE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-05-PATH-ID-LEAKAGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-06-SECRET-TOKEN-LEAKAGE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-07-API-AUTHORISATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-08-TENANT-ISOLATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-09-ROLE-ESCALATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-10-IDOR",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-11-CROSS-ORG-SEARCH-DOWNLOAD",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-12-SESSION-HANDLING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-13-RATE-LIMITS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-14-UNSAFE-GENERATED-LINKS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-15-DEPENDENCY-VULN-STATE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-16-ENCRYPTION-EVIDENCE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-SEC-17-LOGGING-NO-SENSITIVE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-SECURITY-PRIVACY",
+          "relationship": "extends",
+          "note": "Adversarial/security expansion",
+          "occurrenceOwnerControlId": "MAA-SECURITY-PRIVACY"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-IAM-01-UNIQUE-USER-IDENTITY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-01-UNIQUE-USER-IDENTITY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-IAM-02-MFA-READINESS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-02-MFA-READINESS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-IAM-03-ENTERPRISE-SSO",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-03-ENTERPRISE-SSO"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-IAM-04-IDP-VALIDATION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-04-IDP-VALIDATION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-IAM-05-RBAC-LEAST-PRIVILEGE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-05-RBAC-LEAST-PRIVILEGE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-IAM-06-JML-LIFECYCLE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-06-JML-LIFECYCLE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-IAM-07-ADMIN-SEPARATION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-07-ADMIN-SEPARATION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-IAM-08-AUDIT-LOGGING-IAM",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-08-AUDIT-LOGGING-IAM"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-IAM-09-SESSION-REVOCATION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-09-SESSION-REVOCATION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-IAM-10-EMERGENCY-ACCESS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-10-EMERGENCY-ACCESS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-IAM-11-ORG-BOUNDARY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-IAM-11-ORG-BOUNDARY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-RES-01-PRIMARY-DB-REGION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-RES-01-PRIMARY-DB-REGION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-RES-02-OBJECT-STORAGE-REGION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-RES-02-OBJECT-STORAGE-REGION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-RES-03-BACKUP-DR-REGION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-RES-03-BACKUP-DR-REGION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-RES-04-LOGGING-ANALYTICS-REGION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-RES-04-LOGGING-ANALYTICS-REGION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-RES-05-TEMP-PROCESSING",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-RES-05-TEMP-PROCESSING"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-RES-06-AI-PROVIDER-LOCATIONS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-RES-06-AI-PROVIDER-LOCATIONS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-RES-07-SUBPROCESSORS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-RES-07-SUBPROCESSORS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-RES-08-RETENTION-DELETION-ROUTES",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-RES-08-RETENTION-DELETION-ROUTES"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-RES-09-INTL-TRANSFER-MECHANISM",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-RES-09-INTL-TRANSFER-MECHANISM"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-RES-10-CUSTOMER-CONFIG-OPTIONS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-RES-10-CUSTOMER-CONFIG-OPTIONS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-OPS-01-AI-QUOTA-FAILURE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-02-DETERMINISTIC-FALLBACK",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-03-INTERRUPTED-ANALYSIS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-04-RESTART-RESUME",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-05-DUPLICATE-UPLOADS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-06-IDEMPOTENCY-RETRY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-07-STALE-PARTIAL-RESULTS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-08-CORRUPT-CACHE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-09-BACKUP-RESTORE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-10-DISASTER-RECOVERY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-11-SERVICE-DEGRADATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-12-QUEUE-FAILURE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-13-EVIDENCE-PRESERVATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-OPS-14-REPRODUCIBILITY-AFTER-RECOVERY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-RESILIENCE",
+          "relationship": "refines",
+          "note": "Resilience expansion",
+          "occurrenceOwnerControlId": "MAA-RESILIENCE"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-HVY-01-LIMITS-MEASURED",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-01-LIMITS-MEASURED"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HVY-02-MEMORY-RUNTIME",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-02-MEMORY-RUNTIME"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HVY-03-SEGMENTATION-UNDER-STRESS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-03-SEGMENTATION-UNDER-STRESS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HVY-04-PAGE-ATTRIBUTION-STRESS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-04-PAGE-ATTRIBUTION-STRESS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HVY-05-TABLE-MEDIA-EXTRACTION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-05-TABLE-MEDIA-EXTRACTION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HVY-06-INTERRUPT-CONSISTENCY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-06-INTERRUPT-CONSISTENCY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HVY-07-PROGRESSIVE-PROCESSING",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-07-PROGRESSIVE-PROCESSING"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HVY-08-TIMEOUT-FAILURE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-08-TIMEOUT-FAILURE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HVY-09-NO-OUTPUT-TRUNCATION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-09-NO-OUTPUT-TRUNCATION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HVY-10-SOURCE-OUTPUT-HASHES",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-10-SOURCE-OUTPUT-HASHES"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HVY-11-VARIANT-SETS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-HVY-11-VARIANT-SETS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-BRW-01-FULL-PATH-EXERCISE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-BRW-01-FULL-PATH-EXERCISE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-BRW-02-VALID-ROLE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-BRW-02-VALID-ROLE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-BRW-03-INVALID-ROLE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-BRW-03-INVALID-ROLE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-BRW-04-ORG-BOUNDARIES",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-BRW-04-ORG-BOUNDARIES"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-BRW-05-BILLING-ENTITLEMENT",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-BRW-05-BILLING-ENTITLEMENT"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-BRW-06-LOADING-ERROR-EMPTY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-BRW-06-LOADING-ERROR-EMPTY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-BRW-07-DUPLICATE-NAV",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-BRW-07-DUPLICATE-NAV"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-BRW-08-BROWSER-LOCAL-STATE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-BRW-08-BROWSER-LOCAL-STATE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-BRW-09-AUDIT-RECEIPTS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-BRW-09-AUDIT-RECEIPTS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-DSN-01-COCKPIT-60S",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-02-CLEAR-HIERARCHY",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-03-MEANINGFUL-CARDS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-04-NO-GIANT-WALL",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-05-WARNINGS-AT-RELIANCE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-06-STABLE-NAV",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-07-DISCOVERABLE-UPLOAD",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-08-READABLE-TABLES",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-09-RESPONSIVE-LAYOUT",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-10-LOADING-ERROR-RECOVERY-UI",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-11-PROFESSIONAL-PRESENTATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-DSN-12-NO-INFO-REMOVED-FOR-LOOKS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-OUTPUT-DESIGN",
+          "relationship": "refines",
+          "note": "Design expansion",
+          "occurrenceOwnerControlId": "MAA-OUTPUT-DESIGN"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-A11Y-01-KEYBOARD-NAV",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-01-KEYBOARD-NAV"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-02-VISIBLE-FOCUS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-02-VISIBLE-FOCUS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-03-HEADINGS-LANDMARKS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-03-HEADINGS-LANDMARKS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-04-CONTROL-LABELS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-04-CONTROL-LABELS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-05-SR-NAMES",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-05-SR-NAMES"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-06-DIALOG-FOCUS-TRAP",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-06-DIALOG-FOCUS-TRAP"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-07-CONTRAST",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-07-CONTRAST"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-08-ZOOM-REFLOW",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-08-ZOOM-REFLOW"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-09-ERROR-ASSOCIATION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-09-ERROR-ASSOCIATION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-10-TABLE-SEMANTICS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-10-TABLE-SEMANTICS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-11-ACCESSIBLE-DOWNLOADS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-11-ACCESSIBLE-DOWNLOADS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-12-REDUCED-MOTION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-12-REDUCED-MOTION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-A11Y-13-MOBILE-RESPONSIVE-A11Y",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-A11Y-13-MOBILE-RESPONSIVE-A11Y"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-PERF-01-UPLOAD-TIME",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-PERF-01-UPLOAD-TIME"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-PERF-02-EXTRACTION-TIME",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-PERF-02-EXTRACTION-TIME"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-PERF-03-ANALYSIS-TIME",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-PERF-03-ANALYSIS-TIME"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-PERF-04-FIRST-USEFUL-RESULT",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-PERF-04-FIRST-USEFUL-RESULT"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-PERF-05-NAV-COPY-EXPORT-PDF-TIME",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-PERF-05-NAV-COPY-EXPORT-PDF-TIME"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-PERF-06-LARGE-BUNDLE-RESPONSE",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-PERF-06-LARGE-BUNDLE-RESPONSE"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-PERF-07-CLIENT-SERVER-ERRORS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-PERF-07-CLIENT-SERVER-ERRORS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-PERF-08-RESOURCE-CONSUMPTION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-PERF-08-RESOURCE-CONSUMPTION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-PERF-09-CONCURRENCY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-PERF-09-CONCURRENCY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-PERF-10-TIMEOUT-RECOVERY-PERF",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-PERF-10-TIMEOUT-RECOVERY-PERF"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-HUM-01-BLINDED-SUBSTANTIVE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HUMAN-SUPERVISION",
+          "relationship": "refines",
+          "note": "Human gold expansion",
+          "occurrenceOwnerControlId": "MAA-HUMAN-SUPERVISION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-HUM-02-PROFESSIONAL-USEFULNESS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HUMAN-SUPERVISION",
+          "relationship": "refines",
+          "note": "Human gold expansion",
+          "occurrenceOwnerControlId": "MAA-HUMAN-SUPERVISION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-HUM-03-OVERBLOCKING",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HUMAN-SUPERVISION",
+          "relationship": "refines",
+          "note": "Human gold expansion",
+          "occurrenceOwnerControlId": "MAA-HUMAN-SUPERVISION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-HUM-04-MISSED-UNSAFE",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HUMAN-SUPERVISION",
+          "relationship": "refines",
+          "note": "Human gold expansion",
+          "occurrenceOwnerControlId": "MAA-HUMAN-SUPERVISION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-HUM-05-SAFETY-CRITICAL-FN",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HUMAN-SUPERVISION",
+          "relationship": "refines",
+          "note": "Human gold expansion",
+          "occurrenceOwnerControlId": "MAA-HUMAN-SUPERVISION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-HUM-06-DISAGREEMENT-ADJUDICATION",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HUMAN-SUPERVISION",
+          "relationship": "refines",
+          "note": "Human gold expansion",
+          "occurrenceOwnerControlId": "MAA-HUMAN-SUPERVISION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-HUM-07-REVIEWER-META",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HUMAN-SUPERVISION",
+          "relationship": "refines",
+          "note": "Human gold expansion",
+          "occurrenceOwnerControlId": "MAA-HUMAN-SUPERVISION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-HUM-08-EXCLUSIONS-DENOMS",
+      "relationships": [
+        {
+          "relatedControlId": "MAA-HUMAN-SUPERVISION",
+          "relationship": "refines",
+          "note": "Human gold expansion",
+          "occurrenceOwnerControlId": "MAA-HUMAN-SUPERVISION"
+        }
+      ],
+      "classification": "related"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-VDR-01-SOURCE-CASE-HASHES"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-EXT-01-INDEPENDENT-SOLICITOR-REVIEW",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-EXT-01-INDEPENDENT-SOLICITOR-REVIEW"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-EXT-02-PENTEST-RETEST",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-EXT-02-PENTEST-RETEST"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-EXT-03-DPIA-PRIVACY-REVIEW",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-EXT-03-DPIA-PRIVACY-REVIEW"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-EXT-04-SUBPROCESSOR-TRANSFER-REVIEW",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-EXT-04-SUBPROCESSOR-TRANSFER-REVIEW"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-EXT-05-ACCESSIBILITY-REVIEW",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-EXT-05-ACCESSIBILITY-REVIEW"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-EXT-06-ISO27001-READINESS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-EXT-06-ISO27001-READINESS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-EXT-07-SOC2-READINESS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-EXT-07-SOC2-READINESS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-EXT-08-SSO-IMPLEMENTATION",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-EXT-08-SSO-IMPLEMENTATION"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-EXT-09-CONFIGURABLE-RESIDENCY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-EXT-09-CONFIGURABLE-RESIDENCY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-SCL-01-SCALE-CONSISTENCY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-SCL-01-SCALE-CONSISTENCY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-SCL-02-RARE-PATTERN-DISCOVERY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-SCL-02-RARE-PATTERN-DISCOVERY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-SCL-03-TEMPLATE-STRING-ANALYSIS",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-SCL-03-TEMPLATE-STRING-ANALYSIS"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-SCL-04-OFFENCE-PROCEDURE-EVIDENCE-DIVERSITY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-SCL-04-OFFENCE-PROCEDURE-EVIDENCE-DIVERSITY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-SCL-05-REGRESSION-SCALE-STABILITY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-SCL-05-REGRESSION-SCALE-STABILITY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-SCL-06-DIVERSE-GAP-FILL-ONLY",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-SCL-06-DIVERSE-GAP-FILL-ONLY"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-SCL-07-SYNTHETIC-LINEAGE-EXPLICIT",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-SCL-07-SYNTHETIC-LINEAGE-EXPLICIT"
+        }
+      ],
+      "classification": "independent"
+    },
+    {
+      "controlId": "MAA2-SCL-08-MULTI-LAYOUT-WORDING",
+      "relationships": [
+        {
+          "relatedControlId": null,
+          "relationship": "independent",
+          "note": "No declared overlap after execution-readiness relationship audit; occurrence owned by this controlId only.",
+          "occurrenceOwnerControlId": "MAA2-SCL-08-MULTI-LAYOUT-WORDING"
+        }
+      ],
+      "classification": "independent"
+    }
+  ]
+}

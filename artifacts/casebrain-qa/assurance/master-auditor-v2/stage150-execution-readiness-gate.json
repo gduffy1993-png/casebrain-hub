@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "stage150-execution-readiness-gate@v2.2.1-remediation",
+  "generatedAt": "2026-07-29T23:52:45.704Z",
+  "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+  "effectiveDate": "2026-07-29",
+  "captureAndCalibrationFoundationComplete": true,
+  "foundationImplementationComplete": false,
+  "programmePassSupported": false,
+  "stage150Started": false,
+  "stage150SampleFrozen": false,
+  "stage150ControlsRun": false,
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "overallAllowed": false,
+  "blockingReasons": [
+    "detectorImplementationComplete",
+    "denominatorReadinessComplete",
+    "onlyThreePartiallyImplementedControls",
+    "eldRequiresDifferentAdapter",
+    "stage150ExecutionMustRemainBlocked"
+  ],
+  "shadowRunId": "v2-shadow-stage50-2026-07-29T23-52-36-465Z",
+  "freezeHash": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832"
+}

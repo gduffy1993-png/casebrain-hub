@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "professional-output-quality-report@1.0.0",
+  "note": "Deterministic hygiene hits only; subjective dimensions remain human_review_required / not auto-defects.",
+  "candidateCountsByCode": {
+    "BND_STILL_MASTER_COLLAPSE": 2
+  }
+}

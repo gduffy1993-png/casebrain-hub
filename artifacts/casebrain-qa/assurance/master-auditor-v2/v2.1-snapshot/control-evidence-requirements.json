@@ -1,0 +1,6609 @@
+{
+  "schemaVersion": "maa-control-evidence-requirements@v2.0.0",
+  "registryVersion": "2.1.0",
+  "effectiveDate": "2026-07-29",
+  "rule": "Missing listed evidence → unresolved or not_exercised — never pass.",
+  "controls": [
+    {
+      "controlId": "MAA-INGEST-COVERAGE",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-DOC-LIFECYCLE",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-PARTIES-ATTRIBUTION",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-CHARGE-MODEL",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-EVIDENCE-STATE",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-CHRONOLOGY-HEARING",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-PROVENANCE",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-RELIABILITY",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-DEFENCE-LENS",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-PROSECUTION-LENS",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-JUDICIAL-LENS",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-LEGAL-CURRENTNESS",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-AUDIENCE-WORDING",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-ACTION-QUALITY",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-CROSS-EXIT",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-CROSS-SURFACE",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-CHASE-QUALITY",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-HALLUCINATION",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-SECURITY-PRIVACY",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-RESILIENCE",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-OUTPUT-DESIGN",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-HUMAN-SUPERVISION",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "human_review",
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA-BIAS-FAIRNESS",
+      "version": "1.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "casebrain_outputs",
+        "truth_or_expected_when_applicable"
+      ],
+      "exactEvidenceRequired": [
+        "finding_with_exactWording_or_not_exercised",
+        "controlId",
+        "controlVersion",
+        "verdict",
+        "supportingHash"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "50"
+    },
+    {
+      "controlId": "MAA2-SRC-01-OCR-CONFIDENCE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "per_page_ocr_confidence",
+        "extraction_completeness_ratio",
+        "unread_page_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "pages_with_text_expectation",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-SRC-02-BLANK-UNREADABLE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "blank_page_flags",
+        "unreadable_page_flags",
+        "page_inventory"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "pages_in_source_inventory",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-SRC-03-ROTATED-SKEW-LOWRES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "orientation_flags",
+        "resolution_metrics",
+        "photo_capture_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "image_based_pages",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-SRC-04-HANDWRITING-ANNOTATIONS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "handwriting_regions",
+        "annotation_flags",
+        "extraction_status"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "pages_with_handwriting_flags",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-SRC-05-TABLES-MULTICOLUMN",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "table_structure_receipts",
+        "reading_order_map"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "pages_with_tables_or_columns",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-SRC-06-STAMPS-SIGNATURES-MARGINS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "stamp_regions",
+        "signature_regions",
+        "marginal_text_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "pages_with_marginalia_flags",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "redaction_boxes",
+        "redaction_policy_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "pages_with_redaction_candidates",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-SRC-08-PAGE-DUPLICATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "page_hashes",
+        "near_duplicate_clusters"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "page_pairs_compared",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "source_page_sequence",
+        "gap_report"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "source_documents_with_page_labels",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "source_page",
+        "compiled_page",
+        "pageIdentityKnown"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "substantive_claims_with_page_cite",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-SRC-11-LOGICAL-DOC-SEGMENTATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "logical_document_boundaries",
+        "segmentation_receipts"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "compiled_bundles",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "attachment_inventory",
+        "absent_reference_list"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "explicit_document_references",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "open_failure_reason",
+        "corrupt_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "files_attempted",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-SRC-14-MIXED-TYPES-MEDIA",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "file_type_inventory",
+        "embedded_media_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "files_and_embedded_objects",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-SRC-15-LANGUAGE-TRANSLATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "language_tags",
+        "translation_certification_status"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "non_english_or_translated_units",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-SRC-16-ENGINE-DISAGREEMENT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "engine_a_extract_hash",
+        "engine_b_extract_hash",
+        "disagreement_spans"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "units_with_multi_engine_extract",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "source_hashes",
+        "extract_hashes",
+        "orphan_span_report"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "extracted_spans_used_in_outputs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "inventory_rows",
+        "upload_manifest",
+        "hash_list"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "uploaded_files",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "instrument_status_tags",
+        "relationship_edges"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "instruments_with_status_cues",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "replaces_edge",
+        "replaced_by_edge"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "documents_with_replacement_cues",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "version_labels",
+        "dated_headers",
+        "upload_order"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "versioned_document_groups",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "attachment_callouts",
+        "missing_attachment_list"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "attachment_callouts",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "exhibit_labels",
+        "collision_report"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "exhibit_labels",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "alias_map",
+        "unit_identity_keys"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "alias_candidate_pairs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "extract_flags",
+        "full_download_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "documents_with_extract_cues",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "media_form_tags",
+        "evidence_state_rows"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "media_evidence_units",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "recording_state",
+        "transcript_state"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "recording_transcript_pairs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "draft_flags",
+        "signature_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "statements_with_status_cues",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "disclosure_completeness_flags",
+        "schedule_rows"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "disclosure_instruments",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "defendant_scope_tags",
+        "other_defendant_only_rows"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "multi_defendant_evidence_units",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "quarantine_flags",
+        "conflict_pairs"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "conflict_or_quarantine_candidates",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "excluded_row_count",
+        "total_qualification_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "aggregated_totals_in_outputs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "relationship_edges",
+        "source_support_for_edges"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "asserted_evidence_relationships",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "output_name_spans",
+        "source_name_spans",
+        "allocation_map"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "named_person_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "output_count_refs",
+        "source_count_refs"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "count_references",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "output_charge_text",
+        "source_charge_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "charge_wording_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "output_value_spans",
+        "source_value_spans"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "date_time_location_money_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "output_exhibit_refs",
+        "source_exhibit_refs"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "exhibit_or_document_references",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "negation_spans_source",
+        "negation_spans_output"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "claims_derived_from_negated_source",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "qualifier_spans_source",
+        "qualifier_spans_output"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "qualified_source_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "legal_state_tags",
+        "output_claim_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "allegation_derived_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "source_extract",
+        "output_wording",
+        "diff_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "operative_wording_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "quote_spans",
+        "source_spans",
+        "quote_markers"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "explicit_quotations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "source_extract",
+        "output_claim",
+        "alignment_score_or_human_flag"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "paraphrased_claims",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "statement_category_tags",
+        "statement_spans"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "substantive_statements",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "before_category",
+        "after_category",
+        "spans"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "allegation_spans",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "submission_spans",
+        "finding_language_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "submission_spans",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "hypothesis_tags",
+        "advice_language_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "hypothesis_spans",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "taxonomy_enum",
+        "tag_distribution"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "surfaces_emitting_legal_state",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "source_charge_text",
+        "ui_charge_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "charge_surfaces",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "allocation_map",
+        "source_allocation"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "charge_allocations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "statement_of_offence",
+        "particulars"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "structured_charges",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "full_source_wording",
+        "displayed_wording"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "operative_charge_displays",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "operative_instrument_id",
+        "status_tags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "charges_with_instrument_cues",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "amendment_edges",
+        "history_panel"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "amended_charges",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "provision_cite",
+        "authority_trace"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "charges_needing_provision",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-08-JURISDICTION-EFFECTIVE-DATE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "jurisdiction",
+        "effective_date",
+        "retrieval_meta"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "provision_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "verification_state",
+        "discrepancy_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "charge_verification_rows",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "warning_attachment_receipts",
+        "cross_exit_diff"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "disputed_charge_exits",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "registry_suggestion",
+        "operative_flag"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "registry_suggestions",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "source_ref",
+        "required_action_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "charge_issue_rows",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "displayed_charge",
+        "generic_verify_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "charge_displays",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "dimension_fields",
+        "ui_mapping"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "evidence_units",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "state_enum",
+        "state_distribution"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "evidence_state_rows",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "reliability_label",
+        "reason_code",
+        "source_bound_explanation"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "unreliable_labels",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "reason_code",
+        "reason_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "reliability_reasons",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "party_scope",
+        "output_attribution"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "multi_defendant_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "owner_tags",
+        "source_cues"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "owned_documents",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "statement_maker",
+        "attribution_output"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "statements",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "attribution_facets"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "digital_attribution_units",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "facet_tags",
+        "output_claims"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "possession_use_knowledge_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "scope_tags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "group_evidence_units",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "inference_flags",
+        "proof_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "attribution_inferences",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "cross_defendant_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "multi_defendant_output_surfaces",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "limitation_text",
+        "source_link",
+        "exit_diff"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "attribution_limitation_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "timestamp_raw",
+        "tz_tag",
+        "normalised_instant"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "timestamp_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "conflict_set",
+        "quarantine_or_unresolved"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "events_with_multi_timestamps",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "ordered_events",
+        "impossibility_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "ordered_event_chains",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "custody_times",
+        "interview_times"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "custody_interview_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "notice_versions",
+        "operative_notice_id"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "hearing_notice_sets",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "dob",
+        "offence_date",
+        "hearing_date",
+        "age_calc"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_with_dob_and_dates",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHR-07-LIMITATION-PERIODS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "limitation_rule_ref",
+        "asof_date",
+        "computation"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_with_limitation_cues",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "deadline",
+        "asOf",
+        "inputs"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "deadline_countdowns",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "counts",
+        "exclusions"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "displayed_totals",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHR-10-FINANCIAL-CALCULATIONS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "inputs",
+        "formula_or_steps",
+        "output"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "financial_totals",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "event_ids",
+        "dup_omit_report"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "chronology_events",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "calc_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "derived_numeric_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "authority_source",
+        "citation"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "legal_propositions",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "jurisdiction_tag"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "authority_citations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "effective_date"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "authority_citations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LEG-04-AMENDMENT-REPEAL-STATUS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "status_tag"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "authority_citations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "retrieved_at"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "authority_citations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "registry_id",
+        "version"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "authority_citations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "authority_type"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "authority_citations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "currency_unknown_flag",
+        "warning_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "authority_citations_without_currency",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-LEG-09-NO-OUTDATED-AS-CURRENT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "currency_check",
+        "status"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "authority_citations_with_currency_data",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "proposition",
+        "source_or_limitation"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "legal_propositions",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "case_stage_tag",
+        "recommendation_stage"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "stage_sensitive_recommendations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "mismatch_report"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "action_recommendations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "youth_flag",
+        "safeguard_prompts"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "youth_or_age_cue_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "participation_flags",
+        "limitation_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_with_fitness_cues",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-PRC-05-NRM-STATE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "nrm_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_with_nrm_cues",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRC-06-SPECIAL-MEASURES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "special_measures_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_with_special_measures_cues",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "disclosure_state",
+        "pii_state"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "disclosure_surfaces",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-PRC-08-INTERPRETER-STATE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "interpreter_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_with_interpreter_cues",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "finding_fields"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "important_findings",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "chase_text",
+        "item_id"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "chase_items",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "provenance_ref"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "chase_items",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "chase_type_tag"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "chase_items",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "template_flag",
+        "case_specific_anchor"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "chase_items",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "service_state",
+        "alias_map",
+        "chase_target"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "chase_items",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "before_state",
+        "after_state",
+        "chase_status"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "chase_items_with_state_change",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "excluded_chase_list"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "chase_surfaces",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "chase_text",
+        "tone_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cps_facing_chases",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "surface_text",
+        "boundary_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "copyable_text_blocks",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "boundary_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "copyable_text_blocks",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "disclaimer_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "disclaimer_blocks",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "dupe_report"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "list_surfaces",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "join_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "templated_blocks",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "punct_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "copyable_text_blocks",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "list_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "list_surfaces",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "cap_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "copyable_text_blocks",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "acronym_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "surfaces_with_protected_acronyms",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "placeholder_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "solicitor_facing_surfaces",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "filler_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "primary_summary_surfaces",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "tone_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "professional_audience_surfaces",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "warning_text",
+        "action_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "action_surface_warnings",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "disclaimer_ratio",
+        "priority_visibility"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "primary_view_surfaces",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "absolute_proof_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "proof_claims",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "solicitor_surface_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "solicitor_surfaces",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "client_surface_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "client_surfaces",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "court_surface_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "court_surfaces",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "cps_surface_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cps_surfaces",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "supervisor_surface_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "supervisor_surfaces",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-AUD-06-EXPERT-BOUNDED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "expert_surface_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "expert_surfaces",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "leak_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "external_audience_exits",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "per_audience_receipts"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "audiences_in_scope_for_run",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "exit_payloads",
+        "attachment_diff"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "disputed_charge_exit_pairs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "exit_payloads"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "incomplete_evidence_exit_pairs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "exit_payloads"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "attribution_limitation_exit_pairs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "exit_payloads"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "currency_warning_exit_pairs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "exit_payloads"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "inferred_date_exit_pairs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "exit_payloads"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "qualified_total_exit_pairs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "view_text",
+        "copy_text",
+        "export_text"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "exit_pairs_compared",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "exit_availability",
+        "verdicts"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "exit_slots_per_case",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "priority_checklist",
+        "primary_surface"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "primary_surfaces",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "repetition_metrics",
+        "fold_position"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "primary_surfaces",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "checklist_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cockpit_sessions",
+      "authority": [
+        "automated",
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-PRI-04-PROGRESSIVE-DISCLOSURE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "disclosure_paths"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "cockpit_sessions",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "contradiction_class"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "detected_contradictions",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "rank_order",
+        "severity"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "contradiction_lists",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "coverage_matrix",
+        "conclusion_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "defence_opportunity_slots",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "wording_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "defence_opportunity_emissions",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "perspective_findings",
+        "non_overwrite_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_in_perspective_panel",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "perspective_findings"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_in_perspective_panel",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "perspective_findings"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_in_perspective_panel",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "perspective_findings"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_with_client_exit",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "perspective_findings"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cases_in_perspective_panel",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "agreement_matrix",
+        "sources",
+        "unresolved_conflicts"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "perspective_panel_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-BIA-01-NO-PRESUMPTION-OF-GUILT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "wording_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "defendant_references",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-BIA-02-SILENCE-NOT-GUILT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "silence_spans",
+        "inference_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "silence_references",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-BIA-03-NO-PROTECTED-CHARACTERISTIC-SHORTCUT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "characteristic_spans",
+        "risk_link"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "protected_characteristic_mentions",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-BIA-04-NO-STATE-CULPABILITY-CONFLATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "state_tags",
+        "culpability_claims"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "special_state_mentions",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-BIA-05-NO-LOADED-LANGUAGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "loaded_term_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "professional_surfaces",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-BIA-06-NO-FIRST-ACCOUNT-PRIVILEGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "ordering_receipt",
+        "weight_language"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "multi_account_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-BIA-07-ORIGINAL-VS-TRANSLATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "language_layers"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "translated_units",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-BIA-08-CERTIFIED-VS-INFORMAL",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "certification_status"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "translations",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-BIA-09-INTERPRETER-IDENTITY-CONTINUITY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "interpreter_meta"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "interpreted_interviews",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-BIA-10-WELSH-LANGUAGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "welsh_flags",
+        "handling_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "welsh_language_units",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-BIA-11-UNTRANSLATED-NOT-FACT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "untranslated_spans",
+        "fact_claims"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "untranslated_spans",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRV-01-LPP-DETECTION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "lpp_flags",
+        "audience_exit_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "lpp_candidate_units",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRV-02-LITIGATION-PRIVILEGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "litigation_privilege_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "litigation_privilege_candidates",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRV-03-UNUSED-SENSITIVE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "sensitive_flags",
+        "audience"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "sensitive_unused_units",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRV-04-PII-MINIMUM",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "pii_spans",
+        "audience_need"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "pii_bearing_exits",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRV-05-MEDICAL-COUNSELLING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "medical_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "medical_record_units",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRV-06-YOUTH-INFO",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "youth_flags",
+        "audience"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "youth_info_units",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRV-07-PROTECTED-IDENTITIES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "protection_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "protected_identity_units",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRV-08-AUDIENCE-LEAKAGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "audience_diff_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "audience_exit_pairs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-PRV-09-CROSS-ORG-ACCESS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "access_test_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "cross_org_access_attempts",
+      "authority": [
+        "browser",
+        "security_tool"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-PRV-10-EXPORT-DOWNLOAD-PERMS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "permission_matrix",
+        "attempt_log"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "export_permission_tests",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-PRV-11-RETENTION-DELETION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "retention_policy_ref",
+        "deletion_state"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "data_stores_in_scope",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-PRV-12-AUDIT-ACCESS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "audit_access_log"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "privileged_access_events",
+      "authority": [
+        "security_tool",
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-SEC-01-PROMPT-INJECTION-DOCS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "injection_fixtures",
+        "behaviour_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "adversarial_doc_fixtures",
+      "authority": [
+        "automated",
+        "security_tool"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-SEC-02-MALICIOUS-PDF",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "parse_sandbox_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "malicious_pdf_fixtures",
+      "authority": [
+        "security_tool"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-SEC-03-FILETYPE-SPOOFING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "declared_type",
+        "sniffed_type"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "spoof_fixtures",
+      "authority": [
+        "automated",
+        "security_tool"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-SEC-04-ZIP-BOMB-OVERSIZE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "size_limits",
+        "rejection_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "oversize_fixtures",
+      "authority": [
+        "automated",
+        "security_tool"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-SEC-05-PATH-ID-LEAKAGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "leak_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "solicitor_surfaces",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-SEC-06-SECRET-TOKEN-LEAKAGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "secret_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "output_artefacts_scanned",
+      "authority": [
+        "automated",
+        "security_tool"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-SEC-07-API-AUTHORISATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "authz_test_matrix"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "api_authz_cases",
+      "authority": [
+        "browser",
+        "security_tool"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-SEC-08-TENANT-ISOLATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "isolation_tests"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "tenant_isolation_cases",
+      "authority": [
+        "browser",
+        "security_tool"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-SEC-09-ROLE-ESCALATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "escalation_tests"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "role_escalation_cases",
+      "authority": [
+        "browser",
+        "security_tool"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-SEC-10-IDOR",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "idor_tests"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "idor_cases",
+      "authority": [
+        "browser",
+        "security_tool"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-SEC-11-CROSS-ORG-SEARCH-DOWNLOAD",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "search_download_tests"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "cross_org_search_cases",
+      "authority": [
+        "browser",
+        "security_tool"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-SEC-12-SESSION-HANDLING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "session_tests"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "session_test_cases",
+      "authority": [
+        "security_tool",
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-SEC-13-RATE-LIMITS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "rate_limit_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "rate_limit_tests",
+      "authority": [
+        "security_tool"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-SEC-14-UNSAFE-GENERATED-LINKS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "link_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "generated_links",
+      "authority": [
+        "automated",
+        "security_tool"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-SEC-15-DEPENDENCY-VULN-STATE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "sca_report"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "dependency_scan_runs",
+      "authority": [
+        "security_tool"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-SEC-16-ENCRYPTION-EVIDENCE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "tls_config",
+        "storage_encryption_attestations"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "encryption_claims",
+      "authority": [
+        "security_tool",
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-SEC-17-LOGGING-NO-SENSITIVE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "log_sample_scan"
+      ],
+      "receiptSchema": "maa-v2-receipt-security-scan@1",
+      "minimumDenominator": "log_samples",
+      "authority": [
+        "automated",
+        "security_tool"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-IAM-01-UNIQUE-USER-IDENTITY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "identity_model_doc"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "identity_readiness_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-IAM-02-MFA-READINESS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "mfa_plan"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "identity_readiness_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-IAM-03-ENTERPRISE-SSO",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "sso_design",
+        "implementation_status"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "sso_status_claims",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-IAM-04-IDP-VALIDATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "idp_trust_model"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "idp_design_reviews",
+      "authority": [
+        "human_review",
+        "security_tool"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-IAM-05-RBAC-LEAST-PRIVILEGE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "rbac_matrix"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "rbac_test_cases",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-IAM-06-JML-LIFECYCLE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "jml_process"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "jml_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-IAM-07-ADMIN-SEPARATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "admin_role_design"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "admin_model_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-IAM-08-AUDIT-LOGGING-IAM",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "iam_audit_events"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "iam_audit_reviews",
+      "authority": [
+        "security_tool",
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-IAM-09-SESSION-REVOCATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "revocation_test"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "session_revocation_tests",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-IAM-10-EMERGENCY-ACCESS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "break_glass_procedure"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "emergency_access_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-IAM-11-ORG-BOUNDARY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "boundary_tests"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "org_boundary_tests",
+      "authority": [
+        "browser",
+        "security_tool"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-RES-01-PRIMARY-DB-REGION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "db_region_attestation"
+      ],
+      "receiptSchema": "maa-v2-receipt-residency-inventory@1",
+      "minimumDenominator": "residency_inventory_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-RES-02-OBJECT-STORAGE-REGION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "storage_region"
+      ],
+      "receiptSchema": "maa-v2-receipt-residency-inventory@1",
+      "minimumDenominator": "residency_inventory_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-RES-03-BACKUP-DR-REGION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "backup_region"
+      ],
+      "receiptSchema": "maa-v2-receipt-residency-inventory@1",
+      "minimumDenominator": "residency_inventory_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-RES-04-LOGGING-ANALYTICS-REGION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "logging_region"
+      ],
+      "receiptSchema": "maa-v2-receipt-residency-inventory@1",
+      "minimumDenominator": "residency_inventory_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-RES-05-TEMP-PROCESSING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "temp_processing_map"
+      ],
+      "receiptSchema": "maa-v2-receipt-residency-inventory@1",
+      "minimumDenominator": "residency_inventory_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-RES-06-AI-PROVIDER-LOCATIONS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "ai_provider_dpa_regions"
+      ],
+      "receiptSchema": "maa-v2-receipt-residency-inventory@1",
+      "minimumDenominator": "residency_inventory_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-RES-07-SUBPROCESSORS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "subprocessor_register"
+      ],
+      "receiptSchema": "maa-v2-receipt-residency-inventory@1",
+      "minimumDenominator": "subprocessor_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-RES-08-RETENTION-DELETION-ROUTES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "deletion_runbook"
+      ],
+      "receiptSchema": "maa-v2-receipt-residency-inventory@1",
+      "minimumDenominator": "retention_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-RES-09-INTL-TRANSFER-MECHANISM",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "transfer_mechanism"
+      ],
+      "receiptSchema": "maa-v2-receipt-residency-inventory@1",
+      "minimumDenominator": "transfer_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-RES-10-CUSTOMER-CONFIG-OPTIONS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "config_matrix"
+      ],
+      "receiptSchema": "maa-v2-receipt-residency-inventory@1",
+      "minimumDenominator": "residency_config_claims",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-OPS-01-AI-QUOTA-FAILURE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "fallback_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "ai_failure_injections",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-02-DETERMINISTIC-FALLBACK",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "fallback_hashes"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "fallback_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-03-INTERRUPTED-ANALYSIS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "interrupt_receipt",
+        "partial_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "interrupt_tests",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-04-RESTART-RESUME",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "resume_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "resume_tests",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-05-DUPLICATE-UPLOADS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "dedupe_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "duplicate_upload_tests",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-06-IDEMPOTENCY-RETRY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "retry_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "retry_tests",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-07-STALE-PARTIAL-RESULTS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "freshness_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "result_freshness_checks",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-08-CORRUPT-CACHE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "cache_integrity_check"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "cache_integrity_tests",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-09-BACKUP-RESTORE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "restore_test_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "restore_tests",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-OPS-10-DISASTER-RECOVERY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "dr_exercise_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "dr_exercises",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-OPS-11-SERVICE-DEGRADATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "degradation_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "degradation_tests",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-12-QUEUE-FAILURE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "queue_failure_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "queue_failure_tests",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-13-EVIDENCE-PRESERVATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "preservation_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "failure_preservation_tests",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-OPS-14-REPRODUCIBILITY-AFTER-RECOVERY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "before_after_hashes"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "recovery_repro_tests",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "300"
+    },
+    {
+      "controlId": "MAA2-HVY-01-LIMITS-MEASURED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "limit_matrix"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "heavy_bundle_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HVY-02-MEMORY-RUNTIME",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "resource_metrics"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "heavy_bundle_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HVY-03-SEGMENTATION-UNDER-STRESS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "segmentation_receipts"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "heavy_compiled_bundles",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HVY-04-PAGE-ATTRIBUTION-STRESS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "page_bind_sample"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "heavy_bundle_page_samples",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HVY-05-TABLE-MEDIA-EXTRACTION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "extraction_inventory"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "heavy_bundle_media_table_units",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HVY-06-INTERRUPT-CONSISTENCY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "hash_compare"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "interrupt_resume_pairs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HVY-07-PROGRESSIVE-PROCESSING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "progress_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "heavy_bundle_runs",
+      "authority": [
+        "automated",
+        "browser"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HVY-08-TIMEOUT-FAILURE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "timeout_receipt",
+        "skip_report"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "heavy_bundle_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HVY-09-NO-OUTPUT-TRUNCATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "truncation_flags"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "heavy_bundle_outputs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HVY-10-SOURCE-OUTPUT-HASHES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "hashes.json"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "heavy_bundle_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HVY-11-VARIANT-SETS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "variant_tags",
+        "denominator_policy"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "core_matter_cases_only",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-BRW-01-FULL-PATH-EXERCISE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "session_trace"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "authenticated_workflow_sessions",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-BRW-02-VALID-ROLE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "role_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "valid_role_sessions",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-BRW-03-INVALID-ROLE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "deny_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "invalid_role_attempts",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-BRW-04-ORG-BOUNDARIES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "boundary_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "org_boundary_workflow_tests",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-BRW-05-BILLING-ENTITLEMENT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "entitlement_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "entitlement_tests",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-BRW-06-LOADING-ERROR-EMPTY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "state_screenshots_or_dom"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "workflow_state_tests",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-BRW-07-DUPLICATE-NAV",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "nav_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "navigation_stress_tests",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-BRW-08-BROWSER-LOCAL-STATE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "local_vs_server_diff"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "local_state_tests",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-BRW-09-AUDIT-RECEIPTS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "audit_receipt_chain"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "authenticated_workflow_sessions",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-01-COCKPIT-60S",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "timed_task_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "timed_cockpit_tasks",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-02-CLEAR-HIERARCHY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "hierarchy_review"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "design_reviews",
+      "authority": [
+        "human_review",
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-03-MEANINGFUL-CARDS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "card_content_audit"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "primary_cards",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-04-NO-GIANT-WALL",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "density_metrics"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "primary_views",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-05-WARNINGS-AT-RELIANCE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "warning_placement"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "warned_claims",
+      "authority": [
+        "browser",
+        "automated"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-06-STABLE-NAV",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "nav_review"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "navigation_sessions",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-07-DISCOVERABLE-UPLOAD",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "task_success"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "new_case_tasks",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-08-READABLE-TABLES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "readability_review"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "table_views",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-09-RESPONSIVE-LAYOUT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "viewport_receipts"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "viewport_tests",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-10-LOADING-ERROR-RECOVERY-UI",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "state_ui_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "error_state_tests",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-11-PROFESSIONAL-PRESENTATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "design_review"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "design_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-DSN-12-NO-INFO-REMOVED-FOR-LOOKS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "before_after_content"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "design_change_reviews",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-01-KEYBOARD-NAV",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "keyboard_path_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "a11y_manual_exercises",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-02-VISIBLE-FOCUS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "focus_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "a11y_manual_exercises",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-03-HEADINGS-LANDMARKS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "structure_audit"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "primary_views",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-04-CONTROL-LABELS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "label_audit"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "interactive_controls_sampled",
+      "authority": [
+        "browser",
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-05-SR-NAMES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "sr_name_audit"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "a11y_manual_exercises",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-06-DIALOG-FOCUS-TRAP",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "dialog_test"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "dialog_tests",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-07-CONTRAST",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "contrast_audit"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "primary_text_samples",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-08-ZOOM-REFLOW",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "zoom_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "zoom_tests",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-09-ERROR-ASSOCIATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "form_error_audit"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "form_error_tests",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-10-TABLE-SEMANTICS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "table_audit"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "data_tables",
+      "authority": [
+        "browser",
+        "automated"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-11-ACCESSIBLE-DOWNLOADS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "download_audit"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "download_controls",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-12-REDUCED-MOTION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "prefers_reduced_motion_test"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "motion_tests",
+      "authority": [
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-A11Y-13-MOBILE-RESPONSIVE-A11Y",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "mobile_a11y_exercise"
+      ],
+      "receiptSchema": "maa-v2-receipt-browser-session@1",
+      "minimumDenominator": "mobile_a11y_exercises",
+      "authority": [
+        "browser",
+        "human_review"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-PERF-01-UPLOAD-TIME",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "timing_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "timed_uploads",
+      "authority": [
+        "automated",
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-PERF-02-EXTRACTION-TIME",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "timing_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "timed_extractions",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-PERF-03-ANALYSIS-TIME",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "timing_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "timed_analyses",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-PERF-04-FIRST-USEFUL-RESULT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "timing_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "timed_sessions",
+      "authority": [
+        "browser",
+        "automated"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-PERF-05-NAV-COPY-EXPORT-PDF-TIME",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "timing_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "timed_exit_actions",
+      "authority": [
+        "browser",
+        "automated"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-PERF-06-LARGE-BUNDLE-RESPONSE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "stress_metrics"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "heavy_bundle_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-PERF-07-CLIENT-SERVER-ERRORS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "error_counts"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "timed_sessions",
+      "authority": [
+        "automated",
+        "browser"
+      ],
+      "activationStage": "browser"
+    },
+    {
+      "controlId": "MAA2-PERF-08-RESOURCE-CONSUMPTION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "cpu_mem_metrics"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "instrumented_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-PERF-09-CONCURRENCY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "concurrency_receipt"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "concurrency_tests",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-PERF-10-TIMEOUT-RECOVERY-PERF",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "timeout_recovery_metrics"
+      ],
+      "receiptSchema": "maa-v2-receipt-stress-metrics@1",
+      "minimumDenominator": "timeout_recovery_tests",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "heavy_bundle"
+    },
+    {
+      "controlId": "MAA2-HUM-01-BLINDED-SUBSTANTIVE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "blinded_bundle",
+        "reviewer_record"
+      ],
+      "receiptSchema": "maa-v2-receipt-human-gold@1",
+      "minimumDenominator": "blinded_human_cases",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "human"
+    },
+    {
+      "controlId": "MAA2-HUM-02-PROFESSIONAL-USEFULNESS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "usefulness_scores",
+        "reviewer_role"
+      ],
+      "receiptSchema": "maa-v2-receipt-human-gold@1",
+      "minimumDenominator": "human_usefulness_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "human"
+    },
+    {
+      "controlId": "MAA2-HUM-03-OVERBLOCKING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "overblock_adjudications"
+      ],
+      "receiptSchema": "maa-v2-receipt-human-gold@1",
+      "minimumDenominator": "containment_samples",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "human"
+    },
+    {
+      "controlId": "MAA2-HUM-04-MISSED-UNSAFE",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "fn_adjudications"
+      ],
+      "receiptSchema": "maa-v2-receipt-human-gold@1",
+      "minimumDenominator": "unsafe_wording_samples",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "human"
+    },
+    {
+      "controlId": "MAA2-HUM-05-SAFETY-CRITICAL-FN",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "fn_register",
+        "human_signoff"
+      ],
+      "receiptSchema": "maa-v2-receipt-human-gold@1",
+      "minimumDenominator": "safety_critical_review_slots",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "human"
+    },
+    {
+      "controlId": "MAA2-HUM-06-DISAGREEMENT-ADJUDICATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "adjudication_record"
+      ],
+      "receiptSchema": "maa-v2-receipt-human-gold@1",
+      "minimumDenominator": "reviewer_disagreements",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "human"
+    },
+    {
+      "controlId": "MAA2-HUM-07-REVIEWER-META",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "reviewer_meta"
+      ],
+      "receiptSchema": "maa-v2-receipt-human-gold@1",
+      "minimumDenominator": "human_reviews",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "human"
+    },
+    {
+      "controlId": "MAA2-HUM-08-EXCLUSIONS-DENOMS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "exclusion_log",
+        "denominator"
+      ],
+      "receiptSchema": "maa-v2-receipt-human-gold@1",
+      "minimumDenominator": "human_review_batches",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "human"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "hashes.json"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "maa_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "freeze_manifest"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "frozen_sample_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "commit",
+        "build_id"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "maa_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "version_block"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "maa_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "model_prompt_meta"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "maa_runs_with_model",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "findings.jsonl",
+        "outputs"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "maa_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "timestamps",
+        "dispositions"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "maa_runs",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "before_after_map"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "change_events",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "finding_churn_report"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "frozen_regression_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "150"
+    },
+    {
+      "controlId": "MAA2-EXT-01-INDEPENDENT-SOLICITOR-REVIEW",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "roadmap_status",
+        "engagement_record"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "roadmap_items",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-EXT-02-PENTEST-RETEST",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "pentest_report_ref"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "roadmap_items",
+      "authority": [
+        "security_tool",
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-EXT-03-DPIA-PRIVACY-REVIEW",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "dpia_ref"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "roadmap_items",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-EXT-04-SUBPROCESSOR-TRANSFER-REVIEW",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "review_ref"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "roadmap_items",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-EXT-05-ACCESSIBILITY-REVIEW",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "a11y_review_ref"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "roadmap_items",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-EXT-06-ISO27001-READINESS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "readiness_status"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "roadmap_items",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-EXT-07-SOC2-READINESS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "readiness_status",
+        "evidence_period"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "roadmap_items",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-EXT-08-SSO-IMPLEMENTATION",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "implementation_status"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "roadmap_items",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-EXT-09-CONFIGURABLE-RESIDENCY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "implementation_status"
+      ],
+      "receiptSchema": "maa-v2-receipt-roadmap-record@1",
+      "minimumDenominator": "roadmap_items",
+      "authority": [
+        "human_review"
+      ],
+      "activationStage": "roadmap"
+    },
+    {
+      "controlId": "MAA2-SCL-01-SCALE-CONSISTENCY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "scale_run_hashes",
+        "verdict_distribution"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "scale3000_applicable_cases",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "3000"
+    },
+    {
+      "controlId": "MAA2-SCL-02-RARE-PATTERN-DISCOVERY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "rare_pattern_register",
+        "exclusions"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "rare_pattern_slots",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "3000"
+    },
+    {
+      "controlId": "MAA2-SCL-03-TEMPLATE-STRING-ANALYSIS",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "template_cluster_report"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "templated_output_clusters",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "3000"
+    },
+    {
+      "controlId": "MAA2-SCL-04-OFFENCE-PROCEDURE-EVIDENCE-DIVERSITY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "diversity_matrix"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "diversity_cells",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "3000"
+    },
+    {
+      "controlId": "MAA2-SCL-05-REGRESSION-SCALE-STABILITY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "before_after_scale_map"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "frozen_scale_regression_runs",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "3000"
+    },
+    {
+      "controlId": "MAA2-SCL-06-DIVERSE-GAP-FILL-ONLY",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "gap_register",
+        "variant_tags",
+        "lineage"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "demonstrated_coverage_gaps",
+      "authority": [
+        "automated",
+        "human_review"
+      ],
+      "activationStage": "diverse_corpus"
+    },
+    {
+      "controlId": "MAA2-SCL-07-SYNTHETIC-LINEAGE-EXPLICIT",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "lineage_tags"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "diverse_corpus_items",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "diverse_corpus"
+    },
+    {
+      "controlId": "MAA2-SCL-08-MULTI-LAYOUT-WORDING",
+      "version": "2.0.0",
+      "requiredInputs": [
+        "saved_case_packet",
+        "source_documents",
+        "casebrain_outputs"
+      ],
+      "exactEvidenceRequired": [
+        "layout_style_tags",
+        "denominator_policy"
+      ],
+      "receiptSchema": "maa-v2-receipt-standard-finding@1",
+      "minimumDenominator": "core_matter_cases_only",
+      "authority": [
+        "automated"
+      ],
+      "activationStage": "diverse_corpus"
+    }
+  ]
+}

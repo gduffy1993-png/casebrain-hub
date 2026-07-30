@@ -1,0 +1,307 @@
+{
+  "runId": "v2-shadow-stage50-2026-07-29T23-52-36-465Z",
+  "completedCases": 50,
+  "total": 50,
+  "cases": [
+    {
+      "caseId": "sc-0002d",
+      "occurrenceHash": "1fd86eb7eeaaa36b16d7ca28d637d276270a79130d10c3b60e299950a0803471",
+      "leafCount": 234,
+      "completed": true
+    },
+    {
+      "caseId": "sim-120",
+      "occurrenceHash": "1b75d0cafd0429bb52db582a70e0c3a520def7cf57245600a0c2e30e229e25a0",
+      "leafCount": 146,
+      "completed": true
+    },
+    {
+      "caseId": "sim-250",
+      "occurrenceHash": "3b8e48bdc89968a4e062e3f9533088666c2961f80339960a1890266532471100",
+      "leafCount": 141,
+      "completed": true
+    },
+    {
+      "caseId": "sim-345",
+      "occurrenceHash": "f8c7c3a2ce85f2430661f6b24d4a677e12f603128bebcf938855641ec64aa9b1",
+      "leafCount": 141,
+      "completed": true
+    },
+    {
+      "caseId": "sc-00025",
+      "occurrenceHash": "611acafb5b9832134fe5bbae94fb739577c71c62289f4de561507c96186eba3c",
+      "leafCount": 223,
+      "completed": true
+    },
+    {
+      "caseId": "sim-104",
+      "occurrenceHash": "c21e7b9335c86400d97642775b940b6f41e813a07afbf9ed857f1a10f644f415",
+      "leafCount": 162,
+      "completed": true
+    },
+    {
+      "caseId": "sim-373",
+      "occurrenceHash": "4bccea77265e6e6b509ad9c6711d7bc54e72890b6da05a553cac5afcf38061a6",
+      "leafCount": 161,
+      "completed": true
+    },
+    {
+      "caseId": "sim-377",
+      "occurrenceHash": "2b53b5ec71aac7fb1298bbe0682486bad218896a9dcf8fddf215f81d76af844a",
+      "leafCount": 178,
+      "completed": true
+    },
+    {
+      "caseId": "sim-321",
+      "occurrenceHash": "c9880c05074da71510ceedd12ffefb644f9f026df4ad6fdd718220ae6369856e",
+      "leafCount": 142,
+      "completed": true
+    },
+    {
+      "caseId": "sim-182",
+      "occurrenceHash": "7a6ada7ceade12113516397241476d7bb2c7b31d407a1565c55d9eac6addadb0",
+      "leafCount": 175,
+      "completed": true
+    },
+    {
+      "caseId": "sim-224",
+      "occurrenceHash": "cb1fe5e4fa8d7de3fdf6e215ad98050b306a95c59aa76902cecc0b78d1890bc7",
+      "leafCount": 205,
+      "completed": true
+    },
+    {
+      "caseId": "sim-222",
+      "occurrenceHash": "b742ab04996f68f36f54e7d981e2b35c91b5011eb8943a76903f8ea4269f2d18",
+      "leafCount": 194,
+      "completed": true
+    },
+    {
+      "caseId": "sim-190",
+      "occurrenceHash": "c1271cde8c2f9fc6bd55a2876f216e1d4a231e0565e9ad701d3863bf55dd79ca",
+      "leafCount": 164,
+      "completed": true
+    },
+    {
+      "caseId": "sim-142",
+      "occurrenceHash": "a951f333a9f08bd945284688c869ecccf0e13ca2af257b14584156b6e3a53c23",
+      "leafCount": 146,
+      "completed": true
+    },
+    {
+      "caseId": "sim-018",
+      "occurrenceHash": "ae8805c2d27411eaa878897caecb8ccd794d85690137ee54ff38ef6cb9c64fea",
+      "leafCount": 126,
+      "completed": true
+    },
+    {
+      "caseId": "sim-055",
+      "occurrenceHash": "ffab748498fbb1b449537b0c867ebab61541d551d52214a367e9869fb208647b",
+      "leafCount": 229,
+      "completed": true
+    },
+    {
+      "caseId": "sim-172",
+      "occurrenceHash": "070013b72e9daee009ba818eb7bd9df104443d54258d70c123af265162c48156",
+      "leafCount": 210,
+      "completed": true
+    },
+    {
+      "caseId": "sim-048",
+      "occurrenceHash": "798c9841206fe549631c3c4f344bbfb2901325ede6c75a6c1d4f2cf270a276e2",
+      "leafCount": 225,
+      "completed": true
+    },
+    {
+      "caseId": "sim-063",
+      "occurrenceHash": "85088bfb132443ddc436487c2ab36ddb526555064b3ef999f38aaf12092e3e92",
+      "leafCount": 194,
+      "completed": true
+    },
+    {
+      "caseId": "sim-038",
+      "occurrenceHash": "f438aafe034003aba3167385e5dc11eab12be138a9af9714eb5dc57303fa8893",
+      "leafCount": 207,
+      "completed": true
+    },
+    {
+      "caseId": "sim-017",
+      "occurrenceHash": "502e80b6fd0a22e8f92321f263bea04dcd2ce99b85a47dd6825bc3d3590613f2",
+      "leafCount": 89,
+      "completed": true
+    },
+    {
+      "caseId": "sim-014",
+      "occurrenceHash": "920b6cd77baee90befb6ed60365f7699f68c0283d0696d06c02043a3f89264fe",
+      "leafCount": 85,
+      "completed": true
+    },
+    {
+      "caseId": "sim-015",
+      "occurrenceHash": "32812ce521dc76d2b7648dbc01b4e9a6edf02046b8d1059394594a7f00aa66b2",
+      "leafCount": 93,
+      "completed": true
+    },
+    {
+      "caseId": "sim-020",
+      "occurrenceHash": "2c2d1664ede01b2231b27641d74720271581474e70fb1490ecdc0b3f8da7633c",
+      "leafCount": 101,
+      "completed": true
+    },
+    {
+      "caseId": "sim-007",
+      "occurrenceHash": "c84c84be34d6a1c606d4fe60159c9a8fa34956d5c8fbe1ef767fe498c05c6f48",
+      "leafCount": 93,
+      "completed": true
+    },
+    {
+      "caseId": "sim-073",
+      "occurrenceHash": "4bce4a517bbd491c7017adf2db92027122270614e112aac19f2584ce633801de",
+      "leafCount": 215,
+      "completed": true
+    },
+    {
+      "caseId": "sim-138",
+      "occurrenceHash": "5a493ca3b9978177e8c72e0a48893085be644dc4ebe3c06146d1a4bea76a74ed",
+      "leafCount": 142,
+      "completed": true
+    },
+    {
+      "caseId": "sim-265",
+      "occurrenceHash": "0891794a8cd50bd9b742a33cdc780ed07d2a1000b30326efe01d00e5c5801b76",
+      "leafCount": 165,
+      "completed": true
+    },
+    {
+      "caseId": "sim-072",
+      "occurrenceHash": "9130c512e01fa9684e5d96d3d3a9309154cdcd487a579eddab55bcaf2c1b4124",
+      "leafCount": 200,
+      "completed": true
+    },
+    {
+      "caseId": "sim-387",
+      "occurrenceHash": "a94f757ac32deb5246b05e1de4b05ced3267df71ce7897478767fce30bd788a0",
+      "leafCount": 155,
+      "completed": true
+    },
+    {
+      "caseId": "sim-128",
+      "occurrenceHash": "b62820d99681404c229343c89cad299f7acdb6fb84d0f3af4ac98adfcbf12cf8",
+      "leafCount": 146,
+      "completed": true
+    },
+    {
+      "caseId": "sim-332",
+      "occurrenceHash": "61db2cba5b9e3d41d2e60cee98e28cb6d45071316f7b5ebe402c152961ca3a93",
+      "leafCount": 177,
+      "completed": true
+    },
+    {
+      "caseId": "sim-329",
+      "occurrenceHash": "b23b1ce6d030ac6260779cd4b293f20f70cd6b1e882a3cdbe26905986ec28a29",
+      "leafCount": 186,
+      "completed": true
+    },
+    {
+      "caseId": "sim-198",
+      "occurrenceHash": "ace0c530b5cdf92f5371f410fcc4bdd937c46cc66e905930c329c3909c1cdf4d",
+      "leafCount": 133,
+      "completed": true
+    },
+    {
+      "caseId": "sim-337",
+      "occurrenceHash": "81a3e0048530e5b7f80de73be9c68bcd46f9eace57b1a0f70009d07a4fb7ecf9",
+      "leafCount": 156,
+      "completed": true
+    },
+    {
+      "caseId": "sim-366",
+      "occurrenceHash": "25bcdca5c14ec98cda7aa0b65656a41d4b2888383fe2db1e6a5d131d6e8c27c7",
+      "leafCount": 165,
+      "completed": true
+    },
+    {
+      "caseId": "sim-336",
+      "occurrenceHash": "ebde29aaf913da4752ff7c24f6a5d7866eff70037be26ecc8ee6041d8bb629e6",
+      "leafCount": 209,
+      "completed": true
+    },
+    {
+      "caseId": "sim-286",
+      "occurrenceHash": "9fe0a4ab4db1c26391668ce1779e004d98ead46cd6925e109a1667bc0c74b17e",
+      "leafCount": 141,
+      "completed": true
+    },
+    {
+      "caseId": "sim-199",
+      "occurrenceHash": "9c29c814ae96b2e38cdb790f6121604e16ff41bae96a839b3867bd06e02332f4",
+      "leafCount": 156,
+      "completed": true
+    },
+    {
+      "caseId": "sim-354",
+      "occurrenceHash": "5cba2d16ec2d75620a50e84fbd10c29d3e382a82bbc7e262799eacb4fad97df2",
+      "leafCount": 142,
+      "completed": true
+    },
+    {
+      "caseId": "sim-145",
+      "occurrenceHash": "7dc0a4ace4b1199aeda98a99e76c15958c75d95b46728dae71108068d1405734",
+      "leafCount": 191,
+      "completed": true
+    },
+    {
+      "caseId": "sim-257",
+      "occurrenceHash": "f7d77cb49de4182a4550fe29dfed9db63b04849d4fd958044ef45183882ab7a6",
+      "leafCount": 182,
+      "completed": true
+    },
+    {
+      "caseId": "sim-245",
+      "occurrenceHash": "24a819af9a511e6b80ef55964fa99b13c6bcc34e36095396d8be0d068c005875",
+      "leafCount": 161,
+      "completed": true
+    },
+    {
+      "caseId": "sim-395",
+      "occurrenceHash": "813dc0e33bf95a5e913a059cb7c7ab6d0d94d2266509f975a19bddabe592635a",
+      "leafCount": 199,
+      "completed": true
+    },
+    {
+      "caseId": "sim-271",
+      "occurrenceHash": "0b60b262fb0a70f6ae4fc0222354a61897f6c5b3a5552ce5e38d9397796c84c7",
+      "leafCount": 180,
+      "completed": true
+    },
+    {
+      "caseId": "sim-389",
+      "occurrenceHash": "1302e2e9a63bab0e6681ca84b21fd0ecba1e8aa36ac2935df4f36d5aa11e4a83",
+      "leafCount": 159,
+      "completed": true
+    },
+    {
+      "caseId": "sim-360",
+      "occurrenceHash": "1f7482e89a3b0fa2dc6563212f75680cfeb7a9ad1cd5a35cdc0c5199ef5e6758",
+      "leafCount": 163,
+      "completed": true
+    },
+    {
+      "caseId": "sc-0006a",
+      "occurrenceHash": "964f827d7ecbbc10cefdae50c08116a08fe3691aeb4804bf9936fc49e02fdda7",
+      "leafCount": 272,
+      "completed": true
+    },
+    {
+      "caseId": "sc-0002e",
+      "occurrenceHash": "1dc5447068faca616287ddff8461ffbb1cb50e8c5388d977fc0f8d82cca8998f",
+      "leafCount": 268,
+      "completed": true
+    },
+    {
+      "caseId": "sim-024",
+      "occurrenceHash": "3db0c566e81897b83c7ddc2e9cf6787f899e49220786989ceb171727f8dce5a5",
+      "leafCount": 110,
+      "completed": true
+    }
+  ]
+}

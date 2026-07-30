@@ -1,0 +1,1506 @@
+{
+  "schemaVersion": "v2-stage-activation-revision@1.0.0",
+  "revisions": [
+    {
+      "controlId": "MAA2-SRC-01-OCR-CONFIDENCE",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-02-BLANK-UNREADABLE",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-03-ROTATED-SKEW-LOWRES",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-04-HANDWRITING-ANNOTATIONS",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-05-TABLES-MULTICOLUMN",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-06-STAMPS-SIGNATURES-MARGINS",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-08-PAGE-DUPLICATION",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-11-LOGICAL-DOC-SEGMENTATION",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-14-MIXED-TYPES-MEDIA",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-15-LANGUAGE-TRANSLATION",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-16-ENGINE-DISAGREEMENT",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-PRI-04-PROGRESSIVE-DISCLOSURE",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-PRV-09-CROSS-ORG-ACCESS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-PRV-10-EXPORT-DOWNLOAD-PERMS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-PRV-11-RETENTION-DELETION",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Roadmap control — not forced into Stage 150."
+    },
+    {
+      "controlId": "MAA2-PRV-12-AUDIT-ACCESS",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Roadmap control — not forced into Stage 150."
+    },
+    {
+      "controlId": "MAA2-SEC-07-API-AUTHORISATION",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-SEC-08-TENANT-ISOLATION",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-SEC-09-ROLE-ESCALATION",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-SEC-10-IDOR",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-SEC-11-CROSS-ORG-SEARCH-DOWNLOAD",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-SEC-12-SESSION-HANDLING",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-SEC-15-DEPENDENCY-VULN-STATE",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Roadmap control — not forced into Stage 150."
+    },
+    {
+      "controlId": "MAA2-SEC-16-ENCRYPTION-EVIDENCE",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Roadmap control — not forced into Stage 150."
+    },
+    {
+      "controlId": "MAA2-IAM-01-UNIQUE-USER-IDENTITY",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-IAM-02-MFA-READINESS",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-IAM-03-ENTERPRISE-SSO",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-IAM-04-IDP-VALIDATION",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-IAM-05-RBAC-LEAST-PRIVILEGE",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-IAM-06-JML-LIFECYCLE",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-IAM-07-ADMIN-SEPARATION",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-IAM-08-AUDIT-LOGGING-IAM",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-IAM-09-SESSION-REVOCATION",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-IAM-10-EMERGENCY-ACCESS",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-IAM-11-ORG-BOUNDARY",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "SSO/IAM readiness is engineering/browser — not external certification by default."
+    },
+    {
+      "controlId": "MAA2-RES-01-PRIMARY-DB-REGION",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-RES-02-OBJECT-STORAGE-REGION",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-RES-03-BACKUP-DR-REGION",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-RES-04-LOGGING-ANALYTICS-REGION",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-RES-05-TEMP-PROCESSING",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-RES-06-AI-PROVIDER-LOCATIONS",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-RES-07-SUBPROCESSORS",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-RES-08-RETENTION-DELETION-ROUTES",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-RES-09-INTL-TRANSFER-MECHANISM",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-RES-10-CUSTOMER-CONFIG-OPTIONS",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-01-AI-QUOTA-FAILURE",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-02-DETERMINISTIC-FALLBACK",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-03-INTERRUPTED-ANALYSIS",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-04-RESTART-RESUME",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-05-DUPLICATE-UPLOADS",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-06-IDEMPOTENCY-RETRY",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-07-STALE-PARTIAL-RESULTS",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-08-CORRUPT-CACHE",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-09-BACKUP-RESTORE",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-10-DISASTER-RECOVERY",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-11-SERVICE-DEGRADATION",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-12-QUEUE-FAILURE",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-13-EVIDENCE-PRESERVATION",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-OPS-14-REPRODUCIBILITY-AFTER-RECOVERY",
+      "originalProposedStage": "300",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Requires operational/supplier evidence, not ESA packets."
+    },
+    {
+      "controlId": "MAA2-HVY-01-LIMITS-MEASURED",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-HVY-02-MEMORY-RUNTIME",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-HVY-03-SEGMENTATION-UNDER-STRESS",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-HVY-04-PAGE-ATTRIBUTION-STRESS",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-HVY-05-TABLE-MEDIA-EXTRACTION",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-HVY-06-INTERRUPT-CONSISTENCY",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-HVY-07-PROGRESSIVE-PROCESSING",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-HVY-08-TIMEOUT-FAILURE",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-HVY-09-NO-OUTPUT-TRUNCATION",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-HVY-10-SOURCE-OUTPUT-HASHES",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-HVY-11-VARIANT-SETS",
+      "originalProposedStage": "heavy_bundle",
+      "effectiveActivationStage": "heavy_source_bundle",
+      "reason": "Requires original PDF/OCR/page units not present on ESA text packets."
+    },
+    {
+      "controlId": "MAA2-BRW-01-FULL-PATH-EXERCISE",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-BRW-02-VALID-ROLE",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-BRW-03-INVALID-ROLE",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-BRW-04-ORG-BOUNDARIES",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-BRW-05-BILLING-ENTITLEMENT",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-BRW-06-LOADING-ERROR-EMPTY",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-BRW-07-DUPLICATE-NAV",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-BRW-08-BROWSER-LOCAL-STATE",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-BRW-09-AUDIT-RECEIPTS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-01-COCKPIT-60S",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-02-CLEAR-HIERARCHY",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-03-MEANINGFUL-CARDS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-04-NO-GIANT-WALL",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-05-WARNINGS-AT-RELIANCE",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-06-STABLE-NAV",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-07-DISCOVERABLE-UPLOAD",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-08-READABLE-TABLES",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-09-RESPONSIVE-LAYOUT",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-10-LOADING-ERROR-RECOVERY-UI",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-11-PROFESSIONAL-PRESENTATION",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-DSN-12-NO-INFO-REMOVED-FOR-LOOKS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-01-KEYBOARD-NAV",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-02-VISIBLE-FOCUS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-03-HEADINGS-LANDMARKS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-04-CONTROL-LABELS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-05-SR-NAMES",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-06-DIALOG-FOCUS-TRAP",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-07-CONTRAST",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-08-ZOOM-REFLOW",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-09-ERROR-ASSOCIATION",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-10-TABLE-SEMANTICS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-11-ACCESSIBLE-DOWNLOADS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-12-REDUCED-MOTION",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-A11Y-13-MOBILE-RESPONSIVE-A11Y",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-PERF-01-UPLOAD-TIME",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-PERF-04-FIRST-USEFUL-RESULT",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-PERF-05-NAV-COPY-EXPORT-PDF-TIME",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-PERF-07-CLIENT-SERVER-ERRORS",
+      "originalProposedStage": "browser",
+      "effectiveActivationStage": "authenticated_browser",
+      "reason": "Requires authenticated browser receipts."
+    },
+    {
+      "controlId": "MAA2-PERF-09-CONCURRENCY",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "operational_security_roadmap",
+      "reason": "Roadmap control — not forced into Stage 150."
+    },
+    {
+      "controlId": "MAA2-HUM-01-BLINDED-SUBSTANTIVE",
+      "originalProposedStage": "human",
+      "effectiveActivationStage": "human_gold",
+      "reason": "Requires human solicitor gold review."
+    },
+    {
+      "controlId": "MAA2-HUM-02-PROFESSIONAL-USEFULNESS",
+      "originalProposedStage": "human",
+      "effectiveActivationStage": "human_gold",
+      "reason": "Requires human solicitor gold review."
+    },
+    {
+      "controlId": "MAA2-HUM-03-OVERBLOCKING",
+      "originalProposedStage": "human",
+      "effectiveActivationStage": "human_gold",
+      "reason": "Requires human solicitor gold review."
+    },
+    {
+      "controlId": "MAA2-HUM-04-MISSED-UNSAFE",
+      "originalProposedStage": "human",
+      "effectiveActivationStage": "human_gold",
+      "reason": "Requires human solicitor gold review."
+    },
+    {
+      "controlId": "MAA2-HUM-05-SAFETY-CRITICAL-FN",
+      "originalProposedStage": "human",
+      "effectiveActivationStage": "human_gold",
+      "reason": "Requires human solicitor gold review."
+    },
+    {
+      "controlId": "MAA2-HUM-06-DISAGREEMENT-ADJUDICATION",
+      "originalProposedStage": "human",
+      "effectiveActivationStage": "human_gold",
+      "reason": "Requires human solicitor gold review."
+    },
+    {
+      "controlId": "MAA2-HUM-07-REVIEWER-META",
+      "originalProposedStage": "human",
+      "effectiveActivationStage": "human_gold",
+      "reason": "Requires human solicitor gold review."
+    },
+    {
+      "controlId": "MAA2-HUM-08-EXCLUSIONS-DENOMS",
+      "originalProposedStage": "human",
+      "effectiveActivationStage": "human_gold",
+      "reason": "Requires human solicitor gold review."
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "originalProposedStage": "150",
+      "effectiveActivationStage": "stage50_shadow_calibration",
+      "reason": "Handler/engines exist for shadow calibration; not Stage-150 executable until fully implemented + denominators approved."
+    },
+    {
+      "controlId": "MAA2-EXT-01-INDEPENDENT-SOLICITOR-REVIEW",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "external_assurance",
+      "reason": "External assurance / certification roadmap — not ESA-text."
+    },
+    {
+      "controlId": "MAA2-EXT-02-PENTEST-RETEST",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "external_assurance",
+      "reason": "External assurance / certification roadmap — not ESA-text."
+    },
+    {
+      "controlId": "MAA2-EXT-03-DPIA-PRIVACY-REVIEW",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "external_assurance",
+      "reason": "External assurance / certification roadmap — not ESA-text."
+    },
+    {
+      "controlId": "MAA2-EXT-04-SUBPROCESSOR-TRANSFER-REVIEW",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "external_assurance",
+      "reason": "External assurance / certification roadmap — not ESA-text."
+    },
+    {
+      "controlId": "MAA2-EXT-05-ACCESSIBILITY-REVIEW",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "external_assurance",
+      "reason": "External assurance / certification roadmap — not ESA-text."
+    },
+    {
+      "controlId": "MAA2-EXT-06-ISO27001-READINESS",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "external_assurance",
+      "reason": "External assurance / certification roadmap — not ESA-text."
+    },
+    {
+      "controlId": "MAA2-EXT-07-SOC2-READINESS",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "external_assurance",
+      "reason": "External assurance / certification roadmap — not ESA-text."
+    },
+    {
+      "controlId": "MAA2-EXT-08-SSO-IMPLEMENTATION",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "external_assurance",
+      "reason": "External assurance / certification roadmap — not ESA-text."
+    },
+    {
+      "controlId": "MAA2-EXT-09-CONFIGURABLE-RESIDENCY",
+      "originalProposedStage": "roadmap",
+      "effectiveActivationStage": "external_assurance",
+      "reason": "External assurance / certification roadmap — not ESA-text."
+    }
+  ],
+  "note": "Permanent control IDs preserved; effective stage may differ from original proposed stage."
+}

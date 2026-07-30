@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "stage20-historical-activation-correction@v1.0.0",
+  "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+  "problem": "Future-activation matrix previously showed Stage 20 with 0 controls, which erased the fact that all 24 V1 controls were exercised in Stage 20.",
+  "correction": {
+    "historicalStage20ControlCount": 24,
+    "historicalStage20ControlIds": [
+      "MAA-INGEST-COVERAGE",
+      "MAA-DOC-LIFECYCLE",
+      "MAA-PARTIES-ATTRIBUTION",
+      "MAA-CHARGE-MODEL",
+      "MAA-EVIDENCE-STATE",
+      "MAA-CHRONOLOGY-HEARING",
+      "MAA-PROVENANCE",
+      "MAA-RELIABILITY",
+      "MAA-COMPLETENESS",
+      "MAA-DEFENCE-LENS",
+      "MAA-PROSECUTION-LENS",
+      "MAA-JUDICIAL-LENS",
+      "MAA-LEGAL-CURRENTNESS",
+      "MAA-AUDIENCE-WORDING",
+      "MAA-ACTION-QUALITY",
+      "MAA-CROSS-EXIT",
+      "MAA-CROSS-SURFACE",
+      "MAA-CHASE-QUALITY",
+      "MAA-HALLUCINATION",
+      "MAA-SECURITY-PRIVACY",
+      "MAA-RESILIENCE",
+      "MAA-OUTPUT-DESIGN",
+      "MAA-HUMAN-SUPERVISION",
+      "MAA-BIAS-FAIRNESS"
+    ],
+    "futureActivationStage20ControlCount": 0,
+    "currentActivationStageForV1": "50",
+    "previousRunEvidenceRewritten": false,
+    "preservedIdsLanesVersions": true
+  },
+  "evidencePointers": [
+    "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-20-2026-07-29T18-08-29-011Z/",
+    "artifacts/casebrain-qa/assurance/master-auditor-v1/maa-20-2026-07-29T02-06-10-674Z/"
+  ]
+}

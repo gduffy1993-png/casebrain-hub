@@ -1,0 +1,5 @@
+{
+  "schemaVersion": "source-claim-alignment-report@1.0.0",
+  "policy": "Semantic similarity alone cannot create confirmed pass/defect in this unit.",
+  "deterministicOnly": true
+}

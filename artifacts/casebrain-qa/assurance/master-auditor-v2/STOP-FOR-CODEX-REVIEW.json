@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "maa-v2-foundation-remediation-stop@1.1.0",
+  "title": "STOP FOR CODEX REVIEW — MAA V2.2 final foundation corrections",
+  "createdAt": "2026-07-29T23:52:45.716Z",
+  "baselineCommit": "7066cb6fe740ef43c98cc0b683ef04f8a7d0b127",
+  "foundationVersion": "2.2.0",
+  "status": "CAPTURE_AND_CALIBRATION_FOUNDATION_COMPLETE",
+  "foundationImplementationComplete": false,
+  "finalFoundationCorrectionsApplied": true,
+  "programmePassSupported": false,
+  "stage150Started": false,
+  "stage150SampleFrozen": false,
+  "stage150ControlsRun": false,
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "overallAllowed": false,
+  "applicationBehaviourChanged": false,
+  "committed": false,
+  "freezeHash": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "inventoryBefore": {
+    "sourceLeafCount": 8437,
+    "includedLedgerRows": 3243,
+    "excludedLedgerRows": 5194,
+    "reconciliationIdentity": true,
+    "uniqueExactStrings": 628,
+    "uniqueTemplates": 627,
+    "inventoryBytes": 6274865,
+    "occurrenceLedgerBytes": 2848528
+  },
+  "inventoryAfter": {
+    "sourceLeafCount": 8437,
+    "includedLedgerRows": 3413,
+    "excludedLedgerRows": 5024,
+    "reconciliationIdentity": true,
+    "uniqueExactStrings": 629,
+    "uniqueTemplates": 628,
+    "inventoryBytes": 6275985,
+    "occurrenceLedgerBytes": 2988384
+  },
+  "inventory": {
+    "sourceLeafCount": 8437,
+    "includedLedgerRows": 3413,
+    "excludedLedgerRows": 5024,
+    "reconciliationIdentity": true,
+    "uniqueExactStrings": 629,
+    "uniqueTemplates": 628,
+    "inventoryBytes": 6275985,
+    "occurrenceLedgerBytes": 2988384
+  },
+  "sendabilityLabelCorrection": {
+    "humanReadableSolicitorReviewRequiredIncluded": true,
+    "expectedAdditionalIncludedApprox": 170,
+    "includedDelta": 170
+  },
+  "shadow": {
+    "runId": "v2-shadow-stage50-2026-07-29T23-52-36-465Z",
+    "cases": 50,
+    "candidates": 0,
+    "priorCandidatesDisposedAsFp": 2,
+    "calibrationOnly": true,
+    "notStage150": true
+  },
+  "statusCounts": {
+    "implemented": 24,
+    "specified_not_implemented": 235,
+    "partially_implemented": 3,
+    "browser_required": 47,
+    "engineering_required": 11,
+    "operational_evidence_required": 24,
+    "human_required": 8,
+    "external_assurance_required": 9
+  },
+  "statusBefore": {
+    "implemented": 24,
+    "specified_not_implemented": 235,
+    "partially_implemented": 3,
+    "browser_required": 47,
+    "engineering_required": 11,
+    "operational_evidence_required": 24,
+    "human_required": 8,
+    "external_assurance_required": 9
+  },
+  "partiallyImplementedControlIds": [
+    "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+    "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF"
+  ],
+  "evidenceLockedDraftingControls": 14,
+  "evidenceLockedDraftingStatus": {
+    "specified_not_implemented": 14
+  },
+  "resumeProvenByTest": true,
+  "resumeLedgerByteIdentical": true,
+  "blindingPersistsPreTruthLedger": true,
+  "reviewBatchCount": 13,
+  "note": "Final foundation corrections: sendabilityLabel human text included; genuine resume proof; Brain1/Guardian blob IDs; persisted pre-truth ledger hash. Stage 150 blocked. Uncommitted."
+}

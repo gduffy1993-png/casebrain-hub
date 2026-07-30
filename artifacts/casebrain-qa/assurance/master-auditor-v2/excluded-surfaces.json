@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "excluded-surfaces@1.0.0",
+  "surfaces": [
+    {
+      "surfaceId": "cockpit",
+      "reason": "Not present as saved field on ESA casebrain-output.json packets",
+      "requiredFutureAdapterOrStage": "authenticated_browser_or_live_materialisation",
+      "verdict": "not_exercised"
+    },
+    {
+      "surfaceId": "war_room",
+      "reason": "Not present as saved field on ESA casebrain-output.json packets",
+      "requiredFutureAdapterOrStage": "authenticated_browser_or_live_materialisation",
+      "verdict": "not_exercised"
+    },
+    {
+      "surfaceId": "control_room",
+      "reason": "Not present as saved field on ESA casebrain-output.json packets",
+      "requiredFutureAdapterOrStage": "authenticated_browser_or_live_materialisation",
+      "verdict": "not_exercised"
+    },
+    {
+      "surfaceId": "key_facts",
+      "reason": "Not present as saved field on ESA casebrain-output.json packets",
+      "requiredFutureAdapterOrStage": "authenticated_browser_or_live_materialisation",
+      "verdict": "not_exercised"
+    },
+    {
+      "surfaceId": "client_summary",
+      "reason": "Not present as saved field on ESA casebrain-output.json packets",
+      "requiredFutureAdapterOrStage": "authenticated_browser_or_live_materialisation",
+      "verdict": "not_exercised"
+    },
+    {
+      "surfaceId": "api",
+      "reason": "Not present as saved field on ESA casebrain-output.json packets",
+      "requiredFutureAdapterOrStage": "authenticated_browser_or_live_materialisation",
+      "verdict": "not_exercised"
+    },
+    {
+      "surfaceId": "pdf",
+      "reason": "Not present as saved field on ESA casebrain-output.json packets",
+      "requiredFutureAdapterOrStage": "authenticated_browser_or_live_materialisation",
+      "verdict": "not_exercised"
+    },
+    {
+      "surfaceId": "composed_prose",
+      "reason": "Not present as saved field on ESA casebrain-output.json packets",
+      "requiredFutureAdapterOrStage": "authenticated_browser_or_live_materialisation",
+      "verdict": "not_exercised"
+    },
+    {
+      "surfaceId": "papers_workspace",
+      "reason": "Not present as saved field on ESA casebrain-output.json packets",
+      "requiredFutureAdapterOrStage": "authenticated_browser_or_live_materialisation",
+      "verdict": "not_exercised"
+    }
+  ],
+  "note": "exportVersion content IS present on packets — export_review_footer / export_blocked_reason are inventoried; live composed export UI remains not_exercised."
+}

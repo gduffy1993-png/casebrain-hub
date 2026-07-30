@@ -1,0 +1,3242 @@
+{
+  "schemaVersion": "stage150-minimum-denominators@v1.0.0",
+  "policy": "Do not invent arbitrary thresholds. PENDING_APPROVAL blocks Stage-150 execution for that control. Insufficient denominator → not_exercised or unresolved — never pass.",
+  "stage150ControlCount": 147,
+  "pendingApprovalCount": 147,
+  "rows": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "pages_with_redaction_candidates",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "source_documents_with_page_labels",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "substantive_claims_with_page_cite",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "explicit_document_references",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "files_attempted",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "extracted_spans_used_in_outputs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "uploaded_files",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "instruments_with_status_cues",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "documents_with_replacement_cues",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "versioned_document_groups",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "attachment_callouts",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "exhibit_labels",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "alias_candidate_pairs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "documents_with_extract_cues",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "media_evidence_units",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "recording_transcript_pairs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "statements_with_status_cues",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "disclosure_instruments",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-13-CODEFENDANT-ONLY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "multi_defendant_evidence_units",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "conflict_or_quarantine_candidates",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "aggregated_totals_in_outputs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "asserted_evidence_relationships",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "named_person_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "count_references",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "charge_wording_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "date_time_location_money_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "exhibit_or_document_references",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "claims_derived_from_negated_source",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "qualified_source_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "allegation_derived_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "operative_wording_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "explicit_quotations",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "paraphrased_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "substantive_statements",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "allegation_spans",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "submission_spans",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "hypothesis_spans",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "surfaces_emitting_legal_state",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "charge_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "charge_allocations",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "structured_charges",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "operative_charge_displays",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "charges_with_instrument_cues",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "amended_charges",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-07-STATUTORY-PROVISION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "charges_needing_provision",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "charge_verification_rows",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "disputed_charge_exits",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "registry_suggestions",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "charge_issue_rows",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "charge_displays",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "evidence_units",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "evidence_state_rows",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "unreliable_labels",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "reliability_reasons",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "multi_defendant_cases",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "owned_documents",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "statements",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "digital_attribution_units",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "possession_use_knowledge_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "group_evidence_units",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "attribution_inferences",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "multi_defendant_output_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "attribution_limitation_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "timestamp_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "events_with_multi_timestamps",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "ordered_event_chains",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "custody_interview_cases",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "hearing_notice_sets",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "cases_with_dob_and_dates",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "deadline_countdowns",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "displayed_totals",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "chronology_events",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "derived_numeric_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "legal_propositions",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "authority_citations",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "authority_citations",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "authority_citations",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "authority_citations",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "authority_citations",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "authority_citations_without_currency",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "legal_propositions",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-PRC-01-STAGE-TAGGING",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "stage_sensitive_recommendations",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "action_recommendations",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "youth_or_age_cue_cases",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "cases_with_fitness_cues",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "disclosure_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHS-01-FIVE-PART-FINDING",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "important_findings",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "chase_items",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "chase_items",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "chase_items",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHS-05-NO-TEMPLATE-ONLY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "chase_items",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "chase_items",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "chase_items_with_state_change",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "chase_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CHS-09-CPS-PROFESSIONAL-LANGUAGE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "cps_facing_chases",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-01-GRAMMAR-SENTENCES",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "copyable_text_blocks",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "copyable_text_blocks",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "disclaimer_blocks",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "list_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-05-TEMPLATE-JOINS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "templated_blocks",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-06-SPACES-PUNCTUATION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "copyable_text_blocks",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "list_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-08-CAPITALISATION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "copyable_text_blocks",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-09-PROTECTED-ACRONYMS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "surfaces_with_protected_acronyms",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "solicitor_facing_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "primary_summary_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "professional_audience_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "action_surface_warnings",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "primary_view_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "proof_claims",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "solicitor_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "client_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "court_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "cps_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "supervisor_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "external_audience_exits",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "audiences_in_scope_for_run",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "disputed_charge_exit_pairs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "incomplete_evidence_exit_pairs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "attribution_limitation_exit_pairs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "currency_warning_exit_pairs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "inferred_date_exit_pairs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "qualified_total_exit_pairs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "exit_pairs_compared",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "exit_slots_per_case",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "primary_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "primary_surfaces",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "cockpit_sessions",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "detected_contradictions",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "contradiction_lists",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "defence_opportunity_slots",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "defence_opportunity_emissions",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "cases_in_perspective_panel",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "cases_in_perspective_panel",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "cases_in_perspective_panel",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "cases_with_client_exit",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "cases_in_perspective_panel",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "perspective_panel_runs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "maa_runs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "frozen_sample_runs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "maa_runs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "maa_runs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "maa_runs_with_model",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "maa_runs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "maa_runs",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "change_events",
+      "blockedUntilApproval": true
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "eligiblePopulation": {
+        "description": "ESA unique-valid packets that expose required H5 fields for this control",
+        "upperBoundUniqueValid": 499,
+        "resolvedEligibleCount": "PENDING_OBSERVATION"
+      },
+      "minimumEligibleCases": "PENDING_APPROVAL",
+      "minimumPositiveProbes": "PENDING_APPROVAL",
+      "minimumNegativeProbes": "PENDING_APPROVAL",
+      "minimumDistinctFamilies": "PENDING_APPROVAL",
+      "minimumDistinctEvidenceOrDocumentPatterns": "PENDING_APPROVAL",
+      "exclusions": [
+        "incomplete packets missing required trio",
+        "cosmetic diverse-corpus variants excluded from core denom",
+        "exits not evidenced on ESA H5"
+      ],
+      "insufficientDenominatorOutcome": "not_exercised",
+      "neverPassOnInsufficientDenominator": true,
+      "symbolicDenominatorReplaced": "frozen_regression_runs",
+      "blockedUntilApproval": true
+    }
+  ]
+}
