@@ -22,7 +22,7 @@ import type { ImplementationStatusV22, SharedEngineId } from "../every-word/type
 import type { ControlHandlerDef } from "../every-word/types";
 import { STAGE150_BATCH2_HANDLERS } from "./batch2-registry";
 import { STAGE150_BATCH3_HANDLERS } from "./batch3-registry";
-import { BATCH5_IMPLEMENTED_IDS } from "./batch5-implemented";
+import { STAGE150_IMPLEMENTED_IDS } from "./batch5-implemented";
 /** Batch-4 scaffolds are adapter_foundation_only — not registered as packet-local handlers. */
 
 export type Stage150HandlerDef = ControlHandlerDef & {
@@ -82,7 +82,9 @@ export const STAGE150_BATCH1_HANDLERS: Stage150HandlerDef[] = [
     intelligenceFamily: "charge_integrity",
     requiredInputs: [...WORDING],
     unavailableVerdict: "not_exercised",
-    ownershipNote: "Submission collapsed into finding; historical court findings alone are negative.",
+    detectorClassification: "phrase_probe_only",
+    ownershipNote:
+      "phrase_probe_only until submission state and judicial finding state are represented separately and compared. Wording cue alone is not named-control exercise.",
   },
   {
     controlId: "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
@@ -112,7 +114,9 @@ export const STAGE150_BATCH1_HANDLERS: Stage150HandlerDef[] = [
     intelligenceFamily: "charge_integrity",
     requiredInputs: [...WORDING],
     unavailableVerdict: "not_exercised",
-    ownershipNote: "Silent rewrite admission.",
+    detectorClassification: "phrase_probe_only",
+    ownershipNote:
+      "phrase_probe_only until earlier and later wording/version records are compared and an unreceipted change is detected.",
   },
   {
     controlId: "MAA2-BND-09-STILL-CLIP-VS-MASTER",
@@ -171,8 +175,11 @@ export const STAGE150_BATCH1_HANDLERS: Stage150HandlerDef[] = [
     inputEligibility: "non-empty /evidenceStates",
     intelligenceFamily: "evidence_identity_state",
     requiredInputs: ["casebrain-output.json", "nonempty:/evidenceStates"],
+    namedControlRequiredInputs: ["casebrain-output.json", "nonempty:/evidenceStates"],
+    exactPrerequisiteEvidenceRefs: ["/evidenceStates/*/inferredSourceState"],
+    detectorClassification: "genuine_structured_detector",
     unavailableVerdict: "not_exercised",
-    ownershipNote: "Unknown inferredSourceState tokens.",
+    ownershipNote: "Unknown inferredSourceState tokens on structured evidenceStates rows.",
   },
   {
     controlId: "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
@@ -186,8 +193,14 @@ export const STAGE150_BATCH1_HANDLERS: Stage150HandlerDef[] = [
     inputEligibility: "non-empty /fiveAnswersEvidenceRows",
     intelligenceFamily: "provenance_reliability",
     requiredInputs: ["casebrain-output.json", "nonempty:/fiveAnswersEvidenceRows"],
+    namedControlRequiredInputs: ["casebrain-output.json", "nonempty:/fiveAnswersEvidenceRows"],
+    exactPrerequisiteEvidenceRefs: [
+      "/fiveAnswersEvidenceRows/*/existence",
+      "/fiveAnswersEvidenceRows/*/reliability",
+    ],
+    detectorClassification: "genuine_structured_detector",
     unavailableVerdict: "not_exercised",
-    ownershipNote: "Unreliable without reason note.",
+    ownershipNote: "Unreliable without reason note on structured fiveAnswers rows.",
   },
   {
     controlId: "MAA2-ATR-01-DEFENDANT-SEPARATION",
@@ -475,18 +488,18 @@ export function statusForStage150Control(args: {
       reason: "Prompt-injection ownership is SEC-01 (activation stage 300) — not Stage-150 packet-local.",
     };
   }
-  if (BATCH5_IMPLEMENTED_IDS.has(args.controlId)) {
+  if (STAGE150_IMPLEMENTED_IDS.has(args.controlId)) {
     return {
       status: "implemented",
       reason:
-        "Batch-5 immutable promotion registry: control-specific runtime, ESA non-synthetic inputs, resolving contracts, 499 calibration + freeze/triage. currentlyRunnableOnStage150 remains false; Stage-150 selection/execution gates remain FALSE. Denominator approval PENDING_REVIEW.",
+        "Immutable Stage-150 promotion registry (Batch-5 preserved + Batch-6 extensions): control-specific runtime, ESA non-synthetic inputs, resolving contracts, 499 calibration + freeze/triage. currentlyRunnableOnStage150 remains false; Stage-150 selection/execution gates remain FALSE. Denominator approval PENDING_REVIEW.",
     };
   }
   if (STAGE150_PARTIAL_IDS.has(args.controlId)) {
     return {
       status: "partially_implemented",
       reason:
-        "Packet-local detector + contracts + adapters exist; not fully implemented until Batch-5 acceptance bar (contracts+calibration+triage) proven. CurrentlyRunnable remains false.",
+        "Packet-local detector + contracts + adapters exist; not fully implemented until Batch-5/6 acceptance bar (contracts+calibration+triage) proven. CurrentlyRunnable remains false.",
     };
   }
   if (args.familyCode === "ELD") {

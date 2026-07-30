@@ -10,6 +10,7 @@ import path from "node:path";
 import { describe, it } from "node:test";
 
 import { STAGE150_PACKET_LOCAL_HANDLERS } from "../lib/eval/master-assurance-auditor/v2/stage150/detector-registry";
+import { STAGE150_IMPLEMENTED_IDS } from "../lib/eval/master-assurance-auditor/v2/stage150/batch5-implemented";
 import {
   STAGE150_BATCH4_FOUNDATION_SCAFFOLDS,
   STAGE150_BATCH4_HANDLERS,
@@ -92,11 +93,12 @@ describe("Batch-4 honesty classification of 55 controls", () => {
     assert.equal(STAGE150_BATCH4_FOUNDATION_SCAFFOLDS.length, 48);
     const matrix = buildStage150ImplementationCapabilityMatrix();
     assert.equal(matrix.totals.stage150ControlCount, 161);
-    // Batch-5 immutable promotions: 5 implemented; remaining packet-local partials = 101
-    assert.equal(matrix.totals.partially_implemented, 101);
-    assert.equal(matrix.totals.implemented, 5);
+    // Batch-5 + Batch-6 immutable promotions; remaining packet-local partials = 106 - implemented
+    assert.equal(matrix.totals.implemented, STAGE150_IMPLEMENTED_IDS.size);
+    assert.equal(matrix.totals.partially_implemented, 106 - STAGE150_IMPLEMENTED_IDS.size);
     assert.equal(matrix.totals.specified_not_implemented, 55);
     assert.equal(STAGE150_PACKET_LOCAL_HANDLERS.length, 55 + 51);
+
     assert.equal(batch4DispositionCounts().stage150_essential_implement, 48);
   });
 

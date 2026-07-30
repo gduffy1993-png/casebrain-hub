@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "stage150-implementation-totals@1.5.0",
+  "baselineCommit": "85b597356ac332c309a9f6e7db4dd97c2276ffa3",
+  "before": {
+    "partially_implemented": 101,
+    "specified_not_implemented": 55,
+    "implemented": 5
+  },
+  "after": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 99,
+    "specified_not_implemented": 55,
+    "implemented": 7,
+    "other": 0
+  },
+  "batch6Promoted": [
+    "MAA2-EVS-02-STATE-ENUM",
+    "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED"
+  ],
+  "batch6ReturnedToPartial": [
+    "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+    "MAA2-FID-09-NO-SILENT-CORRECTION",
+    "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+    "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+    "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE"
+  ],
+  "note": "Honesty correction: only EVS-02/EVS-03 promoted. Stage-150 currentlyRunnable remains false. Promotion via immutable registry only."
+}

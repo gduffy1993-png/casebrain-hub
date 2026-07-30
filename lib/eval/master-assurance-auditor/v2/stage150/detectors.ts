@@ -321,7 +321,7 @@ export function evaluateEvidenceIdentityState(ctx: Stage150EvalContext): Stage15
           findingCode: "EVS_UNKNOWN_STATE_TOKEN",
           occurrenceRef: `/evidenceStates/${i}/inferredSourceState`,
           exactWording: state,
-          candidateClass: "unresolved",
+          candidateClass: "candidate_defect",
           plainEnglish: `Unrecognised evidence state token: ${state}`,
           evidenceRefs: [`/evidenceStates/${i}/inferredSourceState`, `/evidenceStates/${i}/label`],
         }),

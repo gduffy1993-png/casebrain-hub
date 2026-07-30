@@ -22,6 +22,7 @@ import {
   BATCH5_IMPLEMENTED_IDS,
   BATCH5_IMMUTABLE_PROMOTION_REGISTRY,
   BATCH5_PROMOTION_BY_ID,
+  STAGE150_IMPLEMENTED_IDS,
   ZERO_CANDIDATE_RATE_NOTE,
 } from "../lib/eval/master-assurance-auditor/v2/stage150/batch5-implemented";
 import { buildControlRateRow, triageCandidate } from "../lib/eval/master-assurance-auditor/v2/stage150/batch5-triage";
@@ -69,9 +70,11 @@ describe("Batch-5 inventory / selection honesty", () => {
     const m = buildStage150ImplementationCapabilityMatrix();
     assert.equal(m.totals.stage150ControlCount, 161);
     assert.ok(m.rows.every((r) => r.currentlyRunnableOnStage150 === false));
-    assert.equal(m.totals.implemented, BATCH5_IMPLEMENTED_IDS.size);
-    assert.equal(m.totals.implemented, 5);
-    assert.equal(m.totals.partially_implemented, 101);
+    assert.equal(BATCH5_IMPLEMENTED_IDS.size, 5);
+    assert.equal(BATCH5_IMMUTABLE_PROMOTION_REGISTRY.length, 5);
+    assert.ok([...BATCH5_IMPLEMENTED_IDS].every((id) => STAGE150_IMPLEMENTED_IDS.has(id)));
+    assert.equal(m.totals.implemented, STAGE150_IMPLEMENTED_IDS.size);
+    assert.equal(m.totals.partially_implemented, 106 - STAGE150_IMPLEMENTED_IDS.size);
     assert.equal(m.totals.specified_not_implemented, 55);
   });
 });

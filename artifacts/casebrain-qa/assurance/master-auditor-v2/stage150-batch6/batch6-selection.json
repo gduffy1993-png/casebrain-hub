@@ -1,0 +1,245 @@
+{
+  "schemaVersion": "batch6-selection@1.1.0",
+  "selectedCount": 2,
+  "selected": [
+    {
+      "controlId": "MAA2-EVS-02-STATE-ENUM",
+      "selected": true,
+      "rank": 1,
+      "totalScore": 39,
+      "familyCode": "EVS",
+      "reason": "Evidence identity/state: unknown inferredSourceState enum on nonempty evidenceStates; structured named-control receipts.",
+      "requiredContracts": [
+        "positive",
+        "multiple_safe_negatives",
+        "unavailable_input",
+        "mutation"
+      ],
+      "esaInputBasis": "non-synthetic ESA nonempty:/evidenceStates or nonempty:/fiveAnswersEvidenceRows"
+    },
+    {
+      "controlId": "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+      "selected": true,
+      "rank": 2,
+      "totalScore": 35,
+      "familyCode": "EVS",
+      "reason": "Evidence reliability: unreliable without source-bound reason note on fiveAnswers rows; structured named-control receipts.",
+      "requiredContracts": [
+        "positive",
+        "multiple_safe_negatives",
+        "unavailable_input",
+        "mutation"
+      ],
+      "esaInputBasis": "non-synthetic ESA nonempty:/evidenceStates or nonempty:/fiveAnswersEvidenceRows"
+    }
+  ],
+  "returnedToPartial": [
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "implementationStatus": "partially_implemented",
+      "detectorClassification": "phrase_probe_only",
+      "promotionBlockedReason": "phrase_probe_only — current detector matches wording cues only; cannot prove submission→finding collapse as a named control.",
+      "requiredBeforePromotion": "Represent submission state and judicial finding state separately and compare them; wording-only probe is insufficient for promotion."
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "implementationStatus": "partially_implemented",
+      "detectorClassification": "phrase_probe_only",
+      "promotionBlockedReason": "phrase_probe_only — current detector matches silent-correction phrasing only; no version/receipt comparison.",
+      "requiredBeforePromotion": "Compare earlier and later wording/version records and detect an unreceipted change; admission phrasing alone is insufficient."
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "implementationStatus": "partially_implemented",
+      "detectorClassification": "genuine_structured_detector",
+      "promotionBlockedReason": "partial — export reviewFooter is not the copy exit; view vs copy sendability receipts are not compared.",
+      "requiredBeforePromotion": "Compare actual view and copy exit payload/sendability receipts. Export footer must not be treated as the copy exit."
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "implementationStatus": "partially_implemented",
+      "detectorClassification": "genuine_structured_detector",
+      "promotionBlockedReason": "partial — empty fiveAnswers alone is only a narrow probe, not a required-information inventory across surfaces.",
+      "requiredBeforePromotion": "Compare a required-information inventory with all applicable output surfaces (view/copy/export/API/composed prose)."
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "implementationStatus": "partially_implemented",
+      "detectorClassification": "genuine_structured_detector",
+      "promotionBlockedReason": "partial — court wording + doNotOverstate cue is not structured charge-dispute state across exits.",
+      "requiredBeforePromotion": "Check structured charge-dispute state and attached warning across view/copy/export/API/composed prose."
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "implementationStatus": "partially_implemented",
+      "detectorClassification": "genuine_string_quality_detector",
+      "promotionBlockedReason": "partial — evidenceAnchor wording is only a probe; distinct sourcePage/compiledPage/pageIdentityKnown fields are absent.",
+      "requiredBeforePromotion": "Compare distinct structured sourcePage, compiledPage and pageIdentityKnown fields. evidenceAnchor wording alone is insufficient."
+    }
+  ],
+  "notSelectedPrioritySample": [
+    {
+      "controlId": "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "reason": "partial — export reviewFooter is not the copy exit; view vs copy sendability receipts are not compared."
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+      "reason": "partial — empty fiveAnswers alone is only a narrow probe, not a required-information inventory across surfaces."
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHG-13-NO-GENERIC-VERIFY-REPLACE",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-FID-02-COUNT-NUMBERS",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "reason": "partial — evidenceAnchor wording is only a probe; distinct sourcePage/compiledPage/pageIdentityKnown fields are absent."
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "reason": "partial — court wording + doNotOverstate cue is not structured charge-dispute state across exits."
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-XEX-05-INFERRED-DATE-QUALIFIED",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "reason": "Not in Batch-6 honesty-corrected promotion cohort — remains partially_implemented"
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "reason": "FID-10 excluded — no new source-binding capability; remains partial"
+    },
+    {
+      "controlId": "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "reason": "phrase_probe_only — current detector matches silent-correction phrasing only; no version/receipt comparison."
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "reason": "phrase_probe_only — current detector matches wording cues only; cannot prove submission→finding collapse as a named control."
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "reason": "phrase_probe_only — not selected for promotion"
+    },
+    {
+      "controlId": "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "reason": "phrase_probe_only — not selected for promotion"
+    },
+    {
+      "controlId": "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "reason": "phrase_probe_only — not selected for promotion"
+    },
+    {
+      "controlId": "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "reason": "phrase_probe_only — not selected for promotion"
+    }
+  ],
+  "excludedFid10": true,
+  "excludedPhraseProbe": true,
+  "honestyNote": "Promoted 2; returned 6 over-promoted narrow probes to partially_implemented."
+}
