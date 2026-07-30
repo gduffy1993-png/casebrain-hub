@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "batch7-candidate-freeze@1.0.0",
+  "baselineCommit": "200c3e4d79ac7e1a837a538a723445d7e9c3884f",
+  "headCommit": "200c3e4d79ac7e1a837a538a723445d7e9c3884f",
+  "frozenAt": "2026-07-30T21:12:50.264Z",
+  "truthOpenedBeforeFreeze": false,
+  "caseCount": 499,
+  "candidateCount": 0,
+  "outputFreezeSha256": "dff3d5a6b6ef079f362be3259288c283ecd1e586a33abe9211bd725fe49831d6",
+  "candidateIdSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "note": "Output hashes and candidate IDs frozen before triage. Truth/source not opened."
+}

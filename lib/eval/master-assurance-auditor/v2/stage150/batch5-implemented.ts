@@ -222,10 +222,50 @@ export const BATCH6_IMMUTABLE_PROMOTION_REGISTRY: readonly Batch5ImmutablePromot
   },
 ] as const;
 
-/** Sole Stage-150 promotion authority: Batch-5 preserved + Batch-6 extensions. */
+/**
+ * Batch-7 immutable promotions — extends Batch-5/6 registry; does not replace prior entries.
+ * Honesty correction: EVS-01 only (ATR-01 returned to partially_implemented).
+ * Zero-candidate rates unavailable (not 0/0).
+ */
+const C7 = "scripts/maa-v2-stage150-batch7-contracts.test.ts";
+const B7_EVIDENCE = [
+  "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch7/batch7-candidate-freeze.json",
+  "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch7/batch7-triage-pass-B.json",
+  "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch7/batch7-499-exercise-receipt-index.json",
+  "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch7/evidence-dimension-domain-registry.json",
+] as const;
+
+export const BATCH7_IMMUTABLE_PROMOTION_REGISTRY: readonly Batch5ImmutablePromotionEntry[] = [
+  {
+    controlId: "MAA2-EVS-01-DIMENSION-SEPARATION",
+    implementationStatus: "implemented",
+    implementationEvidenceRefs: [
+      "lib/eval/master-assurance-auditor/v2/stage150/evidence-dimension-domain-registry.ts",
+      "lib/eval/master-assurance-auditor/v2/stage150/batch2-detectors.ts#dimension_collapse",
+      ...B7_EVIDENCE,
+    ],
+    contractRefs: {
+      positive: `${C7}#evs01_positive_differing_token_collapse`,
+      negatives: `${C7}#evs01_negatives_valid_separated`,
+      unavailable: `${C7}#evs01_unavailable`,
+      mutation: `${C7}#evs01_mutation`,
+    },
+    calibrationPopulation: 499,
+    candidateDenominator: 0,
+    promotionReason:
+      "Versioned evidence-dimension domain registry (disjoint existence/reliability) + bidirectional collapse/out-of-domain detector with honest named-control receipts. Zero candidates — rates unavailable (not 0/0).",
+    denominatorApprovalState: "PENDING_REVIEW",
+    reviewer: "",
+    reviewDate: "",
+    rateHonestyNote: ZERO_CANDIDATE_NOTE,
+  },
+] as const;
+
+/** Sole Stage-150 promotion authority: Batch-5 + Batch-6 + Batch-7. */
 export const STAGE150_IMMUTABLE_PROMOTION_REGISTRY: readonly Batch5ImmutablePromotionEntry[] = [
   ...BATCH5_IMMUTABLE_PROMOTION_REGISTRY,
   ...BATCH6_IMMUTABLE_PROMOTION_REGISTRY,
+  ...BATCH7_IMMUTABLE_PROMOTION_REGISTRY,
 ];
 
 export const BATCH5_IMPLEMENTED_IDS: ReadonlySet<string> = new Set(
@@ -234,6 +274,10 @@ export const BATCH5_IMPLEMENTED_IDS: ReadonlySet<string> = new Set(
 
 export const BATCH6_IMPLEMENTED_IDS: ReadonlySet<string> = new Set(
   BATCH6_IMMUTABLE_PROMOTION_REGISTRY.map((e) => e.controlId),
+);
+
+export const BATCH7_IMPLEMENTED_IDS: ReadonlySet<string> = new Set(
+  BATCH7_IMMUTABLE_PROMOTION_REGISTRY.map((e) => e.controlId),
 );
 
 export const STAGE150_IMPLEMENTED_IDS: ReadonlySet<string> = new Set(
@@ -246,6 +290,10 @@ export const BATCH5_PROMOTION_BY_ID: ReadonlyMap<string, Batch5ImmutablePromotio
 
 export const BATCH6_PROMOTION_BY_ID: ReadonlyMap<string, Batch5ImmutablePromotionEntry> = new Map(
   BATCH6_IMMUTABLE_PROMOTION_REGISTRY.map((e) => [e.controlId, e]),
+);
+
+export const BATCH7_PROMOTION_BY_ID: ReadonlyMap<string, Batch5ImmutablePromotionEntry> = new Map(
+  BATCH7_IMMUTABLE_PROMOTION_REGISTRY.map((e) => [e.controlId, e]),
 );
 
 export const STAGE150_PROMOTION_BY_ID: ReadonlyMap<string, Batch5ImmutablePromotionEntry> = new Map(

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "batch7-honesty-disposition@1.1.0",
+  "atr01": {
+    "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+    "implementationStatus": "partially_implemented",
+    "returnedFromPromotion": true,
+    "reasons": [
+      "Cases with zero other_defendant_only units are not_exercised, not partially_exercised.",
+      "Generic MG labels are not reliable evidence-unit identity.",
+      "Current logic checks only courtNote + doNotOverstate, not all applicable surfaces.",
+      "Full defendant separation requires explicit subjectDefendantId/personId and evidenceUnitId/sourceEvidenceId relationships, plus cross-surface receipts."
+    ],
+    "missingAdapters": [
+      "subjectDefendantId / personId on evidence units",
+      "evidenceUnitId / sourceEvidenceId relationships",
+      "cross-surface defendant-separation receipts (court/client/chase/export/API/PDF)"
+    ]
+  },
+  "evs01": {
+    "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+    "domainsDisjoint": true,
+    "implementationStatus": "implemented",
+    "note": "Promoted after versioned evidence-dimension domain registry established disjoint existence/reliability domains with bidirectional detector + contracts."
+  },
+  "expectedTotals": {
+    "implemented": 8,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55
+  }
+}

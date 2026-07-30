@@ -208,14 +208,28 @@ export const STAGE150_BATCH1_HANDLERS: Stage150HandlerDef[] = [
     handlerId: "codefendant_leak_risk",
     findingCodes: ["ATR_CODEFENDANT_LEAK_RISK"],
     receiptValidator: "maa-v2-candidate-finding@1.0.0",
-    positiveContract: `${C}#atr_sep_positive`,
-    negativeContract: `${C}#atr_sep_negatives`,
+    positiveContract: "scripts/maa-v2-stage150-batch7-contracts.test.ts#atr01_positive",
+    negativeContract: "scripts/maa-v2-stage150-batch7-contracts.test.ts#atr01_negatives",
     runtimePath: "evaluateEvidenceIdentityState→codefendant_leak_risk",
-    inputEligibility: "non-empty /evidenceStates",
+    inputEligibility: "non-empty /fiveAnswersEvidenceRows (other_defendant_only units)",
     intelligenceFamily: "evidence_identity_state",
-    requiredInputs: ["casebrain-output.json", "nonempty:/evidenceStates"],
+    requiredInputs: ["casebrain-output.json", "nonempty:/fiveAnswersEvidenceRows"],
+    namedControlRequiredInputs: [
+      "casebrain-output.json",
+      "nonempty:/fiveAnswersEvidenceRows",
+      "array:/warningsAndGaps/doNotOverstate",
+      "/courtNote/text",
+    ],
+    exactPrerequisiteEvidenceRefs: [
+      "/fiveAnswersEvidenceRows/*/existence",
+      "/fiveAnswersEvidenceRows/*/label",
+      "/warningsAndGaps/doNotOverstate",
+      "/courtNote/text",
+    ],
+    detectorClassification: "unavailable_missing_adapter",
     unavailableVerdict: "not_exercised",
-    ownershipNote: "Co-defendant attribution leak risk.",
+    ownershipNote:
+      "PARTIAL ONLY: other_defendant_only + courtNote/doNotOverstate probe. Not full defendant separation — missing subjectDefendantId/personId, evidenceUnitId/sourceEvidenceId, and cross-surface receipts. Cases with zero other_defendant_only units are not_exercised.",
   },
   {
     controlId: "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
@@ -492,7 +506,7 @@ export function statusForStage150Control(args: {
     return {
       status: "implemented",
       reason:
-        "Immutable Stage-150 promotion registry (Batch-5 preserved + Batch-6 extensions): control-specific runtime, ESA non-synthetic inputs, resolving contracts, 499 calibration + freeze/triage. currentlyRunnableOnStage150 remains false; Stage-150 selection/execution gates remain FALSE. Denominator approval PENDING_REVIEW.",
+        "Immutable Stage-150 promotion registry (Batch-5/6/7): control-specific runtime, ESA non-synthetic inputs, resolving contracts, 499 calibration + freeze/triage. currentlyRunnableOnStage150 remains false; Stage-150 selection/execution gates remain FALSE. Denominator approval PENDING_REVIEW.",
     };
   }
   if (STAGE150_PARTIAL_IDS.has(args.controlId)) {

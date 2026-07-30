@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "batch7-499-exercise-receipt-index@1.0.0",
+  "relativePath": "raw-receipts/batch7-499-exercise-receipts.jsonl",
+  "sha256": "567b5a8601395a5955f31c05eb0a339045c45edc52c8de254d5da451135fe048",
+  "byteLength": 4467066,
+  "lineCount": 998,
+  "regenerable": true,
+  "gitPolicy": "gitignore_regenerate",
+  "denominators": {
+    "caseCount": 499,
+    "controlCount": 2,
+    "occurrenceCandidatesPassB": 0,
+    "note": "case / control / occurrence kept separate — not conflated"
+  }
+}

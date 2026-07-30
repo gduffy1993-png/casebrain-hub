@@ -310,8 +310,6 @@ export function evaluateEvidenceIdentityState(ctx: Stage150EvalContext): Stage15
   ]);
   states.forEach((row, i) => {
     const state = str(row.inferredSourceState).toLowerCase();
-    const label = str(row.label);
-    const anchor = str(row.evidenceAnchor);
     if (state && !known.has(state) && state !== "null") {
       hits.push(
         hit({
@@ -327,32 +325,76 @@ export function evaluateEvidenceIdentityState(ctx: Stage150EvalContext): Stage15
         }),
       );
     }
-    if (/\bco-?defendant\b/i.test(label + " " + anchor)) {
-      if (
-        /\b(attributed|applied|against)\s+(the\s+)?defendant\b/i.test(anchor) &&
-        !/\bour client\b/i.test(label + " " + anchor)
-      ) {
-        hits.push(
-          hit({
-            engineId: "evidence_attribution",
-            handlerId: "codefendant_leak_risk",
-            controlId: "MAA2-ATR-01-DEFENDANT-SEPARATION",
-            findingCode: "ATR_CODEFENDANT_LEAK_RISK",
-            occurrenceRef: `/evidenceStates/${i}/evidenceAnchor`,
-            exactWording: anchor,
-            candidateClass: "human_review_required",
-            plainEnglish: "Co-defendant material may be attributed to the defendant.",
-            evidenceRefs: [`/evidenceStates/${i}/label`, `/evidenceStates/${i}/evidenceAnchor`],
-          }),
-        );
-      }
-    }
   });
 
   five.forEach((row, i) => {
     const existence = str(row.existence).toLowerCase();
     const reliability = str(row.reliability).toLowerCase();
     const note = str(row.note);
+    const rowLabel = str(row.label);
+
+    // ATR-01 structured: other_defendant_only rows must not leak into this-defendant court affirmation
+    // and must retain an attached co-defendant do-not-import guard.
+    if (existence === "other_defendant_only") {
+      const gaps = (ctx.output.warningsAndGaps ?? {}) as Record<string, unknown>;
+      const dno = (Array.isArray(gaps.doNotOverstate) ? gaps.doNotOverstate : []) as unknown[];
+      const hasCodefGuard = dno.some(
+        (t) => /co-?defendant/i.test(str(t)) && /do not import/i.test(str(t)),
+      );
+      const court = str(((ctx.output.courtNote ?? {}) as Record<string, unknown>).text);
+      const distinctive =
+        rowLabel.match(/\bMG\s*\d+\b/i)?.[0] ??
+        rowLabel.match(/\bexhibit\s+[A-Z0-9-]+\b/i)?.[0] ??
+        null;
+      const courtImportsAsThisDefendant =
+        Boolean(distinctive) &&
+        distinctive !== null &&
+        new RegExp(distinctive.replace(/\s+/g, "\\s*"), "i").test(court) &&
+        /\b(served|our client|this defendant'?s?\s+case)\b/i.test(court) &&
+        !/\b(co-?defendant|not this defendant|other defendant|do not import)\b/i.test(court);
+
+      if (!hasCodefGuard) {
+        hits.push(
+          hit({
+            engineId: "evidence_attribution",
+            handlerId: "codefendant_leak_risk",
+            controlId: "MAA2-ATR-01-DEFENDANT-SEPARATION",
+            findingCode: "ATR_CODEFENDANT_LEAK_RISK",
+            occurrenceRef: `/fiveAnswersEvidenceRows/${i}/existence`,
+            exactWording: `${rowLabel}: other_defendant_only (no co-defendant do-not-import guard)`,
+            candidateClass: "candidate_defect",
+            plainEnglish:
+              "Co-defendant-only evidence row lacks an attached do-not-import co-defendant warning.",
+            evidenceRefs: [
+              `/fiveAnswersEvidenceRows/${i}/existence`,
+              `/fiveAnswersEvidenceRows/${i}/label`,
+              "/warningsAndGaps/doNotOverstate",
+            ],
+          }),
+        );
+      }
+      if (courtImportsAsThisDefendant) {
+        hits.push(
+          hit({
+            engineId: "evidence_attribution",
+            handlerId: "codefendant_leak_risk",
+            controlId: "MAA2-ATR-01-DEFENDANT-SEPARATION",
+            findingCode: "ATR_CODEFENDANT_LEAK_RISK",
+            occurrenceRef: "/courtNote/text",
+            exactWording: court.slice(0, 240),
+            candidateClass: "candidate_defect",
+            plainEnglish:
+              "Court wording imports co-defendant-only material as this-defendant served/affirmative content.",
+            evidenceRefs: [
+              `/fiveAnswersEvidenceRows/${i}/existence`,
+              `/fiveAnswersEvidenceRows/${i}/label`,
+              "/courtNote/text",
+            ],
+          }),
+        );
+      }
+    }
+
     if (
       (existence === "unreliable" || reliability === "unreliable" || /unreliable/i.test(reliability)) &&
       !note.trim()

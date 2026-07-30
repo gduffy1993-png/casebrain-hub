@@ -5,6 +5,10 @@
 
 import type { Stage150EvalContext, Stage150Hit } from "./detectors";
 import { includedWordingLeaves } from "./detectors";
+import {
+  classifyDimensionToken,
+  domainsAreDisjoint,
+} from "./evidence-dimension-domain-registry";
 
 function arr(v: unknown): Record<string, unknown>[] {
   return Array.isArray(v) ? (v as Record<string, unknown>[]) : [];
@@ -333,29 +337,85 @@ export function evaluateBatch2Evidence(ctx: Stage150EvalContext): Stage150Hit[] 
   }
 
   five.forEach((row, i) => {
-    const existence = str(row.existence).toLowerCase();
-    const reliability = str(row.reliability).toLowerCase();
-    // Dimension separation: collapsing reliability into existence token
-    if (existence && reliability && existence === reliability && /unreliable|missing|served/.test(existence) === false) {
-      // same token ok for some; flag when reliability uses existence vocabulary incorrectly
-    }
-    if (/^(served|missing|referred_only)$/i.test(reliability) && existence && existence !== reliability) {
-      hits.push(
-        hit({
-          engineId: "evidence_attribution",
-          handlerId: "dimension_collapse",
-          controlId: "MAA2-EVS-01-DIMENSION-SEPARATION",
-          findingCode: "EVS_DIMENSION_COLLAPSE",
-          occurrenceRef: `/fiveAnswersEvidenceRows/${i}/reliability`,
-          exactWording: `${existence}/${reliability}`,
-          candidateClass: "candidate_defect",
-          plainEnglish: "Reliability field carries existence-state vocabulary — dimensions collapsed.",
-          evidenceRefs: [
-            `/fiveAnswersEvidenceRows/${i}/existence`,
-            `/fiveAnswersEvidenceRows/${i}/reliability`,
-          ],
-        }),
-      );
+    const existence = str(row.existence).toLowerCase().trim();
+    const reliability = str(row.reliability).toLowerCase().trim();
+    const eClass = classifyDimensionToken(existence);
+    const rClass = classifyDimensionToken(reliability);
+    const refs = [
+      `/fiveAnswersEvidenceRows/${i}/existence`,
+      `/fiveAnswersEvidenceRows/${i}/reliability`,
+    ];
+
+    // Bidirectional dimension separation against versioned domain registry.
+    // Same-token collapse (e.g. served/served) is a defect when the shared token
+    // belongs to only one domain — reliability must not carry existence tokens and vice versa.
+    if (domainsAreDisjoint()) {
+      if (rClass === "existence") {
+        hits.push(
+          hit({
+            engineId: "evidence_attribution",
+            handlerId: "dimension_collapse",
+            controlId: "MAA2-EVS-01-DIMENSION-SEPARATION",
+            findingCode: "EVS_DIMENSION_COLLAPSE",
+            occurrenceRef: `/fiveAnswersEvidenceRows/${i}/reliability`,
+            exactWording: `${existence}/${reliability}`,
+            candidateClass: "candidate_defect",
+            plainEnglish:
+              existence === reliability
+                ? "Same-token dimension collapse: reliability carries an existence-domain token."
+                : "Reliability field carries an existence-domain token — dimensions collapsed.",
+            evidenceRefs: refs,
+          }),
+        );
+      }
+      if (eClass === "reliability") {
+        hits.push(
+          hit({
+            engineId: "evidence_attribution",
+            handlerId: "dimension_collapse",
+            controlId: "MAA2-EVS-01-DIMENSION-SEPARATION",
+            findingCode: "EVS_DIMENSION_COLLAPSE",
+            occurrenceRef: `/fiveAnswersEvidenceRows/${i}/existence`,
+            exactWording: `${existence}/${reliability}`,
+            candidateClass: "candidate_defect",
+            plainEnglish:
+              existence === reliability
+                ? "Same-token dimension collapse: existence carries a reliability-domain token."
+                : "Existence field carries a reliability-domain token — reverse-direction collapse.",
+            evidenceRefs: refs,
+          }),
+        );
+      }
+      if (eClass === "out_of_domain") {
+        hits.push(
+          hit({
+            engineId: "evidence_attribution",
+            handlerId: "dimension_collapse",
+            controlId: "MAA2-EVS-01-DIMENSION-SEPARATION",
+            findingCode: "EVS_DIMENSION_COLLAPSE",
+            occurrenceRef: `/fiveAnswersEvidenceRows/${i}/existence`,
+            exactWording: existence,
+            candidateClass: "candidate_defect",
+            plainEnglish: `Existence token out of permitted existence domain: ${existence}`,
+            evidenceRefs: refs,
+          }),
+        );
+      }
+      if (rClass === "out_of_domain") {
+        hits.push(
+          hit({
+            engineId: "evidence_attribution",
+            handlerId: "dimension_collapse",
+            controlId: "MAA2-EVS-01-DIMENSION-SEPARATION",
+            findingCode: "EVS_DIMENSION_COLLAPSE",
+            occurrenceRef: `/fiveAnswersEvidenceRows/${i}/reliability`,
+            exactWording: reliability,
+            candidateClass: "candidate_defect",
+            plainEnglish: `Reliability token out of permitted reliability domain: ${reliability}`,
+            evidenceRefs: refs,
+          }),
+        );
+      }
     }
     const note = str(row.note);
     if ((/unreliable/i.test(reliability) || /unreliable/i.test(existence)) && note.trim() && !/\b(source|exhibit|page|scan|ocr|attribution)\b/i.test(note)) {

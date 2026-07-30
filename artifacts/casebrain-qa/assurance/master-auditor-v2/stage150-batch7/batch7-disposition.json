@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "batch7-disposition@1.1.0",
+  "note": "Honesty correction: EVS-01 only promoted. ATR-01 returned to partially_implemented. Batch-6 returns untouched. FID-10 excluded.",
+  "promoted": [
+    "MAA2-EVS-01-DIMENSION-SEPARATION"
+  ],
+  "atr01Returned": true,
+  "batch6ReturnedNotRePromoted": [
+    "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+    "MAA2-FID-09-NO-SILENT-CORRECTION",
+    "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+    "MAA2-PRI-01-NO-IMPORTANT-OMISSION",
+    "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE"
+  ],
+  "priorPreserved": {
+    "batch5": [
+      "MAA2-WRD-10-NO-PLACEHOLDERS",
+      "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "MAA2-WRD-02-NO-MID-TRUNCATION",
+      "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+      "MAA2-LSL-02-NO-ALLEGE-TO-FACT"
+    ],
+    "batch6": [
+      "MAA2-EVS-02-STATE-ENUM",
+      "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED"
+    ]
+  },
+  "expectedTotals": {
+    "implemented": 8,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55
+  }
+}

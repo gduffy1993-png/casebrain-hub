@@ -36,7 +36,7 @@ function ctxFrom(output: Record<string, unknown>, caseId = "t") {
 function base(extra: Record<string, unknown> = {}): Record<string, unknown> {
   return {
     courtNote: { text: "The defendant faces one count of theft.", sendabilityLabel: "Solicitor review required" },
-    fiveAnswersEvidenceRows: [{ label: "CCTV", existence: "served", reliability: "ok", note: "served" }],
+    fiveAnswersEvidenceRows: [{ label: "CCTV", existence: "served", reliability: "needs_review", note: "served" }],
     evidenceStates: [
       { inferredSourceState: "served", label: "CCTV", existenceLabel: "served", evidenceAnchor: "MG11 p.4" },
     ],

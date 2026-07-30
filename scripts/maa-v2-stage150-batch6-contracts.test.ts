@@ -49,7 +49,7 @@ function base(over: Record<string, unknown> = {}): Record<string, unknown> {
       sendabilityLabel: "Solicitor review required",
       canCopy: true,
     },
-    fiveAnswersEvidenceRows: [{ label: "CCTV", existence: "served", reliability: "ok", note: "served" }],
+    fiveAnswersEvidenceRows: [{ label: "CCTV", existence: "served", reliability: "needs_review", note: "served" }],
     evidenceStates: [
       { inferredSourceState: "served", label: "CCTV", existenceLabel: "served", evidenceAnchor: "page 12 source" },
     ],
@@ -80,23 +80,26 @@ describe("Batch-6 inventory / selection honesty", () => {
     }
   });
 
-  it("preserves Batch-5; totals are 7 implemented / 99 partial / 55 SNI; gates false", () => {
+  it("preserves Batch-5/6; totals follow immutable Stage-150 registry; gates false", () => {
     assert.equal(BATCH5_IMMUTABLE_PROMOTION_REGISTRY.length, 5);
     assert.equal(BATCH5_IMPLEMENTED_IDS.size, 5);
     assert.equal(BATCH6_IMMUTABLE_PROMOTION_REGISTRY.length, 2);
-    assert.equal(STAGE150_IMPLEMENTED_IDS.size, 7);
+    assert.ok(STAGE150_IMPLEMENTED_IDS.size >= 7);
     assert.equal(
       STAGE150_IMMUTABLE_PROMOTION_REGISTRY.length,
-      BATCH5_IMPLEMENTED_IDS.size + BATCH6_IMPLEMENTED_IDS.size,
+      STAGE150_IMPLEMENTED_IDS.size,
     );
     for (const id of BATCH5_IMPLEMENTED_IDS) {
+      assert.ok(STAGE150_IMPLEMENTED_IDS.has(id), id);
+    }
+    for (const id of BATCH6_IMPLEMENTED_IDS) {
       assert.ok(STAGE150_IMPLEMENTED_IDS.has(id), id);
     }
     const m = buildStage150ImplementationCapabilityMatrix();
     assert.equal(m.totals.stage150ControlCount, 161);
     assert.ok(m.rows.every((r) => r.currentlyRunnableOnStage150 === false));
-    assert.equal(m.totals.implemented, 7);
-    assert.equal(m.totals.partially_implemented, 99);
+    assert.equal(m.totals.implemented, STAGE150_IMPLEMENTED_IDS.size);
+    assert.equal(m.totals.partially_implemented, 106 - STAGE150_IMPLEMENTED_IDS.size);
     assert.equal(m.totals.specified_not_implemented, 55);
   });
 
@@ -446,7 +449,7 @@ describe("Batch-6 PRI-01 important omission", () => {
       evaluateCrossOutput(
         ctxFrom(
           base({
-            fiveAnswersEvidenceRows: [{ label: "BWV", existence: "referred_only", reliability: "ok", note: "referred" }],
+            fiveAnswersEvidenceRows: [{ label: "BWV", existence: "referred_only", reliability: "needs_review", note: "referred" }],
           }),
         ),
       ).filter((h) => h.controlId === "MAA2-PRI-01-NO-IMPORTANT-OMISSION").length,

@@ -64,7 +64,7 @@ function base(over: Record<string, unknown> = {}): Record<string, unknown> {
       sendabilityLabel: "Solicitor review required",
       canCopy: true,
     },
-    fiveAnswersEvidenceRows: [{ label: "CCTV", existence: "served", reliability: "ok", note: "served" }],
+    fiveAnswersEvidenceRows: [{ label: "CCTV", existence: "served", reliability: "needs_review", note: "served" }],
     evidenceStates: [{ inferredSourceState: "served", label: "CCTV", existenceLabel: "served" }],
     warningsAndGaps: { chaseItems: [], doNotOverstate: [] },
     exportVersion: { reviewFooter: "Solicitor review required.", sendability: "needs_solicitor_review" },

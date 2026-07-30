@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "batch7-promotions@1.0.0",
+  "promotionAuthority": "STAGE150_IMMUTABLE_PROMOTION_REGISTRY",
+  "batch5Preserved": true,
+  "batch6Preserved": true,
+  "promotedIds": [
+    "MAA2-EVS-01-DIMENSION-SEPARATION"
+  ],
+  "stage150ImplementedIds": [
+    "MAA2-WRD-10-NO-PLACEHOLDERS",
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+    "MAA2-WRD-02-NO-MID-TRUNCATION",
+    "MAA2-AUD-07-INTERNAL-AUDIT-NEVER-LEAK",
+    "MAA2-LSL-02-NO-ALLEGE-TO-FACT",
+    "MAA2-EVS-02-STATE-ENUM",
+    "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED",
+    "MAA2-EVS-01-DIMENSION-SEPARATION"
+  ],
+  "promotions": [
+    {
+      "controlId": "MAA2-EVS-01-DIMENSION-SEPARATION",
+      "promoted": true,
+      "implementationStatus": "implemented",
+      "reason": "Versioned evidence-dimension domain registry (disjoint existence/reliability) + bidirectional collapse/out-of-domain detector with honest named-control receipts. Zero candidates — rates unavailable (not 0/0).",
+      "advisoryReason": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+      "promotionEligible": true,
+      "calibrationPassId": "batch7-pass-B",
+      "triagePassId": "batch7-triage-pass-B",
+      "contractResolutionOk": true,
+      "fpRate": null,
+      "unresolvedRate": null,
+      "confirmedRate": null,
+      "humanFpFnRecall": "unavailable",
+      "rateHonestyNote": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+      "candidateTotal": 0,
+      "candidateDenominator": 0,
+      "occurrenceDenominator": 0,
+      "caseDenominatorNote": "case denominator = 499 calibration population (separate from candidates)",
+      "stringDenominatorNote": "string/template denominators not conflated with candidate rates",
+      "byBucket": {},
+      "denominatorApprovalState": "PENDING_REVIEW",
+      "implementationEvidenceRefs": [
+        "lib/eval/master-assurance-auditor/v2/stage150/evidence-dimension-domain-registry.ts",
+        "lib/eval/master-assurance-auditor/v2/stage150/batch2-detectors.ts#dimension_collapse",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch7/batch7-candidate-freeze.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch7/batch7-triage-pass-B.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch7/batch7-499-exercise-receipt-index.json",
+        "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch7/evidence-dimension-domain-registry.json"
+      ],
+      "contractRefs": {
+        "positive": "scripts/maa-v2-stage150-batch7-contracts.test.ts#evs01_positive_differing_token_collapse",
+        "negatives": "scripts/maa-v2-stage150-batch7-contracts.test.ts#evs01_negatives_valid_separated",
+        "unavailable": "scripts/maa-v2-stage150-batch7-contracts.test.ts#evs01_unavailable",
+        "mutation": "scripts/maa-v2-stage150-batch7-contracts.test.ts#evs01_mutation"
+      },
+      "calibrationPopulation": 499,
+      "reviewer": "",
+      "reviewDate": "",
+      "promotionAuthority": "STAGE150_IMMUTABLE_PROMOTION_REGISTRY"
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "promoted": false,
+      "implementationStatus": "partially_implemented",
+      "reason": "Cases with zero other_defendant_only units are not_exercised, not partially_exercised. Generic MG labels are not reliable evidence-unit identity. Current logic checks only courtNote + doNotOverstate, not all applicable surfaces. Full defendant separation requires explicit subjectDefendantId/personId and evidenceUnitId/sourceEvidenceId relationships, plus cross-surface receipts.",
+      "advisoryReason": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+      "promotionEligible": false,
+      "calibrationPassId": "batch7-pass-B",
+      "triagePassId": "batch7-triage-pass-B",
+      "contractResolutionOk": true,
+      "fpRate": null,
+      "unresolvedRate": null,
+      "confirmedRate": null,
+      "humanFpFnRecall": "unavailable",
+      "rateHonestyNote": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated.",
+      "candidateTotal": 0,
+      "candidateDenominator": 0,
+      "occurrenceDenominator": 0,
+      "caseDenominatorNote": "case denominator = 499 calibration population (separate from candidates)",
+      "stringDenominatorNote": "string/template denominators not conflated with candidate rates",
+      "byBucket": {},
+      "denominatorApprovalState": "PENDING_REVIEW",
+      "implementationEvidenceRefs": [],
+      "contractRefs": null,
+      "calibrationPopulation": 499,
+      "reviewer": "",
+      "reviewDate": "",
+      "promotionAuthority": "STAGE150_IMMUTABLE_PROMOTION_REGISTRY"
+    }
+  ],
+  "zeroCandidateRateNote": "No candidates observed across 499 cases. Positive/negative/mutation contracts passed. Corpus FP/FN rates cannot be calculated."
+}

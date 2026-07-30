@@ -8,6 +8,13 @@ import { BATCH2_SELECTED_30 } from "./batch2-selection";
 export type Batch2HandlerDef = ControlHandlerDef & {
   intelligenceFamily: string;
   requiredInputs: string[];
+  namedControlRequiredInputs?: string[];
+  exactPrerequisiteEvidenceRefs?: string[];
+  detectorClassification?:
+    | "genuine_structured_detector"
+    | "genuine_string_quality_detector"
+    | "phrase_probe_only"
+    | "unavailable_missing_adapter";
   unavailableVerdict: "not_exercised" | "unresolved";
   absenceIsFinding?: boolean;
   ownershipNote: string;
@@ -222,7 +229,16 @@ export const STAGE150_BATCH2_HANDLERS: Batch2HandlerDef[] = [
     inputEligibility: "non-empty fiveAnswers",
     intelligenceFamily: "evidence_identity_state",
     requiredInputs: ["casebrain-output.json", "nonempty:/fiveAnswersEvidenceRows"],
-    ownershipNote: "Existence vs reliability dimensions.",
+    namedControlRequiredInputs: ["casebrain-output.json", "nonempty:/fiveAnswersEvidenceRows"],
+    exactPrerequisiteEvidenceRefs: [
+      "/fiveAnswersEvidenceRows/*/existence",
+      "/fiveAnswersEvidenceRows/*/reliability",
+    ],
+    detectorClassification: "genuine_structured_detector",
+    positiveContract: "scripts/maa-v2-stage150-batch7-contracts.test.ts#evs01_positive_differing_token_collapse",
+    negativeContract: "scripts/maa-v2-stage150-batch7-contracts.test.ts#evs01_negatives_valid_separated",
+    ownershipNote:
+      "Existence vs reliability dimensions — bidirectional domain-registry separation (same-token, reverse, out-of-domain).",
   }),
   base({
     controlId: "MAA2-ATR-08-NO-DEFENDANT-BLEED",
