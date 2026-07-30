@@ -1,0 +1,132 @@
+/**
+ * Exact input schemas / adapters for Stage-150 packet-local intelligence.
+ * Deterministic and packet-local; no network; truth contents never required for eligibility.
+ */
+
+export type Stage150InputAdapter = {
+  adapterId: string;
+  schemaVersion: string;
+  purpose: string;
+  requiredFields: string[];
+  optionalFields: string[];
+  source: "casebrain-output.json" | "bundle-text.md" | "absent";
+  whenAbsent: "not_exercised" | "unresolved";
+  opensTruth: false;
+  notes: string;
+};
+
+export const STAGE150_INPUT_ADAPTERS: Stage150InputAdapter[] = [
+  {
+    adapterId: "solicitor_visible_wording",
+    schemaVersion: "stage150-input-adapter@1.0.0",
+    purpose: "Collect solicitor-visible strings from court/chase/fiveAnswers/evidenceStates/export footer",
+    requiredFields: ["casebrain-output.json"],
+    optionalFields: [
+      "/courtNote/text",
+      "/fiveAnswersEvidenceRows/*/label",
+      "/fiveAnswersEvidenceRows/*/note",
+      "/evidenceStates/*/label",
+      "/evidenceStates/*/existenceLabel",
+      "/evidenceStates/*/evidenceAnchor",
+      "/warningsAndGaps/chaseItems/*/label",
+      "/warningsAndGaps/chaseItems/*/copySuggestion",
+      "/warningsAndGaps/doNotOverstate/*",
+      "/exportVersion/reviewFooter",
+    ],
+    source: "casebrain-output.json",
+    whenAbsent: "not_exercised",
+    opensTruth: false,
+    notes: "Primary packet-local wording surface for Stage-150 partial detectors.",
+  },
+  {
+    adapterId: "evidence_state_rows",
+    schemaVersion: "stage150-input-adapter@1.0.0",
+    purpose: "Evidence identity/state rows without collapsing aliases",
+    requiredFields: ["/evidenceStates"],
+    optionalFields: [
+      "/evidenceStates/*/inferredSourceState",
+      "/evidenceStates/*/evidenceAnchor",
+      "/evidenceStates/*/existenceLabel",
+    ],
+    source: "casebrain-output.json",
+    whenAbsent: "not_exercised",
+    opensTruth: false,
+    notes: "Unknown state tokens → unresolved; never PASS on missing array.",
+  },
+  {
+    adapterId: "five_answers_truth_map",
+    schemaVersion: "stage150-input-adapter@1.0.0",
+    purpose: "Five-answer evidence map for reliability/perspective checks",
+    requiredFields: ["/fiveAnswersEvidenceRows"],
+    optionalFields: [
+      "/fiveAnswersEvidenceRows/*/existence",
+      "/fiveAnswersEvidenceRows/*/reliability",
+      "/fiveAnswersEvidenceRows/*/note",
+    ],
+    source: "casebrain-output.json",
+    whenAbsent: "not_exercised",
+    opensTruth: false,
+    notes: "Does not open truth-key.json; uses materialised output rows only.",
+  },
+  {
+    adapterId: "chase_and_warnings",
+    schemaVersion: "stage150-input-adapter@1.0.0",
+    purpose: "Chase drafts and do-not-overstate warnings for attachment/wording controls",
+    requiredFields: ["/warningsAndGaps"],
+    optionalFields: ["/warningsAndGaps/chaseItems", "/warningsAndGaps/doNotOverstate"],
+    source: "casebrain-output.json",
+    whenAbsent: "not_exercised",
+    opensTruth: false,
+    notes: "Empty chase draft is a defect when chaseItems present with blank copySuggestion.",
+  },
+  {
+    adapterId: "cross_exit_packet_surfaces",
+    schemaVersion: "stage150-input-adapter@1.0.0",
+    purpose: "Compare court sendability vs export footer on available exits only",
+    requiredFields: ["/courtNote", "/exportVersion"],
+    optionalFields: ["/courtNote/sendabilityLabel", "/exportVersion/reviewFooter"],
+    source: "casebrain-output.json",
+    whenAbsent: "not_exercised",
+    opensTruth: false,
+    notes: "API/PDF/composed_prose exits remain not_exercised — never PASS.",
+  },
+  {
+    adapterId: "eld_version_graph",
+    schemaVersion: "stage150-input-adapter@1.0.0",
+    purpose: "Evidence-locked drafting dependency graph",
+    requiredFields: [
+      "source_to_sentence_graph",
+      "version_pairs",
+      "approval_receipts",
+      "revision_ledger",
+      "full_exit_block_matrix",
+    ],
+    optionalFields: [],
+    source: "absent",
+    whenAbsent: "not_exercised",
+    opensTruth: false,
+    notes: "All 14 ELD controls stay specified_not_implemented until this adapter exists.",
+  },
+  {
+    adapterId: "authority_currency_pin",
+    schemaVersion: "stage150-input-adapter@1.0.0",
+    purpose: "Pinned local authority/currency registry for LEG controls",
+    requiredFields: ["pinned_authority_registry"],
+    optionalFields: [],
+    source: "absent",
+    whenAbsent: "not_exercised",
+    opensTruth: false,
+    notes: "Without pinned local authority data, LEG/currency controls are not_exercised.",
+  },
+  {
+    adapterId: "source_binary_security",
+    schemaVersion: "stage150-input-adapter@1.0.0",
+    purpose: "Original PDF/binary openability, OCR visual metadata, security tool receipts",
+    requiredFields: ["original_source_documents", "ocr_visual_metadata", "security_tool_evidence"],
+    optionalFields: [],
+    source: "absent",
+    whenAbsent: "not_exercised",
+    opensTruth: false,
+    notes: "Unsupported formats and missing binaries → not_exercised/unresolved, never PASS.",
+  },
+];

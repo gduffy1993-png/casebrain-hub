@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "stage150-implementation-totals@1.0.0",
+  "stage150ControlCount": 161,
+  "partially_implemented": 25,
+  "specified_not_implemented": 136,
+  "implemented": 0,
+  "other": 0,
+  "packetLocalHandlerCount": 25,
+  "eldNonRunnable": 14,
+  "note": "partially_implemented remains blocking and never counts as fully exercised."
+}

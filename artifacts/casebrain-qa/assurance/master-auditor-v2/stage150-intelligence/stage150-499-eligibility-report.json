@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "stage150-499-eligibility-report@1.1.0",
+  "generatedAt": "2026-07-30T01:07:30.677Z",
+  "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+  "populationUniqueValid": 499,
+  "casesScanned": 499,
+  "auditVerdictsProduced": false,
+  "truthOpened": false,
+  "stage150SampleSelected": false,
+  "stage150ControlsRun": false,
+  "packetLocalHandlerCount": 25,
+  "exactPrerequisites": true,
+  "emptyHitsDoNotImplyPass": true,
+  "eligibleCountsPerControl": {
+    "MAA2-LSL-02-NO-ALLEGE-TO-FACT": 499,
+    "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING": 499,
+    "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC": 499,
+    "MAA2-FID-09-NO-SILENT-CORRECTION": 499,
+    "MAA2-BND-09-STILL-CLIP-VS-MASTER": 499,
+    "MAA2-BND-10-RECORDING-VS-TRANSCRIPT": 499,
+    "MAA2-BND-11-DRAFT-VS-SIGNED": 499,
+    "MAA2-EVS-02-STATE-ENUM": 499,
+    "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED": 499,
+    "MAA2-ATR-01-DEFENDANT-SEPARATION": 499,
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE": 499,
+    "MAA2-FID-10-QUOTATION-FIDELITY": 499,
+    "MAA2-SRC-13-PASSWORD-CORRUPT": 499,
+    "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY": 499,
+    "MAA2-CHR-02-COMPETING-TIMESTAMPS": 499,
+    "MAA2-XEX-01-CHARGE-WARNING-ATTACHED": 499,
+    "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY": 499,
+    "MAA2-PRI-01-NO-IMPORTANT-OMISSION": 499,
+    "MAA2-WRD-10-NO-PLACEHOLDERS": 499,
+    "MAA2-WRD-02-NO-MID-TRUNCATION": 499,
+    "MAA2-WRD-11-NO-GENERIC-FILLER": 499,
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF": 499,
+    "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST": 499,
+    "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD": 499,
+    "MAA2-DEF-01-OPPORTUNITY-CHECKLIST": 499
+  },
+  "receiptStatusCountsPerControl": {
+    "MAA2-LSL-02-NO-ALLEGE-TO-FACT": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-FID-09-NO-SILENT-CORRECTION": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-BND-09-STILL-CLIP-VS-MASTER": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-BND-10-RECORDING-VS-TRANSCRIPT": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-BND-11-DRAFT-VS-SIGNED": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-EVS-02-STATE-ENUM": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-ATR-01-DEFENDANT-SEPARATION": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-FID-10-QUOTATION-FIDELITY": {
+      "evaluated": 25,
+      "unresolved": 474,
+      "not_exercised": 0
+    },
+    "MAA2-SRC-13-PASSWORD-CORRUPT": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-CHR-02-COMPETING-TIMESTAMPS": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-XEX-01-CHARGE-WARNING-ATTACHED": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-PRI-01-NO-IMPORTANT-OMISSION": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-WRD-10-NO-PLACEHOLDERS": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-WRD-02-NO-MID-TRUNCATION": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-WRD-11-NO-GENERIC-FILLER": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    },
+    "MAA2-DEF-01-OPPORTUNITY-CHECKLIST": {
+      "evaluated": 499,
+      "unresolved": 0,
+      "not_exercised": 0
+    }
+  },
+  "missingInputReasonsPerControl": {
+    "MAA2-LSL-02-NO-ALLEGE-TO-FACT": {},
+    "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING": {},
+    "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC": {},
+    "MAA2-FID-09-NO-SILENT-CORRECTION": {},
+    "MAA2-BND-09-STILL-CLIP-VS-MASTER": {},
+    "MAA2-BND-10-RECORDING-VS-TRANSCRIPT": {},
+    "MAA2-BND-11-DRAFT-VS-SIGNED": {},
+    "MAA2-EVS-02-STATE-ENUM": {},
+    "MAA2-EVS-03-RELIABILITY-REASON-REQUIRED": {},
+    "MAA2-ATR-01-DEFENDANT-SEPARATION": {},
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE": {},
+    "MAA2-FID-10-QUOTATION-FIDELITY": {},
+    "MAA2-SRC-13-PASSWORD-CORRUPT": {},
+    "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY": {},
+    "MAA2-CHR-02-COMPETING-TIMESTAMPS": {},
+    "MAA2-XEX-01-CHARGE-WARNING-ATTACHED": {},
+    "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY": {},
+    "MAA2-PRI-01-NO-IMPORTANT-OMISSION": {},
+    "MAA2-WRD-10-NO-PLACEHOLDERS": {},
+    "MAA2-WRD-02-NO-MID-TRUNCATION": {},
+    "MAA2-WRD-11-NO-GENERIC-FILLER": {},
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF": {},
+    "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST": {},
+    "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD": {},
+    "MAA2-DEF-01-OPPORTUNITY-CHECKLIST": {}
+  },
+  "casesWithCasebrainOutput": 499,
+  "casesWithTruthKeyFilePresent": 499,
+  "inventory": {
+    "meanIncludedSolicitorVisibleWording": 69.75951903807615,
+    "identityFailures": 0,
+    "note": "Wording controls bind to accepted complete solicitor-visible inventory (included_solicitor_visible)."
+  },
+  "note": "Exact per-control prerequisites. Missing inputs → not_exercised. Empty hits ≠ PASS. No Stage-150 sample selection.",
+  "caseDigestSha256": "0354f83666d6ed84a8e71f6634f2c8f8a9b58da6dc3680fc0609beb0e8e89b65"
+}

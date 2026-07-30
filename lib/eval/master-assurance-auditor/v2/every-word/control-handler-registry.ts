@@ -3,22 +3,18 @@
  * partially_implemented only when a real control-specific rule + probes exist.
  */
 
-import type { ImplementationStatusV22, SharedEngineId } from "./types";
+import type { ControlHandlerDef, ImplementationStatusV22, SharedEngineId } from "./types";
+import {
+  STAGE150_PACKET_LOCAL_HANDLERS,
+  statusForStage150Control,
+} from "../stage150/detector-registry";
 
-export type ControlHandlerDef = {
-  controlId: string;
-  engineId: SharedEngineId;
-  handlerId: string;
-  findingCodes: string[];
-  receiptValidator: string;
-  positiveContract: string;
-  negativeContract: string;
-  /** Non-empty runtime path description. */
-  runtimePath: string;
-  inputEligibility: string;
-};
+export type { ControlHandlerDef };
 
-/** Only these V2 additive controls qualify as partially_implemented. */
+/**
+ * Foundation-era partials (subset). Stage-150 packet-local handlers are merged via
+ * lookupPartialHandler / statusForV2Control.
+ */
 export const PARTIAL_CONTROL_HANDLERS: ControlHandlerDef[] = [
   {
     controlId: "MAA2-BND-09-STILL-CLIP-VS-MASTER",
@@ -63,15 +59,23 @@ export const PARTIAL_CONTROL_HANDLERS: ControlHandlerDef[] = [
 
 export const PARTIAL_CONTROL_IDS = new Set(PARTIAL_CONTROL_HANDLERS.map((h) => h.controlId));
 
-/** Engines that currently fall through to [] — must not be partially_implemented. */
+/** All control IDs with a real packet-local handler (foundation + Stage-150). */
+export const ALL_PARTIAL_CONTROL_IDS = new Set(
+  [...PARTIAL_CONTROL_HANDLERS, ...STAGE150_PACKET_LOCAL_HANDLERS].map((h) => h.controlId),
+);
+
+/** Engines that currently fall through to [] for unhandled controls. */
 export const EMPTY_RUNTIME_ENGINES: SharedEngineId[] = [
   "audience_context",
-  "contradiction_perspective",
   "version_reproducibility",
 ];
 
 export function lookupPartialHandler(controlId: string): ControlHandlerDef | null {
-  return PARTIAL_CONTROL_HANDLERS.find((h) => h.controlId === controlId) ?? null;
+  return (
+    STAGE150_PACKET_LOCAL_HANDLERS.find((h) => h.controlId === controlId) ??
+    PARTIAL_CONTROL_HANDLERS.find((h) => h.controlId === controlId) ??
+    null
+  );
 }
 
 export function statusForV2Control(args: {
@@ -87,24 +91,35 @@ export function statusForV2Control(args: {
       reason: "V1 preserved — historically exercised.",
     };
   }
-  if (args.familyCode === "ELD") {
-    return {
-      status: "specified_not_implemented",
-      reason:
-        "Evidence-locked drafting requires version pairs / source-to-sentence graphs / approval receipts / full exits — absent on ESA packets (requires_different_adapter).",
-    };
+  // Stage-150 / ELD / LEG / VDR ownership via Stage-150 status helper
+  if (
+    args.activationStage === "150" ||
+    args.familyCode === "ELD" ||
+    args.familyCode === "LEG" ||
+    args.familyCode === "VDR" ||
+    ALL_PARTIAL_CONTROL_IDS.has(args.controlId)
+  ) {
+    const s150 = statusForStage150Control(args);
+    if (s150.status === "partially_implemented" || s150.status === "specified_not_implemented") {
+      // Foundation-only partials not in Stage-150 list still count as partial
+      if (
+        PARTIAL_CONTROL_IDS.has(args.controlId) &&
+        s150.status === "specified_not_implemented" &&
+        args.activationStage !== "150"
+      ) {
+        return {
+          status: "partially_implemented",
+          reason:
+            "Control-specific handler + probes + receipt validator + non-empty runtime path; not Stage-150 executable.",
+        };
+      }
+      return s150;
+    }
   }
-  if (EMPTY_RUNTIME_ENGINES.includes(args.engineId)) {
+  if (EMPTY_RUNTIME_ENGINES.includes(args.engineId) && !ALL_PARTIAL_CONTROL_IDS.has(args.controlId)) {
     return {
       status: "specified_not_implemented",
       reason: `Engine ${args.engineId} has empty runtime path (default []); not partially_implemented.`,
-    };
-  }
-  if (PARTIAL_CONTROL_IDS.has(args.controlId)) {
-    return {
-      status: "partially_implemented",
-      reason:
-        "Control-specific handler + probes + receipt validator + non-empty runtime path; not Stage-150 executable.",
     };
   }
   // Family-level defaults — never partially_implemented without control-specific handler
@@ -132,4 +147,13 @@ export function statusForV2Control(args: {
     status: "specified_not_implemented",
     reason: "No control-specific executable handler/probes for this control.",
   };
+}
+
+/** Merge foundation partials with Stage-150 packet-local handlers (dedupe by controlId). */
+export function allPartialHandlers(): ControlHandlerDef[] {
+  const map = new Map<string, ControlHandlerDef>();
+  for (const h of [...PARTIAL_CONTROL_HANDLERS, ...STAGE150_PACKET_LOCAL_HANDLERS]) {
+    map.set(h.controlId, h);
+  }
+  return [...map.values()];
 }

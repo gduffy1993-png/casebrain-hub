@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "stage150-brain1-guardian-blob-compare@1.0.0",
+  "applicationBehaviourChanged": false,
+  "brain1": [
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/strategy-fight-engine.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/strategy-fight-engine-generators.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/get-aggressive-defense.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/strategy-battleboard.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/strategy-routes.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/bundle-truth-ledger.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    },
+    {
+      "group": "Brain 1",
+      "path": "lib/criminal/bundle-material-normalizer.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    }
+  ],
+  "guardian": [
+    {
+      "group": "Guardian",
+      "path": "lib/criminal/source-truth-guardian/fingerprint.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    },
+    {
+      "group": "Guardian",
+      "path": "lib/criminal/source-truth-guardian/guardian.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    },
+    {
+      "group": "Guardian",
+      "path": "lib/criminal/source-truth-guardian/index.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    },
+    {
+      "group": "Guardian",
+      "path": "lib/criminal/source-truth-guardian/types.ts",
+      "exists": true,
+      "baselineCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "baselineBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+      "headCommit": "6095cdde4289e60958230a5315a755cd9ba6cef1",
+      "headBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+      "blobUnchanged": true,
+      "dirtyVsHead": false,
+      "note": "blob"
+    }
+  ],
+  "freezeHashStage50": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "freezePath": "artifacts/casebrain-qa/assurance/master-auditor-v1/esa-stage50-sample-freeze/STAGE-50-SAMPLE-FREEZE.json"
+}

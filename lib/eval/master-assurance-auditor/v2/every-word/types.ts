@@ -82,6 +82,19 @@ export type SharedEngineId =
   | "contradiction_perspective"
   | "version_reproducibility";
 
+export type ControlHandlerDef = {
+  controlId: string;
+  engineId: SharedEngineId;
+  handlerId: string;
+  findingCodes: string[];
+  receiptValidator: string;
+  positiveContract: string;
+  negativeContract: string;
+  /** Non-empty runtime path description. */
+  runtimePath: string;
+  inputEligibility: string;
+};
+
 export type HandlerSpec = {
   controlId: string;
   engineId: SharedEngineId;

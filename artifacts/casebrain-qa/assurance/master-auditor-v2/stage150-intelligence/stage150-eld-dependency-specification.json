@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "eld-dependency-specification@1.0.0",
+  "familyCode": "ELD",
+  "runnableOnEsa": false,
+  "requiredAdapters": [
+    {
+      "adapterId": "source_to_sentence_graph",
+      "purpose": "Link each generated sentence to supporting sources/facts/conclusions",
+      "absentVerdict": "not_exercised"
+    },
+    {
+      "adapterId": "version_pairs",
+      "purpose": "Before/after draft versions with byte-identity for unaffected sentences",
+      "absentVerdict": "not_exercised"
+    },
+    {
+      "adapterId": "approval_receipts",
+      "purpose": "Solicitor approval state before external use",
+      "absentVerdict": "not_exercised"
+    },
+    {
+      "adapterId": "revision_ledger",
+      "purpose": "Rejected/superseded history, change reasons, rollback",
+      "absentVerdict": "not_exercised"
+    },
+    {
+      "adapterId": "full_exit_block_matrix",
+      "purpose": "Block stale text across view/copy/export/API/PDF/composed prose",
+      "absentVerdict": "not_exercised"
+    }
+  ],
+  "controls": [
+    {
+      "controlIdPattern": "MAA2-ELD-01-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-02-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-03-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-04-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-05-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-06-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-07-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-08-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-09-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-10-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-11-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-12-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-13-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    },
+    {
+      "controlIdPattern": "MAA2-ELD-14-*",
+      "implementationStatus": "specified_not_implemented",
+      "currentlyRunnable": false,
+      "note": "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist."
+    }
+  ],
+  "dependencyModel": {
+    "nodes": [
+      "source",
+      "fact",
+      "conclusion",
+      "sentence",
+      "exit_surface",
+      "approval"
+    ],
+    "edges": [
+      "source→fact",
+      "fact→conclusion",
+      "conclusion→sentence",
+      "sentence→exit_surface",
+      "approval→exit_surface"
+    ],
+    "changePropagationRule": "If a source/fact changes, every dependent sentence must update, withdraw, or become unresolved; unaffected sentences remain byte-identical."
+  }
+}
