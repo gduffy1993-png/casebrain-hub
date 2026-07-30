@@ -276,6 +276,19 @@ export function adaptEvidenceUnits(
           : ("absent" as const);
     const pageIdentityKnown = row.pageIdentityKnown === true;
     const sourcePage = typeof row.sourcePage === "string" ? row.sourcePage : null;
+    const aliases = Array.isArray(row.aliases)
+      ? row.aliases.filter((a): a is string => typeof a === "string" && a.trim().length > 0)
+      : [];
+    const extractFullRelationship =
+      row.extractFullRelationship === "extract" || row.extractFullRelationship === "full"
+        ? row.extractFullRelationship
+        : null;
+    const draftFinalRelationship =
+      row.draftFinalRelationship === "draft" ||
+      row.draftFinalRelationship === "final" ||
+      row.draftFinalRelationship === "unsigned"
+        ? row.draftFinalRelationship
+        : null;
     const rec: EvidenceUnitRecord = {
       evidenceUnitId: typeof row.evidenceUnitId === "string" ? row.evidenceUnitId : null,
       occurrenceRef,
@@ -285,10 +298,10 @@ export function adaptEvidenceUnits(
       personId: typeof row.personId === "string" ? row.personId : null,
       existence: typeof row.existence === "string" ? row.existence : null,
       reliability: typeof row.reliability === "string" ? row.reliability : null,
-      aliases: [],
+      aliases,
       exactLabelPeerOccurrenceRefs: [],
-      draftFinalRelationship: null,
-      extractFullRelationship: null,
+      draftFinalRelationship,
+      extractFullRelationship,
       sourceDocument: typeof row.sourceDocument === "string" ? row.sourceDocument : null,
       sourcePage: pageIdentityKnown ? sourcePage : null,
       pageIdentityKnown,
@@ -540,12 +553,15 @@ export function adaptProvenance(
       sourcePage: pageIdentityKnown ? sourcePage : null,
       compiledPage: pageIdentityKnown ? compiledPage : null,
       pageIdentityKnown,
-      limitationReason: null,
+      limitationReason: typeof row.limitationReason === "string" ? row.limitationReason : null,
       evidenceAnchorRaw: typeof row.evidenceAnchor === "string" ? row.evidenceAnchor : null,
     };
     records.push(rec);
     if (rec.sourceDocumentIdentity) {
       receipts.push(receipt("sourceDocumentIdentity", rec.sourceDocumentIdentity, `${occurrenceRef}/source`));
+    }
+    if (rec.limitationReason) {
+      receipts.push(receipt("limitationReason", rec.limitationReason, `${occurrenceRef}/limitationReason`));
     }
     if (rec.evidenceAnchorRaw) {
       receipts.push(receipt("evidenceAnchorRaw", rec.evidenceAnchorRaw, `${occurrenceRef}/evidenceAnchor`));

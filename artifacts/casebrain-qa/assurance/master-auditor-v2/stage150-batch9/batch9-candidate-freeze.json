@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "batch9-candidate-freeze@1.0.0",
+  "baselineCommit": "1493fe5409006dcea163f65a3ac64463f6060f03",
+  "frozenAt": "2026-07-30T23:40:00.710Z",
+  "truthOpenedBeforeFreeze": false,
+  "truthOpenedAfterFreeze": false,
+  "truthOpenedForCalibration": false,
+  "reasonTruthNotOpened": "Zero Batch-9 candidates across 499 — no truth calibration required",
+  "candidateCount": 0,
+  "freezeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidates": []
+}

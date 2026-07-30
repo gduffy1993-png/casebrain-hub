@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "batch9-structured-rematerialisation-gap-register@1.0.0",
+  "rows": [
+    {
+      "adapterId": "charge_instruments",
+      "gap": "No chargeInstruments[] / statementClassification / legalStateRole / chargeWarningAttached coupling",
+      "blocksControls": [
+        "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+        "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+        "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+        "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+        "MAA2-CHG-06-AMENDMENT-HISTORY",
+        "MAA2-CHG-10-WARNING-INSEPARABLE",
+        "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+        "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+        "MAA2-BND-02-INSTRUMENT-STATUS",
+        "MAA2-BND-03-REPLACEMENT-LINKS",
+        "MAA2-BND-04-VERSION-PRECEDENCE"
+      ],
+      "esaObservation": "unavailable×499"
+    },
+    {
+      "adapterId": "evidence_units",
+      "gap": "evidenceUnitId / person IDs / extract-full / draft-final incomplete",
+      "blocksControls": [
+        "MAA2-ATR-01-DEFENDANT-SEPARATION",
+        "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+        "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+        "MAA2-BND-08-EXTRACT-VS-FULL",
+        "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+        "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+        "MAA2-BND-11-DRAFT-VS-SIGNED",
+        "MAA2-EVS-04-REASON-TAXONOMY"
+      ],
+      "esaObservation": "partial×499"
+    },
+    {
+      "adapterId": "chronology_events",
+      "gap": "No chronologyEvents[] typed clocks",
+      "blocksControls": [
+        "MAA2-CHR-01-EXACT-DATES-TZ",
+        "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+        "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+        "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+        "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE"
+      ],
+      "esaObservation": "unavailable×499"
+    },
+    {
+      "adapterId": "provenance",
+      "gap": "Genuine page identity / quotation / totals ledgers absent",
+      "blocksControls": [
+        "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+        "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+        "MAA2-FID-10-QUOTATION-FIDELITY",
+        "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS"
+      ],
+      "esaObservation": "partial×499"
+    },
+    {
+      "adapterId": "chase_relationships",
+      "gap": "Complete chase requestId+explicit id+resolutionState incomplete",
+      "blocksControls": [
+        "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+        "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+        "MAA2-BND-05-MISSING-ATTACHMENTS",
+        "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE"
+      ],
+      "esaObservation": "partial×499"
+    }
+  ]
+}

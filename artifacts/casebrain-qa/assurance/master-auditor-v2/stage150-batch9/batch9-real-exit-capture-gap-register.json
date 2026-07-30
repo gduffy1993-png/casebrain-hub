@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "batch9-real-exit-capture-gap-register@1.0.0",
+  "rows": [
+    {
+      "exitId": "view",
+      "gap": "No /exitPayloadReceipts/view/payloadIdentity (+ coupled warning/quarantine fields)",
+      "blocksControls": [
+        "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+        "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL"
+      ],
+      "note": "XEX-08 adapter-integrity may evaluate without implying real exit testing."
+    },
+    {
+      "exitId": "copy",
+      "gap": "No /exitPayloadReceipts/copy/payloadIdentity (+ coupled warning/quarantine fields)",
+      "blocksControls": [
+        "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+        "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL"
+      ],
+      "note": "XEX-08 adapter-integrity may evaluate without implying real exit testing."
+    },
+    {
+      "exitId": "export",
+      "gap": "No /exitPayloadReceipts/export/payloadIdentity (+ coupled warning/quarantine fields)",
+      "blocksControls": [
+        "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+        "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL"
+      ],
+      "note": "XEX-08 adapter-integrity may evaluate without implying real exit testing."
+    },
+    {
+      "exitId": "api",
+      "gap": "No /exitPayloadReceipts/api/payloadIdentity (+ coupled warning/quarantine fields)",
+      "blocksControls": [
+        "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+        "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL"
+      ],
+      "note": "XEX-08 adapter-integrity may evaluate without implying real exit testing."
+    },
+    {
+      "exitId": "pdf",
+      "gap": "No /exitPayloadReceipts/pdf/payloadIdentity (+ coupled warning/quarantine fields)",
+      "blocksControls": [
+        "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+        "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL"
+      ],
+      "note": "XEX-08 adapter-integrity may evaluate without implying real exit testing."
+    },
+    {
+      "exitId": "composed_prose",
+      "gap": "No /exitPayloadReceipts/composed_prose/payloadIdentity (+ coupled warning/quarantine fields)",
+      "blocksControls": [
+        "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+        "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL"
+      ],
+      "note": "XEX-08 adapter-integrity may evaluate without implying real exit testing."
+    },
+    {
+      "exitId": "authenticated_browser",
+      "gap": "No /exitPayloadReceipts/authenticated_browser/payloadIdentity (+ coupled warning/quarantine fields)",
+      "blocksControls": [
+        "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+        "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+        "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+        "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL"
+      ],
+      "note": "XEX-08 adapter-integrity may evaluate without implying real exit testing."
+    }
+  ]
+}

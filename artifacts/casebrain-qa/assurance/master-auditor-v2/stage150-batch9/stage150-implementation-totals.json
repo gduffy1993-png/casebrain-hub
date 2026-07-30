@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "stage150-implementation-totals@1.8.0",
+  "baselineCommit": "1493fe5409006dcea163f65a3ac64463f6060f03",
+  "before": {
+    "implemented": 8,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55,
+    "stage150ControlCount": 161
+  },
+  "after": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55,
+    "implemented": 8,
+    "other": 0
+  },
+  "batch9DetectorPromotions": [],
+  "note": "Batch-9 adapter-gated evaluators for 37 controls — zero promotions (empty immutable registry).",
+  "preserved": {
+    "batch5": 5,
+    "batch6": 2,
+    "batch7": 1,
+    "stage150": 8
+  }
+}

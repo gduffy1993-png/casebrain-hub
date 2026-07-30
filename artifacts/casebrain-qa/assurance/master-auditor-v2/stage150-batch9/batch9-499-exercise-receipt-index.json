@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "batch9-499-exercise-receipt-index@1.0.0",
+  "relativePath": "raw-receipts/batch9-499-exercise-receipts.jsonl",
+  "sha256": "e7b84471d4375f8d26cd387d28c5c84ea5e60590956321a1a9833e34b0d64d33",
+  "byteLength": 23604121,
+  "lineCount": 18463,
+  "regenerable": true,
+  "gitPolicy": "gitignore_regenerate",
+  "truthContentsOpened": false
+}

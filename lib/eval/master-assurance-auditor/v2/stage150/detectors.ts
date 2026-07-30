@@ -16,6 +16,7 @@ import { classifyFid10Quotation } from "./fid10-calibration";
 import { evaluateAllBatch2 } from "./batch2-detectors";
 import { evaluateAllBatch3 } from "./batch3-detectors";
 import { evaluateAllBatch4 } from "./batch4-detectors";
+import { evaluateAllBatch9 } from "./batch9/evaluators";
 
 export type Stage150EvalContext = {
   caseId: string;
@@ -810,6 +811,8 @@ export function evaluatePerspectives(ctx: Stage150EvalContext): Stage150Hit[] {
 }
 
 export function evaluateAllStage150Intelligence(ctx: Stage150EvalContext): Stage150Hit[] {
+  // Prior-batch probe detectors remain available for historical contracts/calibration.
+  // Batch-9 adapter-gated hits are the named-control authority (see batch9 receipts/ownership).
   return [
     ...evaluateChargeIntegrity(ctx),
     ...evaluateEvidenceIdentityState(ctx),
@@ -821,6 +824,7 @@ export function evaluateAllStage150Intelligence(ctx: Stage150EvalContext): Stage
     ...evaluateAllBatch2(ctx),
     ...evaluateAllBatch3(ctx),
     ...evaluateAllBatch4(ctx),
+    ...evaluateAllBatch9(ctx),
   ];
 }
 

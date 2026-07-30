@@ -1,0 +1,625 @@
+{
+  "schemaVersion": "maa-v2-stage150-batch9-stop@1.2.0",
+  "title": "STOP FOR CODEX REVIEW — MAA V2 Stage-150 Batch 9 BEHAVIOURAL PROOF REMEDIATION",
+  "status": "STAGE150_BATCH9_BEHAVIOURAL_PROOF_UNCOMMITTED",
+  "createdAt": "2026-07-30T23:40:19.822Z",
+  "elapsedMs": 21916,
+  "baselineCommit": "1493fe5409006dcea163f65a3ac64463f6060f03",
+  "headCommit": "1493fe5409006dcea163f65a3ac64463f6060f03",
+  "schemaVersionLib": "maa-v2-stage150-batch9-adapter-detector@1.2.0",
+  "stage150SampleSelectionAllowed": false,
+  "stage150ExecutionAllowed": false,
+  "programmePassSupported": false,
+  "applicationBehaviourChanged": false,
+  "caseBrainRepaired": false,
+  "detectorPromotions": [],
+  "controlCount": 37,
+  "evaluatorClassSummary": {
+    "byImplementationClass": {
+      "substantive_control_evaluator": 36,
+      "adapter_integrity_evaluator": 1,
+      "family_proxy_only": 0,
+      "foundation_stub": 0
+    },
+    "byExecutionAvailability": {
+      "runnable_on_ESA": 1,
+      "unavailable_missing_adapter": 13,
+      "unavailable_missing_structured_field": 22,
+      "unavailable_missing_real_exit": 1,
+      "not_applicable": 0
+    },
+    "substantiveEvaluatorCount": 36,
+    "adapterIntegrityCount": 1,
+    "stubOrProxyCount": 0,
+    "namedEvaluatorCount": 37,
+    "esaRunnableCount": 1,
+    "esaUnavailableCount": 36
+  },
+  "substantiveEvaluatorCount": 36,
+  "adapterIntegrityCount": 1,
+  "stubOrProxyCount": 0,
+  "esaRunnableCount": 1,
+  "esaUnavailableCount": 36,
+  "genuineBehaviouralContractsExecuted": 148,
+  "namedEvaluatorCount": 37,
+  "promotedCount": 0,
+  "committed": false,
+  "pushed": false,
+  "freezeHashStage50Preserved": "4e73e4d48d6aad4851f7dec3f424a8f6ae13e1cdb95e62bdd1ac73f449050832",
+  "implementationTotals": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55,
+    "implemented": 8,
+    "other": 0
+  },
+  "beforeTotals": {
+    "implemented": 8,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55
+  },
+  "candidateFreezeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidateCount": 0,
+  "truthContentsOpened": false,
+  "remediationNotes": [
+    "Two axes: evaluatorImplementationClass ≠ executionAvailability",
+    "37×4 fixture-driven behavioural contracts invoke evaluateBatch9Control + buildBatch9ExerciseReceipt",
+    "Harness rejects no-op fixtures",
+    "XEX-08 adapter-integrity only — runnable_on_ESA without implying real exit testing",
+    "0 promotions; totals preserved 8/98/55"
+  ],
+  "dispositions": [
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-03-REPLACEMENT-LINKS",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-08-EXTRACT-VS-FULL",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-EVS-04-REASON-TAXONOMY",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-01-EXACT-DATES-TZ",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_adapter",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-FID-10-QUOTATION-FIDELITY",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_real_exit",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "evaluatorImplementationClass": "adapter_integrity_evaluator",
+      "executionAvailability": "runnable_on_ESA",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 499,
+      "notExercisedCaseCount499": 0,
+      "evaluatedCaseCount499": 499,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    },
+    {
+      "controlId": "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "evaluatorImplementationClass": "substantive_control_evaluator",
+      "executionAvailability": "unavailable_missing_structured_field",
+      "countsAsNamedEvaluator": true,
+      "afterStatus": "partially_implemented",
+      "promoted": false,
+      "applicableCaseCount499": 0,
+      "notExercisedCaseCount499": 499,
+      "evaluatedCaseCount499": 0,
+      "candidateOccurrenceCount": 0
+    }
+  ],
+  "gate": {
+    "schemaVersion": "stage150-execution-readiness-gate@1.8.0",
+    "baselineCommit": "1493fe5409006dcea163f65a3ac64463f6060f03",
+    "programmePassSupported": false,
+    "stage150SampleSelectionAllowed": false,
+    "stage150ExecutionAllowed": false,
+    "freezeAllowed": false,
+    "reasons": [
+      "98 controls remain partially_implemented",
+      "55 controls remain SNI",
+      "Batch-9 evaluators exist but immutable promotion registry is empty",
+      "Stage-150 sample selection not performed",
+      "currentlyRunnableOnStage150 remains false"
+    ],
+    "prerequisites": {
+      "registryComplete": true,
+      "detectorImplementationComplete": false,
+      "inputReadinessComplete": false,
+      "denominatorReadinessComplete": false,
+      "adapterReadinessComplete": false,
+      "receiptValidationComplete": true,
+      "contractReadinessComplete": true,
+      "relationshipComplete": false,
+      "protectedAssetsPreserved": true
+    }
+  },
+  "protectedAssets": {
+    "brain1GuardianBlobUnchanged": true,
+    "rows": [
+      {
+        "path": "lib/criminal/strategy-fight-engine.ts",
+        "baselineBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "headBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-fight-engine-generators.ts",
+        "baselineBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "headBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/get-aggressive-defense.ts",
+        "baselineBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "headBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-battleboard.ts",
+        "baselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "headBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/strategy-routes.ts",
+        "baselineBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "headBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/bundle-truth-ledger.ts",
+        "baselineBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "headBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/bundle-material-normalizer.ts",
+        "baselineBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+        "headBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/fingerprint.ts",
+        "baselineBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "headBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/guardian.ts",
+        "baselineBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "headBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/index.ts",
+        "baselineBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "headBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+        "blobUnchanged": true
+      },
+      {
+        "path": "lib/criminal/source-truth-guardian/types.ts",
+        "baselineBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "headBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+        "blobUnchanged": true
+      }
+    ]
+  },
+  "typescript": {
+    "exitCode": 1,
+    "stage150PathErrors": 0
+  },
+  "blockers": [
+    "Stage-150 selection and execution gates remain FALSE",
+    "Batch-9 immutable promotion registry empty — zero promotions",
+    "36/37 controls unavailable on ESA pending structured rematerialisation / real exits",
+    "XEX-08 adapter-integrity must not be read as real exit testing",
+    "No programme PASS"
+  ]
+}
