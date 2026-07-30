@@ -1,0 +1,394 @@
+{
+  "schemaVersion": "batch4-contract-resolution-audit@1.0.0",
+  "scaffoldCount": 48,
+  "resolvingPositive": 0,
+  "resolvingNegatives": 0,
+  "resolvingUnavailable": 0,
+  "allUnresolved": true,
+  "rows": [
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#lsl_05_category_set_coverage_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#lsl_05_category_set_coverage_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#chr_06_age_at_offence_hearing_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#chr_06_age_at_offence_hearing_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#chr_12_transparent_calc_inputs_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#chr_12_transparent_calc_inputs_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_01_official_authority_source_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_01_official_authority_source_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-LEG-02-JURISDICTION",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_02_jurisdiction_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_02_jurisdiction_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-LEG-03-EFFECTIVE-DATE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_03_effective_date_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_03_effective_date_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-LEG-05-RETRIEVAL-DATE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_05_retrieval_date_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_05_retrieval_date_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_06_registry_version_id_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_06_registry_version_id_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_07_authority_type_distinction_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_07_authority_type_distinction_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-LEG-08-CURRENCY-WARNING",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_08_currency_warning_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_08_currency_warning_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_10_no_proposition_without_source_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#leg_10_no_proposition_without_source_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-XEX-04-LEGAL-CURRENCY-WARNING",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xex_04_legal_currency_warning_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xex_04_legal_currency_warning_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_03_youth_state_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_03_youth_state_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_04_fitness_participation_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_04_fitness_participation_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_07_disclosure_pii_state_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#prc_07_disclosure_pii_state_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_02_client_plain_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_02_client_plain_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_03_court_precise_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_03_court_precise_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_04_cps_specific_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_04_cps_specific_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_05_supervisor_risk_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_05_supervisor_risk_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_08_independent_audience_tests_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#aud_08_independent_audience_tests_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_01_defence_solicitor_perspective_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_01_defence_solicitor_perspective_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_02_prosecution_challenge_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_02_prosecution_challenge_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_03_judicial_neutrality_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_03_judicial_neutrality_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_04_client_comprehension_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_04_client_comprehension_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_05_supervisor_risk_perspective_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#xpp_05_supervisor_risk_perspective_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_01_source_case_hashes_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_01_source_case_hashes_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_02_frozen_membership_order_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_02_frozen_membership_order_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_03_casebrain_commit_build_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_03_casebrain_commit_build_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_04_schema_registry_detector_versions_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_04_schema_registry_detector_versions_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_05_model_prompt_version_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_05_model_prompt_version_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_06_exact_outputs_finding_ids_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_06_exact_outputs_finding_ids_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_07_timestamps_dispositions_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_07_timestamps_dispositions_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_08_before_after_mapping_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_08_before_after_mapping_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_09_added_removed_retained_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#vdr_09_added_removed_retained_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_01_source_fact_conclusion_sentence_receipts_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_01_source_fact_conclusion_sentence_receipts_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_02_source_change_affected_sentences_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_02_source_change_affected_sentences_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_03_stale_draft_marking_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_03_stale_draft_marking_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_04_stale_blocked_across_exits_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_04_stale_blocked_across_exits_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_05_no_silent_rewrite_or_delete_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_05_no_silent_rewrite_or_delete_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_06_before_after_change_reason_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_06_before_after_change_reason_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_07_solicitor_approval_before_external_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_07_solicitor_approval_before_external_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_08_rejected_superseded_revision_history_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_08_rejected_superseded_revision_history_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_09_audience_redraft_unchanged_truth_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_09_audience_redraft_unchanged_truth_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_10_unaffected_sentences_byte_identical_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_10_unaffected_sentences_byte_identical_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_11_uncertain_provenance_qualified_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_11_uncertain_provenance_qualified_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_12_cross_exit_propagation_complete_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_12_cross_exit_propagation_complete_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_13_rollback_superseded_source_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_13_rollback_superseded_source_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "positiveContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_14_actor_time_source_approval_audit_positive",
+      "negativeContract": "scripts/maa-v2-stage150-batch4-contracts.test.ts#eld_14_actor_time_source_approval_audit_negatives",
+      "positiveResolves": false,
+      "negativesResolve": false,
+      "unavailableResolves": false
+    }
+  ]
+}

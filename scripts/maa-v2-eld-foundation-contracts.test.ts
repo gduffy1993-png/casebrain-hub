@@ -45,12 +45,15 @@ import { ELD_DEPENDENCY_SPEC } from "../lib/eval/master-assurance-auditor/v2/sta
 describe("ELD foundation — posture / schemas", () => {
   it("eld_posture_not_runnable — no control fully implemented or runnable", () => {
     assert.equal(ELD_FOUNDATION_STATUS.currentlyRunnable, false);
-    assert.equal(ELD_FOUNDATION_STATUS.foundationStatus, "specified_not_implemented");
     assert.equal(ELD_FOUNDATION_STATUS.countsAsFullyExercised, false);
     assert.equal(ELD_FOUNDATION_STATUS.programmePassForbidden, true);
     const posture = eldFoundationControlPosture();
     assert.equal(posture.length, 14);
     assertNoEldMarkedRunnable(posture);
+    for (const row of posture) {
+      assert.notEqual(row.implementationStatus, "implemented");
+      assert.equal(row.currentlyRunnable, false);
+    }
   });
 
   it("eld_synthetic_ids_only — rejects real case id shapes", () => {

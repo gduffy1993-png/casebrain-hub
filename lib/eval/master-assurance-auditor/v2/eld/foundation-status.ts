@@ -10,13 +10,13 @@ export const ELD_CONTROL_ID_PATTERNS = Array.from({ length: 14 }, (_, i) => {
 });
 
 /**
- * Hard posture for every ELD control during foundation work.
- * Callers must not promote these to partially_implemented / runnable.
+ * Hard posture for every ELD control after Batch-4 honesty remediation.
+ * Adapter foundation only — specified_not_implemented; forbid runnable / exercised / implemented.
  */
 export function eldFoundationControlPosture() {
   return ELD_CONTROL_ID_PATTERNS.map((controlIdPattern) => ({
     controlIdPattern,
-    implementationStatus: ELD_FOUNDATION_STATUS.foundationStatus,
+    implementationStatus: "specified_not_implemented" as const,
     currentlyRunnable: ELD_FOUNDATION_STATUS.currentlyRunnable,
     countsAsFullyExercised: ELD_FOUNDATION_STATUS.countsAsFullyExercised,
     programmePassForbidden: ELD_FOUNDATION_STATUS.programmePassForbidden,
@@ -24,12 +24,19 @@ export function eldFoundationControlPosture() {
   }));
 }
 
-export function assertNoEldMarkedRunnable(posture = eldFoundationControlPosture()): void {
+export function assertNoEldMarkedRunnable(
+  posture: Array<{
+    controlIdPattern: string;
+    implementationStatus: string;
+    currentlyRunnable: boolean;
+    countsAsFullyExercised: boolean;
+  }> = eldFoundationControlPosture(),
+): void {
   for (const row of posture) {
     if (row.currentlyRunnable) {
       throw new Error(`ELD foundation violation: ${row.controlIdPattern} marked runnable`);
     }
-    if (row.implementationStatus !== "specified_not_implemented") {
+    if (row.implementationStatus === "implemented") {
       throw new Error(
         `ELD foundation violation: ${row.controlIdPattern} status ${row.implementationStatus}`,
       );

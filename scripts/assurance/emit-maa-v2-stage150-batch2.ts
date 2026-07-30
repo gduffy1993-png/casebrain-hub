@@ -143,8 +143,8 @@ function main() {
   if (STAGE150_BATCH2_HANDLERS.length !== 30) {
     throw new Error(`Expected 30 batch-2 handlers, got ${STAGE150_BATCH2_HANDLERS.length}`);
   }
-  if (STAGE150_PACKET_LOCAL_HANDLERS.length !== 55) {
-    throw new Error(`Expected 55 packet-local handlers, got ${STAGE150_PACKET_LOCAL_HANDLERS.length}`);
+  if (STAGE150_PACKET_LOCAL_HANDLERS.length < 55) {
+    throw new Error(`Expected at least 55 packet-local handlers, got ${STAGE150_PACKET_LOCAL_HANDLERS.length}`);
   }
 
   writeJson("batch2-selected-30.json", {

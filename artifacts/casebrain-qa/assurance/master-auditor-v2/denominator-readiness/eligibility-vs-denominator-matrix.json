@@ -1,18 +1,14 @@
 {
-  "schemaVersion": "eligibility-vs-denominator-matrix@1.2.0",
-  "packetLocalHandlerCount": 106,
-  "receiptTotals": {
-    "evaluated": 52849,
-    "unresolved": 45,
-    "not_exercised": 0,
-    "total": 52894
+  "schemaVersion": "eligibility-vs-denominator-matrix@2.0.0",
+  "baselineCommit": "da98277c3038b40b2408a7af6a41475e88b21e17",
+  "caseSelectionForbidden": true,
+  "counts": {
+    "PENDING_INPUT_ADAPTER": 48,
+    "PENDING_CALIBRATION": 106,
+    "PENDING_REVIEW": 0,
+    "APPROVED_FOR_SELECTION": 0,
+    "DEFERRED_STAGE300": 7
   },
-  "fid10SourceUnits": {
-    "occurrenceCount": 19,
-    "uniqueStringCount": 13,
-    "caseCount": 2,
-    "sourceDocumentCount": 2,
-    "duplicateLinkedCount": 6,
-    "ownerFindingCount": 13
-  }
+  "approvedForSelectionCount": 0,
+  "note": "No APPROVED_FOR_SELECTION in Batch-4 remediation. Stage-150 case selection not performed."
 }

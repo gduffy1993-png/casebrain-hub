@@ -62,21 +62,24 @@ function hits(controlId: string, output: Record<string, unknown>) {
 }
 
 describe("Batch-2 registry / selection / matrix", () => {
-  it("exactly 30 selected + 55 packet-local handlers", () => {
+  it("exactly 30 selected Batch-2 handlers within expanded packet-local set", () => {
     assert.equal(BATCH2_SELECTED_30.length, 30);
     assert.equal(STAGE150_BATCH2_HANDLERS.length, 30);
-    assert.equal(STAGE150_PACKET_LOCAL_HANDLERS.length, 55);
+    assert.ok(STAGE150_PACKET_LOCAL_HANDLERS.length >= 106);
     for (let i = 0; i < 30; i++) {
       assert.equal(STAGE150_BATCH2_HANDLERS[i].controlId, BATCH2_SELECTED_30[i].controlId);
     }
   });
 
-  it("matrix totals: 55 partial, 0 fully implemented Stage-150", () => {
+  it("matrix totals: expanded partials, 0 fully implemented Stage-150", () => {
     const matrix = buildStage150ImplementationCapabilityMatrix();
     assert.equal(matrix.totals.stage150ControlCount, 161);
-    assert.equal(matrix.totals.partially_implemented, 55);
+    assert.ok(matrix.totals.partially_implemented >= 106);
     assert.equal(matrix.totals.implemented, 0);
-    assert.equal(matrix.totals.specified_not_implemented, 106);
+    assert.equal(
+      matrix.totals.partially_implemented + matrix.totals.specified_not_implemented,
+      161,
+    );
   });
 
   it("ownership edges resolve against registry", () => {

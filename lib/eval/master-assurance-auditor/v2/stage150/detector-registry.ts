@@ -22,6 +22,7 @@ import type { ImplementationStatusV22, SharedEngineId } from "../every-word/type
 import type { ControlHandlerDef } from "../every-word/types";
 import { STAGE150_BATCH2_HANDLERS } from "./batch2-registry";
 import { STAGE150_BATCH3_HANDLERS } from "./batch3-registry";
+/** Batch-4 scaffolds are adapter_foundation_only — not registered as packet-local handlers. */
 
 export type Stage150HandlerDef = ControlHandlerDef & {
   intelligenceFamily: string;
@@ -448,7 +449,7 @@ export const STAGE150_BATCH1_HANDLERS: Stage150HandlerDef[] = [
   },
 ];
 
-/** Batch-1 + Batch-2 + Batch-3 packet-local handlers. */
+/** Batch-1 + Batch-2 + Batch-3 packet-local handlers (Batch-4 is adapter foundation only). */
 export const STAGE150_PACKET_LOCAL_HANDLERS: Stage150HandlerDef[] = [
   ...STAGE150_BATCH1_HANDLERS,
   ...(STAGE150_BATCH2_HANDLERS as Stage150HandlerDef[]),
@@ -467,6 +468,19 @@ export function statusForStage150Control(args: {
   if (args.preservedFromV1) {
     return { status: "implemented", reason: "V1 preserved." };
   }
+  if (args.controlId === "MAA2-SEC-01-PROMPT-INJECTION-DOCS") {
+    return {
+      status: "specified_not_implemented",
+      reason: "Prompt-injection ownership is SEC-01 (activation stage 300) — not Stage-150 packet-local.",
+    };
+  }
+  if (STAGE150_PARTIAL_IDS.has(args.controlId)) {
+    return {
+      status: "partially_implemented",
+      reason:
+        "Packet-local detector + contracts + adapters exist; not Stage-150 executable until global readiness gate / freeze prerequisites proven. CurrentlyRunnable remains false.",
+    };
+  }
   if (args.familyCode === "ELD") {
     return {
       status: "specified_not_implemented",
@@ -483,20 +497,7 @@ export function statusForStage150Control(args: {
   if (args.familyCode === "VDR") {
     return {
       status: "specified_not_implemented",
-      reason: "Version drift/reproducibility requires version pairs — absent on ESA.",
-    };
-  }
-  if (args.controlId === "MAA2-SEC-01-PROMPT-INJECTION-DOCS") {
-    return {
-      status: "specified_not_implemented",
-      reason: "Prompt-injection ownership is SEC-01 (activation stage 300) — not Stage-150 packet-local.",
-    };
-  }
-  if (STAGE150_PARTIAL_IDS.has(args.controlId)) {
-    return {
-      status: "partially_implemented",
-      reason:
-        "Packet-local detector + contracts exist; not Stage-150 executable until denominators/adapters/freeze prerequisites proven.",
+      reason: "Version drift/reproducibility requires versioned deterministic receipts — absent on ESA.",
     };
   }
   if (args.activationStage !== "150") {

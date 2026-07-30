@@ -24,6 +24,14 @@ import {
   reconcileInventory,
   type Stage150Hit,
 } from "./detectors";
+import {
+  readDobAgeCalcLedger,
+  readEldSourceChangeDrafting,
+  readMultiAudiencePerspective,
+  readPinnedLegalAuthorityRegistry,
+  readStructuredProceduralPartyState,
+  readVersionedDeterministicReceipts,
+} from "./batch4-adapters";
 
 export type ReceiptStatus = "evaluated" | "unresolved" | "not_exercised";
 
@@ -719,6 +727,47 @@ const NAMED_TOKEN_CHECKS: Record<string, NamedTokenCheck> = {
       ...walkJsonPath(o, "/evidenceStates/*/exhibitLabel"),
       ...walkJsonPath(o, "/evidenceStates/*/sourceDocumentId"),
     ].map((h) => ({ ...h, ref: "resolvable_exhibit_document_bindings" })),
+  },
+  eld_version_pair_fields: {
+    ok: (o) => readEldSourceChangeDrafting(o).present,
+    evidenceSummary: (o) =>
+      walkJsonPath(o, "/eldVersionPair").map((h) => ({ ...h, ref: "eld_version_pair_fields" })),
+  },
+  pinned_authority_registry_fields: {
+    ok: (o) => readPinnedLegalAuthorityRegistry(o).present,
+    evidenceSummary: (o) =>
+      walkJsonPath(o, "/pinnedAuthorityRegistry/records").map((h) => ({
+        ...h,
+        ref: "pinned_authority_registry_fields",
+      })),
+  },
+  versioned_deterministic_receipt_fields: {
+    ok: (o) => readVersionedDeterministicReceipts(o).present,
+    evidenceSummary: (o) =>
+      walkJsonPath(o, "/versionedDeterministicReceipts").map((h) => ({
+        ...h,
+        ref: "versioned_deterministic_receipt_fields",
+      })),
+  },
+  multi_audience_perspective_fields: {
+    ok: (o) => readMultiAudiencePerspective(o).present,
+    evidenceSummary: (o) => [
+      ...walkJsonPath(o, "/audienceSurfaces"),
+      ...walkJsonPath(o, "/perspectiveRecords"),
+    ].map((h) => ({ ...h, ref: "multi_audience_perspective_fields" })),
+  },
+  dob_age_calc_ledger_fields: {
+    ok: (o) => readDobAgeCalcLedger(o).present,
+    evidenceSummary: (o) =>
+      walkJsonPath(o, "/dobAgeCalcLedger").map((h) => ({ ...h, ref: "dob_age_calc_ledger_fields" })),
+  },
+  structured_procedural_party_state_fields: {
+    ok: (o) => readStructuredProceduralPartyState(o).present,
+    evidenceSummary: (o) =>
+      walkJsonPath(o, "/proceduralPartyState").map((h) => ({
+        ...h,
+        ref: "structured_procedural_party_state_fields",
+      })),
   },
 };
 

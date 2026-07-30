@@ -15,6 +15,7 @@ import {
 import { classifyFid10Quotation } from "./fid10-calibration";
 import { evaluateAllBatch2 } from "./batch2-detectors";
 import { evaluateAllBatch3 } from "./batch3-detectors";
+import { evaluateAllBatch4 } from "./batch4-detectors";
 
 export type Stage150EvalContext = {
   caseId: string;
@@ -760,6 +761,7 @@ export function evaluateAllStage150Intelligence(ctx: Stage150EvalContext): Stage
     ...evaluatePerspectives(ctx),
     ...evaluateAllBatch2(ctx),
     ...evaluateAllBatch3(ctx),
+    ...evaluateAllBatch4(ctx),
   ];
 }
 

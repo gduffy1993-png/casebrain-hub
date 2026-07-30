@@ -16,12 +16,13 @@ export const ELD_EXIT_EXPECTATION_SCHEMA = "maa-v2-eld-exit-expectation@1.0.0" a
 /** Explicit non-runnable posture for the ELD foundation. */
 export const ELD_FOUNDATION_STATUS = {
   familyCode: "ELD",
-  foundationStatus: "specified_not_implemented",
+  /** Batch-4 remediation: adapter foundation only — not partially_implemented detectors. */
+  foundationStatus: "adapter_foundation_only",
   currentlyRunnable: false,
   countsAsFullyExercised: false,
   programmePassForbidden: true,
   note:
-    "Foundation schemas and pure calculators only. Do not mark any MAA2-ELD-* control partially_implemented, implemented, or runnable until adapters + contracts are wired and separately accepted.",
+    "Foundation schemas + Batch-4 adapters. ELD remains specified_not_implemented / adapter_foundation_only. Synthetic fixtures alone cannot make ELD Stage-150 exercisable. Never currentlyRunnable, fully exercised, or programme PASS.",
 } as const;
 
 export type EldNodeKind =

@@ -18,6 +18,12 @@ tsconfig.tsbuildinfo
 # CaseBrain Auditor generated reports (never commit case snippets / review data)
 artifacts/casebrain-auditor/
 
+# MAA V2 Stage-150+ large regenerable receipt corpora (commit indexes/summaries only)
+artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-control-receipts.json
+artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-eligibility-receipts.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-eligibility-receipts.jsonl.gz
+artifacts/casebrain-qa/assurance/master-auditor-v2/**/raw-receipts/
+
 # Local bundle fidelity — real PDFs, client truth keys, pasted bundle text (never commit)
 artifacts/bundle-fidelity-local/
 

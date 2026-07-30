@@ -1,0 +1,253 @@
+{
+  "schemaVersion": "stage150-batch4-adapters@1.1.0",
+  "baselineCommit": "da98277c3038b40b2408a7af6a41475e88b21e17",
+  "adapters": [
+    {
+      "adapterId": "eld_source_change_drafting",
+      "schemaVersion": "stage150-batch4-adapter@1.0.0",
+      "purpose": "ELD version pairs / source→sentence graph / approval / revision / exit matrix",
+      "requiredFields": [
+        "/eldVersionPair"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false
+    },
+    {
+      "adapterId": "pinned_legal_authority_registry",
+      "schemaVersion": "stage150-batch4-adapter@1.0.0",
+      "purpose": "Pinned local legal authority/currency registry (no live network fetch)",
+      "requiredFields": [
+        "/pinnedAuthorityRegistry/records"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false
+    },
+    {
+      "adapterId": "versioned_deterministic_receipts",
+      "schemaVersion": "stage150-batch4-adapter@1.0.0",
+      "purpose": "Frozen-run reproducibility / VDR receipt bag",
+      "requiredFields": [
+        "/versionedDeterministicReceipts"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false
+    },
+    {
+      "adapterId": "heavy_source_document_evidence",
+      "schemaVersion": "stage150-batch4-adapter@1.0.0",
+      "purpose": "Original binaries + OCR visual metadata + security tool evidence (Stage-300)",
+      "requiredFields": [
+        "/heavySourceDocumentEvidence/originalSourceDocuments"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false
+    },
+    {
+      "adapterId": "multi_audience_perspective",
+      "schemaVersion": "stage150-batch4-adapter@1.0.0",
+      "purpose": "Multi-audience surfaces + perspective comparison records",
+      "requiredFields": [
+        "/audienceSurfaces",
+        "/perspectiveRecords"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false
+    },
+    {
+      "adapterId": "dob_age_calc_ledger",
+      "schemaVersion": "stage150-batch4-adapter@1.0.0",
+      "purpose": "DOB and transparent calculation input ledger",
+      "requiredFields": [
+        "/dobAgeCalcLedger"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false
+    },
+    {
+      "adapterId": "structured_procedural_party_state",
+      "schemaVersion": "stage150-batch4-adapter@1.0.0",
+      "purpose": "Youth / fitness / disclosure-PII structured party state",
+      "requiredFields": [
+        "/proceduralPartyState"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false
+    }
+  ],
+  "stage150InputAdapters": [
+    {
+      "adapterId": "solicitor_visible_wording",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Collect solicitor-visible strings from court/chase/fiveAnswers/evidenceStates/export footer",
+      "requiredFields": [
+        "casebrain-output.json"
+      ],
+      "optionalFields": [
+        "/courtNote/text",
+        "/fiveAnswersEvidenceRows/*/label",
+        "/fiveAnswersEvidenceRows/*/note",
+        "/evidenceStates/*/label",
+        "/evidenceStates/*/existenceLabel",
+        "/evidenceStates/*/evidenceAnchor",
+        "/warningsAndGaps/chaseItems/*/label",
+        "/warningsAndGaps/chaseItems/*/copySuggestion",
+        "/warningsAndGaps/doNotOverstate/*",
+        "/exportVersion/reviewFooter"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Primary packet-local wording surface for Stage-150 partial detectors."
+    },
+    {
+      "adapterId": "evidence_state_rows",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Evidence identity/state rows without collapsing aliases",
+      "requiredFields": [
+        "/evidenceStates"
+      ],
+      "optionalFields": [
+        "/evidenceStates/*/inferredSourceState",
+        "/evidenceStates/*/evidenceAnchor",
+        "/evidenceStates/*/existenceLabel"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Unknown state tokens → unresolved; never PASS on missing array."
+    },
+    {
+      "adapterId": "five_answers_truth_map",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Five-answer evidence map for reliability/perspective checks",
+      "requiredFields": [
+        "/fiveAnswersEvidenceRows"
+      ],
+      "optionalFields": [
+        "/fiveAnswersEvidenceRows/*/existence",
+        "/fiveAnswersEvidenceRows/*/reliability",
+        "/fiveAnswersEvidenceRows/*/note"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Does not open truth-key.json; uses materialised output rows only."
+    },
+    {
+      "adapterId": "chase_and_warnings",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Chase drafts and do-not-overstate warnings for attachment/wording controls",
+      "requiredFields": [
+        "/warningsAndGaps"
+      ],
+      "optionalFields": [
+        "/warningsAndGaps/chaseItems",
+        "/warningsAndGaps/doNotOverstate"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Empty chase draft is a defect when chaseItems present with blank copySuggestion."
+    },
+    {
+      "adapterId": "cross_exit_packet_surfaces",
+      "schemaVersion": "stage150-input-adapter@1.0.0",
+      "purpose": "Compare court sendability vs export footer on available exits only",
+      "requiredFields": [
+        "/courtNote",
+        "/exportVersion"
+      ],
+      "optionalFields": [
+        "/courtNote/sendabilityLabel",
+        "/exportVersion/reviewFooter"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "API/PDF/composed_prose exits remain not_exercised — never PASS."
+    },
+    {
+      "adapterId": "eld_version_graph",
+      "schemaVersion": "stage150-input-adapter@1.1.0",
+      "purpose": "Evidence-locked drafting dependency graph (Batch-4 eldVersionPair)",
+      "requiredFields": [
+        "/eldVersionPair"
+      ],
+      "optionalFields": [
+        "source_to_sentence_graph",
+        "version_pairs",
+        "approval_receipts",
+        "revision_ledger",
+        "full_exit_block_matrix"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Batch-4 adapter reads /eldVersionPair (synthetic/fixture only). ESA absent → not_exercised. Never invent live ELD graphs."
+    },
+    {
+      "adapterId": "authority_currency_pin",
+      "schemaVersion": "stage150-input-adapter@1.1.0",
+      "purpose": "Pinned local authority/currency registry for LEG controls",
+      "requiredFields": [
+        "/pinnedAuthorityRegistry/records"
+      ],
+      "optionalFields": [],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Batch-4 pinnedAuthorityRegistry; without records LEG/currency controls are not_exercised."
+    },
+    {
+      "adapterId": "source_binary_security",
+      "schemaVersion": "stage150-input-adapter@1.1.0",
+      "purpose": "Original PDF/binary openability, OCR visual metadata, security tool receipts",
+      "requiredFields": [
+        "/heavySourceDocumentEvidence/originalSourceDocuments"
+      ],
+      "optionalFields": [
+        "ocr_visual_metadata",
+        "security_tool_evidence"
+      ],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Stage-300 heavy lane; Batch-4 schema only. Unsupported formats and missing binaries → not_exercised."
+    },
+    {
+      "adapterId": "versioned_deterministic_receipts",
+      "schemaVersion": "stage150-input-adapter@1.1.0",
+      "purpose": "Frozen-run reproducibility / VDR receipt bag",
+      "requiredFields": [
+        "/versionedDeterministicReceipts"
+      ],
+      "optionalFields": [],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Batch-4 VDR adapter; ESA absent → not_exercised."
+    },
+    {
+      "adapterId": "multi_audience_perspective",
+      "schemaVersion": "stage150-input-adapter@1.1.0",
+      "purpose": "Multi-audience surfaces and perspective comparison records",
+      "requiredFields": [
+        "/audienceSurfaces",
+        "/perspectiveRecords"
+      ],
+      "optionalFields": [],
+      "source": "casebrain-output.json",
+      "whenAbsent": "not_exercised",
+      "opensTruth": false,
+      "notes": "Single courtNote is insufficient; requires ≥2 audience or perspective records."
+    }
+  ],
+  "rule": "Missing evidence → not_exercised. Never invent ESA inputs or PASS. Adapter ≠ detector."
+}

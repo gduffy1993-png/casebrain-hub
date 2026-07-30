@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "maa-v2-retention-receipt-index@1.0.0",
+  "measurementKind": "measured_reproduction",
+  "relativePath": "raw-receipts/retention-demo-receipts.jsonl",
+  "sha256": "3a2e15be4b86873fad65f0374d16674a35c6922d54a253f5cd98f0bab3525d25",
+  "byteLength": 4456,
+  "lineCount": 12,
+  "regenerable": true,
+  "gitPolicy": "gitignore_regenerate",
+  "interruptResume": {
+    "interruptAfter": 5,
+    "resumedSha256": "3a2e15be4b86873fad65f0374d16674a35c6922d54a253f5cd98f0bab3525d25",
+    "byteIdentical": true
+  }
+}

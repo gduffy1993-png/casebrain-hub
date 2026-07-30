@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "maa-v2-evidence-size-projections@1.1.0",
+  "baselineCommit": "da98277c3038b40b2408a7af6a41475e88b21e17",
+  "measurementKind": "estimate",
+  "projections": [
+    {
+      "stage": "150",
+      "assumedCases": 150,
+      "assumedControls": 161,
+      "avgReceiptBytes": 1525,
+      "projectedRawReceiptBytes": 36828750,
+      "gitCommitAdvice": "JSONL local-only + commit hash index + summary; do not commit monolithic JSON.",
+      "projectedRawReceiptMiB": 35.1,
+      "projectedGzipMiBEstimate": 7,
+      "measurementKind": "estimate",
+      "estimateAssumptions": "cases=150 × controls=161 × avgReceiptBytes=1525 (Batch-3 observed avg). Gzip factor 0.2 planning-only. Not measured Stage-150 output."
+    },
+    {
+      "stage": "300",
+      "assumedCases": 300,
+      "assumedControls": 200,
+      "avgReceiptBytes": 1525,
+      "projectedRawReceiptBytes": 91500000,
+      "gitCommitAdvice": "Same retention; heavy/binary artefacts stay local with hash receipts only.",
+      "projectedRawReceiptMiB": 87.3,
+      "projectedGzipMiBEstimate": 17.5,
+      "measurementKind": "estimate",
+      "estimateAssumptions": "cases=300 × controls=200 × avgReceiptBytes=1525 (Batch-3 observed avg). Gzip factor 0.2 planning-only. Not measured Stage-300 output."
+    },
+    {
+      "stage": "3000",
+      "assumedCases": 3000,
+      "assumedControls": 250,
+      "avgReceiptBytes": 1525,
+      "projectedRawReceiptBytes": 1143750000,
+      "gitCommitAdvice": "Must be JSONL(+optional deterministic gzip) outside Git; commit indexes only.",
+      "projectedRawReceiptMiB": 1090.8,
+      "projectedGzipMiBEstimate": 218.2,
+      "measurementKind": "estimate",
+      "estimateAssumptions": "cases=3000 × controls=250 × avgReceiptBytes=1525 (Batch-3 observed avg). Gzip factor 0.2 planning-only. Not measured Stage-3000 output."
+    }
+  ],
+  "batch3ObservedMonolithicReceiptsMiB": 76.9,
+  "note": "ESTIMATES only — assumptions documented per row. Not measured Stage-150/300/3000 output. Batch-4 does not emit/commit monolithic receipt JSON."
+}

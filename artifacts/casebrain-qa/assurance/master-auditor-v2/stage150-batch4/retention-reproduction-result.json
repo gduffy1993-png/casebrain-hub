@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "maa-v2-retention-reproduction@1.0.0",
+  "cleanSha256": "3a2e15be4b86873fad65f0374d16674a35c6922d54a253f5cd98f0bab3525d25",
+  "resumedSha256": "3a2e15be4b86873fad65f0374d16674a35c6922d54a253f5cd98f0bab3525d25",
+  "byteIdentical": true,
+  "cleanByteLength": 4456,
+  "resumedByteLength": 4456,
+  "lineCount": 12,
+  "workDirNote": "temp dir used for clean vs resume; demo JSONL copied to gitignored raw-receipts/"
+}

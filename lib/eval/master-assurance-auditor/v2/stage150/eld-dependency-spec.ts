@@ -44,7 +44,7 @@ export const ELD_DEPENDENCY_SPEC = {
       implementationStatus: "specified_not_implemented" as const,
       currentlyRunnable: false as const,
       countsAsFullyExercised: false as const,
-      note: "Do not mark partially_implemented until adapters + positive/negative/unavailable contracts exist.",
+      note: "Batch-4 honesty: adapter_foundation_only. Synthetic fixtures alone cannot make ELD Stage-150 exercisable. Never runnable/fully exercised.",
     };
   }),
   dependencyModel: {
