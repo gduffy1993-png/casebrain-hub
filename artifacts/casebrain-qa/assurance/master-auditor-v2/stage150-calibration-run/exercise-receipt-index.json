@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "stage150-exercise-receipt-index@1.0.0",
+  "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/raw-receipts/exercise-receipts.jsonl",
+  "sha256": "1325cab7a9838b7d9006a6fa2de6fb2f0673ab117d8c51647024c71a1d0e3b49",
+  "lineCount": 24150,
+  "regenerable": true,
+  "truthContentsOpenedDuringBlind": false
+}

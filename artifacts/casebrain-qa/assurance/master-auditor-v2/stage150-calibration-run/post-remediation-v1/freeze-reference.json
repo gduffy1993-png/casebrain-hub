@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "stage150-postrem-freeze-reference@1.0.0",
+  "note": "Original freeze reused by reference — not rewritten. Ordered membership hash preserved.",
+  "frozenRunId": "s150-cal-2026-07-31T16-55-01-119Z-a33adbda",
+  "orderedMembershipSha256Preserved": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "originalCandidateFreezeSha256": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+  "rematerialisedOutputVersionSha256": "29ade4158db8cc113ba4d703e76d15c86dcc972b2e2fb445f605252fd03466c1",
+  "frozenSourcesAltered": false,
+  "frozenCandidateFreezeAltered": false,
+  "frozenTriageAltered": false
+}

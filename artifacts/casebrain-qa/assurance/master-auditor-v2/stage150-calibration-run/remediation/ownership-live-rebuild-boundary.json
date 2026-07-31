@@ -1,0 +1,27 @@
+{
+  "liveRowsLen": 2,
+  "liveRowsSha": "dca10c5db7b539e38c17b8885465e97d8bd4a8c2e8561e9ef0a412cd778f06d1",
+  "liveRowsSample": [
+    {
+      "label": "CCTV master export UQ-0001-homi Evidence referred or",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "bundle.pdf · p.3 (compiled p.3)"
+    },
+    {
+      "label": "final statement. Final signed MG11 remains",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "bundle.pdf · p.5 (compiled p.5)"
+    }
+  ],
+  "pipelineEvidenceRowsLen": 2,
+  "roundTripFiveLen": 2,
+  "roundTripFiveSha": "dca10c5db7b539e38c17b8885465e97d8bd4a8c2e8561e9ef0a412cd778f06d1",
+  "frozenFiveLen": 0,
+  "frozenViewRowsLen": 2,
+  "frozenViewRowsSha": "dca10c5db7b539e38c17b8885465e97d8bd4a8c2e8561e9ef0a412cd778f06d1",
+  "liveMatchesFrozenView": true,
+  "courtLinePresent": true,
+  "classificationHint": "live_builder_has_rows_but_frozen_casebrain_output_empty — Batch-10 serialisation/capture defect (or stale capture), not missing CaseBrain rows"
+}

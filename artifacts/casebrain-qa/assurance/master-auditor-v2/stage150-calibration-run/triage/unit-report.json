@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "stage150-calibration-triage-units@1.0.0",
+  "note": "Units remain separate — 58 occurrences are not 58 independent defects.",
+  "occurrences": 58,
+  "exactStrings": 6,
+  "normalisedTemplates": 6,
+  "affectedCases": 12,
+  "affectedSurfaces": 9,
+  "affectedExits": [
+    "copy",
+    null
+  ],
+  "uniqueConfirmedRootCauses": 1,
+  "dispositions": {
+    "confirmed_app_defect": 1,
+    "detector_false_positive": 0,
+    "unresolved_source": 0,
+    "truth_key_defect": 0,
+    "safe_containment": 0,
+    "duplicate_occurrence_of_confirmed_root": 1,
+    "not_exercised_projection_only": 56
+  },
+  "byCohort": {
+    "A": {
+      "occurrences": 56,
+      "not_exercised_projection_only": 56,
+      "confirmed_app_defect": 0
+    },
+    "B": {
+      "occurrences": 2,
+      "confirmed_app_defect": 1,
+      "duplicate_occurrence_of_confirmed_root": 1
+    }
+  }
+}

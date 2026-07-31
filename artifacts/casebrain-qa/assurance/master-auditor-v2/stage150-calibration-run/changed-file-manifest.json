@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "maa-v2-stage150-calibration-changed-file-manifest@1.0.0",
+  "baselineCommit": "9cdd8fd66773872cb94a21c0a202ee63c40f6a83",
+  "headCommit": "9cdd8fd66773872cb94a21c0a202ee63c40f6a83",
+  "intendedScopePaths": [
+    "lib/eval/master-assurance-auditor/v2/stage150/calibration/constants.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/calibration/population-freeze.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/calibration/blind-runner.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/calibration/ownership-dedupe.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/calibration/truth-open.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/calibration/review-batches.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/calibration/pipeline.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/calibration/index.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+    "scripts/assurance/emit-maa-v2-stage150-calibration-run.ts",
+    "scripts/maa-v2-stage150-calibration-run-contracts.test.ts",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/STOP-FOR-CODEX-REVIEW.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/frozen-population-manifest.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/freeze-receipt.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/candidate-freeze-receipt.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/changed-file-manifest.json"
+  ],
+  "entries": [
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/calibration/constants.ts",
+      "sha256": "7d54e2cf2445a6ac0f3cee3546a98b7550b8d9bc0462317583985b17ad467774",
+      "byteLength": 728
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/calibration/population-freeze.ts",
+      "sha256": "ed34825497b851bcd29f49ef9df3e473d697df900b0b3b086c13d6a9477140de",
+      "byteLength": 10268
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/calibration/blind-runner.ts",
+      "sha256": "3c196b099050075097f1394cd5cad652beb8918f8178fe85b9fdcf697c0d4ac3",
+      "byteLength": 10741
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/calibration/ownership-dedupe.ts",
+      "sha256": "9092c1910a1d90dc77cb98c697f7699d4652028ebdb6a6e67f6a2bc35bcf3619",
+      "byteLength": 1989
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/calibration/truth-open.ts",
+      "sha256": "c695fceaf4cdbc7fc4b4f791aac3475683d4376a2ce8a6ef296fe48b4ee9fe87",
+      "byteLength": 5102
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/calibration/review-batches.ts",
+      "sha256": "c26f31a194702362bf5ff24c2ddd34c5d4561f32fab9d33bb1f9d4e33865248f",
+      "byteLength": 4116
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/calibration/pipeline.ts",
+      "sha256": "e63689820e7adecd43d9900254ddfd95a27318f68ed955e9cadfc6f51471a6b8",
+      "byteLength": 14580
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/calibration/index.ts",
+      "sha256": "934bc18d92db7ca2008096ddf8f5c4053a03060750a046a838617e58f2d34251",
+      "byteLength": 278
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+      "sha256": "026825da61ca1dde41c02f2996ec9cd13707e73438a659a77109ef89ddb6ba6d",
+      "byteLength": 1575
+    },
+    {
+      "relativePath": "scripts/assurance/emit-maa-v2-stage150-calibration-run.ts",
+      "sha256": "224778439b35bd430fb12f05b3cb9c30f1f8d5a1bacfe47aa38dd8dd8d82aca9",
+      "byteLength": 11769
+    },
+    {
+      "relativePath": "scripts/maa-v2-stage150-calibration-run-contracts.test.ts",
+      "sha256": "e52bc0330d84268443f0b71e4219e9022c188fd257b9974a407be80dcd2f6202",
+      "byteLength": 3921
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "56085dd256ecb53d1c8d7b32ed6e54770ed094e5b7e0cb9554e6c0940a4de929",
+      "byteLength": 6598
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/frozen-population-manifest.json",
+      "sha256": "de0a964a718070ddf2e71167aac2965436cef88baa10f12c7f271f8f0b543c22",
+      "byteLength": 246740
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/freeze-receipt.json",
+      "sha256": "2ccbffdbbe80feea6800223528407e3c5e585c2cd23b25fdc4315108a7195e38",
+      "byteLength": 504
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/candidate-freeze-receipt.json",
+      "sha256": "eac755b7cd0cda0cdfa936e0d62581c7602fc48191ff88a30aded056079f00f5",
+      "byteLength": 61831
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+      "sha256": "8bc2b2bbce7e46a64d0571f535ec821384c3c938eda7ce5e81d67d7158cbd8ba",
+      "byteLength": 1115
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/changed-file-manifest.json",
+      "sha256": "7bbf859fc838e479ae41b4e0c2d44663484cc535809c35b99c84b13b215d5357",
+      "byteLength": 5378
+    }
+  ],
+  "thisManifest": {
+    "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/changed-file-manifest.json",
+    "sha256": "7bbf859fc838e479ae41b4e0c2d44663484cc535809c35b99c84b13b215d5357",
+    "byteLength": 5378
+  }
+}

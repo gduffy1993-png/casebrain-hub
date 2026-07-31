@@ -1,0 +1,29 @@
+{
+  "caseId": "s150-d120-001-homicide-causation-clean",
+  "fiveLen": 0,
+  "fiveSha": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "fiveSample": [],
+  "viewRowsLen": 2,
+  "viewRowsSha": "dca10c5db7b539e38c17b8885465e97d8bd4a8c2e8561e9ef0a412cd778f06d1",
+  "viewSample": [
+    {
+      "label": "CCTV master export UQ-0001-homi Evidence referred or",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "bundle.pdf · p.3 (compiled p.3)"
+    },
+    {
+      "label": "final statement. Final signed MG11 remains",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "note": "bundle.pdf · p.5 (compiled p.5)"
+    }
+  ],
+  "identical": false,
+  "courtTextLen": 218,
+  "producedBy": "buildLiveProductionSurfacesFromDocumentUnits",
+  "truthMapEvidenceStateKeys": [
+    "rows",
+    "hardRules"
+  ]
+}

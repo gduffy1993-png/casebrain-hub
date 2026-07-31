@@ -106,4 +106,40 @@ describe("Batch-10 deficit-120 foundation", () => {
     assert.ok(reasons.includes("missing_charge_instruments"));
     assert.ok(reasons.some((r) => r.startsWith("missing_real_exit:")));
   });
+
+  it("Five Answers serialisation copies view rows and never invents from court", () => {
+    const {
+      serializeFiveAnswersEvidenceRowsFromSurfaces,
+      alignCasebrainOutputFiveAnswersWithViewRows,
+    } = require("../lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/five-answers-serialisation") as typeof import("../lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/five-answers-serialisation");
+    const rows = [
+      { label: "CCTV master", existence: "missing" as const, reliability: "needs_review" as const, note: "p.3" },
+    ];
+    const surfaces = {
+      truthMap: {
+        caseSaying: { allegation: "a", mainIssue: "m", nextAction: "n" },
+        evidenceState: { rows, hardRules: [] as string[] },
+        mustNotOverstate: [] as string[],
+        chase: [],
+        courtNote: { text: "Court", copySuggestionLabel: "", sendabilityLabel: "", canCopy: false, footer: "" },
+        contradictions: [],
+        evidenceTrace: { rows: [], bySection: {} as never },
+      },
+      composedProse: { courtLine: "Court", cpsChase: null, clientDisclaimer: "", limitations: [] as string[] },
+    };
+    const s = serializeFiveAnswersEvidenceRowsFromSurfaces(surfaces);
+    assert.equal(s.rows.length, 1);
+    assert.equal(s.inventedFromCourt, false);
+    const emptyCourt = serializeFiveAnswersEvidenceRowsFromSurfaces({
+      ...surfaces,
+      truthMap: { ...surfaces.truthMap, evidenceState: { rows: [], hardRules: [] } },
+    });
+    assert.equal(emptyCourt.rows.length, 0);
+    const aligned = alignCasebrainOutputFiveAnswersWithViewRows({
+      casebrainOutput: { courtNote: { text: "Court" }, fiveAnswersEvidenceRows: [] },
+      viewEvidenceRows: rows,
+    });
+    assert.equal(aligned.repaired, true);
+    assert.equal(aligned.afterLen, 1);
+  });
 });

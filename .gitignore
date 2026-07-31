@@ -29,6 +29,19 @@ artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-s
 artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/
 artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/
 
+# Stage-150 calibration regenerable work/receipts (commit indexes + STOP/summaries only)
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/work/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/raw-receipts/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/pre-truth-ledgers/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/truth-open-receipts/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/candidate-freeze.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/work/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/raw-receipts/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/pre-truth-ledgers/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/truth-open-receipts/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/candidate-freeze.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-calibration-run/post-remediation-v1/rematerialised-outputs/
+
 # Local bundle fidelity — real PDFs, client truth keys, pasted bundle text (never commit)
 artifacts/bundle-fidelity-local/
 

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "maa-v2-stage150-calibration-triage-stop@1.0.0",
+  "title": "ACCEPTED — STAGE-150 CALIBRATION TRIAGE",
+  "status": "STAGE150_CALIBRATION_TRIAGE_ACCEPTED_UNMERGED",
+  "createdAt": "2026-07-31T17:28:32.209Z",
+  "elapsedMs": 70,
+  "baselineCommit": "9cdd8fd66773872cb94a21c0a202ee63c40f6a83",
+  "calibrationRunId": "s150-cal-2026-07-31T16-55-01-119Z-a33adbda",
+  "candidateFreezeSha256": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+  "populationAltered": false,
+  "freezeAltered": false,
+  "candidateLedgerAltered": false,
+  "detectorsAltered": false,
+  "packetsAltered": false,
+  "caseBrainRepaired": false,
+  "promotions": [],
+  "stage150ExecutionAllowed": false,
+  "programmePassSupported": false,
+  "committed": true,
+  "pushed": true,
+  "unitReport": {
+    "schemaVersion": "stage150-calibration-triage-units@1.0.0",
+    "note": "Units remain separate — 58 occurrences are not 58 independent defects.",
+    "occurrences": 58,
+    "exactStrings": 6,
+    "normalisedTemplates": 6,
+    "affectedCases": 12,
+    "affectedSurfaces": 9,
+    "affectedExits": [
+      "copy",
+      null
+    ],
+    "uniqueConfirmedRootCauses": 1,
+    "dispositions": {
+      "confirmed_app_defect": 1,
+      "detector_false_positive": 0,
+      "unresolved_source": 0,
+      "truth_key_defect": 0,
+      "safe_containment": 0,
+      "duplicate_occurrence_of_confirmed_root": 1,
+      "not_exercised_projection_only": 56
+    },
+    "byCohort": {
+      "A": {
+        "occurrences": 56,
+        "not_exercised_projection_only": 56,
+        "confirmed_app_defect": 0
+      },
+      "B": {
+        "occurrences": 2,
+        "confirmed_app_defect": 1,
+        "duplicate_occurrence_of_confirmed_root": 1
+      }
+    }
+  },
+  "projectionHonesty": {
+    "cohortAOccurrences": 56,
+    "cohortAConfirmedForbidden": 0,
+    "allProjectionOnly": true
+  },
+  "duplicateAudit": {
+    "frozenLinks": 48,
+    "validSharedRoot": 48,
+    "invalid": 0
+  },
+  "uniqueConfirmedRootCauses": 1,
+  "confirmedRootIds": [
+    "RC-S150-PRI01-EMPTY-FIVEANSWERS-WITH-COURT"
+  ],
+  "artefacts": [
+    "disposition-ledger-58.json",
+    "cohort-a-projection-honesty-report.json",
+    "duplicate-link-audit.json",
+    "unique-root-cause-register.json",
+    "proposed-shared-remediation-order.json",
+    "before-after-count-comparison.json",
+    "unit-report.json",
+    "STOP-FOR-CODEX-REVIEW.json"
+  ],
+  "acceptanceNote": "Accepted onto programme/criminal-defence-integrity-corpus for PR #65. stage150ExecutionAllowed remains false. No Stage 300 / merge / deploy / programme PASS."
+}
+

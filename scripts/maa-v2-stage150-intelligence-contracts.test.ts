@@ -53,7 +53,12 @@ describe("MAA V2 Stage-150 — registry / ownership / ledger", () => {
   it("totals and ELD non-runnable", () => {
     const matrix = buildStage150ImplementationCapabilityMatrix();
     assert.equal(matrix.totals.stage150ControlCount, 161);
-    assert.equal(matrix.totals.partially_implemented, STAGE150_PACKET_LOCAL_HANDLERS.length);
+    // Packet-local handlers are implemented (Batch-5 immutable promotions) or partially_implemented.
+    assert.equal(
+      matrix.totals.partially_implemented + matrix.totals.implemented,
+      STAGE150_PACKET_LOCAL_HANDLERS.length,
+    );
+    assert.equal(matrix.totals.implemented, 8);
     assert.equal(ELD_DEPENDENCY_SPEC.controls.length, 14);
     assert.ok(ELD_DEPENDENCY_SPEC.controls.every((c) => c.currentlyRunnable === false));
   });

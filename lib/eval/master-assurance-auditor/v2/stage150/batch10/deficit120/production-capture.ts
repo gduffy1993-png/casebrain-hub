@@ -12,6 +12,10 @@ import { buildPdfBackedCaseArtifacts } from "@/lib/eval/line-source-proof/pdf-bu
 import { BATCH10_EXIT_IDS, type Batch10ExitId } from "../schemas";
 import type { Deficit120CaseSpec } from "./coverage-catalog";
 import type { Deficit120SourceArtifacts } from "./source-builder";
+import {
+  FIVE_ANSWERS_SERIALISATION_INVARIANT,
+  serializeFiveAnswersEvidenceRowsFromSurfaces,
+} from "./five-answers-serialisation";
 
 function sha256(buf: string | Buffer): string {
   return crypto.createHash("sha256").update(buf).digest("hex");
@@ -148,6 +152,9 @@ export async function captureDeficit120Case(args: {
   }
 
   // 5) casebrain-output from production surfaces only (never truth).
+  // Five Answers rows = deep copy of the same truthMap rows written to the view exit.
+  // Court prose never seeds evidence rows.
+  const fiveSerialised = serializeFiveAnswersEvidenceRowsFromSurfaces(surfaces);
   const casebrainOutput = {
     caseId: spec.caseId,
     producedBy: "buildLiveProductionSurfacesFromDocumentUnits",
@@ -162,7 +169,14 @@ export async function captureDeficit120Case(args: {
       sendability: surfaces.exportPack.version.sendability ?? "review_required",
       reviewFooter: surfaces.exportPack.version.reviewFooter ?? null,
     },
-    fiveAnswersEvidenceRows: surfaces.truthMap.evidenceState.rows ?? [],
+    fiveAnswersEvidenceRows: fiveSerialised.rows,
+    fiveAnswersSerialisation: {
+      invariant: FIVE_ANSWERS_SERIALISATION_INVARIANT,
+      viewRowsSha256: fiveSerialised.viewRowsSha256,
+      persistedRowsSha256: fiveSerialised.persistedRowsSha256,
+      courtNotePresent: fiveSerialised.courtNotePresent,
+      inventedFromCourt: fiveSerialised.inventedFromCourt,
+    },
     warningsAndGaps: {
       chaseItems: (surfaces.disclosureChase.items ?? []).map((i, idx) => ({
         label: i.label,
