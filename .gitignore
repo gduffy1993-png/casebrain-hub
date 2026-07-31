@@ -50,6 +50,7 @@ artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-a
 artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/exercise-rows.jsonl
 artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/disposition-ledger.jsonl
 artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-a-structured-adapters/six-evaluator-calibration/truth-open-sequencing.jsonl
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-b-evidence-provenance-chase-exits/raw/
 
 # Local bundle fidelity — real PDFs, client truth keys, pasted bundle text (never commit)
 artifacts/bundle-fidelity-local/

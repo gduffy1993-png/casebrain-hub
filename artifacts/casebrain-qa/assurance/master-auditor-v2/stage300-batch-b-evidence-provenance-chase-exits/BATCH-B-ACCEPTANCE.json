@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "maa-v2-stage300-batch-b-acceptance@1.0.0",
+  "status": "BATCH_B_ACCEPTED",
+  "baselineCommit": "43125b6fa06fa8e5e682d8811b1478b37daf9dfa",
+  "programmeObjective": "CONTROL_COVERAGE",
+  "preservedHonesty": {
+    "dualStatus": true,
+    "capabilityStatusEqualsNamedPrerequisiteOnly": true,
+    "evidence": { "schemaValid": 120, "namedComplete": 120 },
+    "provenance": { "schemaValid": 120, "namedComplete": 120 },
+    "chase": {
+      "schemaValid": 120,
+      "namedPacketComplete": 0,
+      "linked": 480,
+      "unresolved": 257,
+      "ambiguous": 0
+    },
+    "multiExit": { "schemaValid": 120, "namedComplete": 120 },
+    "authenticatedBrowser": "separate_not_exercised",
+    "exclusionLedgerEntries": 840,
+    "essentialUnlocks": 0,
+    "promotions": false
+  },
+  "decisionCard": "BATCH-B-DECISION-CARD.md",
+  "governanceDir": "governance/",
+  "gatesRemainFalse": {
+    "programmePass": false,
+    "stage300FrozenOrRun": false,
+    "merge": false,
+    "deploy": false,
+    "newCaseGeneration": false,
+    "detectorPromotions": false
+  },
+  "foundationStopRuleArmed": true,
+  "calibrationEconomyRuleArmed": true,
+  "nextWorkMustNotBeFoundationOnly": true
+}

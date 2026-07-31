@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "stage300-batch-b-evaluator-registry@1.0.0",
+  "evaluatorsImplemented": 0,
+  "unlockedEssentialControlIds": [],
+  "statuses": [],
+  "note": "No essential-43 control gained exact structured prerequisites for a new substantive evaluator in Batch B. AUD/XPP still need audience/perspective packs; ELD/VDR need version pairs; SRC need OCR; EVS/CHS/ATR/XEX deepen-partials are outside the essential register."
+}

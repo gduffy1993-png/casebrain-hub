@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "stage300-foundation-stop-rule@1.0.0",
+  "permanent": true,
+  "permittedFoundationBatchOnlyIf": [
+    "unlocks a named essential control",
+    "supplies an exact missing production/corpus input",
+    "closes a documented safety gap"
+  ],
+  "ifUnlocksZeroControlsMustChoose": [
+    "build_missing_source_packets",
+    "repair_capture_materialisation",
+    "add_live_product_backlog_item",
+    "defer_control",
+    "move_to_later_stage"
+  ],
+  "batchBDecision": {
+    "unlockedEssentialControls": 0,
+    "foundationOnlyElaborationForbiddenGoingForward": true,
+    "explicitDecisionRequired": true,
+    "chosenPathHint": "Batch-C-SPECIALTY-LSL-CHR-PRC or Batch-C-OCR-SRC or explicit deferral — not another adapter-only batch"
+  }
+}

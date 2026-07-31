@@ -80,7 +80,7 @@ function completeEvidence(over: Record<string, unknown> = {}) {
 
 function allExits() {
   return Object.fromEntries(
-    ["view", "copy", "export", "api", "pdf", "composed_prose", "authenticated_browser"].map((id) => [
+    ["view", "copy", "export", "api", "pdf", "composed_prose"].map((id) => [
       id,
       { payloadIdentity: `sha256:${id}`, sendability: "ok", unavailableReason: null },
     ]),

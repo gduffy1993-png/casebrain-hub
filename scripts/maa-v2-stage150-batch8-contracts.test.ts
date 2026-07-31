@@ -346,7 +346,7 @@ describe("Batch-8 provenance", () => {
     assert.equal(r.capabilityStatus, "partial");
     assert.equal(r.completeRecordCount, 1);
     assert.ok(r.incompleteRecordCount >= 1);
-    assert.match(r.eligibilityReason, /One complete/i);
+    assert.match(r.eligibilityReason, /Exact-page incomplete|honest_unknown_page/i);
   });
 
   it("b8_prov_adversarial — page fields without pageIdentityKnown fail validator", () => {
@@ -359,6 +359,7 @@ describe("Batch-8 provenance", () => {
         pageIdentityKnown: false,
         limitationReason: null,
         evidenceAnchorRaw: "p.12",
+        pageClass: "invalid_defaulted",
       }).length > 0,
     );
   });
@@ -469,7 +470,7 @@ describe("Batch-8 chase_relationships", () => {
     assert.equal(r.applicableRecordCount, 2);
     assert.equal(r.completeRecordCount, 1);
     assert.equal(r.incompleteRecordCount, 1);
-    assert.match(r.eligibilityReason, /One complete chase row does not upgrade/i);
+    assert.match(r.eligibilityReason, /Linked-edge incomplete|does not upgrade|not a linked edge/i);
   });
 
   it("b8_chase_unavailable", () => {
@@ -506,13 +507,14 @@ describe("Batch-8 exit_snapshots", () => {
     const r = adaptExitSnapshots("t", esaLike());
     assert.equal(r.capabilityStatus, "unavailable");
     assert.equal(r.completeRecordCount, 0);
-    assert.equal(r.incompleteRecordCount, 7);
+    assert.equal(r.incompleteRecordCount, 6);
     assert.ok(r.records.some((e) => e.exitId === "view" && e.metadataOnly && !e.realExitPayloadPresent));
     assert.ok(r.records.some((e) => e.exitId === "api" && e.capabilityStatus === "unavailable"));
+    assert.ok(r.records.some((e) => e.exitId === "authenticated_browser"));
     for (const e of r.records) assert.equal(validateExitSnapshot(e).length, 0);
   });
 
-  it("b8_exit_negative — one real exit with six missing stays partial", () => {
+  it("b8_exit_negative — one real exit with five missing production exits stays partial", () => {
     const r = adaptExitSnapshots(
       "t",
       esaLike({
@@ -523,12 +525,30 @@ describe("Batch-8 exit_snapshots", () => {
     );
     assert.equal(r.capabilityStatus, "partial");
     assert.equal(r.completeRecordCount, 1);
-    assert.equal(r.incompleteRecordCount, 6);
+    assert.equal(r.incompleteRecordCount, 5);
     assert.ok(r.records.some((e) => e.exitId === "view" && e.realExitPayloadPresent));
     assert.match(r.eligibilityReason, /one real exit does not make the adapter eligible/i);
   });
 
-  it("b8_exit_positive — all seven required exits with genuine payloads", () => {
+  it("b8_exit_positive — six production exits eligible without authenticated_browser", () => {
+    const receipts = Object.fromEntries(
+      ["view", "copy", "export", "api", "pdf", "composed_prose"].map((id) => [
+        id,
+        { payloadIdentity: `sha256:${id}`, sendability: "ok", unavailableReason: null },
+      ]),
+    );
+    const r = adaptExitSnapshots("t", esaLike({ exitPayloadReceipts: receipts }));
+    assert.equal(r.capabilityStatus, "eligible");
+    assert.equal(r.completeRecordCount, 6);
+    assert.equal(r.incompleteRecordCount, 0);
+    assert.ok(
+      r.records.some(
+        (e) => e.exitId === "authenticated_browser" && e.capabilityStatus === "unavailable",
+      ),
+    );
+  });
+
+  it("b8_exit_positive — all seven tracked exits still recordable", () => {
     const receipts = Object.fromEntries(
       ["view", "copy", "export", "api", "pdf", "composed_prose", "authenticated_browser"].map((id) => [
         id,
@@ -537,8 +557,12 @@ describe("Batch-8 exit_snapshots", () => {
     );
     const r = adaptExitSnapshots("t", esaLike({ exitPayloadReceipts: receipts }));
     assert.equal(r.capabilityStatus, "eligible");
-    assert.equal(r.completeRecordCount, 7);
-    assert.equal(r.incompleteRecordCount, 0);
+    assert.equal(r.completeRecordCount, 6);
+    assert.ok(
+      r.records.some(
+        (e) => e.exitId === "authenticated_browser" && e.realExitPayloadPresent === true,
+      ),
+    );
   });
 
   it("b8_exit_adversarial — metadata cannot be eligible", () => {
@@ -552,6 +576,12 @@ describe("Batch-8 exit_snapshots", () => {
         metadataOnly: true,
         capabilityStatus: "eligible",
         evidencePointersPresent: ["/exportVersion/exportId"],
+        payloadSchemaVersion: null,
+        captureRunId: null,
+        surfaceList: [],
+        provenanceLimitationContent: null,
+        generatedAt: null,
+        productionPayloadFieldsComplete: false,
       }).some((i) => i.code === "metadata_marked_eligible"),
     );
   });

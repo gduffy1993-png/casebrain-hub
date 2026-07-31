@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "stage300-batch-b-adapter-registry@1.1.0",
+  "baselineCommit": "43125b6fa06fa8e5e682d8811b1478b37daf9dfa",
+  "batchBSchemaVersion": "maa-v2-stage300-batch-b-evidence-provenance-chase-exits@1.0.0",
+  "focusAdapterCount": 4,
+  "adapters": [
+    {
+      "adapterId": "evidence_unit_identity_with_aliases",
+      "status": "adapter_foundation_dual_status",
+      "substantiveEvaluatorImplemented": false,
+      "calibrationPending": true,
+      "namedControlExerciseStatus": "not_exercised",
+      "afterNamedPrerequisite": {
+        "eligible": 120,
+        "partial": 0,
+        "unavailable": 0
+      },
+      "note": "capabilityStatus = namedControlPrerequisiteComplete. See dual-status-capability-summary for schemaValidRepresentation. Adapters ≠ detectors."
+    },
+    {
+      "adapterId": "source_vs_compiled_page_binding",
+      "status": "adapter_foundation_dual_status",
+      "substantiveEvaluatorImplemented": false,
+      "calibrationPending": true,
+      "namedControlExerciseStatus": "not_exercised",
+      "afterNamedPrerequisite": {
+        "eligible": 120,
+        "partial": 0,
+        "unavailable": 0
+      },
+      "note": "capabilityStatus = namedControlPrerequisiteComplete. See dual-status-capability-summary for schemaValidRepresentation. Adapters ≠ detectors."
+    },
+    {
+      "adapterId": "chase_item_to_evidence_unit_edges",
+      "status": "adapter_foundation_dual_status",
+      "substantiveEvaluatorImplemented": false,
+      "calibrationPending": true,
+      "namedControlExerciseStatus": "not_exercised",
+      "afterNamedPrerequisite": {
+        "eligible": 0,
+        "partial": 120,
+        "unavailable": 0
+      },
+      "note": "capabilityStatus = namedControlPrerequisiteComplete. See dual-status-capability-summary for schemaValidRepresentation. Adapters ≠ detectors."
+    },
+    {
+      "adapterId": "view_copy_export_api_pdf_composed_prose_capture",
+      "status": "adapter_foundation_dual_status",
+      "substantiveEvaluatorImplemented": false,
+      "calibrationPending": true,
+      "namedControlExerciseStatus": "not_exercised",
+      "afterNamedPrerequisite": {
+        "eligible": 120,
+        "partial": 0,
+        "unavailable": 0
+      },
+      "note": "capabilityStatus = namedControlPrerequisiteComplete. See dual-status-capability-summary for schemaValidRepresentation. Adapters ≠ detectors."
+    }
+  ],
+  "note": "Four shared engineering jobs with dual-status honesty. Never count as 43 control completions.",
+  "dualStatusHonesty": true
+}

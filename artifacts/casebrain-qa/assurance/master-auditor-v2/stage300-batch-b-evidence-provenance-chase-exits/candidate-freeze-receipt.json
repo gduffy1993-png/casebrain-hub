@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "stage300-batch-b-candidate-freeze@1.0.0",
+  "truthOpened": false,
+  "evaluatorsRun": 0,
+  "candidateCount": 0,
+  "unresolvedCount": 0,
+  "frozenAt": "2026-07-31T21:34:27.098Z",
+  "membershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+  "note": "No substantive evaluators in Batch B — empty candidate freeze before any truth open."
+}

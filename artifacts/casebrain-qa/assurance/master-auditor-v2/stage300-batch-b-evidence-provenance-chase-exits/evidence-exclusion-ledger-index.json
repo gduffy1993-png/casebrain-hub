@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "stage300-batch-b-evidence-exclusion-ledger-index@1.0.0",
+  "entryCount": 840,
+  "rawSha256": "5df28af0598898f897bb11d10532fca781e5e0a4a273708497acaa3d2627faaa",
+  "note": "Every skipped page-only/meta row retained with provenance destination; no silent drop of genuine evidence units."
+}

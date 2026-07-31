@@ -7,6 +7,7 @@
 import crypto from "node:crypto";
 import { inferEvidenceModality } from "@/lib/criminal/evidence-state-reconcile";
 import {
+  BATCH8_PRODUCTION_EXIT_IDS,
   BATCH8_RECEIPT_SCHEMA,
   BATCH8_REQUIRED_EXIT_IDS,
   BATCH8_SCHEMA_VERSION,
@@ -15,8 +16,11 @@ import {
   type ChargeInstrumentRecord,
   type ChronologyEventRecord,
   type ChaseRelationshipRecord,
+  type DualRepresentationStatus,
+  type EvidenceExclusionEntry,
   type EvidenceUnitRecord,
   type ExitSnapshotRecord,
+  type ProvenancePageClass,
   type ProvenanceRecord,
 } from "./schemas";
 
@@ -101,10 +105,52 @@ function isChargeComplete(r: ChargeInstrumentRecord): boolean {
   );
 }
 
+function dualSame(
+  status: "eligible" | "partial" | "unavailable",
+  reason: string,
+): DualRepresentationStatus {
+  return {
+    schemaValidRepresentation: status,
+    schemaValidReason: reason,
+    namedControlPrerequisiteComplete: status,
+    namedPrerequisiteReason: reason,
+    note: "schemaValidRepresentation ≠ namedControlPrerequisiteComplete",
+  };
+}
+
+function classifyProvenancePage(r: {
+  pageIdentityKnown: boolean;
+  sourcePage: string | null;
+  compiledPage: string | null;
+  sourceDocumentIdentity: string | null;
+  limitationReason: string | null;
+}): ProvenancePageClass {
+  if (r.pageIdentityKnown && r.sourcePage && r.compiledPage && r.sourceDocumentIdentity) {
+    return "exact_source_page";
+  }
+  if (!r.pageIdentityKnown && r.limitationReason) {
+    return "honest_unknown_page";
+  }
+  if (!r.pageIdentityKnown && (r.sourcePage === "1" || r.compiledPage === "1") && !r.limitationReason) {
+    return "invalid_defaulted";
+  }
+  if (r.compiledPage && !r.sourcePage) return "compiled_page_only";
+  if (r.sourceDocumentIdentity && !r.sourcePage && !r.compiledPage) return "document_only";
+  if (r.pageIdentityKnown && r.sourcePage && r.sourceDocumentIdentity && !r.compiledPage) {
+    return "exact_source_page"; // source known; compiled may be same surface
+  }
+  if (!r.pageIdentityKnown) return "honest_unknown_page";
+  return "document_only";
+}
+
 function isEvidenceComplete(r: EvidenceUnitRecord): boolean {
+  // subjectDefendantId may be an explicit "unknown" string — still counts as attribution state.
+  const subjectOk =
+    Boolean(r.personId) ||
+    (typeof r.subjectDefendantId === "string" && r.subjectDefendantId.trim().length > 0);
   return Boolean(
     r.evidenceUnitId &&
-      (r.subjectDefendantId || r.personId) &&
+      subjectOk &&
       r.existence &&
       r.sourcePage &&
       r.pageIdentityKnown,
@@ -115,19 +161,43 @@ function isChronologyComplete(r: ChronologyEventRecord): boolean {
   return Boolean(r.eventType && r.timestamp && r.timezone);
 }
 
-function isProvenanceComplete(r: ProvenanceRecord): boolean {
-  return Boolean(
-    r.pageIdentityKnown && r.sourcePage && r.compiledPage && r.sourceDocumentIdentity,
-  );
+/** Exact-page prerequisite — honest unknown-page never satisfies this. */
+function isProvenanceExactPageComplete(r: ProvenanceRecord): boolean {
+  return r.pageClass === "exact_source_page";
 }
 
-function isChaseComplete(r: ChaseRelationshipRecord): boolean {
+function isProvenanceSchemaValid(r: ProvenanceRecord): boolean {
+  if (r.pageClass === "invalid_defaulted") return false;
+  if (r.pageClass === "exact_source_page") return true;
+  if (r.pageClass === "honest_unknown_page") return Boolean(r.limitationReason);
+  if (r.pageClass === "compiled_page_only" || r.pageClass === "document_only") {
+    return Boolean(r.sourceDocumentIdentity || r.compiledPage || r.limitationReason);
+  }
+  return false;
+}
+
+/** Named-control linked-edge completeness — unresolved without evidenceUnitId never completes. */
+function isChaseLinkedEdgeComplete(r: ChaseRelationshipRecord): boolean {
   return Boolean(
     r.requestId &&
       r.linkMethod === "explicit_id" &&
       r.linkedEvidenceOccurrenceRef &&
-      r.resolutionState,
+      r.resolutionState &&
+      r.linkageStatus === "linked",
   );
+}
+
+function isChaseSchemaValid(r: ChaseRelationshipRecord): boolean {
+  if (!r.requestId || !r.resolutionState) return false;
+  if (r.linkageStatus === "linked") return isChaseLinkedEdgeComplete(r);
+  if (r.linkageStatus === "unresolved") {
+    // Honest unresolved: no explicit evidenceUnitId edge; may carry exact-label candidates but not as linked control evidence.
+    return r.linkMethod !== "explicit_id";
+  }
+  if (r.linkageStatus === "ambiguous") {
+    return r.linkAmbiguity === "ambiguous_multiple_matches" && !r.linkedEvidenceOccurrenceRef;
+  }
+  return false;
 }
 
 
@@ -173,6 +243,7 @@ export function adaptChargeInstruments(
       incompleteRecordCount: 0,
       ambiguousRelationshipCount: 0,
       eligibilityReason: "No applicable chargeInstruments records.",
+      dualStatus: dualSame("unavailable", "No applicable chargeInstruments records."),
     };
   }
 
@@ -237,6 +308,7 @@ export function adaptChargeInstruments(
     incompleteRecordCount,
     ambiguousRelationshipCount: 0,
     eligibilityReason: rollup.eligibilityReason,
+    dualStatus: dualSame(rollup.capabilityStatus, rollup.eligibilityReason),
   };
 }
 
@@ -248,6 +320,7 @@ export function adaptEvidenceUnits(
   const states = arr(output.evidenceStates);
   const receipts: Batch8FieldReceipt[] = [];
   const records: EvidenceUnitRecord[] = [];
+  const exclusionLedger: EvidenceExclusionEntry[] = [];
 
   const labelToRefs = new Map<string, string[]>();
   const noteLabel = (label: string, ref: string) => {
@@ -328,10 +401,28 @@ export function adaptEvidenceUnits(
 
   states.forEach((row, i) => {
     const occurrenceRef = `/evidenceStates/${i}`;
+    // Provenance/page-only rows are owned by adaptProvenance — do not treat as evidence units.
+    const hasEvidenceSignal =
+      typeof row.evidenceUnitId === "string" ||
+      typeof row.inferredSourceState === "string" ||
+      typeof row.existenceLabel === "string" ||
+      typeof row.subjectDefendantId === "string" ||
+      typeof row.personId === "string" ||
+      typeof row.existence === "string";
+    if (!hasEvidenceSignal) {
+      const raw = JSON.stringify(row);
+      exclusionLedger.push({
+        originalPath: occurrenceRef,
+        rowSha256: sha256(raw),
+        reasonExcluded:
+          "page_only_or_provenance_meta_row — no evidenceUnitId/existence/subject signal; not an evidence unit",
+        retainedProvenanceDestination: `/provenance_via_evidenceStates/${i}`,
+      });
+      return;
+    }
+
     const label = str(row.label);
     noteLabel(label, occurrenceRef);
-    // Only add a separate evidenceStates unit when not already represented by identical fiveAnswers index pairing.
-    // We always record evidenceStates rows as units with state fields.
     const modality = label ? inferEvidenceModality(label) : null;
     const pageIdentityKnown = row.pageIdentityKnown === true;
     const sourcePage = typeof row.sourcePage === "string" ? row.sourcePage : null;
@@ -347,7 +438,9 @@ export function adaptEvidenceUnits(
           ? row.inferredSourceState
           : typeof row.existenceLabel === "string"
             ? row.existenceLabel
-            : null,
+            : typeof row.existence === "string"
+              ? row.existence
+              : null,
       reliability: null,
       aliases: [],
       exactLabelPeerOccurrenceRefs: [],
@@ -401,17 +494,29 @@ export function adaptEvidenceUnits(
     partialReason: `Aggregate incomplete: complete=${completeRecordCount}/${records.length}; semantic IDs/pages missing on incomplete rows.`,
   });
 
+  const named = !hasCore && records.length === 0 ? ("unavailable" as const) : rollup.capabilityStatus;
+  const schemaStatus =
+    records.length === 0 && exclusionLedger.length === 0
+      ? ("unavailable" as const)
+      : incompleteRecordCount === 0 && (records.length > 0 || exclusionLedger.length > 0)
+        ? records.length === 0
+          ? ("partial" as const) // only exclusions, no units — schema notes provenance retained
+          : named === "eligible"
+            ? ("eligible" as const)
+            : named
+        : named;
+
   return {
     schemaVersion: BATCH8_SCHEMA_VERSION,
     adapterId: "evidence_units",
     caseId,
-    capabilityStatus: !hasCore && records.length === 0 ? "unavailable" : rollup.capabilityStatus,
+    capabilityStatus: named,
     opensTruth: false,
     invented: false,
     records,
     fieldReceipts: receipts,
     missingRequiredFields:
-      rollup.capabilityStatus === "eligible"
+      named === "eligible"
         ? []
         : [
             "evidenceUnitId",
@@ -422,7 +527,7 @@ export function adaptEvidenceUnits(
             "extractFullRelationship",
           ],
     blockers:
-      rollup.capabilityStatus === "eligible"
+      named === "eligible"
         ? []
         : [
             "Not every applicable evidence unit is complete",
@@ -434,6 +539,17 @@ export function adaptEvidenceUnits(
     incompleteRecordCount,
     ambiguousRelationshipCount: 0,
     eligibilityReason: rollup.eligibilityReason,
+    dualStatus: {
+      schemaValidRepresentation: schemaStatus,
+      schemaValidReason:
+        exclusionLedger.length > 0
+          ? `${rollup.eligibilityReason}; excluded ${exclusionLedger.length} page-only/meta row(s) retained on provenance destination.`
+          : rollup.eligibilityReason,
+      namedControlPrerequisiteComplete: named,
+      namedPrerequisiteReason: rollup.eligibilityReason,
+      note: "schemaValidRepresentation ≠ namedControlPrerequisiteComplete",
+    },
+    exclusionLedger,
   };
 }
 
@@ -471,6 +587,7 @@ export function adaptChronologyEvents(
       incompleteRecordCount: 0,
       ambiguousRelationshipCount: 0,
       eligibilityReason: "No applicable chronologyEvents records.",
+      dualStatus: dualSame("unavailable", "No applicable chronologyEvents records."),
     };
   }
 
@@ -529,6 +646,7 @@ export function adaptChronologyEvents(
     incompleteRecordCount,
     ambiguousRelationshipCount: 0,
     eligibilityReason: rollup.eligibilityReason,
+    dualStatus: dualSame(rollup.capabilityStatus, rollup.eligibilityReason),
   };
 }
 
@@ -544,17 +662,28 @@ export function adaptProvenance(
   // Applicable provenance surface = evidenceStates rows (page identity). Limitation notes are incomplete cues.
   states.forEach((row, i) => {
     const occurrenceRef = `/evidenceStates/${i}`;
-    const sourcePage = typeof row.sourcePage === "string" ? row.sourcePage : null;
-    const compiledPage = typeof row.compiledPage === "string" ? row.compiledPage : null;
+    const sourcePageRaw = typeof row.sourcePage === "string" ? row.sourcePage : null;
+    const compiledPageRaw = typeof row.compiledPage === "string" ? row.compiledPage : null;
     const pageIdentityKnown = row.pageIdentityKnown === true;
+    const limitationReason = typeof row.limitationReason === "string" ? row.limitationReason : null;
+    const sourceDocumentIdentity = typeof row.source === "string" ? row.source : null;
+    const pageClass = classifyProvenancePage({
+      pageIdentityKnown,
+      sourcePage: sourcePageRaw,
+      compiledPage: compiledPageRaw,
+      sourceDocumentIdentity,
+      limitationReason,
+    });
     const rec: ProvenanceRecord = {
       occurrenceRef,
-      sourceDocumentIdentity: typeof row.source === "string" ? row.source : null,
-      sourcePage: pageIdentityKnown ? sourcePage : null,
-      compiledPage: pageIdentityKnown ? compiledPage : null,
+      sourceDocumentIdentity,
+      // Never surface page numbers when pageIdentityKnown is false (no default page 1).
+      sourcePage: pageIdentityKnown ? sourcePageRaw : null,
+      compiledPage: pageIdentityKnown ? compiledPageRaw : null,
       pageIdentityKnown,
-      limitationReason: typeof row.limitationReason === "string" ? row.limitationReason : null,
+      limitationReason,
       evidenceAnchorRaw: typeof row.evidenceAnchor === "string" ? row.evidenceAnchor : null,
+      pageClass,
     };
     records.push(rec);
     if (rec.sourceDocumentIdentity) {
@@ -571,61 +700,97 @@ export function adaptProvenance(
         derived: !("pageIdentityKnown" in row),
       }),
     );
+    receipts.push(receipt("pageClass", rec.pageClass, `${occurrenceRef}/pageClass`, { derived: true }));
   });
 
   five.forEach((row, i) => {
     const occurrenceRef = `/fiveAnswersEvidenceRows/${i}`;
-    const note = typeof row.note === "string" ? row.note : null;
-    if (!note) return;
-    records.push({
+    // Only explicit provenance limitations — never treat sourcePointer/note paths as page identity.
+    const limitation =
+      typeof row.limitationReason === "string"
+        ? row.limitationReason
+        : typeof row.provenanceLimitation === "string"
+          ? row.provenanceLimitation
+          : null;
+    if (!limitation) return;
+    const rec: ProvenanceRecord = {
       occurrenceRef,
       sourceDocumentIdentity: null,
       sourcePage: null,
       compiledPage: null,
       pageIdentityKnown: false,
-      limitationReason: note,
+      limitationReason: limitation,
       evidenceAnchorRaw: null,
-    });
-    receipts.push(receipt("limitationReason", note, `${occurrenceRef}/note`));
+      pageClass: "honest_unknown_page",
+    };
+    records.push(rec);
+    receipts.push(receipt("limitationReason", limitation, `${occurrenceRef}/limitationReason`));
   });
 
-  const completeRecordCount = records.filter(isProvenanceComplete).length;
-  const incompleteRecordCount = records.length - completeRecordCount;
-  const rollup = rollupCapability({
+  const exactComplete = records.filter(isProvenanceExactPageComplete).length;
+  const schemaValidCount = records.filter(isProvenanceSchemaValid).length;
+  const incompleteExact = records.length - exactComplete;
+  const namedRollup = rollupCapability({
     applicableRecordCount: records.length,
-    completeRecordCount,
-    incompleteRecordCount,
+    completeRecordCount: exactComplete,
+    incompleteRecordCount: incompleteExact,
     emptyReason: "No provenance cues.",
-    eligibleReason: `All ${records.length} provenance record(s) complete (pageIdentityKnown+pages+sourceDocument).`,
-    partialReason: `Aggregate incomplete: complete=${completeRecordCount}/${records.length}; one complete provenance row does not upgrade the adapter.`,
+    eligibleReason: `All ${records.length} provenance record(s) exact-page complete (pageIdentityKnown+sourcePage+compiledPage+sourceDocument).`,
+    partialReason: `Exact-page incomplete: complete=${exactComplete}/${records.length}; honest_unknown_page does not satisfy exact-page prerequisite.`,
   });
+  const schemaRollup = rollupCapability({
+    applicableRecordCount: records.length,
+    completeRecordCount: schemaValidCount,
+    incompleteRecordCount: records.length - schemaValidCount,
+    emptyReason: "No provenance cues.",
+    eligibleReason: `All ${records.length} provenance record(s) schema-valid (exact-page or honest unknown/limitation).`,
+    partialReason: `Schema-valid incomplete: ${schemaValidCount}/${records.length}.`,
+  });
+
+  const pageClassCounts: Record<ProvenancePageClass, number> = {
+    exact_source_page: 0,
+    compiled_page_only: 0,
+    document_only: 0,
+    honest_unknown_page: 0,
+    invalid_defaulted: 0,
+  };
+  for (const r of records) pageClassCounts[r.pageClass] += 1;
 
   return {
     schemaVersion: BATCH8_SCHEMA_VERSION,
     adapterId: "provenance",
     caseId,
-    capabilityStatus: rollup.capabilityStatus,
+    capabilityStatus: namedRollup.capabilityStatus,
     opensTruth: false,
     invented: false,
     records,
     fieldReceipts: receipts,
     missingRequiredFields:
-      rollup.capabilityStatus === "eligible"
+      namedRollup.capabilityStatus === "eligible"
         ? []
         : ["sourcePage", "compiledPage", "pageIdentityKnown=true", "sourceDocumentIdentity"],
     blockers:
-      rollup.capabilityStatus === "eligible"
+      namedRollup.capabilityStatus === "eligible"
         ? []
         : [
-            "Not every applicable provenance record is complete",
+            "Not every applicable provenance record is exact-page complete",
+            "honest_unknown_page / limitation is schema-valid but not an exact-page prerequisite",
             "evidenceAnchor text is not a page identity",
           ],
-    note: rollup.eligibilityReason,
+    note: namedRollup.eligibilityReason,
     applicableRecordCount: records.length,
-    completeRecordCount,
-    incompleteRecordCount,
+    completeRecordCount: exactComplete,
+    incompleteRecordCount: incompleteExact,
     ambiguousRelationshipCount: 0,
-    eligibilityReason: rollup.eligibilityReason,
+    eligibilityReason: namedRollup.eligibilityReason,
+    dualStatus: {
+      schemaValidRepresentation: schemaRollup.capabilityStatus,
+      schemaValidReason: schemaRollup.eligibilityReason,
+      namedControlPrerequisiteComplete: namedRollup.capabilityStatus,
+      namedPrerequisiteReason: namedRollup.eligibilityReason,
+      note: "schemaValidRepresentation ≠ namedControlPrerequisiteComplete",
+    },
+    provenancePageClassCounts: pageClassCounts,
   };
 }
 
@@ -661,6 +826,7 @@ export function adaptChaseRelationships(
     let linkAmbiguity: ChaseRelationshipRecord["linkAmbiguity"] = "none";
     let linkMethod: ChaseRelationshipRecord["linkMethod"] = "none";
     let linkedEvidenceOccurrenceRef: string | null = null;
+    let linkageStatus: ChaseRelationshipRecord["linkageStatus"] = "unavailable";
     let requestedState: string | null =
       typeof row.requestedState === "string" ? row.requestedState : null;
 
@@ -668,21 +834,25 @@ export function adaptChaseRelationships(
       linkMethod = "explicit_id";
       linkedEvidenceOccurrenceRef = `evidenceUnitId:${row.evidenceUnitId}`;
       linkAmbiguity = "none";
+      linkageStatus = "linked";
       receipts.push(receipt("evidenceUnitId", row.evidenceUnitId, `${occurrenceRef}/evidenceUnitId`));
     } else if (candidates.length === 1) {
+      // Exact-label may suggest a candidate but is not an explicit_id linked edge for named controls.
       linkMethod = "exact_label_match";
       linkedEvidenceOccurrenceRef = candidates[0]!.ref;
       requestedState = candidates[0]!.state;
       linkAmbiguity = "none";
+      linkageStatus = "unresolved"; // not explicit evidenceUnitId
     } else if (candidates.length === 0) {
       linkAmbiguity = "unresolved_zero_matches";
       linkMethod = "none";
       linkedEvidenceOccurrenceRef = null;
+      linkageStatus = "unresolved";
     } else {
       linkAmbiguity = "ambiguous_multiple_matches";
       linkMethod = "none";
       linkedEvidenceOccurrenceRef = null;
-      // Do not pick a requestedState from conflicting candidates.
+      linkageStatus = "ambiguous";
       requestedState = null;
     }
 
@@ -694,16 +864,40 @@ export function adaptChaseRelationships(
       candidateEvidenceOccurrenceRefs: candidateRefs,
       linkAmbiguity,
       linkMethod,
+      linkageStatus,
       requestedState,
       resolutionState: typeof row.resolutionState === "string" ? row.resolutionState : null,
+      requestType: typeof row.requestType === "string" ? row.requestType : null,
+      supportedReason: typeof row.supportedReason === "string" ? row.supportedReason : null,
+      sourceBasis:
+        typeof row.sourceBasis === "string"
+          ? row.sourceBasis
+          : typeof row.sourcePointer === "string"
+            ? row.sourcePointer
+            : null,
+      outputSurfaces: Array.isArray(row.outputSurfaces)
+        ? row.outputSurfaces.filter((s): s is string => typeof s === "string" && s.trim().length > 0)
+        : [],
       sendabilityLabel: typeof row.sendabilityLabel === "string" ? row.sendabilityLabel : null,
       copySuggestionPresent: typeof row.copySuggestion === "string" && row.copySuggestion.trim().length > 0,
       recordComplete: false,
+      schemaValidRepresentation: false,
     };
-    rec.recordComplete = isChaseComplete(rec);
+    rec.recordComplete = isChaseLinkedEdgeComplete(rec);
+    rec.schemaValidRepresentation = isChaseSchemaValid(rec);
     records.push(rec);
 
     if (rec.chaseLabel) receipts.push(receipt("chaseLabel", rec.chaseLabel, `${occurrenceRef}/label`));
+    receipts.push(receipt("linkageStatus", rec.linkageStatus, `${occurrenceRef}/linkageStatus`, { derived: true }));
+    if (rec.requestType) {
+      receipts.push(receipt("requestType", rec.requestType, `${occurrenceRef}/requestType`));
+    }
+    if (rec.supportedReason) {
+      receipts.push(receipt("supportedReason", rec.supportedReason, `${occurrenceRef}/supportedReason`));
+    }
+    if (rec.sourceBasis) {
+      receipts.push(receipt("sourceBasis", rec.sourceBasis, `${occurrenceRef}/sourceBasis`));
+    }
     if (candidateRefs.length) {
       receipts.push(
         receipt("candidateEvidenceOccurrenceRefs", candidateRefs, occurrenceRef, { derived: true }),
@@ -734,47 +928,72 @@ export function adaptChaseRelationships(
     }
   });
 
+  const linkedCount = records.filter((r) => r.linkageStatus === "linked").length;
+  const unresolvedCount = records.filter((r) => r.linkageStatus === "unresolved").length;
+  const ambiguousCount = records.filter((r) => r.linkageStatus === "ambiguous").length;
+  const unavailableCount = records.filter((r) => r.linkageStatus === "unavailable").length;
   const completeRecordCount = records.filter((r) => r.recordComplete).length;
   const incompleteRecordCount = records.length - completeRecordCount;
-  const ambiguousRelationshipCount = records.filter(
-    (r) => r.linkAmbiguity === "ambiguous_multiple_matches",
-  ).length;
-  const rollup = rollupCapability({
+  const schemaValidCount = records.filter((r) => r.schemaValidRepresentation).length;
+  const namedRollup = rollupCapability({
     applicableRecordCount: records.length,
     completeRecordCount,
     incompleteRecordCount,
-    ambiguousRelationshipCount,
+    ambiguousRelationshipCount: ambiguousCount,
     emptyReason: "No chaseItems.",
-    eligibleReason: `All ${records.length} chase relationship(s) complete (requestId+explicit evidenceUnitId+resolutionState).`,
-    partialReason: `Aggregate incomplete: complete=${completeRecordCount}/${records.length}; ambiguous=${ambiguousRelationshipCount}. One complete chase row does not upgrade the adapter.`,
+    eligibleReason: `All ${records.length} chase relationship(s) have exact linked edges (requestId+explicit evidenceUnitId+resolutionState).`,
+    partialReason: `Linked-edge incomplete: linkedComplete=${completeRecordCount}/${records.length}; unresolved=${unresolvedCount}; ambiguous=${ambiguousCount}. Unresolved without evidenceUnitId is not a linked edge.`,
+  });
+  const schemaRollup = rollupCapability({
+    applicableRecordCount: records.length,
+    completeRecordCount: schemaValidCount,
+    incompleteRecordCount: records.length - schemaValidCount,
+    ambiguousRelationshipCount: ambiguousCount,
+    emptyReason: "No chaseItems.",
+    eligibleReason: `All ${records.length} chase row(s) schema-valid (linked or honest unresolved/ambiguous with no invented id).`,
+    partialReason: `Schema-valid incomplete: ${schemaValidCount}/${records.length}.`,
   });
 
   return {
     schemaVersion: BATCH8_SCHEMA_VERSION,
     adapterId: "chase_relationships",
     caseId,
-    capabilityStatus: rollup.capabilityStatus,
+    capabilityStatus: namedRollup.capabilityStatus,
     opensTruth: false,
     invented: false,
     records,
     fieldReceipts: receipts,
     missingRequiredFields:
-      rollup.capabilityStatus === "eligible"
+      namedRollup.capabilityStatus === "eligible"
         ? []
-        : ["requestId", "evidenceUnitId link", "resolutionState"],
+        : ["requestId", "evidenceUnitId explicit link", "resolutionState"],
     blockers:
-      rollup.capabilityStatus === "eligible"
+      namedRollup.capabilityStatus === "eligible"
         ? []
         : [
-            "Not every applicable chase relationship is complete",
-            "Exact-label links require exactly one evidence match; ambiguous/zero matches select no target",
+            "Not every applicable chase relationship has an exact linked evidenceUnitId edge",
+            "Honest unresolved (evidenceUnitId=null) is schema-valid representation only — not named-control linked-edge complete",
+            "Exact-label / offence-family inferred links are forbidden as linked edges",
           ],
-    note: rollup.eligibilityReason,
+    note: namedRollup.eligibilityReason,
     applicableRecordCount: records.length,
     completeRecordCount,
     incompleteRecordCount,
-    ambiguousRelationshipCount,
-    eligibilityReason: rollup.eligibilityReason,
+    ambiguousRelationshipCount: ambiguousCount,
+    eligibilityReason: namedRollup.eligibilityReason,
+    dualStatus: {
+      schemaValidRepresentation: schemaRollup.capabilityStatus,
+      schemaValidReason: schemaRollup.eligibilityReason,
+      namedControlPrerequisiteComplete: namedRollup.capabilityStatus,
+      namedPrerequisiteReason: namedRollup.eligibilityReason,
+      note: "schemaValidRepresentation ≠ namedControlPrerequisiteComplete",
+    },
+    chaseRelationshipCounts: {
+      linked: linkedCount,
+      unresolved: unresolvedCount,
+      unavailable: unavailableCount,
+      ambiguous: ambiguousCount,
+    },
   };
 }
 
@@ -801,6 +1020,12 @@ export function adaptExitSnapshots(
       metadataOnly: false,
       capabilityStatus: "unavailable",
       evidencePointersPresent: [],
+      payloadSchemaVersion: null,
+      captureRunId: null,
+      surfaceList: [],
+      provenanceLimitationContent: null,
+      generatedAt: null,
+      productionPayloadFieldsComplete: false,
     };
     byExit.set(exitId, rec);
     return rec;
@@ -821,6 +1046,36 @@ export function adaptExitSnapshots(
       rec.metadataOnly = false;
       rec.capabilityStatus = "eligible";
       rec.evidencePointersPresent = [`/exitPayloadReceipts/${exitId}/payloadIdentity`];
+      rec.payloadSchemaVersion =
+        typeof raw.payloadSchemaVersion === "string"
+          ? raw.payloadSchemaVersion
+          : typeof raw.schemaVersion === "string"
+            ? raw.schemaVersion
+            : null;
+      rec.captureRunId =
+        typeof raw.captureRunId === "string"
+          ? raw.captureRunId
+          : typeof raw.runId === "string"
+            ? raw.runId
+            : null;
+      rec.surfaceList = Array.isArray(raw.surfaceList)
+        ? raw.surfaceList.filter((s): s is string => typeof s === "string" && s.trim().length > 0)
+        : Array.isArray(raw.surfaces)
+          ? raw.surfaces.filter((s): s is string => typeof s === "string" && s.trim().length > 0)
+          : [exitId];
+      rec.provenanceLimitationContent =
+        typeof raw.provenanceLimitationContent === "string"
+          ? raw.provenanceLimitationContent
+          : typeof raw.unavailableReason === "string"
+            ? raw.unavailableReason
+            : null;
+      rec.generatedAt = typeof raw.generatedAt === "string" ? raw.generatedAt : null;
+      rec.productionPayloadFieldsComplete = Boolean(
+        rec.realExitPayloadPresent &&
+          rec.payloadIdentity &&
+          rec.payloadSchemaVersion &&
+          rec.captureRunId,
+      );
       receipts.push(
         receipt(`${exitId}.payloadIdentity`, raw.payloadIdentity, `/exitPayloadReceipts/${exitId}/payloadIdentity`),
       );
@@ -892,24 +1147,36 @@ export function adaptExitSnapshots(
 
   records.push(...BATCH8_REQUIRED_EXIT_IDS.map((id) => byExit.get(id)!));
 
-  const genuineCount = records.filter((r) => r.realExitPayloadPresent).length;
-  const applicableRecordCount = BATCH8_REQUIRED_EXIT_IDS.length;
-  const completeRecordCount = genuineCount;
+  const productionRecords = records.filter((r) =>
+    (BATCH8_PRODUCTION_EXIT_IDS as readonly string[]).includes(r.exitId),
+  );
+  const browser = records.find((r) => r.exitId === "authenticated_browser");
+  const genuineProductionCount = productionRecords.filter((r) => r.realExitPayloadPresent).length;
+  const fieldsCompleteCount = productionRecords.filter((r) => r.productionPayloadFieldsComplete).length;
+  const applicableRecordCount = BATCH8_PRODUCTION_EXIT_IDS.length;
+  const completeRecordCount = genuineProductionCount;
   const incompleteRecordCount = applicableRecordCount - completeRecordCount;
 
   let capabilityStatus: "eligible" | "partial" | "unavailable";
   let eligibilityReason: string;
-  if (genuineCount === 0) {
+  if (genuineProductionCount === 0) {
     capabilityStatus = "unavailable";
     eligibilityReason =
-      "No exits genuinely exercised with payload receipts; metadata-only surfaces do not count.";
-  } else if (genuineCount === applicableRecordCount) {
+      "No production exits genuinely exercised with payload receipts; metadata-only surfaces do not count. authenticated_browser tracked separately.";
+  } else if (genuineProductionCount === applicableRecordCount) {
     capabilityStatus = "eligible";
-    eligibilityReason = `All ${applicableRecordCount} required exits have genuine payload receipts.`;
+    eligibilityReason = `All ${applicableRecordCount} production exits (view/copy/export/api/pdf/composed_prose) have genuine payload receipts; authenticated_browser=${browser?.capabilityStatus ?? "unavailable"} (separate/not required for eligibility).`;
   } else {
     capabilityStatus = "partial";
-    eligibilityReason = `Only ${genuineCount}/${applicableRecordCount} exits genuinely exercised; one real exit does not make the adapter eligible.`;
+    eligibilityReason = `Only ${genuineProductionCount}/${applicableRecordCount} production exits genuinely exercised; one real exit does not make the adapter eligible. authenticated_browser tracked separately.`;
   }
+
+  const namedFieldsStatus =
+    fieldsCompleteCount === 0
+      ? ("unavailable" as const)
+      : fieldsCompleteCount === applicableRecordCount
+        ? ("eligible" as const)
+        : ("partial" as const);
 
   return {
     schemaVersion: BATCH8_SCHEMA_VERSION,
@@ -923,13 +1190,14 @@ export function adaptExitSnapshots(
     missingRequiredFields:
       capabilityStatus === "eligible"
         ? []
-        : ["exitPayloadReceipts.*.payloadIdentity for view/copy/export/api/pdf/composed_prose/authenticated_browser"],
+        : ["exitPayloadReceipts.*.payloadIdentity for view/copy/export/api/pdf/composed_prose"],
     blockers:
       capabilityStatus === "eligible"
         ? []
         : [
-            "Complete required exit set not present",
+            "Complete production exit set not present",
             "courtNote/exportVersion metadata must not be treated as real exit payloads",
+            "authenticated_browser remains separate and is not required for production-exit eligibility",
           ],
     note: eligibilityReason,
     applicableRecordCount,
@@ -937,6 +1205,16 @@ export function adaptExitSnapshots(
     incompleteRecordCount,
     ambiguousRelationshipCount: 0,
     eligibilityReason,
+    dualStatus: {
+      schemaValidRepresentation: capabilityStatus,
+      schemaValidReason: eligibilityReason,
+      namedControlPrerequisiteComplete: namedFieldsStatus,
+      namedPrerequisiteReason:
+        namedFieldsStatus === "eligible"
+          ? `All ${applicableRecordCount} production exits have payloadIdentity+schemaVersion+captureRunId.`
+          : `Production exit field-complete=${fieldsCompleteCount}/${applicableRecordCount}; genuinePayload=${genuineProductionCount}/${applicableRecordCount}. Metadata-only ≠ exit.`,
+      note: "schemaValidRepresentation ≠ namedControlPrerequisiteComplete",
+    },
   };
 }
 

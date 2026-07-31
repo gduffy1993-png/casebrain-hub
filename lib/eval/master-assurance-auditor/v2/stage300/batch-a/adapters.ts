@@ -40,6 +40,16 @@ export type BatchAAdapterRun = {
   fieldEvidenceRefs: string[];
   namedControlExerciseStatus: "not_exercised";
   note: string;
+  dualStatus: {
+    schemaValidRepresentation: BatchACapabilityStatus;
+    schemaValidReason: string;
+    namedControlPrerequisiteComplete: BatchACapabilityStatus;
+    namedPrerequisiteReason: string;
+    note: "schemaValidRepresentation ≠ namedControlPrerequisiteComplete";
+  };
+  exclusionLedger?: Batch8AdapterResult<unknown>["exclusionLedger"];
+  chaseRelationshipCounts?: Batch8AdapterResult<unknown>["chaseRelationshipCounts"];
+  provenancePageClassCounts?: Batch8AdapterResult<unknown>["provenancePageClassCounts"];
 };
 
 function wrap(
@@ -67,6 +77,10 @@ function wrap(
     fieldEvidenceRefs: batch8.fieldReceipts.map((r) => r.sourcePointer).slice(0, 40),
     namedControlExerciseStatus: "not_exercised",
     note,
+    dualStatus: batch8.dualStatus,
+    exclusionLedger: batch8.exclusionLedger,
+    chaseRelationshipCounts: batch8.chaseRelationshipCounts,
+    provenancePageClassCounts: batch8.provenancePageClassCounts,
   };
 }
 

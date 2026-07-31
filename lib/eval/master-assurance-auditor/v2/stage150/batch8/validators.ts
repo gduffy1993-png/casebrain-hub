@@ -126,6 +126,18 @@ export function validateChase(c: ChaseRelationshipRecord): ValidationIssue[] {
   ) {
     issues.push({ code: "ambiguous_without_multiple_candidates", detail: c.occurrenceRef });
   }
+  if (c.linkMethod === "explicit_id" && c.linkageStatus !== "linked") {
+    issues.push({ code: "explicit_id_without_linked_status", detail: c.occurrenceRef });
+  }
+  if (c.recordComplete && c.linkageStatus !== "linked") {
+    issues.push({
+      code: "recordComplete_without_linked_edge",
+      detail: "Unresolved/ambiguous chase must never be named-control recordComplete",
+    });
+  }
+  if (c.linkageStatus === "unresolved" && c.recordComplete) {
+    issues.push({ code: "unresolved_marked_complete", detail: c.occurrenceRef });
+  }
   return issues;
 }
 

@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "stage300-control-priority-severity@1.0.0",
+  "definitions": {
+    "P0": "safety-critical leakage, attribution, charge, evidence-state or deadline risk",
+    "P1": "material solicitor-decision risk",
+    "P2": "wording, consistency or workflow quality",
+    "P3": "convenience or polish"
+  },
+  "totals": {
+    "P0": 14,
+    "P1": 29,
+    "P2": 0,
+    "P3": 0
+  },
+  "orderedControlIds": [
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "priority": "P0"
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "priority": "P1"
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "priority": "P1"
+    }
+  ],
+  "rule": "Future implementation and case materialisation must address P0/P1 first."
+}

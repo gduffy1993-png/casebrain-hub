@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "stage300-pre-agreed-acceptance-semantics@1.0.0",
+  "permanent": true,
+  "requiredBeforeEveryFutureBatch": [
+    "exactControlsTargeted",
+    "exactInputNeeded",
+    "exactEligibilityMeaning",
+    "expectedDenominator",
+    "permittedOutcomes",
+    "whatCountsAsCompletion",
+    "whatCannotBeClaimed"
+  ],
+  "rule": "Written before implementation, not after results are known.",
+  "nextBatchStubExample": {
+    "batchId": "Batch-C-SPECIALTY-LSL-CHR-PRC",
+    "exactControlsTargeted": [
+      "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "MAA2-PRC-03-YOUTH-STATE",
+      "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+    ],
+    "exactInputNeeded": "legalStateTaxonomy + dobAgeCalcLedger + proceduralPartyState on Stage-300 packets",
+    "exactEligibilityMeaning": "namedControlPrerequisiteComplete for specialty bags; capabilityStatus uses named only",
+    "expectedDenominator": "≥1 eligible packet per control before corpus calibration",
+    "permittedOutcomes": [
+      "eligible>0 calibration",
+      "explicit unavailable with specialty still missing"
+    ],
+    "whatCountsAsCompletion": "specialty bags present + contracts + blind freeze before truth + independence proof started",
+    "whatCannotBeClaimed": [
+      "PASS",
+      "promotion",
+      "adapter-only unlock",
+      "fixture rates as corpus rates"
+    ]
+  }
+}
