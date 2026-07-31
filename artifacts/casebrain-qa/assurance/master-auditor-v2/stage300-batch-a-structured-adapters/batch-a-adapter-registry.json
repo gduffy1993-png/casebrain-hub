@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "stage300-batch-a-adapter-registry@1.0.0",
+  "baselineCommit": "ee3c70c6f010b1c81535aed8bc00d1b782a29b4e",
+  "batchASchemaVersion": "maa-v2-stage300-batch-a-structured-adapter@1.0.0",
+  "engineeringJobs": {
+    "sharedAdapterJobs": [
+      "structured_charge_instrument_graph",
+      "timezone_aware_chronology_events",
+      "evidence_unit_identity_with_aliases",
+      "source_vs_compiled_page_binding",
+      "chase_item_to_evidence_unit_edges",
+      "view_copy_export_api_pdf_composed_prose_capture"
+    ],
+    "note": "Count 6 shared adapter engineering jobs — never count each unlocked control as a separate completed job."
+  },
+  "adapterCount": 6,
+  "unlockedEssentialControlCount": 6,
+  "adapters": [
+    {
+      "adapterId": "structured_charge_instrument_graph",
+      "theme": "structured_charge_instruments",
+      "implementationPriority": 1,
+      "status": "adapter_foundation_only",
+      "substantiveEvaluatorImplemented": false,
+      "calibrationPending": true,
+      "failClosed": true,
+      "neverInvent": true,
+      "batch8UnderlyingAdapterId": "charge_instruments",
+      "unlockedEssentialControlIds": [
+        "MAA2-LSL-05-CATEGORY-SET-COVERAGE"
+      ],
+      "relatedEssentialControlIds": [
+        "MAA2-LSL-05-CATEGORY-SET-COVERAGE"
+      ],
+      "duplicateRiskCluster": "charge_instrument_graph",
+      "stage300AcceptanceRequirement": "Eligible chargeInstruments[] + category-set evaluator + contracts + calibration (LSL-05).",
+      "engineeringJobCount": 1
+    },
+    {
+      "adapterId": "timezone_aware_chronology_events",
+      "theme": "chronology_competing_timestamps",
+      "implementationPriority": 2,
+      "status": "adapter_foundation_only",
+      "substantiveEvaluatorImplemented": false,
+      "calibrationPending": true,
+      "failClosed": true,
+      "neverInvent": true,
+      "batch8UnderlyingAdapterId": "chronology_events",
+      "unlockedEssentialControlIds": [
+        "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+        "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+        "MAA2-PRC-03-YOUTH-STATE",
+        "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+      ],
+      "relatedEssentialControlIds": [
+        "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+        "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+        "MAA2-PRC-03-YOUTH-STATE",
+        "MAA2-PRC-04-FITNESS-PARTICIPATION",
+        "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+      ],
+      "duplicateRiskCluster": "chronology_procedural_state",
+      "stage300AcceptanceRequirement": "Eligible chronologyEvents[] + control-specific evaluators (CHR/PRC) + contracts + calibration.",
+      "engineeringJobCount": 1
+    },
+    {
+      "adapterId": "evidence_unit_identity_with_aliases",
+      "theme": "evidence_unit_identity_attribution",
+      "implementationPriority": 3,
+      "status": "adapter_foundation_only",
+      "substantiveEvaluatorImplemented": false,
+      "calibrationPending": true,
+      "failClosed": true,
+      "neverInvent": true,
+      "batch8UnderlyingAdapterId": "evidence_units",
+      "unlockedEssentialControlIds": [],
+      "relatedEssentialControlIds": [],
+      "duplicateRiskCluster": "evidence_unit_identity",
+      "stage300AcceptanceRequirement": "Eligible evidence-unit identity/attribution bags on new Stage-300 packets; deepen-partial ATR/EVS evaluators later. Not an essential-43 unlock in Batch A.",
+      "engineeringJobCount": 1
+    },
+    {
+      "adapterId": "source_vs_compiled_page_binding",
+      "theme": "provenance_page_identity",
+      "implementationPriority": 4,
+      "status": "adapter_foundation_only",
+      "substantiveEvaluatorImplemented": false,
+      "calibrationPending": true,
+      "failClosed": true,
+      "neverInvent": true,
+      "batch8UnderlyingAdapterId": "provenance",
+      "unlockedEssentialControlIds": [],
+      "relatedEssentialControlIds": [],
+      "duplicateRiskCluster": "provenance_page_identity",
+      "stage300AcceptanceRequirement": "Eligible pageIdentityKnown provenance; SRC/FID deepen-partials later. Heavy OCR remains separate (priority 9).",
+      "engineeringJobCount": 1
+    },
+    {
+      "adapterId": "chase_item_to_evidence_unit_edges",
+      "theme": "chase_relationships",
+      "implementationPriority": 5,
+      "status": "adapter_foundation_only",
+      "substantiveEvaluatorImplemented": false,
+      "calibrationPending": true,
+      "failClosed": true,
+      "neverInvent": true,
+      "batch8UnderlyingAdapterId": "chase_relationships",
+      "unlockedEssentialControlIds": [],
+      "relatedEssentialControlIds": [],
+      "duplicateRiskCluster": "chase_evidence_edges",
+      "stage300AcceptanceRequirement": "Eligible explicit chase→evidence edges; CHS deepen-partials later. Not an essential-43 unlock in Batch A.",
+      "engineeringJobCount": 1
+    },
+    {
+      "adapterId": "view_copy_export_api_pdf_composed_prose_capture",
+      "theme": "genuine_non_browser_exits",
+      "implementationPriority": 7,
+      "status": "adapter_foundation_only",
+      "substantiveEvaluatorImplemented": false,
+      "calibrationPending": true,
+      "failClosed": true,
+      "neverInvent": true,
+      "batch8UnderlyingAdapterId": "exit_snapshots",
+      "unlockedEssentialControlIds": [],
+      "relatedEssentialControlIds": [],
+      "duplicateRiskCluster": "genuine_multi_exit",
+      "stage300AcceptanceRequirement": "All required genuine exit payloads bound; supports ELD/AUD/XPP later. Metadata ≠ exit.",
+      "engineeringJobCount": 1
+    }
+  ],
+  "note": "Six shared adapter jobs only. Do not double-count one adapter as multiple completed engineering jobs when multiple controls share it."
+}

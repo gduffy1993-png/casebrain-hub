@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "stage300-batch-a-six-truth-open-sequencing@1.0.0",
+  "openedAfterCandidateFreeze": true,
+  "candidateFreezeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "caseCount": 120,
+  "sequencingSha256": "d5574eba7cc43486f524947424e3c25b3e5dc70741c64cf087f4d467872d15db"
+}

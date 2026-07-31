@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "stage300-batch-a-six-evaluator-registry@1.0.0",
+  "batchAEvalSchema": "maa-v2-stage300-batch-a-six-evaluators@1.0.0",
+  "baselineCommit": "ee3c70c6f010b1c81535aed8bc00d1b782a29b4e",
+  "controlCount": 6,
+  "pinnedLegalStateCategorySet": [
+    "source_fact",
+    "allegation",
+    "prosecution_position",
+    "defence_position",
+    "disputed_evidence",
+    "inference",
+    "casebrain_hypothesis",
+    "expert_opinion",
+    "judicial_finding",
+    "unresolved_question"
+  ],
+  "promotedToImmutableImplementedRegistry": false,
+  "specs": [
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "shortId": "lsl05",
+      "familyCode": "LSL",
+      "owningAdapterId": "structured_charge_instrument_graph",
+      "engineId": "charge_legal_state",
+      "handlerId": "ba6_lsl05_category_set_coverage",
+      "findingCode": "BA6_LSL05_CATEGORY_SET_TRUNCATED",
+      "exactPrerequisites": [
+        "legalStateTaxonomy.taxonomyVersion",
+        "legalStateTaxonomy.usedCategories[]",
+        "pinned set = [source_fact|allegation|prosecution_position|defence_position|disputed_evidence|inference|casebrain_hypothesis|expert_opinion|judicial_finding|unresolved_question]"
+      ],
+      "applicabilityRule": "Applicable only when a structured legalStateTaxonomy bag is present with taxonomyVersion and usedCategories on a legal-state-emitting surface (not from court prose).",
+      "positiveCondition": "Taxonomy available and usedCategories is a non-truncated subset of the pinned full category set (not limited to fact/opinion binary).",
+      "safeNegativeCondition": "usedCategories truncated to fact/opinion (or equivalent binary) while taxonomy bag claims coverage on relied surfaces.",
+      "unresolvedCondition": "Taxonomy present but usedCategories empty or contains unknown labels not in the pinned set.",
+      "unavailableBehaviour": "namedControlExerciseStatus=not_exercised; no findings from courtNote or charge wording alone; chargeInstruments without legalStateTaxonomy do not exercise LSL-05.",
+      "findingOwnership": "Batch-A LSL-05 owns category-set truncation findings only.",
+      "evidenceProvenanceRequirements": [
+        "/legalStateTaxonomy/taxonomyVersion",
+        "/legalStateTaxonomy/usedCategories/*",
+        "/legalStateTaxonomy/surfaceRefs/*"
+      ],
+      "registryPurpose": "Support full category set: source fact, allegation, prosecution/defence position, disputed evidence, inference, CaseBrain hypothesis, expert opinion, judicial finding, unresolved question.",
+      "registryRules": "defect if taxonomy truncated in relied surfaces.",
+      "phraseProbeForbidden": true,
+      "contractRefs": {
+        "positive": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_lsl05_positive",
+        "negatives": [
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_lsl05_negative_a",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_lsl05_negative_b",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_lsl05_negative_c"
+        ],
+        "unavailable": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_lsl05_unavailable",
+        "ambiguous": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_lsl05_ambiguous",
+        "mutation": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_lsl05_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "shortId": "chr06",
+      "familyCode": "CHR",
+      "owningAdapterId": "timezone_aware_chronology_events",
+      "engineId": "chronology_procedure",
+      "handlerId": "ba6_chr06_age_at_offence_hearing",
+      "findingCode": "BA6_CHR06_WRONG_AGE_CLASS",
+      "exactPrerequisites": [
+        "dobAgeCalcLedger.dateOfBirth",
+        "dobAgeCalcLedger.offenceDate|hearingDate",
+        "dobAgeCalcLedger.reportedAgeClass"
+      ],
+      "applicabilityRule": "Applicable when dobAgeCalcLedger exposes DOB plus offenceDate and/or hearingDate with a reportedAgeClass. ChronologyEvents alone never invent DOB.",
+      "positiveCondition": "Reported age class matches deterministic age class from DOB + offence/hearing dates (inputs shown).",
+      "safeNegativeCondition": "Adult process/age class reported when DOB+dates imply youth (or youth when dates imply adult).",
+      "unresolvedCondition": "Age class asserted while dateOfBirth unknown/null.",
+      "unavailableBehaviour": "not_exercised without dobAgeCalcLedger; never scrape DOB from court prose or unrelated chronology timestamps.",
+      "findingOwnership": "Batch-A CHR-06 owns wrong age-class findings on structured DOB ledger only.",
+      "evidenceProvenanceRequirements": [
+        "/dobAgeCalcLedger/dateOfBirth",
+        "/dobAgeCalcLedger/offenceDate",
+        "/dobAgeCalcLedger/hearingDate",
+        "/dobAgeCalcLedger/reportedAgeClass",
+        "/dobAgeCalcLedger/calcInputs/*"
+      ],
+      "registryPurpose": "Age at offence/hearing correctly derived when DOB known.",
+      "registryRules": "defect on wrong age class; unresolved if DOB unknown.",
+      "phraseProbeForbidden": true,
+      "contractRefs": {
+        "positive": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr06_positive",
+        "negatives": [
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr06_negative_a",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr06_negative_b",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr06_negative_c"
+        ],
+        "unavailable": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr06_unavailable",
+        "ambiguous": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr06_ambiguous",
+        "mutation": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr06_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "shortId": "chr12",
+      "familyCode": "CHR",
+      "owningAdapterId": "timezone_aware_chronology_events",
+      "engineId": "chronology_procedure",
+      "handlerId": "ba6_chr12_transparent_calc_inputs",
+      "findingCode": "BA6_CHR12_OPAQUE_DERIVED_NUMBER",
+      "exactPrerequisites": [
+        "derivedNumericClaims[]|dobAgeCalcLedger.derivedValues[]",
+        "calcInputs[]"
+      ],
+      "applicabilityRule": "Applicable when a structured derived numeric claim exists on dobAgeCalcLedger or derivedNumericClaims[].",
+      "positiveCondition": "Every derived numeric claim lists non-empty calcInputs.",
+      "safeNegativeCondition": "Derived number present with empty/missing calcInputs.",
+      "unresolvedCondition": "Derived claim present but calcInputs explicitly marked unresolved/ambiguous.",
+      "unavailableBehaviour": "not_exercised when no derived numeric claims exist; export clocks are not derived claims.",
+      "findingOwnership": "Batch-A CHR-12 owns opaque-derived-number findings.",
+      "evidenceProvenanceRequirements": [
+        "/dobAgeCalcLedger/derivedValues/*",
+        "/dobAgeCalcLedger/calcInputs/*",
+        "/derivedNumericClaims/*"
+      ],
+      "registryPurpose": "Transparent calculation inputs for derived numbers.",
+      "registryRules": "defect if derived number lacks inputs on relied surfaces.",
+      "phraseProbeForbidden": true,
+      "contractRefs": {
+        "positive": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr12_positive",
+        "negatives": [
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr12_negative_a",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr12_negative_b",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr12_negative_c"
+        ],
+        "unavailable": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr12_unavailable",
+        "ambiguous": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr12_ambiguous",
+        "mutation": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_chr12_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "shortId": "prc03",
+      "familyCode": "PRC",
+      "owningAdapterId": "timezone_aware_chronology_events",
+      "engineId": "chronology_procedure",
+      "handlerId": "ba6_prc03_youth_state",
+      "findingCode": "BA6_PRC03_YOUTH_CULPABILITY_CONFLATION",
+      "exactPrerequisites": [
+        "proceduralPartyState.youthState"
+      ],
+      "applicabilityRule": "Applicable when proceduralPartyState.youthState is present as a structured record (not inferred from charge order).",
+      "positiveCondition": "Youth safeguards surfaced without culpabilityConflation flag.",
+      "safeNegativeCondition": "Youth state conflated with guilt/culpability (culpabilityConflation=true or equivalent).",
+      "unresolvedCondition": "Youth safeguards claimed while ageUnknown=true / DOB unknown.",
+      "unavailableBehaviour": "not_exercised without youthState; never invent youth from defendant name order.",
+      "findingOwnership": "Batch-A PRC-03 owns youth/culpability conflation findings.",
+      "evidenceProvenanceRequirements": [
+        "/proceduralPartyState/youthState",
+        "/proceduralPartyState/youthState/defendantId",
+        "/proceduralPartyState/youthState/safeguardPrompts"
+      ],
+      "registryPurpose": "Include youth state without conflation with culpability.",
+      "registryRules": "defect on conflation; unresolved if age unknown.",
+      "phraseProbeForbidden": true,
+      "contractRefs": {
+        "positive": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc03_positive",
+        "negatives": [
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc03_negative_a",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc03_negative_b",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc03_negative_c"
+        ],
+        "unavailable": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc03_unavailable",
+        "ambiguous": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc03_ambiguous",
+        "mutation": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc03_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "shortId": "prc04",
+      "familyCode": "PRC",
+      "owningAdapterId": "timezone_aware_chronology_events",
+      "engineId": "chronology_procedure",
+      "handlerId": "ba6_prc04_fitness_participation",
+      "findingCode": "BA6_PRC04_FITNESS_DECIDED",
+      "exactPrerequisites": [
+        "proceduralPartyState.fitnessParticipation"
+      ],
+      "applicabilityRule": "Applicable when proceduralPartyState.fitnessParticipation is present.",
+      "positiveCondition": "Fitness/participation issue flagged for solicitor with decided=false / no automated fitness finding.",
+      "safeNegativeCondition": "Automated fitness finding asserted (decided=true or fitToPlead asserted).",
+      "unresolvedCondition": "Cues present with status=unresolved and no decision — recorded as unresolved exercise, not a pass.",
+      "unavailableBehaviour": "not_exercised without fitnessParticipation structured field.",
+      "findingOwnership": "Batch-A PRC-04 owns automated-fitness-decision findings.",
+      "evidenceProvenanceRequirements": [
+        "/proceduralPartyState/fitnessParticipation",
+        "/proceduralPartyState/fitnessParticipation/decided",
+        "/proceduralPartyState/fitnessParticipation/limitationText"
+      ],
+      "registryPurpose": "Surface fitness/participation issues without deciding them.",
+      "registryRules": "defect if fitness decided; unresolved when cues exist.",
+      "phraseProbeForbidden": true,
+      "contractRefs": {
+        "positive": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc04_positive",
+        "negatives": [
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc04_negative_a",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc04_negative_b",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc04_negative_c"
+        ],
+        "unavailable": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc04_unavailable",
+        "ambiguous": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc04_ambiguous",
+        "mutation": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc04_mutation"
+      }
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "shortId": "prc07",
+      "familyCode": "PRC",
+      "owningAdapterId": "timezone_aware_chronology_events",
+      "engineId": "chronology_procedure",
+      "handlerId": "ba6_prc07_disclosure_pii_state",
+      "findingCode": "BA6_PRC07_DISCLOSURE_PII_CONFLATION",
+      "exactPrerequisites": [
+        "proceduralPartyState.disclosurePiiState.disclosureState",
+        "proceduralPartyState.disclosurePiiState.piiState"
+      ],
+      "applicabilityRule": "Applicable when disclosurePiiState exposes distinct disclosureState and piiState fields.",
+      "positiveCondition": "Disclosure and PII states remain distinct (conflated=false).",
+      "safeNegativeCondition": "PII redaction counted as unused material served / disclosure completeness (conflated=true).",
+      "unresolvedCondition": "Only one of disclosureState/piiState present — incomplete dual-state bag.",
+      "unavailableBehaviour": "not_exercised without disclosurePiiState dual fields.",
+      "findingOwnership": "Batch-A PRC-07 owns disclosure/PII conflation findings.",
+      "evidenceProvenanceRequirements": [
+        "/proceduralPartyState/disclosurePiiState/disclosureState",
+        "/proceduralPartyState/disclosurePiiState/piiState",
+        "/proceduralPartyState/disclosurePiiState/conflated"
+      ],
+      "registryPurpose": "Surface disclosure/PII states without conflation.",
+      "registryRules": "defect on conflation.",
+      "phraseProbeForbidden": true,
+      "contractRefs": {
+        "positive": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc07_positive",
+        "negatives": [
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc07_negative_a",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc07_negative_b",
+          "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc07_negative_c"
+        ],
+        "unavailable": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc07_unavailable",
+        "ambiguous": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc07_ambiguous",
+        "mutation": "scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts#ba6_prc07_mutation"
+      }
+    }
+  ]
+}

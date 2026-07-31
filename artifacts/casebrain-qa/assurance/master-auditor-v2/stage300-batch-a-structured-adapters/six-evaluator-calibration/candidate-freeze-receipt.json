@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "stage300-batch-a-six-candidate-freeze@1.0.0",
+  "frozenAt": "2026-07-31T20:20:22.785Z",
+  "candidateCount": 0,
+  "freezeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "exerciseRowsSha256": "face48e1db05af59575fc1fd31fff9d1f08e8d9281b8e19a47337d5d887c6ee0",
+  "truthOpenedBeforeFreeze": false,
+  "scanned": 120,
+  "controlIds": [
+    "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+    "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+    "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+    "MAA2-PRC-03-YOUTH-STATE",
+    "MAA2-PRC-04-FITNESS-PARTICIPATION",
+    "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+  ]
+}

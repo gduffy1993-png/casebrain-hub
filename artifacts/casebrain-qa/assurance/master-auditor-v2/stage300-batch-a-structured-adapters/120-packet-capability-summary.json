@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "stage300-batch-a-120-capability-summary@1.0.0",
+  "scanned": 120,
+  "expected": 120,
+  "projectionOnlyExcluded": 30,
+  "truthOpened": false,
+  "candidatesGenerated": false,
+  "byAdapter": {
+    "structured_charge_instrument_graph": {
+      "eligible": 120,
+      "partial": 0,
+      "unavailable": 0,
+      "rollupBasis": "best_across_channels"
+    },
+    "timezone_aware_chronology_events": {
+      "eligible": 120,
+      "partial": 0,
+      "unavailable": 0,
+      "rollupBasis": "best_across_channels"
+    },
+    "evidence_unit_identity_with_aliases": {
+      "eligible": 0,
+      "partial": 120,
+      "unavailable": 0,
+      "rollupBasis": "best_across_channels"
+    },
+    "source_vs_compiled_page_binding": {
+      "eligible": 0,
+      "partial": 120,
+      "unavailable": 0,
+      "rollupBasis": "best_across_channels"
+    },
+    "chase_item_to_evidence_unit_edges": {
+      "eligible": 0,
+      "partial": 120,
+      "unavailable": 0,
+      "rollupBasis": "best_across_channels"
+    },
+    "view_copy_export_api_pdf_composed_prose_capture": {
+      "eligible": 0,
+      "partial": 120,
+      "unavailable": 0,
+      "rollupBasis": "best_across_channels"
+    }
+  }
+}

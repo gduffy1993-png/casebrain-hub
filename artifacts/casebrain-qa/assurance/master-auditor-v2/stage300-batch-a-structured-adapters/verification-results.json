@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "stage300-batch-a-six-verification@1.0.0",
+  "baselineCommit": "ee3c70c6f010b1c81535aed8bc00d1b782a29b4e",
+  "focusedContracts": {
+    "command": "npx tsx --test scripts/maa-v2-stage300-batch-a-six-evaluators-contracts.test.ts scripts/maa-v2-stage300-batch-a-contracts.test.ts scripts/maa-v2-stage150-batch8-contracts.test.ts",
+    "passed": true,
+    "tests": 76
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true
+  },
+  "typescriptDelta": {
+    "batchAPathErrors": 0,
+    "note": "Pre-existing repo typecheck failures remain outside Batch-A paths."
+  },
+  "brain1GuardianBlobUnchanged": true,
+  "freezeHashesUnchanged": {
+    "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+    "candidateFreezeSha256": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+    "verified": true
+  },
+  "sixEvaluatorsPromoted": false,
+  "stage300NotRun": true,
+  "committed": false
+}

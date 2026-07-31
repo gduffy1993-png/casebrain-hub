@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "stage300-batch-a-six-eligibility-exercise-matrix@1.0.0",
+  "scanned": 120,
+  "projectionOnlyExcluded": 30,
+  "truthOpenedDuringBlind": false,
+  "byControl": {
+    "MAA2-LSL-05-CATEGORY-SET-COVERAGE": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 120,
+      "candidateCount": 0
+    },
+    "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 120,
+      "candidateCount": 0
+    },
+    "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 120,
+      "candidateCount": 0
+    },
+    "MAA2-PRC-03-YOUTH-STATE": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 120,
+      "candidateCount": 0
+    },
+    "MAA2-PRC-04-FITNESS-PARTICIPATION": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 120,
+      "candidateCount": 0
+    },
+    "MAA2-PRC-07-DISCLOSURE-PII-STATE": {
+      "eligible": 0,
+      "partial": 0,
+      "unavailable": 120,
+      "candidateCount": 0
+    }
+  },
+  "namedExerciseTotals": {
+    "evaluated": 0,
+    "unresolved": 0,
+    "not_exercised": 720
+  }
+}

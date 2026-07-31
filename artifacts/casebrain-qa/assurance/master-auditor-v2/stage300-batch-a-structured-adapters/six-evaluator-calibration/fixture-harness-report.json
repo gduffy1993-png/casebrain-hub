@@ -1,0 +1,271 @@
+{
+  "schemaVersion": "stage300-batch-a-six-fixture-harness@1.0.0",
+  "executions": 30,
+  "note": "Fixtures prove behaviour only — not corpus calibration.",
+  "traces": [
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [],
+      "kind": "positive"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_LSL05_CATEGORY_SET_TRUNCATED"
+      ],
+      "kind": "negative"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "not_exercised",
+      "findingCodes": [],
+      "kind": "unavailable"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "unresolved",
+      "findingCodes": [],
+      "kind": "ambiguous"
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_LSL05_CATEGORY_SET_TRUNCATED"
+      ],
+      "kind": "mutation"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [],
+      "kind": "positive"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_CHR06_WRONG_AGE_CLASS"
+      ],
+      "kind": "negative"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "not_exercised",
+      "findingCodes": [],
+      "kind": "unavailable"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "unresolved",
+      "findingCodes": [],
+      "kind": "ambiguous"
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_CHR06_WRONG_AGE_CLASS"
+      ],
+      "kind": "mutation"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [],
+      "kind": "positive"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_CHR12_OPAQUE_DERIVED_NUMBER"
+      ],
+      "kind": "negative"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "not_exercised",
+      "findingCodes": [],
+      "kind": "unavailable"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "unresolved",
+      "findingCodes": [],
+      "kind": "ambiguous"
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_CHR12_OPAQUE_DERIVED_NUMBER"
+      ],
+      "kind": "mutation"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [],
+      "kind": "positive"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_PRC03_YOUTH_CULPABILITY_CONFLATION"
+      ],
+      "kind": "negative"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "not_exercised",
+      "findingCodes": [],
+      "kind": "unavailable"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "unresolved",
+      "findingCodes": [],
+      "kind": "ambiguous"
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_PRC03_YOUTH_CULPABILITY_CONFLATION"
+      ],
+      "kind": "mutation"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [],
+      "kind": "positive"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_PRC04_FITNESS_DECIDED"
+      ],
+      "kind": "negative"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "not_exercised",
+      "findingCodes": [],
+      "kind": "unavailable"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "unresolved",
+      "findingCodes": [],
+      "kind": "ambiguous"
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_PRC04_FITNESS_DECIDED"
+      ],
+      "kind": "mutation"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [],
+      "kind": "positive"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_PRC07_DISCLOSURE_PII_CONFLATION"
+      ],
+      "kind": "negative"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "not_exercised",
+      "findingCodes": [],
+      "kind": "unavailable"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "invokedEvaluator": true,
+      "findingCount": 0,
+      "exerciseStatus": "unresolved",
+      "findingCodes": [],
+      "kind": "ambiguous"
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "invokedEvaluator": true,
+      "findingCount": 1,
+      "exerciseStatus": "evaluated",
+      "findingCodes": [
+        "BA6_PRC07_DISCLOSURE_PII_CONFLATION"
+      ],
+      "kind": "mutation"
+    }
+  ]
+}
