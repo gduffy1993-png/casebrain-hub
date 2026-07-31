@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "stage300-new-150-cost-retention@1.0.0",
+  "runtimeMs": 83752,
+  "storageBytes": 17738204,
+  "casesAccepted": 150,
+  "casesRejected": 0,
+  "eligibleControlsGained": 9,
+  "readyForCalibrationCount": 9,
+  "costTimePerNewlyEligibleControlMs": 9306,
+  "rawArtefactsGitignored": [
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/sources",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates"
+  ],
+  "compactManifestsCommittedLater": true,
+  "deterministicRegenerationCommand": "npx tsx scripts/assurance/emit-maa-v2-stage300-new-150-control-coverage.ts",
+  "denominatorRescanCommand": "npx tsx scripts/assurance/rescan-maa-v2-stage300-new-150-denominators.ts"
+}

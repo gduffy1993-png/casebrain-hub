@@ -1,0 +1,1078 @@
+{
+  "schemaVersion": "stage300-new-150-population-manifest@1.0.0",
+  "baselineCommit": "d03e0a57c279d9e155ea20cf89c2e40b3f6848c9",
+  "headCommit": "d03e0a57c279d9e155ea20cf89c2e40b3f6848c9",
+  "target": 150,
+  "accepted": 150,
+  "rejected": 0,
+  "cases": [
+    {
+      "caseId": "s300-n150-001-homicide-causation-ocr-binary-heavy",
+      "packetSha256": "56670fffc6376f1cf958d20e80df583c031021b3d67c9a6ac7519e33b94daa07",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-001-homicide-causation-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-002-violence-robbery-weapons-ocr-binary-heavy",
+      "packetSha256": "c1c682186f64708a9d8beefbdfa5d580dd7b8c364af3c0a1e3f3b4f0b0e4e0f6",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-002-violence-robbery-weapons-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-003-firearms-ocr-binary-heavy",
+      "packetSha256": "907948cb4ceccd3abe677bfb40e7f47656db9f1ce1943548fe89f3d394471c94",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-003-firearms-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-004-sexual-abe-ocr-binary-heavy",
+      "packetSha256": "cb821e35307ce68adce922d63a1f4a47e200c016203b85a97c2e93b4fd1df3c8",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-004-sexual-abe-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-005-domestic-abuse-ocr-binary-heavy",
+      "packetSha256": "c300dde76de8a014d9eccc871fa72dfb679e57ac77d11c63839f688c10af46db",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-005-domestic-abuse-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-006-youth-participation-ocr-binary-heavy",
+      "packetSha256": "fcc808f8ade5886ec749e0cd9f7d178efc7dc820035c108be50a3686cc6ea31a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-006-youth-participation-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-007-county-lines-nrm-ocr-binary-heavy",
+      "packetSha256": "c1239a85b7971874f4a1c037b3e596217929f2ad0fbae63df6d9c6ed8532944e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-007-county-lines-nrm-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-008-fraud-poca-ocr-binary-heavy",
+      "packetSha256": "de0dea5ffe8478046dbdf80f15b6f2c6c611db02c96ffb3a00560351108049bd",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-008-fraud-poca-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-009-digital-attribution-ocr-binary-heavy",
+      "packetSha256": "46561f14339c338ce1e74c7f724db268dba81b13d8886692e859289fdcf30747",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-009-digital-attribution-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-010-identification-code-d-ocr-binary-heavy",
+      "packetSha256": "b7ad8ea8458b0dd5ba673b105d40702a0b01025e86ea45c93ba4cdfb9de78b67",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-010-identification-code-d-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-011-mental-health-fitness-ocr-binary-heavy",
+      "packetSha256": "d9880f85c51f8f707563b57f63e912a199ae2c282d78d700dfd3293cd6965c13",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-011-mental-health-fitness-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-012-disclosure-pii-ocr-binary-heavy",
+      "packetSha256": "b417b50a63cb7f68c928c635bc6d4fad6db6b79211bea0ffa70c83badd7579b7",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-012-disclosure-pii-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-013-road-traffic-fatal-ocr-binary-heavy",
+      "packetSha256": "47e4acfac2861cef451433524900743eea571b5ee4b13e04466811437efae9a7",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-013-road-traffic-fatal-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-014-magistrates-procedure-ocr-binary-heavy",
+      "packetSha256": "a5f13e27b39397152b1a5669a3e90f90501d92a44472f034f5644ab4d6b89729",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-014-magistrates-procedure-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-015-bail-remand-ocr-binary-heavy",
+      "packetSha256": "e0388897808ca0cdf82aa9fbc9cc2478ac3dba92ddbd83002ae043753ec7f4cd",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-015-bail-remand-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-016-sentencing-newton-ocr-binary-heavy",
+      "packetSha256": "c0ba5324629a685c02b7fd9d43d6a36e2028416720569599c5c658d03923332e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-016-sentencing-newton-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-017-appeals-ocr-binary-heavy",
+      "packetSha256": "df821c09a45efca359a6f0404de9f0d5e75b8be925c274e01606ecba7ba44728",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-017-appeals-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-018-multi-defendant-attribution-ocr-binary-heavy",
+      "packetSha256": "f22da72baebb5f5b4681fffced9c88876e557945d5d40a7a3ea25ab7b16b80d1",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-018-multi-defendant-attribution-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-019-homicide-causation-ocr-binary-heavy",
+      "packetSha256": "7ca14781eec0dca1cfee88b1b77a222d0c9ae3f20d475ded18ade0825b9fbb79",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-019-homicide-causation-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-020-violence-robbery-weapons-ocr-binary-heavy",
+      "packetSha256": "c4e49793a85dc1c2677cdb63316af135ae707729b1e2171755319858f6a2abb6",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-020-violence-robbery-weapons-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-021-firearms-ocr-binary-heavy",
+      "packetSha256": "abf95203923140e5eae1a32d8306e64013ef77cab031f992f8083123b9c9b188",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-021-firearms-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-022-sexual-abe-ocr-binary-heavy",
+      "packetSha256": "b0635e98ad0884371f215a76f233ca082b4dbd641d6e46cb1535a3ee0451b6ec",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-022-sexual-abe-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-023-domestic-abuse-ocr-binary-heavy",
+      "packetSha256": "f9f230335c28ea7de3aeb5683cf27c94a706ae3dddf2f84d975895c39e99fcb9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-023-domestic-abuse-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-024-youth-participation-ocr-binary-heavy",
+      "packetSha256": "3542ea55f35a1c2f0d544df250cd4a011489c67ad834a45c0a97971fe5d0c72a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-024-youth-participation-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-025-county-lines-nrm-ocr-binary-heavy",
+      "packetSha256": "ebc416fdfdd8c78044a7ea78003e532141c7a3096118b9765a02cbee86631929",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-025-county-lines-nrm-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-026-fraud-poca-ocr-binary-heavy",
+      "packetSha256": "69942b81769c70687d790ccfbd7c51bf88abae2268b32a0d1c4cc2f9624c688b",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-026-fraud-poca-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-027-digital-attribution-ocr-binary-heavy",
+      "packetSha256": "35a1681c567119c6940ae40af93001a5aecbe65a37c1777d443c5c186a6d4da9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-027-digital-attribution-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-028-identification-code-d-ocr-binary-heavy",
+      "packetSha256": "cbb033f85f07ddd0fbefc1153c0a4233375d200180316ca8538dbb0e70234148",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-028-identification-code-d-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-029-mental-health-fitness-ocr-binary-heavy",
+      "packetSha256": "45df434d51bb2dba1e1bbc5528eace79ffa355e39bdf22e46d9fb2ccb8f5bf92",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-029-mental-health-fitness-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-030-disclosure-pii-ocr-binary-heavy",
+      "packetSha256": "6bbb2b68de8f3bc4496803d1286b778fa2771d96fcece272cb966e7aaca1f945",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-030-disclosure-pii-ocr-binary-heavy/structured-case-packet.json",
+      "coverageTag": "ocr_binary_heavy"
+    },
+    {
+      "caseId": "s300-n150-031-road-traffic-fatal-specialty-youth-dob",
+      "packetSha256": "a5d51619815acdd0c156985fde837bbd2c21780a430aee6a4f4a1ec7c776b211",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-031-road-traffic-fatal-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-032-magistrates-procedure-specialty-youth-dob",
+      "packetSha256": "fd25bb45ccaf1d4eea1431fab5c6b9d67a637eb565797875d73b839542bee3b8",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-032-magistrates-procedure-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-033-bail-remand-specialty-youth-dob",
+      "packetSha256": "305c2eef01c6637205af91b8f1145d68a2ecbd8a23899a7e1579941608911824",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-033-bail-remand-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-034-sentencing-newton-specialty-youth-dob",
+      "packetSha256": "701301214a16fa29a14d0c0ec0a1357ea5979653f7687d1b541bbf1be4d8232b",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-034-sentencing-newton-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-035-appeals-specialty-youth-dob",
+      "packetSha256": "ebcdfe84a00f7adb737275bb6989336289cbae7f760fd00fe2aa876814270bbe",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-035-appeals-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-036-multi-defendant-attribution-specialty-youth-dob",
+      "packetSha256": "54c0e6f07719a42c0e60a36e027b377f29fb46e8852b5584fa48ac82b8a18e40",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-036-multi-defendant-attribution-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-037-homicide-causation-specialty-youth-dob",
+      "packetSha256": "57cb47c6dac59ec7abaf897335397442be0820f812e7c7e4d8b9c5a304f13f56",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-037-homicide-causation-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-038-violence-robbery-weapons-specialty-youth-dob",
+      "packetSha256": "fc36760021fbbdbe9667795678926f0c23fdb9aea6b2e987680c13b5b712d26a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-038-violence-robbery-weapons-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-039-firearms-specialty-youth-dob",
+      "packetSha256": "e8312aece6098e56184fe79ed8f58e65228066d665360f5db51097435b5728b9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-039-firearms-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-040-sexual-abe-specialty-youth-dob",
+      "packetSha256": "c4c178d26e1602ee69bcb836eb28f019df9e053b8a5ba804b168b369aa26a248",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-040-sexual-abe-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-041-domestic-abuse-specialty-youth-dob",
+      "packetSha256": "60876a3660f0486b083aec8c6ceec0061ff02f8912d2387773c5ec206a9fe16d",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-041-domestic-abuse-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-042-youth-participation-specialty-youth-dob",
+      "packetSha256": "b4277b5f1147d07a4681ee138fbe8ad62a2ccc8c3f98b3dbc07d342c8e8a828d",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-042-youth-participation-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-043-county-lines-nrm-specialty-youth-dob",
+      "packetSha256": "2086160a114ff002b2f0e91c3276e408e991f3fd19bf2c43cb80916ff7e1be81",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-043-county-lines-nrm-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-044-fraud-poca-specialty-youth-dob",
+      "packetSha256": "c38343d28d701303681b2808e9cf92a4d3d2848a6f6457ebc0dbe6f6aa1bfbc6",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-044-fraud-poca-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-045-digital-attribution-specialty-youth-dob",
+      "packetSha256": "06849fba5c98ddee63333377ba2fcb28abd9665dc49a419e81d0badd76091832",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-045-digital-attribution-specialty-youth-dob/structured-case-packet.json",
+      "coverageTag": "specialty_youth_dob"
+    },
+    {
+      "caseId": "s300-n150-046-identification-code-d-specialty-fitness",
+      "packetSha256": "fa75e6052574ec844a88cc8b29a4d0743a334e2908161e9fb1fb2567c34c2775",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-046-identification-code-d-specialty-fitness/structured-case-packet.json",
+      "coverageTag": "specialty_fitness"
+    },
+    {
+      "caseId": "s300-n150-047-mental-health-fitness-specialty-fitness",
+      "packetSha256": "aa31900381970a5ff6f8ab2bae10b6eb951b4a3b37d1c4bde07c70e53ee6af90",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-047-mental-health-fitness-specialty-fitness/structured-case-packet.json",
+      "coverageTag": "specialty_fitness"
+    },
+    {
+      "caseId": "s300-n150-048-disclosure-pii-specialty-fitness",
+      "packetSha256": "0950343e235bef86a8b1ed380cfb7d0b6e1f2d73bff4caa3363664c4ec7760c1",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-048-disclosure-pii-specialty-fitness/structured-case-packet.json",
+      "coverageTag": "specialty_fitness"
+    },
+    {
+      "caseId": "s300-n150-049-road-traffic-fatal-specialty-fitness",
+      "packetSha256": "cfd94fca138c665f9dd7e68914385b1a0c016b519c3f1b17ad89d8dcbafdb993",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-049-road-traffic-fatal-specialty-fitness/structured-case-packet.json",
+      "coverageTag": "specialty_fitness"
+    },
+    {
+      "caseId": "s300-n150-050-magistrates-procedure-specialty-fitness",
+      "packetSha256": "93334057753a103b91abcd28a2312a9aff018d4e929b39bb8f83af391ea17a1a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-050-magistrates-procedure-specialty-fitness/structured-case-packet.json",
+      "coverageTag": "specialty_fitness"
+    },
+    {
+      "caseId": "s300-n150-051-bail-remand-specialty-fitness",
+      "packetSha256": "b102989f9b01b65e19673d5d48952cb59c90501926939bb9aea673526fc13619",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-051-bail-remand-specialty-fitness/structured-case-packet.json",
+      "coverageTag": "specialty_fitness"
+    },
+    {
+      "caseId": "s300-n150-052-sentencing-newton-specialty-fitness",
+      "packetSha256": "ebb149cf93eb9b5237fe548f262a2dec102755602d842ddbd3884250404c87d0",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-052-sentencing-newton-specialty-fitness/structured-case-packet.json",
+      "coverageTag": "specialty_fitness"
+    },
+    {
+      "caseId": "s300-n150-053-appeals-specialty-fitness",
+      "packetSha256": "301155790daad2c7ba0a099f0a3b7f80b50404446cf133fe8200e5fb7ed5328e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-053-appeals-specialty-fitness/structured-case-packet.json",
+      "coverageTag": "specialty_fitness"
+    },
+    {
+      "caseId": "s300-n150-054-multi-defendant-attribution-specialty-fitness",
+      "packetSha256": "32bb90fcc4d70436b5886ffa4a2970b4d90bf5a9a84d9e0c6f8d28f53e4b0af5",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-054-multi-defendant-attribution-specialty-fitness/structured-case-packet.json",
+      "coverageTag": "specialty_fitness"
+    },
+    {
+      "caseId": "s300-n150-055-homicide-causation-specialty-fitness",
+      "packetSha256": "f1269c263187a341175c815227be793207225f8e04d6bbe7927a4357498a3065",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-055-homicide-causation-specialty-fitness/structured-case-packet.json",
+      "coverageTag": "specialty_fitness"
+    },
+    {
+      "caseId": "s300-n150-056-violence-robbery-weapons-specialty-disclosure-pii",
+      "packetSha256": "81bac69736bd5005ef7eb71b8e57a6b7605e444ec2413c64ae5491f25a6a45d4",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-056-violence-robbery-weapons-specialty-disclosure-pii/structured-case-packet.json",
+      "coverageTag": "specialty_disclosure_pii"
+    },
+    {
+      "caseId": "s300-n150-057-firearms-specialty-disclosure-pii",
+      "packetSha256": "0dd49701fda1aeb6b0925b7a0e8d16c306110759937d5a9777424a349c925df3",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-057-firearms-specialty-disclosure-pii/structured-case-packet.json",
+      "coverageTag": "specialty_disclosure_pii"
+    },
+    {
+      "caseId": "s300-n150-058-sexual-abe-specialty-disclosure-pii",
+      "packetSha256": "8343f5a566098989109b3b941de745ee76283c9cc37cf2c79e4b67816477bc4e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-058-sexual-abe-specialty-disclosure-pii/structured-case-packet.json",
+      "coverageTag": "specialty_disclosure_pii"
+    },
+    {
+      "caseId": "s300-n150-059-domestic-abuse-specialty-disclosure-pii",
+      "packetSha256": "7ba8084e07e89afbf0af60647dbb6efbef2dbd50f617cbc5dd73143a0c2d85b5",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-059-domestic-abuse-specialty-disclosure-pii/structured-case-packet.json",
+      "coverageTag": "specialty_disclosure_pii"
+    },
+    {
+      "caseId": "s300-n150-060-youth-participation-specialty-disclosure-pii",
+      "packetSha256": "07b7e69986464a23110905720d39545d67716b83ba60ff5b6d745777e6664466",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-060-youth-participation-specialty-disclosure-pii/structured-case-packet.json",
+      "coverageTag": "specialty_disclosure_pii"
+    },
+    {
+      "caseId": "s300-n150-061-county-lines-nrm-specialty-disclosure-pii",
+      "packetSha256": "e109ab7ce905d1a619e387ab2db5f76edf71cd51391a76128552670d586955c7",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-061-county-lines-nrm-specialty-disclosure-pii/structured-case-packet.json",
+      "coverageTag": "specialty_disclosure_pii"
+    },
+    {
+      "caseId": "s300-n150-062-fraud-poca-specialty-disclosure-pii",
+      "packetSha256": "22cf029de009e06f1956e7783ad19eb34f112f201279ea9776deef393da20902",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-062-fraud-poca-specialty-disclosure-pii/structured-case-packet.json",
+      "coverageTag": "specialty_disclosure_pii"
+    },
+    {
+      "caseId": "s300-n150-063-digital-attribution-specialty-disclosure-pii",
+      "packetSha256": "24163e7f2406356b5d58a0d29ae12cf2bc5c680426145db90bd19d19144f9fac",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-063-digital-attribution-specialty-disclosure-pii/structured-case-packet.json",
+      "coverageTag": "specialty_disclosure_pii"
+    },
+    {
+      "caseId": "s300-n150-064-identification-code-d-specialty-disclosure-pii",
+      "packetSha256": "ce504d9e53cc58016b6a30e3b6086c471e057aaa6f30c5dd8b547870d95cd8c9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-064-identification-code-d-specialty-disclosure-pii/structured-case-packet.json",
+      "coverageTag": "specialty_disclosure_pii"
+    },
+    {
+      "caseId": "s300-n150-065-mental-health-fitness-specialty-disclosure-pii",
+      "packetSha256": "5cc44cd1548401b00e434a446269a887190639c934ba43693d29675de3769414",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-065-mental-health-fitness-specialty-disclosure-pii/structured-case-packet.json",
+      "coverageTag": "specialty_disclosure_pii"
+    },
+    {
+      "caseId": "s300-n150-066-disclosure-pii-specialty-legal-taxonomy",
+      "packetSha256": "4366c0d7c544c4c388496e0881f284be59de2ffce0ddac5d72864debb68740a6",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-066-disclosure-pii-specialty-legal-taxonomy/structured-case-packet.json",
+      "coverageTag": "specialty_legal_taxonomy"
+    },
+    {
+      "caseId": "s300-n150-067-road-traffic-fatal-specialty-legal-taxonomy",
+      "packetSha256": "25554f2075f434a0693bfb60b73776dc1552281d15b0ce55cc63556ce1d852d5",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-067-road-traffic-fatal-specialty-legal-taxonomy/structured-case-packet.json",
+      "coverageTag": "specialty_legal_taxonomy"
+    },
+    {
+      "caseId": "s300-n150-068-magistrates-procedure-specialty-legal-taxonomy",
+      "packetSha256": "5c59643b2ff0350f1687d6c8610bd3479dc875752a0c50cc7c7d09b134fbd61c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-068-magistrates-procedure-specialty-legal-taxonomy/structured-case-packet.json",
+      "coverageTag": "specialty_legal_taxonomy"
+    },
+    {
+      "caseId": "s300-n150-069-bail-remand-specialty-legal-taxonomy",
+      "packetSha256": "3361a268d488675adfd9f37ec719e2430dab9c4be4862593154c3e3a6e8931f2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-069-bail-remand-specialty-legal-taxonomy/structured-case-packet.json",
+      "coverageTag": "specialty_legal_taxonomy"
+    },
+    {
+      "caseId": "s300-n150-070-sentencing-newton-specialty-legal-taxonomy",
+      "packetSha256": "95ac3679f9ecde95b02c85f92a52e51a912995240e1fb46632d21f037c45f531",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-070-sentencing-newton-specialty-legal-taxonomy/structured-case-packet.json",
+      "coverageTag": "specialty_legal_taxonomy"
+    },
+    {
+      "caseId": "s300-n150-071-appeals-specialty-legal-taxonomy",
+      "packetSha256": "09277976bc2c1fa83b504601fdb183d4d68cd60039dff8613f8deb3b6c7f2c67",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-071-appeals-specialty-legal-taxonomy/structured-case-packet.json",
+      "coverageTag": "specialty_legal_taxonomy"
+    },
+    {
+      "caseId": "s300-n150-072-multi-defendant-attribution-specialty-legal-taxonomy",
+      "packetSha256": "a10f34fe4fd83a061858f91408aec94ad2c3379a338f23f8216fd4a83f75ead5",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-072-multi-defendant-attribution-specialty-legal-taxonomy/structured-case-packet.json",
+      "coverageTag": "specialty_legal_taxonomy"
+    },
+    {
+      "caseId": "s300-n150-073-homicide-causation-specialty-legal-taxonomy",
+      "packetSha256": "3909a900e9f1e71081316b23c91402043740303c5ecc19e424ba4049757ccb85",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-073-homicide-causation-specialty-legal-taxonomy/structured-case-packet.json",
+      "coverageTag": "specialty_legal_taxonomy"
+    },
+    {
+      "caseId": "s300-n150-074-violence-robbery-weapons-specialty-legal-taxonomy",
+      "packetSha256": "531ef24dcbf1aed7542a95914f9a2d39266f4122337194106cc98687bb09e1f0",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-074-violence-robbery-weapons-specialty-legal-taxonomy/structured-case-packet.json",
+      "coverageTag": "specialty_legal_taxonomy"
+    },
+    {
+      "caseId": "s300-n150-075-firearms-specialty-legal-taxonomy",
+      "packetSha256": "1914568e7fbea5e98f53508a4239e316182b3b85e158c87d9cc7c296f2229c1f",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-075-firearms-specialty-legal-taxonomy/structured-case-packet.json",
+      "coverageTag": "specialty_legal_taxonomy"
+    },
+    {
+      "caseId": "s300-n150-076-sexual-abe-version-draft-pair",
+      "packetSha256": "6fb6032fbf5625fc1ff0379ffd33b6e7e55c20c90d6d51c02e479e590bbaece4",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-076-sexual-abe-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-077-domestic-abuse-version-draft-pair",
+      "packetSha256": "a2bbaeeae71950630a7dd965192967f170c215a6b780c32c3d2539109252836c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-077-domestic-abuse-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-078-youth-participation-version-draft-pair",
+      "packetSha256": "2eef925eea23ffa89350278e90ae6e7f71f235cf54cfc88f9a6ae4ad1236c5ff",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-078-youth-participation-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-079-county-lines-nrm-version-draft-pair",
+      "packetSha256": "4c318bfa6f34310c6b54a0e404196f5e327e2682dcb79c0d4f1adc0e931b607e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-079-county-lines-nrm-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-080-fraud-poca-version-draft-pair",
+      "packetSha256": "292b3c7813a7835b902bd5404a47749b7664391a49d117475209bd04ce9088e4",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-080-fraud-poca-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-081-digital-attribution-version-draft-pair",
+      "packetSha256": "98107c0a24ff7e81835b85fd45f2f51f34663a6282e03e269b0f6f5c6f282f24",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-081-digital-attribution-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-082-identification-code-d-version-draft-pair",
+      "packetSha256": "d80a9b5ab0f1bd85ae74215ce4e446b4b5e991b415cb8db35a172dc18300f47a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-082-identification-code-d-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-083-mental-health-fitness-version-draft-pair",
+      "packetSha256": "65facee306070bdf0f349de9d17cf28e2a8f6b0cbfc0e4cfb8221cff88867869",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-083-mental-health-fitness-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-084-disclosure-pii-version-draft-pair",
+      "packetSha256": "3d9f4d42e322a02a2037e20249fafd4ad6bf9b42250bc39dc6109ff02361445a",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-084-disclosure-pii-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-085-road-traffic-fatal-version-draft-pair",
+      "packetSha256": "445a2e33e345d15c249cdcc2398aa7832d441d28715bc3acac3b9e76ed8662f3",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-085-road-traffic-fatal-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-086-magistrates-procedure-version-draft-pair",
+      "packetSha256": "7e36fc57780592e5962afff6c64ca6033e78a3e31b8ce3f8090dd9d58055c002",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-086-magistrates-procedure-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-087-bail-remand-version-draft-pair",
+      "packetSha256": "1efe98511f08efa13efa4c284f5f094b1c8939e88b0ae139a4c6b1975357d834",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-087-bail-remand-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-088-sentencing-newton-version-draft-pair",
+      "packetSha256": "6ce718739217df60834cacecbb9c339899c6c1bef739e655b7024dfe4bb210ee",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-088-sentencing-newton-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-089-appeals-version-draft-pair",
+      "packetSha256": "e1ea4855e4d046780d20e1a9698719c4a353b594ea7c1cf9b894a66705bd9456",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-089-appeals-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-090-multi-defendant-attribution-version-draft-pair",
+      "packetSha256": "57feac5a355a83e58a0fb09ff392e8c4b54891c462f09db2884d0b1345da1e23",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-090-multi-defendant-attribution-version-draft-pair/structured-case-packet.json",
+      "coverageTag": "version_draft_pair"
+    },
+    {
+      "caseId": "s300-n150-091-homicide-causation-audience-multi-pack-attempt",
+      "packetSha256": "452745f2570fee335400fd0bda93231b760962fe46b4b06f35eecc420d87c618",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-091-homicide-causation-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-092-violence-robbery-weapons-audience-multi-pack-attempt",
+      "packetSha256": "c62f3fb02c7bd791f2ae6d127d2fb60da5a60c57cddf72cc4fc2a67689f0bf80",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-092-violence-robbery-weapons-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-093-firearms-audience-multi-pack-attempt",
+      "packetSha256": "bfc8387c5e7895230e04f9897fab3cd00fd2b41e3ab9ef8fb7b43265cbb20056",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-093-firearms-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-094-sexual-abe-audience-multi-pack-attempt",
+      "packetSha256": "f9df70651d961eee28fa6f8083693eefb22e75d2d5fb96c4047076d3248bee89",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-094-sexual-abe-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-095-domestic-abuse-audience-multi-pack-attempt",
+      "packetSha256": "9d6a598575eb9e1965af3676693a94cec2a1421c81383d84d4637f47b83b01ac",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-095-domestic-abuse-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-096-youth-participation-audience-multi-pack-attempt",
+      "packetSha256": "f8a4a9d128a18600e5ba7c2e0ac70bd54cce378536e171c7b9537aec0884255d",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-096-youth-participation-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-097-county-lines-nrm-audience-multi-pack-attempt",
+      "packetSha256": "ec278e77ed8a173ea5cae28309e1c1ff57804d866388e0d77f6a55567aefc4f1",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-097-county-lines-nrm-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-098-fraud-poca-audience-multi-pack-attempt",
+      "packetSha256": "5b3e19f05f830f261e3ce9c8993cb8c56da9598dea40cb0bef5ef33ffc80edd8",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-098-fraud-poca-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-099-digital-attribution-audience-multi-pack-attempt",
+      "packetSha256": "75f04c3af38a1b0db2770de734b8bed2c18ebdce8b47c4a1bb970e768721d4f2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-099-digital-attribution-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-100-identification-code-d-audience-multi-pack-attempt",
+      "packetSha256": "f46b124863ea002b4c96517b1b44d36fb9f902df604957a504d5afec5c4732a0",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-100-identification-code-d-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-101-mental-health-fitness-audience-multi-pack-attempt",
+      "packetSha256": "44a09851dfa2e8ee834e756d9bfeedd8812e86cb625314a9859bad88edcd04b5",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-101-mental-health-fitness-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-102-disclosure-pii-audience-multi-pack-attempt",
+      "packetSha256": "5812afc03d278b27d10994944242ba0b50525a7e8fc91eea0d731452021d6ca2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-102-disclosure-pii-audience-multi-pack-attempt/structured-case-packet.json",
+      "coverageTag": "audience_multi_pack_attempt"
+    },
+    {
+      "caseId": "s300-n150-103-road-traffic-fatal-native-email-json-csv",
+      "packetSha256": "0c7397c417a6c03630e988ed5fc76ff7daaaba9aebcc7d9f4fa412de370c094f",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-103-road-traffic-fatal-native-email-json-csv/structured-case-packet.json",
+      "coverageTag": "native_email_json_csv"
+    },
+    {
+      "caseId": "s300-n150-104-magistrates-procedure-native-email-json-csv",
+      "packetSha256": "34705916c62331291ae4a00c2665c37de18eb88958845b8562dafb774e58b2a9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-104-magistrates-procedure-native-email-json-csv/structured-case-packet.json",
+      "coverageTag": "native_email_json_csv"
+    },
+    {
+      "caseId": "s300-n150-105-bail-remand-native-email-json-csv",
+      "packetSha256": "310918bb0bf7f034ddcae2375aec177c845ed6d99ab63f9cada128ebdce5fcc4",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-105-bail-remand-native-email-json-csv/structured-case-packet.json",
+      "coverageTag": "native_email_json_csv"
+    },
+    {
+      "caseId": "s300-n150-106-sentencing-newton-native-email-json-csv",
+      "packetSha256": "fdcff3d1411bef4a934d18b9e6e6dc2ed2a7ef2942be33363bb823d098666925",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-106-sentencing-newton-native-email-json-csv/structured-case-packet.json",
+      "coverageTag": "native_email_json_csv"
+    },
+    {
+      "caseId": "s300-n150-107-appeals-native-email-json-csv",
+      "packetSha256": "b3cd26210a8fff2f087f5ca2b7786a82a344221e890f15f566267fca690ee000",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-107-appeals-native-email-json-csv/structured-case-packet.json",
+      "coverageTag": "native_email_json_csv"
+    },
+    {
+      "caseId": "s300-n150-108-multi-defendant-attribution-native-email-json-csv",
+      "packetSha256": "08d2945f745424d1e113ee4cb5e9003faee23781f9b721300dff57be789340af",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-108-multi-defendant-attribution-native-email-json-csv/structured-case-packet.json",
+      "coverageTag": "native_email_json_csv"
+    },
+    {
+      "caseId": "s300-n150-109-homicide-causation-native-email-json-csv",
+      "packetSha256": "9ef22be46d84669824a7abc7e5cf9f23c3c248206e41a519b3402e17f7405961",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-109-homicide-causation-native-email-json-csv/structured-case-packet.json",
+      "coverageTag": "native_email_json_csv"
+    },
+    {
+      "caseId": "s300-n150-110-violence-robbery-weapons-native-email-json-csv",
+      "packetSha256": "0202fa4515373584cf9e54fcc02338eb9aa7e972ac6ca812c4c5b76e5a92698f",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-110-violence-robbery-weapons-native-email-json-csv/structured-case-packet.json",
+      "coverageTag": "native_email_json_csv"
+    },
+    {
+      "caseId": "s300-n150-111-firearms-multi-defendant",
+      "packetSha256": "47cdcc88603fc05148bbdc9e5749d3ced205dec28feac712c6eb2c0403998f61",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-111-firearms-multi-defendant/structured-case-packet.json",
+      "coverageTag": "multi_defendant"
+    },
+    {
+      "caseId": "s300-n150-112-sexual-abe-multi-defendant",
+      "packetSha256": "dd12a0c7cbdeeaa8a8b0c68e80288d3743e298c870204a087ec692f023ecf67d",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-112-sexual-abe-multi-defendant/structured-case-packet.json",
+      "coverageTag": "multi_defendant"
+    },
+    {
+      "caseId": "s300-n150-113-domestic-abuse-multi-defendant",
+      "packetSha256": "9c18ee0ccfa0b2130bd92a5214b7cc5bd8fc1f7088ccebacf2fbfbfbf20e4f04",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-113-domestic-abuse-multi-defendant/structured-case-packet.json",
+      "coverageTag": "multi_defendant"
+    },
+    {
+      "caseId": "s300-n150-114-youth-participation-multi-defendant",
+      "packetSha256": "79a3dea4c94cdecbf55e91f90d45225a0ed28f77cff562d1ae924a20caec725e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-114-youth-participation-multi-defendant/structured-case-packet.json",
+      "coverageTag": "multi_defendant"
+    },
+    {
+      "caseId": "s300-n150-115-county-lines-nrm-multi-defendant",
+      "packetSha256": "4f3a296c2261f1185926cf1f35441836b0619c88bfb07fa355e278901fe4a304",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-115-county-lines-nrm-multi-defendant/structured-case-packet.json",
+      "coverageTag": "multi_defendant"
+    },
+    {
+      "caseId": "s300-n150-116-fraud-poca-multi-defendant",
+      "packetSha256": "ac6206f3c903b29ed2cafe2eec7bed3cdabf3d833a81928c9aef0a5513128439",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-116-fraud-poca-multi-defendant/structured-case-packet.json",
+      "coverageTag": "multi_defendant"
+    },
+    {
+      "caseId": "s300-n150-117-digital-attribution-multi-defendant",
+      "packetSha256": "e221113d68bf152fcc43346d96386237d1c66f2633c178ea5fdb1605ce90ab24",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-117-digital-attribution-multi-defendant/structured-case-packet.json",
+      "coverageTag": "multi_defendant"
+    },
+    {
+      "caseId": "s300-n150-118-identification-code-d-multi-defendant",
+      "packetSha256": "0280d8b5480cfbffa72ec6fb895efe60f6ff97ca6dd6c9be6887f765c96e5dbc",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-118-identification-code-d-multi-defendant/structured-case-packet.json",
+      "coverageTag": "multi_defendant"
+    },
+    {
+      "caseId": "s300-n150-119-mental-health-fitness-later-disclosure",
+      "packetSha256": "62d829145ef89a1faf2406c15b3ee11040f5999fe94888f4c7b172c66f963c39",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-119-mental-health-fitness-later-disclosure/structured-case-packet.json",
+      "coverageTag": "later_disclosure"
+    },
+    {
+      "caseId": "s300-n150-120-disclosure-pii-later-disclosure",
+      "packetSha256": "d39621f7bf6f873ee11ddbce1b39f9704638b1efead4c8f0ea7a8f0453cecb76",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-120-disclosure-pii-later-disclosure/structured-case-packet.json",
+      "coverageTag": "later_disclosure"
+    },
+    {
+      "caseId": "s300-n150-121-road-traffic-fatal-later-disclosure",
+      "packetSha256": "8ccb786281ef0147acd191891a506abd58b7a8cc50e52eddcccc447ec3ad4004",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-121-road-traffic-fatal-later-disclosure/structured-case-packet.json",
+      "coverageTag": "later_disclosure"
+    },
+    {
+      "caseId": "s300-n150-122-magistrates-procedure-later-disclosure",
+      "packetSha256": "b1e290c8abc2ebf1dbc3b6d382aa9ad1c84e6be1ae26adacb8c98202f7128270",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-122-magistrates-procedure-later-disclosure/structured-case-packet.json",
+      "coverageTag": "later_disclosure"
+    },
+    {
+      "caseId": "s300-n150-123-bail-remand-later-disclosure",
+      "packetSha256": "62eaad6672ef649148c192d11873342b0553c7b31fe277e7e027154cd374ef6e",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-123-bail-remand-later-disclosure/structured-case-packet.json",
+      "coverageTag": "later_disclosure"
+    },
+    {
+      "caseId": "s300-n150-124-sentencing-newton-later-disclosure",
+      "packetSha256": "8c8a1f18968e502df874d528d5b5033fd21e7fddebaaf8bc13729fa6bea8dc34",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-124-sentencing-newton-later-disclosure/structured-case-packet.json",
+      "coverageTag": "later_disclosure"
+    },
+    {
+      "caseId": "s300-n150-125-appeals-later-disclosure",
+      "packetSha256": "33a4d81d86762704a43729a7ba5b2b4d77124456ccf3a1089109ce7656a65245",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-125-appeals-later-disclosure/structured-case-packet.json",
+      "coverageTag": "later_disclosure"
+    },
+    {
+      "caseId": "s300-n150-126-multi-defendant-attribution-later-disclosure",
+      "packetSha256": "9c35943a571d7a8f9a03a4ae5de89b98358a1faef16f44eb426ba8d266ad3f45",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-126-multi-defendant-attribution-later-disclosure/structured-case-packet.json",
+      "coverageTag": "later_disclosure"
+    },
+    {
+      "caseId": "s300-n150-127-homicide-causation-amended-instrument",
+      "packetSha256": "b15333cd3a328ca195792473f21ae21d5d2a3101f89b1513db05c979e36537b2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-127-homicide-causation-amended-instrument/structured-case-packet.json",
+      "coverageTag": "amended_instrument"
+    },
+    {
+      "caseId": "s300-n150-128-violence-robbery-weapons-amended-instrument",
+      "packetSha256": "fa5fdb346019e501f5d99426102f829fed5d8f2e8f6ebfe0d9ba3a913093649c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-128-violence-robbery-weapons-amended-instrument/structured-case-packet.json",
+      "coverageTag": "amended_instrument"
+    },
+    {
+      "caseId": "s300-n150-129-firearms-amended-instrument",
+      "packetSha256": "e0cfa4fdeb2f5192d4fc692386b0cf0136b084468f2603a84a34a1c7f52012f2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-129-firearms-amended-instrument/structured-case-packet.json",
+      "coverageTag": "amended_instrument"
+    },
+    {
+      "caseId": "s300-n150-130-sexual-abe-amended-instrument",
+      "packetSha256": "981386971dfbf249012d665c47a75331a407332b3992ada104e4317b93c05645",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-130-sexual-abe-amended-instrument/structured-case-packet.json",
+      "coverageTag": "amended_instrument"
+    },
+    {
+      "caseId": "s300-n150-131-domestic-abuse-amended-instrument",
+      "packetSha256": "cab7daa4106e0df977a8ba77a9e25c401738d383281995326d9939c76b54b392",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-131-domestic-abuse-amended-instrument/structured-case-packet.json",
+      "coverageTag": "amended_instrument"
+    },
+    {
+      "caseId": "s300-n150-132-youth-participation-amended-instrument",
+      "packetSha256": "18033ab46fe89b51ce384f59e95f82d0957ca0e1bf36153590c117512afbe0a9",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-132-youth-participation-amended-instrument/structured-case-packet.json",
+      "coverageTag": "amended_instrument"
+    },
+    {
+      "caseId": "s300-n150-133-county-lines-nrm-amended-instrument",
+      "packetSha256": "77fda98624187cb780a47de6e1e628bad2f0a145add1d52c6ca4838307530b30",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-133-county-lines-nrm-amended-instrument/structured-case-packet.json",
+      "coverageTag": "amended_instrument"
+    },
+    {
+      "caseId": "s300-n150-134-fraud-poca-amended-instrument",
+      "packetSha256": "6d90de34aa594e50b4bcc0f0f22fae065d9721e0143b8ff1612db3653441c182",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-134-fraud-poca-amended-instrument/structured-case-packet.json",
+      "coverageTag": "amended_instrument"
+    },
+    {
+      "caseId": "s300-n150-135-digital-attribution-chase-mixed-linkage",
+      "packetSha256": "ed646021805bb609f2e85205fb9c009d8c5f3e277b67b41094e111d31c2b8f24",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-135-digital-attribution-chase-mixed-linkage/structured-case-packet.json",
+      "coverageTag": "chase_mixed_linkage"
+    },
+    {
+      "caseId": "s300-n150-136-identification-code-d-chase-mixed-linkage",
+      "packetSha256": "2681a232b05275835e811d50d3f302cee6d932e5914a8cf416ef9d9ad6a89a1d",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-136-identification-code-d-chase-mixed-linkage/structured-case-packet.json",
+      "coverageTag": "chase_mixed_linkage"
+    },
+    {
+      "caseId": "s300-n150-137-mental-health-fitness-chase-mixed-linkage",
+      "packetSha256": "0460edcf8b0e3bc2ddb95e4a2d30364d3d1cf04f6372c232b9a626fe3c0e25a2",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-137-mental-health-fitness-chase-mixed-linkage/structured-case-packet.json",
+      "coverageTag": "chase_mixed_linkage"
+    },
+    {
+      "caseId": "s300-n150-138-disclosure-pii-chase-mixed-linkage",
+      "packetSha256": "361d8e453e8f45975b3f683155c3d0667bce6aae48c38f6f79cf50fddf7614eb",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-138-disclosure-pii-chase-mixed-linkage/structured-case-packet.json",
+      "coverageTag": "chase_mixed_linkage"
+    },
+    {
+      "caseId": "s300-n150-139-road-traffic-fatal-chase-mixed-linkage",
+      "packetSha256": "ec78abdcd2e8997cdafd8bf7008ef3ea38a73c521d4846f9e5fad53246152e2c",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-139-road-traffic-fatal-chase-mixed-linkage/structured-case-packet.json",
+      "coverageTag": "chase_mixed_linkage"
+    },
+    {
+      "caseId": "s300-n150-140-magistrates-procedure-chase-mixed-linkage",
+      "packetSha256": "7b149890213d5eba4f3bb3793ffb018ba6fdc0f135c00c4738d6ba03888038ec",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-140-magistrates-procedure-chase-mixed-linkage/structured-case-packet.json",
+      "coverageTag": "chase_mixed_linkage"
+    },
+    {
+      "caseId": "s300-n150-141-bail-remand-dense-bundle",
+      "packetSha256": "1e2e86909164a13b4c432130cfcd1e09982d4172f776ab73bd97c3cc8a6f6ff7",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-141-bail-remand-dense-bundle/structured-case-packet.json",
+      "coverageTag": "dense_bundle"
+    },
+    {
+      "caseId": "s300-n150-142-sentencing-newton-dense-bundle",
+      "packetSha256": "42b34f07688813a7f4b02bf1c7c568e4f7a0813bc52ce4ee6774ff4da0a46b24",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-142-sentencing-newton-dense-bundle/structured-case-packet.json",
+      "coverageTag": "dense_bundle"
+    },
+    {
+      "caseId": "s300-n150-143-appeals-dense-bundle",
+      "packetSha256": "13b893d1699e8b0b177eaed0d1c60d6ee84de0d4bc9e650e61e358f428b31ea6",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-143-appeals-dense-bundle/structured-case-packet.json",
+      "coverageTag": "dense_bundle"
+    },
+    {
+      "caseId": "s300-n150-144-multi-defendant-attribution-dense-bundle",
+      "packetSha256": "e7da22274141368cabc3af8d49acff9af7ad42d87cd59371abf547f272795652",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-144-multi-defendant-attribution-dense-bundle/structured-case-packet.json",
+      "coverageTag": "dense_bundle"
+    },
+    {
+      "caseId": "s300-n150-145-homicide-causation-dense-bundle",
+      "packetSha256": "0cfdc15a905c4cfbb31770ff73998afd57a73d26bcfca47ef10e104aefcbf430",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-145-homicide-causation-dense-bundle/structured-case-packet.json",
+      "coverageTag": "dense_bundle"
+    },
+    {
+      "caseId": "s300-n150-146-violence-robbery-weapons-recording-transcript-clip",
+      "packetSha256": "9829909ce6e6d0477b341bbf0eb9ad3574f1e6af4f625491f7e4bfd65765c0ca",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-146-violence-robbery-weapons-recording-transcript-clip/structured-case-packet.json",
+      "coverageTag": "recording_transcript_clip"
+    },
+    {
+      "caseId": "s300-n150-147-firearms-recording-transcript-clip",
+      "packetSha256": "39c44c6d39d2a85546dcafe9b9420d3eef966a9b85ae0a9a768cbef30937188d",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-147-firearms-recording-transcript-clip/structured-case-packet.json",
+      "coverageTag": "recording_transcript_clip"
+    },
+    {
+      "caseId": "s300-n150-148-sexual-abe-recording-transcript-clip",
+      "packetSha256": "2fd442c58cc1765cd1c445f1615353a7e660eb04070b2b216901031bdcc2fc1b",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-148-sexual-abe-recording-transcript-clip/structured-case-packet.json",
+      "coverageTag": "recording_transcript_clip"
+    },
+    {
+      "caseId": "s300-n150-149-domestic-abuse-conflicting-source",
+      "packetSha256": "74e0c43c3b6753f1833dbfc327febf4f0d2e6982cc693e757eea7452c4c377a5",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-149-domestic-abuse-conflicting-source/structured-case-packet.json",
+      "coverageTag": "conflicting_source"
+    },
+    {
+      "caseId": "s300-n150-150-youth-participation-conflicting-source",
+      "packetSha256": "73ee2376629b4c5b2d9bbe654bd8f4453ac3043406f3732c113f58c5ea1b15c6",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/s300-n150-150-youth-participation-conflicting-source/structured-case-packet.json",
+      "coverageTag": "conflicting_source"
+    }
+  ],
+  "rejectedCases": [],
+  "coverage": {
+    "total": 150,
+    "byTag": {
+      "ocr_binary_heavy": 30,
+      "specialty_youth_dob": 15,
+      "specialty_fitness": 10,
+      "specialty_disclosure_pii": 10,
+      "specialty_legal_taxonomy": 10,
+      "version_draft_pair": 15,
+      "audience_multi_pack_attempt": 12,
+      "native_email_json_csv": 8,
+      "multi_defendant": 8,
+      "later_disclosure": 8,
+      "amended_instrument": 8,
+      "chase_mixed_linkage": 6,
+      "dense_bundle": 5,
+      "recording_transcript_clip": 3,
+      "conflicting_source": 2
+    },
+    "byFamily": {
+      "homicide_causation": 9,
+      "violence_robbery_weapons": 9,
+      "firearms": 9,
+      "sexual_abe": 9,
+      "domestic_abuse": 9,
+      "youth_participation": 9,
+      "county_lines_nrm": 8,
+      "fraud_poca": 8,
+      "digital_attribution": 8,
+      "identification_code_d": 8,
+      "mental_health_fitness": 8,
+      "disclosure_pii": 8,
+      "road_traffic_fatal": 8,
+      "magistrates_procedure": 8,
+      "bail_remand": 8,
+      "sentencing_newton": 8,
+      "appeals": 8,
+      "multi_defendant_attribution": 8
+    },
+    "controlDesignHits": {
+      "MAA2-SRC-07-REDACTION-DETECT": 30,
+      "MAA2-SRC-09-PAGINATION-DISCONTINUITY": 30,
+      "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS": 38,
+      "MAA2-SRC-13-PASSWORD-CORRUPT": 30,
+      "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE": 38,
+      "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING": 15,
+      "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS": 15,
+      "MAA2-PRC-03-YOUTH-STATE": 15,
+      "MAA2-PRC-04-FITNESS-PARTICIPATION": 10,
+      "MAA2-PRC-07-DISCLOSURE-PII-STATE": 10,
+      "MAA2-LSL-05-CATEGORY-SET-COVERAGE": 18,
+      "MAA2-VDR-01-SOURCE-CASE-HASHES": 15,
+      "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER": 15,
+      "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD": 15,
+      "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS": 15,
+      "MAA2-VDR-05-MODEL-PROMPT-VERSION": 15,
+      "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS": 15,
+      "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS": 15,
+      "MAA2-VDR-08-BEFORE-AFTER-MAPPING": 15,
+      "MAA2-VDR-09-ADDED-REMOVED-RETAINED": 15,
+      "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS": 15,
+      "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES": 15,
+      "MAA2-ELD-03-STALE-DRAFT-MARKING": 15,
+      "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS": 15,
+      "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE": 15,
+      "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON": 15,
+      "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL": 15,
+      "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY": 15,
+      "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH": 15,
+      "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL": 15,
+      "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED": 15,
+      "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE": 15,
+      "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE": 15,
+      "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT": 15,
+      "MAA2-AUD-02-CLIENT-PLAIN": 12,
+      "MAA2-AUD-03-COURT-PRECISE": 12,
+      "MAA2-AUD-04-CPS-SPECIFIC": 12,
+      "MAA2-AUD-05-SUPERVISOR-RISK": 12,
+      "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE": 12,
+      "MAA2-XPP-02-PROSECUTION-CHALLENGE": 12,
+      "MAA2-XPP-03-JUDICIAL-NEUTRALITY": 12,
+      "MAA2-XPP-04-CLIENT-COMPREHENSION": 12,
+      "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE": 12
+    },
+    "tagsPresent": [
+      "ocr_binary_heavy",
+      "specialty_youth_dob",
+      "specialty_fitness",
+      "specialty_disclosure_pii",
+      "specialty_legal_taxonomy",
+      "native_email_json_csv",
+      "version_draft_pair",
+      "audience_multi_pack_attempt",
+      "multi_defendant",
+      "later_disclosure",
+      "amended_instrument",
+      "chase_mixed_linkage",
+      "dense_bundle",
+      "recording_transcript_clip",
+      "conflicting_source"
+    ],
+    "familiesPresent": [
+      "homicide_causation",
+      "violence_robbery_weapons",
+      "firearms",
+      "sexual_abe",
+      "domestic_abuse",
+      "youth_participation",
+      "county_lines_nrm",
+      "fraud_poca",
+      "digital_attribution",
+      "identification_code_d",
+      "mental_health_fitness",
+      "disclosure_pii",
+      "road_traffic_fatal",
+      "magistrates_procedure",
+      "bail_remand",
+      "sentencing_newton",
+      "appeals",
+      "multi_defendant_attribution"
+    ]
+  },
+  "uniqueness": {
+    "uniqueCaseIds": 150,
+    "uniqueSourcePdfHashes": 150,
+    "uniqueFingerprints": 150,
+    "normalisedTemplateId": "stage300-new150-disclosure-v1"
+  },
+  "truthBlinding": {
+    "truthOpenedDuringOutput": false,
+    "receipts": 150
+  },
+  "frozen150": {
+    "unchanged": true,
+    "details": {
+      "manifestExists": true,
+      "freezeExists": true,
+      "membershipSha": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+      "candidateSha": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+      "expectedMembership": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+      "expectedCandidate": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202"
+    }
+  },
+  "checkpoints": [
+    {
+      "at": 5,
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "at": 20,
+      "pass": true,
+      "reasons": []
+    },
+    {
+      "at": 150,
+      "pass": true,
+      "reasons": []
+    }
+  ],
+  "stoppedEarly": false,
+  "stopReason": null,
+  "preserveFrozen150": {
+    "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+    "candidateFreezeSha256": "4d94bb27a6b4716b1badb91015c9ca916006f71af839a9557a51d2227c83f202",
+    "unchanged": true
+  }
+}

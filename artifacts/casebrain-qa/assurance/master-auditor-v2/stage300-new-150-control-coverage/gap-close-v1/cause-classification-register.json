@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "stage300-new150-gap-close-cause-classification@1.0.0",
+  "classes": {
+    "1_required_source_material_absent": [],
+    "2_source_present_production_does_not_expose": [],
+    "3_production_exists_adapter_cannot_consume": [],
+    "4_genuine_before_after_version_pair_required": [],
+    "5_browser_human_legal_external_deferred": [
+      "authenticated_browser_lane"
+    ]
+  },
+  "notes": {
+    "specialtyLane": "LSL/CHR/PRC bags materialised via source_document_parse_harness (not CaseBrain emitter, not truth)",
+    "audienceLane": "AUD/XPP packs captured from genuine LiveProductionSurfaces builders",
+    "eldLane": "ELD pairs from dual production capture before/after controlled source change",
+    "vdrLane": "VDR pins enriched from production findings + deterministic builder model pin"
+  }
+}

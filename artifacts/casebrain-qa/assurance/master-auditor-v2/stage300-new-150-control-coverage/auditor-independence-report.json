@@ -1,0 +1,512 @@
+{
+  "schemaVersion": "stage300-new-150-auditor-independence@1.0.0",
+  "tautologicalUnsafeCount": 0,
+  "rows": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "productionFunctionUnderAudit": "PDF/OCR extraction pipeline (live: document ingest)",
+      "independentSourceOrTruth": "Source binary hashes + independent OCR/page-unit recompute receipts",
+      "sharedTypesSchemasUtilities": [
+        "page schema types",
+        "hash utilities"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "productionFunctionUnderAudit": "PDF/OCR extraction pipeline (live: document ingest)",
+      "independentSourceOrTruth": "Source binary hashes + independent OCR/page-unit recompute receipts",
+      "sharedTypesSchemasUtilities": [
+        "page schema types",
+        "hash utilities"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "productionFunctionUnderAudit": "PDF/OCR extraction pipeline (live: document ingest)",
+      "independentSourceOrTruth": "Source binary hashes + independent OCR/page-unit recompute receipts",
+      "sharedTypesSchemasUtilities": [
+        "page schema types",
+        "hash utilities"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "productionFunctionUnderAudit": "PDF/OCR extraction pipeline (live: document ingest)",
+      "independentSourceOrTruth": "Source binary hashes + independent OCR/page-unit recompute receipts",
+      "sharedTypesSchemasUtilities": [
+        "page schema types",
+        "hash utilities"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "productionFunctionUnderAudit": "PDF/OCR extraction pipeline (live: document ingest)",
+      "independentSourceOrTruth": "Source binary hashes + independent OCR/page-unit recompute receipts",
+      "sharedTypesSchemasUtilities": [
+        "page schema types",
+        "hash utilities"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "productionFunctionUnderAudit": "charge instrument / legal-state builders",
+      "independentSourceOrTruth": "Pinned authority taxonomy registry + instrument exact wording from source pages",
+      "sharedTypesSchemasUtilities": [
+        "chargeInstruments schema"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "productionFunctionUnderAudit": "chronology / procedural-state builders",
+      "independentSourceOrTruth": "Source DOB/listing/custody documents with page-bound dates (truth key blinded until freeze)",
+      "sharedTypesSchemasUtilities": [
+        "chronologyEvents schema",
+        "timezone normalisation"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": true,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "productionFunctionUnderAudit": "chronology / procedural-state builders",
+      "independentSourceOrTruth": "Source DOB/listing/custody documents with page-bound dates (truth key blinded until freeze)",
+      "sharedTypesSchemasUtilities": [
+        "chronologyEvents schema",
+        "timezone normalisation"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "productionFunctionUnderAudit": "chronology / procedural-state builders",
+      "independentSourceOrTruth": "Source DOB/listing/custody documents with page-bound dates (truth key blinded until freeze)",
+      "sharedTypesSchemasUtilities": [
+        "chronologyEvents schema",
+        "timezone normalisation"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "productionFunctionUnderAudit": "chronology / procedural-state builders",
+      "independentSourceOrTruth": "Source DOB/listing/custody documents with page-bound dates (truth key blinded until freeze)",
+      "sharedTypesSchemasUtilities": [
+        "chronologyEvents schema",
+        "timezone normalisation"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "productionFunctionUnderAudit": "chronology / procedural-state builders",
+      "independentSourceOrTruth": "Source DOB/listing/custody documents with page-bound dates (truth key blinded until freeze)",
+      "sharedTypesSchemasUtilities": [
+        "chronologyEvents schema",
+        "timezone normalisation"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "productionFunctionUnderAudit": "audience wording / perspective generators",
+      "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+      "sharedTypesSchemasUtilities": [
+        "exitPayloadReceipts schema"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": true,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "productionFunctionUnderAudit": "audience wording / perspective generators",
+      "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+      "sharedTypesSchemasUtilities": [
+        "exitPayloadReceipts schema"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": true,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "productionFunctionUnderAudit": "audience wording / perspective generators",
+      "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+      "sharedTypesSchemasUtilities": [
+        "exitPayloadReceipts schema"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": true,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "productionFunctionUnderAudit": "audience wording / perspective generators",
+      "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+      "sharedTypesSchemasUtilities": [
+        "exitPayloadReceipts schema"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": true,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "productionFunctionUnderAudit": "audience wording / perspective generators",
+      "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+      "sharedTypesSchemasUtilities": [
+        "exitPayloadReceipts schema"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": true,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "productionFunctionUnderAudit": "audience wording / perspective generators",
+      "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+      "sharedTypesSchemasUtilities": [
+        "exitPayloadReceipts schema"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": true,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "productionFunctionUnderAudit": "audience wording / perspective generators",
+      "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+      "sharedTypesSchemasUtilities": [
+        "exitPayloadReceipts schema"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": true,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "productionFunctionUnderAudit": "audience wording / perspective generators",
+      "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+      "sharedTypesSchemasUtilities": [
+        "exitPayloadReceipts schema"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": true,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "productionFunctionUnderAudit": "audience wording / perspective generators",
+      "independentSourceOrTruth": "Pinned audience-policy fixtures + source-bound must-not-overstate ledger",
+      "sharedTypesSchemasUtilities": [
+        "exitPayloadReceipts schema"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": true,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "productionFunctionUnderAudit": "run artefact emitters",
+      "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "productionFunctionUnderAudit": "run artefact emitters",
+      "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "productionFunctionUnderAudit": "run artefact emitters",
+      "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "productionFunctionUnderAudit": "run artefact emitters",
+      "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "productionFunctionUnderAudit": "run artefact emitters",
+      "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "productionFunctionUnderAudit": "run artefact emitters",
+      "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "productionFunctionUnderAudit": "run artefact emitters",
+      "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "productionFunctionUnderAudit": "run artefact emitters",
+      "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "productionFunctionUnderAudit": "run artefact emitters",
+      "independentSourceOrTruth": "Independent recompute of hashes/order from frozen artefacts (not the emitter under test)",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "productionFunctionUnderAudit": "locked drafting / redraft / approval emitters",
+      "independentSourceOrTruth": "Independent sentence/hash recompute from frozen drafts + source change ledger",
+      "sharedTypesSchemasUtilities": [
+        "hash utilities",
+        "schema version constants"
+      ],
+      "expectedAndActualShareSubstantiveAlgorithm": false,
+      "independenceClass": "INDEPENDENCE_PENDING_PROOF",
+      "tautologicalUnsafe": false
+    }
+  ]
+}

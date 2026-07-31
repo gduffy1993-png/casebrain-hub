@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "stage300-new-150-stop@1.2.0",
+  "status": "STOP_UNCOMMITTED_HONESTY_CORRECTION",
+  "threeDenominatorHeadline": {
+    "auditorTestable": "43/43",
+    "productionBacked": "37/43",
+    "harnessOnlySpecialty": "6/43"
+  },
+  "frozen150Unchanged": true,
+  "brain1GuardianUnchanged": true,
+  "contractsOk": true,
+  "buildOk": true,
+  "doNot": [
+    "freeze_or_run_stage_300",
+    "commit_push_merge_deploy",
+    "claim_PASS"
+  ]
+}

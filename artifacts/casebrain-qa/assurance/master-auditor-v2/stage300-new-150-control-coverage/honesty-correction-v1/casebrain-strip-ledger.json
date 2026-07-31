@@ -1,0 +1,1207 @@
+{
+  "schemaVersion": "stage300-new150-honesty-strip-ledger@1.0.0",
+  "strippedCasebrainOutputs": 81,
+  "strippedPackets": 81,
+  "rows": [
+    {
+      "caseId": "s300-n150-001-homicide-causation-ocr-binary-heavy",
+      "casebrainBeforeSha256": "c32f2a90f21aeda0e53cdd229bb21f6eb51572064dea59f72640b05a6156d851",
+      "casebrainAfterSha256": "57a7050954c9e9b6ee22de5ea1dd121fcf82494c80e54b33c2a3c3ce62dd3e62",
+      "specialtyHarnessSha256": "8ca0704262ea995271126ca219a61a7236611ee59cd4d2863ad9de24154432b1",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-002-violence-robbery-weapons-ocr-binary-heavy",
+      "casebrainBeforeSha256": "8a3f71d6ce9be34b86e603116a4ad64e849d221ae4e7f801079ef353c6657598",
+      "casebrainAfterSha256": "6e5631d9a802c63b0246c509d41a75f2d04fd684b85b20b172f7e8e8349b9827",
+      "specialtyHarnessSha256": "347af403b651dcc979394e75ada0b069b5a66d93845e37359e02358d3c4951f1",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-003-firearms-ocr-binary-heavy",
+      "casebrainBeforeSha256": "ac22a2780b499a36c7dbd2d08c8474784c20bbc9a54b6131e1c9c253dd87af99",
+      "casebrainAfterSha256": "2905ab76808df812e916d742ea399172e9ec49b073e99d2deda007dd674209b1",
+      "specialtyHarnessSha256": "4f0747db80e770f719fbeb3cd917f5ddf369c363e2c66481cbbe9e292c694bdf",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-004-sexual-abe-ocr-binary-heavy",
+      "casebrainBeforeSha256": "5509bd637508189fb69943b56c088f9eadd7183561ac9c6cb59ab59aebee3711",
+      "casebrainAfterSha256": "6617235a935cacdfdddb3f6752a4071ea657d4bf2a47ded23ad87ebacdf0d704",
+      "specialtyHarnessSha256": "2d142d6995043b17366fda58cd6a63662fbe304602483c6945cd6f7070f56e4a",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-005-domestic-abuse-ocr-binary-heavy",
+      "casebrainBeforeSha256": "f5760fffedf77ea0df992b9ac01b6c06fc0f9cf6117806492becc64739d073ba",
+      "casebrainAfterSha256": "2c5648971be44ce6eea268fdede619891520c3a3c218ffd8b68d280e388956ab",
+      "specialtyHarnessSha256": "fb20678d5ae881bf3e87840e430d8e252799fe76585aad2e4c0652283ae2cdd2",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-006-youth-participation-ocr-binary-heavy",
+      "casebrainBeforeSha256": "dc12a03dad0ece84b51e6f685aff121d18c07ec41ba54e5c1902b9d1d5a20fc5",
+      "casebrainAfterSha256": "164027518dc288dbae9e614acb4feff8f3266f7e040bc3e1973a4d6eaa6d79c1",
+      "specialtyHarnessSha256": "b10c1fd20c666549122126459d29c60b656ba99d43ddf712fe72be36e72424cf",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-007-county-lines-nrm-ocr-binary-heavy",
+      "casebrainBeforeSha256": "7565cf380f5ae42cbdb60ec169c027079ea683b955c6aad3bf1cc20fc7ace9cb",
+      "casebrainAfterSha256": "ba0a82f0afa124e5aa27bd19c50599ed785581aa15fe9ed2796dc53a381809d3",
+      "specialtyHarnessSha256": "30f425347998e668cbcd2ead406d5e10e1ab2e8eb5f02de66dbaece8245b6a11",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-008-fraud-poca-ocr-binary-heavy",
+      "casebrainBeforeSha256": "a941b9311d66c581bd8f00a1cccc19efa893d3ac3134c45bdf525236df4ed8c6",
+      "casebrainAfterSha256": "e2dc9594f287cf2e3acd50d9d22f693b40dfcdefbcc7b952b8e425296d0d58f7",
+      "specialtyHarnessSha256": "8273e7347eb5b998ed95c9e3d56dd28155e68432d957d92691b1d22008583c68",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-009-digital-attribution-ocr-binary-heavy",
+      "casebrainBeforeSha256": "c5a165ae168f06a45613a7ee0fc1706c3d450c0c3ab16641d3c399cf4faf0075",
+      "casebrainAfterSha256": "ea798343600c949ff6393faca6d0451b52df9cdab57898585875a71cea7052f1",
+      "specialtyHarnessSha256": "d98003bcfc775a9d73a445e56635d988063c6cfffc6263e246f708a6a843ee64",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-010-identification-code-d-ocr-binary-heavy",
+      "casebrainBeforeSha256": "048d2727c76e25a279efd2091730193b10de13596245235c8fc0d41d6cc94ca9",
+      "casebrainAfterSha256": "4751fac4a7250c8bec4944f251888e2c48c66dd6520a409ee9ce5f98cca6f792",
+      "specialtyHarnessSha256": "e73ec6746ade57b3f18fdb212698642e3a4a19f98266fb9a06dec8f830e3a13a",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-011-mental-health-fitness-ocr-binary-heavy",
+      "casebrainBeforeSha256": "b08b20ad2937dc9db66c47b4ce81fb07498db74cb04b39b059fd308d2f821acf",
+      "casebrainAfterSha256": "a40dddd5854623b080149787006b86665987d3238d78b2029e364b8ea794e9b4",
+      "specialtyHarnessSha256": "6f7f0b395267e2d2493864768dc934ac24c65e888a50eb1f9e8dd011067f2f49",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-012-disclosure-pii-ocr-binary-heavy",
+      "casebrainBeforeSha256": "6ce10d5cea962d2f3cf29113cc8244f0edaa93d31ed58a8c9d745d4922b4a0b0",
+      "casebrainAfterSha256": "027d106704dcd0056d7937adea12ea148a48e7a40a3d861743e066bbac55848f",
+      "specialtyHarnessSha256": "72714b632b3b307e50c5369ec89b0a21ffeed173a739b0941621f5fd12c0ab0c",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-013-road-traffic-fatal-ocr-binary-heavy",
+      "casebrainBeforeSha256": "c8e72c604ed009d879c46ebca63d9d0ef9cade54846b3b097cd175891e318139",
+      "casebrainAfterSha256": "060b8826909f5d62c3a1da54f5b956628e4ed56bc7f4dd11f8f8a669ad63a5af",
+      "specialtyHarnessSha256": "9c520d9a1535b12b85872055c93a097cb4f0e02a7bd537e88bed14bb82a0d452",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-014-magistrates-procedure-ocr-binary-heavy",
+      "casebrainBeforeSha256": "e0f822f5b354cc62845779c07bbfde04dcc25089965ac2f7f8bf531b586da122",
+      "casebrainAfterSha256": "ee075917630caa3a6498282024ff22720157b10acd48c426fc7d8f5e899ec1b3",
+      "specialtyHarnessSha256": "19f6f4a456fe8e99d2a39468b0650e71099c66ac9b2443ed45ef809d151802d9",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-015-bail-remand-ocr-binary-heavy",
+      "casebrainBeforeSha256": "ac8a4b771d712f402388e586504c05f709bdfc5e39a025ae525841c43f0da2f6",
+      "casebrainAfterSha256": "b0cec5bc476b0024b99963aaa9da4d355df7b66eb77497952e1058bd5fddcd8b",
+      "specialtyHarnessSha256": "0d55de50de618fcac2ff0a74f65300b0f6b4f4667bcecd1eefdf1fbd8205c8eb",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-016-sentencing-newton-ocr-binary-heavy",
+      "casebrainBeforeSha256": "38c2c1cccdd11451ef761b4eb9c3c6bb909be2ef1923571f8690c4403bd8bb25",
+      "casebrainAfterSha256": "1840640c844209333118a69311f6f873742ae9a1030f69f06d9e3720e510b284",
+      "specialtyHarnessSha256": "b31a5f1b865a9f5581cf5450ea10b18e9c14becf90bd3dbae71f79902080af2e",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-017-appeals-ocr-binary-heavy",
+      "casebrainBeforeSha256": "5ef321bcaefba20637d58de0d907994fb347a058b9ab18260b3ef03950557553",
+      "casebrainAfterSha256": "c304e763ea60a57f47860fa95329b86782919ab6d6a373d0e2f598a1c700dc97",
+      "specialtyHarnessSha256": "c7180dd24b71f873b6c339b4288a0a2be696ee3ebf78f1832fe018029db2092f",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-018-multi-defendant-attribution-ocr-binary-heavy",
+      "casebrainBeforeSha256": "acec21a399e93736e349e76082a525dafcfd3ae1297f321b61c8386afb005da4",
+      "casebrainAfterSha256": "a585b95c46eac1c61eeb423e9c393295797daa14815646724578ee5aa395eec8",
+      "specialtyHarnessSha256": "cbc3434ec2a66157b2ca159f795ba3b276fcfbbaea60c2dd4e82a22452a59181",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-019-homicide-causation-ocr-binary-heavy",
+      "casebrainBeforeSha256": "ff65ab3f7f13990ea533a41807719240a612b25be484a6f259d3717fc11e32d7",
+      "casebrainAfterSha256": "1dded9c1cc1862c97f943cb74b3e2265828de73409aef85770143a7898a265b1",
+      "specialtyHarnessSha256": "d5db95fc4e01d0e40aba624fae2c119fa9a66b41266ed4b43eae1ca5b992786d",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-020-violence-robbery-weapons-ocr-binary-heavy",
+      "casebrainBeforeSha256": "8b5d73ad64acfc8a41f3096decbf88db9da468a44b005ed3f75a68849211339b",
+      "casebrainAfterSha256": "6355aa5c52372ce26b3ad1b559dec61966a634a5716328996cf1300976dbd3c9",
+      "specialtyHarnessSha256": "fce4a61bd357fb39ef0756bcfcb43094fd725f5aec8e8af37ce1c7b9a9732f1c",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-021-firearms-ocr-binary-heavy",
+      "casebrainBeforeSha256": "de429e13cf7e029ec9a5a3c9304e4d3f4dead2d14ec478b2dbd1a6caba8effe3",
+      "casebrainAfterSha256": "48585fb4d212fbe05aaca742e23aa02b52523bc18da0758f686b3bb32dec23d5",
+      "specialtyHarnessSha256": "4c95ca342af403a750fe21067f4609f21b14d8cf1970d41a8611eaefabbaab0e",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-022-sexual-abe-ocr-binary-heavy",
+      "casebrainBeforeSha256": "c83b80876a376e9f2a09dd5dce3a32c862d0750b4b4333df60913692de0a98f9",
+      "casebrainAfterSha256": "2517d7432c599835cf1bf480549e18f5f6b9418bcc831aeb9b9911362df4d965",
+      "specialtyHarnessSha256": "5b31ce8c61f19142e00508c0eb8e5a1f4347ff13a94731c9f11b05f982dc2dcc",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-023-domestic-abuse-ocr-binary-heavy",
+      "casebrainBeforeSha256": "a14b39591bb9a7f33932632c13a91652137a606b9b3aacf2cfc186b123017439",
+      "casebrainAfterSha256": "b187bd72e2427bb4278844a637904973cb62e0761e25698e55d1b01397625aaf",
+      "specialtyHarnessSha256": "1784a77b5aa265bf9ea9c2c2acc448dd7d6cf191806502f4b7ab73ce6eab5481",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-024-youth-participation-ocr-binary-heavy",
+      "casebrainBeforeSha256": "f57e58d51cea2e25f9f3be13267aadf27491f51acdf859686029d40c38866bda",
+      "casebrainAfterSha256": "4bf0976e59a6c6874009a2931a449bb46adc221046c007196160984214c65c8a",
+      "specialtyHarnessSha256": "9e60c6d3484617fd2857582bfd5a8e01204185730218e5dfbf15e123562a79de",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-025-county-lines-nrm-ocr-binary-heavy",
+      "casebrainBeforeSha256": "fb6c5f549dbc71e559d68c49aa6b3888f5cdcccdcdfc75af4a27d85c6563f629",
+      "casebrainAfterSha256": "9e845345f1a9ca5fec2d958e2eca3f7606e1f226c598f5dec3092cd7d778a829",
+      "specialtyHarnessSha256": "02e8ae192754bda38a5ce17954e96a47f042ea34102a6ce1698029133a2a9fbe",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-026-fraud-poca-ocr-binary-heavy",
+      "casebrainBeforeSha256": "ef2ad53bc3ed9f32dc9d4a8c3a4ddb3278f8ca071afbba928ee02b10fc3ec8b5",
+      "casebrainAfterSha256": "fc744db52da9ddce99083948738d8fe5eee7f10c413bf6d02dcf90c42e74c003",
+      "specialtyHarnessSha256": "16dae7502950de8af6f771347fb32f8131d7b3624d5f2acf459c31d580ffbd5b",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-027-digital-attribution-ocr-binary-heavy",
+      "casebrainBeforeSha256": "b87b836b7278054e3f1785e11ac06e4f3d9d7294bb6e3611f45f947d3108795f",
+      "casebrainAfterSha256": "153638d4ca0ac54b74cef6cd9fc2377fa7cd62b26db37038a1600634131373dc",
+      "specialtyHarnessSha256": "9858e59cccccdcc612c00964fbceca5892b1829338430e5a091017df25f0e674",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-028-identification-code-d-ocr-binary-heavy",
+      "casebrainBeforeSha256": "ae58fef077fc6e35c538f845336ff00ebfaa7d63de5a7134438a6a81ea4f651b",
+      "casebrainAfterSha256": "c252fb49d5e3a49aeb9e343f198f482802c73df1e332364765f26b81c8ccd010",
+      "specialtyHarnessSha256": "68aee5311f3a7e686fdc75f5b3bbb7adea96ed3d7818c41ccfe1c4b8a643dac9",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-029-mental-health-fitness-ocr-binary-heavy",
+      "casebrainBeforeSha256": "cadcde28e87c826f461fac826f3f1083931c9b22306226eb3fb1b50d43133259",
+      "casebrainAfterSha256": "42a1e785cc3112ceec6bc2644783c4ae618c9685a70cf3004d96cff5878baf1c",
+      "specialtyHarnessSha256": "accd0347471c3651e8ad62f0513050bebb88ecec95c744115f0281e65dbafd7e",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-030-disclosure-pii-ocr-binary-heavy",
+      "casebrainBeforeSha256": "ff26e664c42ee514c2bd29a422e267f8d418bdba4df4b367d79e5363351bbf6b",
+      "casebrainAfterSha256": "c8e62dc8a53ea9a7790dda8cb4a467c83884e16d9813f59fda0f31ef3693e68b",
+      "specialtyHarnessSha256": "2f2c0a22c5620fe7db6733a54cae632212e70cb5927f494d762c5f605a575b02",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-031-road-traffic-fatal-specialty-youth-dob",
+      "casebrainBeforeSha256": "4442e5ba3cd7bf4018612d15d881936b9bdcf7552d27132454df69c723ef2aa3",
+      "casebrainAfterSha256": "1f3fa7ce6608fbd17c46da2d36c2aba57c820cf23bb1d3bf4954f3b388528f3a",
+      "specialtyHarnessSha256": "a024020770569f64e61c2307aa67da7823ba4589a2c4e8a869491171619bd5c3",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-032-magistrates-procedure-specialty-youth-dob",
+      "casebrainBeforeSha256": "25d905480d652a9dbfae6222a2344c896a16762e5247831541827063994c65a6",
+      "casebrainAfterSha256": "8200dfe1fef490628b3919fc90818c816b7b4eabd73eeffd36692863798f1179",
+      "specialtyHarnessSha256": "db8f1321766b9ca0be7eb5c067ffd7044c28b85f11c278303d73ee876a5c47f1",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-033-bail-remand-specialty-youth-dob",
+      "casebrainBeforeSha256": "f9241e41062df066f64c72c58a04e3c02b940b0fa37a678830a5b0dd2340e23d",
+      "casebrainAfterSha256": "6371a8ed61c21f5d4922994c81ce58ddcd47e563dc62990ead757e2c11be1a8f",
+      "specialtyHarnessSha256": "95393d5da319ef433b8fc2d91e19a48d9c106867b7e64beadf0c0fdf3ed3fbb8",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-034-sentencing-newton-specialty-youth-dob",
+      "casebrainBeforeSha256": "5ac4b96ce3975d3dcabdbe7c99b3296a7a1d98ee97ef9a69279c429bf8fc3c14",
+      "casebrainAfterSha256": "afd9beb3144a5b7502dd03f548f06e66601003991eb39b2e3ea0caf583bfb922",
+      "specialtyHarnessSha256": "9549c4f85a3b385a2672b787e22d26c3e352eb3f4b3d15093af55420366057fd",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-035-appeals-specialty-youth-dob",
+      "casebrainBeforeSha256": "0a2e2b5e9175f9193695f12a8d15d9678776be7addf51ee7e3e8ef3bf04d591d",
+      "casebrainAfterSha256": "bb0bf379cc924e7d94785ff170966d8007f4c1fe9af3942c7cbfe6ae71a95e00",
+      "specialtyHarnessSha256": "5ae473b99f2c66ffe9a1c5ee299b4e967d21bec058d729195cbf1c328fa56f2b",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-036-multi-defendant-attribution-specialty-youth-dob",
+      "casebrainBeforeSha256": "46e7014110baa907decb996ba7d57b11e7ed8dc25197016d00ac29e06b82745e",
+      "casebrainAfterSha256": "cd2a09463b7099f1b24a18667dbd45ebed674cb82c99cc9123e142f63ea61550",
+      "specialtyHarnessSha256": "635a51a19c54ef846418694db202ffabdb6dbc4733257124a7676a56ca7ed58d",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-037-homicide-causation-specialty-youth-dob",
+      "casebrainBeforeSha256": "97feb926ab5693596aa4a7cd6aa2bd70f66194058c9dfd00d5f3130a2ec12ece",
+      "casebrainAfterSha256": "55ac212cf99a0c7ad73c1bfb82df9ca3e56c8e7b3cc71eebb43d3e80cbd0fed6",
+      "specialtyHarnessSha256": "80a63283cc75f5e75b46c777cbc05497dacff58822654ad6a62c338e2102d19a",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-038-violence-robbery-weapons-specialty-youth-dob",
+      "casebrainBeforeSha256": "be5724e1af1338cfce5e9f73271a91100153300c17444e0f1cd33224ca27ddec",
+      "casebrainAfterSha256": "e85c09b62e36035278270728ea8c887fb0722afe826318b9dad6cbc5e98f4fb1",
+      "specialtyHarnessSha256": "f1abfe3891f16fb28f5d185547029d76f553dd3c1bafb8c9b77cbedb3447e5fa",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-039-firearms-specialty-youth-dob",
+      "casebrainBeforeSha256": "3ffab8fd4078db2b65d0b8a88c980cc81f8d2e3dabdc569c04bd231eb55f114e",
+      "casebrainAfterSha256": "ffe966b5d08d9eafc4c20443d7252aafa3d8556766de59914ea1f7937d8d4ab3",
+      "specialtyHarnessSha256": "19471434b3697d800199fe075e07c915dc766d62a58bf4da31e95f1c791056ca",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-040-sexual-abe-specialty-youth-dob",
+      "casebrainBeforeSha256": "f9f7714e22a401c8e97f6c14a0da36ab1486a6b00077dca838ddaec57c8f3d68",
+      "casebrainAfterSha256": "817061362a004748dc48911817a1361aa081f228df32be097f9e1ac2c0c910ae",
+      "specialtyHarnessSha256": "112bb0d8b1bc890f174192559fddee781523b2c8f58a9917ea2edf9542de9464",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-041-domestic-abuse-specialty-youth-dob",
+      "casebrainBeforeSha256": "0c70519d2baad17c55716fa7fafbf3c8db1dc99a3f36d8418e10eaf820d7694b",
+      "casebrainAfterSha256": "4e55026b90c995281a3f43bb044202612f56d6c88a86cbd6cf42523491e2a670",
+      "specialtyHarnessSha256": "40352113e41becce1b4c8ab408fb28a6c17cecc3dac56f393eb1b2f29f449c80",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-042-youth-participation-specialty-youth-dob",
+      "casebrainBeforeSha256": "a43c12e7c55840c52d4cdc919670ea8e89cfecaf306ad4893547854085ba2ac8",
+      "casebrainAfterSha256": "570d9ac42cda881bbdd7b796394092b12f3e571736c54e33884a1e8acea36284",
+      "specialtyHarnessSha256": "33c4288948ca96c6b21d2d13a43ba81114563874bc88b01c46d1386b2b392064",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-043-county-lines-nrm-specialty-youth-dob",
+      "casebrainBeforeSha256": "5d94006e29db57449967adb6a9d4ece6dcdbc63eee6b6cbfcf35b6f68f6070ac",
+      "casebrainAfterSha256": "72f0f74d9f6d62c5f20487b6cb09d3085eb46db6250e66b04a93d1161771e161",
+      "specialtyHarnessSha256": "99d9189c002eb99eccaff1a965a9e9d5c479c8f949115772b24feecf336e94d8",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-044-fraud-poca-specialty-youth-dob",
+      "casebrainBeforeSha256": "334a6a8cb19f33f6ad38d268e928cb2fc5dd7bd97d77c154d56ff119816a2f56",
+      "casebrainAfterSha256": "8dc606880d19886368a66db2032ce3822a49d35004c95e85de11bc4947b8495e",
+      "specialtyHarnessSha256": "6283b2e6e2998085beb52a128a4f585b00abe3c929bdce41407d2515782238a0",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-045-digital-attribution-specialty-youth-dob",
+      "casebrainBeforeSha256": "b5da7feb7c185b6bf84b3190c9afac760778ea1cbb9bb4b08e679f2fc6fdd9e4",
+      "casebrainAfterSha256": "1f2c8263a2c01e177377fdc3aa96055315fff3ba06457f2fc066bd6614b04d0d",
+      "specialtyHarnessSha256": "a6d9f15d09062e8ec5c7770806adf4bdbb3f62e80b36a35afc78a56dbeb3c875",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-046-identification-code-d-specialty-fitness",
+      "casebrainBeforeSha256": "0a5ba2824560aa4a7431373e0f29553cb0be9978aa6bb819d53e4ab3960446e8",
+      "casebrainAfterSha256": "987afcbb20936c6a76f90c44a6a2eb532478aaa47038fd3a83deaa6201ea820c",
+      "specialtyHarnessSha256": "e372d320095d87b31ca285ecf7583b68059e45ffefa2dfafaa4132724358a708",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-047-mental-health-fitness-specialty-fitness",
+      "casebrainBeforeSha256": "41f5258a678b668ce6f462f3fdec10869a93dc359cd6dc8b1cd6b3dd59f3c24e",
+      "casebrainAfterSha256": "f3040b00385140cbb662f9d3e3d55e21bed912c40f907b2f2388c4038c8ff1cd",
+      "specialtyHarnessSha256": "b376616331303bf0fae470e4d40524044fecb7f55a0843f439b2efd12d7449c6",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-048-disclosure-pii-specialty-fitness",
+      "casebrainBeforeSha256": "f9f69fdd3e8fc7fa7991da5c1cf587ed829cb019abdb7328612762a4e5766eff",
+      "casebrainAfterSha256": "5c4499e5f479607bf2064bda8684c62ca14455bb2c21795813a6f4e7df3dd10b",
+      "specialtyHarnessSha256": "24b3a61ed0f393af553d1fc1790a97ee48e4b41578f392f3ddbf691702a4a406",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-049-road-traffic-fatal-specialty-fitness",
+      "casebrainBeforeSha256": "d916b3bd3dd0a4a5c88dd60b032c04ed86414ec988aeea8cad48d0b3db7fc1a0",
+      "casebrainAfterSha256": "1cc922c2c13dde901be9191d49d039a7958835243c13322c98951d6b293136e2",
+      "specialtyHarnessSha256": "8393ced6e492caf942dd5ea1a1e389684c1f753436d819f457762089977a7bc8",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-050-magistrates-procedure-specialty-fitness",
+      "casebrainBeforeSha256": "631b1bc6046ed662e1eb4a33ee6423cd5aec6f206ede8d9933851d8f1be62cd8",
+      "casebrainAfterSha256": "0794ce6fca2ceef3ef5fefc6bfd385b8f99f0eb9fc04a38683d57aed00e5d144",
+      "specialtyHarnessSha256": "9645b4db2a97fe3b52a3970a07be27ba51ac49db1330f20ce53d0096a57a331c",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-051-bail-remand-specialty-fitness",
+      "casebrainBeforeSha256": "9238af434a03449d668f5d17b3eaa1333d0d72156da1976fe647655a5c975c33",
+      "casebrainAfterSha256": "9c9601cc2073ba379accdac6ff59c60e3f9283efeec1f4688daf5cfa09c98867",
+      "specialtyHarnessSha256": "8545a8413ef11690122ac82ec555f4708694045054cd2323f164a5a0dc6d54d1",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-052-sentencing-newton-specialty-fitness",
+      "casebrainBeforeSha256": "1b024ce62c8a744f301527ff2e810eed1dd3d5ce27bc23193792e52c1c018f60",
+      "casebrainAfterSha256": "c60cccaa504e4074e9e22102df33f7bdae5f4f3814f94451aa321ace4281bfd4",
+      "specialtyHarnessSha256": "87e45cf727bc0784d90f5b841041b050ddd691089efbdd35af0677936e351b4e",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-053-appeals-specialty-fitness",
+      "casebrainBeforeSha256": "6e77d3515429118f481762d283ae81fbf428f1e8a9fce6c44b343c0479cdd26f",
+      "casebrainAfterSha256": "52c954713ba6dd6ad98eab2271f8375ad67cd5fd15f88844a018ab590c97b2ef",
+      "specialtyHarnessSha256": "be4408fa9e96086c5dab989a4444eedfa9e16b57e2ba4a4bb1f5b99ac4d59237",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-054-multi-defendant-attribution-specialty-fitness",
+      "casebrainBeforeSha256": "f01a8dac3366740dc83bcd35c90cd827b58ceed1f1ad35120d4ef57385197ea0",
+      "casebrainAfterSha256": "83c637477f9850471917e170b922c7265f415e7cb57142c64ab52a6c695f5dad",
+      "specialtyHarnessSha256": "a1770d3b1ef8fc26549eeb0b2a15dc44d7c6d08bef152c32bd2f2c0031252789",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-055-homicide-causation-specialty-fitness",
+      "casebrainBeforeSha256": "592674342fd6cdfb2ad971affb3aa5970bab5848c9dd657d6c31758ece2a16a0",
+      "casebrainAfterSha256": "f542d1732f46675fca42f736be34c37a5b19e3e2e89e1dfff30a5e315d1da123",
+      "specialtyHarnessSha256": "0f72ac9b0e9c68eea5708eee25a5ac0fdb9b6ac638b0b155d5e51ec84aeaf73b",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-056-violence-robbery-weapons-specialty-disclosure-pii",
+      "casebrainBeforeSha256": "993351b9e4f335e16235a479193b59ba33b74417c8f956a91aef304a1e0c1bfa",
+      "casebrainAfterSha256": "83605e71a1e9a1db1742c1ae60ae1d52b6cf24d29d569d5d977d381830af1967",
+      "specialtyHarnessSha256": "d9d1e1c66993ad1d844a1e91b6e1a0aaecb064ea18359d478223cb9d22c064a5",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-057-firearms-specialty-disclosure-pii",
+      "casebrainBeforeSha256": "b85f7c0e9305b43965fee665213d577787f6a1593ea6639dda05003947aa0833",
+      "casebrainAfterSha256": "b3b30a729aee8f4980ff6accc1fc8486e78133c3c0cd68a0dad9b3349158121b",
+      "specialtyHarnessSha256": "ca16c0f49f9335f11e15abb23dbaece752d4f378a2d1ba70460af7333fded209",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-058-sexual-abe-specialty-disclosure-pii",
+      "casebrainBeforeSha256": "ceed9f290f7b77d7abf79fb3505bcf88ee4d895057035f6d240443a8f16103dd",
+      "casebrainAfterSha256": "759ec5bc9057d2ced7ca3970ca3a249aa24519cff3431c6fefa0d448cc6141ac",
+      "specialtyHarnessSha256": "dd4167e6d57239b3e7764e117cd8a8c97c4972cd08bfddfaeaa49f0b388c9338",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-059-domestic-abuse-specialty-disclosure-pii",
+      "casebrainBeforeSha256": "9247786836831adc74aa03bf1ba343708a908284ae798fd71df43b021f0d1741",
+      "casebrainAfterSha256": "b159960a7edc7c0e3bbc99f47f8ca3a4f390a28463d2f2003c03bec5e0360f25",
+      "specialtyHarnessSha256": "91c0013974de22a1ff4870cb96dddc2c16af1efbf22cbd394e84cda86b4a60fc",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-060-youth-participation-specialty-disclosure-pii",
+      "casebrainBeforeSha256": "e32cdade2a3e12a8df3c1e6e09b51823f28812abf8a13477ce1d88e8ac952b06",
+      "casebrainAfterSha256": "2684dbadeb7dcbf61f3f3bcbc4455a4ae26a9eccc0ce40f5f7fbbeca6b8db605",
+      "specialtyHarnessSha256": "37b4f75a7543aaa805b35d3d9577ff0fe0e5bddddcce1641306a76e37bd6a907",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-061-county-lines-nrm-specialty-disclosure-pii",
+      "casebrainBeforeSha256": "d9f1dc9ba28899ab66f3d31e845ff7874f1f7e267b5aece1a3b9af5aa27b29f7",
+      "casebrainAfterSha256": "4f60c35e425cb733d9a8d3205b747a549f8b1a62585f8ebb2614547f38bc6fcb",
+      "specialtyHarnessSha256": "7c9be4014adf121346517b907b7c7dac32044ba52605c7e2c3a30e71336d1aa4",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-062-fraud-poca-specialty-disclosure-pii",
+      "casebrainBeforeSha256": "3bbdadd4e8c8ca979f6f215c15d345a584761dded846eb274d32e1a19a2f2c66",
+      "casebrainAfterSha256": "c15188d6e26333926fc2a5198afbd5da6a76bbbb59f47ddc5a9b9c07d32a9f4c",
+      "specialtyHarnessSha256": "6c5a151cb8bf29fc2f93f19da38a3d60e241dc7bca8d6b5354f64e6ae6269360",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-063-digital-attribution-specialty-disclosure-pii",
+      "casebrainBeforeSha256": "a873bf4f9c94a146b82c751d947e164cc86542532c3a0014c3b86e3255071164",
+      "casebrainAfterSha256": "a062feb473fedd24aeb7e6a5e3a521a5c7fee928d29b2752a2b50cfc25e5c99b",
+      "specialtyHarnessSha256": "ca8e2bfd48e4a62acaa28a332d07f970bfabac82fe8ddf9ae3d7a146616df8d4",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-064-identification-code-d-specialty-disclosure-pii",
+      "casebrainBeforeSha256": "9f42711c64df17edcfb0c58e5cf25fcd77ac5a1daee20dd032db82e32e001fae",
+      "casebrainAfterSha256": "1a8be75f15947ff4cee50a66be887b090bdd0931ccbbb8cad512ad8f26d9b3f9",
+      "specialtyHarnessSha256": "50a224282e4d53a3012da76c3b6b18690e9f30f710efaf1f8ded57e41b3c3c36",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-065-mental-health-fitness-specialty-disclosure-pii",
+      "casebrainBeforeSha256": "c846cc5fa8c01e19d0d6ed3eb2cf09758332efb7b0fa1fbcceca90e4d1f8e944",
+      "casebrainAfterSha256": "01e6a2444ab43abc9753818fc41acb126d20d063d7a1cb73c50ffdd1d327e971",
+      "specialtyHarnessSha256": "8e8af5cb668c6141f65d2b170742e7a3932dd89a68349b814fa3b500e8d288c2",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-066-disclosure-pii-specialty-legal-taxonomy",
+      "casebrainBeforeSha256": "5a074bae48dff2306713b470641381e26617e46a7130ea3cba7045bf4a2d53c7",
+      "casebrainAfterSha256": "5407ded437fe60cef8b8fce9ceb4cf32006c9209ea631ffc3af4d499b821b204",
+      "specialtyHarnessSha256": "ef4d76aee11465e3994c83bec49026695a0c5b243a5b366c293b4f8d1811e24e",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-067-road-traffic-fatal-specialty-legal-taxonomy",
+      "casebrainBeforeSha256": "05596635db8892c6c820435bf835f40f3230dd2c9988a368d2db95490bca39cd",
+      "casebrainAfterSha256": "eb21a0fc24290bb9c3f572d796b6cc4a63c5f8001053050445f39c949ebcb194",
+      "specialtyHarnessSha256": "08036be7ece1601212cfe72e92291b5d804b2a0b83462bd1f7eeec7ee1d5acac",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-068-magistrates-procedure-specialty-legal-taxonomy",
+      "casebrainBeforeSha256": "b155743ff9e5b84a51e8b278fb3db79496e0f4162e8423ea082dd95923a30d95",
+      "casebrainAfterSha256": "f0acecf634a5d5a70cc61ed3b3358ed2300698eaf67e580f429af413c69c79f5",
+      "specialtyHarnessSha256": "d175d68f72ffc9af21d304c6fc3caa35b2f92c4d66e6f47eb73fde0bbcdb421f",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-069-bail-remand-specialty-legal-taxonomy",
+      "casebrainBeforeSha256": "c67fcc2e99351ba77009f164cc14f051b1f10768ff7675dd4861fd71c99d7f7d",
+      "casebrainAfterSha256": "8213173044ebd3429a289e2639710a4351733cf72064b8b9077d37aa19fce365",
+      "specialtyHarnessSha256": "3dccabdc63d704b60b0c54e2958dfc75c8b55aeadeeb3a0dc80ebcb922d23fed",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-070-sentencing-newton-specialty-legal-taxonomy",
+      "casebrainBeforeSha256": "4cb01516238fe1dd8500d87b69c2276ee3399ab988cbf19a219a45e195209f6a",
+      "casebrainAfterSha256": "161678145f8044881e2d553fb5e86ce59544b7fd02fac0c391522759f3f07f79",
+      "specialtyHarnessSha256": "cc35414560168bb21c36f27567176806b500b10bdfcf22506f2ade5c50da1fa1",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-071-appeals-specialty-legal-taxonomy",
+      "casebrainBeforeSha256": "a0e467acd1a0cb830380018e8538363f35932a7ddb3b3b4d4e3796b883eb873d",
+      "casebrainAfterSha256": "e932655d20bfdea67255cd50d6f49b8643cd0399993bac626498dc5354882e20",
+      "specialtyHarnessSha256": "13b396345ab75a29c816551c914f3a10a83a0edb5f81e9f410e1c04c0a4a909a",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-072-multi-defendant-attribution-specialty-legal-taxonomy",
+      "casebrainBeforeSha256": "4adf0d6b489f9a0872be5ed7af849583e31742f3f50660583bd2608d9c363715",
+      "casebrainAfterSha256": "e7b25bf50f88280c3538ccf46fec41ab5f5538ebc5dd67728ac3e8a7a905617e",
+      "specialtyHarnessSha256": "e5cced1c9bc11364c700aa88da23eeb4ab44faa4d3a41498f50578c69aa1010e",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-073-homicide-causation-specialty-legal-taxonomy",
+      "casebrainBeforeSha256": "ce14a3b6b1b79fdbd49e30c080d4cfb74c2c577f433ab13e6ac81bf7ec603929",
+      "casebrainAfterSha256": "67fead227dd4b857d006df901918c13a8eb0e1e344511e8066fdab748b247dc4",
+      "specialtyHarnessSha256": "7b92b146f9c8c395e5bb8ffe768a54b9936b16b75723395834b698739a690382",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-074-violence-robbery-weapons-specialty-legal-taxonomy",
+      "casebrainBeforeSha256": "c1c1a8bb19f6a89320cbd8b00dbb7216d233dcad0e15482cf98eee82e6ac862b",
+      "casebrainAfterSha256": "3c355e0250fddf5e93cb08c8643869baaf89d117b15af9381ae42b317a386c5f",
+      "specialtyHarnessSha256": "2e0794622747fd78e1d383a5a217d4e2229490968e117d7182bbad7cbab2d05c",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-075-firearms-specialty-legal-taxonomy",
+      "casebrainBeforeSha256": "8ce03b6d68b1e1036c1d5510c2af57b4b7ad4ff673a4fb83be8ccf5e01914ec0",
+      "casebrainAfterSha256": "6899414cd23d156d1a964b8c16118cd57f25e38084fe8da0bb02267b153a914e",
+      "specialtyHarnessSha256": "091ce536487d51c3f79de5fbfe47113be25cf3ba28065cba706f46768149a01b",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-076-sexual-abe-version-draft-pair",
+      "casebrainBeforeSha256": "66da7e770f43e86afbacf02e6615285170e37fb796f22eed48f91244338d112c",
+      "casebrainAfterSha256": "bd1938152880f8fa686416f4ad6d21fbb2b7fa8523e0e44974033c8888daaf19",
+      "specialtyHarnessSha256": "5cf8d87be491d4e3039d6ade7fd94d5925f07ff198fb41f82193add0b0fa426e",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-077-domestic-abuse-version-draft-pair",
+      "casebrainBeforeSha256": "3a96637dd0be86613ef06df0e00cd054c0aa2a249aab0bbcf68b0de8e0378ba4",
+      "casebrainAfterSha256": "f4debf4448accc88f84a9e0f4e06fdd3ad930339f81339da536c3e56fbd2c101",
+      "specialtyHarnessSha256": "91a63a8545bb7dae4830d7d2e0ffe01e0c613b28c815e75c637eab634cd05bb0",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-078-youth-participation-version-draft-pair",
+      "casebrainBeforeSha256": "950ca4ad22933fd167b167c1ca5d947a53deb41589bc0a8d255d1e47ca51861c",
+      "casebrainAfterSha256": "4bdcfe871830d6eb4a2e76bfed795df661e85b36cb7b2e22d0fb9f0aa41a7573",
+      "specialtyHarnessSha256": "f4f51e56b73e212e6ecf639a2fd78503fc6c11be8c46917e87e722ec3216c1ca",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-079-county-lines-nrm-version-draft-pair",
+      "casebrainBeforeSha256": "6ebf2e5d36598952a0d8c667b1b484e12f5843dc1c1264420c2316b28659c433",
+      "casebrainAfterSha256": "e90edf23d8b84111c7ecfdac968a63334de9fa73487151ef19cda789bf586862",
+      "specialtyHarnessSha256": "81e7da9e3228f08f70b68fc2aa9493abd9519ec14cf3f93af1bc85ca4c2f7cda",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-080-fraud-poca-version-draft-pair",
+      "casebrainBeforeSha256": "0373bf77f13be82e97eb4dd0a302f0a9fd77806b434575b9391b415601f60021",
+      "casebrainAfterSha256": "d26bc20de992e9c882a48b9132544840269fb8683d4e9bfe2d2e49780126b341",
+      "specialtyHarnessSha256": "40e3bbdd53c12fb3c2e822cebf2f3cbec0e7a58f5da1716bc49ce7ff075b4339",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-081-digital-attribution-version-draft-pair",
+      "casebrainBeforeSha256": "b09bb38535eccfd492ba397c3fe58f0b112069faa1e41c8f08f0ffae6389db81",
+      "casebrainAfterSha256": "f7edabac29f0f017d067959a7710338c6c9404feccb2c1f6bd506fe81f69930b",
+      "specialtyHarnessSha256": "9b2026df50d1ac89b59d05c60dd142922e25aa0eeb8470375076173867624dc9",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-082-identification-code-d-version-draft-pair",
+      "casebrainBeforeSha256": "dc7e348df2687d70168a87b765c373a510687ced66dea17015858b865b79dbc1",
+      "casebrainAfterSha256": "8c6d669c9a0a0b6d522b7ba454f63b62d95d0fa178e9aefde755be24ae14671e",
+      "specialtyHarnessSha256": "d8e9596d090e48ba8958754648cabe4debac84c72e468745f3439c02f26a9909",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-083-mental-health-fitness-version-draft-pair",
+      "casebrainBeforeSha256": "35654129fbf8cb29a46325e0483817a9acf985ae9c23ae715c5a0babdeff259a",
+      "casebrainAfterSha256": "19a137e3328b1a51cb47bca4002c9b1dd1dfd9d4b24ab8433a73c9d8a1199072",
+      "specialtyHarnessSha256": "5f5d2ef3c2a27043e9538d1802f7f50a307776dddbc007980d5c6fc7a7308a85",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-084-disclosure-pii-version-draft-pair",
+      "casebrainBeforeSha256": "f307b7bb52ac56ac12c52e9d794652c4ad2b9fd1e476136f198b82132f91091e",
+      "casebrainAfterSha256": "b33bee0f464aecdc3fc96b611e66a13ceedbfb1e7545438771800e79e1bd31ff",
+      "specialtyHarnessSha256": "582e0c6288af203567e9faf90e50f801cb28ce09732064887e7f183bb1c23abc",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-085-road-traffic-fatal-version-draft-pair",
+      "casebrainBeforeSha256": "89cae79afc78d52f0c2bc604c1fdb29da954bd428b40169369235f0ba48e77c0",
+      "casebrainAfterSha256": "ccadf4221e2ecec613731ebde05b5b2bd16d8b67517753fde3a11365359dbe76",
+      "specialtyHarnessSha256": "293d17f7919a9904be94840ca0ef7f93acdcc7b9893c0c2e76cce12d7eaf0a12",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-086-magistrates-procedure-version-draft-pair",
+      "casebrainBeforeSha256": "9bab6e1413c63778512a2fcfeee01edb3f8f83089455e26d79911117d2cd2a1b",
+      "casebrainAfterSha256": "a602217110919f5560da6ed1bd20c4cfe317c9dd9c5fef1be995a731c67459f8",
+      "specialtyHarnessSha256": "0063f21cd552782f168c9d12c683f89eff89260f401f1aa849895c192834a5c0",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-087-bail-remand-version-draft-pair",
+      "casebrainBeforeSha256": "f64f9530498273abedccf58a5d68a154a6d9917f6cb5e877a15a6270f7619c93",
+      "casebrainAfterSha256": "cb8185682c54ff2ac34ff0568f4e74a12ecd747aac87a9007b1ca0ba90362530",
+      "specialtyHarnessSha256": "e4bf79b0837ff735e55493159313a3f7e39c891ffe8280d3f99dfd1feeb28cfb",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-088-sentencing-newton-version-draft-pair",
+      "casebrainBeforeSha256": "3f2c65bb62cb92501b609e0c35bb92f32b8a0b1c157fa90dafacd90e140ee923",
+      "casebrainAfterSha256": "454b4190cc83c6f1254e366fbd50931196891a47760897f56ea56735f30adfe5",
+      "specialtyHarnessSha256": "3c8fece3e1e57e79aa4a8f995a10ec1b30cb8d4694d09ac8e4c71d0e7eb5b9e7",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-089-appeals-version-draft-pair",
+      "casebrainBeforeSha256": "88ad325d81d0c697d770e5c38df758ae8dfce73f0abc36bb4b22f077613aec10",
+      "casebrainAfterSha256": "170e0cfa566f6a8614664155da1a02c5a16676c860640675e4ae0dfbdbcdb8f4",
+      "specialtyHarnessSha256": "5236f77ecbe88e7fe82033435c8c842dc7e6d7fbc45828bbee6f798d2176d072",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-090-multi-defendant-attribution-version-draft-pair",
+      "casebrainBeforeSha256": "1e86a9962342f3a97a0cd57ab0e4a77b8c54aaa26fc73b583e23d7800e071b13",
+      "casebrainAfterSha256": "c05e691cf32738c5e5eca3ca41e42e2c1c39126bd8df1d13c0cc7c5422495d04",
+      "specialtyHarnessSha256": "448edf4afdf46f6c3b17889f4e6405537b5110c62c8800f52ae068a8931e1a19",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-091-homicide-causation-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "f9f3b1ef924f2f31d28e31d46f20bc8972f3430eabe6e2c8d2921eeb5e6bf314",
+      "casebrainAfterSha256": "282e3990b0299ab9852d4b45d7b7e24a0e9f143a6aac38666a07991798e330d4",
+      "specialtyHarnessSha256": "ab6d651ad95dfe9b867c2551dcab566edbd4892a432172f58bdae6c5542ff2d1",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-092-violence-robbery-weapons-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "db51381a4cca8f560ceddeace0a4e275f51136ddaf8535d269f3cf0a778feacf",
+      "casebrainAfterSha256": "f021a2894bdcb24bfb929fd7e0c33325efc233b1f23540bc41b276770be8a153",
+      "specialtyHarnessSha256": "59fa33104c63d8c5aa6348a740421efb005f1094100b577cbf299b6bf96b5e67",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-093-firearms-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "b556e6a1417ecb13d940daf009210fafe69eb911c3ade9b14284e36933aaf4ae",
+      "casebrainAfterSha256": "5a15a4ea5fa083f85c4b0a6c5e57f14645a7a03178a16319063fb6a44231f388",
+      "specialtyHarnessSha256": "7f67ecd5f70d39e325da9aba7ea527c4461cb19fb2fc3c8c718ea0e7c16adad1",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-094-sexual-abe-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "02d427703aa9f4158e1c39f0049fee30d230a52ceaa25b8e506b05acf3df46ec",
+      "casebrainAfterSha256": "16c413fa4227d0c5f9a8659cec677c91a186af6e0b901c8d2b18b502676234ba",
+      "specialtyHarnessSha256": "fb445efa05f5abc33945f33106e327911fd70c41c62805f9aa581e0857670d49",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-095-domestic-abuse-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "f9af009b553e12a59eeacd906d592fdb12da671cc58c867866b968ea0f9364c0",
+      "casebrainAfterSha256": "88507f1ed5d8ea299f39ef4a8bc2b8b86392301175850e97af1a151ae57cfb9d",
+      "specialtyHarnessSha256": "57291a675aa671b06fa39fd71254c3373d035d57c9408aa02c7dbb529e4180cc",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-096-youth-participation-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "9fe97229c34541d0cc29dd133df94c0215382a2806b143861dda76cdb7c95778",
+      "casebrainAfterSha256": "bd31ecf3b05f2b88572599a751bd9b498a4d78f7d7a696c077c29fb88ae207ca",
+      "specialtyHarnessSha256": "ddc3f688b5a8a42c80d413d48383350cf1a9cad542ddaa990f7138b237ffa0c6",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-097-county-lines-nrm-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "1af548158641a5543dfa2ca75edc5b95ded8260c056db9efef9e31eeda8bdf40",
+      "casebrainAfterSha256": "2f01711689c7e3dff4dce74f44c607112bb3d05e69acc1b816974fb236e2bdd3",
+      "specialtyHarnessSha256": "2ce8f9f6fabb84fa0e095e22c40ab36e64bfda2d9749e0a8f20a7f23acff1f75",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-098-fraud-poca-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "bcb2d09422f2f6194d510742d823adc4b42aebbd68797ec6849c4bf0de03bac1",
+      "casebrainAfterSha256": "c98b85709c3365299b1dd5ca6503ace45a3b5c21cf514b6c6d67c079a7c46282",
+      "specialtyHarnessSha256": "401c1fe18e3f87a1fd4821eb6d604fa86cecef435206223192b171e815c2d122",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-099-digital-attribution-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "cc2212dd6994f0e0ce91d97627b1a09d9c6b001c64ea806bfea37219364ce3c8",
+      "casebrainAfterSha256": "9cbb2e8b257b287f05123d953c0d9a0074360e6c4c88cb6b52be96adc354dfe8",
+      "specialtyHarnessSha256": "3666e0d9a25a8823402c9c9a8f083ba35f4b56e6bbbe9b9424c67e9983dba26b",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-100-identification-code-d-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "01df9875dc4bf646d8f35a2487ed7f3b37420233e3cf12d53ab9e8c417ef314b",
+      "casebrainAfterSha256": "de00212092b3e8fa9282013de1b2027e943bb1434b944849cce08cb70343bd71",
+      "specialtyHarnessSha256": "8d41a3e22d9606e0c4ea93d2112d652be77152533a8153b4fb7fb3feb4cd289c",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-101-mental-health-fitness-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "cea1d4f1639fc1e75a56bc6f5c4e295d4adf628fd956bb6c4c84a3b2b60c35c2",
+      "casebrainAfterSha256": "296cc861221a3d5da326a68760a391fef2964280ebac7d7c7ec70c00bcabb30a",
+      "specialtyHarnessSha256": "95d64a59125113c57f57a8f35ae09917eb3272afa9cb38ecd221c400573eb87a",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-102-disclosure-pii-audience-multi-pack-attempt",
+      "casebrainBeforeSha256": "8b5dabf096a3b676bb4079d5b29ba81f52f557bb2c66fc355d239a4ce2b45ee7",
+      "casebrainAfterSha256": "d0f12b665b7d8986e76eee6fc80f653992b79589a73afaf9ab4d61ec16e41a58",
+      "specialtyHarnessSha256": "f8e541e92b2572292ddb90cdbb0d06a70d4afaa6f9bb26d0d8b400e7d5542811",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-103-road-traffic-fatal-native-email-json-csv",
+      "casebrainBeforeSha256": "8fd6658a9729d6ef949581d0abe30e4f39e0c059c52edff979ac8edc74d220dc",
+      "casebrainAfterSha256": "4c0d83560bf910b9aef49560bfc071b44af378e5a590035f3682ade1c25247a2",
+      "specialtyHarnessSha256": "6ed134e7398e82d48c26764d1c4efad886d96e7105c17fec72c25ffa0ca5d270",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-104-magistrates-procedure-native-email-json-csv",
+      "casebrainBeforeSha256": "553a3f940c575730b7f5faaeb27813a539fccdaf4899864a380ba4ae2e71f728",
+      "casebrainAfterSha256": "38077150d407baf0708bd432b6cfdd0c11fe7134140fa651fb21bae271b7f5ab",
+      "specialtyHarnessSha256": "fa03a3b42556966487dd6bf7c0fa03635ec7f7a906ce3ab9fc434c684f905f25",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-105-bail-remand-native-email-json-csv",
+      "casebrainBeforeSha256": "6d87b8b5745f15eb2c7f3daacd047ec4716d65060d9dfa6a32ee73343b44d75a",
+      "casebrainAfterSha256": "5b75eb5c7cb1eb7d31a8bd46f7f2af3c23a951e8cb6419c2c2531e90e6fdee41",
+      "specialtyHarnessSha256": "8d41c40baf60030857dac0099048580fcac2b7924b91f35078c9b30d0802302a",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-106-sentencing-newton-native-email-json-csv",
+      "casebrainBeforeSha256": "1f946ee6654f61e0a371f9f1fdba34c7f9f8a1fc4395d979d713adc6a2367cad",
+      "casebrainAfterSha256": "1f425fdd3791c3caf2da28a15b1680b2f0697c1340ade1eff1a6b5c420f2f2d6",
+      "specialtyHarnessSha256": "3c1c34cc5a284b23e83273570109d3929aa353282ceb846ef7c7a1b2867201f5",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-107-appeals-native-email-json-csv",
+      "casebrainBeforeSha256": "bf3b4bf0b91393c135d182d47fd3412d22ab9516b99d0697a032ba26c6b60b59",
+      "casebrainAfterSha256": "1899a37490c8ea09906a4c6c0f4b11067eb68f6d92702384e1cb9f2e0d3261cd",
+      "specialtyHarnessSha256": "ee6f0caf9afb6f1baf8d70da6f8ac2eb6fa59fdec2565f44079848b6dc3893e5",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-108-multi-defendant-attribution-native-email-json-csv",
+      "casebrainBeforeSha256": "16aee0fc00075795a0d7ff28e29db7b57ae0d1e2a741ba524e6af6d452b0e7a6",
+      "casebrainAfterSha256": "a8231bd85c8ee89e327fa874e278b8cac753a9d6c8464d7919097e24c5bfa358",
+      "specialtyHarnessSha256": "2523b39db5e86a870a93f7da4f062a99e31113d81d50bd9aec2d014e93e66427",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-109-homicide-causation-native-email-json-csv",
+      "casebrainBeforeSha256": "44fc27135493d01235ad3fdf98d5fb1b1fafeac99ddbe61703d0b9d9dbc47ae7",
+      "casebrainAfterSha256": "d0c91b00b7036b123c762b8e7e9e53797fc7f9642f9d341cf15a796c0ef5715c",
+      "specialtyHarnessSha256": "a9944feadf5809ac20a605f1fbd8389ddf4be6a325d439fdcc37a788b7185595",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-110-violence-robbery-weapons-native-email-json-csv",
+      "casebrainBeforeSha256": "8730ba76bead1925d7c3875ccdf6383e43fa872ba71edaefa82e61434c03606c",
+      "casebrainAfterSha256": "4e5ee541e542d94448735fdb1cc2fdf75ad02821854d5e4e8e939f6b41fc158c",
+      "specialtyHarnessSha256": "38b83219ec7fad8bd5f4b857c666ca14e672b87c27aa99619912c3163861506d",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-111-firearms-multi-defendant",
+      "casebrainBeforeSha256": "e59326c107cbea3be3207cc3690b4cbf82758f53b689c707b00586310cdc6c46",
+      "casebrainAfterSha256": "6dfcbb33d3a207531fa17d262080ec7ebc4ba0a3a2b9cfe4b0551291ccac9eb3",
+      "specialtyHarnessSha256": "e8797716bf49c40cd83defdbba6a541f661fab7b1161cac75a4043a1a0688b40",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-112-sexual-abe-multi-defendant",
+      "casebrainBeforeSha256": "52b7b17ec9eb962d1928e9bd7322898992ff5279861838c9bc221e42069118cf",
+      "casebrainAfterSha256": "b9b7f236d57309ea1e81a5a3803e441338617f947167c7c3b24bbf90e0acbffc",
+      "specialtyHarnessSha256": "59a6c103376bb1b7f6f9beca64cdd23949c1817c540e2c6d53c441d8a0dd4dfd",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-113-domestic-abuse-multi-defendant",
+      "casebrainBeforeSha256": "dca69eaf39f6c1c32e4e7bbed382c8e4d8b6a378382d2c4650427188f7c59869",
+      "casebrainAfterSha256": "4fa288d9c265b39e071e6a6b8b34d0848b9cc7028e5aa40dc453fdb088f3f5ea",
+      "specialtyHarnessSha256": "67cfa089d6357911f2e726761a6d3248e663a24edec1418d6eec90ef407067ec",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-114-youth-participation-multi-defendant",
+      "casebrainBeforeSha256": "b4d345a68159b5f64826588225cd541431d3cfcac8197a2fa58d600438de8afa",
+      "casebrainAfterSha256": "c7043a1570367dcc5b6978ba4c059d58ffca2e739231a6c6d7669847fde373fa",
+      "specialtyHarnessSha256": "ef1badc0729f6eadd77bbc0f30fa626f0de17a3b1a9a6e4031fe67ff63ac3505",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-115-county-lines-nrm-multi-defendant",
+      "casebrainBeforeSha256": "ca3b7296d35c7e3da399fe10c4d0036bf41dd87ae48fe60fc22aa70e8f273915",
+      "casebrainAfterSha256": "ac3a657ab75401f629249c4ed982615106a977747847eea03b66926f8aba2fa1",
+      "specialtyHarnessSha256": "77d87d32609380376eae791c29dcbd3d199b3fcea906a3e8e4959cd97b93ad59",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-116-fraud-poca-multi-defendant",
+      "casebrainBeforeSha256": "09d7f04c9bfdc089f7265de1646cb7fcec2f919751ae2820ca5b2d49689c63ed",
+      "casebrainAfterSha256": "b3aa4dc5fe0e3fc005bd291dfd4f7571a54be61d9dc403a3cede0d408debdd0a",
+      "specialtyHarnessSha256": "b97c98c384648cfedaf4dd8ce1b2c8f90d870da9579a7b905c02c5112a3428d9",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-117-digital-attribution-multi-defendant",
+      "casebrainBeforeSha256": "73e9478571e649a496b770250bdde202a32481beebc74dd00ac9828465f301a4",
+      "casebrainAfterSha256": "bc06b5bce27a6cc2a05be19d025457a271b793cfdaea5f716056bd05805eafd6",
+      "specialtyHarnessSha256": "dc9e927dd8c3567d83930e76c137974c1b016ea4b6f04a3f11a8aeb42e60f5f8",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-118-identification-code-d-multi-defendant",
+      "casebrainBeforeSha256": "b59abc72cc790bd373138d2513e74551ac165c1390c8a590daa626d6265a0426",
+      "casebrainAfterSha256": "65486be315d41faa00b2ad8e442cbe9e4b535c650a12e602ddafdf82aa5597d3",
+      "specialtyHarnessSha256": "a75c942efac33d3485093b3d0a61c2ed9a620f92efa26950429a5e00df2f7725",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-119-mental-health-fitness-later-disclosure",
+      "casebrainBeforeSha256": "8fa5875838732f5155c8daa8542acddb20163c865879022aee2da2959a47e437",
+      "casebrainAfterSha256": "b2d1abbd5d4b80b50820547d74d38e439c86a1bcda024a72164feaac391b3f9a",
+      "specialtyHarnessSha256": "9fce445961ad8f78bf5503be1e919ce574ce4628e56b46feb0915ad2659d0664",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-120-disclosure-pii-later-disclosure",
+      "casebrainBeforeSha256": "5f75a71042f292febbac8951fc3e2595784fd02c1b879b7b4f7e61e5d7e79d53",
+      "casebrainAfterSha256": "3c7c8038404288e97306dee990bfca2c8354af60b25e7bcde9a98143510d73db",
+      "specialtyHarnessSha256": "348282c4fc670e32975318c3269fdf87bfc492c8aa46ec682a40b95b70212bb4",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-121-road-traffic-fatal-later-disclosure",
+      "casebrainBeforeSha256": "886bb023df1f6bb65e110ee13e950b04fd8110436398123c174d593edfefebc7",
+      "casebrainAfterSha256": "75abb5d97a84051982545648a50765da2afb91acf10ea38e06c6808ca2c4ea5e",
+      "specialtyHarnessSha256": "acabdffeb0102761c11f7fdf1fca6227f8c49ae72f8c8374afe3b81ae161a432",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-122-magistrates-procedure-later-disclosure",
+      "casebrainBeforeSha256": "7a39f16c70263f124137484b35a756463984aabe9e00815f7d093f2b7506a842",
+      "casebrainAfterSha256": "cb8ff6486390ffabccda3a723c16bc52a2a527b777d376292a4689c06bf14179",
+      "specialtyHarnessSha256": "e2cb998855079363150103e0044ff610399cce0ed494635c425933d2a3e7dcf6",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-123-bail-remand-later-disclosure",
+      "casebrainBeforeSha256": "6c810684373022dd3c921a13c4651e3621ed79c0db08cbdd257f1824a2fabe2b",
+      "casebrainAfterSha256": "25f4fd3f3d171f3a473a427a8e6363ee895bc9350fbc63b973cfc0468c8386e9",
+      "specialtyHarnessSha256": "72f4f91b5ccd5783714de37c42afb6b63f6a762226d1ac67ef6800adae2cabde",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-124-sentencing-newton-later-disclosure",
+      "casebrainBeforeSha256": "2e74bf3c3d26ff0c88f8006a88b320fe34e1451146555da1fcb748c5a194be1b",
+      "casebrainAfterSha256": "342f7263292dfbd9d01f688e39a7b14ee1780b343ba4ad8a928bc7d861871a96",
+      "specialtyHarnessSha256": "84da79b54a169363b4e017a53af11d631a0eddd1ec0660c581efeaecb07f5544",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-125-appeals-later-disclosure",
+      "casebrainBeforeSha256": "0c803652d3a68b43d90afc85c21561db4ac05c6131d8ed71cc11ac0cdf31d07b",
+      "casebrainAfterSha256": "ca65900a45069876aebdb7d408ce7cb6f6a9f60d9db7786fda9158225500a26c",
+      "specialtyHarnessSha256": "4b57bea01e35c824b865f6b6a458e04eefca4a7d52cb91f8a24b4cc23aab59b5",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-126-multi-defendant-attribution-later-disclosure",
+      "casebrainBeforeSha256": "06781d322c6855930ce5e2826e8670bebc2b1a86ad7019995a1da7a71d580456",
+      "casebrainAfterSha256": "818025b12d1f3b8b0581511bc18c8fbad3ff5d418ab7fa1c8721510779f23f08",
+      "specialtyHarnessSha256": "cc5b33ce499c12aff7783d99c00c146da299dd0c97aff3452e1bc3e65c830f49",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-127-homicide-causation-amended-instrument",
+      "casebrainBeforeSha256": "b837d5a52351ac8343e1cd856bcedf7cfcd2b852fc73edde5050584c38822164",
+      "casebrainAfterSha256": "83293cef28812272e1f527671fc36f1ba3b9302f61ad4397b5f18fc49ea3fcab",
+      "specialtyHarnessSha256": "ca956b21c46e176a4475b8d97137cedb38898c2c449f4a6291c07185541efc21",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-128-violence-robbery-weapons-amended-instrument",
+      "casebrainBeforeSha256": "7a11c7aa73b007909e1896cf3eabaa4f85e2746e65af58cbe4e6cb1cd5abef5b",
+      "casebrainAfterSha256": "1c6da6afeddaa590d5189e2a249696bd7e0d3842595a140c3a3ab9a65be452b3",
+      "specialtyHarnessSha256": "aadbc1a2b55dbc1a7e860879486a89d5fb490bcb030956a0de1aa17326db475f",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-129-firearms-amended-instrument",
+      "casebrainBeforeSha256": "9bd9a1dc36637ce302330c01c0a33afe24c4e0c0ccfe26171323319c0ee05a5e",
+      "casebrainAfterSha256": "d2579311817d7aad945b15f453e816ba81f142c0b21b2be5c1285b485ef2f7af",
+      "specialtyHarnessSha256": "cece939f9c238f5074bc64727df9252554d582942adadaf63b6933527a7ecbe0",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-130-sexual-abe-amended-instrument",
+      "casebrainBeforeSha256": "00f2950888573b61ed8c9a47acb29799efeb5244988d9df7355fdbc123c5d686",
+      "casebrainAfterSha256": "3acda916bcd605cfc3f4d6dff4426ff74bc8ac4d154013070a805542b99880e1",
+      "specialtyHarnessSha256": "815f490b494b81a5ec50aef2d99cf70847a197c0ab2e3c4c7fc5c2983ed2af44",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-131-domestic-abuse-amended-instrument",
+      "casebrainBeforeSha256": "d246bb2dc0a4c35124c6dce48d57f614e1177886cc1655cfba71e07c68bb9899",
+      "casebrainAfterSha256": "a668a74098278b8b0ba778d9f0ffa1ccb91bf667e2e11b84c63b4b0d5f6468e3",
+      "specialtyHarnessSha256": "0233f12b7e3be4b24a3ecb4e6a07c499b9fab2b55d97949c2b109d48a18dd7d1",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-132-youth-participation-amended-instrument",
+      "casebrainBeforeSha256": "fd4ef823c152de0fd14c14a4b8ddb6f2ff2aaa012c1f304c1d98617cf4e15bb2",
+      "casebrainAfterSha256": "d4b18f0ecfda6d487dcb5a4e77230654d42a6a693ca6ef91e5f3551371c72db3",
+      "specialtyHarnessSha256": "279f8bb013f057fe27bc0908ee2461fe9e6bb19e4fe388eef7310184129786c6",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-133-county-lines-nrm-amended-instrument",
+      "casebrainBeforeSha256": "398e7d0b94cfcf2006c791cf3e30404eeabb5ad5bed057a3e867086341c2bcab",
+      "casebrainAfterSha256": "168ef46fe774c115c9a568c9d6481971aaf9bfb9d6b2cb5f5cf222525e60585c",
+      "specialtyHarnessSha256": "6ec7aa9e51aed0a93a8502e41e06699fd01c1ce7a3109b759fea527c4a8f9143",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-134-fraud-poca-amended-instrument",
+      "casebrainBeforeSha256": "fb26dac9551e3a43c8c586158d2caa2518cffac39e3340ddb1b1f45388aaad07",
+      "casebrainAfterSha256": "3216ff0d8c07148e8d4f04d8b01fac96d7929afba03ada18ed154014fa151620",
+      "specialtyHarnessSha256": "feebbdda1bba6081504d39a5b1b1bf35bdbd99ffd42e47707b451cea16880ac7",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-135-digital-attribution-chase-mixed-linkage",
+      "casebrainBeforeSha256": "47e5a290f88d54941d85caa383c646b9e8396a9926488d7bbda97f82e7849589",
+      "casebrainAfterSha256": "32abd5d8e08a1b9938bd258540819f2fa50bf39972aeb28605632b59ff338b03",
+      "specialtyHarnessSha256": "f30ffd38f8cb472c118db1bcec1b981229db3e5477a7c34b2452623e25bd582d",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-136-identification-code-d-chase-mixed-linkage",
+      "casebrainBeforeSha256": "abe24d4ed9144e386eb675538fc18c072e0be2b6833c5316c2a3d1fe0b4b6c28",
+      "casebrainAfterSha256": "fdbae92fbed88735e398e2421cb56068ccaaeb5b04d87ec7fb612425c0794d3f",
+      "specialtyHarnessSha256": "32ab13519253619b486553dc92b91a21b6cd8f2c5e7b542f38f16f86e325bfe5",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-137-mental-health-fitness-chase-mixed-linkage",
+      "casebrainBeforeSha256": "365ed8c203e8b49f9511a6df448e61d84daef5b587b80d5e284346556c74ab35",
+      "casebrainAfterSha256": "5c915e8b8f0faae49eaa438fc36cbc161eed5039aba7e7a03531cc3ffa4b63f9",
+      "specialtyHarnessSha256": "1185008d2f01416cd8148bebe1155bb134f069d831bd86a4629ec19b3f1e9b82",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-138-disclosure-pii-chase-mixed-linkage",
+      "casebrainBeforeSha256": "e08f903d85c03bc9a78b64463220e30dc60155a9acb27cd918b47efd559caa34",
+      "casebrainAfterSha256": "4a6f71efca7e38d27288c52368204391af6cf372a403f330a4c96017020e655f",
+      "specialtyHarnessSha256": "e9fb210c5f0f197cbe4279ecfeb460dbf70a3e0cd71ede042a81ce915161a573",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-139-road-traffic-fatal-chase-mixed-linkage",
+      "casebrainBeforeSha256": "4810eeee2dda322219371d64e2318e51644c7ed041cb4a899f0cb0716ea05fa6",
+      "casebrainAfterSha256": "73cd25236677bec4563c20cd5ab41d9a5a2d0b267d14d060798708f0973f319c",
+      "specialtyHarnessSha256": "849fb22fc5d4d646bcf89f74f8d7c6519ebad1833ca7c228f43857c6be069f41",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-140-magistrates-procedure-chase-mixed-linkage",
+      "casebrainBeforeSha256": "9ae4a6e6482d1a8a1bef1f4c031a62a4df8ed7e18a65d5c1d42eae66d65a961f",
+      "casebrainAfterSha256": "e9878719c4e70ebfd160c90d5cb4944790d23dba19bbaa5a3c253e4addb45223",
+      "specialtyHarnessSha256": "7ac380bdb4f3a4d6d98d76080bdc269467d70a0e02cf86c706d75ed28c94ed42",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-141-bail-remand-dense-bundle",
+      "casebrainBeforeSha256": "1207c4af589d2f92ff2c5f43d3fc84acc8c82fda62b6be63f9bdc7bf46728d7a",
+      "casebrainAfterSha256": "1d3741f3d17a56491d96a9de69c68810187d2f6c8f7a701ed956aaf8eb79f846",
+      "specialtyHarnessSha256": "2082cffe5237bc545884cff8f1359c6a25697d59e6f3f94aea64f733055c9b75",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-142-sentencing-newton-dense-bundle",
+      "casebrainBeforeSha256": "962995056f43b044bc32ed288407e4965fdb9c34b31abcc6041f8360c83afe6b",
+      "casebrainAfterSha256": "bc5b81deba67db3513f6da46a97dfd012f5d58f43420cedc5cfd3eaeaa7bafd0",
+      "specialtyHarnessSha256": "bd218d2f2ca121b2787669c316e3c584cc2de310b7c5cefe8d72f4ef0d027337",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-143-appeals-dense-bundle",
+      "casebrainBeforeSha256": "2f3ad504b7e20b162e927aaf19eff983ef3b02be37deeb29f7e37b5454fbf65e",
+      "casebrainAfterSha256": "1626ac6de65148cd34e9a2838b32f7a0105bc950eb28bfe7d0cc4a623c01a15c",
+      "specialtyHarnessSha256": "f972e87e32977d409b01455a871f14b4a11fdcf6c8b987a05cc08bccedfc336f",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-144-multi-defendant-attribution-dense-bundle",
+      "casebrainBeforeSha256": "820b8d1fe087bd196f9b1227c973151b3764edf26a9f4f525c5ca739c649c70c",
+      "casebrainAfterSha256": "4dce37104ddc8343f363ced0afdd7f40a8217e1aaa0a1aa7b72a7826267996b8",
+      "specialtyHarnessSha256": "59cbfa930fa1fb9679ed45925bb60b3b481426ff1a1cf51a3ecec0fe4355408e",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-145-homicide-causation-dense-bundle",
+      "casebrainBeforeSha256": "ba2a4e614cf28b3b8c80568b951f48e9b0f203937fdb1279398f2a8c1831432c",
+      "casebrainAfterSha256": "1d45b8bb22e92c1f473f10ae3fd46331e465092b664de8e0320e0d9ec2992cd4",
+      "specialtyHarnessSha256": "54da492945e365e5046fc9233a3d3dc19dff31f71a524b643174adeeb5ee6819",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-146-violence-robbery-weapons-recording-transcript-clip",
+      "casebrainBeforeSha256": "319f6fe119a46b025aaa48d247484071b6c23a62c351b614399c34e77f7a167d",
+      "casebrainAfterSha256": "b529f166e165cd86a59d33816c5427d3e92f616247974cf431c1439962f6293a",
+      "specialtyHarnessSha256": "44370993184b3118df3976cffa8c751b7662d144d5eb7d095100bd5ba1883dd4",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-147-firearms-recording-transcript-clip",
+      "casebrainBeforeSha256": "0739ed006fb5a3b3253cb7aa0d350c0f21e1b1bad4f8ebb28b071a80d53ff3fb",
+      "casebrainAfterSha256": "610fabf978f5f4c3cdcc4ace459162cea80973c1f8836a1273cb8f16a6e5ddd0",
+      "specialtyHarnessSha256": "41121a2091ca9c9004536114138bdb796b5df1c298f6205843b991684dc149a4",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-148-sexual-abe-recording-transcript-clip",
+      "casebrainBeforeSha256": "71150e0d78b8afb16aec9baf4968e61063d349a945b6ded19657161aa7ee102b",
+      "casebrainAfterSha256": "d18be8e733896b42400e77ef87763a143a965e89c9a2d5b7cabff7ddfa737bec",
+      "specialtyHarnessSha256": "af3a55e52fdea215bd227a2ef2618a56861a1488bf0389e961a3a966caff053e",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-149-domestic-abuse-conflicting-source",
+      "casebrainBeforeSha256": "9b580938aaa4b1f4955d145620720208db01fc2bb8986802280366850d18f14a",
+      "casebrainAfterSha256": "c65afeba356384248c41f6fe8bcd481287ac66a0af4a416d0a327a6a04579786",
+      "specialtyHarnessSha256": "0fa6edbe97d53777c1024e2c2b0ea056708a01b73ef7efc2e544d16043486954",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    },
+    {
+      "caseId": "s300-n150-150-youth-participation-conflicting-source",
+      "casebrainBeforeSha256": "7a7b4c1991f7f2d290f971cddd9e24cdcfd24a038afd1c3268634d8a42ffbdd3",
+      "casebrainAfterSha256": "b53b5b6784ecb292a201116c308a231314467d91b36235d93ce0e8ccc4a7f38d",
+      "specialtyHarnessSha256": "dfacbfbbf8b5dc23289fa2c4f31ecd63ae661648050ba900239cc72b472080c0",
+      "canonicalUnchanged": true,
+      "truthUnchanged": true
+    }
+  ]
+}

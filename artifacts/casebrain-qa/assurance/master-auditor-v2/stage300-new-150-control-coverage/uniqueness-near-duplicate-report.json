@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "stage300-new-150-uniqueness@1.0.0",
+  "uniqueness": {
+    "uniqueCaseIds": 150,
+    "uniqueSourcePdfHashes": 150,
+    "uniqueFingerprints": 150,
+    "normalisedTemplateId": "stage300-new150-disclosure-v1"
+  },
+  "nearDuplicates": [],
+  "templateLineageDisclosed": true,
+  "normalisedTemplateId": "stage300-new150-disclosure-v1"
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "stage300-new150-gap-close-honesty-checks@1.0.0",
+  "truthKeyOpenedDuringRematerialisation": false,
+  "specialtyBagsFromTruthKey": false,
+  "specialtyBagsFromCaseBrainProductionEmitter": false,
+  "specialtyBagsFromSourceDocumentParseHarness": true,
+  "audiencePacksHandwrittenFromTruth": false,
+  "audiencePacksFromLiveProductionSurfaces": true,
+  "eldPairsSyntheticWithoutProduction": false,
+  "eldPairsFromDualProductionCapture": true,
+  "unresolvedChaseCountedAsLinked": false,
+  "authenticatedBrowserExercised": false,
+  "sixProductionExitsRequired": true,
+  "originalSourceHashesPreservedUnder": "sources/*/gap-close-v1/original-capture-hashes.json",
+  "additiveVersionRoot": "sources/*/gap-close-v1/"
+}
