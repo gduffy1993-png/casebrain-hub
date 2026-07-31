@@ -1,0 +1,566 @@
+{
+  "schemaVersion": "stage300-essential-control-register@1.0.0",
+  "purpose": "Smallest honest blocking set: priority-theme controls that lack an operational detector/adapter (specified_not_implemented, adapter_foundation_only, deferred heavy/OCR, or adapter_foundation_gap). Separate browser/human/legal/pen/external lanes are listed but excluded. Partials that merely lacked named Stage-150 exercise are tracked under deepenPartialsBeforeFullExerciseClaims.",
+  "count": 43,
+  "byTheme": {
+    "heavy_pdf_ocr_binary": [
+      "MAA2-SRC-07-REDACTION-DETECT",
+      "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+    ],
+    "structured_charge_instruments": [
+      "MAA2-LSL-05-CATEGORY-SET-COVERAGE"
+    ],
+    "chronology_competing_timestamps": [
+      "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "MAA2-PRC-03-YOUTH-STATE",
+      "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "MAA2-PRC-07-DISCLOSURE-PII-STATE"
+    ],
+    "cross_exit_cross_audience": [
+      "MAA2-AUD-02-CLIENT-PLAIN",
+      "MAA2-AUD-03-COURT-PRECISE",
+      "MAA2-AUD-04-CPS-SPECIFIC",
+      "MAA2-AUD-05-SUPERVISOR-RISK",
+      "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE"
+    ],
+    "evidence_locked_drafting_version": [
+      "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT"
+    ]
+  },
+  "controls": [
+    {
+      "controlId": "MAA2-SRC-07-REDACTION-DETECT",
+      "familyCode": "SRC",
+      "theme": "heavy_pdf_ocr_binary",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "Stage-300 heavy binary/OCR lane. Adapter schema only; ESA lacks original binaries.",
+      "deferralLane": "heavy_ocr_binary",
+      "exactDeferralReason": "Stage-300 heavy binary/OCR lane. Adapter schema only; ESA lacks original binaries."
+    },
+    {
+      "controlId": "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "familyCode": "SRC",
+      "theme": "heavy_pdf_ocr_binary",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "Stage-300 pagination continuity needs page-unit OCR evidence absent on ESA.",
+      "deferralLane": "heavy_ocr_binary",
+      "exactDeferralReason": "Stage-300 pagination continuity needs page-unit OCR evidence absent on ESA."
+    },
+    {
+      "controlId": "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "familyCode": "SRC",
+      "theme": "heavy_pdf_ocr_binary",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "Stage-300 attachment inventory vs binary refs; not inventable from wording.",
+      "deferralLane": "heavy_ocr_binary",
+      "exactDeferralReason": "Stage-300 attachment inventory vs binary refs; not inventable from wording."
+    },
+    {
+      "controlId": "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "familyCode": "SRC",
+      "theme": "heavy_pdf_ocr_binary",
+      "implementationStatus": "partially_implemented",
+      "missingPrerequisiteOrAdapter": "partial handler present (password_corrupt_fake_extraction); Stage-150 currentlyRunnableOnStage150=false; deepen genuine-exit + contract bar",
+      "deferralLane": "heavy_ocr_binary",
+      "exactDeferralReason": "Source/page provenance — Stage-300 essential where packet-local; heavy OCR where binary-bound."
+    },
+    {
+      "controlId": "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE",
+      "familyCode": "SRC",
+      "theme": "heavy_pdf_ocr_binary",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "Stage-300 extracted-text provenance binding requires source-binary/OCR receipts.",
+      "deferralLane": "heavy_ocr_binary",
+      "exactDeferralReason": "Stage-300 extracted-text provenance binding requires source-binary/OCR receipts."
+    },
+    {
+      "controlId": "MAA2-LSL-05-CATEGORY-SET-COVERAGE",
+      "familyCode": "LSL",
+      "theme": "structured_charge_instruments",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Pinned registry adapter schema only; no category-set coverage detector (returns []). Schema ≠ authority taxonomy. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Structured charge / fidelity controls must be operational on genuine instruments before Stage 300."
+    },
+    {
+      "controlId": "MAA2-CHR-06-AGE-AT-OFFENCE-HEARING",
+      "familyCode": "CHR",
+      "theme": "chronology_competing_timestamps",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — dob_age_calc_ledger adapter present; CHR-06 returns [] with no age computation detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Chronology / procedural-state controls for competing timestamps and later disclosure."
+    },
+    {
+      "controlId": "MAA2-CHR-12-TRANSPARENT-CALC-INPUTS",
+      "familyCode": "CHR",
+      "theme": "chronology_competing_timestamps",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Empty calcInputs presence check only — not calibrated calc-input honesty detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Chronology / procedural-state controls for competing timestamps and later disclosure."
+    },
+    {
+      "controlId": "MAA2-PRC-03-YOUTH-STATE",
+      "familyCode": "PRC",
+      "theme": "chronology_competing_timestamps",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Presence-null check on youthState only; not a youth-state honesty detector with contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Chronology / procedural-state controls for competing timestamps and later disclosure."
+    },
+    {
+      "controlId": "MAA2-PRC-04-FITNESS-PARTICIPATION",
+      "familyCode": "PRC",
+      "theme": "chronology_competing_timestamps",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Presence-null check on fitnessParticipation only. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Chronology / procedural-state controls for competing timestamps and later disclosure."
+    },
+    {
+      "controlId": "MAA2-PRC-07-DISCLOSURE-PII-STATE",
+      "familyCode": "PRC",
+      "theme": "chronology_competing_timestamps",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Presence-null check on disclosurePiiState only. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Chronology / procedural-state controls for competing timestamps and later disclosure."
+    },
+    {
+      "controlId": "MAA2-AUD-02-CLIENT-PLAIN",
+      "familyCode": "AUD",
+      "theme": "cross_exit_cross_audience",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Multi-audience adapter bag only; no client-plain surface comparison detector (returns []). Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "audience_perspective_depth",
+      "exactDeferralReason": "Multi-audience / perspective-depth controls need independent audience surface packs beyond Stage-150 bag."
+    },
+    {
+      "controlId": "MAA2-AUD-03-COURT-PRECISE",
+      "familyCode": "AUD",
+      "theme": "cross_exit_cross_audience",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter foundation only; court-precise detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "audience_perspective_depth",
+      "exactDeferralReason": "Multi-audience / perspective-depth controls need independent audience surface packs beyond Stage-150 bag."
+    },
+    {
+      "controlId": "MAA2-AUD-04-CPS-SPECIFIC",
+      "familyCode": "AUD",
+      "theme": "cross_exit_cross_audience",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter foundation only; CPS-specific detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "audience_perspective_depth",
+      "exactDeferralReason": "Multi-audience / perspective-depth controls need independent audience surface packs beyond Stage-150 bag."
+    },
+    {
+      "controlId": "MAA2-AUD-05-SUPERVISOR-RISK",
+      "familyCode": "AUD",
+      "theme": "cross_exit_cross_audience",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter foundation only; supervisor-risk detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "audience_perspective_depth",
+      "exactDeferralReason": "Multi-audience / perspective-depth controls need independent audience surface packs beyond Stage-150 bag."
+    },
+    {
+      "controlId": "MAA2-XPP-01-DEFENCE-SOLICITOR-PERSPECTIVE",
+      "familyCode": "XPP",
+      "theme": "cross_exit_cross_audience",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Perspective adapter bag only; defence-solicitor perspective detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "audience_perspective_depth",
+      "exactDeferralReason": "Multi-audience / perspective-depth controls need independent audience surface packs beyond Stage-150 bag."
+    },
+    {
+      "controlId": "MAA2-XPP-02-PROSECUTION-CHALLENGE",
+      "familyCode": "XPP",
+      "theme": "cross_exit_cross_audience",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter foundation only; prosecution-challenge detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "audience_perspective_depth",
+      "exactDeferralReason": "Multi-audience / perspective-depth controls need independent audience surface packs beyond Stage-150 bag."
+    },
+    {
+      "controlId": "MAA2-XPP-03-JUDICIAL-NEUTRALITY",
+      "familyCode": "XPP",
+      "theme": "cross_exit_cross_audience",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter foundation only; judicial-neutrality detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "audience_perspective_depth",
+      "exactDeferralReason": "Multi-audience / perspective-depth controls need independent audience surface packs beyond Stage-150 bag."
+    },
+    {
+      "controlId": "MAA2-XPP-04-CLIENT-COMPREHENSION",
+      "familyCode": "XPP",
+      "theme": "cross_exit_cross_audience",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter foundation only; client-comprehension detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "audience_perspective_depth",
+      "exactDeferralReason": "Multi-audience / perspective-depth controls need independent audience surface packs beyond Stage-150 bag."
+    },
+    {
+      "controlId": "MAA2-XPP-05-SUPERVISOR-RISK-PERSPECTIVE",
+      "familyCode": "XPP",
+      "theme": "cross_exit_cross_audience",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter foundation only; supervisor-risk perspective detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "audience_perspective_depth",
+      "exactDeferralReason": "Multi-audience / perspective-depth controls need independent audience surface packs beyond Stage-150 bag."
+    },
+    {
+      "controlId": "MAA2-VDR-01-SOURCE-CASE-HASHES",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Empty sourceCaseHashes bag check only; not a run/artefact receipt reproducibility detector suite. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-VDR-02-FROZEN-MEMBERSHIP-ORDER",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Empty frozenMembershipOrder check only. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-VDR-03-CASEBRAIN-COMMIT-BUILD",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter stores commit/build fields; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-VDR-04-SCHEMA-REGISTRY-DETECTOR-VERSIONS",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter stores version pins; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-VDR-05-MODEL-PROMPT-VERSION",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter optional modelPromptVersion; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-VDR-06-EXACT-OUTPUTS-FINDING-IDS",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter stores exactFindingIds; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-VDR-07-TIMESTAMPS-DISPOSITIONS",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter stores timestampsDispositions; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-VDR-08-BEFORE-AFTER-MAPPING",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter stores beforeAfterMap; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-VDR-09-ADDED-REMOVED-RETAINED",
+      "familyCode": "VDR",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter stores addedRemovedRetained; detector returns []. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-01-SOURCE-FACT-CONCLUSION-SENTENCE-RECEIPTS",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Adapter eld_source_change_drafting + ELD schema only; evaluateBatch4 returns [] unconditionally for this id. Synthetic fixtures alone. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-02-SOURCE-CHANGE-AFFECTED-SENTENCES",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Shares classifyWordingOutcomes with ELD-10; adapter refuses non-synthetic version pairs → not Stage-150 exercisable from accepted live inputs. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-03-STALE-DRAFT-MARKING",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Uses detectStaleDrafting on synthetic pairs only; no resolving per-control contracts. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-04-STALE-BLOCKED-ACROSS-EXITS",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Shares ELD-03 staleLeaksAcrossExits path; synthetic-only; not independently contracted. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-05-NO-SILENT-REWRITE-OR-DELETE",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — assessReceiptPreservation on synthetic pairs only; no unavailable/positive/negative contract resolution. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-06-BEFORE-AFTER-CHANGE-REASON",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Unconditional return [] after adapter presence — no control-specific detector. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-07-SOLICITOR-APPROVAL-BEFORE-EXTERNAL",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Unconditional return [] after adapter presence — approval-receipt detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-08-REJECTED-SUPERSEDED-REVISION-HISTORY",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Unconditional return [] — revision-history detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-09-AUDIENCE-REDRAFT-UNCHANGED-TRUTH",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Unconditional return [] — audience-redraft truth lock not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-10-UNAFFECTED-SENTENCES-BYTE-IDENTICAL",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Shares ELD-02 path; synthetic-only adapter blocks non-synthetic pairs. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-11-UNCERTAIN-PROVENANCE-QUALIFIED",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Unconditional return [] — provenance qualification detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-12-CROSS-EXIT-PROPAGATION-COMPLETE",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Unconditional return [] — cross-exit propagation detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-13-ROLLBACK-SUPERSEDED-SOURCE",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Unconditional return [] — rollback detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    },
+    {
+      "controlId": "MAA2-ELD-14-ACTOR-TIME-SOURCE-APPROVAL-AUDIT",
+      "familyCode": "ELD",
+      "theme": "evidence_locked_drafting_version",
+      "implementationStatus": "specified_not_implemented",
+      "missingPrerequisiteOrAdapter": "adapter_foundation_only — Unconditional return [] — actor/time/source/approval audit detector not implemented. Fails partially_implemented_detector bar: no control-specific positive + multiple safe-negative + unavailable contracts with resolving IDs; schema/adapter/family probe ≠ detector.",
+      "deferralLane": "stage300_essential",
+      "exactDeferralReason": "Evidence-locked drafting / version change — essential before Stage 300; Stage-150 had adapter foundation only."
+    }
+  ],
+  "explicitlySeparateLanes": {
+    "authenticated_browser": [],
+    "human_gold": [],
+    "legal_authority_registry": [
+      "MAA2-LEG-01-OFFICIAL-AUTHORITY-SOURCE",
+      "MAA2-LEG-02-JURISDICTION",
+      "MAA2-LEG-03-EFFECTIVE-DATE",
+      "MAA2-LEG-05-RETRIEVAL-DATE",
+      "MAA2-LEG-06-REGISTRY-VERSION-ID",
+      "MAA2-LEG-07-AUTHORITY-TYPE-DISTINCTION",
+      "MAA2-LEG-08-CURRENCY-WARNING",
+      "MAA2-LEG-10-NO-PROPOSITION-WITHOUT-SOURCE",
+      "MAA2-XEX-04-LEGAL-CURRENCY-WARNING"
+    ],
+    "external_assurance": [
+      "MAA2-FID-11-SEMANTIC-ALIGNMENT",
+      "MAA2-ATR-04-ACCOUNT-DEVICE-USER",
+      "MAA2-ATR-05-POSSESSION-USE-KNOWLEDGE"
+    ],
+    "penetration_security": [
+      "MAA2-AUD-08-INDEPENDENT-AUDIENCE-TESTS"
+    ],
+    "heavy_ocr_binary": [
+      "MAA2-SRC-07-REDACTION-DETECT",
+      "MAA2-SRC-09-PAGINATION-DISCONTINUITY",
+      "MAA2-SRC-12-ATTACHMENTS-ABSENT-REFS",
+      "MAA2-SRC-13-PASSWORD-CORRUPT",
+      "MAA2-SRC-17-EXTRACTED-TEXT-PROVENANCE"
+    ]
+  },
+  "note": "Browser, human-gold, penetration-testing and external-certification remain separate but are listed exhaustively from the 161.",
+  "deepenPartialsBeforeFullExerciseClaims": {
+    "count": 80,
+    "note": "Partially-implemented handlers that lacked named Stage-150 exercise — deepen on genuine Stage-300 exits; not counted in the smallest blocking adapter set.",
+    "controlIds": [
+      "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "MAA2-BND-01-SOURCE-DOC-INVENTORY",
+      "MAA2-BND-02-INSTRUMENT-STATUS",
+      "MAA2-BND-03-REPLACEMENT-LINKS",
+      "MAA2-BND-04-VERSION-PRECEDENCE",
+      "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "MAA2-BND-06-EXHIBIT-LABEL-COLLISION",
+      "MAA2-BND-07-ALIAS-SAFE-COLLAPSE",
+      "MAA2-BND-08-EXTRACT-VS-FULL",
+      "MAA2-BND-09-STILL-CLIP-VS-MASTER",
+      "MAA2-BND-10-RECORDING-VS-TRANSCRIPT",
+      "MAA2-BND-11-DRAFT-VS-SIGNED",
+      "MAA2-BND-12-COMPLETE-VS-PARTIAL-DISCLOSURE",
+      "MAA2-BND-13-CODEFENDANT-ONLY",
+      "MAA2-BND-14-QUARANTINED-CONFLICTING",
+      "MAA2-BND-15-EXCLUDED-ROW-TOTALS",
+      "MAA2-BND-16-NO-INVENTED-RELATIONSHIPS",
+      "MAA2-FID-01-NAMES-DEFENDANT-ALLOC",
+      "MAA2-FID-02-COUNT-NUMBERS",
+      "MAA2-FID-03-CHARGE-WORDING-PARTICULARS",
+      "MAA2-FID-04-DATES-TIMES-LOCATIONS-MONEY",
+      "MAA2-FID-05-EXHIBIT-DOC-REFS",
+      "MAA2-FID-06-PRESERVE-NEGATIVES",
+      "MAA2-FID-07-PRESERVE-QUALIFIERS",
+      "MAA2-FID-08-NO-STRENGTHEN-ALLEGE-TO-FACT",
+      "MAA2-FID-09-NO-SILENT-CORRECTION",
+      "MAA2-FID-10-QUOTATION-FIDELITY",
+      "MAA2-LSL-01-STATEMENT-CLASSIFICATION",
+      "MAA2-LSL-03-NO-SUBMISSION-TO-FINDING",
+      "MAA2-LSL-04-NO-HYPOTHESIS-TO-ADVICE",
+      "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "MAA2-CHG-02-DEFENDANT-COUNT-ALLOC",
+      "MAA2-CHG-03-STATEMENT-VS-PARTICULARS",
+      "MAA2-CHG-04-COMPLETE-NOT-TRUNCATED",
+      "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "MAA2-CHG-06-AMENDMENT-HISTORY",
+      "MAA2-CHG-07-STATUTORY-PROVISION",
+      "MAA2-CHG-09-VERIFIED-DISCREPANCY-STATE",
+      "MAA2-CHG-10-WARNING-INSEPARABLE",
+      "MAA2-CHG-11-NO-REGISTRY-AS-OPERATIVE-FACT",
+      "MAA2-CHG-12-SOURCE-AND-REQUIRED-ACTION",
+      "MAA2-EVS-04-REASON-TAXONOMY",
+      "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "MAA2-ATR-03-STATEMENT-OWNERSHIP",
+      "MAA2-ATR-06-GROUP-VS-INDIVIDUAL",
+      "MAA2-ATR-07-INFERENCE-VS-PROVEN",
+      "MAA2-ATR-08-NO-DEFENDANT-BLEED",
+      "MAA2-ATR-09-SOURCE-LINKED-LIMITATIONS",
+      "MAA2-CHR-01-EXACT-DATES-TZ",
+      "MAA2-CHR-02-COMPETING-TIMESTAMPS",
+      "MAA2-CHR-03-IMPOSSIBLE-CHRONOLOGY",
+      "MAA2-CHR-04-CUSTODY-INTERVIEW-TIMING",
+      "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "MAA2-CHR-08-PROCEDURAL-DEADLINES",
+      "MAA2-CHR-09-PAGE-DOC-EVIDENCE-TOTALS",
+      "MAA2-CHR-11-DUPLICATE-OMITTED-EVENTS",
+      "MAA2-PRC-01-STAGE-TAGGING",
+      "MAA2-PRC-02-WRONG-STAGE-DETECT",
+      "MAA2-CHS-03-PROVENANCE-LINK",
+      "MAA2-CHS-04-EVIDENTIAL-VS-PROCEDURAL",
+      "MAA2-CHS-06-NO-ALIAS-OR-SERVED-DUP",
+      "MAA2-CHS-07-UPDATE-ON-SERVICE-CHANGE",
+      "MAA2-CHS-08-DISCLOSE-EXCLUDED",
+      "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+      "MAA2-WRD-11-NO-GENERIC-FILLER",
+      "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+      "MAA2-AUD-01-SOLICITOR-COMPLETE",
+      "MAA2-XEX-01-CHARGE-WARNING-ATTACHED",
+      "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "MAA2-XEX-03-ATTRIBUTION-LIMIT-ATTACHED",
+      "MAA2-XEX-06-QUARANTINE-PARTIAL-TOTAL",
+      "MAA2-XEX-07-NO-SAFE-VIEW-UNSAFE-COPY",
+      "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "MAA2-PRI-02-NO-PRIORITY-BURIAL",
+      "MAA2-PRI-03-PRIORITY-CHECKLIST",
+      "MAA2-CTX-01-CLASSIFY-CONTRADICTIONS",
+      "MAA2-CTX-02-RANK-HIGH-OVER-LOW",
+      "MAA2-DEF-01-OPPORTUNITY-CHECKLIST",
+      "MAA2-DEF-02-NO-CONCLUSION-PRESENTATION",
+      "MAA2-XPP-06-AGREEMENT-DISAGREEMENT-RECORD"
+    ]
+  }
+}

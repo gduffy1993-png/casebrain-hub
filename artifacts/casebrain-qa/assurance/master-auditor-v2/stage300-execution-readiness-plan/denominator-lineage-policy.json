@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "stage300-denominator-lineage-policy@1.0.0",
+  "cohorts": {
+    "stage150_frozen_lineage": {
+      "count": 150,
+      "orderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+      "immutable": true,
+      "genuineOutput": 120,
+      "projectionOnly": 30
+    },
+    "stage300_added_new": {
+      "count": 150,
+      "status": "not_generated",
+      "mustBeUniqueCaseIdentities": true
+    },
+    "stage300_total": {
+      "count": 300,
+      "status": "not_frozen",
+      "reportSeparately": [
+        "stage150_frozen_lineage",
+        "stage300_added_new"
+      ]
+    }
+  },
+  "excludedFromStage300Denominator": [
+    "artifacts/evidence-state-audit-local (ESA-499)",
+    "artifacts/casebrain-qa/integrity-programme/scale3000-*",
+    "Malik Price generation runs",
+    "gold-manual-proof-set-v1"
+  ],
+  "rule": "Never combine unavailable/not_exercised exits into PASS. Never mix foreign corpora into the Stage-300 census denominator."
+}

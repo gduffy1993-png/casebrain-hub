@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "stage300-new-150-coverage-specification@1.0.0",
+  "design": {
+    "preserveFrozen150Lineage": true,
+    "frozen150OrderedMembershipSha256": "54aeb9f1663ad8290dff9daddad1539f0778c8c38f9b833fbc99901ce7d918b1",
+    "addGenuinelyNewUniquePackets": 150,
+    "totalUniqueCaseIdentities": 300,
+    "reportOriginalAndAddedCohortsSeparately": true,
+    "forbiddenDenominatorMixing": [
+      "ESA-499",
+      "scale-3000",
+      "Malik",
+      "gold-manual-proof-set",
+      "any prior Stage-50/150 subsample treated as Stage-300 census"
+    ]
+  },
+  "new150MustCover": [
+    {
+      "gap": "larger_and_denser_bundles",
+      "minPackets": 25,
+      "notes": "Multi-section disclosure denser than Stage-150 deficit templates."
+    },
+    {
+      "gap": "scanned_ocr_degraded_pages",
+      "minPackets": 30,
+      "notes": "Genuine OCR/page-unit receipts; not clean digital-only PDFs."
+    },
+    {
+      "gap": "native_email_json_csv_media_metadata",
+      "minPackets": 20,
+      "notes": "Non-PDF native formats with metadata provenance."
+    },
+    {
+      "gap": "amended_and_conflicting_instruments",
+      "minPackets": 20,
+      "notes": "Operative vs amended charge instruments with history."
+    },
+    {
+      "gap": "multi_defendant_attribution",
+      "minPackets": 20,
+      "notes": "Co-defendant segregation and other_defendant_only units."
+    },
+    {
+      "gap": "later_disclosure",
+      "minPackets": 15,
+      "notes": "Time-ordered later disclosure events with timezone."
+    },
+    {
+      "gap": "youth_nrm_mental_health_pii",
+      "minPackets": 15,
+      "notes": "PRC youth/fitness/disclosure-PII structured states."
+    },
+    {
+      "gap": "appeals_sentencing_bail",
+      "minPackets": 15,
+      "notes": "Procedural stages beyond Stage-150 thin coverage."
+    },
+    {
+      "gap": "versioned_drafting_changes",
+      "minPackets": 15,
+      "notes": "Non-synthetic before/after drafting pairs for ELD/VDR."
+    },
+    {
+      "gap": "all_genuine_non_browser_exits",
+      "minPackets": 150,
+      "notes": "Every new packet must capture view/copy/export/api/pdf/composed_prose; browser remains not_exercised unless separately authorised."
+    }
+  ],
+  "antiPatterns": [
+    "Do not rematerialise ESA-499 into Stage-300 membership",
+    "Do not count projection-only packets as genuine-output exercise",
+    "Do not convert Stage-150 projections into app results"
+  ]
+}
