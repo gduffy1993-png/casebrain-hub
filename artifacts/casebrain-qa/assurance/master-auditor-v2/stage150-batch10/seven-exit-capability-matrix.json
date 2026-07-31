@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "batch10-seven-exit-capability-matrix@1.0.0",
+  "exits": [
+    {
+      "exitId": "view",
+      "realPayloadPresentCount": 0,
+      "note": "Metadata alone is not an exit"
+    },
+    {
+      "exitId": "copy",
+      "realPayloadPresentCount": 0,
+      "note": "Metadata alone is not an exit"
+    },
+    {
+      "exitId": "export",
+      "realPayloadPresentCount": 0,
+      "note": "Metadata alone is not an exit"
+    },
+    {
+      "exitId": "api",
+      "realPayloadPresentCount": 0,
+      "note": "Metadata alone is not an exit"
+    },
+    {
+      "exitId": "pdf",
+      "realPayloadPresentCount": 0,
+      "note": "Metadata alone is not an exit"
+    },
+    {
+      "exitId": "composed_prose",
+      "realPayloadPresentCount": 0,
+      "note": "Metadata alone is not an exit"
+    },
+    {
+      "exitId": "authenticated_browser",
+      "realPayloadPresentCount": 0,
+      "note": "Browser unavailable unless genuinely authenticated and captured payload bytes exist"
+    }
+  ],
+  "matrix": {
+    "view": {
+      "realPayloadPresentCount": 0
+    },
+    "copy": {
+      "realPayloadPresentCount": 0
+    },
+    "export": {
+      "realPayloadPresentCount": 0
+    },
+    "api": {
+      "realPayloadPresentCount": 0
+    },
+    "pdf": {
+      "realPayloadPresentCount": 0
+    },
+    "composed_prose": {
+      "realPayloadPresentCount": 0
+    },
+    "authenticated_browser": {
+      "realPayloadPresentCount": 0
+    }
+  }
+}

@@ -1,0 +1,1506 @@
+{
+  "schemaVersion": "batch10-independent-recompute-rows@1.0.0",
+  "rows": [
+    {
+      "caseId": "demo-audit-01-phone-harassment",
+      "cohort": "A",
+      "packetSha256": "2e5b59b1e66df1ed67ea0656584da3f1a8bb4839278a98e3537fdb517ce498e9",
+      "pdfSha256": "240488744f1228b3d92e4db4687514bacb1f2e077bf91af6f62592534e2c57bb",
+      "sourceFingerprint": "07757e52932c8235e2ca1a4eb37303c8ec4a822be672478c551b045718288731",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-02-cctv-stills",
+      "cohort": "A",
+      "packetSha256": "5b1cc9d5809bcba2baabd6e211e98f47dc2cf78e50e44c023abd6c29ceae75c1",
+      "pdfSha256": "da387eee3610fb2322693a9220839a6153d17974b2f2bea6302ae2ebd376f9dd",
+      "sourceFingerprint": "a98492373e9bb97946c34a976c670b553e43db91d71c904c8dbe8da500f90fe8",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-03-bwv-custody",
+      "cohort": "A",
+      "packetSha256": "0fcbf4588d9c3d9c17d30831116005ce85571438b8f40dd5fd6357e8118ca4d2",
+      "pdfSha256": "9e83c50fe3a2070fc8b1fe8e482e2dc506f32a95bbf3fe5b2898e396ec0a019c",
+      "sourceFingerprint": "86d6f4eda93e497da2eec5d322c6b26b304c01354f09d4fa02dfee7c711c7f67",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-04-co-def-interview",
+      "cohort": "A",
+      "packetSha256": "25e9ceab79c46356e356db7643e23d5cfabca7dfdb7bb3489876f80aeb89cb6c",
+      "pdfSha256": "cf3383305226c38daad393a5826e7dc9fa40f65cfafd70f891bb8cb1130a4ae2",
+      "sourceFingerprint": "c471314bc94e0867e76bd4162d7b70ac007ef481d4cc6396340a4544addc0678",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-05-encro-attribution",
+      "cohort": "A",
+      "packetSha256": "81a9987c03b6f1da8b82ebc80fc67f88e6d1b055dece9480d1fb8849cd25b3e4",
+      "pdfSha256": "3d2802112ac0f961c5755e492474af5d3f5990f03188fc2edea711bd04e50a0e",
+      "sourceFingerprint": "1eb13e4275f082b81ca534ea7567cefc3a249926e1657e33dd2b8b1dc9dc0650",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-06-domestic-stalking",
+      "cohort": "A",
+      "packetSha256": "2c8c8a1ab19ea7828004bd81727ac6f145e64e426d70467f81fae4704be15d10",
+      "pdfSha256": "97f2886146cbbc87c9234066d766833e627bda2b59d0813130982f16304379ce",
+      "sourceFingerprint": "b4e4f02ac9fb41f1f95cde4b4327522340059262f318e45e21b02e9e5a27d159",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-07-phone-ocr-trap",
+      "cohort": "A",
+      "packetSha256": "730e56bcb0cda1807a706bb7640f72070d93a48edf9c9193dae166612c6d674a",
+      "pdfSha256": "015ef07b18dadb77baf2bbecc1f8428055ed901f9f55dbe6deed05a6824c3b1b",
+      "sourceFingerprint": "813ac656e513078ce71b85bb19660b9df2b13687c89a90c2b042820bfbf7f513",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-08-cctv-night-stills",
+      "cohort": "A",
+      "packetSha256": "4379dd57a399c50ead8170b0741d9c22930b9d35cb970dce936e401d1d1fafda",
+      "pdfSha256": "076778a8b97e687150964472b97d6e141a312763a7d994ea308ebac12fc101cc",
+      "sourceFingerprint": "ab1aeaeb1855cbfd95fb95eae1fa016174f7771d9fe68664c1cc896d3bcbb1c4",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-09-cctv-index-only",
+      "cohort": "A",
+      "packetSha256": "06485dcc0b64f4ff2b49c06605be9ba758de8f7d3b261011644f469a4685a12a",
+      "pdfSha256": "66c14bb7adfc7833de169cd678dd871d7794bf9a15ba52610775598df1acdc4c",
+      "sourceFingerprint": "612ca4bf98aa6c2717b4055d90a2f7a9a473459c519f4d7b58031af260e28a22",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-10-bwv-public-order",
+      "cohort": "A",
+      "packetSha256": "bb4ab92d10863fbc1d10b0f8f202323e49dc3143b89a19ac0d84782ac41b0841",
+      "pdfSha256": "ac0c41fdbc27dc3f979645d51c3344222b0ad092e8b0170edcfcae00b5b871e6",
+      "sourceFingerprint": "c0041ab075d02448fe8bc162dae1b94be8a26fe16fa066ce2d890941397c22f4",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-11-custody-pace-ocr",
+      "cohort": "A",
+      "packetSha256": "fb3cdd72916b33d7209962bd7c898c3090afb161ab5b65f26f35a79b1830a8cf",
+      "pdfSha256": "0f8a0c48b8d90846a9e2c24124bddb8390d14512cb6394fe82b0e71a77b4abcd",
+      "sourceFingerprint": "59ac7ff2c081581bd3995c7ddbad89476f337649c7345474802de4952ba06d69",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-12-multi-def-burglary",
+      "cohort": "A",
+      "packetSha256": "ec1e3a96df7a242c7070a6699445679824a272645b9debf6619d68de38ae084f",
+      "pdfSha256": "3a720a532064064a96e11a503547f86d3e412db0872edc03399e50b2e12ba25e",
+      "sourceFingerprint": "f876da0f697ad6e5f9a18d54a596e839b982adc86b745c776f1a40ad85adc826",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-13-co-def-index-trap",
+      "cohort": "A",
+      "packetSha256": "109c7370a45a86d7d87e4db1b04d4b5ccdbb67d606e8056528021f8adf4694cb",
+      "pdfSha256": "a779f634c0d44b83ab08a1acaf7a66d3ed39e90e862a9fb3116edf9e87e07dce",
+      "sourceFingerprint": "63c6fc3eb70d37c28cb1b5a6ebd1b8c30f355246ee3c4c47feacf7e6035b2f7b",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-14-encro-retail",
+      "cohort": "A",
+      "packetSha256": "df34ff2635c05f6e479985ea61899394d5bf403041fa8ba81025e431ea972b2d",
+      "pdfSha256": "58ddcdc1dd3e6ea79a26e9d86f6225879d794f89f2313a171c3857f68c188e23",
+      "sourceFingerprint": "e4d03a0e6c7aa6a172dba6caeb8bb0045435e96325a1780275ccce8482c32ce8",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-15-county-lines-runners",
+      "cohort": "A",
+      "packetSha256": "2c52e02f292c86abe7ce3da52a5b80e01bca365e0c2db38513599041e933b2f0",
+      "pdfSha256": "9f048832281feab865db364b2a170fa6f296aff153ec1e7f854b5e5753dfdf7f",
+      "sourceFingerprint": "1e1061c3b69452dbc7941b18196ba8383c3db422da84b32998a252d151e6a900",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-16-fraud-bank-statements",
+      "cohort": "A",
+      "packetSha256": "0a51ca65a869777d0fd0d0791c7a3ce94bfcc6e89334c0e4ac4d3e20105ea028",
+      "pdfSha256": "b8a2994d03cf922342a813d096dbe10471cb97c6c64365dd87227aff754e04a4",
+      "sourceFingerprint": "92d764235c97e12eee65a540a893b68a9a938d30fd3c54812ff55a6c8f950c2e",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-17-fraud-transaction-export",
+      "cohort": "A",
+      "packetSha256": "192b69d9c1944d7caebfb03b7428d36d6625e9b095e764bdf73eeeb59699e07d",
+      "pdfSha256": "f8506461c51b3f83b5902f36e130e9e83052f84b505588ec45d79159dfcdaaf5",
+      "sourceFingerprint": "13327cbc35fc167036325c0717f1fdd16f586f13ef2801d0fac0bd87c99ab387",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-18-motoring-sjp-thin",
+      "cohort": "A",
+      "packetSha256": "083a64e6453d780b91c3aa30358229ec655b9367bea5b7964c535f10d7b76de5",
+      "pdfSha256": "6037c44c21ab7a18df1882f6f328e47ee6b97e72be0826d5082b373bf54ef978",
+      "sourceFingerprint": "33184bf498b6fe10b02303fd75f493ade58e29e30a684ac2fd626e6390f590a9",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-19-motoring-breath-specimen",
+      "cohort": "A",
+      "packetSha256": "b3ad5c387ca4023bd0ad394c56ce81a031c7d169990746894722db923cc66ac9",
+      "pdfSha256": "c1267fa3edc387e1bd68dd4224e779aa0ac2f24dd9f59fdec4e1feeeb84fa428",
+      "sourceFingerprint": "beb8cda7ecb71ad8b9a757b49a4e92c4d3064fa1c996c44df6398595d878b2c7",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-20-domestic-harassment",
+      "cohort": "A",
+      "packetSha256": "7b048fc2c6acac7c900564ad60384a7a2a944e567df3e1b253301ad188c14af0",
+      "pdfSha256": "be2e46c9cd04436156b58cf0ec32579094643e1a7513cd9828589d3c7e18e1e8",
+      "sourceFingerprint": "d7fa83bb5a9e009fea88363f07e09dc9b15a3b1855f6d340575fb71fdb5c0fa4",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-21-historic-sexual-abe",
+      "cohort": "A",
+      "packetSha256": "e5bd66e981d1986e6b2040fa1e6866fcae5cf188b2f4045e7bbdd25b1df3d87c",
+      "pdfSha256": "1f214ec35b460086c98bf9168bd93f44be4ab005aa3083d079839fa84413c382",
+      "sourceFingerprint": "65ef9a323e4ed506ae48c44464709985762b1da94be5a2b3ef34a6dd808427d0",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-22-youth-interview",
+      "cohort": "A",
+      "packetSha256": "ab52b13cba4e42f550d890bb0b93f8dc6edba66413f52f52b99790d91bb830dd",
+      "pdfSha256": "9416ae132b0768f90911855e02bdaebcefb8d85816ac6a2936183bfad14a06f1",
+      "sourceFingerprint": "77350f251a506a6e11a3f07ce60baa4ed1c695bc6021314e49ee77bae1b5564b",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-23-duplicate-pages",
+      "cohort": "A",
+      "packetSha256": "7a5e60c6f769b5a15eff7b633f7075f13b821f03096396397d842d320c52d7ba",
+      "pdfSha256": "887628c9e13cbebed4a5244ed6b4bfb6400fbcabc4535c46cdea0a1b52c7dcfd",
+      "sourceFingerprint": "741bb21f8c215732fee62f653f5f50ad4f4e1d1a5a7fe9d9db4dbcfe03dc0568",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-24-missing-pages-index",
+      "cohort": "A",
+      "packetSha256": "cdc7c6aa0b75d0ac90051b49c3bac38c93cc29b060f0bc7306e68417bb81f7ee",
+      "pdfSha256": "902c1ccd92cddcc33ec4fe100e43a6b2020916925ff14e95bfc9364004fb5f69",
+      "sourceFingerprint": "d81b742bb7d18dfb1274afad51208da7463f9f3baddc96acc32a130fe919b441",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-25-charge-bundle-mismatch",
+      "cohort": "A",
+      "packetSha256": "3169d345931503fa324e18a9bfd5c59bb9bef62f7554403e9145c96cae55ba12",
+      "pdfSha256": "22ad302ff9a381af501b7ea11de97f5362298b4abed3060c90c711d6920c68c1",
+      "sourceFingerprint": "ffc58a54d02872b8cf406204378f96ea4db6926b469fe9028477ff633a135c62",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-26-phone-referred-metadata",
+      "cohort": "A",
+      "packetSha256": "b28bdc89b72a6243bb6b3ed6f309cd942f8a47bdbe5a5f12c317c31caead7976",
+      "pdfSha256": "6ff6e6406ad3d4c6803753b498cf9acd1a2fc89b0423c946d0ff9c2ebf1f9671",
+      "sourceFingerprint": "a1815f11eede9fad148fc32713653a8ef16135094f164c5b30c107d258809b45",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-27-custody-pace-missing",
+      "cohort": "A",
+      "packetSha256": "a9d87c07007a4b7c0a59d0c01f56f8c9c4c7fef826ab5c458527d0d8f8501846",
+      "pdfSha256": "248ec594722915c712488325e2ad431ab9deee4299eef2cd80a85fb4222fa2e4",
+      "sourceFingerprint": "c64ea9514f39b90c9c4d0c7c008101baa98d7befb3cabc5f761381f33757ec25",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-28-fraud-subscriber-trap",
+      "cohort": "A",
+      "packetSha256": "d58a0ee1e863c7d4c8e28c3c6cb69c0ebc61c7808b6b83b1f05d1c6f00ee9e74",
+      "pdfSha256": "9108b68bf261719af892ee420cdc46bcb3094eae6040f8d880210e134cf4f545",
+      "sourceFingerprint": "92ab8ae80944ae0ab4b2290bad923f73a9c69ea856e2256516afa6b03522736f",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-29-youth-yjs-material",
+      "cohort": "A",
+      "packetSha256": "d9ac93c9098559b8f8493e9cba336b43d73dea6e08d774fef40e5d884499dc75",
+      "pdfSha256": "c99aa33712b74ceafe3f8f691e2edbfbbcf302698d5d8880d134154bc823ec6f",
+      "sourceFingerprint": "6c43cc5f67ab9b3422dfb0b5fcad2b2430ded99f6cea42c4718f0f9c54c1fe88",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "demo-audit-30-layout-hearing-date",
+      "cohort": "A",
+      "packetSha256": "a0e119e202d269a7b697a01c34aab2a1ab0bfc993cbf0d7338208c2b2c0f482f",
+      "pdfSha256": "80d5f05eb20695bd67e39b875b0347e6d6c630d03cbe86a52f6a2ef17c19f160",
+      "sourceFingerprint": "27bd1c10498b2496b59674d4e4f9db5b98befa019e68ffaa5dec8e5bd4b04b5b",
+      "accepted": true,
+      "family": null,
+      "variant": null
+    },
+    {
+      "caseId": "s150-d120-001-homicide-causation-clean",
+      "cohort": "B",
+      "packetSha256": "b0ca7bb319487ef28d779be196abf99d448ce61663cab2758002b6b3ed5052df",
+      "pdfSha256": "4d0e4ca2f45b5ee374f4e6ce30c4789d66c4820bef79a24397eab3c08c597d93",
+      "sourceFingerprint": "d7472330d0fb2aeb6c45d2d39b41f76bda41a604d9576fa96c894a5a37c68a95",
+      "accepted": true,
+      "family": "homicide_causation",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-002-homicide-causation-messy",
+      "cohort": "B",
+      "packetSha256": "16f3762bc78c29cd56e691d564df8a7b4971769e9fdbc5bfaf189eb66e102d1a",
+      "pdfSha256": "cecc9423bae1b24c2a41d8a40d02aee4854a6d93260da4fc0807eabe7dd5ab8e",
+      "sourceFingerprint": "5c6efe59bb775fd75e0e66f6f8be3cb24fbc14da25d5f1a673428cbb3c9649f7",
+      "accepted": true,
+      "family": "homicide_causation",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-003-homicide-causation-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "06ec9b7fe6d48e1c915dad7285e6548f5c13de8ee6ca97510aa5f4d1f8a4d8d3",
+      "pdfSha256": "a72b6b40fa189ad3e53d408be04d9af426ba4c5cbf51a7f96c1122c45bd3b1dd",
+      "sourceFingerprint": "7cb1d838ee04241be2b5a53862547287c8a7b43aef55b589df8628b00ab46946",
+      "accepted": true,
+      "family": "homicide_causation",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-004-homicide-causation-mixed-format",
+      "cohort": "B",
+      "packetSha256": "d6c0e007c35b41e5328f58a75fb0de9d3eca6a19706d741702c5e6a67578df70",
+      "pdfSha256": "d4ff38279fcc12d8de597aac86a093fa1092645c9f306f034063621137de83ff",
+      "sourceFingerprint": "383392f6d84719f0e3735ace7b1d9fa5aeb3ddcd8c2e3bf10996d07bbc39cc4d",
+      "accepted": true,
+      "family": "homicide_causation",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-005-homicide-causation-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "3fd37237c4c8a566058d4f02fc6c8447739e5dc8bc063be135b58bae9038bc42",
+      "pdfSha256": "2ff18ba00cffc3850afb9a31264ebefd8448ad2c277b69e82f79de552466f480",
+      "sourceFingerprint": "cb8e4cd28132f2635cf1c697cc07af9a4ae8eb5b8a512e1d304ec1fd19497864",
+      "accepted": true,
+      "family": "homicide_causation",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-006-homicide-causation-amended-document",
+      "cohort": "B",
+      "packetSha256": "b8c7d042bd946301e251486d0432d70c5aa221a8d15f3051ead274a962826d47",
+      "pdfSha256": "408895ff5d06c258c8ef1a7b3ef156034bd0619cbb436611425ddba189def80f",
+      "sourceFingerprint": "a288e1aebb891d25b7dca971de28fd7fdad669b8a6d6e0f15e39846cb233e1c2",
+      "accepted": true,
+      "family": "homicide_causation",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-007-homicide-causation-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "34721b02c25aa6b4d88e53259729b561af241e36c9efaa5f82c967d1bf04672e",
+      "pdfSha256": "78cd1dc83cfdcbf83d01ac597e8ccc9e0a547cffdcb9f7e211c2c3932fe47959",
+      "sourceFingerprint": "32d6aec2a5d51f4ca69bdd273aea75b5d9d2f58eb4365ae18bf761787bdc067c",
+      "accepted": true,
+      "family": "homicide_causation",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-008-violence-robbery-weapons-clean",
+      "cohort": "B",
+      "packetSha256": "69795704d2d8e159bcdd744b9bbf0e99a5866943a3524370ebf24d378105012e",
+      "pdfSha256": "82f41d6dd2bd1fbd4785338a24ef3f11ebcc95f9257332df372693fe35de92b9",
+      "sourceFingerprint": "de175331631133a5ff9681a4d25befb0f17ca59ce82ea098ff3634d483128b9d",
+      "accepted": true,
+      "family": "violence_robbery_weapons",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-009-violence-robbery-weapons-messy",
+      "cohort": "B",
+      "packetSha256": "abf8424b77c64f807c872e21ee75a827337e4721f600a3828f01836aa745fcf8",
+      "pdfSha256": "6978e0feb09723c9368a222fd436d5f6207fb5107390ddfd8e3c8e1b5c143867",
+      "sourceFingerprint": "27de77fa51ea9e45a9e62dedd007d2e4f6fbf15ae91580992d9a69d009cceff7",
+      "accepted": true,
+      "family": "violence_robbery_weapons",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-010-violence-robbery-weapons-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "f6c978c0fde5e9aba161ee5a2c30271e05f95291d50f5b0bf22a8cb7f58f5dd3",
+      "pdfSha256": "c8d401e2c52d02331f33615ba45f4364294d7298bd29960a3083b49959798e66",
+      "sourceFingerprint": "4457c478167027971842fa87633322a92add48cd23c7ac8c620ebb3ac99339a5",
+      "accepted": true,
+      "family": "violence_robbery_weapons",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-011-violence-robbery-weapons-mixed-format",
+      "cohort": "B",
+      "packetSha256": "1b7caa7ec322c1346177ff17d37de7079192a7511454133f50cec0249f147d71",
+      "pdfSha256": "64d0361ba5408d3b93d47c8f97364103c7f14fe7f335a1d3e7f7ab2d23384f93",
+      "sourceFingerprint": "9d4308f0e20c250316f61881065ef26c22fab8a3088c4c4932f360372d876956",
+      "accepted": true,
+      "family": "violence_robbery_weapons",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-012-violence-robbery-weapons-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "30e789c4d1097754f031a68db1a350f5fd8bba6d9738e0ab905805a546362c5a",
+      "pdfSha256": "76a4e54fbf2ddbfdd3a1e2696a8502e9959894e367c42fbf58f5706c0c4bfefc",
+      "sourceFingerprint": "b47d4d64f056e519ba4b042f6ad5603acf17f2f2e3bdf2384fbc6cb4c86657c7",
+      "accepted": true,
+      "family": "violence_robbery_weapons",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-013-violence-robbery-weapons-amended-document",
+      "cohort": "B",
+      "packetSha256": "6bf1b1ad4d0c3612e5239434b0c08466f31b582ca50f44594f1a91e085d106d4",
+      "pdfSha256": "dc7975607479977d0a364db6a948d3ff536f956fb17900bd85c3e531f939c86f",
+      "sourceFingerprint": "6815ac210a9ef235645b4960cd62308a435f8a99962601283993d997749b1ad0",
+      "accepted": true,
+      "family": "violence_robbery_weapons",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-014-violence-robbery-weapons-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "80aeb6c88fa946bb95567a0683dfb6506e23de5e8ad9a16cb04aab8d452c2496",
+      "pdfSha256": "2d3ab5df41b5a55d36d138a5b2a9b329becf450c78465a4e0ff6c34ad1ec0bde",
+      "sourceFingerprint": "6e643163370f874d732bb6bd3f1c82b596c9ca369b30a0d934047bcc876492af",
+      "accepted": true,
+      "family": "violence_robbery_weapons",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-015-firearms-clean",
+      "cohort": "B",
+      "packetSha256": "e8c5ce80979cd91de1df328f8818675d967455b020afc30f7b9dcdf6e27a207c",
+      "pdfSha256": "f4595632f6f4eaab51cdaaeae11543a8b1a8448860e1f853cc6822875fb74c28",
+      "sourceFingerprint": "6c7839a5f9a2347b49c42491c783564369a1ee7b67aee2da2010722590cc2357",
+      "accepted": true,
+      "family": "firearms",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-016-firearms-messy",
+      "cohort": "B",
+      "packetSha256": "8af63a5aefa2fe924a8f5af21fc5b13dd2575b30023fabd5c12f3020520ecdc3",
+      "pdfSha256": "1bd184054a970c9205071e9e4691196fbe039ed0faa1c31e298a3cecd1a365fe",
+      "sourceFingerprint": "6d8e6a7ad6784dcbe112df20358e3d0547ea21fcbd60be379f9d77bc72b8fbf5",
+      "accepted": true,
+      "family": "firearms",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-017-firearms-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "693a86b46c36ac46678467fd88b48a70cd8d91c7f4992ceaeb79ecd8d93b47b2",
+      "pdfSha256": "55a5ed65f31877eeb9bb1ede00897699eca486f85c2fc1ecfee432d7ed5f24e3",
+      "sourceFingerprint": "5e6f34c2938b075f4d2f91e146dde904744fd79e45df475207f0d50c8dcab24c",
+      "accepted": true,
+      "family": "firearms",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-018-firearms-mixed-format",
+      "cohort": "B",
+      "packetSha256": "89e22223dfc5f983f53afa2d6227b3e86b201d60c6de520301959a65e59a5aff",
+      "pdfSha256": "a95c8487538ffd4cf65e69a0c5d7b671475190a21764ef02c716686c6802a660",
+      "sourceFingerprint": "8aa362c7e2808a99fab9666e7a75d9e5efd781e0771f9b63058de6fe8a3489cb",
+      "accepted": true,
+      "family": "firearms",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-019-firearms-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "ecc8f7ae1e325768acd53d62ff0a166e375d66ec23ed1076f3bbc4f47d113b65",
+      "pdfSha256": "cff31e6e2bef430fbc365d320f41483d153f0c0617370ff67d67d1d117c244d8",
+      "sourceFingerprint": "a872827c5954bb273bd46407f036a85d6151c0a3edf6218ccdaa3d2bb117e539",
+      "accepted": true,
+      "family": "firearms",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-020-firearms-amended-document",
+      "cohort": "B",
+      "packetSha256": "b68b978e9816fe60f07bb65c62a1e7f545d9257fd4f8ccc7560ae6862c16a5a1",
+      "pdfSha256": "1ae74ac8fc4666d02147bd6119612e48c0e9b6dc9d194fc8304ffa155cd64575",
+      "sourceFingerprint": "b0cba0e287f25b956f90d07f7bf037cc07bf817bf7e79c1333641ec36a3b6868",
+      "accepted": true,
+      "family": "firearms",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-021-firearms-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "b3bde02476d0cc8010627d819b41b5068bd695b16ae8a051ede7753b23a63a30",
+      "pdfSha256": "d8ca3b781411528318e0056674991c99c83f64e39ae5a854fa6378adaefacea7",
+      "sourceFingerprint": "92cca5bcbae78997ffc30e2a59269930e5df8f4d89589121a4c01615c060e640",
+      "accepted": true,
+      "family": "firearms",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-022-sexual-abe-clean",
+      "cohort": "B",
+      "packetSha256": "7d6e80cd76c46684f3c50b42c54ee17eb97a87e528a0b87bd9fa3a4da3ec9166",
+      "pdfSha256": "cdfd845a510703d6bc69bce3c8abaf72d3c27441b34a71b37d2150b22d1e4fba",
+      "sourceFingerprint": "9423bf986140fa116ec33432cdb37a0704d657e16d469746ba29c7addf8b04a3",
+      "accepted": true,
+      "family": "sexual_abe",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-023-sexual-abe-messy",
+      "cohort": "B",
+      "packetSha256": "79f92ae3222e825ab3a0dea30635b8044401804daafca4f929e3d10f8a142f32",
+      "pdfSha256": "c78f5c399532fc38ad164d87e65584b85d8dc068ac96b4fce03a4ddd90c2ce20",
+      "sourceFingerprint": "9eb8848b9cfb14179a2890b2b7f9c488eab6181ef9680805f9c05309fc1bfd8c",
+      "accepted": true,
+      "family": "sexual_abe",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-024-sexual-abe-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "df474dbdd584ca6ed49441fd15ad583193b7c41ac6987180ab877f4f5c9202d2",
+      "pdfSha256": "0f4f09ea4a34e6f3f1e9adcb1ba23cce44336100044af6908ee8333712e99e75",
+      "sourceFingerprint": "259ca06c3c213b5e99fb9ec8a0488d6971832f7ed15638cf454f9cfe17f1b1ca",
+      "accepted": true,
+      "family": "sexual_abe",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-025-sexual-abe-mixed-format",
+      "cohort": "B",
+      "packetSha256": "370df1d65776c194b6d780d9ba3ff22709d4acb1f1d86fe0bee1da2332615794",
+      "pdfSha256": "89ddd79cbaa9a8add116cd237a1a61f9cbc1da2992269b00a3ad996fd2e87a05",
+      "sourceFingerprint": "4c5035c3ee90183ace275dc5450afdfdda00aa9e5ce86b127faff5af92537052",
+      "accepted": true,
+      "family": "sexual_abe",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-026-sexual-abe-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "d40c526907a7a0f2ec8e77a613781db65db4410834bcda94b9fbd330c5aab683",
+      "pdfSha256": "ae9e7f395ef3b9453f882ad7040eb87a0f262543a4d1407d1fd35b8ccb40841e",
+      "sourceFingerprint": "a91784b6767776d5ce4b27973f9c494a7b5f7c038e6206872b609a61be036408",
+      "accepted": true,
+      "family": "sexual_abe",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-027-sexual-abe-amended-document",
+      "cohort": "B",
+      "packetSha256": "83ed84685798bd0468d1745d15b8dfb1790584fde0209ef90f57b74d64b9f478",
+      "pdfSha256": "22b277d723e254cbb7ca7bb6598431054b410d10e82a2310d81df4e2ddd9524a",
+      "sourceFingerprint": "3895ce85c9b62451be958e8d2a8a8626bd3a1ab95b83f1ec558b9bad60f0428c",
+      "accepted": true,
+      "family": "sexual_abe",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-028-sexual-abe-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "23059215690459d6a0dfc93d5764b2322c852f001d6fde21c8aff7f65fe66f1f",
+      "pdfSha256": "5265727bb6297ce38a7991b204fc7ad44964f7df1d43b03b528ec72c264d74d0",
+      "sourceFingerprint": "cf2103ce6c54f64f8e0c46802260a4a7afe93c82ed23e2562326026b126585dd",
+      "accepted": true,
+      "family": "sexual_abe",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-029-domestic-abuse-clean",
+      "cohort": "B",
+      "packetSha256": "d772e53114a78af3724943212498d78a11cc2f9ffba163408a621fe49699a001",
+      "pdfSha256": "e6b35457d37ec59c3b6f29ea01826dfeaca0f5065ce9de959bf59cde8349fa42",
+      "sourceFingerprint": "364379088aedfdfbe4ce3e49f4eb19c53403a7a5b3d65e60cd424a83cb00ee25",
+      "accepted": true,
+      "family": "domestic_abuse",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-030-domestic-abuse-messy",
+      "cohort": "B",
+      "packetSha256": "c3a511c2ff5b22dc12f8092404c30c6a1af3dbfd32111cb9bcc32b48acb3515e",
+      "pdfSha256": "a7f74b0aa415adef1cd06f27ff75fde18b3d86a39e656d0ffe356ce646b2ccfe",
+      "sourceFingerprint": "ca6ec0eace7c1804c36e922bcdb9239b533e68eed70e762d447d3fd6144deb87",
+      "accepted": true,
+      "family": "domestic_abuse",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-031-domestic-abuse-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "62b7157c2d4d42ebf14df5c2b25524c8d8fc041b3383e5471d062bcfadc47d35",
+      "pdfSha256": "67f561310fd28240e7a1dc9606204aa696ea27bc6b16a7049668e625b958b5e6",
+      "sourceFingerprint": "96879166809c0fccd1a4771af6fc1289e2b1adc51ad48770d6bd8c0f18cbd4c6",
+      "accepted": true,
+      "family": "domestic_abuse",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-032-domestic-abuse-mixed-format",
+      "cohort": "B",
+      "packetSha256": "e8de793d2d6f6983b221193b2752c19f18f7fe2014c01ed801486fc7aef0876e",
+      "pdfSha256": "05ad8ff8b6379ddab4b6937b64b3c68efc51c11f61e4d455aa270349fb08387b",
+      "sourceFingerprint": "e80f6970a6ce46b819a997a7212626eef8c3d5dd71f2c64276bebe1ba9133c37",
+      "accepted": true,
+      "family": "domestic_abuse",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-033-domestic-abuse-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "27292d9d815d677a6b4846d3476e43833a0e2ec9ef5bee51ba24b509b79b78ac",
+      "pdfSha256": "bf2092aa15be86f07fd7d41f47274bd123df5d59fab2c0ab1929345590b4b91d",
+      "sourceFingerprint": "9dc4552d7954aa5810205f8eea98a995734b14f567e187333ce62dbeca353953",
+      "accepted": true,
+      "family": "domestic_abuse",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-034-domestic-abuse-amended-document",
+      "cohort": "B",
+      "packetSha256": "440efd4ed19b5a7a1b4404ae8155a3dadec6cf0e5ccd4e4ee7661d9e70b7ba24",
+      "pdfSha256": "59d2fda864118b73fbe23a1d57a726f903debc117d2614c74e49642f25f89480",
+      "sourceFingerprint": "d6a38a63b88ab8ac1102071ed3dcb40ba0af696413bd89a731856242f9ace378",
+      "accepted": true,
+      "family": "domestic_abuse",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-035-domestic-abuse-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "25d0232331257f973880ecb4dc851978202616684d0c80cefd2b668c95347b7a",
+      "pdfSha256": "51702a5614f86d7c368991358159599a2ee53e64371b498e722cb6d4671d94a6",
+      "sourceFingerprint": "f37eab6863c566c77c9e4e86d89b8d9f7c3eee82fbadc64028f0061497f040d4",
+      "accepted": true,
+      "family": "domestic_abuse",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-036-youth-participation-clean",
+      "cohort": "B",
+      "packetSha256": "2c12d5a95ee4379e41b29d0e19710ba8bb0eb55b231da8206eb5b6af3cf6fe11",
+      "pdfSha256": "4788c974b4c8aec774fb8517a971d6e78db7a1bc827bc90e3b71acb69e6b68dd",
+      "sourceFingerprint": "8c471b9711f806a0f5e9203b928db057bcab225fb279d3ddf215ce4446fc75db",
+      "accepted": true,
+      "family": "youth_participation",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-037-youth-participation-messy",
+      "cohort": "B",
+      "packetSha256": "e40b85e52bd2a4e308962517f60c8110b7e8c03d1817dafbf989a9826cc35607",
+      "pdfSha256": "1d559dc6eebc8f503ded86ab8bc7e048b139a4074d12234ea0278bfc1d8608fd",
+      "sourceFingerprint": "860023b53bc17a1175fd13199023cb59f983722c0e5ccafaff650cd8e2478e28",
+      "accepted": true,
+      "family": "youth_participation",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-038-youth-participation-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "815b21e53c1f88a45f4a6dfc32fc34b68b76cc15c0feccb78e866fc11f6ba15b",
+      "pdfSha256": "5af2036b75c3beee878a6ab669c750411ae2a0b3a90922fb8bc038611781abdf",
+      "sourceFingerprint": "fb063947a6d32a4fdb02f6ceeaeb9c9e51ad0cfa447d4b0a637bbe429f54af5f",
+      "accepted": true,
+      "family": "youth_participation",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-039-youth-participation-mixed-format",
+      "cohort": "B",
+      "packetSha256": "16eb76ac21de5a22c2911085a6c318eaa92f658f66eeb8ac913d488891a76f56",
+      "pdfSha256": "8baf3fbcbcbd5fd51f722d353c64f794ec5b3b2cd11186c0a1473489e673c402",
+      "sourceFingerprint": "70eb516c9a67bb43e3a4068e3fa2423fc45304093f6938657cc92e8cfcfc3d21",
+      "accepted": true,
+      "family": "youth_participation",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-040-youth-participation-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "e9d14ab6d3a8c0a85ca3a86b33298cad897d6d7b85c1fda1afa50b27ea7fa90b",
+      "pdfSha256": "ee2ffc755eb2a96c108977c21d9d8ba2593b1adcf47d9328eddd51ce8f8538f1",
+      "sourceFingerprint": "31969f24e558c5ab3252f23e17d46152c3aaff035d385108e426bf26262afadb",
+      "accepted": true,
+      "family": "youth_participation",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-041-youth-participation-amended-document",
+      "cohort": "B",
+      "packetSha256": "d638d06e6a425b027ca2f24820feac1b59c387ccb697678bd0d2dc3d4e2baf4b",
+      "pdfSha256": "3ab11d43bf67b4ded34e49900ea1fac87c853e30a5c5f8c88c51366157ffae7b",
+      "sourceFingerprint": "8473bdcadc2037c4b7e90a6cb87aaa6ae4288519b5f052e4ad63bbc3762a7d24",
+      "accepted": true,
+      "family": "youth_participation",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-042-youth-participation-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "f4a3e20107ae3ccd4e715ffbf8862d4d387a40c9025de884170c48784262f70f",
+      "pdfSha256": "86407ee13980e9edb4a589c0048268e9e4eb18023b20022f54611adad77469ea",
+      "sourceFingerprint": "122a8be6a1859f5c204c8214e6247fa9441f06398d5d3626c4bbffd2bb548450",
+      "accepted": true,
+      "family": "youth_participation",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-043-county-lines-nrm-clean",
+      "cohort": "B",
+      "packetSha256": "b22a138e1f102f0277745c9af0e2b2cd56ce6e4c0591afe202e1a9275e24bbbd",
+      "pdfSha256": "e4c659543959f15f020206abbb5f8530b5f7b8a806eaa65ad9f23f73518c5752",
+      "sourceFingerprint": "d2cff2045f481e83b80c99438adfae71042d0d7778a513ed34499ee26bb3ce67",
+      "accepted": true,
+      "family": "county_lines_nrm",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-044-county-lines-nrm-messy",
+      "cohort": "B",
+      "packetSha256": "898552119c0493920be1b47c08b2f0b64fe32c1cf589ccc773035f679f282cbc",
+      "pdfSha256": "ce2e69ae87a4057b080dda61a9c88d08990d951510862d7b9f43f74a50456fae",
+      "sourceFingerprint": "9a8843b56511ced5625a5849748a7f2b53ecd0172276696cbe89dc1be2cc6f07",
+      "accepted": true,
+      "family": "county_lines_nrm",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-045-county-lines-nrm-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "4ddba82903afa8871d68e59560a632889f6e0fc5b92f2d28e7c7a4d44eb5ab6b",
+      "pdfSha256": "cf4c52a9721bacdae25be6f8eb40d2f4a2ccd4221be5a4357b6482c5078dec5c",
+      "sourceFingerprint": "f1ad814eb660fef4629ddfe5b0fd11d9a32e4b73b1cf28ecdf85efc3da76e6ca",
+      "accepted": true,
+      "family": "county_lines_nrm",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-046-county-lines-nrm-mixed-format",
+      "cohort": "B",
+      "packetSha256": "f06dd6244e6ec729a71a576fadcf5773abfc532147c994765289502adc90a06a",
+      "pdfSha256": "9470d84d299199c6fe7243d7b086fce3c1d865083e32ac273c0ab0dd05bb0fa7",
+      "sourceFingerprint": "3abb486b3fa88cdde2c1d6ae00e4a3065711602dbc5fbe81286acd055050e5f0",
+      "accepted": true,
+      "family": "county_lines_nrm",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-047-county-lines-nrm-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "91d81c15917bd154dbd93902262b395cd9d0c3be3b829e5d4db51e7fa13457b9",
+      "pdfSha256": "4ce4d7c5579c2a674a855eba727ef6ca1227f8bc9d531fd8fb762f84b2741748",
+      "sourceFingerprint": "1a22935d48dd2f7303502a537be87579fa0f1fe2e297ccd1d5ebfaa1cbe3d42a",
+      "accepted": true,
+      "family": "county_lines_nrm",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-048-county-lines-nrm-amended-document",
+      "cohort": "B",
+      "packetSha256": "fba13c4a31f54459285191bcbe679de135d1de6425d183febd482789e517c112",
+      "pdfSha256": "446fa9768cfd359210162dcaf8811ea5ac25e7b87b8a29327286a97d8c3bc90d",
+      "sourceFingerprint": "80d74c5a5954faf8418a75a000d70c9603cf4e997f1900d592915fcbb422c65a",
+      "accepted": true,
+      "family": "county_lines_nrm",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-049-county-lines-nrm-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "2b3f20512f0482164cac64a7379654157fa31828e064340411e467b48e95d9af",
+      "pdfSha256": "fecd5230cb181f95a97dc20a9cb2c3871bed2e6c9ab71517e502d6d121be12f9",
+      "sourceFingerprint": "7599e37ff12acce3197c36388fea1bd8118e99e0b3497da053ff4b6b6afdeb91",
+      "accepted": true,
+      "family": "county_lines_nrm",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-050-fraud-poca-clean",
+      "cohort": "B",
+      "packetSha256": "dd1427555f6230df643672fa029aca06425d5e6c6521537e0ac3be414a48a820",
+      "pdfSha256": "092af7969efea3e7da8aadb729b91444aed7108cf458a32cbd16ff25a38edf8a",
+      "sourceFingerprint": "f9e6584791427776b90d1b273d217f04950e533b469145bf2799f4680c5b0db7",
+      "accepted": true,
+      "family": "fraud_poca",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-051-fraud-poca-messy",
+      "cohort": "B",
+      "packetSha256": "a62eb8c9a01289255b9825c36e3b238226a7293bd4c6e9955a2ca4561c47322c",
+      "pdfSha256": "24939383898139bcd4fccba791a55f242ed89629f10bfd7b664b73b95885c0ef",
+      "sourceFingerprint": "ff05fdbcb2d248e6d854319a509c2d62c5a0c4779dd2edd2ac56ae963862d315",
+      "accepted": true,
+      "family": "fraud_poca",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-052-fraud-poca-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "24a9288556db8127ee0c2c5a6902791229e20752723268dc899e4c94bd601514",
+      "pdfSha256": "f3048cf518e98b95513ae3402b61405735932ccd570e00f7932597a9091bf32d",
+      "sourceFingerprint": "6cea56b3c3d2993464d8f7034efbec54fae5bd651336d26417dca801a652fbab",
+      "accepted": true,
+      "family": "fraud_poca",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-053-fraud-poca-mixed-format",
+      "cohort": "B",
+      "packetSha256": "d79bfb3c6bc7e3fe6a2e22b3ce9ffb9e194fb5d3627474a437450d073d32a1b8",
+      "pdfSha256": "b2068c6f4750d78759995ab2ab2c57b60ced80de4d6b53d7614561ebc8c2da61",
+      "sourceFingerprint": "867e71652e9d995f3a05dc50315670e47c493fe4f113bf0ecf9b2821f3fd5894",
+      "accepted": true,
+      "family": "fraud_poca",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-054-fraud-poca-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "90c7514fe7670bbe4dcc3dc4eade1c69f785bf951d7df9c1d6c6e52c6f6876a8",
+      "pdfSha256": "cea95e15ae7c67bda3837ea46eb2e2fa8cdc489be2a1e183f82361ec476a0368",
+      "sourceFingerprint": "d146b10baea85e6ea89f19b03225538424a4471743a0d8e53a9f4477d577a181",
+      "accepted": true,
+      "family": "fraud_poca",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-055-fraud-poca-amended-document",
+      "cohort": "B",
+      "packetSha256": "9f159b543db21d686e957455baa2bed5fc0650b582f4ec452f23db8683e3f3d9",
+      "pdfSha256": "5205a2e5cf06e3396452f16f110e1dca9d5f41cb9583fa7f4a4a27289d3f6734",
+      "sourceFingerprint": "0777c9bb4a6560e7f7427ff7d46850e2ebd0f52b0b17a61fb394e0ceda816d34",
+      "accepted": true,
+      "family": "fraud_poca",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-056-fraud-poca-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "0d9be5351f9e532c4af36f60356f5f2292e636a4b91b3c3e47fd997a1240bd8d",
+      "pdfSha256": "35a656f3e7de7b9da3a1cd2af3aa5a446440f8a70d01bc5189dbe9d6686b6842",
+      "sourceFingerprint": "bb4772db4bef6e607187e0f1b69085f65092e06da7a8e9a4d0d8e023fe1c30bb",
+      "accepted": true,
+      "family": "fraud_poca",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-057-digital-attribution-clean",
+      "cohort": "B",
+      "packetSha256": "5d749568a45a8916d6374fed88ccf48791828a47e6a0c6b9b70e21651887584e",
+      "pdfSha256": "58171f2f8094b4fbda8f772369fd332a34d0ef9f0a3eaa8f31287203a4287192",
+      "sourceFingerprint": "9389354e9fbce149f9f49b5f7eb17eaf3add9c539f222a128ec3e161fe292368",
+      "accepted": true,
+      "family": "digital_attribution",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-058-digital-attribution-messy",
+      "cohort": "B",
+      "packetSha256": "b170e663c72a8619d8df86ddb832e7441ef9992747bf65f66f46595cfad73a27",
+      "pdfSha256": "9c7bb3bd5cd94de8623b7a3e1acddfef1e61ee651a136be78630da408f260d36",
+      "sourceFingerprint": "df3ea3cea615120038904aa75fbff9e8a7f721d43021e3c26c069b46c8bf2ec4",
+      "accepted": true,
+      "family": "digital_attribution",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-059-digital-attribution-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "20a3e06c65171536f7e88dce8c74f7a6180eb47c0b6cad794e8bdfd33bee29ca",
+      "pdfSha256": "1affffca8d30aab90ad8cf52d980e60a72380135577f67392eb007067d6678b5",
+      "sourceFingerprint": "99484b1592134008432ee5c943dbcaa037ecc4762efd8b07c07c55d6793f6ee5",
+      "accepted": true,
+      "family": "digital_attribution",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-060-digital-attribution-mixed-format",
+      "cohort": "B",
+      "packetSha256": "71a1c00e7a80bcd165ff09ab69ccc8c7237bc406c745498b1879b52d895be45e",
+      "pdfSha256": "094dea9e71f9e8ece47bcea145a159031a1caf2493d0d6110896303214c096b7",
+      "sourceFingerprint": "45dc0a13d49db076e1544f714a82f2594a46a2a936087607573282f0ccfb08ee",
+      "accepted": true,
+      "family": "digital_attribution",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-061-digital-attribution-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "fc1472d378b4d9b2725223032cb966af92cab24aca7e7235cf4963ecd485dd36",
+      "pdfSha256": "0a042042972b64b7336a2d55ad5d9c47ab128bac8e75909210bd86e8d401fbf1",
+      "sourceFingerprint": "5d587362272887d65069cb81498466005805d5e3a6b1eda04b3547aef58b896c",
+      "accepted": true,
+      "family": "digital_attribution",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-062-digital-attribution-amended-document",
+      "cohort": "B",
+      "packetSha256": "92ff10986916ca6bd4ba8745682e5238740c5e284eb10a3d1b092b1d89280972",
+      "pdfSha256": "9a50fe7b957c5b952edd6aa9da231eb13992d97c047506e821341fc51b8bd66f",
+      "sourceFingerprint": "bd1077348e207f573ebcfb18cea42180d9257d35c4123abc3d6d8cf4ad390920",
+      "accepted": true,
+      "family": "digital_attribution",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-063-digital-attribution-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "9d031901ae3e0ae6f9e919f3bf55d45440f260166d2a236ed863a3bef20eee5a",
+      "pdfSha256": "fa94a9fc79c73ff1c0c05d649b977e26e7ca3e8711b175e43f53044f349986f8",
+      "sourceFingerprint": "e1e1487aa882878f856a2ad0d874e22d1e201ada931e9b8b38308689dfac7549",
+      "accepted": true,
+      "family": "digital_attribution",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-064-identification-code-d-clean",
+      "cohort": "B",
+      "packetSha256": "4716a21c3825667b135f0f329e7cdf63dbe8de1722db15fc8a689921ef6b9e83",
+      "pdfSha256": "fab62154b6bed7efde2a881c4c6b0e4c983ba8aef71b8703c63ff33767898ffc",
+      "sourceFingerprint": "13e6c0f172cbac0ad276909df34151caa83b616d3fbed0396c0686de1906677f",
+      "accepted": true,
+      "family": "identification_code_d",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-065-identification-code-d-messy",
+      "cohort": "B",
+      "packetSha256": "a9fb6a2561d109de2716739e4ce9a5e598df05b6fb326f0f1dee7b995de648e7",
+      "pdfSha256": "b175d5c23ff870a254c412ec88177e024fa9c75c79860cdfc51b5106e7307a5a",
+      "sourceFingerprint": "46df31453bdc9a33392c83dd9ada28dff9e5354bacc35cfe2ac6a2f9d0003f87",
+      "accepted": true,
+      "family": "identification_code_d",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-066-identification-code-d-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "b657f05ebd2e03de5a0a4c16f4a09df2a22f50a8199102f6a26bc235274397ff",
+      "pdfSha256": "b0d92868d650fe461edc0045165c0265c145624f322dfb86f6e0b368ee731b7b",
+      "sourceFingerprint": "6cd2a14a2492b7a3d6c58a179e3b23f28a84292c94f39a5a34eb8c0ac4c3ccc4",
+      "accepted": true,
+      "family": "identification_code_d",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-067-identification-code-d-mixed-format",
+      "cohort": "B",
+      "packetSha256": "38641658f5781926ac156208fd7a5254e0f30fe45d86c5d1ba597e9500b2b041",
+      "pdfSha256": "c65c8e2a11910c98526f4c50ec25654fe080ac3c3ba9b5ceba1ecd450fd14cc4",
+      "sourceFingerprint": "c75e1a8d86cc1276ed454fc8376b2391c4fafe1f9d9859af17fbfc4976364195",
+      "accepted": true,
+      "family": "identification_code_d",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-068-identification-code-d-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "8d0e7d10549235915cb7075ec4a5231ad9a2a7f8aff7c4d9264d794178dabd7f",
+      "pdfSha256": "ddcb03c2e4336971994d8f716d232c53a286eb4186e51c48f220b68ff71be920",
+      "sourceFingerprint": "3ab0846d19d5889e9dcc782a98728be273132938c7bbff1b0fd931ee142c9901",
+      "accepted": true,
+      "family": "identification_code_d",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-069-identification-code-d-amended-document",
+      "cohort": "B",
+      "packetSha256": "459f35e586e9fe7d47ecd05834a575568a2c9de6c5cf4fedc789692416bb5b8c",
+      "pdfSha256": "db6c73ae5182d6e90e575128423387195b44d2108305e064ad6edea113dcdb9e",
+      "sourceFingerprint": "a8f204a08fb99fcffd82d364508e2ecea790ec1d70653aac6eee91f9251e0fbc",
+      "accepted": true,
+      "family": "identification_code_d",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-070-identification-code-d-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "57585c37ed5ae417c2fc67cfbcaf3a8c5d53db2dcc0e7abef96dce4e567022cb",
+      "pdfSha256": "3ccdc68e87f549afb088efc7d2b0834c02943308c38d202dd1cabd01206990a0",
+      "sourceFingerprint": "1c27de41adbe34166ffe1eafb40ec21ecd693eaa6ce920b148548236d9098a94",
+      "accepted": true,
+      "family": "identification_code_d",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-071-mental-health-fitness-clean",
+      "cohort": "B",
+      "packetSha256": "8592a3a5863a4cc8ac477a73a553e14195e50b77cd1ec6addc481c16489a97d2",
+      "pdfSha256": "257f40799add62bf9d9a1f41c647554955ce567820ecc82ae7bd730818c8adcc",
+      "sourceFingerprint": "833b58297f0f1b0e005b4140238f0e985d9b4806146f4f2c3f631acc76835c99",
+      "accepted": true,
+      "family": "mental_health_fitness",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-072-mental-health-fitness-messy",
+      "cohort": "B",
+      "packetSha256": "a17c22999de9ee9ac0ff6f1b69284bb2db07368a44ca456d08d1cdc4191acc71",
+      "pdfSha256": "b2c0fb2cccf8756303af30299c20c65a142ac27437a962e1f2e78645ef5617e0",
+      "sourceFingerprint": "050f06d70dd95587e8a04cea348a5fd78d0a32927d7f399f7326cb9f45092bce",
+      "accepted": true,
+      "family": "mental_health_fitness",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-073-mental-health-fitness-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "6f0e8824f2eb47ceb94d2c07034409e3dca5480e230ea0244b22f344dd091204",
+      "pdfSha256": "0ff4bace093ba488fccff917e9808db07ab404d3ae6517ed1d82dcbb39d1ae80",
+      "sourceFingerprint": "adc85b69679846a9dd70013170e54200137601ff376d8c9b917a30e35eb02fe7",
+      "accepted": true,
+      "family": "mental_health_fitness",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-074-mental-health-fitness-mixed-format",
+      "cohort": "B",
+      "packetSha256": "64ee13049ca9f670599a709b7db9a0a44aa80a54178e09aabafb1f082838dcb3",
+      "pdfSha256": "730208796999dc4346d85c1e8ab57700f6ebf6f1a0579e10a1634e0a9924dc0e",
+      "sourceFingerprint": "d7788a71a69bcabe9dfe000a52d5959648eea44852a154451dfedaf3f4353be2",
+      "accepted": true,
+      "family": "mental_health_fitness",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-075-mental-health-fitness-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "ec7ab90c16224213684d987a2a21f00f05faa4d5a4650eb68e9f99d5d500fd15",
+      "pdfSha256": "8cf44eb6fdc562c759f47e9030707bdcf03e98693f01e49aaa78304548ab352b",
+      "sourceFingerprint": "3892f26b29813ae4052e5f915d52d1f0cb75f5dfc49de1b47447571a308a1657",
+      "accepted": true,
+      "family": "mental_health_fitness",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-076-mental-health-fitness-amended-document",
+      "cohort": "B",
+      "packetSha256": "289af0d50c3b2591bf7adf8f82018e276a3ccf58160b7916d47d9726163f28cc",
+      "pdfSha256": "f3ed3b09d9bd4d61094f4816cf076100a844439d6415b4bcf42b61a86e743b96",
+      "sourceFingerprint": "176fddfbcf62c0f7522b680fc80d748ed4573c5927cc347aee04dbdd9676099d",
+      "accepted": true,
+      "family": "mental_health_fitness",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-077-mental-health-fitness-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "2a6b501cb0dd61b1648ee70b8a4bc495b60848afbe0ecdf75893915af02a126c",
+      "pdfSha256": "42da34c704c717acda68e9be09a4e3ae56bebd0fae94faf9ff258e5b2b9a3285",
+      "sourceFingerprint": "259df556f9fd785b19dc48e66101e7f94ab564d773d930f2eb9d13a541b94782",
+      "accepted": true,
+      "family": "mental_health_fitness",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-078-disclosure-pii-clean",
+      "cohort": "B",
+      "packetSha256": "53256e4ad13c459c4a93879c78e0ea92da354a6fe45cab0757287da549aed744",
+      "pdfSha256": "5109d0cb86f0cc2b002fd6a2c29e356e6b44d93016bb3b195326996b140ebaa4",
+      "sourceFingerprint": "c2a4a6be2f031dc4c4dd33b9b8976fbd9ceeb1ab2e5c9325b37380045b9d0a0f",
+      "accepted": true,
+      "family": "disclosure_pii",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-079-disclosure-pii-messy",
+      "cohort": "B",
+      "packetSha256": "42899ce0a236d1121776e380aab2d00a029a834f057ca9e9cf251a01f3c6e404",
+      "pdfSha256": "d7579197255843887b720c579082171312d24a996a6cdab2cf20d77cd38edf51",
+      "sourceFingerprint": "e7480b2c7865b40b0706218c464620dee6f8c56ffe5c8e92ef7193530d2c55ad",
+      "accepted": true,
+      "family": "disclosure_pii",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-080-disclosure-pii-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "ae861c12c9058ccd8634869f313add6d98a31cb10cf88d57adffb6eccc983b8f",
+      "pdfSha256": "9c68008cdcc374a48284ef689dfc8a153a3dd508f1aa607e6f03b4f381b50c03",
+      "sourceFingerprint": "ab4b083db3ae41f67345f97df6e72477c17bf5acb706a053082e05e799d12e8a",
+      "accepted": true,
+      "family": "disclosure_pii",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-081-disclosure-pii-mixed-format",
+      "cohort": "B",
+      "packetSha256": "a5a1c26e7ac97c87f5953fd3151d69fd0490ff9507275ef6bf14e2f20dd3aad5",
+      "pdfSha256": "e860ed56eb8d39c70dc60b1592bf6dd2a47514ee18b4f7f97314419ed85052f5",
+      "sourceFingerprint": "163f34790a48a5eed318c76ad9c186b9237227054ac5c0f732ede5646680df69",
+      "accepted": true,
+      "family": "disclosure_pii",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-082-disclosure-pii-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "daa595809a1b704b32fe14c5bcc1f783c2d54a825e65c9745ac26e8a8b4e6905",
+      "pdfSha256": "2c7db2b33804e2d17b80378182ea9aeed29111e15680d07aeded5ed952fbbaf7",
+      "sourceFingerprint": "8550ed1f0d9a22a9bb1aab17de01a4005dda5a398fe3d0df3c787c902476c80e",
+      "accepted": true,
+      "family": "disclosure_pii",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-083-disclosure-pii-amended-document",
+      "cohort": "B",
+      "packetSha256": "703f21d58f439f0e3e7d4773f59610805bafff7206e84126ac9192f2c5d1d0df",
+      "pdfSha256": "8743d7d450349c25683cc4cae0aeaf341287314fa6c1a6f92cff8a0845190891",
+      "sourceFingerprint": "91d221828a6df16fcf8f56858f0adb5b9b8a5900cd89d0fdea5eca7c41bed5c9",
+      "accepted": true,
+      "family": "disclosure_pii",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-084-disclosure-pii-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "9a947137945100749211a9dd577f4f87a37cc190f33053ee51baf47fffb270c2",
+      "pdfSha256": "6704acd6ccd3360a8ddc1d67953bf158b370e62adf995d62b3f6e47cd281d0e6",
+      "sourceFingerprint": "5984c6c7aef22d0b694e5c17b3ff95dfef3b1a2092f376313deb5bcbb2decdac",
+      "accepted": true,
+      "family": "disclosure_pii",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-085-road-traffic-fatal-clean",
+      "cohort": "B",
+      "packetSha256": "9f7b8f39cd7ab6c5bedc2cb3e6334af2df227b71e8f46861e401e26240a78b15",
+      "pdfSha256": "0f7d88bc45c23f9b75cbfc502ebb60adbc2bdc7fd1a9208bffb96a017b6ad47c",
+      "sourceFingerprint": "9d1e1da8cd2579dafe5fc06caa719ee0d5d4242e8d5c1a2d2994cd8d771c4e4c",
+      "accepted": true,
+      "family": "road_traffic_fatal",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-086-road-traffic-fatal-messy",
+      "cohort": "B",
+      "packetSha256": "3ac02834bdb36065498c4b422831be3a8e38c547bc0b9e295bf5ebadc5d80954",
+      "pdfSha256": "500b812e9d29ec9223227ecb32ef599b219d5ec9fb060d42ab69d76c91b84d82",
+      "sourceFingerprint": "3596a558226ee0c32fd3287834c63a4d0c04d139a9b053c5e2b18897e3fa5544",
+      "accepted": true,
+      "family": "road_traffic_fatal",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-087-road-traffic-fatal-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "b027ac69f19952cfb9ce33dc85f2499ec1db8bf1a1dc7a90c2839ba4837bca37",
+      "pdfSha256": "6a263a67378513f4588267a65b80ff24fa83e5428b738cb96527b4b9803d67b2",
+      "sourceFingerprint": "02c436fd6e4266cfb64e4df720617f545c19af10c5367a6422abd199e9c69259",
+      "accepted": true,
+      "family": "road_traffic_fatal",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-088-road-traffic-fatal-mixed-format",
+      "cohort": "B",
+      "packetSha256": "fe751c43691728cffb7436f9f78ad62c962d91ec0d114a0191857e6b28617d15",
+      "pdfSha256": "316190e86bee710f79d913df28d6d049cd7987771b071b27f34ced841f4a5fcc",
+      "sourceFingerprint": "9eb42c9949f7fa36bedbf71a204462c8bca551967c2d8631137484c8c14982d9",
+      "accepted": true,
+      "family": "road_traffic_fatal",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-089-road-traffic-fatal-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "bc59fab5ecd26675a64058d7cc04d21f075f63687991c37a40d18a80c29efd48",
+      "pdfSha256": "6e518441c83d77ca27f36bf6ba30268410914b19ccf1aa68af05e063912e320d",
+      "sourceFingerprint": "8bbd16450e6edaf15c070423296241104274f310c3ea3fbea017e92f9defba63",
+      "accepted": true,
+      "family": "road_traffic_fatal",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-090-road-traffic-fatal-amended-document",
+      "cohort": "B",
+      "packetSha256": "3008d0996446c20224c207b76e125af901c91db48acd35e0a8dd7e10fd07ebd5",
+      "pdfSha256": "f1ef4b33db51189eba88632d2243b2e0242db40776400b045d28f96687e9510e",
+      "sourceFingerprint": "eff1063cebbce54dcb29ec5af3c1dd58a074a687392ec580f8b1fc1517915a55",
+      "accepted": true,
+      "family": "road_traffic_fatal",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-091-road-traffic-fatal-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "69cb85d851ba344545db9304bbe7053f93f01f898d9bb84e7397737d2c2c90aa",
+      "pdfSha256": "b433481a0dd2e81c902ce3f0a0fcbe7fe0b0ddf4163af5c865f6b92c91722773",
+      "sourceFingerprint": "6941c0bbfd7e08abaa8f7a0708458be76ed60bc5c35578693d15ba1c18c4811a",
+      "accepted": true,
+      "family": "road_traffic_fatal",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-092-magistrates-procedure-clean",
+      "cohort": "B",
+      "packetSha256": "6729e8e65f750b66c85beaff865ae05b0e7d73d8d8c6b72f40c1a2be5539b8aa",
+      "pdfSha256": "26313a17ade0623d0a4cb85ce23bf2081a918fae0164ba7a4df950e76aa96b96",
+      "sourceFingerprint": "f34336ca3e03c13e7cfefd73e6ef60ee0f9a9bcf724974b5d98adee8efeacaf8",
+      "accepted": true,
+      "family": "magistrates_procedure",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-093-magistrates-procedure-messy",
+      "cohort": "B",
+      "packetSha256": "5f7757bc67d7b800966bf8f75dd022822190e5c6139bb37fe57f5b65bf4cd662",
+      "pdfSha256": "490d4e3579ac8c9022280ad8b03e20dbdd49ffbdcef7ca0edc5f6cec9a65bf4f",
+      "sourceFingerprint": "dbfd95e8e666a76f9fde4802caa8b720d0159521bc5f60290cfe00b634d6631b",
+      "accepted": true,
+      "family": "magistrates_procedure",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-094-magistrates-procedure-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "27793f5d3c7056d0bcd84d7f7cacc8419538d3be030f28cb6005a1eb11c7d2e5",
+      "pdfSha256": "d9f6b5717aa7b65ae1dbc38edf7d5c192b80990d250fabbbdebaabc7e62caa30",
+      "sourceFingerprint": "8a42005d7a510555e22c8c284d018c55e00d9d45e071e6b09849f7f766325617",
+      "accepted": true,
+      "family": "magistrates_procedure",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-095-magistrates-procedure-mixed-format",
+      "cohort": "B",
+      "packetSha256": "67a397c74510532868f1fde647c998a47172f66a4183be8594c3f4fbaab73b25",
+      "pdfSha256": "0dd827276ea3e39c48e4bf5e2949eb0b9fe2e7e3b3a7210c9d37fe66ee6f769a",
+      "sourceFingerprint": "56a9a023ab0d92b07f9ec5db7cd5260c05b217f37271a158f639326893e86904",
+      "accepted": true,
+      "family": "magistrates_procedure",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-096-magistrates-procedure-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "9a1d6fa738ba5f976bf172e4dfad7cc4d6c1f530ab258a40a863be87f6834b1c",
+      "pdfSha256": "a9bcae149f625cd4ce8ff0bbd4a1201c88cbe35152f0f13a29f8e281fd68a5c5",
+      "sourceFingerprint": "f009ef0025a62bab784b9ede5128dca486a7591fc0484c7ee0ecceebe28af8aa",
+      "accepted": true,
+      "family": "magistrates_procedure",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-097-magistrates-procedure-amended-document",
+      "cohort": "B",
+      "packetSha256": "7e5bb93e26e8b96fdc14439430b9af66a48297cbd11f5e490772ac8527cf5b49",
+      "pdfSha256": "f15e25c6d5b21d8ce00e3df52df0f68865d75e9847733ae90f73deda35682cb7",
+      "sourceFingerprint": "623a3796548124826266f34fd772dcec82a255d0df2c51e26b68aee7f43dde55",
+      "accepted": true,
+      "family": "magistrates_procedure",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-098-magistrates-procedure-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "a1ae33e10de1b64f2e0ea6d1a90ff82314cb508163cf5a8868de6198dd787416",
+      "pdfSha256": "e97f442d8b5805096a8bfed3fb2a5301383968b96617da2753ae628deb8f2521",
+      "sourceFingerprint": "c96a97cb5e6710c5014515e73dca80b8fc05c9feeb1a83f494d9707bffcee68b",
+      "accepted": true,
+      "family": "magistrates_procedure",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-099-bail-remand-clean",
+      "cohort": "B",
+      "packetSha256": "d1cc5ea657140832e16783e4e93f4bf6c3937bff26767206fb15570e3e6641c9",
+      "pdfSha256": "d58bba656c637b354064d92ca550f59351fd858d4818c2fab84bf4c620f6c26d",
+      "sourceFingerprint": "4985e32c1271ebef841efeaa313284069883ec6b7b8039c7f791e1099b0a90c5",
+      "accepted": true,
+      "family": "bail_remand",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-100-bail-remand-messy",
+      "cohort": "B",
+      "packetSha256": "cd1e070ba3e98ef678c61f5cb6c2f3b60e6e320ee197083ad56604f0105681b4",
+      "pdfSha256": "ecb33c746404251a170df4efe154a6a5f18b5ad9a2f813525654b66982a560dc",
+      "sourceFingerprint": "e6c64837a244afe3a8114ec23f17b1df9433a4a8de0628e12428ed931c56c4f1",
+      "accepted": true,
+      "family": "bail_remand",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-101-bail-remand-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "670c1783ecb05b5009d87aabaca61f09caa4e8e61af6f7f83d3019391d43845d",
+      "pdfSha256": "ffa03e4889272900730ef6bcc92f60db8e4e049b5852ae38f0b96cd76d86f75c",
+      "sourceFingerprint": "086d806db14dc7bb84436585c29f9cd468081f5f0ea9fbad3292bf6b74bd2a8c",
+      "accepted": true,
+      "family": "bail_remand",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-102-bail-remand-mixed-format",
+      "cohort": "B",
+      "packetSha256": "abcbd63bd6b14b816090007be1f5dc3623f892c67610e77f4ebcdf1455382559",
+      "pdfSha256": "a140d7806875603f610974fe47432ddb1afe1b0e8a99ee2f1b1206e4c9dc35f4",
+      "sourceFingerprint": "c00fe43389f88c6b3ba55d9e4086963d80750cdfdfa966c73320050f85a81b70",
+      "accepted": true,
+      "family": "bail_remand",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-103-bail-remand-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "41597bc654c654f71e855a89727e4e489fa2e676e1c7a904195451cf0dbb0078",
+      "pdfSha256": "45fbf3880f98b2689cd421948091542ca1aa365da420bde04b1bb530108a0b7f",
+      "sourceFingerprint": "dc27c925985380b61f70fc52c3a359201dece075d7528fbb205bd5dfce51eb70",
+      "accepted": true,
+      "family": "bail_remand",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-104-bail-remand-amended-document",
+      "cohort": "B",
+      "packetSha256": "af59c43795f63c561f7fbeb3b64aa471b809d3b13b1b5aecd8d16c75e8a279fa",
+      "pdfSha256": "ad4947addb26206d8a7f1fcc65ca542fdf0a811fb4d43fbc67a2308c31977ad9",
+      "sourceFingerprint": "d0d82dfe3de7152e0f0b8cb002adc005667b7ad9884d6b15d7e6f2eef75473ce",
+      "accepted": true,
+      "family": "bail_remand",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-105-bail-remand-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "a3d6d780e66dcd924303e3472a87ea72140e6490a3238d4e2267395324de2f31",
+      "pdfSha256": "d42cbecc89d7e706b9dfcf2da40f760c289b4c1822785725187163001fabc767",
+      "sourceFingerprint": "90ad7ad227234c465c24f3cc4939b2148465d9fe91b2a23547e2029876619a14",
+      "accepted": true,
+      "family": "bail_remand",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-106-sentencing-newton-clean",
+      "cohort": "B",
+      "packetSha256": "13824f260542a8e14e64dbe4bde0b8de3fdc9879f94479387121307d99733a84",
+      "pdfSha256": "b41e1cc36df8594638e56b6a73e05abc34aac02d5211505b42003dc32b332c9a",
+      "sourceFingerprint": "d9df3902d8e794987d31350cc34e776fdf98c82b9d3962a94705c61df12c1aff",
+      "accepted": true,
+      "family": "sentencing_newton",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-107-sentencing-newton-messy",
+      "cohort": "B",
+      "packetSha256": "b89934a4bd7819a59276113035b74f861db96a9c6d1ba8fa3a57766491f0249b",
+      "pdfSha256": "9a960076f680c43ed07afd02b89ee66ef4246857c3019ee330c59c5015b9de8d",
+      "sourceFingerprint": "35ecd61ccb59894aff928cef286c8a1e05c2b75e799a2659099ed2c4cfaaae39",
+      "accepted": true,
+      "family": "sentencing_newton",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-108-sentencing-newton-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "456bbae743690fc65fdbca1ee287bd7a558bd33645478a26c0dabe0cc11f7255",
+      "pdfSha256": "b915cb795856100d83c534df7a16a9a56d259c63cb39223e7e3e2887ec307e46",
+      "sourceFingerprint": "7ff6fd60e1b699c17e71e5a8a9bf1ae51500b2f2ca9898a8cc18861e1e65817a",
+      "accepted": true,
+      "family": "sentencing_newton",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-109-sentencing-newton-mixed-format",
+      "cohort": "B",
+      "packetSha256": "5a8840c4f005efa9d587bc65a722bdd5c25ec112ead568b982386bab2596179f",
+      "pdfSha256": "6b787124f50382df45e8a8f54605d022bbb9ae62bad721bc9e7ce261d7d3a61a",
+      "sourceFingerprint": "29ed45e4b2ccd8f55aaa5917cbcaa7b72fa623e5c905e22c143b763dd3584d36",
+      "accepted": true,
+      "family": "sentencing_newton",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-110-sentencing-newton-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "83b183cefa47e3655428860e13f5a148dce761ec90511536ca08834105c25bbe",
+      "pdfSha256": "0054fd4471ba2895acb078e7b8759749a6756ebfd836f661d7e35b925718d83f",
+      "sourceFingerprint": "651577569bdd6a054db56569005e9941e7678945c00dbcc6c5a64a4822aca7a0",
+      "accepted": true,
+      "family": "sentencing_newton",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-111-sentencing-newton-amended-document",
+      "cohort": "B",
+      "packetSha256": "82d5a3be83215ba917fd2afbe032f8988c310f5465665a0ebdf7c5483c08abc0",
+      "pdfSha256": "40298a72ba89fcc26326e927e130c22e7582d81d25485a86423180554fe85a02",
+      "sourceFingerprint": "b49f24fc255d7b3f73c3f6c11de5b8c3d63280156b6412ee57af47dad8c3f164",
+      "accepted": true,
+      "family": "sentencing_newton",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-112-sentencing-newton-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "dcc0bd2a0cc2c81440c4583840462e9d6691a29a64c79e3e602ddd770feba836",
+      "pdfSha256": "b57bf1896db76950a8cf6d7b72e1cea6de809eb8ed3310f28ed1fb79e93a4f2e",
+      "sourceFingerprint": "8a8df7d56a018782fdf918ac00bd0c4fd7797617f9545ad31ab2ce44f91e79fc",
+      "accepted": true,
+      "family": "sentencing_newton",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-113-appeals-clean",
+      "cohort": "B",
+      "packetSha256": "1a2e8537503c8f74ffdf9f7d97c2758c7194dfb2a8f50775a430965049403d46",
+      "pdfSha256": "a7959f23312a51d4de5480b48be15131a24df072b5acfde7a91950262cc4d5cb",
+      "sourceFingerprint": "5735556550eab0f28e764839de0aa06ef3712534a167114aa92160027e3541c3",
+      "accepted": true,
+      "family": "appeals",
+      "variant": "clean"
+    },
+    {
+      "caseId": "s150-d120-114-appeals-messy",
+      "cohort": "B",
+      "packetSha256": "07a319ce1af9904e9005b1f5cfeb7b851e6e8b83aee461ec684fa82b6ef196ec",
+      "pdfSha256": "ed578e4ed2019e515623e4426c1cf66004bcb2dd5701a9fdde19eb1817529ac7",
+      "sourceFingerprint": "e6e0cf25444c82d743e32b8b34c62f1f4bfc96b034e88068004bd4217db62385",
+      "accepted": true,
+      "family": "appeals",
+      "variant": "messy"
+    },
+    {
+      "caseId": "s150-d120-115-appeals-ocr-scan",
+      "cohort": "B",
+      "packetSha256": "abffb6d70810757ff1979f211d9be7d39786a7b8797dd294102a6e88c9816f66",
+      "pdfSha256": "498a4e270793a7accbf34ace8d2aadd868446a1ef9be85ec1bbac42fb53bd246",
+      "sourceFingerprint": "77730d8f323d2385989f50d4dc55a66678475ee92b8a547a30b7786adb0b238b",
+      "accepted": true,
+      "family": "appeals",
+      "variant": "ocr_scan"
+    },
+    {
+      "caseId": "s150-d120-116-appeals-mixed-format",
+      "cohort": "B",
+      "packetSha256": "535be11872abbe13b8914662599286f4405407fc660ad2cd24e3c42329ac6eb7",
+      "pdfSha256": "866f16477cd87d7152f3ea0d3c142dfdbf4b1a5209dd4a1c37ff1ebdda6c9d2a",
+      "sourceFingerprint": "909f4a4536b8092fec4807cb02ad407755f2d4659eac5d94d3acb5f5d30d88e8",
+      "accepted": true,
+      "family": "appeals",
+      "variant": "mixed_format"
+    },
+    {
+      "caseId": "s150-d120-117-appeals-later-disclosure",
+      "cohort": "B",
+      "packetSha256": "4930cebc6c1cfb57cc9eccc5fd615f34b6884c0ab39c99a1a9eb9827106adca7",
+      "pdfSha256": "58f8d416454251f08311c85814d6ff4bcb7fca74ecfdff0d03ffba9bbf8f7ff2",
+      "sourceFingerprint": "dce3845dee20036c9283237fc1f6c09958e502ff10214098d035c1475fb74fc1",
+      "accepted": true,
+      "family": "appeals",
+      "variant": "later_disclosure"
+    },
+    {
+      "caseId": "s150-d120-118-appeals-amended-document",
+      "cohort": "B",
+      "packetSha256": "60cfafdac1d0f5dec34d6224a1cb37094ad984d8ea593876f1ec14e542ddb97b",
+      "pdfSha256": "1f45eec0bf8decd383369a6d5d4d1506b1baaaa78416582a30c0c09094cb3113",
+      "sourceFingerprint": "9e03371a4f7cb53c4487c48ef422b99fb036131d54198289fe4487842c4f887b",
+      "accepted": true,
+      "family": "appeals",
+      "variant": "amended_document"
+    },
+    {
+      "caseId": "s150-d120-119-appeals-competing-chrono",
+      "cohort": "B",
+      "packetSha256": "ce6ad42313c3caee2d36f3fd66bc898ee09120fc11ca481880337ff59a831da1",
+      "pdfSha256": "cfcfdea5bb63b069a6eacfad288992ea7bea4bab1aed3e01caac0bf12a9ddc98",
+      "sourceFingerprint": "0245811eba9089fbf23a081be377256f7d42f9d8e5539de97bad36c5b15aba2a",
+      "accepted": true,
+      "family": "appeals",
+      "variant": "competing_chrono"
+    },
+    {
+      "caseId": "s150-d120-120-multi-defendant-attribution-clean",
+      "cohort": "B",
+      "packetSha256": "3287f82aa704161cc1677cd82b30339db8c7d11a015d713278bf6e56b164b38e",
+      "pdfSha256": "582a2f91aa46fcfdd6cb3ab68d8951131f997cb20a01bd79e6872fb34ea24be4",
+      "sourceFingerprint": "69bc3a33aa436f47810bc494c21fd9a384fb06fb7a4b14305c099b4165ba7a35",
+      "accepted": true,
+      "family": "multi_defendant_attribution",
+      "variant": "clean"
+    }
+  ],
+  "rejectedFromDenominator": []
+}

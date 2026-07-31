@@ -1,0 +1,433 @@
+{
+  "schemaVersion": "maa-v2-batch10-changed-file-manifest@1.0.0",
+  "baselineCommit": "78d16bb1a2606f7187f69fc8474e97629bce69ca",
+  "headCommit": "78d16bb1a2606f7187f69fc8474e97629bce69ca",
+  "rule": "Literal relative paths only — SHA-256 + byteLength + classification. No wildcards.",
+  "intendedScopePathCount": 59,
+  "intendedScopePaths": [
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/schemas.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/corpus-lanes.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/census.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/materialise.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/validators.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/batch9-bridge.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/pipeline.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/index.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+    "scripts/assurance/emit-maa-v2-stage150-batch10.ts",
+    "scripts/maa-v2-stage150-batch10-contracts.test.ts",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/STOP-FOR-CODEX-REVIEW.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/source-capability-census.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/accepted-rejected-packets.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/materialisation-report.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/per-adapter-capability-counts.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/per-control-batch9-runnable-counts.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/seven-exit-capability-matrix.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/duplicate-lineage-register.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/storage-projection-retention-policy.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/brain1-guardian-blob-compare.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/changed-file-manifest.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/stage150-execution-readiness-gate.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/stage150-implementation-capability-matrix.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/stage150-implementation-totals.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/typescript-baseline.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/typescript-delta.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/exact-manifest-hashes.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-01-phone-harassment/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-02-cctv-stills/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-03-bwv-custody/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-04-co-def-interview/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-05-encro-attribution/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-06-domestic-stalking/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-07-phone-ocr-trap/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-08-cctv-night-stills/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-09-cctv-index-only/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-10-bwv-public-order/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-11-custody-pace-ocr/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-12-multi-def-burglary/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-13-co-def-index-trap/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-14-encro-retail/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-15-county-lines-runners/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-16-fraud-bank-statements/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-17-fraud-transaction-export/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-18-motoring-sjp-thin/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-19-motoring-breath-specimen/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-20-domestic-harassment/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-21-historic-sexual-abe/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-22-youth-interview/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-23-duplicate-pages/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-24-missing-pages-index/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-25-charge-bundle-mismatch/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-26-phone-referred-metadata/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-27-custody-pace-missing/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-28-fraud-subscriber-trap/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-29-youth-yjs-material/structured-case-packet.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-30-layout-hearing-date/structured-case-packet.json"
+  ],
+  "entryCount": 59,
+  "entries": [
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/schemas.ts",
+      "sha256": "c5302dc8f13b304e80855fbe705ffa7b21dcadeef4f1e5399f3dbfc018bdf1ec",
+      "byteLength": 7078,
+      "classification": "source_lib_batch10"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/corpus-lanes.ts",
+      "sha256": "fd5ba973fd817ef0bc28966bb35b3e0e8e6fa54aa8d8ea14e5c374712f3d0b50",
+      "byteLength": 4214,
+      "classification": "source_lib_batch10"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/census.ts",
+      "sha256": "1291a40151cefe5b9c61e0c0777263f3a781d1d7bc0bb00dbbdd0bb1ce955ad3",
+      "byteLength": 9775,
+      "classification": "source_lib_batch10"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/materialise.ts",
+      "sha256": "9448eeaa298327aaa3d981e5bf5d5ed09de761bdb75e242c77828d81a88d67a2",
+      "byteLength": 21697,
+      "classification": "source_lib_batch10"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/validators.ts",
+      "sha256": "687de8bcd2b67d5d03de5ae412895232dbdfb4d36fc373d6bd6e9df7fe3ca604",
+      "byteLength": 5172,
+      "classification": "source_lib_batch10"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/batch9-bridge.ts",
+      "sha256": "1745c09ce2b2c20a6d3cbd45e2661728617871be26a14657737358e454096d23",
+      "byteLength": 4849,
+      "classification": "source_lib_batch10"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/pipeline.ts",
+      "sha256": "641638b7f6cc11ff1dca6795b75ae6fbc1c2e6c0c3c0200893ec20b52b348126",
+      "byteLength": 10695,
+      "classification": "source_lib_batch10"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/index.ts",
+      "sha256": "fe2bcd4fdf97838f0bd922c70708c55ba1543c0edc5fa260bd4d58036c1e0a07",
+      "byteLength": 285,
+      "classification": "source_lib_batch10"
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/index.ts",
+      "sha256": "61d907b2c01bd767cf8c557525d52f8af22f2cb4a944afc3c77e66079e329915",
+      "byteLength": 1543,
+      "classification": "source_lib_wire"
+    },
+    {
+      "relativePath": "scripts/assurance/emit-maa-v2-stage150-batch10.ts",
+      "sha256": "84d79428018b49d67f1539ed5058190f9b61d7282baa1d370adb6f13e8110eb3",
+      "byteLength": 21487,
+      "classification": "emit_script"
+    },
+    {
+      "relativePath": "scripts/maa-v2-stage150-batch10-contracts.test.ts",
+      "sha256": "79ffc0769a374b0490502a89ba6cb4bb618ebc7b366fe99ea5e0eaeac4031827",
+      "byteLength": 16130,
+      "classification": "contract_test"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+      "sha256": "88452f75d47b0a70507bc5742cfc142402e1f5dd8194cd91e00c37a8d61f6eaa",
+      "byteLength": 1052,
+      "classification": "checkpoint_gate"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "b9181151ae64954a4ace1b1082d0908c2abd1c7a53693c724ac65e763b7e0df9",
+      "byteLength": 15944,
+      "classification": "checkpoint_stop"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/source-capability-census.json",
+      "sha256": "4dc6b3e9bb90619124b2cfcea1106ff6df6fa6e9d6162a285900a8ee10d7af7e",
+      "byteLength": 1353674,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/accepted-rejected-packets.json",
+      "sha256": "e661901cf3edaad291429aeb1f1a8db6f16309dccf8e4f5f369fcef874a7ce5b",
+      "byteLength": 10761,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/materialisation-report.json",
+      "sha256": "0cc1e3f141a5412eba842c906775b317e6d45bfa2b663dca8095c7a588609339",
+      "byteLength": 12576,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/per-adapter-capability-counts.json",
+      "sha256": "2a33995795dc92005490834897cd14ebc66366740ef1e687e98bd5840ad61827",
+      "byteLength": 762,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/per-control-batch9-runnable-counts.json",
+      "sha256": "b61bc425759d68a53546126f366db8b2f3e9c9e7e5db884f6e488eb689db4a2b",
+      "byteLength": 4282,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/seven-exit-capability-matrix.json",
+      "sha256": "5729ccfc5d728fad5d3cdc6d5812b61fa4abdf05e577943ec1e945374fe69b5e",
+      "byteLength": 1436,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/duplicate-lineage-register.json",
+      "sha256": "da61aa8bb204eaf98fbd152f3267d4538ecf12a2d29a5dac6b7ffba5992e1e81",
+      "byteLength": 1836,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/storage-projection-retention-policy.json",
+      "sha256": "153cd799638b28036b43f8f162bd096352927af576545680a34c421fd23c7f8a",
+      "byteLength": 1021,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/brain1-guardian-blob-compare.json",
+      "sha256": "3b8e5f78e89f35e5fe35830429b41bb2121788c73b3148e895f43bdd09208293",
+      "byteLength": 2867,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/stage150-execution-readiness-gate.json",
+      "sha256": "88452f75d47b0a70507bc5742cfc142402e1f5dd8194cd91e00c37a8d61f6eaa",
+      "byteLength": 1052,
+      "classification": "checkpoint_gate"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/stage150-implementation-capability-matrix.json",
+      "sha256": "fe25728520838fff3fa45abc6a91462bd723df3beb3e9193c96fc5187ab96b6c",
+      "byteLength": 172551,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/stage150-implementation-totals.json",
+      "sha256": "9e9a2760d98c3e21c1487401116d1ca179c6d010900653010d07434982fcb9ca",
+      "byteLength": 320,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/typescript-baseline.json",
+      "sha256": "e7fcc8520cd4410eb400378ccf6476f920ec17508deedf16d080065ff3d912a6",
+      "byteLength": 4284,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/typescript-delta.json",
+      "sha256": "ecc3c700e060f479fd54b06cc0056d01f5b7edd16534f466aaadde2d81f45d2b",
+      "byteLength": 148,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/exact-manifest-hashes.json",
+      "sha256": "983be1d327d4d59c525a3dbbb3df9d140018d01666a68f7a72d61768516831af",
+      "byteLength": 10467,
+      "classification": "programme_evidence"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-01-phone-harassment/structured-case-packet.json",
+      "sha256": "2e5b59b1e66df1ed67ea0656584da3f1a8bb4839278a98e3537fdb517ce498e9",
+      "byteLength": 25180,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-02-cctv-stills/structured-case-packet.json",
+      "sha256": "5b1cc9d5809bcba2baabd6e211e98f47dc2cf78e50e44c023abd6c29ceae75c1",
+      "byteLength": 18835,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-03-bwv-custody/structured-case-packet.json",
+      "sha256": "0fcbf4588d9c3d9c17d30831116005ce85571438b8f40dd5fd6357e8118ca4d2",
+      "byteLength": 18467,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-04-co-def-interview/structured-case-packet.json",
+      "sha256": "25e9ceab79c46356e356db7643e23d5cfabca7dfdb7bb3489876f80aeb89cb6c",
+      "byteLength": 19229,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-05-encro-attribution/structured-case-packet.json",
+      "sha256": "81a9987c03b6f1da8b82ebc80fc67f88e6d1b055dece9480d1fb8849cd25b3e4",
+      "byteLength": 20131,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-06-domestic-stalking/structured-case-packet.json",
+      "sha256": "2c8c8a1ab19ea7828004bd81727ac6f145e64e426d70467f81fae4704be15d10",
+      "byteLength": 24879,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-07-phone-ocr-trap/structured-case-packet.json",
+      "sha256": "730e56bcb0cda1807a706bb7640f72070d93a48edf9c9193dae166612c6d674a",
+      "byteLength": 24637,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-08-cctv-night-stills/structured-case-packet.json",
+      "sha256": "4379dd57a399c50ead8170b0741d9c22930b9d35cb970dce936e401d1d1fafda",
+      "byteLength": 18498,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-09-cctv-index-only/structured-case-packet.json",
+      "sha256": "06485dcc0b64f4ff2b49c06605be9ba758de8f7d3b261011644f469a4685a12a",
+      "byteLength": 20065,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-10-bwv-public-order/structured-case-packet.json",
+      "sha256": "bb4ab92d10863fbc1d10b0f8f202323e49dc3143b89a19ac0d84782ac41b0841",
+      "byteLength": 18157,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-11-custody-pace-ocr/structured-case-packet.json",
+      "sha256": "fb3cdd72916b33d7209962bd7c898c3090afb161ab5b65f26f35a79b1830a8cf",
+      "byteLength": 18211,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-12-multi-def-burglary/structured-case-packet.json",
+      "sha256": "ec1e3a96df7a242c7070a6699445679824a272645b9debf6619d68de38ae084f",
+      "byteLength": 18898,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-13-co-def-index-trap/structured-case-packet.json",
+      "sha256": "109c7370a45a86d7d87e4db1b04d4b5ccdbb67d606e8056528021f8adf4694cb",
+      "byteLength": 20529,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-14-encro-retail/structured-case-packet.json",
+      "sha256": "df34ff2635c05f6e479985ea61899394d5bf403041fa8ba81025e431ea972b2d",
+      "byteLength": 19556,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-15-county-lines-runners/structured-case-packet.json",
+      "sha256": "2c52e02f292c86abe7ce3da52a5b80e01bca365e0c2db38513599041e933b2f0",
+      "byteLength": 19902,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-16-fraud-bank-statements/structured-case-packet.json",
+      "sha256": "0a51ca65a869777d0fd0d0791c7a3ce94bfcc6e89334c0e4ac4d3e20105ea028",
+      "byteLength": 19550,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-17-fraud-transaction-export/structured-case-packet.json",
+      "sha256": "192b69d9c1944d7caebfb03b7428d36d6625e9b095e764bdf73eeeb59699e07d",
+      "byteLength": 19646,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-18-motoring-sjp-thin/structured-case-packet.json",
+      "sha256": "083a64e6453d780b91c3aa30358229ec655b9367bea5b7964c535f10d7b76de5",
+      "byteLength": 15725,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-19-motoring-breath-specimen/structured-case-packet.json",
+      "sha256": "b3ad5c387ca4023bd0ad394c56ce81a031c7d169990746894722db923cc66ac9",
+      "byteLength": 15997,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-20-domestic-harassment/structured-case-packet.json",
+      "sha256": "7b048fc2c6acac7c900564ad60384a7a2a944e567df3e1b253301ad188c14af0",
+      "byteLength": 24850,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-21-historic-sexual-abe/structured-case-packet.json",
+      "sha256": "e5bd66e981d1986e6b2040fa1e6866fcae5cf188b2f4045e7bbdd25b1df3d87c",
+      "byteLength": 19473,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-22-youth-interview/structured-case-packet.json",
+      "sha256": "ab52b13cba4e42f550d890bb0b93f8dc6edba66413f52f52b99790d91bb830dd",
+      "byteLength": 17654,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-23-duplicate-pages/structured-case-packet.json",
+      "sha256": "7a5e60c6f769b5a15eff7b633f7075f13b821f03096396397d842d320c52d7ba",
+      "byteLength": 26421,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-24-missing-pages-index/structured-case-packet.json",
+      "sha256": "cdc7c6aa0b75d0ac90051b49c3bac38c93cc29b060f0bc7306e68417bb81f7ee",
+      "byteLength": 20219,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-25-charge-bundle-mismatch/structured-case-packet.json",
+      "sha256": "3169d345931503fa324e18a9bfd5c59bb9bef62f7554403e9145c96cae55ba12",
+      "byteLength": 19908,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-26-phone-referred-metadata/structured-case-packet.json",
+      "sha256": "b28bdc89b72a6243bb6b3ed6f309cd942f8a47bdbe5a5f12c317c31caead7976",
+      "byteLength": 25014,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-27-custody-pace-missing/structured-case-packet.json",
+      "sha256": "a9d87c07007a4b7c0a59d0c01f56f8c9c4c7fef826ab5c458527d0d8f8501846",
+      "byteLength": 18347,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-28-fraud-subscriber-trap/structured-case-packet.json",
+      "sha256": "d58a0ee1e863c7d4c8e28c3c6cb69c0ebc61c7808b6b83b1f05d1c6f00ee9e74",
+      "byteLength": 19579,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-29-youth-yjs-material/structured-case-packet.json",
+      "sha256": "d9ac93c9098559b8f8493e9cba336b43d73dea6e08d774fef40e5d884499dc75",
+      "byteLength": 17748,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-30-layout-hearing-date/structured-case-packet.json",
+      "sha256": "a0e119e202d269a7b697a01c34aab2a1ab0bfc993cbf0d7338208c2b2c0f482f",
+      "byteLength": 18638,
+      "classification": "candidate_packet"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/changed-file-manifest.json",
+      "sha256": "78ba318d8af0da4efa42dac57bba127cd71e77b1cdbd81fa25a92f09f413bc90",
+      "byteLength": 25990,
+      "classification": "checkpoint_manifest"
+    }
+  ],
+  "thisManifest": {
+    "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10/changed-file-manifest.json",
+    "sha256": "78ba318d8af0da4efa42dac57bba127cd71e77b1cdbd81fa25a92f09f413bc90",
+    "byteLength": 25990,
+    "classification": "checkpoint_manifest",
+    "hashesDocumentWithThisManifestNull": true
+  },
+  "digestSha256": "0e40d7fc727805c9bc2f3fb8bbe30cf5ed1cb644fad695319803cc711b3bdf52"
+}

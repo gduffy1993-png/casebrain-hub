@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "batch10-exit-authenticity@1.0.0",
+  "matrix": {
+    "view": {
+      "genuine_production_payload": 120,
+      "metadata_only": 0,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "copy": {
+      "genuine_production_payload": 120,
+      "metadata_only": 0,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "export": {
+      "genuine_production_payload": 120,
+      "metadata_only": 0,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "api": {
+      "genuine_production_payload": 120,
+      "metadata_only": 0,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "pdf": {
+      "genuine_production_payload": 120,
+      "metadata_only": 0,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "composed_prose": {
+      "genuine_production_payload": 120,
+      "metadata_only": 0,
+      "unavailable": 30,
+      "not_exercised": 0
+    },
+    "authenticated_browser": {
+      "genuine_production_payload": 0,
+      "metadata_only": 0,
+      "unavailable": 0,
+      "not_exercised": 150
+    }
+  },
+  "note": "authenticated_browser remains not_exercised without genuine authenticated capture"
+}

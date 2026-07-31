@@ -1,16 +1,14 @@
 {
-  "schemaVersion": "stage150-execution-readiness-gate@1.11.0",
+  "schemaVersion": "stage150-execution-readiness-gate@1.10.0",
   "baselineCommit": "78d16bb1a2606f7187f69fc8474e97629bce69ca",
   "programmePassSupported": false,
   "stage150SampleSelectionAllowed": false,
   "stage150ExecutionAllowed": false,
   "freezeAllowed": false,
-  "populationPacketReadinessMet": true,
   "reasons": [
-    "populationPacketReadinessMet=true — 150 unique packets independently verified; does NOT imply Stage-150/detector/programme readiness",
-    "Stage-150 sample selection, freeze and execution remain FALSE",
-    "No detector readiness implied",
-    "No programme PASS"
+    "Population of 150 unique packets exists — readiness only; Stage-150 selection/freeze/run remain FALSE",
+    "Batch-10 deficit-120 does not promote detectors or run Stage-150",
+    "currentlyRunnableOnStage150 remains false"
   ],
   "prerequisites": {
     "registryComplete": true,

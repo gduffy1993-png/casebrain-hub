@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "batch10-storage-projection-retention@1.0.0",
+  "candidateRoot": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates",
+  "artefactRoot": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10",
+  "projection": {
+    "perPacketFiles": [
+      "structured-case-packet.json"
+    ],
+    "checkpoint": "_checkpoint.json",
+    "estimatedBytesPerPacket": 25180,
+    "projectedBytesAt150": 3777000
+  },
+  "retention": {
+    "doNotOverwrite": [
+      "artifacts/evidence-state-audit-local/cases/**",
+      "artifacts/casebrain-qa/gold-manual-proof-set-v1/**",
+      "artifacts/casebrain-qa/malik-price-generation-v2-untouched-run/**",
+      "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch9/**"
+    ],
+    "candidatesAreEphemeralUntilAccepted": true,
+    "truthKeys": "hash-identify only; never open contents for CaseBrain output population",
+    "regeneration": "byte-identical deterministic materialisedAt=deterministic:<hash16>"
+  }
+}

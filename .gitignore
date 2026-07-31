@@ -24,6 +24,11 @@ artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-eligibility-rec
 artifacts/casebrain-qa/assurance/master-auditor-v2/**/stage150-*-eligibility-receipts.jsonl.gz
 artifacts/casebrain-qa/assurance/master-auditor-v2/**/raw-receipts/
 
+# Batch-10 population corpus — local hash-locked; regenerate via emit-maa-v2-stage150-batch10*.ts
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-sources/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-deficit120-candidates/
+artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/
+
 # Local bundle fidelity — real PDFs, client truth keys, pasted bundle text (never commit)
 artifacts/bundle-fidelity-local/
 

@@ -36,5 +36,6 @@ export * from "./batch7-honesty-disposition";
 export * from "./evidence-dimension-domain-registry";
 export * from "./batch8";
 export * from "./batch9";
+export * from "./batch10";
 export * from "./fid10-calibration";
 export * from "./multi-exit-map";

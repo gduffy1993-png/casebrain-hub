@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "batch10-uniqueness-report@1.0.0",
+  "uniqueness": {
+    "uniqueCaseIds": 120,
+    "uniqueSourcePdfHashes": 120,
+    "uniqueChargeWordingHashes": 120,
+    "uniqueFingerprints": 120,
+    "normalisedTemplateId": "deficit120-disclosure-v1"
+  },
+  "nearDuplicates": []
+}

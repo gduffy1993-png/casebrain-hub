@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "batch10-cohort-a-manifest@1.0.0",
+  "count": 30,
+  "packets": [
+    {
+      "caseId": "demo-audit-01-phone-harassment",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-01-phone-harassment/structured-case-packet.json",
+      "expectedSha256": "2e5b59b1e66df1ed67ea0656584da3f1a8bb4839278a98e3537fdb517ce498e9",
+      "actualSha256": "2e5b59b1e66df1ed67ea0656584da3f1a8bb4839278a98e3537fdb517ce498e9",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-02-cctv-stills",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-02-cctv-stills/structured-case-packet.json",
+      "expectedSha256": "5b1cc9d5809bcba2baabd6e211e98f47dc2cf78e50e44c023abd6c29ceae75c1",
+      "actualSha256": "5b1cc9d5809bcba2baabd6e211e98f47dc2cf78e50e44c023abd6c29ceae75c1",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-03-bwv-custody",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-03-bwv-custody/structured-case-packet.json",
+      "expectedSha256": "0fcbf4588d9c3d9c17d30831116005ce85571438b8f40dd5fd6357e8118ca4d2",
+      "actualSha256": "0fcbf4588d9c3d9c17d30831116005ce85571438b8f40dd5fd6357e8118ca4d2",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-04-co-def-interview",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-04-co-def-interview/structured-case-packet.json",
+      "expectedSha256": "25e9ceab79c46356e356db7643e23d5cfabca7dfdb7bb3489876f80aeb89cb6c",
+      "actualSha256": "25e9ceab79c46356e356db7643e23d5cfabca7dfdb7bb3489876f80aeb89cb6c",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-05-encro-attribution",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-05-encro-attribution/structured-case-packet.json",
+      "expectedSha256": "81a9987c03b6f1da8b82ebc80fc67f88e6d1b055dece9480d1fb8849cd25b3e4",
+      "actualSha256": "81a9987c03b6f1da8b82ebc80fc67f88e6d1b055dece9480d1fb8849cd25b3e4",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-06-domestic-stalking",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-06-domestic-stalking/structured-case-packet.json",
+      "expectedSha256": "2c8c8a1ab19ea7828004bd81727ac6f145e64e426d70467f81fae4704be15d10",
+      "actualSha256": "2c8c8a1ab19ea7828004bd81727ac6f145e64e426d70467f81fae4704be15d10",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-07-phone-ocr-trap",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-07-phone-ocr-trap/structured-case-packet.json",
+      "expectedSha256": "730e56bcb0cda1807a706bb7640f72070d93a48edf9c9193dae166612c6d674a",
+      "actualSha256": "730e56bcb0cda1807a706bb7640f72070d93a48edf9c9193dae166612c6d674a",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-08-cctv-night-stills",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-08-cctv-night-stills/structured-case-packet.json",
+      "expectedSha256": "4379dd57a399c50ead8170b0741d9c22930b9d35cb970dce936e401d1d1fafda",
+      "actualSha256": "4379dd57a399c50ead8170b0741d9c22930b9d35cb970dce936e401d1d1fafda",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-09-cctv-index-only",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-09-cctv-index-only/structured-case-packet.json",
+      "expectedSha256": "06485dcc0b64f4ff2b49c06605be9ba758de8f7d3b261011644f469a4685a12a",
+      "actualSha256": "06485dcc0b64f4ff2b49c06605be9ba758de8f7d3b261011644f469a4685a12a",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-10-bwv-public-order",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-10-bwv-public-order/structured-case-packet.json",
+      "expectedSha256": "bb4ab92d10863fbc1d10b0f8f202323e49dc3143b89a19ac0d84782ac41b0841",
+      "actualSha256": "bb4ab92d10863fbc1d10b0f8f202323e49dc3143b89a19ac0d84782ac41b0841",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-11-custody-pace-ocr",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-11-custody-pace-ocr/structured-case-packet.json",
+      "expectedSha256": "fb3cdd72916b33d7209962bd7c898c3090afb161ab5b65f26f35a79b1830a8cf",
+      "actualSha256": "fb3cdd72916b33d7209962bd7c898c3090afb161ab5b65f26f35a79b1830a8cf",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-12-multi-def-burglary",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-12-multi-def-burglary/structured-case-packet.json",
+      "expectedSha256": "ec1e3a96df7a242c7070a6699445679824a272645b9debf6619d68de38ae084f",
+      "actualSha256": "ec1e3a96df7a242c7070a6699445679824a272645b9debf6619d68de38ae084f",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-13-co-def-index-trap",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-13-co-def-index-trap/structured-case-packet.json",
+      "expectedSha256": "109c7370a45a86d7d87e4db1b04d4b5ccdbb67d606e8056528021f8adf4694cb",
+      "actualSha256": "109c7370a45a86d7d87e4db1b04d4b5ccdbb67d606e8056528021f8adf4694cb",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-14-encro-retail",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-14-encro-retail/structured-case-packet.json",
+      "expectedSha256": "df34ff2635c05f6e479985ea61899394d5bf403041fa8ba81025e431ea972b2d",
+      "actualSha256": "df34ff2635c05f6e479985ea61899394d5bf403041fa8ba81025e431ea972b2d",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-15-county-lines-runners",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-15-county-lines-runners/structured-case-packet.json",
+      "expectedSha256": "2c52e02f292c86abe7ce3da52a5b80e01bca365e0c2db38513599041e933b2f0",
+      "actualSha256": "2c52e02f292c86abe7ce3da52a5b80e01bca365e0c2db38513599041e933b2f0",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-16-fraud-bank-statements",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-16-fraud-bank-statements/structured-case-packet.json",
+      "expectedSha256": "0a51ca65a869777d0fd0d0791c7a3ce94bfcc6e89334c0e4ac4d3e20105ea028",
+      "actualSha256": "0a51ca65a869777d0fd0d0791c7a3ce94bfcc6e89334c0e4ac4d3e20105ea028",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-17-fraud-transaction-export",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-17-fraud-transaction-export/structured-case-packet.json",
+      "expectedSha256": "192b69d9c1944d7caebfb03b7428d36d6625e9b095e764bdf73eeeb59699e07d",
+      "actualSha256": "192b69d9c1944d7caebfb03b7428d36d6625e9b095e764bdf73eeeb59699e07d",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-18-motoring-sjp-thin",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-18-motoring-sjp-thin/structured-case-packet.json",
+      "expectedSha256": "083a64e6453d780b91c3aa30358229ec655b9367bea5b7964c535f10d7b76de5",
+      "actualSha256": "083a64e6453d780b91c3aa30358229ec655b9367bea5b7964c535f10d7b76de5",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-19-motoring-breath-specimen",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-19-motoring-breath-specimen/structured-case-packet.json",
+      "expectedSha256": "b3ad5c387ca4023bd0ad394c56ce81a031c7d169990746894722db923cc66ac9",
+      "actualSha256": "b3ad5c387ca4023bd0ad394c56ce81a031c7d169990746894722db923cc66ac9",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-20-domestic-harassment",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-20-domestic-harassment/structured-case-packet.json",
+      "expectedSha256": "7b048fc2c6acac7c900564ad60384a7a2a944e567df3e1b253301ad188c14af0",
+      "actualSha256": "7b048fc2c6acac7c900564ad60384a7a2a944e567df3e1b253301ad188c14af0",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-21-historic-sexual-abe",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-21-historic-sexual-abe/structured-case-packet.json",
+      "expectedSha256": "e5bd66e981d1986e6b2040fa1e6866fcae5cf188b2f4045e7bbdd25b1df3d87c",
+      "actualSha256": "e5bd66e981d1986e6b2040fa1e6866fcae5cf188b2f4045e7bbdd25b1df3d87c",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-22-youth-interview",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-22-youth-interview/structured-case-packet.json",
+      "expectedSha256": "ab52b13cba4e42f550d890bb0b93f8dc6edba66413f52f52b99790d91bb830dd",
+      "actualSha256": "ab52b13cba4e42f550d890bb0b93f8dc6edba66413f52f52b99790d91bb830dd",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-23-duplicate-pages",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-23-duplicate-pages/structured-case-packet.json",
+      "expectedSha256": "7a5e60c6f769b5a15eff7b633f7075f13b821f03096396397d842d320c52d7ba",
+      "actualSha256": "7a5e60c6f769b5a15eff7b633f7075f13b821f03096396397d842d320c52d7ba",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-24-missing-pages-index",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-24-missing-pages-index/structured-case-packet.json",
+      "expectedSha256": "cdc7c6aa0b75d0ac90051b49c3bac38c93cc29b060f0bc7306e68417bb81f7ee",
+      "actualSha256": "cdc7c6aa0b75d0ac90051b49c3bac38c93cc29b060f0bc7306e68417bb81f7ee",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-25-charge-bundle-mismatch",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-25-charge-bundle-mismatch/structured-case-packet.json",
+      "expectedSha256": "3169d345931503fa324e18a9bfd5c59bb9bef62f7554403e9145c96cae55ba12",
+      "actualSha256": "3169d345931503fa324e18a9bfd5c59bb9bef62f7554403e9145c96cae55ba12",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-26-phone-referred-metadata",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-26-phone-referred-metadata/structured-case-packet.json",
+      "expectedSha256": "b28bdc89b72a6243bb6b3ed6f309cd942f8a47bdbe5a5f12c317c31caead7976",
+      "actualSha256": "b28bdc89b72a6243bb6b3ed6f309cd942f8a47bdbe5a5f12c317c31caead7976",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-27-custody-pace-missing",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-27-custody-pace-missing/structured-case-packet.json",
+      "expectedSha256": "a9d87c07007a4b7c0a59d0c01f56f8c9c4c7fef826ab5c458527d0d8f8501846",
+      "actualSha256": "a9d87c07007a4b7c0a59d0c01f56f8c9c4c7fef826ab5c458527d0d8f8501846",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-28-fraud-subscriber-trap",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-28-fraud-subscriber-trap/structured-case-packet.json",
+      "expectedSha256": "d58a0ee1e863c7d4c8e28c3c6cb69c0ebc61c7808b6b83b1f05d1c6f00ee9e74",
+      "actualSha256": "d58a0ee1e863c7d4c8e28c3c6cb69c0ebc61c7808b6b83b1f05d1c6f00ee9e74",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-29-youth-yjs-material",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-29-youth-yjs-material/structured-case-packet.json",
+      "expectedSha256": "d9ac93c9098559b8f8493e9cba336b43d73dea6e08d774fef40e5d884499dc75",
+      "actualSha256": "d9ac93c9098559b8f8493e9cba336b43d73dea6e08d774fef40e5d884499dc75",
+      "unchanged": true
+    },
+    {
+      "caseId": "demo-audit-30-layout-hearing-date",
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-structured-candidates/demo-audit-30-layout-hearing-date/structured-case-packet.json",
+      "expectedSha256": "a0e119e202d269a7b697a01c34aab2a1ab0bfc993cbf0d7338208c2b2c0f482f",
+      "actualSha256": "a0e119e202d269a7b697a01c34aab2a1ab0bfc993cbf0d7338208c2b2c0f482f",
+      "unchanged": true
+    }
+  ]
+}

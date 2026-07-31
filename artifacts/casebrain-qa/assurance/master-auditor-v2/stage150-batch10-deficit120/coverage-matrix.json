@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "batch10-deficit120-coverage-matrix@1.0.0",
+  "byFamily": {
+    "homicide_causation": 7,
+    "violence_robbery_weapons": 7,
+    "firearms": 7,
+    "sexual_abe": 7,
+    "domestic_abuse": 7,
+    "youth_participation": 7,
+    "county_lines_nrm": 7,
+    "fraud_poca": 7,
+    "digital_attribution": 7,
+    "identification_code_d": 7,
+    "mental_health_fitness": 7,
+    "disclosure_pii": 7,
+    "road_traffic_fatal": 7,
+    "magistrates_procedure": 7,
+    "bail_remand": 7,
+    "sentencing_newton": 7,
+    "appeals": 7,
+    "multi_defendant_attribution": 1
+  },
+  "byVariant": {
+    "clean": 18,
+    "messy": 17,
+    "ocr_scan": 17,
+    "mixed_format": 17,
+    "later_disclosure": 17,
+    "amended_document": 17,
+    "competing_chrono": 17
+  },
+  "byProcedure": {
+    "indictable": 85,
+    "summary": 35
+  },
+  "byComplexity": {
+    "low": 18,
+    "medium": 34,
+    "high": 68
+  },
+  "total": 120
+}

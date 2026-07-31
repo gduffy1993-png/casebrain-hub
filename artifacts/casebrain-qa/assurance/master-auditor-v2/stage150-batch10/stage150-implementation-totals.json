@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "stage150-implementation-totals@1.0.0",
+  "totals": {
+    "stage150ControlCount": 161,
+    "partially_implemented": 98,
+    "specified_not_implemented": 55,
+    "implemented": 8,
+    "other": 0
+  },
+  "implementedIdCount": 8,
+  "note": "Batch-10 does not promote detectors; totals remain 8/98/55"
+}

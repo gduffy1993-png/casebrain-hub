@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "batch10-adapter-dry-run@1.0.0",
+  "note": "Dry-run only — no audit verdicts; truth unopened",
+  "sample": {
+    "charge_instruments": {
+      "capabilityStatus": "eligible",
+      "applicableRecordCount": 1,
+      "completeRecordCount": 1,
+      "incompleteRecordCount": 0
+    },
+    "evidence_units": {
+      "capabilityStatus": "partial",
+      "applicableRecordCount": 12,
+      "completeRecordCount": 5,
+      "incompleteRecordCount": 7
+    },
+    "chronology_events": {
+      "capabilityStatus": "eligible",
+      "applicableRecordCount": 1,
+      "completeRecordCount": 1,
+      "incompleteRecordCount": 0
+    },
+    "provenance": {
+      "capabilityStatus": "eligible",
+      "applicableRecordCount": 7,
+      "completeRecordCount": 7,
+      "incompleteRecordCount": 0
+    },
+    "chase_relationships": {
+      "capabilityStatus": "partial",
+      "applicableRecordCount": 6,
+      "completeRecordCount": 4,
+      "incompleteRecordCount": 2
+    },
+    "exit_snapshots": {
+      "capabilityStatus": "partial",
+      "applicableRecordCount": 7,
+      "completeRecordCount": 6,
+      "incompleteRecordCount": 1
+    }
+  }
+}

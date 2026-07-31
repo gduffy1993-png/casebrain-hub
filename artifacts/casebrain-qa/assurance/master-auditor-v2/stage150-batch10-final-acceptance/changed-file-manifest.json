@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "maa-v2-batch10-final-acceptance-changed-file-manifest@1.0.0",
+  "baselineCommit": "78d16bb1a2606f7187f69fc8474e97629bce69ca",
+  "headCommit": "78d16bb1a2606f7187f69fc8474e97629bce69ca",
+  "intendedScopePaths": [
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/final-acceptance/independent-recompute.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/final-acceptance/index.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/index.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/validators.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/pipeline.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/cohort-pipeline.ts",
+    "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/strict-validators.ts",
+    "scripts/assurance/emit-maa-v2-stage150-batch10-final-acceptance.ts",
+    "scripts/assurance/emit-maa-v2-stage150-batch10-deficit120.ts",
+    "scripts/maa-v2-stage150-batch10-final-acceptance-contracts.test.ts",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-final-acceptance/FINAL-BATCH10-POPULATION-ACCEPTANCE.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-final-acceptance/FINAL-BATCH10-POPULATION-ACCEPTANCE.md",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-final-acceptance/STOP-FOR-CODEX-REVIEW.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-final-acceptance/changed-file-manifest.json"
+  ],
+  "entries": [
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/final-acceptance/independent-recompute.ts",
+      "sha256": "83797fcb2ab5b84d8af0c97b125379127d62e41b4bf8cf21336b57a57b91fc60",
+      "byteLength": 18847
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/final-acceptance/index.ts",
+      "sha256": "b54cdd73a9fd9681b84d411fa1823cb16a7951a467c01c5c34fc8d2511177e46",
+      "byteLength": 98
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/index.ts",
+      "sha256": "903eef87861a346cd379a8d1e964dfca0fa472bf75112007abc078e27dec7a3a",
+      "byteLength": 353
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/validators.ts",
+      "sha256": "9c6dfc9276c5c3836f34eb73a1faaa302c1f5b33303947832e0b4182c9f03e04",
+      "byteLength": 6442
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/pipeline.ts",
+      "sha256": "52b2528eee9c220346057722fe234247431fddb8391b295e29a5c81ac4e96c06",
+      "byteLength": 10951
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/cohort-pipeline.ts",
+      "sha256": "61907e4d0e9886c5c70bf7374053823b1fffba58edc1e09172d08c377b1d5c4c",
+      "byteLength": 10316
+    },
+    {
+      "relativePath": "lib/eval/master-assurance-auditor/v2/stage150/batch10/deficit120/strict-validators.ts",
+      "sha256": "fdc73db01a5fd61165c0ecb1723c596b7ec18e8e29461de99e929f54e001155c",
+      "byteLength": 6204
+    },
+    {
+      "relativePath": "scripts/assurance/emit-maa-v2-stage150-batch10-final-acceptance.ts",
+      "sha256": "9e383f9c6e8f49b6f6d6a9db1ac76257fba7844901555aec3080848a309cd27b",
+      "byteLength": 20836
+    },
+    {
+      "relativePath": "scripts/assurance/emit-maa-v2-stage150-batch10-deficit120.ts",
+      "sha256": "3398657046cc86b263a211f1aa76ad73d391020b3192d99a62fe4013eb35b0fc",
+      "byteLength": 15488
+    },
+    {
+      "relativePath": "scripts/maa-v2-stage150-batch10-final-acceptance-contracts.test.ts",
+      "sha256": "e51ea14b6db778b6265a061995867670c215461e68aed2bd19b1ae580c9e850d",
+      "byteLength": 11322
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-execution-readiness-gate.json",
+      "sha256": "f430b521dd11b100bd7991a235d88c0e842dfd1cf04de6dd670c3e5d844aa7dd",
+      "byteLength": 1020
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-final-acceptance/FINAL-BATCH10-POPULATION-ACCEPTANCE.json",
+      "sha256": "6c8e9f3f7b127177d453e2870bb848c6d7232bc42d409ed015d1c84bfb25d56c",
+      "byteLength": 20480
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-final-acceptance/FINAL-BATCH10-POPULATION-ACCEPTANCE.md",
+      "sha256": "1869d479df43aa6524fb39d629ec9caf918caef9bb37246e84c9745845e8f625",
+      "byteLength": 3047
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-final-acceptance/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "fc777a7bb375e9adcac2c031451e601a3c510fe16a6d8286a7ddfcee71ed743e",
+      "byteLength": 5434
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-final-acceptance/changed-file-manifest.json",
+      "sha256": "845fd24abca637e2b1a8bf8a49cd48fda21d88645d0149b575b68afe050702e8",
+      "byteLength": 4941
+    }
+  ],
+  "thisManifest": {
+    "relativePath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage150-batch10-final-acceptance/changed-file-manifest.json",
+    "sha256": "845fd24abca637e2b1a8bf8a49cd48fda21d88645d0149b575b68afe050702e8",
+    "byteLength": 4941
+  }
+}
