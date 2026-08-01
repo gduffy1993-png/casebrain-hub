@@ -1,0 +1,268 @@
+{
+  "schemaVersion": "stage300-v2-solicitor-boundary-containment-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-01T21:04:40.299Z",
+  "rematerialisedCaseCount": 270,
+  "fileCount": 52,
+  "files": [
+    {
+      "path": "lib/criminal/solicitor-visible-matter-reference.ts",
+      "sha256": "422b2324cbbfc45a097d611bf64d8890e3a5309e4610524ca0a226c3b419f5e0",
+      "byteLength": 8445
+    },
+    {
+      "path": "lib/criminal/supervisor-raw-source-containment.ts",
+      "sha256": "b51f39ce9dacdaa3d3ec0485b7752a15fc5ca352412050da73f2b0cab938a2eb",
+      "byteLength": 4803
+    },
+    {
+      "path": "lib/criminal/export-pack/build-export-pack.ts",
+      "sha256": "12d0b9ade765795e159cf949054c924f9663ade4354ab6d21bc006916727168d",
+      "byteLength": 15554
+    },
+    {
+      "path": "lib/criminal/build-from-document-units.ts",
+      "sha256": "1a3ff30f9c89dedd4137cf32883f6a84623ce747da6ebdd9746a842bed3f4834",
+      "byteLength": 54865
+    },
+    {
+      "path": "lib/criminal/solicitor-visible-sanitization.ts",
+      "sha256": "e21db15ea722defc1eeae42b20ef761072c9a42ecbcb19012ada86903a2cc522",
+      "byteLength": 16749
+    },
+    {
+      "path": "lib/criminal/canonical-live-surface-adapter.ts",
+      "sha256": "4cf850d288e299d7874c9f35835be6e895a5e3dfec2b23c63e5265c7b2761da2",
+      "byteLength": 18740
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/new150/audience-packs-from-surfaces.ts",
+      "sha256": "0616afaf65ddc13fe5baf6fcbf4797293a58dba45385cbbf13263e41a44396fd",
+      "byteLength": 6548
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/constants.ts",
+      "sha256": "2ef8a97277a7f2cbb9211551a0d24aa60a18dbc9a3a7aab95dfb39ef4f6a49da",
+      "byteLength": 9912
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/solicitor-visible-inventory.ts",
+      "sha256": "db523efc4db4f695645b284f1d03398a9111ec71510c602023c8ce7c62679c45",
+      "byteLength": 16774
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/inputs/load-essential-inputs.ts",
+      "sha256": "619e2e0fded28fdb7daabd480a51f6de18b8029ffe7218ac9330bdd9dea63101",
+      "byteLength": 13728
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/calibration-v2/pipeline-solicitor-boundary-containment.ts",
+      "sha256": "62c2639e28edc78fc9c9435058068e490b1e5cdaa46e71a5620343aec5492854",
+      "byteLength": 40577
+    },
+    {
+      "path": "scripts/assurance/rematerialise-maa-v2-stage300-shared-root-fix.ts",
+      "sha256": "a30a536aba525aa65c9dcbb45cfeca20eb167a4e8f1da4c04c6f6e4b323c2d08",
+      "byteLength": 15624
+    },
+    {
+      "path": "scripts/maa-v2-solicitor-boundary-containment-contracts.test.ts",
+      "sha256": "9c022f848d228663712379e4ae11f881fc919ae019113ace2d1cc91d42b4846e",
+      "byteLength": 5381
+    },
+    {
+      "path": "scripts/assurance/emit-maa-v2-stage300-solicitor-boundary-containment.ts",
+      "sha256": "b46a8f077273afe187f5cd95c670bddc466e99b24a368eb1a0de57444f7176b4",
+      "byteLength": 4957
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/all-exit-charge-visibility-matrix.json",
+      "sha256": "ad1b32527a706320a59d0e53ec4800ba61d2279584ac005b9380c9e3724ad07e",
+      "byteLength": 440506
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/before-after-wording-delta.json",
+      "sha256": "2f7fec3e83eff7acff6d6b7aac2c100f1c6cca3e6530578e22ecc2272ae893de",
+      "byteLength": 82841
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/brain1-guardian-blob-compare.json",
+      "sha256": "98b43c3d7a29239ba1e29e36a55af9dae1c19c4ead25e1af6b9932f5ca859e3a",
+      "byteLength": 2788
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/CHANGED-FILE-MANIFEST.json",
+      "sha256": "11c89dc2685f9c868d9e68a6ad0c883f3ce805c25a530da3f18fd38b2109181c",
+      "byteLength": 12483
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/DECISION-CARD.md",
+      "sha256": "dce5c9f4d9c7d4ebbf0ae55389ac386554f799224618f5ab08c2908940b499eb",
+      "byteLength": 2112
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/disposition-confirmed_output_intrinsic_defect.json",
+      "sha256": "76eff5df179a36328945710556979b2139e72b914ed74d454b843f7f5eb84c55",
+      "byteLength": 286
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/disposition-detector_false_positive.json",
+      "sha256": "f5ae24457e05a3e74a1fff0fe8e9a7d65e6a5ea266b0f9a6b6297fa2c7396de4",
+      "byteLength": 3340
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/disposition-duplicate_occurrence.json",
+      "sha256": "ea229b246be4d82b8bf5a0ffb2cfc3d87195192ce7a6f0e7b914bb746f8f711e",
+      "byteLength": 273
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/disposition-needs_professional_review.json",
+      "sha256": "de32ac4f347c52d9810a9a7b5c7f8f27c256e5520cbfe3ec083f98621be002bd",
+      "byteLength": 5075
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/disposition-non_visible_machine_state.json",
+      "sha256": "7cd61fdde0fe6959fa99be599de6f388acbce5c98aad68526b313544367696b4",
+      "byteLength": 278
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/disposition-source_material_not_drafted_output.json",
+      "sha256": "7632edca2f0cbce67be44da2f3553898981d1091f56e9b7642a784dc05d1c4aa",
+      "byteLength": 287
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/disposition-totals.json",
+      "sha256": "e7ed7e8a9af7e6a3a028d6d6de5fd6aa5758cd9198d5a5cad6e8313c4df7e4ca",
+      "byteLength": 1405
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/disposition-triage-v2.json",
+      "sha256": "bf1ca4a942fe3290e1af28305efbbe18527dcf26a137c5e0211a4e61330e5bf1",
+      "byteLength": 280072
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/disposition-unresolved.json",
+      "sha256": "2f8f7c1498c4582a1d5c46f09498ad09f51a940a4c0a95b322f4cd2409371081",
+      "byteLength": 263
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/essential-43-exercise-snapshot.json",
+      "sha256": "6ed09deb3c80e9d56ff74257ab6e6628b7381a0f497202b726baa82c8d97482d",
+      "byteLength": 6216
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/finding-unit-summary.json",
+      "sha256": "6214a1df0339a1bc17e169e7192549126d0a5eeb96796e2a6e890e31c1968efe",
+      "byteLength": 3261
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/freeze-hash-verification.json",
+      "sha256": "420e51b43aee57b83acd0e825f27ff971b8b0c695b02d97de4ce548ab69403d6",
+      "byteLength": 552
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/frozen-membership-input-receipt.json",
+      "sha256": "11ba5ce724c98a9f2f3bb66a549aebb87f7fb479fad342113de05332b18f29ce",
+      "byteLength": 329
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/frozen-membership-v2.json",
+      "sha256": "11f350bc9ee73125b3cd512d3acf6ab745aa2ee56cac8dc0f24de1456757a7f7",
+      "byteLength": 239944
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/genuine-review-batch-receipt.json",
+      "sha256": "6b4860e6bab4d638f1dd115102e7fb36bfc1c62cae76341e835d2750c681b6ea",
+      "byteLength": 364
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/npm-build-receipt.txt",
+      "sha256": "95d8ae59d2063e34e34ab7008934d45f77729a08105883e76a226f804c111a6f",
+      "byteLength": 29589
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/observed-tuple-disposition-register.json",
+      "sha256": "8d3dce3108a903d254d9ae6008b07896578522dafcc8b01f599c422999ce7d4a",
+      "byteLength": 9524
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/preserved-prior-runs-receipt.json",
+      "sha256": "8f014e216ae02e0f0e1c9fc1e54c675a542fad3d8116f3e3bddaada260ce87de",
+      "byteLength": 401
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/professional-review-batches-genuine.json",
+      "sha256": "63dca9b30b1d37cad9d0815f04a2a744a3afffe83b6ccb8d51bd99683dc30e59",
+      "byteLength": 450064
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/professional-review-batches.json",
+      "sha256": "3cd8573b25c34c36c51a4cc26f5a2c3f601ad38a45927ed24624087e1e8389df",
+      "byteLength": 584
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/professional-review-occurrence-map.jsonl",
+      "sha256": "ce298c406fa7fab55b18db9e4f5d180397395bf120dc18eb34fbaa04b02d8abf",
+      "byteLength": 872398
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/remaining-qualified-legal-review-items.json",
+      "sha256": "4ebac11731e47a1df5d408ccfbc204638c7a769c52cfd565c14cd8c5093086b5",
+      "byteLength": 4092
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/remaining-review-honesty-split.json",
+      "sha256": "d812ff1da2d47791c44416bf90277a9d6323fa8a9f0976b3f152a303d5d0b1a2",
+      "byteLength": 258
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/remaining-unresolved-ownership-items.json",
+      "sha256": "32ac973e9a0c65f900a284bbbd386ce5e184c9b204405d131291eb1804e7870c",
+      "byteLength": 100002
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/rematerialise-per-case.json",
+      "sha256": "55c80940291474e6e81f85b75ad88aa8c0161fa25388fa789e6c5c9366f1a611",
+      "byteLength": 121862
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/rematerialise-summary.json",
+      "sha256": "e5523052bf578483ab5b5cdd89dbbb2b6994a64c9c0883b160492d50f53c061c",
+      "byteLength": 14162
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/solicitor-quality-ledger.json",
+      "sha256": "2b3145668f73f5f9a875684418a67a301494024ce9462005f98949aee92793c2",
+      "byteLength": 611254
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "c7689ef064bd8a93f771c9e928df4000e8f62f1cd1754f9d4cc1243bbf06cd2a",
+      "byteLength": 4615
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/technical-word-for-word-review-strings.json",
+      "sha256": "9ed029acd759b6fc35af5f1c6edcce53c2efdc0ebe60be726d96a440ec475fd1",
+      "byteLength": 387018
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/technical-word-for-word-review-templates.json",
+      "sha256": "8e6075aedaac505ee86c51874ea362ecabe5975a5c684be07bef40d3b364a604",
+      "byteLength": 66670
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/tsc-baseline-delta.json",
+      "sha256": "72877e4e67acab26f04f37f9769e7cbb6073594cc7a1afa292a345c318db6b94",
+      "byteLength": 4885
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/twenty-case-mutation-preflight.json",
+      "sha256": "27df69f8f8174ef6d0526ecf95bc4811fc7b5619656170dfee6a346117fb0280",
+      "byteLength": 355
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/worktree-head.json",
+      "sha256": "7bdbabe3c0600b04b6e6e41833141a81f0d934eccaf1a3fea2f93ae2a3e8c808",
+      "byteLength": 99
+    }
+  ]
+}

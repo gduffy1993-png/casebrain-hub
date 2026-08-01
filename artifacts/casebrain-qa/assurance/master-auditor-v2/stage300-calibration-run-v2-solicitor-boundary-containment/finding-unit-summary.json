@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "maa-v2-stage300-calibration-run-v2-solicitor-boundary-containment@1.0.0",
+  "runId": "s300-cal-v2-solicitor-boundary-containment-2026-08-01T21-04-28-891Z",
+  "baselineCommit": "a831a631f3050e096b89633176f023bee2fd6a5f",
+  "orderedMembershipSha256V2": "23ae1b9df0a09b80b9ab51e3f597aad9103360f5f11c26606e1633b2c82c3c5a",
+  "occurrences": 960,
+  "uniqueStrings": 4,
+  "templates": 4,
+  "cases": 270,
+  "dispositionTotals": {
+    "confirmed_output_intrinsic_defect": {
+      "occurrences": 0,
+      "uniqueTuples": 0,
+      "uniqueStrings": 0,
+      "cases": 0
+    },
+    "detector_false_positive": {
+      "occurrences": 420,
+      "uniqueTuples": 3,
+      "uniqueStrings": 2,
+      "cases": 15
+    },
+    "duplicate_occurrence": {
+      "occurrences": 0,
+      "uniqueTuples": 0,
+      "uniqueStrings": 0,
+      "cases": 0
+    },
+    "non_visible_machine_state": {
+      "occurrences": 0,
+      "uniqueTuples": 0,
+      "uniqueStrings": 0,
+      "cases": 0
+    },
+    "source_material_not_drafted_output": {
+      "occurrences": 0,
+      "uniqueTuples": 0,
+      "uniqueStrings": 0,
+      "cases": 0
+    },
+    "needs_professional_review": {
+      "occurrences": 540,
+      "uniqueTuples": 5,
+      "uniqueStrings": 2,
+      "cases": 17
+    },
+    "unresolved": {
+      "occurrences": 0,
+      "uniqueTuples": 0,
+      "uniqueStrings": 0,
+      "cases": 0
+    }
+  },
+  "genuineReviewBatches": {
+    "templateCount": 42,
+    "uniquePrStrings": 191,
+    "batchCount": 1,
+    "occurrenceMapPath": "C:\\Users\\gduff\\casebrain-hub-wt-s300-cal\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage300-calibration-run-v2-solicitor-boundary-containment\\professional-review-occurrence-map.jsonl",
+    "genuineLegalReviewCount": 2,
+    "unresolvedOwnershipCount": 20
+  },
+  "honestySplit": {
+    "genuineQualifiedLegalReviewCount": 2,
+    "unresolvedOwnershipCount": 20
+  },
+  "sharedRootsFixed": [
+    "lib/criminal/solicitor-visible-matter-reference.ts — fixture IDs omitted; URN or no visible id",
+    "lib/criminal/export-pack/build-export-pack.ts — opaque export id; no Case ID fixture line",
+    "lib/criminal/supervisor-raw-source-containment.ts — labelled non-copyable raw extract",
+    "lib/eval/.../audience-packs-from-surfaces.ts — contained supervisor payload",
+    "lib/criminal/build-from-document-units.ts — strip corpus ids from evidence labels",
+    "solicitor-quality constants — expanded internal-language scanner"
+  ],
+  "hardAcceptance": {
+    "zeroHiddenRecordedCharges": true,
+    "zeroVisibleFixtureOrCorpusIds": true,
+    "zeroVisibleStage300OrHarnessLanguage": true,
+    "zeroMalformedSourceAsSolicitorDrafting": true,
+    "zeroMidWordOrMidSentenceGeneratedTruncations": true,
+    "zeroSolicitorVisibleInternalEnums": true,
+    "zeroDoNotSayDoNotDuplication": true,
+    "zeroClunkyNotSafelyConfirmedSlashUnsafe": true,
+    "zeroObjectivelyTruncatedChargeWhenRecoverable": true,
+    "zeroKnownEvidenceLabelFragmentFamilies": true,
+    "zeroKnownMachineStateLeaks": true,
+    "legalReviewAndUnresolvedOwnershipKeptSeparate": true,
+    "technicalDispositionsAreProposalsOnly": true,
+    "noSolicitorLegalApprovalClaim": true,
+    "stage300CompletionClaimed": false,
+    "programmePassClaimed": false
+  }
+}

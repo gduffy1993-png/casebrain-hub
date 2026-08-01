@@ -35,6 +35,10 @@ import {
 import { shouldChaseRequestAgainstServedAliases } from "@/lib/criminal/canonical-finding-model";
 import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
 import {
+  professionalCourtStatusFragment,
+  professionalMaterialStatusProse,
+} from "@/lib/criminal/solicitor-visible-sanitization";
+import {
   confirmNoneLine,
   familiesInText,
   familyDisplayName,
@@ -1180,7 +1184,12 @@ function mergeLedgerDisclosureItems(
       id: `ledger-material-${m.id}`,
       familyId,
       label: canonical.label,
-      whyItMatters: canonical.whyItMatters ?? `Papers mark this material as ${m.status} — chase or confirm status before fixing hearing position.`,
+      whyItMatters: (() => {
+        if (canonical.whyItMatters) return canonical.whyItMatters;
+        const statusProse = professionalMaterialStatusProse(m.status).replace(/\.$/, "");
+        if (/chase or confirm/i.test(statusProse)) return `${statusProse}.`;
+        return `${statusProse}. Chase or confirm status before fixing hearing position.`;
+      })(),
       source: "MG6/MG6C disclosure schedule",
       baseStatus,
       urgency: deadline.urgency,
@@ -1194,7 +1203,7 @@ function mergeLedgerDisclosureItems(
       })(),
       linkedRoute: null,
       draftChaseWording: canonical.draftChaseWording ?? `Please provide ${canonical.label.toLowerCase()} or confirm in writing why it is not available.`,
-      courtLine: `${COURT_RECORD_PREFIX} that ${canonical.label.charAt(0).toLowerCase()}${canonical.label.slice(1)} remains ${m.status} on the current papers.`,
+      courtLine: `${COURT_RECORD_PREFIX} that ${canonical.label.charAt(0).toLowerCase()}${canonical.label.slice(1)} remains ${professionalCourtStatusFragment(m.status)} on the current papers.`,
       mergedFrom: [m.displayLine],
     });
   }

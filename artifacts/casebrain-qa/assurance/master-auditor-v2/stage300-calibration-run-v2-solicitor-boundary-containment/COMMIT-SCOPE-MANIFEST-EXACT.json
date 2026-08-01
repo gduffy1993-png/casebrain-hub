@@ -1,0 +1,418 @@
+{
+  "schemaVersion": "stage300-v2-solicitor-boundary-containment-commit-scope-exact@1.1.0",
+  "baselineCommit": "a831a631f3050e096b89633176f023bee2fd6a5f",
+  "generatedAt": "2026-08-01T23:27:16.941Z",
+  "committed": false,
+  "excludeRematerialisedOutputs": true,
+  "hashedPayloadFileCount": 56,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/affected-case-list.json",
+      "sha256": "d91ece00058c6252b04bcf88ff8751f5c05d331447a24621a610ee1c8fa98776",
+      "byteLength": 14877,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/all-exit-charge-visibility-matrix.json",
+      "sha256": "ad1b32527a706320a59d0e53ec4800ba61d2279584ac005b9380c9e3724ad07e",
+      "byteLength": 440506,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/before-after-wording-delta.json",
+      "sha256": "2f7fec3e83eff7acff6d6b7aac2c100f1c6cca3e6530578e22ecc2272ae893de",
+      "byteLength": 82841,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/brain1-guardian-blob-compare.json",
+      "sha256": "98b43c3d7a29239ba1e29e36a55af9dae1c19c4ead25e1af6b9932f5ca859e3a",
+      "byteLength": 2788,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/CHANGED-FILE-MANIFEST.json",
+      "sha256": "8b702402114988ceb796a9f1382eaae7e3720380a39f7c8884cae3503c8eb61c",
+      "byteLength": 13856,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/DECISION-CARD.md",
+      "sha256": "7f64917fb9db57fdf933771344d91ac738ecb6c39741a1731fd6f4eeedfc7508",
+      "byteLength": 1038,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/finding-unit-summary.json",
+      "sha256": "6214a1df0339a1bc17e169e7192549126d0a5eeb96796e2a6e890e31c1968efe",
+      "byteLength": 3261,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/freeze-hash-verification.json",
+      "sha256": "420e51b43aee57b83acd0e825f27ff971b8b0c695b02d97de4ce548ab69403d6",
+      "byteLength": 552,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/npm-build-receipt.txt",
+      "sha256": "5446fc9f19da0b3d2471a914f8412dd2680e1e74916c4a34305f34d59e2b3c8a",
+      "byteLength": 29589,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/remaining-review-honesty-split.json",
+      "sha256": "d812ff1da2d47791c44416bf90277a9d6323fa8a9f0976b3f152a303d5d0b1a2",
+      "byteLength": 258,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/rematerialise-summary.json",
+      "sha256": "e5523052bf578483ab5b5cdd89dbbb2b6994a64c9c0883b160492d50f53c061c",
+      "byteLength": 14162,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/reporting-honesty-split.json",
+      "sha256": "992271122ede37360f3b9f6ae899d49e98772c145695d28682c20573df784303",
+      "byteLength": 920,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "2eb36b6093bcd3b91387770a70261956e4e3e5455b1293aca80fdfcb0af1eb90",
+      "byteLength": 2851,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/structural-boundary-scan.json",
+      "sha256": "69fda60a6031ef5844c75125f732e09d52e5bb8c32d75441c6cb935bb8bacaa7",
+      "byteLength": 997,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/tsc-baseline-delta.json",
+      "sha256": "04d6a07da5ef85229cf5f3920f1d8f0a7c20f216744fca09b356ad8ee2eebf21",
+      "byteLength": 4990,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/worktree-head.json",
+      "sha256": "7bdbabe3c0600b04b6e6e41833141a81f0d934eccaf1a3fea2f93ae2a3e8c808",
+      "byteLength": 99,
+      "classification": "compact_receipt",
+      "status": "new"
+    },
+    {
+      "path": "components/criminal/disclosure-chase/buildDisclosureChaseBrief.ts",
+      "sha256": "685591b9ecb5c30f9c727bfa4544010dbf82c329ad39fa18dae669b242c1a6ac",
+      "byteLength": 57108,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/build-from-document-units.ts",
+      "sha256": "1a3ff30f9c89dedd4137cf32883f6a84623ce747da6ebdd9746a842bed3f4834",
+      "byteLength": 54865,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/canonical-live-surface-adapter.ts",
+      "sha256": "4cf850d288e299d7874c9f35835be6e895a5e3dfec2b23c63e5265c7b2761da2",
+      "byteLength": 18740,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/charge-allegation-completeness.ts",
+      "sha256": "e22e1fc2015befd18dc3128de446b18acb22725f46a3b161b54d1411cb2a1aa4",
+      "byteLength": 16763,
+      "classification": "production",
+      "status": "new"
+    },
+    {
+      "path": "lib/criminal/evidence-state-canonical.ts",
+      "sha256": "dd1a266eb719f9c167b473aa5d596b16762f036b946e12fdc6388c2389143e99",
+      "byteLength": 12032,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/export-pack/build-export-pack.ts",
+      "sha256": "12d0b9ade765795e159cf949054c924f9663ade4354ab6d21bc006916727168d",
+      "byteLength": 15554,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/five-answers/build-evidence-trace.ts",
+      "sha256": "a2a8d1d9645e1365de740eb5a7a964005f3a2cd23d5b6d053587f479e4ec5ac4",
+      "byteLength": 8185,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/five-answers/build-five-answers-view.ts",
+      "sha256": "886f99d24d8fa92e3f2431c9806bc4a066fc4f31785944a49551438b39427894",
+      "byteLength": 7312,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/five-answers/types.ts",
+      "sha256": "9c8251ea0bb3e70496c74be358862f9b4010c4c62e16269e9da78b818b1e57a0",
+      "byteLength": 3424,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/solicitor-visible-matter-reference.ts",
+      "sha256": "422b2324cbbfc45a097d611bf64d8890e3a5309e4610524ca0a226c3b419f5e0",
+      "byteLength": 8445,
+      "classification": "production",
+      "status": "new"
+    },
+    {
+      "path": "lib/criminal/solicitor-visible-sanitization.ts",
+      "sha256": "e21db15ea722defc1eeae42b20ef761072c9a42ecbcb19012ada86903a2cc522",
+      "byteLength": 16749,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/strategy-battleboard.ts",
+      "sha256": "1be9328cc5384c4ceeb0ea2dceed6d1dae443b04ea291b858721fabac20882df",
+      "byteLength": 98180,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/structured-solicitor-output/compose.ts",
+      "sha256": "21c8f6b648aaf25292b6c8e13a96b87f8087f770c7c76be02ae8259e7d2b507f",
+      "byteLength": 19273,
+      "classification": "production",
+      "status": "modified"
+    },
+    {
+      "path": "lib/criminal/supervisor-raw-source-containment.ts",
+      "sha256": "1ed2278e13f60dd20509a9dca718749b6e0a55bd5495e2a42831865ee3e1c173",
+      "byteLength": 11320,
+      "classification": "production",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/calibration-v2/constants.ts",
+      "sha256": "cd3b8d623ddcb6e8939b63a728114e55265ba6886ea2cdb4fc4f3ac0b1e9e944",
+      "byteLength": 4410,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/calibration-v2/pipeline-solicitor-boundary-containment.ts",
+      "sha256": "62c2639e28edc78fc9c9435058068e490b1e5cdaa46e71a5620343aec5492854",
+      "byteLength": 40577,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/calibration-v2/population-v2.ts",
+      "sha256": "27f8157a174eeac63a3fc16b9605bb9485c27238f78f045e779b84a05ac10475",
+      "byteLength": 10303,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/calibration-v2/triage-v2.ts",
+      "sha256": "3713fd90c68c10217e72a89d9f616a5f3757800a1085f885daa001ef018d9d32",
+      "byteLength": 17087,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/calibration-v2/wording-calibration-post-fix-tuples.ts",
+      "sha256": "c21a1d371a88e1c89833b47d8764a7c206a722e03f9916f5c3106645ccbc628d",
+      "byteLength": 17235,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/calibration-v2/wording-calibration.ts",
+      "sha256": "e0c262fb7be56a033952e7076597328628d8b8a095010564995fc6350a3ed224",
+      "byteLength": 15021,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/calibration/constants.ts",
+      "sha256": "d860c49c2791643839b22ee0c30821e3d4ef598b25a8b5582c765c56562b3f73",
+      "byteLength": 3202,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/constants.ts",
+      "sha256": "2ef8a97277a7f2cbb9211551a0d24aa60a18dbc9a3a7aab95dfb39ef4f6a49da",
+      "byteLength": 9912,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/families/aud-xpp.ts",
+      "sha256": "05e48ee9bcde5efc341c10c46836fad6f99b048746c0d959666e665675beb903",
+      "byteLength": 15098,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/families/eld.ts",
+      "sha256": "9ba3972153d8046ad965064851c42a4725ff182f0cda7a56858f4e238ec85792",
+      "byteLength": 18869,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/families/specialty.ts",
+      "sha256": "da6203139734d8a882093b80e7fc3d3d29d2c085735cec65dab6f1b16fa2e78d",
+      "byteLength": 5364,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/families/src.ts",
+      "sha256": "23462925530060d96df253bb365ba721e5393676a8bca27b7c72a3053085ea10",
+      "byteLength": 9389,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/families/vdr.ts",
+      "sha256": "212f0faf6d99d519767a7eb14f523da393763bebe1247de6e0c600831a326a2b",
+      "byteLength": 11026,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/inputs/load-essential-inputs.ts",
+      "sha256": "619e2e0fded28fdb7daabd480a51f6de18b8029ffe7218ac9330bdd9dea63101",
+      "byteLength": 13728,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/registry.ts",
+      "sha256": "b392a46971241c24058ec06113805c05bae1f8e80d20ea8f5d64880b64f4af37",
+      "byteLength": 2326,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/run-essential-43.ts",
+      "sha256": "cf8e26b002360adaa4a535cf2be24d93b1dc059511df683f1a406fde2b8c4ef8",
+      "byteLength": 3607,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/solicitor-quality.ts",
+      "sha256": "734e5eb2cbb7f34144a6dee4a3fcc9c00b0ca289111720589b175421206155d9",
+      "byteLength": 37180,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/solicitor-visible-inventory.ts",
+      "sha256": "594cf4b5f347615f608e0995b5bd4745e03a4254a51432317ca415e448ebe27b",
+      "byteLength": 17235,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/essential/types.ts",
+      "sha256": "4cd14a01aad3fd77fa7841856309c0bd38696161d95fed7d876f4a6c703f9102",
+      "byteLength": 1659,
+      "classification": "auditor_evaluator",
+      "status": "new"
+    },
+    {
+      "path": "lib/eval/master-assurance-auditor/v2/stage300/new150/audience-packs-from-surfaces.ts",
+      "sha256": "4e21aa5b1b736ec71532fae596a033a3200a6f3bec23dd585d8d5d3763b24ae5",
+      "byteLength": 9897,
+      "classification": "auditor_evaluator",
+      "status": "modified"
+    },
+    {
+      "path": "scripts/assurance/_scan-structural-boundary.ts",
+      "sha256": "586f6c141055463bd804eca8d312cc5cbfdcc4b8174e12f267bdd4f8f80ceb23",
+      "byteLength": 8066,
+      "classification": "emit_script",
+      "status": "new"
+    },
+    {
+      "path": "scripts/assurance/_write-boundary-containment-gates.ts",
+      "sha256": "8d9da22b563d10fa8f2fffdf3ab86471df86208a083da72a8e997950de3082bf",
+      "byteLength": 11252,
+      "classification": "emit_script",
+      "status": "new"
+    },
+    {
+      "path": "scripts/assurance/_write-exact-commit-scope-manifest.ts",
+      "sha256": "0c40987f93cc40e4b4dc8b44745dc93a4909cd40c57604f65d73f74a80ac4ce3",
+      "byteLength": 16036,
+      "classification": "emit_script",
+      "status": "new"
+    },
+    {
+      "path": "scripts/assurance/emit-maa-v2-stage300-solicitor-boundary-containment.ts",
+      "sha256": "b46a8f077273afe187f5cd95c670bddc466e99b24a368eb1a0de57444f7176b4",
+      "byteLength": 4957,
+      "classification": "emit_script",
+      "status": "new"
+    },
+    {
+      "path": "scripts/assurance/rematerialise-maa-v2-stage300-shared-root-fix.ts",
+      "sha256": "f4b3f864fa1782610f53a0a349e4ca77c4b56c73321dec2370240e0c1caba2fd",
+      "byteLength": 15602,
+      "classification": "rematerialise_script",
+      "status": "new"
+    },
+    {
+      "path": "scripts/maa-v2-solicitor-boundary-containment-contracts.test.ts",
+      "sha256": "eac30a47581a93a1db35d40644bde9499713861b9ffa977a7965b862f5139de8",
+      "byteLength": 9048,
+      "classification": "focused_contract",
+      "status": "new"
+    }
+  ],
+  "manifestSelfReference": {
+    "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/COMMIT-SCOPE-MANIFEST-EXACT.json",
+    "selfHashStatus": "excluded_from_files_array_self_referential",
+    "note": "This manifest file is not listed in files[] and claims no SHA-256 of itself. See COMMIT-SCOPE-MANIFEST-EXACT.DIGEST.json written after finalisation."
+  },
+  "reconciliation": {
+    "missingDeclared": [],
+    "dependsOnExcluded": [],
+    "candidateCount": 83,
+    "modifiedCount": 12,
+    "claimedDigestMismatches": [],
+    "byteLengthMismatches": [],
+    "fullyReconciled": true,
+    "method": "git ls-tree baseline set + chunked git diff --name-only + direct-import closure"
+  },
+  "note": "Large regenerable rematerialised-outputs omitted; retain compact hash indexes/summary evidence only."
+}

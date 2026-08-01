@@ -1,3 +1,4 @@
+import type { ChargeCompletenessResult } from "@/lib/criminal/charge-allegation-completeness";
 import type { SourceStateKind } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 
 /** Existence axis — what is on the bundle vs referred vs missing. */
@@ -49,6 +50,10 @@ export type FiveAnswersChaseRow = {
 export type FiveAnswersViewModel = {
   caseSaying: {
     allegation: string;
+    /** Structured charge completeness — source text never hidden behind a generic replacement. */
+    chargeCompleteness?: ChargeCompletenessResult;
+    /** Charge + inseparable warning/action when incomplete. */
+    allegationWithStatus?: string;
     mainIssue: string;
     nextAction: string;
   };

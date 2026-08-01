@@ -15,6 +15,7 @@ import {
   type OperativePrecedenceBasis,
   type SupersessionSupport,
 } from "@/lib/criminal/document-relationship-model";
+import { stripInternalCorpusIdentifiers } from "@/lib/criminal/solicitor-visible-matter-reference";
 import {
   buildCanonicalFindings,
   findingForCustodyInterviewClock,
@@ -453,6 +454,12 @@ function rebindFindingToAnchor(
 /**
  * Derive evidence rows solely from explicit language on document/page units.
  * Absence of detection → no row (callers treat as unresolved), never assumed served/missing.
+ *
+ * Shared root remediation: status-word window captures must not emit dangling section-heading
+ * or mid-sentence prose fragments as solicitor-visible evidence labels (e.g. "Evidence referred
+ * or", "Headline Summary Prosecution relies on", "final statement. Final signed MG11 remains").
+ * Prefer structured MG6C schedule lines; reject fragment labels; recover a short noun phrase
+ * only when it passes the same fragment gate. Exact source wording is preserved in notes.
  */
 export function deriveEvidenceRowsFromDocumentUnits(
   documents: UploadedDocumentUnit[],
@@ -473,6 +480,38 @@ export function deriveEvidenceRowsFromDocumentUnits(
       const { pageIdentityKnown, sourcePage: pageRef, compiledPage: compiled } =
         pageRefsForUnit(page);
       const text = page.text;
+      const provenanceNote = formatEvidenceProvenanceNote(doc.title, pageRef, compiled);
+
+      // Prefer structured MG6C schedule lines — exact source titles, professional labels.
+      const mg6cRe =
+        /\bMG6C\/(\d+)\s*[—–-]\s*([^—–\n]+?)\s*[—–-]\s*(served|outstanding|missing|not on bundle|incomplete|partial|draft only)\b/gi;
+      let mg: RegExpExecArray | null;
+      mg6cRe.lastIndex = 0;
+      while ((mg = mg6cRe.exec(text)) !== null) {
+        const scheduleRef = `MG6C/${mg[1]}`;
+        const rawTitle = (mg[2] ?? "").replace(/\s+/g, " ").trim();
+        const statusToken = (mg[3] ?? "").toLowerCase();
+        const label = sanitizeEvidenceLabel(rawTitle);
+        if (!label || label.length < 3 || isNoiseEvidenceLabel(label) || isFragmentEvidenceLabel(label)) {
+          continue;
+        }
+        const existence: SharedEvidenceState =
+          /served|draft only/.test(statusToken) && !/outstanding|missing|not on bundle/.test(statusToken)
+            ? "served"
+            : /incomplete|partial/.test(statusToken)
+              ? "incomplete"
+              : "missing";
+        push({
+          label,
+          existence,
+          note: `${scheduleRef} · ${provenanceNote} · source status: ${statusToken}`,
+          sourceDocumentTitle: doc.title,
+          sourceDocumentType: docType,
+          sourcePage: pageRef,
+          compiledPage: compiled,
+          pageIdentityKnown,
+        });
+      }
 
       // Explicit state phrases: "<label> served|outstanding|incomplete|…"
       const patterns: Array<{ state: SharedEvidenceState; re: RegExp }> = [
@@ -502,13 +541,13 @@ export function deriveEvidenceRowsFromDocumentUnits(
           if (/^(incomplete|partial)\s+/i.test(label)) {
             label = label.replace(/^(incomplete|partial)\s+/i, "").trim();
           }
-          label = sanitizeEvidenceLabel(label);
+          label = recoverProfessionalEvidenceLabel(label);
           if (!label || label.length < 3) continue;
-          if (isNoiseEvidenceLabel(label)) continue;
+          if (isNoiseEvidenceLabel(label) || isFragmentEvidenceLabel(label)) continue;
           push({
             label,
             existence: state,
-            note: null,
+            note: provenanceNote,
             sourceDocumentTitle: doc.title,
             sourceDocumentType: docType,
             sourcePage: pageRef,
@@ -523,17 +562,146 @@ export function deriveEvidenceRowsFromDocumentUnits(
   return rows;
 }
 
+function formatEvidenceProvenanceNote(
+  documentTitle: string,
+  sourcePage: string | null | undefined,
+  compiledPage: string | null | undefined,
+): string {
+  const pageBit =
+    sourcePage != null
+      ? compiledPage != null && compiledPage !== sourcePage
+        ? `${sourcePage} (compiled ${compiledPage})`
+        : sourcePage
+      : "page identity unresolved";
+  return `${documentTitle} · ${pageBit}`;
+}
+
 function sanitizeEvidenceLabel(raw: string): string {
-  return raw
-    .replace(/^(?:the|a|an|see|attached|attachment)\s+/i, "")
-    .replace(/\s+/g, " ")
-    .trim();
+  return stripInternalCorpusIdentifiers(
+    raw
+      .replace(/^(?:the|a|an|see|attached|attachment)\s+/i, "")
+      .replace(/\s+/g, " ")
+      .trim(),
+  );
+}
+
+/** Bare generic nouns that are never a professional evidence-unit label on their own. */
+const GENERIC_EVIDENCE_TOKEN_RE =
+  /^(evidence|summary|statement|prosecution|headline|referred|remains|final|outstanding|served|missing|pages?|bundle|schedule|section|particulars|offence|offense)$/i;
+
+/** Reject labels that are section headings, dangling conjunctions, or mid-sentence prose cuts. */
+export function isFragmentEvidenceLabel(label: string): boolean {
+  const t = label.replace(/\s+/g, " ").trim();
+  if (!t) return true;
+  if (/\.\s+[A-Z]/.test(t)) return true; // mid-label sentence break ("final statement. Final signed…")
+  if (/\.$/.test(t) && t.length < 40) return true; // truncated trailing period residue ("listing.")
+  if (/^(headline summary|evidence referred|evidence on file|particulars of offence)\b/i.test(t)) {
+    return true;
+  }
+  if (/\b(headline summary|evidence referred or|prosecution relies on)\b/i.test(t)) return true;
+  if (
+    /\b(or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|summary|stated)\s*$/i.test(t)
+  ) {
+    return true;
+  }
+  if (/^(not stated( on)?|final statement|summary prosecution|listing)\b/i.test(t)) return true;
+  // Single generic token (e.g. recover("Evidence referred or") → "Evidence") is not a unit label.
+  const tokens = t.split(/\s+/).filter(Boolean);
+  if (tokens.length === 1 && GENERIC_EVIDENCE_TOKEN_RE.test(tokens[0]!)) return true;
+  if (tokens.length <= 2 && tokens.every((tok) => GENERIC_EVIDENCE_TOKEN_RE.test(tok.replace(/\.$/, "")))) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Recover a short professional noun-phrase evidence label from a raw status-window capture.
+ * Never invents content — only trims leading prose / takes the trailing content tokens when
+ * the full capture fails the fragment gate. Returns "" when no safe label remains.
+ */
+export function recoverProfessionalEvidenceLabel(raw: string): string {
+  let label = sanitizeEvidenceLabel(raw);
+  if (!label) return "";
+  if (!isFragmentEvidenceLabel(label) && !isNoiseEvidenceLabel(label) && isProfessionalEvidenceLabel(label)) {
+    return label;
+  }
+
+  // Section-heading / known fragment families — do not invent a label from heading residue.
+  if (
+    /^(headline summary|evidence referred|evidence on file|particulars of offence|not stated on)\b/i.test(
+      label,
+    ) ||
+    /\bheadline summary\b/i.test(label) ||
+    /\bevidence referred\b/i.test(label) ||
+    /\bprosecution relies on\b/i.test(label)
+  ) {
+    return "";
+  }
+
+  // Drop leading sentence residue before the final clause ("…statement. Final signed MG11").
+  const afterSentence = label.split(/\.\s+/).pop()?.trim() ?? label;
+  label = sanitizeEvidenceLabel(afterSentence);
+
+  // Strip trailing dangling function-words ("…MG11 remains" → "…MG11").
+  const danglingTail =
+    /^(.*?)(?:\s+(?:or|and|on|of|for|with|by|to|from|at|the|a|an|relies|remains|referred|summary|stated))+$/i;
+  const strippedTail = label.replace(danglingTail, "$1").trim();
+  if (strippedTail) label = sanitizeEvidenceLabel(strippedTail);
+
+  if (
+    label &&
+    !isFragmentEvidenceLabel(label) &&
+    !isNoiseEvidenceLabel(label) &&
+    isProfessionalEvidenceLabel(label)
+  ) {
+    return label;
+  }
+
+  // Take the trailing 1–3 content tokens (preserve exact source wording of those tokens).
+  const tokens = label.split(/\s+/).filter(Boolean);
+  for (let n = Math.min(3, tokens.length); n >= 1; n--) {
+    let candidate = sanitizeEvidenceLabel(tokens.slice(-n).join(" "));
+    candidate = sanitizeEvidenceLabel(candidate.replace(danglingTail, "$1"));
+    if (
+      candidate &&
+      candidate.length >= 3 &&
+      !isFragmentEvidenceLabel(candidate) &&
+      !isNoiseEvidenceLabel(candidate) &&
+      isProfessionalEvidenceLabel(candidate)
+    ) {
+      return candidate;
+    }
+  }
+  return "";
+}
+
+/** Professional evidence-unit labels name a recognisable material type or carry a concrete title. */
+function isProfessionalEvidenceLabel(label: string): boolean {
+  const t = label.replace(/\s+/g, " ").trim();
+  if (t.length < 4) return false;
+  if (
+    /\b(MG\s?\d+|MG6C|CCTV|BWV|exhibit|recording|transcript|statement|disclosure|subscriber|annex|footage|clip|pack|CAD|999|device|account|lab|continuity)\b/i.test(
+      t,
+    )
+  ) {
+    return true;
+  }
+  // Concrete titled material (capitalised multi-word, not generic residue).
+  if (t.length >= 12 && /[A-Z]/.test(t) && t.split(/\s+/).length >= 2 && !GENERIC_EVIDENCE_TOKEN_RE.test(t)) {
+    return true;
+  }
+  return false;
 }
 
 function isNoiseEvidenceLabel(label: string): boolean {
-  return /^(see|attached|attachment|and|or|the|a|an|on|at|for|with|from|that|this|count|page)\b/i.test(
-    label,
-  );
+  const t = label.replace(/\s+/g, " ").trim();
+  if (
+    /^(see|attached|attachment|and|or|the|a|an|on|at|for|with|from|that|this|count|page)\b/i.test(t)
+  ) {
+    return true;
+  }
+  if (GENERIC_EVIDENCE_TOKEN_RE.test(t)) return true;
+  return false;
 }
 
 function extractExhibitEntriesFromPages(

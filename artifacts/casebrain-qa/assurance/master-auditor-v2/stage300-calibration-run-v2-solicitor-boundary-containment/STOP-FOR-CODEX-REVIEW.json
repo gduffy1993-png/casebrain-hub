@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "maa-v2-stage300-calibration-run-v2-solicitor-boundary-containment@1.0.0",
+  "status": "STAGE300_V2_SOLICITOR_BOUNDARY_COPY_PROSE_AND_MANIFEST_SELF_HASH_COMPLETE_UNCOMMITTED",
+  "runId": "s300-cal-v2-solicitor-boundary-copy-prose-2026-08-02T00-15-00Z",
+  "baselineCommit": "a831a631f3050e096b89633176f023bee2fd6a5f",
+  "orderedMembershipSha256V2": "23ae1b9df0a09b80b9ab51e3f597aad9103360f5f11c26606e1633b2c82c3c5a",
+  "summary": {
+    "casesRematerialised": 270,
+    "honestySplit": {
+      "genuineQualifiedLegalReviewCount": 2,
+      "unresolvedOwnershipCount": 20
+    },
+    "sharedRootsFixed": [
+      "formatSupervisorProfessionalCopyText — plain professional prose for clipboard",
+      "AudiencePack.payloadText (supervisor) = prose; machineMetadata holds structured audit fields",
+      "audiencePackCopyablePayloadText refuses JSON-shaped supervisor blobs",
+      "COMMIT-SCOPE-MANIFEST-EXACT — self excluded from files[]; detached DIGEST after finalisation"
+    ],
+    "reportingHonesty": {
+      "ordinaryCopyableSendable": "zero internal identifiers and zero machine/audit terminology in supervisor copy",
+      "protectedRawSourceReviewRecords": "exact source retained; blocked review control only",
+      "copyExportApiPdfComposed": "zero protected raw text"
+    }
+  },
+  "hardAcceptance": {
+    "zeroOrdinaryCopyableInternalIdentifiers": true,
+    "zeroSupervisorCopyMachineOrAuditTerminology": true,
+    "zeroRawSourceInAudiencePayloadText": true,
+    "protectedRawRetainedByteIdentically": true,
+    "zeroRawOnCopyExportApiPdfComposed": true,
+    "zeroHiddenRecordedCharges": true,
+    "zeroMidWordOrMidSentenceGeneratedTruncations": true,
+    "zeroSolicitorVisibleInternalEnums": true,
+    "zeroDoNotSayDoNotDuplication": true,
+    "zeroClunkyNotSafelyConfirmedSlashUnsafe": true,
+    "zeroObjectivelyTruncatedChargeWhenRecoverable": true,
+    "zeroKnownEvidenceLabelFragmentFamilies": true,
+    "zeroKnownMachineStateLeaks": true,
+    "legalReviewAndUnresolvedOwnershipKeptSeparate": true,
+    "exactCommitScopeManifestFullyReconciled": true,
+    "manifestClaimedDigestMismatches": 0,
+    "stage300CompletionClaimed": false,
+    "programmePassClaimed": false
+  },
+  "committed": false,
+  "pushed": false,
+  "stage300ExecutionAllowed": false,
+  "programmePassClaimed": false,
+  "gates": {
+    "npmBuildReceipt": "npm-build-receipt.txt",
+    "brain1GuardianBlobUnchanged": true,
+    "freezeHashUnchanged": true,
+    "tscPathScopedErrorCount": 0,
+    "structuralBoundaryScan": "structural-boundary-scan.json",
+    "exactCommitScopeManifest": "COMMIT-SCOPE-MANIFEST-EXACT.json",
+    "manifestDetachedDigest": "COMMIT-SCOPE-MANIFEST-EXACT.DIGEST.json",
+    "manifestHashValidation": "manifest-hash-validation.json",
+    "focusedContracts": "scripts/maa-v2-solicitor-boundary-containment-contracts.test.ts"
+  }
+}

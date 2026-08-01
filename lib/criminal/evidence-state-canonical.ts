@@ -24,6 +24,11 @@ import {
   type EvidenceStateRow,
   type SharedEvidenceState,
 } from "@/lib/criminal/evidence-state-reconcile";
+import { stripInternalCorpusIdentifiers } from "@/lib/criminal/solicitor-visible-matter-reference";
+
+function scrubLabel(label: string): string {
+  return stripInternalCorpusIdentifiers(label) || label;
+}
 
 export type EvidenceObservation = {
   label: string;
@@ -171,7 +176,7 @@ export function buildCanonicalEvidenceState(
     const states = obs.map((o) => o.state);
     const reconciled = reconcileStates(states);
     const aliases = Array.from(new Set(obs.map((o) => o.label)));
-    const label = aliases.reduce((a, b) => (b.length > a.length ? b : a), aliases[0]!);
+    const label = scrubLabel(aliases.reduce((a, b) => (b.length > a.length ? b : a), aliases[0]!));
     const defendants = Array.from(
       new Set(obs.map((o) => o.defendant).filter((d): d is string => Boolean(d))),
     );
@@ -192,9 +197,9 @@ export function buildCanonicalEvidenceState(
       key,
       modality,
       state: reconciled.state,
-      aliases,
+      aliases: aliases.map(scrubLabel),
       defendants,
-      observations: obs,
+      observations: obs.map((o) => ({ ...o, label: scrubLabel(o.label) })),
       contradiction,
       unresolved: Boolean(contradiction) || reconciled.state === "not_safely_confirmed",
       limitation: contradiction?.description ?? null,

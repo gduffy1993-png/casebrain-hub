@@ -9,6 +9,11 @@ import {
   type UploadedDocumentUnit,
 } from "@/lib/criminal/build-from-document-units";
 import {
+  formatChargeWithInseparableWarning,
+  resolveChargeCompleteness,
+  type ChargeCompletenessResult,
+} from "@/lib/criminal/charge-allegation-completeness";
+import {
   serializeCanonicalFindingForSurface,
   type CanonicalFinding,
 } from "@/lib/criminal/canonical-finding-model";
@@ -44,6 +49,8 @@ export type LiveProductionSurfaces = {
   pipeline: LiveCanonicalPipelineResult;
   matterState: CanonicalMatterStateV1;
   charges: StructuredChargeView[];
+  /** Structured charge completeness attached to every exit. */
+  chargeCompleteness: ChargeCompletenessResult;
   keyFacts: KeyFactsV2Hierarchy;
   truthMap: FiveAnswersViewModel;
   disclosureChase: DisclosureChaseBrief;
@@ -59,21 +66,28 @@ export type LiveProductionSurfaces = {
     canCopy: boolean;
     provenanceLine: string;
   }>;
+  // Update LiveProductionSurfaces type for composedProse/pdf/api extended fields
   composedProse: {
     courtLine: string | null;
     cpsChase: string | null;
     clientDisclaimer: string;
     limitations: string[];
+    allegation?: string;
+    chargeCompleteness?: ChargeCompletenessResult;
   };
   /** PDF exit: provenance lines + limitations that must travel into any PDF export. */
   pdf: {
     provenanceLines: string[];
     limitations: string[];
+    allegation?: string;
+    chargeCompleteness?: ChargeCompletenessResult;
   };
   api: {
     findings: ReturnType<typeof serializeCanonicalFindingForSurface>[];
     documentRoles: Array<{ id: string; title: string | null; role: string }>;
     charges: StructuredChargeView[];
+    allegation?: string;
+    chargeCompleteness?: ChargeCompletenessResult;
     evidenceState: LiveCanonicalPipelineResult["evidenceState"];
     attribution: LiveCanonicalPipelineResult["attribution"];
     hearingLifecycle: LiveCanonicalPipelineResult["hearingLifecycle"];
@@ -132,13 +146,23 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
   opts?: {
     caseId?: string;
     allegation?: string;
+    /** Exact recorded charge as captured (may be truncated) — always retained in chargeCompleteness.sourceChargeText. */
+    recordedChargeText?: string | null;
+    canonicalOffenceLine?: string | null;
+    courtNoteText?: string | null;
     caseTitle?: string;
     clientLabel?: string;
   },
 ): LiveProductionSurfaces {
   const pipeline = buildCanonicalPipelineFromDocumentUnits(documents);
   const caseId = opts?.caseId ?? "live-integration-case";
-  const allegation = opts?.allegation ?? "Allegation under review";
+  const chargeCompleteness = resolveChargeCompleteness({
+    recordedChargeText: opts?.recordedChargeText ?? opts?.allegation ?? null,
+    canonicalOffenceLine: opts?.canonicalOffenceLine ?? null,
+    courtNoteText: opts?.courtNoteText ?? null,
+  });
+  const allegation = chargeCompleteness.displayedChargeText;
+  const allegationWithStatus = formatChargeWithInseparableWarning(chargeCompleteness);
   const caseTitle = opts?.caseTitle ?? "Live integration matter";
   const clientLabel = opts?.clientLabel ?? "Client";
 
@@ -193,6 +217,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
 
   const truthMap = buildFiveAnswersView({
     allegation,
+    chargeCompleteness,
     warRoom,
     chase: disclosureChase,
     matterConfidence: null,
@@ -221,6 +246,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     matterConfidence: null,
     doNotOverstate: warRoom.doNotOverstate,
     primaryRouteTitle: "Live integration",
+    urnCandidateTexts: [pipeline.bundleText, allegation],
   });
 
   const docRows = documents.map((d, idx) => ({
@@ -252,7 +278,7 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
 
   const courtCompose = composeStructuredSolicitorOutput({
     kind: "court_line",
-    subject: allegation,
+    subject: allegationWithStatus || allegation,
     evidenceState: pipeline.findings.some((f) => f.unresolved) ? "not_safely_confirmed" : "served",
     whyItMatters: pipeline.findings[0]?.summary ?? "Review relationship findings before advancing.",
     requestedAction: "Record outstanding material and relationship findings on the papers.",
@@ -408,17 +434,32 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     cpsChase: proseTexts[1] || (cpsCompose.ok ? cpsCompose.text : null),
     clientDisclaimer: proseTexts[2] || clientDisclaimer,
     limitations: composedLimitations,
+    allegation: allegationWithStatus || allegation,
+    chargeCompleteness,
   };
 
-  const enforcedCopyLines = copyLines.map((line, idx) => ({
-    ...line,
-    text: sanitizedCopy?.texts[idx] ?? line.text,
-  }));
+  const enforcedCopyLines = [
+    {
+      kind: "charge_allegation",
+      text: allegationWithStatus || allegation,
+      canCopy: chargeCompleteness.completenessStatus !== "unresolved",
+      provenanceLine:
+        chargeCompleteness.provenance ??
+        (chargeCompleteness.warning
+          ? `${chargeCompleteness.warning} ${chargeCompleteness.requiredAction ?? ""}`.trim()
+          : "Recorded charge wording"),
+    },
+    ...copyLines.map((line, idx) => ({
+      ...line,
+      text: sanitizedCopy?.texts[idx] ?? line.text,
+    })),
+  ];
 
   return {
     pipeline,
     matterState,
     charges: pipeline.charges,
+    chargeCompleteness,
     keyFacts,
     truthMap,
     disclosureChase: enforcedDisclosureChase,
@@ -433,6 +474,8 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
     pdf: {
       provenanceLines: pipeline.findings.map((f) => f.provenanceLine),
       limitations: composedLimitations,
+      allegation: allegationWithStatus || allegation,
+      chargeCompleteness,
     },
     api: {
       findings: serialized,
@@ -442,6 +485,8 @@ export function buildLiveProductionSurfacesFromDocumentUnits(
         role: n.role,
       })),
       charges: pipeline.charges,
+      allegation: allegationWithStatus || allegation,
+      chargeCompleteness,
       evidenceState: pipeline.evidenceState,
       attribution: pipeline.attribution,
       hearingLifecycle: pipeline.hearingLifecycle,

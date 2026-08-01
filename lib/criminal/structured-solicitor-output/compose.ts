@@ -4,6 +4,7 @@
 
 import { humanizeChaseFragmentLabel, isRawChaseFragmentLabel } from "@/lib/criminal/disclosure-chase-finalize";
 import { collapseRepeatedPhrase, sanitizeSolicitorVisibleText } from "@/lib/criminal/solicitor-display-dedupe";
+import { humanizeEvidenceState } from "@/lib/criminal/solicitor-visible-sanitization";
 import { displayForSafelyOmitted } from "./omit-safety";
 import {
   STRUCTURED_SOLICITOR_OUTPUT_VERSION,
@@ -14,6 +15,29 @@ import {
   type StructuredSolicitorOutputV1,
 } from "./schema";
 
+/** Strip nested court-record wrappers so we never emit "The defence asks… The defence asks…". */
+function stripNestedCourtRecordSubject(subject: string): string {
+  let s = subject.replace(/\s+/g, " ").trim();
+  s = s.replace(/^The defence asks the court to record that\s+/i, "");
+  // Drop trailing court-line status clause if the subject already carried one.
+  s = s.replace(
+    /\s+remains\s+(?:not safely confirmed|outstanding|provisional|referred only|missing|incomplete)(?:\s+on the current pap(?:ers)?)?.*$/i,
+    "",
+  );
+  return s.trim();
+}
+
+/** Professional evidence-state phrase for composed prose — never snake_case. */
+function professionalEvidenceStateClause(state: EvidenceExistenceState | string): string {
+  const human = humanizeEvidenceState(String(state)).toLowerCase();
+  if (/referred only/i.test(human)) {
+    return " remains referred to on the papers but not confirmed as served";
+  }
+  if (/not safely confirmed/i.test(human)) {
+    return " remains not safely confirmed on the current papers";
+  }
+  return ` remains ${human} on the current papers`;
+}
 /** Word tokens keep \b; brace/angle placeholders must not rely on \b (non-word edges). */
 const PLACEHOLDER_RE =
   /(?:\b(?:TODO|TBD|FIXME|PLACEHOLDER|lorem ipsum)\b|\[(?:TODO|insert)[^\]]*\]|\{\{[^}]+\}\}|\{[A-Z][A-Z0-9_]{2,}\}|<<[^>]+>>)/i;
@@ -246,11 +270,13 @@ export function renderStructuredSolicitorOutput(output: StructuredSolicitorOutpu
   const sentences: string[] = [];
 
   if (output.kind === "court_line" && output.subject) {
+    const subject = stripNestedCourtRecordSubject(output.subject);
     const stateBit =
       output.evidenceState && output.evidenceState !== "served"
-        ? ` remains ${output.evidenceState.replace(/_/g, " ")} on the current papers`
+        ? professionalEvidenceStateClause(output.evidenceState)
         : " remains outstanding on the current papers";
-    const line = `The defence asks the court to record that ${output.subject.charAt(0).toLowerCase()}${output.subject.slice(1)}${stateBit} and should be disclosed on a timetable.`;
+    // Prefer one complete court sentence — never nest the court-record prefix twice.
+    const line = `The defence asks the court to record that ${subject.charAt(0).toLowerCase()}${subject.slice(1)}${stateBit} and should be disclosed on a timetable.`;
     const a = assessStructuredField(line, "rendered");
     if (a.ok && a.text) sentences.push(a.text);
     else rejections.push(...a.rejections);

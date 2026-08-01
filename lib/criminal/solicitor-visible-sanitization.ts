@@ -7,12 +7,13 @@
 import { humanizeChaseFragmentLabel } from "@/lib/criminal/disclosure-chase-finalize";
 import { REVIEW_REQUIRED_NEUTRAL } from "@/lib/criminal/structured-solicitor-output";
 import { preserveProtectedAcronyms } from "@/lib/criminal/solicitor-visible-quality";
+import { stripInternalCorpusIdentifiers } from "@/lib/criminal/solicitor-visible-matter-reference";
 
 const ISO_TS_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/;
 const BUILDER_RE =
   /\b(CaseBrain H5|Brain 1|presentation builders|no Brain|builder(?:Name)?|audit family seed|fixtureId|GOLD-11|phase1[01]_|surface id|canCopy|gate status|integrity_blocked|ruleIds?|consumer|NOT USABLE)\b/i;
 const FIXTURE_ID_RE =
-  /^(?:cb-(?:fresh|found)-\d+|demo-audit-\d+|sc-[0-9a-f]+|messy-pdf-v\d+|pilot-\d+|proof-pack-\d+|CASE-\d+|SYN-[A-Z0-9-]+)\b/i;
+  /^(?:cb-(?:fresh|found)-\d+|demo-audit-\d+|sc-[0-9a-f]+|messy-pdf-v\d+|pilot-\d+|proof-pack-\d+|CASE-\d+|SYN-[A-Z0-9-]+|s150-[a-z0-9_-]+|s300-[a-z0-9_-]+|S300-[a-z0-9_-]+|UQ-[a-z0-9_-]+)\b/i;
 
 const EVIDENCE_STATE_LABELS: Record<string, string> = {
   served: "Served",
@@ -47,6 +48,7 @@ export function isFixtureIdLike(text: string | null | undefined): boolean {
   if (!t) return false;
   if (FIXTURE_ID_RE.test(t)) return true;
   if (/^cb-(?:fresh|found)-\d+/i.test(t)) return true;
+  if (/^(s150-|s300-|UQ-|S300-)/i.test(t)) return true;
   if (/\b(taylor-brookes|jordan-hale|cb-found-\d+|cb-fresh-\d+)\b/i.test(t) && t.length < 80) {
     return !/\s{2,}/.test(t) && t.split(/\s+/).length <= 3;
   }
@@ -69,9 +71,63 @@ export function humanizeEvidenceState(raw: string | null | undefined): string {
   return solicitorDisplayLabel(t);
 }
 
+/** Professional prose for bundle/ledger material status — never emit snake_case enums. */
+export function professionalMaterialStatusProse(status: string | null | undefined): string {
+  const raw = (status ?? "").trim();
+  const key = raw.toLowerCase().replace(/\s+/g, "_");
+  switch (key) {
+    case "referred_only":
+    case "referred":
+      return "The papers refer to this material, but it has not been confirmed as served.";
+    case "outstanding":
+      return "This material remains outstanding on the papers.";
+    case "absent":
+    case "missing":
+      return "This material appears absent from the current papers.";
+    case "not_safely_confirmed":
+      return "This material is not safely confirmed on the current papers.";
+    case "incomplete":
+      return "This material appears incomplete on the current papers.";
+    case "served":
+      return "This material is recorded as served on the papers.";
+    case "provisional":
+      return "This material remains provisional on the current papers.";
+    case "needs_review":
+      return "This material still requires solicitor review on the current papers.";
+    default: {
+      const human = humanizeEvidenceState(raw).toLowerCase();
+      return `The papers record this material as ${human}. Chase or confirm status before fixing hearing position.`;
+    }
+  }
+}
+
+/** Court-line status fragment — professional wording only. */
+export function professionalCourtStatusFragment(status: string | null | undefined): string {
+  const key = (status ?? "").trim().toLowerCase().replace(/\s+/g, "_");
+  switch (key) {
+    case "referred_only":
+    case "referred":
+      return "referred to on the papers but not confirmed as served";
+    case "not_safely_confirmed":
+      return "not safely confirmed";
+    case "outstanding":
+      return "outstanding";
+    case "absent":
+    case "missing":
+      return "absent";
+    case "incomplete":
+      return "incomplete";
+    case "served":
+      return "served";
+    default:
+      return humanizeEvidenceState(status).toLowerCase();
+  }
+}
+
 /** Capitalize chase / evidence labels for solicitor display (e.g. unredacted mg11 → Unredacted MG11). */
 export function solicitorDisplayLabel(raw: string): string {
-  const human = humanizeChaseFragmentLabel(raw).trim() || raw.trim();
+  const stripped = stripInternalCorpusIdentifiers(raw);
+  const human = humanizeChaseFragmentLabel(stripped).trim() || stripped.trim() || raw.trim();
   const cased = preserveProtectedAcronyms(human).replace(/^\w/, (c) => c.toUpperCase());
   return preserveProtectedAcronyms(cased);
 }
@@ -97,7 +153,8 @@ export const NEUTRAL_SOLICITOR_BLOCKED_BANNER =
 /** Correct known solicitor-facing prose defects at display time. */
 export function sanitizeSolicitorProse(text: string): string {
   return preserveProtectedAcronyms(
-    text
+    stripInternalCorpusIdentifiers(
+      text
       .replace(
         /\bRedacted papers are on the bundle\b/gi,
         "Redacted papers are recorded as served on the papers",
@@ -157,9 +214,21 @@ export function sanitizeSolicitorProse(text: string): string {
       .replace(/\bnot_safely_confirmed\b/g, "Not safely confirmed")
       .replace(/\bneeds_review\b/g, "Needs review")
       .replace(/\bnot_started\b/g, "Not started")
+      .replace(/\binference_only\b/g, "Inference only")
+      .replace(/\bother_defendant_only\b/g, "Other defendant only")
+      .replace(/\bPapers mark this material as referred[_\s-]?only\b/gi, "The papers refer to this material, but it has not been confirmed as served")
+      .replace(/\bPapers mark this material as ([a-z0-9_]+)\b/gi, (_m, status: string) =>
+        professionalMaterialStatusProse(String(status)).replace(/\.$/, ""),
+      )
+      .replace(/\[Not safely confirmed\s*\/\s*Unsafe\]/gi, "[Not safely confirmed]")
+      .replace(/\bDo not say:\s*(Do not\b)/gi, "$1")
+      // Never leave renderer mid-word "pap" on solicitor surfaces.
+      .replace(/\bon the current pap\b(?!ers)/gi, "on the current papers")
+      .replace(/\bcurrent pap\b(?!ers)/gi, "current papers")
       // Collapse accidental doubled spaces (preserve newlines)
       .replace(/[^\S\n]{2,}/g, " ")
       .replace(/ +([)\].,;:])/g, "$1"),
+    ),
   );
 }
 

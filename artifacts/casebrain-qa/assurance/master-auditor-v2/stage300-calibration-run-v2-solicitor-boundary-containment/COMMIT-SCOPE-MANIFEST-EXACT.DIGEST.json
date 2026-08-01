@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "stage300-v2-commit-scope-manifest-detached-digest@1.0.0",
+  "manifestPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-calibration-run-v2-solicitor-boundary-containment/COMMIT-SCOPE-MANIFEST-EXACT.json",
+  "sha256": "85b37daa7a011d0227b392d1eab551aa1b574e8806bd13ee0e8798e491a26697",
+  "byteLength": 17500,
+  "hashedPayloadFileCount": 56,
+  "generatedAt": "2026-08-01T23:27:16.983Z",
+  "note": "Detached digest of COMMIT-SCOPE-MANIFEST-EXACT.json after files[] finalisation. Not embedded in the manifest files[] array."
+}

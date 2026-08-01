@@ -1,5 +1,10 @@
 import type { DisclosureChaseBrief } from "@/components/criminal/disclosure-chase/buildDisclosureChaseBrief";
 import type { HearingWarRoomBrief } from "@/components/criminal/hearing-war-room/buildHearingWarRoomBrief";
+import {
+  formatChargeWithInseparableWarning,
+  resolveChargeCompleteness,
+  type ChargeCompletenessResult,
+} from "@/lib/criminal/charge-allegation-completeness";
 import type { MatterConfidenceResult } from "@/lib/criminal/matter-confidence/matter-confidence-types";
 import { inferChaseItemSourceState, buildCopySafeResult } from "@/lib/criminal/trust/copy-safe";
 import { finalizeSolicitorVisibleProse } from "@/lib/criminal/solicitor-visible-boundary";
@@ -13,6 +18,8 @@ import { mapSourceStateToExistence } from "./types";
 
 export type BuildFiveAnswersViewInput = {
   allegation: string;
+  /** Optional pre-resolved structured charge completeness (preferred over string-only allegation). */
+  chargeCompleteness?: ChargeCompletenessResult;
   warRoom: HearingWarRoomBrief;
   chase: DisclosureChaseBrief;
   matterConfidence: MatterConfidenceResult | null;
@@ -31,7 +38,16 @@ function nextActionFromConfidence(confidence: MatterConfidenceResult | null): st
 }
 
 export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnswersViewModel {
-  const { allegation, warRoom, chase, matterConfidence, doNotOverstate } = input;
+  // Structured charge completeness — never replace recorded wording with a generic hide string.
+  const chargeCompleteness =
+    input.chargeCompleteness ??
+    resolveChargeCompleteness({
+      recordedChargeText: input.allegation,
+      courtNoteText: input.chase.safeCourtLine ?? input.warRoom.safePositionToday ?? null,
+    });
+  const allegation = chargeCompleteness.displayedChargeText;
+  const allegationWithStatus = formatChargeWithInseparableWarning(chargeCompleteness);
+  const { warRoom, chase, matterConfidence, doNotOverstate } = input;
 
   const rawEvidenceRows =
     input.evidenceRowsOverride && input.evidenceRowsOverride.length > 0
@@ -112,7 +128,9 @@ export function buildFiveAnswersView(input: BuildFiveAnswersViewInput): FiveAnsw
 
   return {
     caseSaying: {
-      allegation: allegation.trim() || "Charge not on papers",
+      allegation: allegation.trim() || chargeCompleteness.sourceChargeText || "",
+      chargeCompleteness,
+      allegationWithStatus,
       mainIssue: mainIssueFinal.ok
         ? mainIssueFinal.text
         : "Provisional — review served papers before relying on any line.",
