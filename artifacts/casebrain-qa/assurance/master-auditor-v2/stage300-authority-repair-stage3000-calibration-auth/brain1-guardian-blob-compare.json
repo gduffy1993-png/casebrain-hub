@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "brain1-guardian-blob-compare@4.0.0-terminology-corrected",
+  "generatedAt": "2026-08-02T14:08:32.196Z",
+  "protectedBaselineCommit": "a831a631f3050e096b89633176f023bee2fd6a5f",
+  "currentCommittedHeadCommit": "bda75a83dcc061d6ed7bbdb21f976015d1b16535",
+  "attestationPhase": "pre_commit_working_tree",
+  "terminology": {
+    "protectedBaselineBlobId": "Blob at protected baseline commit (a831a631)",
+    "committedHeadBlobId": "Blob currently on committed HEAD (not yet the post-repair commit)",
+    "workingTreeBlobId": "Blob of the uncommitted working-tree file",
+    "proposedPostCommitBlobId": "Blob expected on HEAD after this acceptance commit (same as workingTreeBlobId)",
+    "rule": "Do not describe the restored strategy-battleboard blob as HEAD until it is committed."
+  },
+  "rows": [
+    {
+      "path": "lib/criminal/strategy-fight-engine.ts",
+      "class": "brain1",
+      "protectedBaselineBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+      "committedHeadBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+      "workingTreeBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+      "proposedPostCommitBlobId": "2a7ce9f8f3cf1e8e741705e57dc803be870e6fc2",
+      "committedHeadMatchesProtectedBaseline": true,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": null
+    },
+    {
+      "path": "lib/criminal/strategy-fight-engine-generators.ts",
+      "class": "brain1",
+      "protectedBaselineBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+      "committedHeadBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+      "workingTreeBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+      "proposedPostCommitBlobId": "dcdd202b073fcca5c87d08d008ee3aaaaaa94fb7",
+      "committedHeadMatchesProtectedBaseline": true,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": null
+    },
+    {
+      "path": "lib/criminal/get-aggressive-defense.ts",
+      "class": "brain1",
+      "protectedBaselineBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+      "committedHeadBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+      "workingTreeBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+      "proposedPostCommitBlobId": "49e851d3d0af86d4b38ebe5a3455602ddd6271b7",
+      "committedHeadMatchesProtectedBaseline": true,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": null
+    },
+    {
+      "path": "lib/criminal/strategy-battleboard.ts",
+      "class": "brain1",
+      "protectedBaselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "committedHeadBlobId": "855e7048cfb1302d44b3da2deb3c7dcb911b593a",
+      "workingTreeBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "proposedPostCommitBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "committedHeadMatchesProtectedBaseline": false,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": "Restored protected blob exists in working tree / proposed post-commit only — not yet the committed HEAD blob."
+    },
+    {
+      "path": "lib/criminal/strategy-routes.ts",
+      "class": "brain1",
+      "protectedBaselineBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+      "committedHeadBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+      "workingTreeBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+      "proposedPostCommitBlobId": "c8e4ef526f05586011ade0f93a7cc2a98ade1af2",
+      "committedHeadMatchesProtectedBaseline": true,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": null
+    },
+    {
+      "path": "lib/criminal/bundle-truth-ledger.ts",
+      "class": "brain1",
+      "protectedBaselineBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+      "committedHeadBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+      "workingTreeBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+      "proposedPostCommitBlobId": "342f6d0d64cfea8bb9234a8993c1245ea42541d1",
+      "committedHeadMatchesProtectedBaseline": true,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": null
+    },
+    {
+      "path": "lib/criminal/bundle-material-normalizer.ts",
+      "class": "brain1",
+      "protectedBaselineBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+      "committedHeadBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+      "workingTreeBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+      "proposedPostCommitBlobId": "beb41c2130d472bd4d30d9beccf92ecef637e492",
+      "committedHeadMatchesProtectedBaseline": true,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": null
+    },
+    {
+      "path": "lib/criminal/source-truth-guardian/fingerprint.ts",
+      "class": "guardian",
+      "protectedBaselineBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+      "committedHeadBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+      "workingTreeBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+      "proposedPostCommitBlobId": "f41fd7b1e292389decc3c554bf37cf2a4a66bc1b",
+      "committedHeadMatchesProtectedBaseline": true,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": null
+    },
+    {
+      "path": "lib/criminal/source-truth-guardian/guardian.ts",
+      "class": "guardian",
+      "protectedBaselineBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+      "committedHeadBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+      "workingTreeBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+      "proposedPostCommitBlobId": "94f0c4d3a09933fdaa0a5ce5cb1894943cfa1857",
+      "committedHeadMatchesProtectedBaseline": true,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": null
+    },
+    {
+      "path": "lib/criminal/source-truth-guardian/index.ts",
+      "class": "guardian",
+      "protectedBaselineBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+      "committedHeadBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+      "workingTreeBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+      "proposedPostCommitBlobId": "acd1bc4a09479f8ef06cb6b7074cd3b4bb7e0787",
+      "committedHeadMatchesProtectedBaseline": true,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": null
+    },
+    {
+      "path": "lib/criminal/source-truth-guardian/types.ts",
+      "class": "guardian",
+      "protectedBaselineBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+      "committedHeadBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+      "workingTreeBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+      "proposedPostCommitBlobId": "f16624481879441700ede6ea35307e2749453e3b",
+      "committedHeadMatchesProtectedBaseline": true,
+      "workingTreeMatchesProtectedBaseline": true,
+      "proposedPostCommitMatchesProtectedBaseline": true,
+      "note": null
+    }
+  ],
+  "brain1Count": 7,
+  "guardianCount": 4,
+  "allWorkingTreeMatchesProtectedBaseline": true,
+  "allProposedPostCommitMatchesProtectedBaseline": true,
+  "allCommittedHeadMatchesProtectedBaseline": false,
+  "battleboard": {
+    "protectedBaselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+    "committedHeadBlobId": "855e7048cfb1302d44b3da2deb3c7dcb911b593a",
+    "workingTreeBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+    "proposedPostCommitBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+    "restoredInWorkingTreeOnly": true,
+    "expectedProtectedBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb"
+  },
+  "solicitorWordingMovedTo": "lib/criminal/solicitor-visible-sanitization.ts (presentSolicitorBattleboard / sanitizeSolicitorProse)",
+  "postCommitVerificationRequired": "After commit, verify git rev-parse HEAD:lib/criminal/strategy-battleboard.ts === 7d1391a81281f735c27e9e28edbb5058c0a95ecb"
+}

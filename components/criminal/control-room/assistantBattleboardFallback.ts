@@ -2,6 +2,7 @@ import type { BattleboardOutput } from "@/lib/criminal/strategy-battleboard";
 import { gateMaterialLines } from "@/lib/criminal/chase-source-gate";
 import { scrubDevRefs } from "@/lib/criminal/dev-ref-scrub";
 import { displaySolicitorStage } from "@/lib/criminal/solicitor-hearing-display";
+import { expandAssumedPositionConflictForSolicitor } from "@/lib/criminal/solicitor-visible-sanitization";
 
 export const SUGGESTED_PROMPTS = [
   "What would CPS argue?",
@@ -65,17 +66,19 @@ const CANONICAL_MG6_CHASE = [
 
 /** Strip eval/test/fiction markers from solicitor-facing text. */
 export function sanitizeSolicitorText(text: string): string {
-  return scrubDevRefs(text)
-    .replace(/\s*\(fiction\)/gi, "")
-    .replace(/\bfiction\s*:/gi, "")
-    .replace(/\bfictional\b/gi, "")
-    .replace(/\bfor test data only\b/gi, "")
-    .replace(/\btest data\b/gi, "")
-    .replace(/\btraining data\b/gi, "")
-    .replace(/\|\s*Messiness:\s*[^.|]+/gi, "")
-    .replace(/\bMessiness:\s*\S+/gi, "")
-    .replace(/\s{2,}/g, " ")
-    .trim();
+  return expandAssumedPositionConflictForSolicitor(
+    scrubDevRefs(text)
+      .replace(/\s*\(fiction\)/gi, "")
+      .replace(/\bfiction\s*:/gi, "")
+      .replace(/\bfictional\b/gi, "")
+      .replace(/\bfor test data only\b/gi, "")
+      .replace(/\btest data\b/gi, "")
+      .replace(/\btraining data\b/gi, "")
+      .replace(/\|\s*Messiness:\s*[^.|]+/gi, "")
+      .replace(/\bMessiness:\s*\S+/gi, "")
+      .replace(/\s{2,}/g, " ")
+      .trim(),
+  );
 }
 
 function cleanStageLabel(stage: string): string {

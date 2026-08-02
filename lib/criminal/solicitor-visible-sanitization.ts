@@ -8,6 +8,29 @@ import { humanizeChaseFragmentLabel } from "@/lib/criminal/disclosure-chase-fina
 import { REVIEW_REQUIRED_NEUTRAL } from "@/lib/criminal/structured-solicitor-output";
 import { preserveProtectedAcronyms } from "@/lib/criminal/solicitor-visible-quality";
 import { stripInternalCorpusIdentifiers } from "@/lib/criminal/solicitor-visible-matter-reference";
+import type { BattleboardOutput, BattleboardRoute } from "@/lib/criminal/strategy-battleboard";
+
+/** Canonical Brain 1 collapse-risk value — must remain unchanged in strategy-battleboard. */
+export const BRAIN1_ASSUMED_POSITION_CONFLICT_CANONICAL =
+  "Assumed position may conflict with interview or served evidence.";
+
+/** Solicitor-facing professional expansion of the Brain 1 canonical value (rendering only). */
+export const SOLICITOR_ASSUMED_POSITION_CONFLICT_PROFESSIONAL =
+  "Assumed position may conflict with interview or served evidence — treat as provisional until the interview account and served papers are reconciled; do not fix hearing position on the assumed account alone.";
+
+/**
+ * Expand Brain 1's assumed-position conflict risk into solicitor professional wording.
+ * Idempotent: already-expanded prose is left unchanged.
+ */
+export function expandAssumedPositionConflictForSolicitor(text: string): string {
+  const t = text ?? "";
+  if (!t) return t;
+  if (/treat as provisional until the interview account/i.test(t)) return t;
+  return t.replace(
+    /\bAssumed position may conflict with interview or served evidence\.?/g,
+    SOLICITOR_ASSUMED_POSITION_CONFLICT_PROFESSIONAL,
+  );
+}
 
 const ISO_TS_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/;
 const BUILDER_RE =
@@ -154,7 +177,7 @@ export const NEUTRAL_SOLICITOR_BLOCKED_BANNER =
 export function sanitizeSolicitorProse(text: string): string {
   return preserveProtectedAcronyms(
     stripInternalCorpusIdentifiers(
-      text
+      expandAssumedPositionConflictForSolicitor(text)
       .replace(
         /\bRedacted papers are on the bundle\b/gi,
         "Redacted papers are recorded as served on the papers",
@@ -360,4 +383,33 @@ export function dedupeSolicitorLabels(labels: string[]): string[] {
     out.push(label);
   }
   return out;
+}
+
+function presentSolicitorBattleboardRoute(route: BattleboardRoute): BattleboardRoute {
+  return {
+    ...route,
+    why_it_helps: route.why_it_helps.map((s) => sanitizeSolicitorProse(s)),
+    what_hurts_us: route.what_hurts_us.map((s) => sanitizeSolicitorProse(s)),
+    evidence_anchors: route.evidence_anchors.map((s) => sanitizeSolicitorProse(s)),
+    collapse_risks: route.collapse_risks.map((s) => sanitizeSolicitorProse(s)),
+    next_moves: route.next_moves.map((s) => sanitizeSolicitorProse(s)),
+    hearing_line: sanitizeSolicitorProse(route.hearing_line),
+    safety_note: sanitizeSolicitorProse(route.safety_note),
+  };
+}
+
+/**
+ * Solicitor-exit presentation of a Brain 1 battleboard: expands professional wording
+ * without mutating Brain 1's underlying canonical values.
+ */
+export function presentSolicitorBattleboard(bb: BattleboardOutput): BattleboardOutput {
+  return {
+    ...bb,
+    solicitor_safe_summary: sanitizeSolicitorProse(bb.solicitor_safe_summary),
+    position_notice: bb.position_notice ? sanitizeSolicitorProse(bb.position_notice) : bb.position_notice,
+    primary_route: bb.primary_route ? presentSolicitorBattleboardRoute(bb.primary_route) : bb.primary_route,
+    routes: bb.routes.map(presentSolicitorBattleboardRoute),
+    global_collapse_risks: bb.global_collapse_risks.map((s) => sanitizeSolicitorProse(s)),
+    urgent_next_moves: bb.urgent_next_moves.map((s) => sanitizeSolicitorProse(s)),
+  };
 }

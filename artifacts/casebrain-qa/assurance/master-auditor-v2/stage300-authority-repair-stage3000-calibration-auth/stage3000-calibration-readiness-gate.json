@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "stage3000-calibration-readiness-gate@1.0.0",
+  "generatedAt": "2026-08-02T00:47:55.217Z",
+  "baselineCommit": "bda75a83dcc061d6ed7bbdb21f976015d1b16535",
+  "stage300FreezeAuthorityOk": true,
+  "stage300ProtectedCoreAuthorityOk": true,
+  "stage3000SampleSelectionAllowed": true,
+  "stage3000CalibrationExecutionAllowed": true,
+  "stage3000CompletionAllowed": false,
+  "programmePassSupported": false,
+  "stage3000Nature": "evidence_gathering_calibration_run",
+  "doNotClaimStage300CalibrationCompleteToUnlockDataCollection": true,
+  "reasons": {
+    "stage300FreezeAuthorityOk": [
+      "Canonical frozen-membership-v2.json recovered and verified (300/270/30, pins, hashes)."
+    ],
+    "stage300ProtectedCoreAuthorityOk": [
+      "All 7 Brain1 + 4 Guardian blobs match protected baseline a831a631; battleboard restored to 7d1391a8…"
+    ],
+    "stage3000SampleSelectionAllowed": [
+      "Freeze + protected-core authority valid — selection policy may be designed (not executed)."
+    ],
+    "stage3000CalibrationExecutionAllowed": [
+      "Authorised as evidence-gathering/calibration only after selection freeze unit.",
+      "Unimplemented/unavailable/deferred controls must emit not_exercised or unresolved — never PASS.",
+      "2+20 human items remain pending and cannot support promotion."
+    ],
+    "stage3000CompletionAllowed": [
+      "Remains false — essential/specialty/legal/ownership/browser open items block completion."
+    ],
+    "programmePassSupported": [
+      "Programme PASS never supported by this unit."
+    ]
+  },
+  "hardNots": [
+    "no_stage3000_run_in_this_unit",
+    "no_select_freeze_3000_yet",
+    "no_programme_pass",
+    "no_merge_deploy",
+    "no_unavailable_to_pass",
+    "no_claim_stage300_calibration_complete_merely_to_unlock_collection"
+  ],
+  "selectionPolicy": {
+    "status": "PROPOSED_NON_OPERATIVE",
+    "operative": false,
+    "finalLockedSelectionContract": false,
+    "path": "stage3000-selection-policy-proposed.json"
+  }
+}

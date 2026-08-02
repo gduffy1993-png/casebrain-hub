@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "maa-v2-stage300-authority-repair-stage3000-calibration-auth-stop@1.0.0",
+  "status": "ACCEPTANCE_READY_TERMINOLOGY_CORRECTED",
+  "title": "STAGE-300 AUTHORITY REPAIR AND STAGE-3000 CALIBRATION AUTHORISATION",
+  "generatedAt": "2026-08-02T14:08:32.196Z",
+  "baselineCommit": "bda75a83dcc061d6ed7bbdb21f976015d1b16535",
+  "stage300FreezeAuthorityOk": true,
+  "stage300ProtectedCoreAuthorityOk": true,
+  "stage3000SampleSelectionAllowed": true,
+  "stage3000CalibrationExecutionAllowed": true,
+  "stage3000CompletionAllowed": false,
+  "programmePassSupported": false,
+  "stage3000Nature": "evidence_gathering_calibration_run",
+  "freeze": {
+    "frozenMembershipSha256": "11f350bc9ee73125b3cd512d3acf6ab745aa2ee56cac8dc0f24de1456757a7f7",
+    "orderedMembershipSha256V2": "23ae1b9df0a09b80b9ab51e3f597aad9103360f5f11c26606e1633b2c82c3c5a",
+    "population": {
+      "total": 300,
+      "production": 270,
+      "projection": 30
+    }
+  },
+  "brain1Guardian": {
+    "attestationPhase": "pre_commit_working_tree",
+    "allWorkingTreeMatchesProtectedBaseline": true,
+    "allProposedPostCommitMatchesProtectedBaseline": true,
+    "allCommittedHeadMatchesProtectedBaseline": false,
+    "battleboard": {
+      "protectedBaselineBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "committedHeadBlobId": "855e7048cfb1302d44b3da2deb3c7dcb911b593a",
+      "workingTreeBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "proposedPostCommitBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb",
+      "restoredInWorkingTreeOnly": true,
+      "expectedProtectedBlobId": "7d1391a81281f735c27e9e28edbb5058c0a95ecb"
+    },
+    "note": "Restored battleboard blob is workingTreeBlobId/proposedPostCommitBlobId — not committedHeadBlobId until after push."
+  },
+  "remainingHonestySplit": {
+    "genuineQualifiedLegalReviewCount": 2,
+    "unresolvedOwnershipCount": 20,
+    "totalRemaining": 22,
+    "doNotDescribeAllAsLegalReview": true,
+    "technicalDispositionsAreProposalsOnly": true,
+    "reviewerDecisionBlank": true,
+    "reviewerIdentityBlank": true
+  },
+  "artefacts": [
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/DECISION-CARD.md",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/brain1-guardian-blob-compare.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/updated-blocker-register.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/updated-deferred-lane-register.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/stage3000-calibration-readiness-gate.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/stage3000-selection-policy-proposed.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/CHANGED-FILE-MANIFEST.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-authority-repair-stage3000-calibration-auth/STOP-FOR-CODEX-REVIEW.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-canonical-freeze-packet/"
+  ],
+  "hardNots": [
+    "no_stage3000_run_in_this_unit",
+    "no_select_freeze_3000_yet",
+    "no_programme_pass",
+    "no_merge_deploy",
+    "no_unavailable_to_pass",
+    "no_claim_stage300_calibration_complete_merely_to_unlock_collection"
+  ],
+  "committed": false,
+  "pushed": false,
+  "merged": false,
+  "deployed": false,
+  "stage3000Run": false,
+  "programmePassClaimed": false,
+  "verification": {
+    "focusedContractsPass": true,
+    "contracts": [
+      "scripts/maa-v2-brain1-solicitor-assumed-position-contracts.test.ts",
+      "scripts/maa-v2-solicitor-boundary-containment-contracts.test.ts"
+    ],
+    "npmBuildExit": 0,
+    "npmBuildReceipt": "npm-build-receipt.txt"
+  },
+  "currentCommittedHeadCommit": "bda75a83dcc061d6ed7bbdb21f976015d1b16535",
+  "selectionPolicy": {
+    "status": "PROPOSED_NON_OPERATIVE",
+    "operative": false,
+    "finalLockedSelectionContract": false
+  }
+}

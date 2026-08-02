@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "stage3000-selection-policy-proposed@1.0.0",
+  "status": "PROPOSED_NON_OPERATIVE",
+  "generatedAt": "2026-08-02T14:08:32.196Z",
+  "authorisation": "PROPOSED only — stage3000SampleSelectionAllowed may be true for design/authorisation framing, but this file is not the final locked 3,000-case selection contract and must not be executed.",
+  "purpose": "First frozen 3,000-case selection policy for Stage-3000 evidence-gathering/calibration. Not a completion or programme PASS authorisation.",
+  "membership": {
+    "targetUniqueCaseIdentities": 3000,
+    "preserveStage300Lineage": true,
+    "stage300OrderedMembershipSha256V2Pin": "23ae1b9df0a09b80b9ab51e3f597aad9103360f5f11c26606e1633b2c82c3c5a",
+    "noSilentCorpusSubstitution": true,
+    "forbiddenCorpora": [
+      "ESA-499 as Stage-3000 census",
+      "Malik Price generation runs",
+      "gold-manual-proof-set",
+      "any prior Stage-50/150/300 subsample silently relabelled as Stage-3000"
+    ],
+    "deterministicOrderedMembershipHash": {
+      "algorithm": "sha256",
+      "formula": "orderIndex|caseId|cohort|lineage|packetSha256|casebrainOutputSha256",
+      "freezeBeforeDetectors": true
+    }
+  },
+  "stratification": {
+    "offenceCaseFamilies": [
+      "homicide_causation",
+      "violence_robbery_weapons",
+      "firearms",
+      "sexual_abe",
+      "domestic_abuse",
+      "youth_participation",
+      "county_lines_nrm",
+      "fraud_poca",
+      "digital_attribution",
+      "identification_code_d",
+      "mental_health_fitness",
+      "disclosure_pii",
+      "road_traffic_fatal",
+      "magistrates_procedure",
+      "bail_remand",
+      "sentencing_newton",
+      "appeals",
+      "multi_defendant_attribution"
+    ],
+    "variantsRequired": [
+      "clean",
+      "messy",
+      "ocr_scan",
+      "mixed_format",
+      "later_disclosure",
+      "amended_document"
+    ],
+    "minimumPerFamilyVariantCell": 1,
+    "reportOriginalAndAddedCohortsSeparately": true
+  },
+  "audienceAndExitCoverage": {
+    "genuineNonBrowserExits": [
+      "view",
+      "copy",
+      "export",
+      "api",
+      "pdf",
+      "composed_prose"
+    ],
+    "audiences": [
+      "defence_solicitor",
+      "client",
+      "court",
+      "cps",
+      "supervisor"
+    ],
+    "authenticatedBrowser": "deferred_separate_lane_not_exercised_unless_authorised",
+    "unimplementedControlsEmit": [
+      "not_exercised",
+      "unresolved"
+    ],
+    "neverEmitPassForUnavailable": true
+  },
+  "blinding": {
+    "sourceOutputTruthSeparation": true,
+    "truthKeyNeverOpenedBeforeFreeze": true,
+    "truthKeyNeverUsedToPopulateCaseBrainOutput": true,
+    "detectorBlindToSelectionUntilMembershipFrozen": true
+  },
+  "checkpoints": {
+    "resumePoints": [
+      20,
+      50,
+      150,
+      300,
+      500,
+      1000,
+      3000
+    ],
+    "requireReceiptPerCheckpoint": true,
+    "noOverwritePriorCheckpointArtefacts": true
+  },
+  "retentionAndEvidenceSize": {
+    "retainFrozenMembershipAndCandidateReceipts": true,
+    "retainPerCheckpointHashesAndDispositionLedgers": true,
+    "excludeBulkRematerialisedOutputsFromDefaultCommit": true,
+    "regenerableOutputsDocumentedByHashManifest": true,
+    "maxCommitBulkPolicy": "hash-only for regenerable population material unless Codex authorises bulk"
+  },
+  "deferredNotExercisedLanes": [
+    "authenticated_browser",
+    "heavy_ocr_binary",
+    "specialty_product_emitters",
+    "qualified_legal_review",
+    "unresolved_source_ownership"
+  ],
+  "pendingHumanItemsCannotSupportPromotion": {
+    "qualifiedLegalReview": 2,
+    "unresolvedOwnership": 20
+  },
+  "executionNote": "PROPOSED / non-operative. Do not select, freeze, or run the 3,000. A separate Codex-authorised unit must lock the final selection contract before any freeze.",
+  "operative": false,
+  "finalLockedSelectionContract": false
+}

@@ -1,0 +1,9 @@
+{
+  "genuineQualifiedLegalReviewCount": 2,
+  "unresolvedOwnershipCount": 20,
+  "totalRemaining": 22,
+  "doNotDescribeAllAsLegalReview": true,
+  "technicalDispositionsAreProposalsOnly": true,
+  "reviewerDecisionBlank": true,
+  "reviewerIdentityBlank": true
+}

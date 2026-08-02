@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "stage300-authority-repair-deferred-lane-register@1.0.0",
+  "generatedAt": "2026-08-02T00:47:55.217Z",
+  "lanes": [
+    {
+      "laneId": "authenticated_browser",
+      "status": "not_exercised",
+      "note": "Separate deferred lane; non-browser exits may gather Stage-3000 calibration evidence."
+    },
+    {
+      "laneId": "heavy_ocr_binary",
+      "status": "deferred",
+      "note": "Heavy PDF/OCR/binary controls remain deferred; emit not_exercised — never PASS."
+    },
+    {
+      "laneId": "specialty_product_emitters",
+      "status": "product_gap_harness_expectations_only",
+      "note": "Harness specialty bags are not production PASS."
+    },
+    {
+      "laneId": "qualified_legal_review",
+      "status": "pending",
+      "count": 2
+    },
+    {
+      "laneId": "unresolved_source_ownership",
+      "status": "pending",
+      "count": 20
+    }
+  ]
+}

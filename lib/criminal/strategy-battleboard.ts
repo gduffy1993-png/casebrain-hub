@@ -784,7 +784,7 @@ function applyPositionGuardrails(
 
     if (assumeConflict) {
       next.collapse_risks = uniqueSafe(
-        ["Assumed position may conflict with interview or served evidence — treat as provisional until the interview account and served papers are reconciled; do not fix hearing position on the assumed account alone.", ...next.collapse_risks],
+        ["Assumed position may conflict with interview or served evidence.", ...next.collapse_risks],
         6,
       );
     }
@@ -2396,7 +2396,7 @@ export function buildStrategyBattleboard(input: StrategyBattleboardInput): Battl
   const globalRisks =
     positionContext.trust === "provisional" || positionContext.trust === "not_recorded"
       ? uniqueSafe(
-          ["Assumed position may conflict with interview or served evidence — treat as provisional until the interview account and served papers are reconciled; do not fix hearing position on the assumed account alone.", ...GLOBAL_COLLAPSE],
+          ["Assumed position may conflict with interview or served evidence.", ...GLOBAL_COLLAPSE],
           8,
         )
       : GLOBAL_COLLAPSE;

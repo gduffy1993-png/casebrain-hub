@@ -1,0 +1,74 @@
+{
+  "count": 2,
+  "rows": [
+    {
+      "exactWording": "EVIDENCE GAP LIST\n\n• CCTV full window / master footage [Not safely confirmed / Unsafe] — Papers mark this material as referred_only — chase or confirm status before fixing hearing position.\n• MG6 / unused schedule clarification [Not safely confirmed / Unsafe] — MG6/unused clarification may affect disclosure fairness and route viability — solicitor review required.\n\nSolicitor review required before sending to CPS, court, or client.",
+      "normalisedTemplate": "evidence gap list • cctv full window / master footage [not safely confirmed / unsafe] — papers mark this material as referred_only — chase or confirm status before fixing hearing position. • mg6 / unused schedule clarification [not safely confirmed / unsafe] — mg6/unused clarification may affect disclosure fairness and route viability — solicitor review required. solicitor review required before sending to cps, court, or client.",
+      "occurrenceCount": 7,
+      "caseExamples": [
+        "s150-d120-022-sexual-abe-clean",
+        "s150-d120-023-sexual-abe-messy",
+        "s150-d120-024-sexual-abe-ocr-scan",
+        "s150-d120-025-sexual-abe-mixed-format",
+        "s150-d120-026-sexual-abe-later-disclosure",
+        "s150-d120-027-sexual-abe-amended-document",
+        "s150-d120-028-sexual-abe-competing-chrono"
+      ],
+      "surfaces": [
+        "exit_export"
+      ],
+      "occurrencePaths": [
+        "/exits/export/exportPack/sections/3/textForClipboard"
+      ],
+      "audiences": [],
+      "exits": [
+        "export"
+      ],
+      "findingCodes": [
+        "WRD_MISSING_STATUS_OR_LIMITATION"
+      ],
+      "detectorReasons": [
+        "Text on exit_export discusses evidence/disclosure without naming its status or limitation (served/outstanding/pending/redacted/etc.).",
+        "Text on exit_export discusses evidence/disclosure without naming its status or limitation (served/outstanding/pending/redacted/etc.).",
+        "Text on exit_export discusses evidence/disclosure without naming its status or limitation (served/outstanding/pending/redacted/etc.)."
+      ],
+      "proposedTechnicalDisposition": "requires_qualified_legal_review",
+      "proposedImprovedWording": null,
+      "sharedRoot": null,
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    },
+    {
+      "exactWording": "EVIDENCE GAP LIST\n\n• CCTV full window / master footage [Not safely confirmed / Unsafe] — Papers mark this material as referred_only — chase or confirm status before fixing hearing position.\n\nSolicitor review required before sending to CPS, court, or client.",
+      "normalisedTemplate": "evidence gap list • cctv full window / master footage [not safely confirmed / unsafe] — papers mark this material as referred_only — chase or confirm status before fixing hearing position. solicitor review required before sending to cps, court, or client.",
+      "occurrenceCount": 2,
+      "caseExamples": [
+        "s150-d120-031-domestic-abuse-ocr-scan",
+        "s150-d120-052-fraud-poca-ocr-scan"
+      ],
+      "surfaces": [
+        "exit_export"
+      ],
+      "occurrencePaths": [
+        "/exits/export/exportPack/sections/3/textForClipboard"
+      ],
+      "audiences": [],
+      "exits": [
+        "export"
+      ],
+      "findingCodes": [
+        "WRD_MISSING_STATUS_OR_LIMITATION"
+      ],
+      "detectorReasons": [
+        "Text on exit_export discusses evidence/disclosure without naming its status or limitation (served/outstanding/pending/redacted/etc.).",
+        "Text on exit_export discusses evidence/disclosure without naming its status or limitation (served/outstanding/pending/redacted/etc.)."
+      ],
+      "proposedTechnicalDisposition": "requires_qualified_legal_review",
+      "proposedImprovedWording": null,
+      "sharedRoot": null,
+      "reviewerDecision": null,
+      "reviewerIdentity": null
+    }
+  ],
+  "note": "Genuine qualified-legal-review items only. Kept separate from unresolved source/harness/ownership items. Proposed triage — reviewerDecision blank."
+}

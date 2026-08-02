@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "stage300-v2-candidate-freeze@1.0.0",
+  "runId": "s300-cal-v2-2026-08-01T02-37-52-299Z-ec2a88fb",
+  "frozenAt": "2026-08-01T02:37:55.448Z",
+  "candidateCount": 322,
+  "freezeSha256": "1c538ca751833a5c0021a3723fa1b7412dd749a306408b60a0c634a6141e1857",
+  "neverImportsStage150CandidateLedger": true
+}
