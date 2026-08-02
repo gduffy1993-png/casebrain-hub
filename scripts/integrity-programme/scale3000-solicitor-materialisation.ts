@@ -33,10 +33,18 @@ import {
   assessChaseLabelFamilyCompatibility,
   assessFamilyEvidenceCompatibility,
   assessProvenanceCoherence,
+  buildFamilyCompatibilityProtectedMetadata,
   classifyMatterFamily,
   containsDrinkDriveDeviceWording,
+  describeFamilyCompatibilityForSolicitor,
   partitionEvidenceForSolicitorDisplay,
+  scanSolicitorVisibleInternalLanguageBoundary,
+  solicitorVisibleTextContainsFamilyIssueCodes,
+  solicitorVisibleTextContainsInternalSystemLanguage,
   violatesDrinkDriveCopyInvariant,
+  type FamilyBlockAudience,
+  type FamilyCompatibilityIssue,
+  type FamilyCompatibilityProtectedMetadata,
 } from "@/lib/criminal/solicitor-family-provenance";
 import { containsAbsoluteProofWording } from "@/lib/criminal/absolute-proof-wording";
 import { sanitizeYouthVenueProse } from "@/lib/criminal/solicitor-youth-venue";
@@ -130,6 +138,8 @@ type SurfaceRecord = {
   auditFamily: string;
   trap: string;
   layout: string;
+  /** Machine/audit only — never copyable/sendable solicitor prose. */
+  protectedAudit?: FamilyCompatibilityProtectedMetadata | null;
 };
 
 type Finding = {
@@ -154,6 +164,7 @@ type BuiltSurface = {
   canExport: boolean;
   apiUsable: boolean;
   blockedNotRepaired: boolean;
+  protectedAudit?: FamilyCompatibilityProtectedMetadata | null;
 };
 
 type ResolvedPack = {
@@ -483,6 +494,22 @@ function blockedPreview(itemLabel: string, reason: string): string {
   return formatBlockedCopyPreview({ itemLabel, reason });
 }
 
+function familyBlockedPreview(
+  itemLabel: string,
+  issues: FamilyCompatibilityIssue[],
+  audience: FamilyBlockAudience,
+  matterFamily?: ReturnType<typeof classifyMatterFamily>,
+): { text: string; protectedAudit: FamilyCompatibilityProtectedMetadata } {
+  const reason = describeFamilyCompatibilityForSolicitor({ issues, audience });
+  if (solicitorVisibleTextContainsFamilyIssueCodes(reason)) {
+    throw new Error("family_blocked_preview_leaked_issue_codes");
+  }
+  return {
+    text: blockedPreview(itemLabel, reason),
+    protectedAudit: buildFamilyCompatibilityProtectedMetadata({ issues, matterFamily }),
+  };
+}
+
 function buildTemplate(pack: ResolvedPack): BuiltTemplate {
   const { allegation, hay, auditFamily } = pack;
   const familyResolution = resolveGateOffenceFamily({ allegation, bundleHay: hay, auditFamily });
@@ -513,8 +540,16 @@ function buildTemplate(pack: ResolvedPack): BuiltTemplate {
   });
 
   const surfaces: BuiltSurface[] = [];
-  const push = (surfaceId: string, label: string, text: string, o: Partial<BuiltSurface> & { gateStatus: string }) => {
+  const push = (
+    surfaceId: string,
+    label: string,
+    text: string,
+    o: Partial<BuiltSurface> & { gateStatus: string },
+  ) => {
     const canCopy = o.canCopy ?? false;
+    if (solicitorVisibleTextContainsFamilyIssueCodes(text) || solicitorVisibleTextContainsInternalSystemLanguage(text)) {
+      throw new Error(`solicitor_visible_internal_language_leak:${surfaceId}`);
+    }
     surfaces.push({
       surfaceId,
       label,
@@ -524,6 +559,7 @@ function buildTemplate(pack: ResolvedPack): BuiltTemplate {
       canExport: o.canExport ?? canCopy,
       apiUsable: o.apiUsable ?? canCopy,
       blockedNotRepaired: o.blockedNotRepaired ?? !canCopy,
+      protectedAudit: o.protectedAudit ?? null,
     });
   };
   const pushCopyable = (
@@ -833,15 +869,18 @@ function buildTemplate(pack: ResolvedPack): BuiltTemplate {
     });
     const emptyGeneric = fam.issues.includes("empty_generic_client_summary");
     if (!fam.ok && !emptyGeneric) {
-      push(
-        "client_summary",
-        "Client-safe summary",
-        blockedPreview(
-          "Client-safe summary wording",
-          `Wrong-family or incompatible evidence wording blocked (${fam.issues.join(", ")}).`,
-        ),
-        { gateStatus: "family_incompatible", canCopy: false, blockedNotRepaired: true },
+      const blocked = familyBlockedPreview(
+        "Client-safe summary wording",
+        fam.issues,
+        "client",
+        fam.matterFamily,
       );
+      push("client_summary", "Client-safe summary", blocked.text, {
+        gateStatus: "family_incompatible",
+        canCopy: false,
+        blockedNotRepaired: true,
+        protectedAudit: blocked.protectedAudit,
+      });
     } else if (emptyGeneric) {
       pushCopyable(
         "client_summary",
@@ -867,12 +906,13 @@ function buildTemplate(pack: ResolvedPack): BuiltTemplate {
     const fam = assessFamilyEvidenceCompatibility({ allegation, auditFamily, prose: courtLineRaw });
     const prov = assessProvenanceCoherence({ prose: courtLineRaw, evidenceLabels });
     if (!fam.ok) {
-      push(
-        "court_line",
-        "Court line",
-        blockedPreview("Court line", `Wrong-family wording blocked (${fam.issues.join(", ")}).`),
-        { gateStatus: "family_incompatible", canCopy: false, blockedNotRepaired: true },
-      );
+      const blocked = familyBlockedPreview("Court line", fam.issues, "court", fam.matterFamily);
+      push("court_line", "Court line", blocked.text, {
+        gateStatus: "family_incompatible",
+        canCopy: false,
+        blockedNotRepaired: true,
+        protectedAudit: blocked.protectedAudit,
+      });
     } else if (!prov.ok) {
       push(
         "court_line",
@@ -913,15 +953,23 @@ function buildTemplate(pack: ResolvedPack): BuiltTemplate {
       });
       const fam = assessFamilyEvidenceCompatibility({ allegation, auditFamily, prose: draft });
       if (!chaseCompat.ok || !fam.ok) {
+        const issues = [...new Set([...fam.issues, ...chaseCompat.issues])];
+        const blocked = familyBlockedPreview(
+          `CPS chase — ${solicitorDisplayLabel(it.label)}`,
+          issues,
+          "default",
+          fam.matterFamily,
+        );
         push(
           "cps_chase_draft",
           `CPS chase — ${solicitorDisplayLabel(it.label)}`,
-          blockedPreview(
-            `CPS chase — ${solicitorDisplayLabel(it.label)}`,
-            chaseCompat.reason ||
-              `Wrong-family or unresolved source contradiction (${[...fam.issues, ...chaseCompat.issues].join(", ")}).`,
-          ),
-          { gateStatus: "family_incompatible", canCopy: false, blockedNotRepaired: true },
+          blocked.text,
+          {
+            gateStatus: "family_incompatible",
+            canCopy: false,
+            blockedNotRepaired: true,
+            protectedAudit: blocked.protectedAudit,
+          },
         );
         return;
       }
@@ -1094,12 +1142,18 @@ function buildTemplate(pack: ResolvedPack): BuiltTemplate {
     prose: exportCandidate ?? "",
   });
   if (!exportFam.ok) {
-    push(
-      "export_preview",
+    const blocked = familyBlockedPreview(
       "Export preview",
-      blockedPreview("Export preview", `Export blocked — family-incompatible wording (${exportFam.issues.join(", ")}).`),
-      { gateStatus: "family_incompatible", canCopy: false, blockedNotRepaired: true },
+      exportFam.issues,
+      "export",
+      exportFam.matterFamily,
     );
+    push("export_preview", "Export preview", blocked.text, {
+      gateStatus: "family_incompatible",
+      canCopy: false,
+      blockedNotRepaired: true,
+      protectedAudit: blocked.protectedAudit,
+    });
   } else {
     pushCopyable("export_preview", "Export preview", exportCandidate ?? hearingLabel, "export", "Export preview");
   }
@@ -1156,7 +1210,8 @@ function buildTemplate(pack: ResolvedPack): BuiltTemplate {
   for (const row of pack.evidenceRows) {
     if (provenanceCount >= 4) break;
     const vis = solicitorVisibleEvidenceTitle(row.label);
-    push("provenance_title", "Evidence provenance title", vis.display, {
+    const display = preserveProtectedAcronyms(vis.display);
+    push("provenance_title", "Evidence provenance title", display, {
       gateStatus: vis.blocked ? "blocked_title" : "ok",
       canCopy: false,
       canExport: false,
@@ -1209,6 +1264,7 @@ function materialiseIdentity(id: ScaleIdentity, built: BuiltTemplate): SurfaceRe
     auditFamily: built.pack.auditFamily,
     trap: id.trap,
     layout: id.layout,
+    protectedAudit: s.protectedAudit ?? null,
   }));
 }
 
@@ -1223,8 +1279,8 @@ function scanSurface(rec: SurfaceRecord): Finding[] {
   const h12 = rec.textHash.slice(0, 12);
   const copyableExit = rec.canCopy || rec.canExport || rec.apiUsable;
 
-  // Internal fixture / audit / path language: scan EVERY solicitor-visible surface
-  // (copyable, blocked, context) — acceptance must not false-PASS by skipping non-copy.
+  // Internal fixture / audit / system language: scan EVERY solicitor-visible surface
+  // (copyable, blocked, context). Blocked status does not authorise leakage.
   if (containsSolicitorForbiddenInternalLanguage(rec.text)) {
     out.push({
       findingId: `FIND-LEAK-internal_language-${h12}`,
@@ -1234,6 +1290,18 @@ function scanSurface(rec: SurfaceRecord): Finding[] {
       surfaceId: rec.surfaceId,
       textHash: rec.textHash,
       detail: "Solicitor-visible surface contains fixture/audit/developer language",
+      evidenceRef: rec.sourceEvidenceRef,
+    });
+  }
+  for (const hit of scanSolicitorVisibleInternalLanguageBoundary(rec.text)) {
+    out.push({
+      findingId: `FIND-LEAK-${hit.kind}-${h12}`,
+      code: hit.kind === "family_issue_code" ? "family_issue_code_leak" : "system_language_leak",
+      severity: "error",
+      caseId: rec.caseId,
+      surfaceId: rec.surfaceId,
+      textHash: rec.textHash,
+      detail: `Solicitor-visible surface (including blocked) contains ${hit.kind}: ${hit.matched}`,
       evidenceRef: rec.sourceEvidenceRef,
     });
   }

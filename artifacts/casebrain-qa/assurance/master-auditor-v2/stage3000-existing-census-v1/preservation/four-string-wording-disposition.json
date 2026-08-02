@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "stage3000-existing-census-v1-four-string-wording-disposition@1.0.0",
+  "generatedAt": "2026-08-02T16:18:00.000Z",
+  "note": "Professional-review queue collapsed to four unique strings. Reviewer/legal fields remain blank.",
+  "strings": [
+    {
+      "textHash": "af31d338940c4362a1569335ab124f7ba70e1e003a2cdcce59168670cb7d2c76",
+      "preview": "mg5",
+      "surfaceId": "provenance_title",
+      "occurrenceCount": 2200,
+      "technicalDisposition": "detector_false_positive_document_form_title",
+      "rationale": "MG5 is a legitimate CPS form / provenance title. Short identifier allowed on provenance_title; not defective for lacking sentence-style status/reason/action.",
+      "reviewerDisposition": null,
+      "legalReview": null
+    },
+    {
+      "textHash": "5920b168a0ad76aef9d8fca87d89f2ac1a16176054ceab906ceb2cfbbebc447c",
+      "preview": "mg6",
+      "surfaceId": "provenance_title",
+      "occurrenceCount": 2200,
+      "technicalDisposition": "detector_false_positive_document_form_title",
+      "rationale": "MG6 is a legitimate unused-schedule / provenance title. Same surface-role rule as MG5.",
+      "reviewerDisposition": null,
+      "legalReview": null
+    },
+    {
+      "textHash": "e0cefc1d49ddae876e03e522d29acc2431edf385306a77084f089a25ac0bf41d",
+      "preview": "Item: Court line\nStatus: Copy unavailable\nReason: Court line mentions material not on the displayed evidence map (bwv). Treat as provisional procedural wording only after solicitor review.",
+      "surfaceId": "court_line",
+      "occurrenceCount": 297,
+      "technicalDisposition": "professional_wording_review_required_retained_for_technical_review",
+      "rationale": "Court-line quarantine/provisional wording kept under technical review; not auto-cleared. Improve only if genuinely clunky after shared enum fix.",
+      "reviewerDisposition": null,
+      "legalReview": null
+    },
+    {
+      "textHash": "48a2fb101be28aa81c45a2c28c571b42c60943a7e5132efd98f9ded31b3ac0e7",
+      "preview": "Quarantined source rows (for solicitor review — not for copy as a complete evidence list): …",
+      "surfaceId": "evidence_family_quarantine",
+      "occurrenceCount": 93,
+      "technicalDisposition": "professional_wording_review_required_retained_for_technical_review",
+      "rationale": "Quarantine list wording kept under technical review; containment behaviour must be preserved.",
+      "reviewerDisposition": null,
+      "legalReview": null
+    }
+  ]
+}

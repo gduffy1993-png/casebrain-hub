@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "stage3000-final-corrections-before-after@1.0.0",
+  "v1": {
+    "containment": 6600,
+    "professional_wording_review_required": 4790,
+    "unresolved_source": 4220,
+    "confirmed_app_defect": 279
+  },
+  "postFixIntermediate": {
+    "containment": 2200,
+    "unresolved_source": 980,
+    "professional_wording_review_required": 390
+  },
+  "final": {
+    "containment": 2200,
+    "unresolved_source": 980,
+    "professional_wording_review_required": 390
+  },
+  "rawEnum": {
+    "v1": 319,
+    "final": 0
+  },
+  "internalSystemLanguageLeaksOnSurfaces": 0,
+  "familyIssueCodeLeaksOnSurfaces": 0,
+  "exportSample": "Item: Export preview\nStatus: Copy unavailable\nReason: Export wording has been withheld because some source material appears inconsistent with the recorded allegation. Review the source bundle, confirm the operative allegation, and regenerate the export using only compatible material. Next: check the papers against the charge before any export or send."
+}

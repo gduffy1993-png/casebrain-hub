@@ -25,6 +25,23 @@ export type FamilyCompatibilityIssue =
   | "empty_generic_client_summary"
   | "matter_family_evidence_contradiction";
 
+/** Complete versioned registry of family-compatibility issue codes (machine/audit only). */
+export const FAMILY_COMPATIBILITY_ISSUE_CODE_REGISTRY = [
+  "intoxilyser_on_non_drink_drive",
+  "breath_device_on_non_drink_drive",
+  "calibration_on_non_drink_drive",
+  "drink_drive_evidence_on_non_drink_drive",
+  "cctv_chase_on_driver_information",
+  "medical_chase_on_driver_information",
+  "pwits_on_non_drugs",
+  "abe_on_non_sexual_or_violence",
+  "empty_generic_client_summary",
+  "matter_family_evidence_contradiction",
+] as const satisfies readonly FamilyCompatibilityIssue[];
+
+export type RegisteredFamilyCompatibilityIssueCode =
+  (typeof FAMILY_COMPATIBILITY_ISSUE_CODE_REGISTRY)[number];
+
 export type EvidenceFamilySignal =
   | "drink_device"
   | "calibration"
@@ -269,4 +286,152 @@ export function violatesDrinkDriveCopyInvariant(input: {
   if (!input.canCopy) return false;
   if (classifyMatterFamily(input) === "drink_driving") return false;
   return containsDrinkDriveDeviceWording(input.text);
+}
+
+export type FamilyBlockAudience = "client" | "court" | "export" | "default";
+
+/**
+ * Protected machine/audit metadata for family-compatibility blocks.
+ * Never place `issueCodes` into solicitor-visible / copyable / exportable text.
+ */
+export type FamilyCompatibilityProtectedMetadata = {
+  familyCompatibilityIssues: FamilyCompatibilityIssue[];
+  matterFamily?: MatterFamilyKind;
+  blockedAt: "family_compatibility";
+};
+
+const FAMILY_ISSUE_PROSE: Record<FamilyCompatibilityIssue, string> = {
+  intoxilyser_on_non_drink_drive:
+    "breath/device (intoxilyser) material that does not match the recorded allegation family",
+  breath_device_on_non_drink_drive:
+    "breath-device procedure wording that does not match the recorded allegation family",
+  calibration_on_non_drink_drive:
+    "device-calibration material that does not match the recorded allegation family",
+  drink_drive_evidence_on_non_drink_drive:
+    "drink-drive evidence wording that does not match the recorded allegation family",
+  cctv_chase_on_driver_information:
+    "CCTV/dashcam chase wording that does not match a driver-information allegation",
+  medical_chase_on_driver_information:
+    "medical/expert chase wording that does not match a driver-information allegation",
+  pwits_on_non_drugs: "supply (PWITS) wording that does not match the recorded allegation family",
+  abe_on_non_sexual_or_violence:
+    "ABE wording that does not match the recorded allegation family",
+  empty_generic_client_summary: "an over-generic client summary without safe source support",
+  matter_family_evidence_contradiction:
+    "evidence that conflicts with the recorded allegation family",
+};
+
+/**
+ * Professional solicitor-visible reason for a family-compatibility block.
+ * Internal snake_case issue codes must never appear in the returned string.
+ */
+export function describeFamilyCompatibilityForSolicitor(input: {
+  issues: FamilyCompatibilityIssue[];
+  audience?: FamilyBlockAudience;
+}): string {
+  const audience = input.audience ?? "default";
+  const issues = [...new Set(input.issues)];
+  if (!issues.length) {
+    return "This wording is unavailable pending solicitor review of the source bundle.";
+  }
+
+  const what =
+    issues.length === 1
+      ? FAMILY_ISSUE_PROSE[issues[0]!] ?? "source material that appears inconsistent with the recorded allegation"
+      : "source material that appears inconsistent with the recorded allegation";
+
+  if (audience === "client") {
+    return [
+      `Some papers look inconsistent with the recorded allegation, so this client wording has been withheld for now.`,
+      `A solicitor should check the source bundle before this is relied on or sent.`,
+      `Next: ask your solicitor to review the withheld material against the charge before any client update.`,
+    ].join(" ");
+  }
+  if (audience === "court") {
+    return [
+      `Court-facing wording has been withheld because ${what} was detected in the draft line.`,
+      `The position requires solicitor review before any court note is used.`,
+      `Next: check the source bundle and re-draft a family-compatible court line before filing or handing up.`,
+    ].join(" ");
+  }
+  if (audience === "export") {
+    return [
+      `Export wording has been withheld because some source material appears inconsistent with the recorded allegation.`,
+      `Review the source bundle, confirm the operative allegation, and regenerate the export using only compatible material.`,
+      `Next: check the papers against the charge before any export or send.`,
+    ].join(" ");
+  }
+  return [
+    `Some source material appears inconsistent with the recorded allegation and has been withheld from this output pending solicitor review.`,
+    `Check the source bundle before relying on or sending this wording.`,
+    `Next: confirm the operative allegation and only then re-issue compatible copy.`,
+  ].join(" ");
+}
+
+export function buildFamilyCompatibilityProtectedMetadata(input: {
+  issues: FamilyCompatibilityIssue[];
+  matterFamily?: MatterFamilyKind;
+}): FamilyCompatibilityProtectedMetadata {
+  return {
+    familyCompatibilityIssues: [...new Set(input.issues)],
+    matterFamily: input.matterFamily,
+    blockedAt: "family_compatibility",
+  };
+}
+
+/** Escape a registry code for safe use inside a RegExp word-boundary pattern. */
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/** Cached regex derived from the complete issue-code registry (never a hand-maintained parallel list). */
+let _familyIssueCodeLeakRe: RegExp | null = null;
+function familyIssueCodeLeakRegExp(): RegExp {
+  if (!_familyIssueCodeLeakRe) {
+    const alts = FAMILY_COMPATIBILITY_ISSUE_CODE_REGISTRY.map(escapeRegExp).join("|");
+    _familyIssueCodeLeakRe = new RegExp(`\\b(?:${alts})\\b`, "i");
+  }
+  return _familyIssueCodeLeakRe;
+}
+
+/** True when solicitor-visible text still contains raw family-compatibility issue codes. */
+export function solicitorVisibleTextContainsFamilyIssueCodes(text: string | null | undefined): boolean {
+  const t = text ?? "";
+  if (!t) return false;
+  return familyIssueCodeLeakRegExp().test(t);
+}
+
+/**
+ * Internal/system language that must never appear on any solicitor-visible surface
+ * (including blocked / non-copyable banners). Ordinary professional words are not matched.
+ */
+export const SOLICITOR_VISIBLE_SYSTEM_LANGUAGE_RE =
+  /\b(?:internal\s+detector(?:\s+codes?)?|detector\s+codes?|protected\s*audit(?:\s+metadata)?|protectedAudit|machine\s+metadata|materialisation|materialization|harness|control\s*IDs?|registry\s*IDs?|audit\s+engines?|pipelines?|MAA2?-[A-Z0-9-]+|FIND-[A-Z0-9-]+)\b/i;
+
+export type SolicitorVisibleInternalLanguageHit = {
+  kind: "family_issue_code" | "system_language" | "legacy_forbidden";
+  matched: string;
+};
+
+/**
+ * Boundary scan for ALL solicitor-visible surfaces (copyable or blocked).
+ * Blocked status does not authorise internal language leakage.
+ */
+export function scanSolicitorVisibleInternalLanguageBoundary(
+  text: string | null | undefined,
+): SolicitorVisibleInternalLanguageHit[] {
+  const t = text ?? "";
+  if (!t.trim()) return [];
+  const hits: SolicitorVisibleInternalLanguageHit[] = [];
+  const codeMatch = t.match(familyIssueCodeLeakRegExp());
+  if (codeMatch?.[0]) hits.push({ kind: "family_issue_code", matched: codeMatch[0] });
+  const sysMatch = t.match(SOLICITOR_VISIBLE_SYSTEM_LANGUAGE_RE);
+  if (sysMatch?.[0]) hits.push({ kind: "system_language", matched: sysMatch[0] });
+  return hits;
+}
+
+export function solicitorVisibleTextContainsInternalSystemLanguage(
+  text: string | null | undefined,
+): boolean {
+  return scanSolicitorVisibleInternalLanguageBoundary(text).length > 0;
 }

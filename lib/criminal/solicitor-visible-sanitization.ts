@@ -51,10 +51,22 @@ const EVIDENCE_STATE_LABELS: Record<string, string> = {
   not_started: "Not started",
 };
 
+/** Known CPS/police form titles allowed as short provenance/document identifiers. */
+const DOCUMENT_FORM_TITLE_RE =
+  /^(MG\d+[A-Z]?|MG6C|BWV|ABE|PACE|SFR|ANPR|CPS|CCTV|DVLA|CAD|DNA|AFIS|YJS|999)$/i;
+
+/** True when text is a legitimate short document/provenance form title (e.g. MG5, MG6). */
+export function isDocumentFormTitle(text: string | null | undefined): boolean {
+  const t = (text ?? "").trim();
+  return DOCUMENT_FORM_TITLE_RE.test(t);
+}
+
 /** True when a walked string is internal/debug and must not appear as solicitor copy. */
 export function isInternalNonSolicitorString(text: string | null | undefined): boolean {
   const t = (text ?? "").trim();
   if (!t) return true;
+  // Short CPS/police form titles are legitimate provenance identifiers, not internal IDs.
+  if (isDocumentFormTitle(t)) return false;
   if (ISO_TS_RE.test(t)) return true;
   if (BUILDER_RE.test(t)) return true;
   if (isFixtureIdLike(t)) return true;

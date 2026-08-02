@@ -1,0 +1,260 @@
+{
+  "schemaVersion": "stage3000-final-corrections-exact-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-02T17:47:23.250Z",
+  "note": "This manifest file is excluded from its own files array. Detached digest is separate. Regenerated as last evidence-generation operation from final artefact bytes.",
+  "fileCount": 28,
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/before-after-finding-map.json",
+      "sha256": "56c45fbbd2da39d6a950f7425a7ca95d5d9ff17a23332d010cdcf31a90e8ca56",
+      "byteLength": 993,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/brain1-guardian-blob-compare.json",
+      "sha256": "7d79994640c6c4c6b91ffe36fb763cd550aec199a0ddd457cf043141783f2c7a",
+      "byteLength": 2788,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/candidate-freeze-receipt.json",
+      "sha256": "60ff1fdbb5556dc35438528a27486be4e74cddf07303022888182c0e6ac65c34",
+      "byteLength": 496,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/candidate-ledger.jsonl",
+      "sha256": "6392fae29ed40b7fa5e71e53892267be48cfb903a0224c168f515d72aa440b8a",
+      "byteLength": 2185744,
+      "status": "new",
+      "classification": "regenerable_raw_evidence",
+      "intendedCommit": false,
+      "excludedFromCommit": true
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/DECISION-CARD.md",
+      "sha256": "ee7b13b4ba101b4756cf4bc904a63c18da8aa02bd08fb31c25f25851d7ab5901",
+      "byteLength": 2218,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/finding-code-delta-reconciliation.json",
+      "sha256": "98c63db760a8c392e66d460f88597a00f619fe61c24414c0a886c6a139f09cde",
+      "byteLength": 3241,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/frozen-membership-3000.json",
+      "sha256": "b1adecfde136c37398956e7a5cf89d4aba6c7296e96507b1eff37d18ef50d5e0",
+      "byteLength": 6479326,
+      "status": "new",
+      "classification": "regenerable_raw_evidence",
+      "intendedCommit": false,
+      "excludedFromCommit": true
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/npm-build-receipt.txt",
+      "sha256": "45f68798236a5aaf495b6f6b10ca48f559a1e8e2ade53ba9da2512281be9ea5d",
+      "byteLength": 29589,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/occurrence-ledger.jsonl",
+      "sha256": "45e4b8c142ccc4681bf4810b9ffaf714eb3050fee19f8818ec3135fa0f3ab1a9",
+      "byteLength": 49077447,
+      "status": "new",
+      "classification": "regenerable_raw_evidence",
+      "intendedCommit": false,
+      "excludedFromCommit": true
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/same-3000-regression-report.json",
+      "sha256": "990f4998dd2fb3db89c7429c42900614f1bb3406faa34254da5cc93fe70ca0c7",
+      "byteLength": 672,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1-final-corrections/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "cfe1045a1838b26fd74e57a4060702b2c810fa2ebc9036264618017574738d33",
+      "byteLength": 2427,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/freeze-receipt.json",
+      "sha256": "099ff0b7666faaadc62f01978def7cb2a7a57a07be1fe09ee9289f19286008ff",
+      "byteLength": 816,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/LOCKED-ACCEPTANCE-CONTRACT.json",
+      "sha256": "67703694e33bf30e2edead22dcff340026d99266832061ee4aa6a039710d3e7f",
+      "byteLength": 7610,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/preservation/four-string-wording-disposition.json",
+      "sha256": "e3cd3d82384067510f0ddbd4130724301ad2ea0db2da9953d6300dc67d8fc886",
+      "byteLength": 2535,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/preservation/root-cause-ownership-trace.json",
+      "sha256": "ed126d30e0435b93fd1c46fd503e835e4e3fec761f7a32a6e1adaadceab69537",
+      "byteLength": 2025,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/preservation/V1-HASH-LOCK.json",
+      "sha256": "21397470718f5068d813612115b2d536644ee2776cea5e8bbba2bf98d0328843",
+      "byteLength": 8006,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/preservation/V1-REVIEW-RECEIPT.json",
+      "sha256": "f3790627200f2c1816fa0d9e48680390ad0b04229955a123f6143a52026528b8",
+      "byteLength": 3849,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-existing-census-v1/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "80924ad14b5ceb8a5c9f1f8ac74041c512d1b7dcae9b9bb550d465574c2ab72c",
+      "byteLength": 1202,
+      "status": "new",
+      "classification": "compact_evidence",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v11/surfaces.jsonl",
+      "sha256": "8b2674a55a2b797504d957278f593b807cbe3c15f8a144f80219679ec9c1808f",
+      "byteLength": 87724457,
+      "status": "new",
+      "classification": "regenerable_raw_evidence",
+      "intendedCommit": false,
+      "excludedFromCommit": true
+    },
+    {
+      "path": "lib/criminal/solicitor-charge-provenance.ts",
+      "sha256": "187f8a40bf959810bf66b5a59c33c567978c6a776a872f7c1ce815c7cff766cd",
+      "byteLength": 4064,
+      "status": "modified",
+      "classification": "production_code",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "lib/criminal/solicitor-family-provenance.ts",
+      "sha256": "fe7c2ce98706f3ad085224049fb0ef618221aa856f099573756977421acff66a",
+      "byteLength": 18660,
+      "status": "modified",
+      "classification": "production_code",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "lib/criminal/solicitor-visible-quality.ts",
+      "sha256": "56cc14f41e2b6108f6faf2f998b288e1a95eb22ae6e5dd712ab3529323a07ac6",
+      "byteLength": 7693,
+      "status": "modified",
+      "classification": "production_code",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "lib/criminal/solicitor-visible-sanitization.ts",
+      "sha256": "2e4adb6e500b5af0568b01cc1bd0b6bb6b5a601f59a712f79047fef19d1037ca",
+      "byteLength": 20086,
+      "status": "modified",
+      "classification": "production_code",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "scripts/assurance/_stage3000-post-fix-finalize.mjs",
+      "sha256": "057a8ab07769d57ff7a28ef362f4fd9308fdeb5228d6dbc66074fd58847c3a88",
+      "byteLength": 12373,
+      "status": "new",
+      "classification": "helper_script",
+      "intendedCommit": false,
+      "excludedFromCommit": true
+    },
+    {
+      "path": "scripts/assurance/_stage3000-preserve-v1.mjs",
+      "sha256": "f23f7ef728f871f0d7321f2873b838b1aaa7cdcba7b5fb8216ae5c28bc8a15e8",
+      "byteLength": 4920,
+      "status": "new",
+      "classification": "helper_script",
+      "intendedCommit": false,
+      "excludedFromCommit": true
+    },
+    {
+      "path": "scripts/assurance/emit-maa-v2-stage3000-existing-census.ts",
+      "sha256": "5c267003f758d68e14f3ba336134c43f185345b1664bcffe6706de1445349e87",
+      "byteLength": 44019,
+      "status": "new",
+      "classification": "helper_script",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "scripts/integrity-programme/scale3000-solicitor-materialisation.ts",
+      "sha256": "04ec4ff2412583ac23b350a331a89eafe6a1940d675a2bb5b4ea076eed98dd93",
+      "byteLength": 74141,
+      "status": "modified",
+      "classification": "production_code",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    },
+    {
+      "path": "scripts/stage3000-enum-boundary-wording-contracts.test.ts",
+      "sha256": "3fba0d79c49dafb88b7768a26297ab6cfcb6c021e79744880409934eabba4f07",
+      "byteLength": 7049,
+      "status": "new",
+      "classification": "contract",
+      "intendedCommit": true,
+      "excludedFromCommit": false
+    }
+  ]
+}

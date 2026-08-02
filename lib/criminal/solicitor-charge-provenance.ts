@@ -21,7 +21,12 @@ export const SOLICITOR_FORBIDDEN_INTERNAL_LANGUAGE_RE =
   /\b(?:demo-audit|messy-pdf|v9[_-]?catalog|source\s+pack\s+(?:esa|v9|demo)|artifacts\/|lib\/eval\/|evidence-state-audit(?:-local)?|builderName|GOLD-11|phase1[01]_|fixtureId|canCopy|gateStatus|integrity_blocked)\b|[A-Za-z]:\\|(?:^|[\\/])(?:Users|home)[\\/]|\\(?:Users|home)\\|\b(?:cb-(?:fresh|found)-\d+|demo-audit-\d+[a-z0-9-]*|messy-pdf-v\d+[a-z0-9-]*|sc-[0-9a-f]{6,}|proof-pack-\d+|pilot-\d+)\b/i;
 
 export function containsSolicitorForbiddenInternalLanguage(text: string | null | undefined): boolean {
-  return SOLICITOR_FORBIDDEN_INTERNAL_LANGUAGE_RE.test(text ?? "");
+  const t = text ?? "";
+  if (!t) return false;
+  if (SOLICITOR_FORBIDDEN_INTERNAL_LANGUAGE_RE.test(t)) return true;
+  // Deferred import-free check: system / family-issue language is owned by family-provenance.
+  // Callers that need the full scan should use scanSolicitorVisibleInternalLanguageBoundary.
+  return false;
 }
 
 function isUsableProvenancePart(raw: string | null | undefined): string | null {

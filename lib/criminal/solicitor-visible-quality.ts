@@ -116,11 +116,53 @@ export function sentenceCasePreservingAcronyms(text: string): string {
   return preserveProtectedAcronyms(t.charAt(0).toLowerCase() + t.slice(1));
 }
 
+export type SolicitorSurfaceRole =
+  | "provenance_or_document_title"
+  | "solicitor_drafting_prose"
+  | "court_prose"
+  | "client_prose"
+  | "copy_prose"
+  | "export_prose"
+  | "api_prose"
+  | "other";
+
+/** Infer surface role for wording-quality rules (titles ≠ drafting prose). */
+export function inferSolicitorSurfaceRole(surfaceId: string | null | undefined): SolicitorSurfaceRole {
+  const id = (surfaceId ?? "").toLowerCase();
+  if (/provenance_title|document_title|evidence_title|form_title/.test(id)) {
+    return "provenance_or_document_title";
+  }
+  if (/client/.test(id)) return "client_prose";
+  if (/court/.test(id)) return "court_prose";
+  if (/export/.test(id)) return "export_prose";
+  if (/^api_|api_/.test(id)) return "api_prose";
+  if (/copy/.test(id)) return "copy_prose";
+  if (/summary|chase|war_room|control_room|key_facts|five_answers|defence|supervisor/.test(id)) {
+    return "solicitor_drafting_prose";
+  }
+  return "other";
+}
+
 /** Scan a single solicitor-visible copyable string for known quality defects. */
-export function scanSolicitorVisibleCopyQuality(text: string): SolicitorCopyQualityIssue[] {
+export function scanSolicitorVisibleCopyQuality(
+  text: string,
+  opts?: { surfaceId?: string | null; surfaceRole?: SolicitorSurfaceRole },
+): SolicitorCopyQualityIssue[] {
   const issues: SolicitorCopyQualityIssue[] = [];
   const t = text ?? "";
   if (!t.trim()) return issues;
+
+  const role = opts?.surfaceRole ?? inferSolicitorSurfaceRole(opts?.surfaceId);
+  // Provenance/document titles may be short form identifiers (MG5/MG6). Do not
+  // require sentence-style status/reason/action completeness, and do not treat
+  // bare form-title casing as a drafting defect.
+  if (role === "provenance_or_document_title") {
+    if (/\b[A-Za-z][\w /-]{1,40}\s\|\s[A-Za-z]/.test(t)) issues.push("pipe_delimited_fragment");
+    if (/[a-z]+_[a-z0-9_]{3,}/.test(t) && /enum|status|gateStatus|pipelineVersion/i.test(t)) {
+      issues.push("pipe_delimited_fragment");
+    }
+    return [...new Set(issues)];
+  }
 
   if (SUBJECT_VERB_RES.some((re) => re.test(t))) issues.push("subject_verb_template");
   if (/\bon the file\b[\s\S]{0,80}\bon the (?:current )?file\b/i.test(t)) {

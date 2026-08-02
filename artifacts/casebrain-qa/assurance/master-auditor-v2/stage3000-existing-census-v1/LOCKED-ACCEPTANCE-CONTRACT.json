@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "stage3000-existing-census-locked-acceptance-contract@1.0.0",
+  "contractId": "STAGE3000-EXISTING-CENSUS-V1",
+  "status": "LOCKED",
+  "operative": true,
+  "frozenAt": "2026-08-02T15:45:10.365Z",
+  "authorityBaselineCommit": "ca51ecba8fd70762488c43c69a4cdda3de9b8566",
+  "worktreeHeadAtFreeze": "ca51ecba8fd70762488c43c69a4cdda3de9b8566",
+  "programmePassSupported": false,
+  "stage3000CompletionAllowed": false,
+  "nature": "first_genuine_existing_scale3000_calibration_census",
+  "population": {
+    "identity": "existing_scale3000_messy_pdf_proof_v9_identities_materialised_run_v9",
+    "authoritativeIdentitySource": "artifacts/casebrain-qa/messy-pdf-proof-v9-scale3000/MESSY-PDF-PROOF-SUMMARY.json",
+    "authoritativeMaterialisationLane": "artifacts/casebrain-qa/integrity-programme/scale3000-solicitor-materialisation/run-v9",
+    "targetUniqueCases": 3000,
+    "stage300PriorCalibrationOnly": true,
+    "stage300CasesCountedInThisDenominator": false,
+    "stage300OrderedMembershipSha256V2PriorEvidenceOnly": "23ae1b9df0a09b80b9ab51e3f597aad9103360f5f11c26606e1633b2c82c3c5a",
+    "laterNewGenerated3000Corpus": "separate_future_denominator_not_this_run",
+    "forbiddenSilentCombinations": [
+      "Stage-300 packets counted inside this 3000",
+      "ESA-499 as this census",
+      "Malik-Price generation runs",
+      "gold packets",
+      "sealed holdouts",
+      "demo audits as substitute population",
+      "newly generated cases",
+      "historical duplicate runs merged into denominator"
+    ]
+  },
+  "membershipAndExclusion": {
+    "requireExactUniqueCaseIds": 3000,
+    "requireExactUniqueSourceFingerprints": 3000,
+    "requireExactUniqueOutputFingerprints": 3000,
+    "requireExactUniqueMembershipRecords": 3000,
+    "noReplacementCasesIfDeficit": true,
+    "stopHonestlyWithExactDeficitIfBelowTarget": true,
+    "rejectMalformedMissingDuplicatedMismatched": true,
+    "doNotManipulateMembershipToManufactureCoverage": true
+  },
+  "fingerprintDefinitions": {
+    "caseId": "messy-pdf-v9 scale identity caseId",
+    "sourceFingerprint": {
+      "algorithm": "sha256",
+      "formula": "caseId|sourceCaseId|family|trap|layout|sourceKind",
+      "note": "Membership identity of claimed source lineage for this census unit (not unique underlying PDF template count)."
+    },
+    "outputFingerprint": {
+      "algorithm": "sha256",
+      "formula": "caseId|ordered(surfaceId:textHash)",
+      "note": "Case-bound materialised solicitor-surface artefact fingerprint."
+    },
+    "contentOutputFingerprint": {
+      "algorithm": "sha256",
+      "formula": "ordered(textHash) without caseId",
+      "note": "Content-equivalence class. Expected collapse toward ~70 unique templates must be reported as a real gap — never silently claimed as 3000 distinct solicitor wordings."
+    },
+    "membershipRecordFingerprint": {
+      "algorithm": "sha256",
+      "formula": "orderIndex|caseId|sourceFingerprint|outputFingerprint"
+    }
+  },
+  "truthBlindingOrder": [
+    "Freeze population/membership/hashes",
+    "Load source and CaseBrain/solicitor output only",
+    "Capture all actual output occurrences",
+    "Execute output-only and source-to-output controls",
+    "Freeze candidates and candidate hashes; write candidate-freeze receipt",
+    "Only then open truth keys",
+    "Truth comparison and technical disposition",
+    "Preserve before/after hashes proving inputs unchanged"
+  ],
+  "controlRegistry": {
+    "registryPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/auditor-control-registry-v2.json",
+    "registryVersion": "2.2.0",
+    "registryControlCount": 361,
+    "implementationMapPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/control-implementation-and-authority-map.json",
+    "handlerCount": 347,
+    "implementationStatusCountsAtContractFreeze": {
+      "implemented": 24,
+      "specified_not_implemented": 101,
+      "partially_implemented": 118,
+      "browser_required": 47,
+      "engineering_required": 16,
+      "operational_evidence_required": 24,
+      "human_required": 8,
+      "external_assurance_required": 9
+    },
+    "keepImplementationAndExerciseStatusSeparate": true,
+    "statuses": [
+      "implemented",
+      "partially_implemented",
+      "specified_not_implemented",
+      "browser_required",
+      "human_required",
+      "external_assurance_required",
+      "engineering_required",
+      "operational_evidence_required"
+    ]
+  },
+  "everyWordAndEverySurface": {
+    "inventoryAllGenuineVisibleCopyableOccurrences": true,
+    "exits": [
+      "view",
+      "copy",
+      "export",
+      "api",
+      "pdf",
+      "composed_prose"
+    ],
+    "audiences": [
+      "defence_solicitor",
+      "client",
+      "court",
+      "cps",
+      "supervisor"
+    ],
+    "authenticatedBrowser": "not_exercised_unless_genuine_authenticated_captures_exist"
+  },
+  "dispositionMeanings": {
+    "candidate": "Pre-truth detector hit on actual output/source-to-output evidence",
+    "defect": "Post-truth technical disposition of confirmed application defect (never inferred from folder alone)",
+    "unresolved": "Insufficient evidence/ownership/source to dispose",
+    "containment": "Known contained boundary/product limitation tracked without silent PASS",
+    "not_exercised": "Named control not run because prerequisites/adapter/exit/implementation unavailable — never PASS"
+  },
+  "checkpointResume": {
+    "checkpoints": [
+      20,
+      50,
+      150,
+      300,
+      500,
+      1000,
+      3000
+    ],
+    "cumulativeReceiptsNotFullReruns": true,
+    "autoContinueUnlessIntegrityGateFails": true,
+    "integrityStopConditions": [
+      "membership_mutation",
+      "truth_opened_before_candidate_freeze",
+      "duplicate_or_identity_collision",
+      "hash_mismatch",
+      "unrecoverable_corruption",
+      "non_deterministic_resume",
+      "protected_asset_mutation"
+    ],
+    "byteStableResume": true,
+    "noDuplicateCasesOrFindingsOnResume": true
+  },
+  "rootCauseAndDuplicates": {
+    "groupBySharedCause": true,
+    "doNotPatchIndividualCasesDuringCensus": true,
+    "reviewBatchesCapUniqueStrings": 50,
+    "reviewerFieldsBlank": true
+  },
+  "professionalSolicitorOutputRequirements": {
+    "strongOutputNormallyTells": [
+      "What the position is",
+      "Why",
+      "What source supports it or what is unavailable",
+      "What can safely be said",
+      "What needs doing next"
+    ],
+    "doNotForceFormatWhereItWouldInventInformation": true
+  },
+  "stopConditionsAndProhibitedClaims": {
+    "programmePassSupported": false,
+    "stage3000CompletionAllowed": false,
+    "doNotRepairCaseBrainDuringRun": true,
+    "doNotCommitPushMergeDeploy": true,
+    "doNotMutateBrain1GuardianLedgerPhase11": true,
+    "doNotGenerateSecondNew3000Corpus": true,
+    "missingEvidenceNeverPass": true,
+    "unavailableExitsNeverPass": true,
+    "phraseProbesDoNotCountAsNamedControlExercise": true,
+    "harnessExpectationsAreNotCaseBrainOutput": true,
+    "projectionOnlyNotConfirmedAppDefect": true,
+    "zeroCandidatesYieldNullRatesNotZeroPercent": true,
+    "humanSolicitorLegalExternalReviewFieldsRemainBlank": true
+  },
+  "priorLineageOpenLimitationsPreserved": [
+    "essential-43 limitations",
+    "specialty-6 product gaps",
+    "qualified legal-review 2",
+    "unresolved ownership 20",
+    "authenticated browser lane"
+  ],
+  "selectedAdapterAndCorpusLineage": {
+    "adapterId": "scale3000_existing_messy_pdf_v9_run_v9_materialisation",
+    "corpusLineage": "messy-pdf-proof-v9-scale3000 identities + scale3000-solicitor-materialisation/run-v9 surfaces",
+    "stage300DenominatorSeparation": "strict"
+  }
+}
