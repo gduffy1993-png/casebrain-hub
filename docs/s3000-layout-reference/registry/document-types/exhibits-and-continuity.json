@@ -1,0 +1,178 @@
+{
+  "id": "exhibits-and-continuity",
+  "title": "Exhibits and continuity",
+  "aliases": [
+    "MG12",
+    "exhibit list",
+    "continuity statement",
+    "chain of custody",
+    "MG21"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "govuk-mog-forms-accessible",
+    "cps-exhibits",
+    "digital-imaging-v3",
+    "cps-fsr-code"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_list_and_chain_concepts; medium_for_MG12_geometry",
+  "structural_fields": [
+    {
+      "name": "exhibit_mark",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "Producer initials/number e.g. AB/1"
+    },
+    {
+      "name": "description",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "What the exhibit is"
+    },
+    {
+      "name": "produced_by",
+      "order": 3,
+      "required": true,
+      "data_type": "string",
+      "notes": "Witness/officer producing"
+    },
+    {
+      "name": "statement_cross_ref",
+      "order": 4,
+      "required": true,
+      "data_type": "string",
+      "notes": "MG11 paragraph producing exhibit"
+    },
+    {
+      "name": "seizure_time_place",
+      "order": 5,
+      "required": false,
+      "data_type": "string",
+      "notes": "If physical seizure"
+    },
+    {
+      "name": "storage_location",
+      "order": 6,
+      "required": true,
+      "data_type": "string",
+      "notes": "Current location if copy not provided"
+    },
+    {
+      "name": "continuity_transfers",
+      "order": 7,
+      "required": true,
+      "data_type": "array",
+      "notes": "From → To → Date/time → Reason"
+    },
+    {
+      "name": "copy_vs_original",
+      "order": 8,
+      "required": true,
+      "data_type": "string",
+      "notes": "original | authentic_copy | working_copy"
+    },
+    {
+      "name": "integrity_notes",
+      "order": 9,
+      "required": false,
+      "data_type": "string",
+      "notes": "Seals/hashes/playback format"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "exhibit_list_header",
+      "contains": [
+        "exhibit_mark",
+        "description",
+        "produced_by",
+        "statement_cross_ref"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "location_and_form",
+      "contains": [
+        "storage_location",
+        "copy_vs_original",
+        "seizure_time_place"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "continuity_chain",
+      "contains": [
+        "continuity_transfers",
+        "integrity_notes"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 1,
+      "max": 20,
+      "mode": 2
+    },
+    "continuation_behaviour": "MG12 list continues row-wise; continuity statements may be separate MG11s per handler.",
+    "whitespace_pattern": "Tabular list + short continuity narrative.",
+    "overflow_rules": "Each transfer is its own row/line; do not collapse multi-handler chains."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Exhibit | Description | Produced by | Location | Copy provided Y/N.",
+    "signatures": "Each continuity statement signed by handler.",
+    "identifiers": "Stable exhibit marks across statements, schedules, SFR, and media logs."
+  },
+  "common_document_relationships": [
+    {
+      "to": "mg-forms-and-witness-statements",
+      "relation": "Produced via MG11; listed on MG12"
+    },
+    {
+      "to": "medical-forensic-expert-reports",
+      "relation": "MG21 submissions and lab continuity"
+    },
+    {
+      "to": "cctv-bwv-media-logs",
+      "relation": "Media authenticity/continuity"
+    },
+    {
+      "to": "phone-digital-evidence-schedules",
+      "relation": "Device seizure to extraction chain"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Invent exhibit marks consistently across the pack.",
+    "Continuity times must be coherent with seizure and analysis dates."
+  ],
+  "applicable_charge_procedure_families": [
+    "all_families_with_physical_or_digital_exhibits"
+  ],
+  "visual_qa_requirements": [
+    "Exhibit marks unique and stable.",
+    "Every evidential exhibit appears on list and in producing statement.",
+    "Continuity chain has no unexplained gaps.",
+    "Copy/original status explicit for media.",
+    "Location field present when copy not provided to prosecutor."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not claim continuity without modelling transfers for multi-handler exhibits.",
+    "Do not reuse real property-store barcodes from forces."
+  ],
+  "subtypes": [],
+  "notes": ""
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://casebrain.local/schemas/s3000-layout-reference/sources.json",
+  "title": "S3000 layout reference sources catalogue",
+  "type": "object",
+  "required": [
+    "retrieval_date",
+    "sources"
+  ],
+  "properties": {
+    "retrieval_date": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "url",
+          "publisher",
+          "authority_class",
+          "retrieved_on"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "minLength": 12
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "authority_class": {
+            "type": "string"
+          },
+          "retrieved_on": {
+            "type": "string"
+          },
+          "covers_document_families": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

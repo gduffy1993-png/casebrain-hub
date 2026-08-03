@@ -1,0 +1,160 @@
+{
+  "registry_id": "s3000-public-criminal-document-structure-realism-reference",
+  "retrieval_date": "2026-08-02",
+  "document_types": [
+    {
+      "id": "mg-forms-and-witness-statements",
+      "title": "MG forms and witness statements",
+      "path": "document-types/mg-forms-and-witness-statements.json",
+      "layout_confidence": "high_for_purpose_fields; medium_for_pixel_layout",
+      "primary_sources": [
+        "govuk-mog-forms-accessible",
+        "govuk-mog-forms-pdf",
+        "directors-guidance-charging-6"
+      ]
+    },
+    {
+      "id": "disclosure-schedules",
+      "title": "Disclosure schedules / MG6 / MG6C",
+      "path": "document-types/disclosure-schedules.json",
+      "layout_confidence": "high_for_scheduling_rules; medium_for_exact_column_geometry",
+      "primary_sources": [
+        "govuk-mog-forms-accessible",
+        "cps-disclosure-ch7",
+        "cps-disclosure-ch8"
+      ]
+    },
+    {
+      "id": "charge-sheets-and-indictments",
+      "title": "Charge sheets and indictments",
+      "path": "document-types/charge-sheets-and-indictments.json",
+      "layout_confidence": "high_for_legal_structure; medium_for_MG4_pixel_layout",
+      "primary_sources": [
+        "govuk-mog-forms-accessible",
+        "crimpr-2025-part10",
+        "cps-drafting-indictment"
+      ]
+    },
+    {
+      "id": "custody-and-interview-records",
+      "title": "Custody / interview records",
+      "path": "document-types/custody-and-interview-records.json",
+      "layout_confidence": "high_for_required_record_content; low_for_force_print_layout",
+      "primary_sources": [
+        "pace-code-c-2023",
+        "pace-code-e-2018",
+        "pace-codes-index"
+      ]
+    },
+    {
+      "id": "cctv-bwv-media-logs",
+      "title": "CCTV / BWV / media logs",
+      "path": "document-types/cctv-bwv-media-logs.json",
+      "layout_confidence": "high_for_integrity_concepts; low_for_force_DEMS_screens",
+      "primary_sources": [
+        "digital-imaging-v3",
+        "npcc-bwv-2024",
+        "cps-exhibits"
+      ]
+    },
+    {
+      "id": "phone-digital-evidence-schedules",
+      "title": "Phone and digital-evidence schedules",
+      "path": "document-types/phone-digital-evidence-schedules.json",
+      "layout_confidence": "high_for_AG_block_listing_rules; low_for_tool_report_chrome",
+      "primary_sources": [
+        "ago-disclosure-2024",
+        "ago-disclosure-2024-pdf",
+        "cps-disclosure-ch7"
+      ]
+    },
+    {
+      "id": "medical-forensic-expert-reports",
+      "title": "Medical, forensic and expert reports",
+      "path": "document-types/medical-forensic-expert-reports.json",
+      "layout_confidence": "high_for_CrimPR_19_4_content; medium_for_MG22_templates",
+      "primary_sources": [
+        "govuk-mog-forms-accessible",
+        "crimpr-2025-part19",
+        "cps-expert-evidence"
+      ]
+    },
+    {
+      "id": "abe-special-measures",
+      "title": "ABE / special-measures records",
+      "path": "document-types/abe-special-measures.json",
+      "layout_confidence": "high_for_legal_content_requirements; medium_for_form_geometry",
+      "primary_sources": [
+        "abe-2023",
+        "cps-special-measures",
+        "govuk-mog-forms-accessible"
+      ]
+    },
+    {
+      "id": "court-notices-orders-appeals",
+      "title": "Court notices, orders and appeal documents",
+      "path": "document-types/court-notices-orders-appeals.json",
+      "layout_confidence": "high_for_required_notice_content; medium_for_exact_PDF_form_layout",
+      "primary_sources": [
+        "crimpr-forms",
+        "crimpr-2025-part39",
+        "hmcts-welsh-scheme"
+      ]
+    },
+    {
+      "id": "youth-justice",
+      "title": "Youth justice",
+      "path": "document-types/youth-justice.json",
+      "layout_confidence": "high_for_process_fields; medium_for_local_YOT_proformas",
+      "primary_sources": [
+        "govuk-mog-forms-accessible",
+        "yjb-referral-order",
+        "sentencing-council-referral"
+      ]
+    },
+    {
+      "id": "welsh-language-translation-interpreter",
+      "title": "Welsh-language, translation and interpreter material",
+      "path": "document-types/welsh-language-translation-interpreter.json",
+      "layout_confidence": "high_for_legal_rights_and_roles; medium_for_bilingual_typesetting",
+      "primary_sources": [
+        "welsh-language-act-s22",
+        "hmcts-welsh-scheme",
+        "govuk-interpreters"
+      ]
+    },
+    {
+      "id": "public-interest-immunity",
+      "title": "Public interest immunity (PII)",
+      "path": "document-types/public-interest-immunity.json",
+      "layout_confidence": "high_for_CrimPR_15_3_content; n_a_for_official_blank_form",
+      "primary_sources": [
+        "crimpr-2025-part15",
+        "cps-disclosure-ch8",
+        "ago-disclosure-2024"
+      ]
+    },
+    {
+      "id": "exhibits-and-continuity",
+      "title": "Exhibits and continuity",
+      "path": "document-types/exhibits-and-continuity.json",
+      "layout_confidence": "high_for_list_and_chain_concepts; medium_for_MG12_geometry",
+      "primary_sources": [
+        "govuk-mog-forms-accessible",
+        "cps-exhibits",
+        "digital-imaging-v3"
+      ]
+    },
+    {
+      "id": "emails-attachments-native-digital",
+      "title": "Emails, attachments and native digital evidence",
+      "path": "document-types/emails-attachments-native-digital.json",
+      "layout_confidence": "high_for_disclosure_strategy_structure; low_for_client_print_chrome",
+      "primary_sources": [
+        "ago-disclosure-2024",
+        "ago-disclosure-2024-pdf",
+        "digital-imaging-v3"
+      ]
+    }
+  ]
+}

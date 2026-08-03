@@ -1,0 +1,180 @@
+{
+  "id": "welsh-language-translation-interpreter",
+  "title": "Welsh-language, translation and interpreter material",
+  "aliases": [
+    "Welsh Language Act",
+    "HMCTS Welsh Language Scheme",
+    "interpreter log",
+    "bilingual summons"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "welsh-language-act-s22",
+    "hmcts-welsh-scheme",
+    "govuk-interpreters",
+    "crimpr-forms"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_legal_rights_and_roles; medium_for_bilingual_typesetting",
+  "structural_fields": [
+    {
+      "name": "language_choice",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "Welsh | English | other_language"
+    },
+    {
+      "name": "document_language_mode",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "welsh | english | bilingual"
+    },
+    {
+      "name": "interpreter_name_cipher",
+      "order": 3,
+      "required": false,
+      "data_type": "string",
+      "notes": "Court/police interpreter identity fictionalised"
+    },
+    {
+      "name": "interpreter_role",
+      "order": 4,
+      "required": false,
+      "data_type": "string",
+      "notes": "police_interview | court_simultaneous | translation_of_exhibits"
+    },
+    {
+      "name": "notice_of_welsh_use",
+      "order": 5,
+      "required": false,
+      "data_type": "string",
+      "notes": "Prior notice for non-magistrates’ courts as required"
+    },
+    {
+      "name": "translation_certificate",
+      "order": 6,
+      "required": false,
+      "data_type": "string",
+      "notes": "Certificate that translation is accurate"
+    },
+    {
+      "name": "source_and_target_language",
+      "order": 7,
+      "required": true,
+      "data_type": "string",
+      "notes": "e.g. Welsh→English"
+    },
+    {
+      "name": "booking_responsibility",
+      "order": 8,
+      "required": false,
+      "data_type": "string",
+      "notes": "HMCTS Welsh Language Unit / police / court"
+    },
+    {
+      "name": "separate_interpreter_for_court",
+      "order": 9,
+      "required": false,
+      "data_type": "string",
+      "notes": "If interview interpreter becomes witness"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "language_status",
+      "contains": [
+        "language_choice",
+        "document_language_mode",
+        "notice_of_welsh_use"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "interpreter_deployment",
+      "contains": [
+        "interpreter_name_cipher",
+        "interpreter_role",
+        "booking_responsibility",
+        "separate_interpreter_for_court"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "translation_artefact",
+      "contains": [
+        "source_and_target_language",
+        "translation_certificate"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 1,
+      "max": 12,
+      "mode": 2
+    },
+    "continuation_behaviour": "Bilingual documents may present parallel text or sequential Welsh then English; interpreter logs chronological.",
+    "whitespace_pattern": "Parallel columns optional; certificates short; logs tabular.",
+    "overflow_rules": "Keep translation certificate with identified source document version/hash."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Time | Speaker language | Interpreter | Notes.",
+    "signatures": "Translator/interpreter certificate signature; court booking confirmation.",
+    "identifiers": "Language job numbers; link to interview recording IDs."
+  },
+  "common_document_relationships": [
+    {
+      "to": "custody-and-interview-records",
+      "relation": "Interview interpreters recorded on custody/interview papers"
+    },
+    {
+      "to": "court-notices-orders-appeals",
+      "relation": "Bilingual summons / Welsh plea pathways"
+    },
+    {
+      "to": "mg-forms-and-witness-statements",
+      "relation": "Welsh statements and translations"
+    },
+    {
+      "to": "emails-attachments-native-digital",
+      "relation": "Translated native documents as attachments"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Use invented interpreter names; do not scrape real interpreter registers into packs.",
+    "Welsh body text may be short authentic Welsh phrases or clearly marked placeholder Welsh for layout tests.",
+    "Do not present machine-translation artefacts as certified translations without labelling test status."
+  ],
+  "applicable_charge_procedure_families": [
+    "any_proceedings_in_wales",
+    "non_english_speaking_defendant",
+    "foreign_language_exhibits"
+  ],
+  "visual_qa_requirements": [
+    "Language mode labelled on each bilingual artefact.",
+    "Interpreter role and booking responsibility present when interpreter used.",
+    "Certificate ties to source document identifier.",
+    "If interview interpreter is a prosecution witness, court interpreter shown as separate person.",
+    "Magistrates’ bilingual default vs Crown Court notice distinction respected when modelled."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not deny Welsh-language right in Wales proceedings in narrative realism.",
+    "Do not reuse real simultaneous-interpretation transcripts from courts."
+  ],
+  "subtypes": [],
+  "notes": ""
+}

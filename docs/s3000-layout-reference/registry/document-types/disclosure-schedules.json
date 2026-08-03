@@ -1,0 +1,239 @@
+{
+  "id": "disclosure-schedules",
+  "title": "Disclosure schedules / MG6 / MG6C",
+  "aliases": [
+    "MG6",
+    "MG6C",
+    "MG6D",
+    "MG6E",
+    "MG06C",
+    "unused material schedule",
+    "sensitive schedule",
+    "disclosure officer report"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "govuk-mog-forms-accessible",
+    "cps-disclosure-ch7",
+    "cps-disclosure-ch8",
+    "ago-disclosure-2024",
+    "ago-disclosure-2024-pdf",
+    "directors-guidance-charging-6"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_scheduling_rules; medium_for_exact_column_geometry",
+  "structural_fields": [
+    {
+      "name": "form_reference",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "MG6 / MG6C / MG6D / MG6E"
+    },
+    {
+      "name": "pti_urn",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "Case URN"
+    },
+    {
+      "name": "disclosure_officer_name",
+      "order": 3,
+      "required": true,
+      "data_type": "string",
+      "notes": "Completing officer"
+    },
+    {
+      "name": "schedule_version_or_date",
+      "order": 4,
+      "required": true,
+      "data_type": "string",
+      "notes": "Submission date; later additional schedules continue numbering"
+    },
+    {
+      "name": "item_number",
+      "order": 5,
+      "required": true,
+      "data_type": "integer",
+      "notes": "Consecutive across continuation/additional schedules"
+    },
+    {
+      "name": "description_of_item",
+      "order": 6,
+      "required": true,
+      "data_type": "string",
+      "notes": "Meaningful description; not bare form numbers; avoid unexplained acronyms"
+    },
+    {
+      "name": "location_of_item",
+      "order": 7,
+      "required": true,
+      "data_type": "string",
+      "notes": "Where material is held"
+    },
+    {
+      "name": "sensitivity_reason",
+      "order": 8,
+      "required": false,
+      "data_type": "string",
+      "notes": "MG6D only – reason for sensitivity belief"
+    },
+    {
+      "name": "prosecutor_decision",
+      "order": 9,
+      "required": false,
+      "data_type": "string",
+      "notes": "Disclose / inspect / not disclose; or agree sensitivity / PII needed"
+    },
+    {
+      "name": "undermines_or_assists_flag",
+      "order": 10,
+      "required": false,
+      "data_type": "string",
+      "notes": "MG6E revelation against disclosure test"
+    },
+    {
+      "name": "certification",
+      "order": 11,
+      "required": true,
+      "data_type": "string",
+      "notes": "Disclosure officer certification on MG6E"
+    },
+    {
+      "name": "rebuttable_presumption_category",
+      "order": 12,
+      "required": false,
+      "data_type": "string",
+      "notes": "AG Guidelines / CPIA Code categories where applicable"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "schedule_header",
+      "contains": [
+        "form_reference",
+        "pti_urn",
+        "disclosure_officer_name",
+        "schedule_version_or_date"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "item_table",
+      "contains": [
+        "item_number",
+        "description_of_item",
+        "location_of_item",
+        "sensitivity_reason",
+        "prosecutor_decision"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "officer_report_block",
+      "contains": [
+        "undermines_or_assists_flag",
+        "certification"
+      ],
+      "applies_to": [
+        "MG6E"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 1,
+      "max": 40,
+      "mode": 3
+    },
+    "continuation_behaviour": "Continuation sheets or later additional schedules; item numbers must remain consecutive to earlier schedules; additional MG6E accompanies later schedules.",
+    "whitespace_pattern": "Dense tabular rows; description column widest; decisions column narrow.",
+    "overflow_rules": "Long descriptions wrap within cell or spill to next row with same item number only if schedule convention allows; prefer complete row then next item."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Core artefact is a numbered table: Item | Description | Location | (Sensitivity reason) | Prosecutor decision.",
+    "signatures": "Disclosure officer signature/certification; prosecutor endorsements on decision columns.",
+    "identifiers": "Item numbers unique and consecutive; cross-refs to exhibit marks / digital media IDs.",
+    "chequered_banding": "Sensitive schedule (MG6D) is not disclosed to defence; chequered/non-disclosable marking common."
+  },
+  "common_document_relationships": [
+    {
+      "to": "phone-digital-evidence-schedules",
+      "relation": "Digital blocks/metadata often scheduled on MG6C with DMD strategy"
+    },
+    {
+      "to": "cctv-bwv-media-logs",
+      "relation": "Unused BWV/CCTV listed; rebuttable presumption categories apply"
+    },
+    {
+      "to": "public-interest-immunity",
+      "relation": "MG6D sensitivity may lead to CrimPR 15.3 PII application"
+    },
+    {
+      "to": "emails-attachments-native-digital",
+      "relation": "Email corpuses block-listed with search-term methodology"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Invent unused-item descriptions that are plausible but non-identifying.",
+    "Include some rebuttable-presumption class items (crime report, interview records, CCTV) with adequate descriptions.",
+    "For MG6D, invent sensitivity reasons at category level only (e.g. 'informant identity') without real operational detail."
+  ],
+  "applicable_charge_procedure_families": [
+    "either_way_ngap",
+    "indictable_only",
+    "crown_court_trial",
+    "summary_ng_plea",
+    "digital_heavy_fraud_or_comms",
+    "sexual_offences",
+    "organised_crime"
+  ],
+  "visual_qa_requirements": [
+    "Consecutive item numbering with no gaps after continuations.",
+    "Description column contains enough detail for a prosecutor decision (not 'CCTV' alone).",
+    "MG6C vs MG6D clearly labelled; sensitive reasons only on MG6D.",
+    "Prosecutor decision column present even if blank pending endorsement in fictional packs.",
+    "MG6E certification block present when pack claims disclosure officer report included."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not copy real unused schedules from cases.",
+    "Do not place sensitive material descriptions on a defence-facing MG6C.",
+    "Do not assume GAP guilty-plea files always contain full MG6C (CPIA scheduling triggers differ)."
+  ],
+  "subtypes": [
+    {
+      "id": "MG6",
+      "title": "Case File Information (background, including non-disclosable notes)"
+    },
+    {
+      "id": "MG6C",
+      "title": "Schedule of Relevant Non-Sensitive Unused Material"
+    },
+    {
+      "id": "MG6D",
+      "title": "Schedule of Relevant Sensitive Unused Material"
+    },
+    {
+      "id": "MG6E",
+      "title": "Disclosure Officer’s Report"
+    },
+    {
+      "id": "DMD",
+      "title": "Disclosure Management Document (digital strategy companion)"
+    }
+  ],
+  "notes": ""
+}

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "s3000-layout-integration-authorisation@1.0.0",
+  "authorisedBy": "programme-integration-instruction",
+  "authorisedAt": "2026-08-03T14:50:00.000Z",
+  "commitAllowed": true,
+  "executableLayoutModulePresent": false,
+  "role": "public_source_structural_reference_only",
+  "integrationNote": "Docs/registry reference for diverse-second execution; generators continue to use V2.1.2 document-kind layouts until a typed bridge is authorised."
+}

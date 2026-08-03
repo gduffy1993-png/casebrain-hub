@@ -1,0 +1,17 @@
+{
+  "contract_id": "relationship-integrity",
+  "version": "1.0.0",
+  "description": "Cross-document relationships must point at known document type ids.",
+  "asserts": [
+    {
+      "id": "RI1",
+      "rule": "common_document_relationships[*].to exists in registry index",
+      "severity": "error"
+    },
+    {
+      "id": "RI2",
+      "rule": "each document type has at least one relationship",
+      "severity": "warning"
+    }
+  ]
+}

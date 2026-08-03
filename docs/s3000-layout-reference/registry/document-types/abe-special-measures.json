@@ -1,0 +1,201 @@
+{
+  "id": "abe-special-measures",
+  "title": "ABE / special-measures records",
+  "aliases": [
+    "ABE",
+    "Achieving Best Evidence",
+    "special measures",
+    "YJCEA",
+    "MG02",
+    "s.28",
+    "video recorded interview"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "abe-2023",
+    "cps-special-measures",
+    "govuk-mog-forms-accessible",
+    "crimpr-forms"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_legal_content_requirements; medium_for_form_geometry",
+  "structural_fields": [
+    {
+      "name": "witness_eligibility_basis",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "age_under_18 | incapacity | intimidation | sexual_complainant_etc"
+    },
+    {
+      "name": "abe_interview_recording_id",
+      "order": 2,
+      "required": false,
+      "data_type": "string",
+      "notes": "Video-recorded interview master ID"
+    },
+    {
+      "name": "interview_date_location",
+      "order": 3,
+      "required": false,
+      "data_type": "string",
+      "notes": "ABE interview logistics"
+    },
+    {
+      "name": "intermediary_details",
+      "order": 4,
+      "required": false,
+      "data_type": "string",
+      "notes": "If s.29 sought/used"
+    },
+    {
+      "name": "measures_sought",
+      "order": 5,
+      "required": true,
+      "data_type": "array",
+      "notes": "screens | live_link | video_EIC | s28 | private | wigs | aids"
+    },
+    {
+      "name": "quality_of_evidence_grounds",
+      "order": 6,
+      "required": true,
+      "data_type": "string",
+      "notes": "Completeness/coherence/accuracy grounds where not automatic"
+    },
+    {
+      "name": "mg02_assessment_ref",
+      "order": 7,
+      "required": false,
+      "data_type": "string",
+      "notes": "Police special measures assessment"
+    },
+    {
+      "name": "application_form_fields",
+      "order": 8,
+      "required": true,
+      "data_type": "string",
+      "notes": "CrimPR Part 18 / Practice Direction special measures application content"
+    },
+    {
+      "name": "court_direction_outcome",
+      "order": 9,
+      "required": false,
+      "data_type": "string",
+      "notes": "Granted/refused/varied"
+    },
+    {
+      "name": "arrangements_at_court",
+      "order": 10,
+      "required": false,
+      "data_type": "string",
+      "notes": "Practical arrangements description"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "eligibility",
+      "contains": [
+        "witness_eligibility_basis",
+        "mg02_assessment_ref"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "abe_interview_record",
+      "contains": [
+        "abe_interview_recording_id",
+        "interview_date_location",
+        "intermediary_details"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "application",
+      "contains": [
+        "measures_sought",
+        "quality_of_evidence_grounds",
+        "application_form_fields",
+        "arrangements_at_court"
+      ]
+    },
+    {
+      "level": 4,
+      "name": "order",
+      "contains": [
+        "court_direction_outcome"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 2,
+      "max": 20,
+      "mode": 5
+    },
+    "continuation_behaviour": "Application form sections (live link / video / intermediary parts) appear as distinct parts; ABE transcript/index separate.",
+    "whitespace_pattern": "Form-like sections; ticklists for measures; narrative grounds medium length.",
+    "overflow_rules": "Keep each special measure’s particulars in its dedicated part; attach ABE disc/index as annex."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Measures checklist; hearing date timetable.",
+    "signatures": "Applicant legal representative; court order sealed/endorsed.",
+    "identifiers": "ABE recording exhibit mark; witness cipher for anonymity orders where modelled.",
+    "branding": "Written applications should not be CPS-badged; Practice Direction form."
+  },
+  "common_document_relationships": [
+    {
+      "to": "mg-forms-and-witness-statements",
+      "relation": "MG02 + MG11/MG15 for visually recorded witness interviews"
+    },
+    {
+      "to": "cctv-bwv-media-logs",
+      "relation": "ABE media handled under multimedia integrity rules"
+    },
+    {
+      "to": "youth-justice",
+      "relation": "Child witnesses automatic eligibility pathways"
+    },
+    {
+      "to": "court-notices-orders-appeals",
+      "relation": "Court directions/orders on measures"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Use witness ciphers in packs that model anonymity; invent ABE suite locations.",
+    "Do not include real child identifying details.",
+    "Grounds language should track YJCEA concepts without copying sealed application wording from real cases."
+  ],
+  "applicable_charge_procedure_families": [
+    "sexual_offences",
+    "child_abuse",
+    "modern_slavery",
+    "domestic_abuse",
+    "any_child_witness",
+    "intimidated_witness_gang"
+  ],
+  "visual_qa_requirements": [
+    "Eligibility basis explicit.",
+    "Measures sought listed as discrete items.",
+    "No CPS logo on special-measures application form pages.",
+    "ABE recording ID cross-refs exhibit/media log when video EIC sought.",
+    "Order page distinguishable from application page."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not reproduce real ABE interview videos or transcripts.",
+    "Do not assume ABE guidance is a legally enforceable code."
+  ],
+  "subtypes": [],
+  "notes": ""
+}

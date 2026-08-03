@@ -1,0 +1,27 @@
+{
+  "contract_id": "source-authority",
+  "version": "1.0.0",
+  "description": "Document types must cite catalogue sources with retrieval dates; prefer official/public authorities.",
+  "asserts": [
+    {
+      "id": "SA1",
+      "rule": "every authoritative_sources[] id exists in sources.json",
+      "severity": "error"
+    },
+    {
+      "id": "SA2",
+      "rule": "retrieval_date on document type equals sources catalogue retrieved_on window",
+      "severity": "warning"
+    },
+    {
+      "id": "SA3",
+      "rule": "at least one source per document type has authority_class in {primary_secondary_legislation, statutory_code, official_guidance, official_forms_index, official_scheme, prosecution_guidance, national_policing_guidance}",
+      "severity": "error"
+    },
+    {
+      "id": "SA4",
+      "rule": "urls must be http(s) public endpoints (gov.uk, legislation.gov.uk, cps.gov.uk, npcc.police.uk, sentencingcouncil.org.uk preferred)",
+      "severity": "warning"
+    }
+  ]
+}

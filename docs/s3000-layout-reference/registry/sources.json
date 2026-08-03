@@ -1,0 +1,381 @@
+{
+  "retrieval_date": "2026-08-02",
+  "authority_classes": [
+    "primary_secondary_legislation",
+    "statutory_code",
+    "official_guidance",
+    "official_forms_index",
+    "official_scheme",
+    "prosecution_guidance",
+    "national_policing_guidance",
+    "sentencing_guidance"
+  ],
+  "sources": [
+    {
+      "id": "govuk-mog-forms-accessible",
+      "title": "Criminal casefiles – forms, standards, and file structure (accessible)",
+      "url": "https://www.gov.uk/government/publications/manual-of-guidance-and-mg-forms/criminal-casefiles-forms-standards-and-file-structure-accessible",
+      "publisher": "Home Office / UKVI (GOV.UK)",
+      "authority_class": "official_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "mg-forms-and-witness-statements",
+        "disclosure-schedules",
+        "charge-sheets-and-indictments",
+        "custody-and-interview-records",
+        "medical-forensic-expert-reports",
+        "exhibits-and-continuity",
+        "youth-justice",
+        "abe-special-measures"
+      ],
+      "notes": "Public MG-form purpose/structure summary; version 2.0 noted on page (published for HO staff 9 June 2026)."
+    },
+    {
+      "id": "govuk-mog-forms-pdf",
+      "title": "Criminal casefiles – forms, standards, and file structure (PDF)",
+      "url": "https://assets.publishing.service.gov.uk/media/6a31102ad95ffddb05d4b0f1/Criminal_casefiles_-_forms__standards__and_file_structure__1_.pdf",
+      "publisher": "Home Office (GOV.UK assets)",
+      "authority_class": "official_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "mg-forms-and-witness-statements",
+        "disclosure-schedules",
+        "charge-sheets-and-indictments"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "cps-disclosure-ch7",
+      "title": "Disclosure Manual: Chapter 7 – The Non-Sensitive Material Schedule",
+      "url": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual-chapter-7-non-sensitive-material-schedule",
+      "publisher": "Crown Prosecution Service",
+      "authority_class": "prosecution_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "disclosure-schedules",
+        "phone-digital-evidence-schedules",
+        "cctv-bwv-media-logs"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "cps-disclosure-ch8",
+      "title": "Disclosure Manual: Chapter 8 – The Sensitive Material Schedule",
+      "url": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual-chapter-8-sensitive-material-schedule",
+      "publisher": "Crown Prosecution Service",
+      "authority_class": "prosecution_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "disclosure-schedules",
+        "public-interest-immunity"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "ago-disclosure-2024",
+      "title": "Attorney General’s Guidelines on Disclosure 2024",
+      "url": "https://www.gov.uk/government/publications/attorney-generals-guidelines-on-disclosure",
+      "publisher": "Attorney General’s Office",
+      "authority_class": "official_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "disclosure-schedules",
+        "phone-digital-evidence-schedules",
+        "emails-attachments-native-digital",
+        "cctv-bwv-media-logs"
+      ],
+      "notes": "Effective from 29 May 2024; digital-material annex integrated."
+    },
+    {
+      "id": "ago-disclosure-2024-pdf",
+      "title": "Attorney General’s Guidelines on Disclosure 2024 (PDF)",
+      "url": "https://assets.publishing.service.gov.uk/media/65e1ab9d2f2b3b00117cd803/Attorney_General_s_Guidelines_on_Disclosure_-_2024.pdf",
+      "publisher": "Attorney General’s Office",
+      "authority_class": "official_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "disclosure-schedules",
+        "phone-digital-evidence-schedules"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "crimpr-2025-part10",
+      "title": "Criminal Procedure Rules 2025 – Part 10 The Indictment",
+      "url": "https://www.legislation.gov.uk/uksi/2025/909/part/10/made",
+      "publisher": "legislation.gov.uk",
+      "authority_class": "primary_secondary_legislation",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "charge-sheets-and-indictments"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "cps-drafting-indictment",
+      "title": "Drafting the Indictment",
+      "url": "https://www.cps.gov.uk/legal-guidance/drafting-indictment",
+      "publisher": "Crown Prosecution Service",
+      "authority_class": "prosecution_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "charge-sheets-and-indictments"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "pace-code-c-2023",
+      "title": "PACE Code C 2023",
+      "url": "https://www.gov.uk/government/publications/pace-code-c-2023",
+      "publisher": "Home Office",
+      "authority_class": "statutory_code",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "custody-and-interview-records"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "pace-code-e-2018",
+      "title": "PACE Code E 2018 (accessible)",
+      "url": "https://www.gov.uk/government/publications/pace-codes-e-and-f-2018/pace-code-e-2018-accessible",
+      "publisher": "Home Office",
+      "authority_class": "statutory_code",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "custody-and-interview-records"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "pace-codes-index",
+      "title": "PACE codes of practice (A–H index)",
+      "url": "https://www.gov.uk/guidance/police-and-criminal-evidence-act-1984-pace-codes-of-practice",
+      "publisher": "Home Office",
+      "authority_class": "official_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "custody-and-interview-records"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "digital-imaging-v3",
+      "title": "Digital Imaging and Multimedia Procedure v3.0",
+      "url": "https://www.gov.uk/government/publications/digital-investigations-digital-imaging-and-multimedia-procedure/digital-imaging-and-multimedia-procedure-v30",
+      "publisher": "Home Office / FCN (GOV.UK)",
+      "authority_class": "official_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "cctv-bwv-media-logs",
+        "exhibits-and-continuity",
+        "emails-attachments-native-digital"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "npcc-bwv-2024",
+      "title": "NPCC Body Worn Video Guidance 2024 (v3)",
+      "url": "https://www.npcc.police.uk/SysSiteAssets/media/downloads/publications/publications-log/local-policing-coordination-committee/2024/npcc-bwv-guidance-2024.pdf",
+      "publisher": "National Police Chiefs’ Council",
+      "authority_class": "national_policing_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "cctv-bwv-media-logs",
+        "disclosure-schedules"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "cps-exhibits",
+      "title": "Exhibits (CPS legal guidance)",
+      "url": "https://www.cps.gov.uk/legal-guidance/exhibits",
+      "publisher": "Crown Prosecution Service",
+      "authority_class": "prosecution_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "exhibits-and-continuity",
+        "cctv-bwv-media-logs"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "crimpr-2025-part19",
+      "title": "Criminal Procedure Rules 2025 – rule 19.4 Content of expert’s report",
+      "url": "https://www.legislation.gov.uk/uksi/2025/909/rule/19.4/made",
+      "publisher": "legislation.gov.uk",
+      "authority_class": "primary_secondary_legislation",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "medical-forensic-expert-reports"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "cps-expert-evidence",
+      "title": "Expert Evidence (CPS)",
+      "url": "https://www.cps.gov.uk/prosecution-guidance/expert-evidence",
+      "publisher": "Crown Prosecution Service",
+      "authority_class": "prosecution_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "medical-forensic-expert-reports"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "cps-fsr-code",
+      "title": "Forensic Science Regulator Act 2021 and FSR Code of Practice 2023 (CPS)",
+      "url": "https://www.cps.gov.uk/prosecution-guidance/forensic-science-regulator-act-2021-and-forensic-science-regulators-code",
+      "publisher": "Crown Prosecution Service",
+      "authority_class": "prosecution_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "medical-forensic-expert-reports",
+        "exhibits-and-continuity"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "abe-2023",
+      "title": "Achieving best evidence in criminal proceedings",
+      "url": "https://www.gov.uk/government/publications/achieving-best-evidence-in-criminal-proceedings",
+      "publisher": "Ministry of Justice",
+      "authority_class": "official_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "abe-special-measures"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "cps-special-measures",
+      "title": "Special Measures (CPS)",
+      "url": "https://www.cps.gov.uk/prosecution-guidance/special-measures",
+      "publisher": "Crown Prosecution Service",
+      "authority_class": "prosecution_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "abe-special-measures",
+        "mg-forms-and-witness-statements"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "crimpr-forms",
+      "title": "Criminal Procedure Rules: Forms",
+      "url": "https://www.gov.uk/guidance/criminal-procedure-rules-forms",
+      "publisher": "Ministry of Justice / HMCTS",
+      "authority_class": "official_forms_index",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "court-notices-orders-appeals",
+        "abe-special-measures",
+        "public-interest-immunity",
+        "charge-sheets-and-indictments"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "crimpr-2025-part39",
+      "title": "Criminal Procedure Rules 2025 – rule 39.3 Form of appeal notice",
+      "url": "https://www.legislation.gov.uk/uksi/2025/909/rule/39.3/made",
+      "publisher": "legislation.gov.uk",
+      "authority_class": "primary_secondary_legislation",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "court-notices-orders-appeals"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "crimpr-2025-part15",
+      "title": "Criminal Procedure Rules 2025 – Part 15 Disclosure",
+      "url": "https://www.legislation.gov.uk/uksi/2025/909/part/15/made",
+      "publisher": "legislation.gov.uk",
+      "authority_class": "primary_secondary_legislation",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "public-interest-immunity",
+        "disclosure-schedules"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "welsh-language-act-s22",
+      "title": "Welsh Language Act 1993 s.22 Use of Welsh in legal proceedings",
+      "url": "https://www.legislation.gov.uk/ukpga/1993/38/section/22",
+      "publisher": "legislation.gov.uk",
+      "authority_class": "primary_secondary_legislation",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "welsh-language-translation-interpreter"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "hmcts-welsh-scheme",
+      "title": "HMCTS Welsh Language Scheme 2023–26",
+      "url": "https://assets.publishing.service.gov.uk/media/63ff195bd3bf7f557532ce6c/HMCTS_Welsh_Language_Scheme_2023_-26.pdf",
+      "publisher": "HM Courts & Tribunals Service",
+      "authority_class": "official_scheme",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "welsh-language-translation-interpreter",
+        "court-notices-orders-appeals"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "govuk-interpreters",
+      "title": "Criminal investigations: use of interpreters (accessible)",
+      "url": "https://www.gov.uk/government/publications/criminal-investigations-use-of-interpreters/criminal-investigations-use-of-interpreters-accessible",
+      "publisher": "Home Office / UKVI (GOV.UK)",
+      "authority_class": "official_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "welsh-language-translation-interpreter",
+        "custody-and-interview-records"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "yjb-referral-order",
+      "title": "Referral Order Guidance (MoJ/YJB PDF)",
+      "url": "https://assets.publishing.service.gov.uk/media/5bbb2aabed915d23b049e137/referral-order-guidance-9-october-2018.pdf",
+      "publisher": "Ministry of Justice / Youth Justice Board",
+      "authority_class": "official_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "youth-justice"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "sentencing-council-referral",
+      "title": "Sentencing Council – Referral order pronouncement builder",
+      "url": "https://www.sentencingcouncil.org.uk/pronouncement-builder/referral-order/",
+      "publisher": "Sentencing Council",
+      "authority_class": "sentencing_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "youth-justice"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "directors-guidance-charging-6",
+      "title": "Charging (The Director’s Guidance) – sixth edition (National File Standard)",
+      "url": "https://www.cps.gov.uk/legal-guidance/charging-directors-guidance-sixth-edition-december-2020-incorporating-national-file",
+      "publisher": "Crown Prosecution Service / DPP",
+      "authority_class": "prosecution_guidance",
+      "retrieved_on": "2026-08-02",
+      "covers_document_families": [
+        "mg-forms-and-witness-statements",
+        "charge-sheets-and-indictments",
+        "disclosure-schedules"
+      ],
+      "notes": "National File Standard annexes define which MG forms belong in GAP/NGAP/Crown Court file builds."
+    }
+  ]
+}

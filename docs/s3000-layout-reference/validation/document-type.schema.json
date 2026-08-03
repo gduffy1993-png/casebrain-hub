@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://casebrain.local/schemas/s3000-layout-reference/document-type.json",
+  "title": "S3000 layout reference document type",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "authoritative_sources",
+    "retrieval_date",
+    "structural_fields",
+    "page_hierarchy",
+    "realistic_density_and_continuation",
+    "tables_signatures_identifiers",
+    "common_document_relationships",
+    "safe_fictionalisation_rules",
+    "applicable_charge_procedure_families",
+    "visual_qa_requirements",
+    "prohibited_copying_or_unsupported_assumptions",
+    "layout_confidence"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "jurisdiction": {
+      "type": "string"
+    },
+    "authoritative_sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "retrieval_date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "layout_confidence": {
+      "type": "string"
+    },
+    "structural_fields": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "order",
+          "required",
+          "notes"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "data_type": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "page_hierarchy": {
+      "type": "array",
+      "minItems": 1
+    },
+    "realistic_density_and_continuation": {
+      "type": "object",
+      "required": [
+        "typical_pages",
+        "continuation_behaviour"
+      ]
+    },
+    "tables_signatures_identifiers": {
+      "type": "object"
+    },
+    "common_document_relationships": {
+      "type": "array"
+    },
+    "safe_fictionalisation_rules": {
+      "type": "array",
+      "minItems": 1
+    },
+    "applicable_charge_procedure_families": {
+      "type": "array",
+      "minItems": 1
+    },
+    "visual_qa_requirements": {
+      "type": "array",
+      "minItems": 1
+    },
+    "prohibited_copying_or_unsupported_assumptions": {
+      "type": "array",
+      "minItems": 1
+    },
+    "subtypes": {
+      "type": "array"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

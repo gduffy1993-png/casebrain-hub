@@ -1,0 +1,27 @@
+{
+  "contract_id": "required-fields",
+  "version": "1.0.0",
+  "description": "Every document type must expose ordered structural fields and a page hierarchy.",
+  "asserts": [
+    {
+      "id": "RF1",
+      "rule": "structural_fields.length >= 1",
+      "severity": "error"
+    },
+    {
+      "id": "RF2",
+      "rule": "structural_fields[*].order is unique and sorted ascending when sorted",
+      "severity": "error"
+    },
+    {
+      "id": "RF3",
+      "rule": "page_hierarchy.length >= 1 and references field names where contains is present",
+      "severity": "error"
+    },
+    {
+      "id": "RF4",
+      "rule": "realistic_density_and_continuation.typical_pages has min,max,mode with min<=mode<=max",
+      "severity": "error"
+    }
+  ]
+}

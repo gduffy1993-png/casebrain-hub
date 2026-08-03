@@ -1,0 +1,205 @@
+{
+  "id": "court-notices-orders-appeals",
+  "title": "Court notices, orders and appeal documents",
+  "aliases": [
+    "Form NG",
+    "appeal notice",
+    "PTPH notice",
+    "summons",
+    "court order",
+    "respondent notice"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "crimpr-forms",
+    "crimpr-2025-part39",
+    "hmcts-welsh-scheme"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_required_notice_content; medium_for_exact_PDF_form_layout",
+  "structural_fields": [
+    {
+      "name": "form_code",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "e.g. NG / Part 34 appeal notice / summons form id from CrimPR forms index"
+    },
+    {
+      "name": "crimpr_part",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "Part 34 / 36 / 39 etc."
+    },
+    {
+      "name": "case_reference",
+      "order": 3,
+      "required": true,
+      "data_type": "string",
+      "notes": "Crown Court / CAO references"
+    },
+    {
+      "name": "appellant_or_party",
+      "order": 4,
+      "required": true,
+      "data_type": "string",
+      "notes": "Party names"
+    },
+    {
+      "name": "decision_appealed",
+      "order": 5,
+      "required": false,
+      "data_type": "string",
+      "notes": "Conviction/sentence/order details"
+    },
+    {
+      "name": "grounds_summary",
+      "order": 6,
+      "required": false,
+      "data_type": "string",
+      "notes": "First ≤2 pages summary for CA appeals"
+    },
+    {
+      "name": "grounds_numbered",
+      "order": 7,
+      "required": false,
+      "data_type": "string",
+      "notes": "Consecutive grounds with facts/arguments"
+    },
+    {
+      "name": "applications_bundled",
+      "order": 8,
+      "required": false,
+      "data_type": "array",
+      "notes": "permission | extension | bail | evidence"
+    },
+    {
+      "name": "service_and_lodgement",
+      "order": 9,
+      "required": true,
+      "data_type": "string",
+      "notes": "Where/when lodged; CAO direct lodgement rules for Part 39"
+    },
+    {
+      "name": "order_operative_parts",
+      "order": 10,
+      "required": false,
+      "data_type": "string",
+      "notes": "For court orders: numbered operative paragraphs"
+    },
+    {
+      "name": "seal_or_endorsement",
+      "order": 11,
+      "required": false,
+      "data_type": "string",
+      "notes": "Court seal/date endorsement"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "form_identity",
+      "contains": [
+        "form_code",
+        "crimpr_part",
+        "case_reference"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "parties_and_decision",
+      "contains": [
+        "appellant_or_party",
+        "decision_appealed"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "grounds_body",
+      "contains": [
+        "grounds_summary",
+        "grounds_numbered",
+        "applications_bundled"
+      ]
+    },
+    {
+      "level": 4,
+      "name": "lodgement_admin",
+      "contains": [
+        "service_and_lodgement",
+        "seal_or_endorsement",
+        "order_operative_parts"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 1,
+      "max": 30,
+      "mode": 4
+    },
+    "continuation_behaviour": "Grounds continue numbered; authorities annexed; Easy Read variants exist for some NG forms.",
+    "whitespace_pattern": "Official form headers; grounds prose with numbered headings; orders use numbered paragraphs.",
+    "overflow_rules": "Keep grounds summary within opening two pages for CA notices; detailed grounds follow."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Occasionally for hearing dates / parties; usually prose forms.",
+    "signatures": "Appellant or legal representative signature/date; court seal on orders.",
+    "identifiers": "Form code + CrimPR reference printed; case numbers in header/footer."
+  },
+  "common_document_relationships": [
+    {
+      "to": "charge-sheets-and-indictments",
+      "relation": "Appeals against conviction reference indictment counts"
+    },
+    {
+      "to": "abe-special-measures",
+      "relation": "Orders may include special-measures directions"
+    },
+    {
+      "to": "public-interest-immunity",
+      "relation": "PII rulings and reviews"
+    },
+    {
+      "to": "welsh-language-translation-interpreter",
+      "relation": "Bilingual notices / Welsh plea facilities"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Use fictional case numbers in realistic formats (e.g. T2026/FFFF).",
+    "Grounds must be legally styled but factually invented.",
+    "Prefer publicly indexed CrimPR form names; do not invent official form codes."
+  ],
+  "applicable_charge_procedure_families": [
+    "crown_court_conviction_appeal",
+    "sentence_appeal",
+    "magistrates_to_crown_appeal",
+    "interlocutory_prosecution_appeals",
+    "ancillary_orders"
+  ],
+  "visual_qa_requirements": [
+    "Form code and CrimPR part visible.",
+    "Part 39 notices show grounds summary then numbered grounds.",
+    "Signature/date present on appeal notices.",
+    "Orders show operative numbered paragraphs and date/seal zone.",
+    "Easy Read variants only when explicitly modelled."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not claim Part 39 lodgement at Crown Court (direct to Criminal Appeal Office).",
+    "Do not invent non-existent official form codes."
+  ],
+  "subtypes": [],
+  "notes": ""
+}

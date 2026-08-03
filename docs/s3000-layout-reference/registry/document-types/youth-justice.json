@@ -1,0 +1,184 @@
+{
+  "id": "youth-justice",
+  "title": "Youth justice",
+  "aliases": [
+    "youth court",
+    "MG04D",
+    "referral order",
+    "YOT",
+    "appropriate adult",
+    "youth written charge"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "govuk-mog-forms-accessible",
+    "yjb-referral-order",
+    "sentencing-council-referral",
+    "pace-code-c-2023",
+    "abe-2023"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_process_fields; medium_for_local_YOT_proformas",
+  "structural_fields": [
+    {
+      "name": "youth_name_cipher",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "Prefer cipher in test packs"
+    },
+    {
+      "name": "age_at_offence_and_hearing",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "Age elements drive venue/eligibility"
+    },
+    {
+      "name": "parent_guardian_details",
+      "order": 3,
+      "required": false,
+      "data_type": "string",
+      "notes": "MG04D PG / panel attendance"
+    },
+    {
+      "name": "written_charge_fields",
+      "order": 4,
+      "required": false,
+      "data_type": "string",
+      "notes": "MG04D offence list + first hearing"
+    },
+    {
+      "name": "appropriate_adult_record",
+      "order": 5,
+      "required": false,
+      "data_type": "string",
+      "notes": "Custody/interview AA"
+    },
+    {
+      "name": "venue",
+      "order": 6,
+      "required": true,
+      "data_type": "string",
+      "notes": "youth_court | crown_court_youth | adult_court_exception"
+    },
+    {
+      "name": "referral_order_length",
+      "order": 7,
+      "required": false,
+      "data_type": "string",
+      "notes": "3–12 months if modelled"
+    },
+    {
+      "name": "yot_panel_contract_items",
+      "order": 8,
+      "required": false,
+      "data_type": "array",
+      "notes": "Reparative/restorative activities"
+    },
+    {
+      "name": "reporting_restrictions_banner",
+      "order": 9,
+      "required": true,
+      "data_type": "string",
+      "notes": "Youth identity protection marking on generated pages"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "youth_identity_protected",
+      "contains": [
+        "youth_name_cipher",
+        "age_at_offence_and_hearing",
+        "reporting_restrictions_banner"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "charging_and_welfare",
+      "contains": [
+        "parent_guardian_details",
+        "written_charge_fields",
+        "appropriate_adult_record",
+        "venue"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "order_or_outcome",
+      "contains": [
+        "referral_order_length",
+        "yot_panel_contract_items"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 1,
+      "max": 15,
+      "mode": 3
+    },
+    "continuation_behaviour": "Charge lists short; referral-order contracts itemised; AA entries in custody log continue chronologically.",
+    "whitespace_pattern": "Forms + prominent reporting-restriction banners.",
+    "overflow_rules": "Banner repeated on each page of youth-identifying material."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Offence list; contract activity checklist.",
+    "signatures": "Youth/parent signatures on contracts; panel members.",
+    "identifiers": "Youth cipher; avoid full address on shared pages where possible."
+  },
+  "common_document_relationships": [
+    {
+      "to": "charge-sheets-and-indictments",
+      "relation": "MG04D written charges"
+    },
+    {
+      "to": "custody-and-interview-records",
+      "relation": "AA and youth detention rules"
+    },
+    {
+      "to": "abe-special-measures",
+      "relation": "Child witnesses/defendants interfaces"
+    },
+    {
+      "to": "court-notices-orders-appeals",
+      "relation": "Youth court orders and parental orders"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Always fictionalise youth identity; prefer ciphers even in test data.",
+    "Do not use real school names tied to identifiable children.",
+    "Referral-order content should be generic reparative activities."
+  ],
+  "applicable_charge_procedure_families": [
+    "youth_first_time_guilty_plea",
+    "youth_either_way",
+    "grave_crime_crown_court",
+    "referral_order_breach"
+  ],
+  "visual_qa_requirements": [
+    "Reporting restrictions banner on each page with youth identity.",
+    "Age fields present.",
+    "MG04D/PG distinction clear when both modelled.",
+    "Referral order length within 3–12 months if used.",
+    "AA indicated for under-18 custody/interview pathways."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "No real youth identities or school records.",
+    "Do not assume adult charge-sheet layout for youth written charges."
+  ],
+  "subtypes": [],
+  "notes": ""
+}

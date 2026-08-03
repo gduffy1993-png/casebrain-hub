@@ -1,0 +1,27 @@
+{
+  "contract_id": "fictionalisation-safety",
+  "version": "1.0.0",
+  "description": "Generated fictional documents must obey safety rules recorded in the register.",
+  "asserts": [
+    {
+      "id": "FS1",
+      "rule": "safe_fictionalisation_rules.length >= 1",
+      "severity": "error"
+    },
+    {
+      "id": "FS2",
+      "rule": "prohibited_copying_or_unsupported_assumptions includes ban on private case papers and real PII",
+      "severity": "error"
+    },
+    {
+      "id": "FS3",
+      "rule": "no registry file may embed real personal data samples",
+      "severity": "error"
+    },
+    {
+      "id": "FS4",
+      "rule": "youth-justice entries must require reporting_restrictions_banner / cipher guidance",
+      "severity": "error"
+    }
+  ]
+}
