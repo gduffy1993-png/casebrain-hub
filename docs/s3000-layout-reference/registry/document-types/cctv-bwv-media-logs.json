@@ -1,0 +1,215 @@
+{
+  "id": "cctv-bwv-media-logs",
+  "title": "CCTV / BWV / media logs",
+  "aliases": [
+    "BWV",
+    "body worn video",
+    "CCTV viewing log",
+    "multimedia exhibit log",
+    "DIMP"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "digital-imaging-v3",
+    "npcc-bwv-2024",
+    "cps-exhibits",
+    "ago-disclosure-2024",
+    "cps-disclosure-ch7"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_integrity_concepts; low_for_force_DEMS_screens",
+  "structural_fields": [
+    {
+      "name": "media_type",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "BWV | CCTV | 999_audio | dashcam | other_video"
+    },
+    {
+      "name": "master_copy_id",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "Unedited master / bit-for-bit identifier"
+    },
+    {
+      "name": "working_copy_id",
+      "order": 3,
+      "required": false,
+      "data_type": "string",
+      "notes": "Working/evidential clip ID"
+    },
+    {
+      "name": "capture_device_or_camera",
+      "order": 4,
+      "required": true,
+      "data_type": "string",
+      "notes": "Camera/officer BWV unit reference (fictional)"
+    },
+    {
+      "name": "capture_start_end",
+      "order": 5,
+      "required": true,
+      "data_type": "string",
+      "notes": "Recording times"
+    },
+    {
+      "name": "location_description",
+      "order": 6,
+      "required": true,
+      "data_type": "string",
+      "notes": "Scene/location"
+    },
+    {
+      "name": "hash_or_integrity_value",
+      "order": 7,
+      "required": false,
+      "data_type": "string",
+      "notes": "Where force practice records integrity metadata"
+    },
+    {
+      "name": "audit_trail_entries",
+      "order": 8,
+      "required": true,
+      "data_type": "array",
+      "notes": "View/copy/export events"
+    },
+    {
+      "name": "exhibit_mark",
+      "order": 9,
+      "required": false,
+      "data_type": "string",
+      "notes": "If used as evidence"
+    },
+    {
+      "name": "unused_schedule_ref",
+      "order": 10,
+      "required": false,
+      "data_type": "string",
+      "notes": "MG6C/MG6D item number if unused"
+    },
+    {
+      "name": "editing_redaction_notes",
+      "order": 11,
+      "required": false,
+      "data_type": "string",
+      "notes": "Pixelation/PII edit notes before CPS supply"
+    },
+    {
+      "name": "disclosure_classification",
+      "order": 12,
+      "required": true,
+      "data_type": "string",
+      "notes": "evidential | unused_relevant | unused_irrelevant | sensitive"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "media_identity",
+      "contains": [
+        "media_type",
+        "master_copy_id",
+        "working_copy_id",
+        "capture_device_or_camera"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "capture_context",
+      "contains": [
+        "capture_start_end",
+        "location_description",
+        "exhibit_mark"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "integrity_and_audit",
+      "contains": [
+        "hash_or_integrity_value",
+        "audit_trail_entries"
+      ]
+    },
+    {
+      "level": 4,
+      "name": "disclosure_handling",
+      "contains": [
+        "unused_schedule_ref",
+        "editing_redaction_notes",
+        "disclosure_classification"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 1,
+      "max": 25,
+      "mode": 3
+    },
+    "continuation_behaviour": "Audit trail appends chronologically; clip lists tabular with one row per clip/segment.",
+    "whitespace_pattern": "Log/table dense; narrative viewing notes medium.",
+    "overflow_rules": "New export/view event as new audit row; clip list continues with stable master ID in header."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Clip# | Start | End | Description | Exhibit/Unused ref | Sensitivity.",
+    "signatures": "Officer producing exhibit statement; system audit may be unsigned machine log.",
+    "identifiers": "Master vs working copy distinction mandatory for realism; exhibit marks map to MG12."
+  },
+  "common_document_relationships": [
+    {
+      "to": "exhibits-and-continuity",
+      "relation": "Evidential media produced as exhibits with continuity"
+    },
+    {
+      "to": "disclosure-schedules",
+      "relation": "Unused footage scheduled; RP categories for incident imagery"
+    },
+    {
+      "to": "mg-forms-and-witness-statements",
+      "relation": "Officer statement produces media exhibit"
+    },
+    {
+      "to": "emails-attachments-native-digital",
+      "relation": "Secure links / DEMS references in file build"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Invent camera IDs and hashes; never use real BWV platform URLs with live tokens.",
+    "Redaction notes should refer to fictional third-party faces/VRMs.",
+    "When modelling unused multi-camera overlap, schedule clearly and avoid implying all angles disclosed."
+  ],
+  "applicable_charge_procedure_families": [
+    "public_order",
+    "violence_in_public",
+    "theft_shoplifting",
+    "police_contact_incidents",
+    "road_traffic",
+    "any_street_arrest"
+  ],
+  "visual_qa_requirements": [
+    "Master and working copy IDs distinct when both present.",
+    "Audit trail times monotonic.",
+    "Exhibit mark present iff disclosure_classification is evidential.",
+    "Unused items show schedule cross-reference.",
+    "No unredacted real PII in viewing stills (reference packs should use placeholders only)."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not embed real CCTV stills of identifiable members of the public.",
+    "Do not assume a single national BWV printout template exists."
+  ],
+  "subtypes": [],
+  "notes": ""
+}

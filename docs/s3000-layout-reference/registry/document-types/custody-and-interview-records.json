@@ -1,0 +1,264 @@
+{
+  "id": "custody-and-interview-records",
+  "title": "Custody / interview records",
+  "aliases": [
+    "custody record",
+    "PACE Code C",
+    "MG15",
+    "interview record",
+    "Code E",
+    "Code F"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "pace-code-c-2023",
+    "pace-code-e-2018",
+    "pace-codes-index",
+    "govuk-mog-forms-accessible",
+    "govuk-interpreters"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_required_record_content; low_for_force_print_layout",
+  "structural_fields": [
+    {
+      "name": "custody_record_number",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "Station custody ID"
+    },
+    {
+      "name": "detainee_name",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "As booked into custody"
+    },
+    {
+      "name": "arrival_time",
+      "order": 3,
+      "required": true,
+      "data_type": "string",
+      "notes": "Detention clock start events per Code C"
+    },
+    {
+      "name": "grounds_for_detention",
+      "order": 4,
+      "required": true,
+      "data_type": "string",
+      "notes": "Arrest/detention reasons"
+    },
+    {
+      "name": "rights_given",
+      "order": 5,
+      "required": true,
+      "data_type": "string",
+      "notes": "Rights/entitlements explained and timing"
+    },
+    {
+      "name": "appropriate_adult",
+      "order": 6,
+      "required": false,
+      "data_type": "string",
+      "notes": "Youth/vulnerable detainee"
+    },
+    {
+      "name": "solicitor_attendance",
+      "order": 7,
+      "required": false,
+      "data_type": "string",
+      "notes": "Requested/attended/declined"
+    },
+    {
+      "name": "reviews_of_detention",
+      "order": 8,
+      "required": false,
+      "data_type": "array",
+      "notes": "Timed review decisions"
+    },
+    {
+      "name": "property_log",
+      "order": 9,
+      "required": false,
+      "data_type": "string",
+      "notes": "Property seized/retained"
+    },
+    {
+      "name": "medical_risk_entries",
+      "order": 10,
+      "required": false,
+      "data_type": "string",
+      "notes": "Healthcare/risk assessments"
+    },
+    {
+      "name": "interview_recording_medium",
+      "order": 11,
+      "required": false,
+      "data_type": "string",
+      "notes": "Audio (Code E) / visual (Code F) / written fallback"
+    },
+    {
+      "name": "interview_start_end",
+      "order": 12,
+      "required": false,
+      "data_type": "string",
+      "notes": "Times; breaks"
+    },
+    {
+      "name": "caution_and_reminders",
+      "order": 13,
+      "required": false,
+      "data_type": "string",
+      "notes": "Caution administration recorded"
+    },
+    {
+      "name": "mg15_transcript_or_record",
+      "order": 14,
+      "required": false,
+      "data_type": "string",
+      "notes": "Written record of interview body"
+    },
+    {
+      "name": "release_or_charge_time",
+      "order": 15,
+      "required": true,
+      "data_type": "string",
+      "notes": "Exit from detention / charge / bail"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "booking_header",
+      "contains": [
+        "custody_record_number",
+        "detainee_name",
+        "arrival_time",
+        "grounds_for_detention"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "rights_and_welfare",
+      "contains": [
+        "rights_given",
+        "appropriate_adult",
+        "solicitor_attendance",
+        "medical_risk_entries"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "timed_event_log",
+      "contains": [
+        "reviews_of_detention",
+        "property_log"
+      ],
+      "style": "chronological_entries"
+    },
+    {
+      "level": 4,
+      "name": "interview_pack",
+      "contains": [
+        "interview_recording_medium",
+        "interview_start_end",
+        "caution_and_reminders",
+        "mg15_transcript_or_record"
+      ]
+    },
+    {
+      "level": 5,
+      "name": "disposal",
+      "contains": [
+        "release_or_charge_time"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 2,
+      "max": 60,
+      "mode": 8
+    },
+    "continuation_behaviour": "Custody record is a chronological log; MG15 Cont / MG15M Cont for long interviews; time-stamped speakers.",
+    "whitespace_pattern": "Log lines dense; interview transcript medium density with speaker labels and timestamps.",
+    "overflow_rules": "New review/event on new line; do not rewrite earlier times; append-only feel."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Event log often rendered as Time | Event | Officer columns.",
+    "signatures": "Custody officer accountability entries; detainee signatures for rights/property where modelled.",
+    "identifiers": "Custody number + URN linkage; recording unique IDs for media.",
+    "recording_rule": "If authorised device available, Code E requires audio recording; written record only on specified fallback."
+  },
+  "common_document_relationships": [
+    {
+      "to": "charge-sheets-and-indictments",
+      "relation": "Charge/bail recorded at end of custody episode"
+    },
+    {
+      "to": "mg-forms-and-witness-statements",
+      "relation": "MG15 accompanies recorded interviews; MG6A pre-interview briefing"
+    },
+    {
+      "to": "welsh-language-translation-interpreter",
+      "relation": "Interpreter attendance for interview/court"
+    },
+    {
+      "to": "disclosure-schedules",
+      "relation": "Interview records often rebuttable-presumption material"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Use realistic detention durations and review intervals without copying real custody-system UI.",
+    "Interview speech should be fictional; include caution and break markers for realism.",
+    "Mark appropriate adult clearly for under-18s."
+  ],
+  "applicable_charge_procedure_families": [
+    "any_arrest_detention_pathway",
+    "voluntary_interview",
+    "youth_detention",
+    "vulnerable_adult",
+    "post_charge_interview_rare"
+  ],
+  "visual_qa_requirements": [
+    "Chronological times consistent (no later event before earlier).",
+    "Rights entry appears early in record.",
+    "Interview record references recording medium ID.",
+    "MG15 pages numbered; speaker labels consistent.",
+    "Youth packs show appropriate adult fields populated."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not reproduce real custody IT screens or force-specific proprietary printouts as if national forms.",
+    "Do not claim Code F visual recording is mandatory in all cases."
+  ],
+  "subtypes": [
+    {
+      "id": "custody_record",
+      "title": "PACE Code C custody record"
+    },
+    {
+      "id": "MG15",
+      "title": "Interview Record (typed)"
+    },
+    {
+      "id": "MG15M",
+      "title": "Interview Record (manuscript)"
+    },
+    {
+      "id": "MG6A",
+      "title": "Interview Briefing to solicitor"
+    }
+  ],
+  "notes": ""
+}

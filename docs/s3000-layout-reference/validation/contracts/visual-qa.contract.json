@@ -1,0 +1,27 @@
+{
+  "contract_id": "visual-qa",
+  "version": "1.0.0",
+  "description": "Visual QA checklist hooks for later renderer/chat packs (not implemented here).",
+  "asserts": [
+    {
+      "id": "VQ1",
+      "rule": "visual_qa_requirements.length >= 3",
+      "severity": "error"
+    },
+    {
+      "id": "VQ2",
+      "rule": "continuation behaviour must be stated whenever typical_pages.max > 1",
+      "severity": "error"
+    },
+    {
+      "id": "VQ3",
+      "rule": "identifier/signature conventions object present",
+      "severity": "error"
+    },
+    {
+      "id": "VQ4",
+      "rule": "layout_confidence must not claim pixel-perfect when source is guidance-only",
+      "severity": "warning"
+    }
+  ]
+}

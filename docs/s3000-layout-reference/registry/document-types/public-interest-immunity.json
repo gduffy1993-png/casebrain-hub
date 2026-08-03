@@ -1,0 +1,190 @@
+{
+  "id": "public-interest-immunity",
+  "title": "Public interest immunity (PII)",
+  "aliases": [
+    "PII",
+    "public interest ruling",
+    "CrimPR 15.3",
+    "sensitive disclosure application"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "crimpr-2025-part15",
+    "cps-disclosure-ch8",
+    "ago-disclosure-2024",
+    "crimpr-forms"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_CrimPR_15_3_content; n_a_for_official_blank_form",
+  "structural_fields": [
+    {
+      "name": "application_in_writing",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "CrimPR 15.3 requires written application; no dedicated national form"
+    },
+    {
+      "name": "material_description_for_court",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "Fuller description for court part"
+    },
+    {
+      "name": "material_description_for_defence_part",
+      "order": 3,
+      "required": false,
+      "data_type": "string",
+      "notes": "Redacted/partial service on defendant"
+    },
+    {
+      "name": "why_disclosure_otherwise_required",
+      "order": 4,
+      "required": true,
+      "data_type": "string",
+      "notes": "Would have to disclose without order"
+    },
+    {
+      "name": "public_interest_harm_explanation",
+      "order": 5,
+      "required": true,
+      "data_type": "string",
+      "notes": "Why not in public interest to disclose"
+    },
+    {
+      "name": "alternative_measures_considered",
+      "order": 6,
+      "required": true,
+      "data_type": "string",
+      "notes": "Admissions/summary/extract/edited copy inadequate"
+    },
+    {
+      "name": "mg6d_cross_ref",
+      "order": 7,
+      "required": false,
+      "data_type": "string",
+      "notes": "Sensitive schedule item refs"
+    },
+    {
+      "name": "hearing_ex_parte_or_inter_partes",
+      "order": 8,
+      "required": false,
+      "data_type": "string",
+      "notes": "Hearing mode as directed"
+    },
+    {
+      "name": "ruling_outcome",
+      "order": 9,
+      "required": false,
+      "data_type": "string",
+      "notes": "Withhold / disclose / disclose in edited form"
+    },
+    {
+      "name": "review_trigger",
+      "order": 10,
+      "required": false,
+      "data_type": "string",
+      "notes": "CrimPR 15.6 review application markers"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "application_head",
+      "contains": [
+        "application_in_writing",
+        "mg6d_cross_ref"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "court_only_part",
+      "contains": [
+        "material_description_for_court",
+        "why_disclosure_otherwise_required",
+        "public_interest_harm_explanation",
+        "alternative_measures_considered"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "defence_served_part",
+      "contains": [
+        "material_description_for_defence_part"
+      ]
+    },
+    {
+      "level": 4,
+      "name": "ruling",
+      "contains": [
+        "hearing_ex_parte_or_inter_partes",
+        "ruling_outcome",
+        "review_trigger"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 2,
+      "max": 25,
+      "mode": 6
+    },
+    "continuation_behaviour": "Split court-only / defence bundles; annex sensitive schedule extracts for court only.",
+    "whitespace_pattern": "Formal skeleton argument style; clear PART markings.",
+    "overflow_rules": "Never leak court-only content onto defence-served pages."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Itemised sensitive materials with harm categories.",
+    "signatures": "Prosecutor signature; court ruling endorsement.",
+    "identifiers": "Mark pages 'FOR COURT ONLY' vs 'SERVED ON DEFENCE'."
+  },
+  "common_document_relationships": [
+    {
+      "to": "disclosure-schedules",
+      "relation": "Arise from MG6D sensitive unused material"
+    },
+    {
+      "to": "court-notices-orders-appeals",
+      "relation": "Ruling and review process"
+    },
+    {
+      "to": "cctv-bwv-media-logs",
+      "relation": "Sometimes sensitive imagery/techniques"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Use category-level harm reasons (national security / informant identity / technique) without real operational methods.",
+    "Always physically separate court-only and defence parts in pack structure."
+  ],
+  "applicable_charge_procedure_families": [
+    "organised_crime",
+    "terrorism_adjacent_fictional",
+    "undercover_or_CHIS_contexts_fictional",
+    "serious_sexual_offences_with_third_party_sensitive"
+  ],
+  "visual_qa_requirements": [
+    "Court-only pages clearly bannered.",
+    "Defence part omits secret particulars.",
+    "Alternative measures section present.",
+    "Cross-refs to MG6D items consistent.",
+    "No dedicated fake 'Form PII1' code unless labelled non-official test label."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not invent an official national PII form code.",
+    "Do not include real informant or tactic detail."
+  ],
+  "subtypes": [],
+  "notes": "CrimPR forms index states there are no dedicated forms for Part 15 PII applications; structure follows rule content."
+}

@@ -1,0 +1,246 @@
+{
+  "id": "medical-forensic-expert-reports",
+  "title": "Medical, forensic and expert reports",
+  "aliases": [
+    "SFR",
+    "MG21",
+    "MG22",
+    "CrimPR 19.4",
+    "streamlined forensic report",
+    "FME report",
+    "expert report"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "govuk-mog-forms-accessible",
+    "crimpr-2025-part19",
+    "cps-expert-evidence",
+    "cps-fsr-code"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_CrimPR_19_4_content; medium_for_MG22_templates",
+  "structural_fields": [
+    {
+      "name": "report_class",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "SFR1_summary | SFR2_evidence | full_expert_report | medical_statement | MG21_submission"
+    },
+    {
+      "name": "expert_name_and_qualifications",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "CrimPR 19.4(a) for full reports"
+    },
+    {
+      "name": "accreditation_or_fsr_declaration",
+      "order": 3,
+      "required": false,
+      "data_type": "string",
+      "notes": "FSR Code compliance declaration where activity covered"
+    },
+    {
+      "name": "instructions_and_material_relied_on",
+      "order": 4,
+      "required": true,
+      "data_type": "string",
+      "notes": "Facts given / literature / exhibits received"
+    },
+    {
+      "name": "continuity_of_exhibits",
+      "order": 5,
+      "required": false,
+      "data_type": "string",
+      "notes": "Date/source of exhibit control"
+    },
+    {
+      "name": "methodology",
+      "order": 6,
+      "required": false,
+      "data_type": "string",
+      "notes": "Tests/examinations performed"
+    },
+    {
+      "name": "range_of_opinion",
+      "order": 7,
+      "required": false,
+      "data_type": "string",
+      "notes": "Where applicable"
+    },
+    {
+      "name": "conclusions_summary",
+      "order": 8,
+      "required": true,
+      "data_type": "string",
+      "notes": "Required summary of conclusions"
+    },
+    {
+      "name": "duty_to_court_declaration",
+      "order": 9,
+      "required": true,
+      "data_type": "string",
+      "notes": "CrimPR 19.4(j) for full reports"
+    },
+    {
+      "name": "declaration_of_truth",
+      "order": 10,
+      "required": true,
+      "data_type": "string",
+      "notes": "Same as witness statement for full reports"
+    },
+    {
+      "name": "target_dates",
+      "order": 11,
+      "required": false,
+      "data_type": "string",
+      "notes": "MG21 forensic submission dates"
+    },
+    {
+      "name": "stage_markers",
+      "order": 12,
+      "required": false,
+      "data_type": "string",
+      "notes": "MG22A/B/C/D stage labels"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "title_and_expert_identity",
+      "contains": [
+        "report_class",
+        "expert_name_and_qualifications",
+        "accreditation_or_fsr_declaration"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "instructions_continuity",
+      "contains": [
+        "instructions_and_material_relied_on",
+        "continuity_of_exhibits",
+        "target_dates"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "technical_body",
+      "contains": [
+        "methodology",
+        "range_of_opinion",
+        "stage_markers"
+      ]
+    },
+    {
+      "level": 4,
+      "name": "conclusions_and_declarations",
+      "contains": [
+        "conclusions_summary",
+        "duty_to_court_declaration",
+        "declaration_of_truth"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 1,
+      "max": 40,
+      "mode": 4
+    },
+    "continuation_behaviour": "SFR1 short; SFR2/full reports paginate with numbered sections; annexes for raw results.",
+    "whitespace_pattern": "Formal report sections; tables for results; declarations near end.",
+    "overflow_rules": "Keep declarations intact on final pages; move result tables to annex rather than splitting declaration blocks."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Results tables common (sample ID | test | result | uncertainty).",
+    "signatures": "Expert signature + date; FSR declaration annex if non-compliance mitigated.",
+    "identifiers": "Lab job numbers; exhibit marks; MG22 series completed by experts not officers."
+  },
+  "common_document_relationships": [
+    {
+      "to": "exhibits-and-continuity",
+      "relation": "MG21 accompanies samples; continuity recited in report"
+    },
+    {
+      "to": "mg-forms-and-witness-statements",
+      "relation": "Expert statement form overlaps MG11 declaration model"
+    },
+    {
+      "to": "disclosure-schedules",
+      "relation": "Unused draft notes/working papers may be scheduled"
+    },
+    {
+      "to": "phone-digital-evidence-schedules",
+      "relation": "Digital forensics experts"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Invent lab numbers and expert CVs; do not use real living experts’ details without consent.",
+    "SFR1 must remain a summary-for-admission style artefact, not a full 19.4 report.",
+    "Medical content must be fictional and non-identifying; avoid real health-service patient identifiers."
+  ],
+  "applicable_charge_procedure_families": [
+    "assault_injury",
+    "sexual_offences_forensic",
+    "drugs_purity",
+    "firearms_residue",
+    "digital_forensics",
+    "fatal_collision",
+    "DNA_cold_case_style_fictional"
+  ],
+  "visual_qa_requirements": [
+    "report_class labelled clearly (SFR1 vs SFR2 vs full).",
+    "Full reports include qualifications, duty-to-court, and declaration of truth.",
+    "Exhibit continuity recited where opinions depend on seized material.",
+    "FSR declaration present or explicitly N/A with reason.",
+    "MG21 shows audit/target-date fields when modelling submissions."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not treat SFR1 as evidential expert report under CrimPR 19.4.",
+    "Do not forge UKAS accreditation claims for fictional labs in a way that could be mistaken for real accreditation outside test harness labelling."
+  ],
+  "subtypes": [
+    {
+      "id": "MG21",
+      "title": "Submission of Work for Scientific Examination"
+    },
+    {
+      "id": "MG21A",
+      "title": "Additional scientific work"
+    },
+    {
+      "id": "MG22A",
+      "title": "SFR Initial Investigation"
+    },
+    {
+      "id": "MG22B",
+      "title": "SFR Stage 1 results"
+    },
+    {
+      "id": "MG22C",
+      "title": "SFR Stage 2 issues"
+    },
+    {
+      "id": "MG22D",
+      "title": "CSI / forensic examination statement (abridged)"
+    },
+    {
+      "id": "expert_report_19_4",
+      "title": "Full CrimPR 19.4 expert report"
+    }
+  ],
+  "notes": ""
+}

@@ -1,0 +1,27 @@
+{
+  "contract_id": "no-renderer-coupling",
+  "version": "1.0.0",
+  "description": "This workstream must remain reference-only relative to Chat 1 V2.1.2 renderer.",
+  "asserts": [
+    {
+      "id": "NR1",
+      "rule": "changed paths limited to docs/s3000-layout-reference/**",
+      "severity": "error"
+    },
+    {
+      "id": "NR2",
+      "rule": "no imports from lib/** or app/** renderer modules",
+      "severity": "error"
+    },
+    {
+      "id": "NR3",
+      "rule": "no PDF binaries or case evidence packs added",
+      "severity": "error"
+    },
+    {
+      "id": "NR4",
+      "rule": "meta.scope_exclusions includes no renderer modification and no PASS claim",
+      "severity": "error"
+    }
+  ]
+}

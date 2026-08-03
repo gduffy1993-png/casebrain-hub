@@ -1,0 +1,19 @@
+{
+  "registry_id": "s3000-public-criminal-document-structure-realism-reference",
+  "version": "1.0.0",
+  "baseline_commit": "308b7cb633f83d7c998bc80adf87356de346b3e9",
+  "branch": "programme/s3000-layout-reference",
+  "created_for": "Fictional test-document generation realism only",
+  "retrieval_date": "2026-08-02",
+  "scope_exclusions": [
+    "No V2.1.2 renderer implementation or modification",
+    "No app logic changes",
+    "No PDFs or case packs in this deliverable",
+    "No private case papers",
+    "No commit/push/merge/deploy by this workstream",
+    "No PASS claim"
+  ],
+  "jurisdiction": "England and Wales (primary); Welsh-language rights included",
+  "document_type_count": 14,
+  "source_count": 28
+}

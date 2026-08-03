@@ -1,0 +1,208 @@
+{
+  "id": "phone-digital-evidence-schedules",
+  "title": "Phone and digital-evidence schedules",
+  "aliases": [
+    "phone download schedule",
+    "digital material schedule",
+    "handset exhibit schedule",
+    "DMD digital"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "ago-disclosure-2024",
+    "ago-disclosure-2024-pdf",
+    "cps-disclosure-ch7",
+    "digital-imaging-v3",
+    "govuk-mog-forms-accessible"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_AG_block_listing_rules; low_for_tool_report_chrome",
+  "structural_fields": [
+    {
+      "name": "device_exhibit_mark",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "Handset/laptop exhibit ID"
+    },
+    {
+      "name": "device_type",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "phone | tablet | computer | sim | storage_media"
+    },
+    {
+      "name": "seizure_time_place",
+      "order": 3,
+      "required": true,
+      "data_type": "string",
+      "notes": "When/where seized"
+    },
+    {
+      "name": "extraction_method",
+      "order": 4,
+      "required": false,
+      "data_type": "string",
+      "notes": "Logical/physical/cloud – high level only"
+    },
+    {
+      "name": "download_id_or_ufdr_ref",
+      "order": 5,
+      "required": false,
+      "data_type": "string",
+      "notes": "Fictional extraction package ID"
+    },
+    {
+      "name": "block_listing_title",
+      "order": 6,
+      "required": true,
+      "data_type": "string",
+      "notes": "AG digital strategy block title + quantity"
+    },
+    {
+      "name": "block_summary",
+      "order": 7,
+      "required": true,
+      "data_type": "string",
+      "notes": "High-level contents summary"
+    },
+    {
+      "name": "search_terms_or_filters",
+      "order": 8,
+      "required": false,
+      "data_type": "string",
+      "notes": "Recorded in DMD"
+    },
+    {
+      "name": "metadata_subvolume_ref",
+      "order": 9,
+      "required": false,
+      "data_type": "string",
+      "notes": "Separate metadata listing sub-volume"
+    },
+    {
+      "name": "itemised_responsive_hits",
+      "order": 10,
+      "required": false,
+      "data_type": "array",
+      "notes": "Disclosable/undermining items broken out of blocks"
+    },
+    {
+      "name": "schedule_cross_ref",
+      "order": 11,
+      "required": true,
+      "data_type": "string",
+      "notes": "MG6C/MG6D item numbers"
+    },
+    {
+      "name": "integrity_hash",
+      "order": 12,
+      "required": false,
+      "data_type": "string",
+      "notes": "Container hash if modelled"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "device_header",
+      "contains": [
+        "device_exhibit_mark",
+        "device_type",
+        "seizure_time_place",
+        "extraction_method",
+        "download_id_or_ufdr_ref"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "strategy_blocks",
+      "contains": [
+        "block_listing_title",
+        "block_summary",
+        "search_terms_or_filters",
+        "metadata_subvolume_ref"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "responsive_items",
+      "contains": [
+        "itemised_responsive_hits",
+        "schedule_cross_ref",
+        "integrity_hash"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 2,
+      "max": 80,
+      "mode": 6
+    },
+    "continuation_behaviour": "Block schedules first; break out disclosable hits with cross-refs; metadata annex as sub-volume continuation.",
+    "whitespace_pattern": "Block tables dense; DMD narrative medium; hit lists tabular.",
+    "overflow_rules": "Do not dump entire chat histories into MG6C descriptions; summarise blocks and itemise only responsive material."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Block | Qty | Summary | Method | Schedule ref; Hits table: Hit# | App/Thread | Timestamp | Summary | Disclosure decision.",
+    "signatures": "Disclosure officer / digital investigator endorsement; expert SFR if analysis opinions offered.",
+    "identifiers": "Exhibit mark stable across extraction reports, schedules, and statements."
+  },
+  "common_document_relationships": [
+    {
+      "to": "disclosure-schedules",
+      "relation": "Primary scheduling home for unused digital material"
+    },
+    {
+      "to": "exhibits-and-continuity",
+      "relation": "Device continuity from seizure to extraction"
+    },
+    {
+      "to": "medical-forensic-expert-reports",
+      "relation": "Digital forensics SFR/expert reports"
+    },
+    {
+      "to": "emails-attachments-native-digital",
+      "relation": "Overlapping native mail/message corpora"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Invent IMEI/phone numbers; never use real subscriber data.",
+    "Chat snippets must be fictional and minimal; prefer summaries over full dumps.",
+    "Record search-term methodology at strategy level without implying secret police tools."
+  ],
+  "applicable_charge_procedure_families": [
+    "drugs_supply_comms",
+    "fraud_cyber",
+    "sexual_offences_device_extraction",
+    "harassment_comms",
+    "organised_crime",
+    "theft_of_phone"
+  ],
+  "visual_qa_requirements": [
+    "Device exhibit mark consistent across pages.",
+    "Block listings include quantity and summary.",
+    "Responsive hits cross-refer schedule item numbers.",
+    "DMD/search methodology present in digital-heavy packs.",
+    "No real contact-list dumps."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not paste real phone extractions or Cellebrite/UFED report fragments from live cases.",
+    "Do not claim unsupported exact UI of proprietary forensic tools."
+  ],
+  "subtypes": [],
+  "notes": ""
+}

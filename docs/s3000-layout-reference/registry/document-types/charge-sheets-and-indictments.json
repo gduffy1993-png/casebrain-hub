@@ -1,0 +1,250 @@
+{
+  "id": "charge-sheets-and-indictments",
+  "title": "Charge sheets and indictments",
+  "aliases": [
+    "MG4",
+    "MG04",
+    "MG04D",
+    "MG04E",
+    "indictment",
+    "draft indictment",
+    "written charge",
+    "count"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "govuk-mog-forms-accessible",
+    "crimpr-2025-part10",
+    "cps-drafting-indictment",
+    "crimpr-forms",
+    "directors-guidance-charging-6"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_legal_structure; medium_for_MG4_pixel_layout",
+  "structural_fields": [
+    {
+      "name": "document_class",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "police_charge_sheet | written_charge | draft_indictment | indictment"
+    },
+    {
+      "name": "court_or_station",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "Charging station or Crown Court name"
+    },
+    {
+      "name": "pti_urn_or_case_number",
+      "order": 3,
+      "required": true,
+      "data_type": "string",
+      "notes": "URN / T number as applicable"
+    },
+    {
+      "name": "defendant_name",
+      "order": 4,
+      "required": true,
+      "data_type": "string",
+      "notes": "Order of defendants matters on multi-accused indictments"
+    },
+    {
+      "name": "defendant_dob_or_age",
+      "order": 5,
+      "required": false,
+      "data_type": "string",
+      "notes": "Especially youth / age-element offences"
+    },
+    {
+      "name": "charge_or_count_number",
+      "order": 6,
+      "required": true,
+      "data_type": "string",
+      "notes": "Consecutive counts on indictment"
+    },
+    {
+      "name": "statement_of_offence",
+      "order": 7,
+      "required": true,
+      "data_type": "string",
+      "notes": "Ordinary language + creating legislation"
+    },
+    {
+      "name": "particulars_of_offence",
+      "order": 8,
+      "required": true,
+      "data_type": "string",
+      "notes": "Sufficient particulars of alleged conduct"
+    },
+    {
+      "name": "reply_after_charge",
+      "order": 9,
+      "required": false,
+      "data_type": "string",
+      "notes": "MG4 custody charge reply"
+    },
+    {
+      "name": "bail_endorsement",
+      "order": 10,
+      "required": false,
+      "data_type": "string",
+      "notes": "Unconditional/conditional bail after charge"
+    },
+    {
+      "name": "first_hearing_details",
+      "order": 11,
+      "required": false,
+      "data_type": "string",
+      "notes": "Written charge forms MG04D/E"
+    },
+    {
+      "name": "preferment_or_date_header",
+      "order": 12,
+      "required": false,
+      "data_type": "string",
+      "notes": "Indictment head date / preferment statement per CrimPR 10.2(6)"
+    },
+    {
+      "name": "prosecutor_signature_or_endorsement",
+      "order": 13,
+      "required": false,
+      "data_type": "string",
+      "notes": "Where form/practice requires"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "document_head",
+      "contains": [
+        "document_class",
+        "court_or_station",
+        "pti_urn_or_case_number",
+        "preferment_or_date_header"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "defendant_block",
+      "contains": [
+        "defendant_name",
+        "defendant_dob_or_age"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "counts",
+      "contains": [
+        "charge_or_count_number",
+        "statement_of_offence",
+        "particulars_of_offence"
+      ],
+      "repeats": true
+    },
+    {
+      "level": 4,
+      "name": "post_charge_admin",
+      "contains": [
+        "reply_after_charge",
+        "bail_endorsement",
+        "first_hearing_details",
+        "prosecutor_signature_or_endorsement"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 1,
+      "max": 8,
+      "mode": 1
+    },
+    "continuation_behaviour": "Additional counts continue on following pages; each count remains a self-contained numbered paragraph pair (statement + particulars).",
+    "whitespace_pattern": "Formal sparse layout; generous spacing between counts; headers compact.",
+    "overflow_rules": "Never split statement_of_offence from its particulars across a confusing break; keep pair together."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Rare; counts are numbered prose blocks, not grid tables.",
+    "signatures": "Custody sergeant on MG4; indictment endorsements per CrimPR/court officer practice.",
+    "identifiers": "Count numbers consecutive; statute citations in statement of offence.",
+    "forms_note": "Indictment must follow Practice Direction forms unless exception applies (CrimPR 10.2(6))."
+  },
+  "common_document_relationships": [
+    {
+      "to": "mg-forms-and-witness-statements",
+      "relation": "Charges grounded in MG5/MG11 evidence package"
+    },
+    {
+      "to": "youth-justice",
+      "relation": "MG04D / MG04D PG for youth written charges"
+    },
+    {
+      "to": "court-notices-orders-appeals",
+      "relation": "Sending/committal notices and later appeal against conviction on indictment"
+    },
+    {
+      "to": "custody-and-interview-records",
+      "relation": "Charge recorded after detention/interview pathway"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Use correct offence-creating statute names publicly known; do not invent fake Acts.",
+    "Particulars must be factually complete enough to read as a real count, using fictional people/places.",
+    "Multi-count joinder must remain legally plausible (same defendant/facts family)."
+  ],
+  "applicable_charge_procedure_families": [
+    "summary_charge",
+    "either_way",
+    "indictable_only",
+    "section_40_CJA_1988_joined_summary",
+    "youth_written_charge",
+    "postal_written_charge",
+    "multi_handed_conspiracy"
+  ],
+  "visual_qa_requirements": [
+    "Each count shows both statement_of_offence and particulars_of_offence.",
+    "Count numbering consecutive starting at 1.",
+    "Indictment head contains date / preferment-style statement fields when document_class is indictment.",
+    "MG4 shows reply-after-charge and bail fields when modelling custody charge.",
+    "No CPS logo on Practice Direction indictment forms."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not invent indictment form geometry that contradicts CrimPR Part 10 requirements.",
+    "Do not mix police MG4 charge-sheet layout with Crown Court indictment layout in one artefact without labelling document_class."
+  ],
+  "subtypes": [
+    {
+      "id": "MG04",
+      "title": "Charge Sheet (custody sergeant)"
+    },
+    {
+      "id": "MG04A",
+      "title": "Bail – Grant or Variation"
+    },
+    {
+      "id": "MG04D",
+      "title": "Written Charges – Youth"
+    },
+    {
+      "id": "MG04E",
+      "title": "Written Charges – Adult"
+    },
+    {
+      "id": "INDictment",
+      "title": "Indictment / draft indictment (CrimPR Part 10)"
+    }
+  ],
+  "notes": ""
+}

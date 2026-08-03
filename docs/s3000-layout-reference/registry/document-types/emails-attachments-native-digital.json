@@ -1,0 +1,213 @@
+{
+  "id": "emails-attachments-native-digital",
+  "title": "Emails, attachments and native digital evidence",
+  "aliases": [
+    "email native",
+    "MSG/EML",
+    "attachment hash list",
+    "mailbox export",
+    "cloud mail"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "ago-disclosure-2024",
+    "ago-disclosure-2024-pdf",
+    "digital-imaging-v3",
+    "cps-disclosure-ch7"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_disclosure_strategy_structure; low_for_client_print_chrome",
+  "structural_fields": [
+    {
+      "name": "container_type",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "pst | mbox | eml_dir | msg | cloud_export | zip"
+    },
+    {
+      "name": "custodian",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "Mailbox owner role (fictional)"
+    },
+    {
+      "name": "date_range",
+      "order": 3,
+      "required": true,
+      "data_type": "string",
+      "notes": "Collection window"
+    },
+    {
+      "name": "message_id",
+      "order": 4,
+      "required": false,
+      "data_type": "string",
+      "notes": "RFC message-id for itemised hits"
+    },
+    {
+      "name": "from_to_cc",
+      "order": 5,
+      "required": false,
+      "data_type": "string",
+      "notes": "Header fields for itemised messages"
+    },
+    {
+      "name": "sent_received_timestamps",
+      "order": 6,
+      "required": false,
+      "data_type": "string",
+      "notes": "Including timezone"
+    },
+    {
+      "name": "subject",
+      "order": 7,
+      "required": false,
+      "data_type": "string",
+      "notes": "Subject line"
+    },
+    {
+      "name": "body_summary_or_extract",
+      "order": 8,
+      "required": false,
+      "data_type": "string",
+      "notes": "Prefer summary; short extracts only"
+    },
+    {
+      "name": "attachment_filename",
+      "order": 9,
+      "required": false,
+      "data_type": "string",
+      "notes": "Attachment name"
+    },
+    {
+      "name": "attachment_hash",
+      "order": 10,
+      "required": false,
+      "data_type": "string",
+      "notes": "Hash of attachment bytes"
+    },
+    {
+      "name": "native_path",
+      "order": 11,
+      "required": false,
+      "data_type": "string",
+      "notes": "Path within container"
+    },
+    {
+      "name": "disclosure_treatment",
+      "order": 12,
+      "required": true,
+      "data_type": "string",
+      "notes": "block_listed | itemised_disclosed | unused_scheduled | privileged_claimed"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "container_manifest",
+      "contains": [
+        "container_type",
+        "custodian",
+        "date_range"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "block_or_item_schedule",
+      "contains": [
+        "disclosure_treatment",
+        "native_path"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "message_hit_detail",
+      "contains": [
+        "message_id",
+        "from_to_cc",
+        "sent_received_timestamps",
+        "subject",
+        "body_summary_or_extract"
+      ]
+    },
+    {
+      "level": 4,
+      "name": "attachment_register",
+      "contains": [
+        "attachment_filename",
+        "attachment_hash"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 1,
+      "max": 100,
+      "mode": 5
+    },
+    "continuation_behaviour": "Manifest first; block schedule; then hit/attachment annexes. Avoid printing entire mailboxes.",
+    "whitespace_pattern": "Manifest compact; hit tables dense; extracts short.",
+    "overflow_rules": "Large corpora stay block-listed with methodology; only responsive hits expand."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Msg# | Date | From | To | Subject | Treatment | Hash.",
+    "signatures": "Disclosure officer certification via MG6E/DMD rather than per-email signatures.",
+    "identifiers": "Container hash + message-id + attachment hash triad for integrity realism."
+  },
+  "common_document_relationships": [
+    {
+      "to": "disclosure-schedules",
+      "relation": "Unused native material scheduled; DMD explains review"
+    },
+    {
+      "to": "phone-digital-evidence-schedules",
+      "relation": "Overlaps mobile mail/apps"
+    },
+    {
+      "to": "exhibits-and-continuity",
+      "relation": "Export containers exhibited"
+    },
+    {
+      "to": "welsh-language-translation-interpreter",
+      "relation": "Translated native documents"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Invent email addresses on clearly fictional domains (e.g. example.test).",
+    "Do not import real mailbox exports.",
+    "Attachment contents should be fictional stubs; record hashes of stubs if needed."
+  ],
+  "applicable_charge_procedure_families": [
+    "fraud",
+    "corporate_regulatory_adjacent_fictional",
+    "harassment",
+    "conspiracy_comms",
+    "disclosure_heavy_NGAP"
+  ],
+  "visual_qa_requirements": [
+    "Container identity present before item lists.",
+    "Timestamps include timezone or explicit local-time note.",
+    "Attachment rows hash-stable relative to filenames.",
+    "Block-listed corpora not fully dumped.",
+    "Privileged claims labelled without revealing content."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "No real inbox contents.",
+    "No unsupported assumption that native printouts equal forensic exports without integrity fields."
+  ],
+  "subtypes": [],
+  "notes": ""
+}

@@ -1,0 +1,288 @@
+{
+  "id": "mg-forms-and-witness-statements",
+  "title": "MG forms and witness statements",
+  "aliases": [
+    "MG11",
+    "MG11M",
+    "MG11 Cont",
+    "MG02",
+    "MG03",
+    "MG05",
+    "MG09",
+    "MG10",
+    "Manual of Guidance"
+  ],
+  "jurisdiction": "England and Wales",
+  "purpose": "Structural and realism reference for fictional test-document generation only.",
+  "authoritative_sources": [
+    "govuk-mog-forms-accessible",
+    "govuk-mog-forms-pdf",
+    "directors-guidance-charging-6",
+    "cps-special-measures"
+  ],
+  "retrieval_date": "2026-08-02",
+  "layout_confidence": "high_for_purpose_fields; medium_for_pixel_layout",
+  "structural_fields": [
+    {
+      "name": "form_reference",
+      "order": 1,
+      "required": true,
+      "data_type": "string",
+      "notes": "MG code e.g. MG11 / MG11M / MG11 Cont"
+    },
+    {
+      "name": "protective_marking",
+      "order": 2,
+      "required": true,
+      "data_type": "string",
+      "notes": "GSCP marking: Official / Official-Sensitive etc."
+    },
+    {
+      "name": "pti_urn",
+      "order": 3,
+      "required": true,
+      "data_type": "string",
+      "notes": "Pre-trial information unique reference number for the investigation"
+    },
+    {
+      "name": "defendant_or_suspect_name",
+      "order": 4,
+      "required": false,
+      "data_type": "string",
+      "notes": "Often present on case-linked forms; may be anonymised on some witness copies"
+    },
+    {
+      "name": "witness_name",
+      "order": 5,
+      "required": true,
+      "data_type": "string",
+      "notes": "For MG11 family"
+    },
+    {
+      "name": "witness_dob_or_age",
+      "order": 6,
+      "required": false,
+      "data_type": "string",
+      "notes": "Age-sensitive; fictionalise carefully"
+    },
+    {
+      "name": "occupation_or_status",
+      "order": 7,
+      "required": false,
+      "data_type": "string",
+      "notes": "Common on statements"
+    },
+    {
+      "name": "statement_body",
+      "order": 8,
+      "required": true,
+      "data_type": "string",
+      "notes": "Narrative evidence; may span continuation sheets"
+    },
+    {
+      "name": "page_of_pages",
+      "order": 9,
+      "required": true,
+      "data_type": "string",
+      "notes": "Pagination on multi-page statements"
+    },
+    {
+      "name": "declaration_of_truth",
+      "order": 10,
+      "required": true,
+      "data_type": "string",
+      "notes": "Statutory/declaration wording block before signature"
+    },
+    {
+      "name": "signature_and_date",
+      "order": 11,
+      "required": true,
+      "data_type": "string",
+      "notes": "Witness signature/date; officer countersign where applicable"
+    },
+    {
+      "name": "consent_medical_records",
+      "order": 12,
+      "required": false,
+      "data_type": "string",
+      "notes": "MG11 records consent for medical records use"
+    },
+    {
+      "name": "willingness_to_attend_court",
+      "order": 13,
+      "required": false,
+      "data_type": "string",
+      "notes": "MG11 tick/field"
+    },
+    {
+      "name": "special_measures_need",
+      "order": 14,
+      "required": false,
+      "data_type": "string",
+      "notes": "Flag; detail often on MG02"
+    },
+    {
+      "name": "officer_details",
+      "order": 15,
+      "required": true,
+      "data_type": "string",
+      "notes": "Taking officer name/number/station"
+    }
+  ],
+  "page_hierarchy": [
+    {
+      "level": 1,
+      "name": "form_header",
+      "contains": [
+        "form_reference",
+        "protective_marking",
+        "pti_urn"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "party_and_witness_block",
+      "contains": [
+        "witness_name",
+        "witness_dob_or_age",
+        "occupation_or_status"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "statement_narrative",
+      "contains": [
+        "statement_body"
+      ],
+      "continues_on": "MG11 Cont / MG11M Cont"
+    },
+    {
+      "level": 4,
+      "name": "footer_declarations",
+      "contains": [
+        "declaration_of_truth",
+        "signature_and_date",
+        "consent_medical_records",
+        "willingness_to_attend_court",
+        "special_measures_need"
+      ]
+    },
+    {
+      "level": 5,
+      "name": "admin_footer",
+      "contains": [
+        "officer_details",
+        "page_of_pages"
+      ]
+    }
+  ],
+  "realistic_density_and_continuation": {
+    "typical_pages": {
+      "min": 1,
+      "max": 12,
+      "mode": 2
+    },
+    "continuation_behaviour": "Blank typed continuation sheets (electronic MG11) or lined handwritten MG11M Cont; page-of-pages consecutive; declaration typically on final page.",
+    "whitespace_pattern": "Header dense; narrative mid-density paragraphs or lined manuscript; signature block near foot of final page.",
+    "overflow_rules": "Do not squeeze declaration onto cramped last lines; spill narrative to Cont page before signatures."
+  },
+  "tables_signatures_identifiers": {
+    "tables": "Usually not tabular for MG11; MG09/MG10 use row-per-witness tables.",
+    "signatures": "Wet-ink or electronic signature zone; date adjacent; officer endorsement separate.",
+    "identifiers": "PTI URN prominent; exhibit marks referenced in narrative as 'I produce exhibit AB/1'.",
+    "chequered_banding": "Some MG forms use chequered banding to denote non-disclosable content (e.g. MG6 family sensitive variants)."
+  },
+  "common_document_relationships": [
+    {
+      "to": "abe-special-measures",
+      "relation": "MG02 feeds special-measures application; ABE video may accompany MG11/MG15"
+    },
+    {
+      "to": "exhibits-and-continuity",
+      "relation": "MG11 produces exhibits listed on MG12"
+    },
+    {
+      "to": "disclosure-schedules",
+      "relation": "Unused drafts/notes may appear on MG6C/MG6D"
+    },
+    {
+      "to": "custody-and-interview-records",
+      "relation": "MG15 interview record pairs with audio/visual interview for suspects/ABE"
+    }
+  ],
+  "safe_fictionalisation_rules": [
+    "Use wholly invented names, addresses, DOBs, phone numbers, URN/PTI numbers, exhibit marks, and force identifiers.",
+    "Do not reproduce protected personal data from real cases, private case papers, or non-public force templates.",
+    "Prefer clearly fictional markers (e.g. 'FX-' URNs, 'Anytown', invented force codes) while preserving structural realism.",
+    "Do not copy Crown copyright form artwork/logos beyond structural field labels described in public guidance.",
+    "Where exact blank-form layout is unpublished, record layout confidence as inferred_from_guidance and avoid pixel-perfect claims.",
+    "Invent witness narrative consistent with charged facts; avoid copying published case-study wording from training packs.",
+    "Keep special-measures flags structurally present without fabricating clinical diagnoses."
+  ],
+  "applicable_charge_procedure_families": [
+    "summary_only",
+    "either_way",
+    "indictable_only",
+    "sexual_offences_YJCEA",
+    "violence",
+    "dishonesty",
+    "drugs",
+    "road_traffic",
+    "youth_court"
+  ],
+  "visual_qa_requirements": [
+    "Form code and URN visible in header region on every page.",
+    "Continuation pages show Cont designation and consecutive page numbering.",
+    "Declaration/signature not orphaned mid-page without preceding narrative close.",
+    "Protective marking present; chequered banding only on forms that public guidance marks non-disclosable.",
+    "No real crest artwork required; placeholder header label acceptable if noted."
+  ],
+  "prohibited_copying_or_unsupported_assumptions": [
+    "No private case papers, custody-system screenshots, or force intranet templates.",
+    "No real victim/witness/defendant identifiers, phone numbers, IMEIs, vehicle registrations, or medical identifiers.",
+    "No reproduction of protected sensitive/PII schedules containing real sensitive material.",
+    "No claim that this register is a substitute for live CrimPR/Practice Direction forms.",
+    "No coupling to V2.1.2 renderer implementation; this pack is reference-only.",
+    "Do not treat commercial MG blank downloads as authoritative unless they match public GOV.UK purpose descriptions.",
+    "Do not invent compulsory fields beyond those evidenced in public MG purpose summaries and NFS annex references."
+  ],
+  "subtypes": [
+    {
+      "id": "MG02",
+      "title": "Special Measures Assessment"
+    },
+    {
+      "id": "MG03",
+      "title": "Pre Charge Decision Request"
+    },
+    {
+      "id": "MG03A",
+      "title": "Further Report to CPS for Charging Decision"
+    },
+    {
+      "id": "MG05",
+      "title": "Offence Report / Police Report"
+    },
+    {
+      "id": "MG09",
+      "title": "Witness List"
+    },
+    {
+      "id": "MG10",
+      "title": "Witness Non-Availability"
+    },
+    {
+      "id": "MG11",
+      "title": "Witness Statement (electronic/typed)"
+    },
+    {
+      "id": "MG11M",
+      "title": "Witness Statement (manuscript)"
+    },
+    {
+      "id": "MG11_Cont",
+      "title": "Witness Statement continuation"
+    }
+  ],
+  "notes": "National File Standard (Director’s Guidance 6th ed.) determines which MG forms appear in GAP/NGAP/Crown Court builds. Digital Case File rollout may later absorb MG forms; interim register retains MG structure."
+}
