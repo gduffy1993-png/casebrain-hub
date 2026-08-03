@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "s3000-cosmetic-uniqueness-rejection-detector@1.0.0",
+  "locked": true,
+  "casesSelectedOrGenerated": false,
+  "purpose": "Detect and reject manufactured diversity that relies on IDs, salts, names, dates or cosmetic wording while leaving substantive combinations unchanged.",
+  "status": "SPEC_ONLY — detector not executed; no cases scanned",
+  "inputs": [
+    "candidateMatterA",
+    "candidateMatterB_or_nearestNeighbour",
+    "normalisedCombinedSemanticSignature",
+    "documentGraphFingerprint",
+    "evidenceGraphFingerprint",
+    "rawSurfaceTextOptional"
+  ],
+  "hitIfAny": [
+    {
+      "id": "CUR-01",
+      "name": "identity_only_delta",
+      "rule": "Combined semantic signature equal after normalisation; only caseId/packet salt/orderIndex differ."
+    },
+    {
+      "id": "CUR-02",
+      "name": "name_date_only_delta",
+      "rule": "Combined signature equal; only person names, DOBs, incident dates, or listing dates differ."
+    },
+    {
+      "id": "CUR-03",
+      "name": "synonym_reskin",
+      "rule": "Facts/parties/evidence/procedure/defence/missing/behaviour axes unchanged; surface wording synonymised or templated."
+    },
+    {
+      "id": "CUR-04",
+      "name": "boilerplate_padding",
+      "rule": "Added or varied universal safety wording, disclaimers, or stock uncertainty phrases with no substantive axis change."
+    },
+    {
+      "id": "CUR-05",
+      "name": "layout_noise_as_uniqueness",
+      "rule": "Rotation/OCR crush/duplicate-page/whitespace-only difference claimed as uniqueness without truth-keyed assertion change."
+    },
+    {
+      "id": "CUR-06",
+      "name": "label_swap_without_instrument_change",
+      "rule": "Charge-family or tier label changed without charge instrument, facts, or evidence-graph change."
+    },
+    {
+      "id": "CUR-07",
+      "name": "exit_flag_only_uniqueness",
+      "rule": "Only planned exit/browser declarations differ."
+    },
+    {
+      "id": "CUR-08",
+      "name": "shard_local_reskin",
+      "rule": "Matter mirrored across shards with CUR-01..07 deltas only."
+    }
+  ],
+  "clearIf": {
+    "minimumDistinctRequiredAxes": 2,
+    "axes": [
+      "facts",
+      "partiesAttribution",
+      "evidenceStates",
+      "contradictions",
+      "documentRelationships",
+      "procedure",
+      "defence",
+      "missingMaterial",
+      "expectedCaseBrainBehaviour"
+    ]
+  },
+  "outputs": {
+    "perPair": ["hitIds", "axisDeltaCount", "axisDeltaList", "disposition"],
+    "dispositions": ["reject_cosmetic", "accept_substantive", "review_borderline"],
+    "aggregateReport": "cosmetic-uniqueness-rejection-report.json"
+  },
+  "enforcement": {
+    "failClosedOnHit": true,
+    "borderlineRequiresHumanOrCodexNote": true,
+    "safetyWordingNeverCountsAsAxisDelta": true,
+    "publicFormRepetitionNeverCountsAsHit": true
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "s3000-coverage-integration-authorisation@1.0.0",
+  "authorisedBy": "programme-integration-instruction",
+  "authorisedAt": "2026-08-03T14:50:00.000Z",
+  "commitAllowed": true,
+  "executableEnforcementPresent": false,
+  "role": "locked_policy_and_shard_blueprint_input",
+  "integrationNote": "JSON policy pack is frozen design input for acceptance-contract and membership freeze. Executable uniqueness/CUR engines remain future work; do not treat this commit as Stage-3000 completion."
+}

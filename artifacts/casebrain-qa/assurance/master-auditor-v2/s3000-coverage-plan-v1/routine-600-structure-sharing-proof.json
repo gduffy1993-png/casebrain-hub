@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "s3000-routine-600-structure-sharing-proof@1.0.0",
+  "locked": true,
+  "casesSelectedOrGenerated": false,
+  "purpose": "Prove by combinatorial policy arithmetic that 600 routine_volume matters can share realistic public structures without collapsing into duplicate combined semantic signatures. No cases are generated.",
+  "stratum": "routine_volume",
+  "homeQuota": 600,
+  "claim": "Shared MG/public forms, layouts, defence positions and stages are expected; uniqueness is carried by substantive combinations, not by IDs/salts/cosmetic wording.",
+  "sharedStructuresExpected": {
+    "publicFormBundles": {
+      "examples": ["MG05+MG11+charge_sheet", "MG05+MG06+bail_notice", "SJP_pack", "IDPC_thin"],
+      "countOfCommonBundles": 8,
+      "repetitionAllowed": true,
+      "rejectionForbiddenForRepetitionAlone": true
+    },
+    "chargeFamilyBuckets": {
+      "illustrative": [
+        "shoplifting_theft",
+        "common_assault_battery",
+        "public_order_summary",
+        "simple_possession",
+        "motoring_sjp_summary",
+        "low_value_criminal_damage",
+        "harassment_thin",
+        "bail_condition_simple"
+      ],
+      "bucketCount": 8,
+      "largestClusterMaxShare": 0.35,
+      "largestClusterMaxCount": 210
+    },
+    "defencePositionSharing": {
+      "denyAndNeutralMayDominate": true,
+      "largestClusterMaxShare": 0.45,
+      "largestClusterMaxCount": 270
+    },
+    "proceduralStageSharing": {
+      "charge_first_hearing_and_police_station_common": true,
+      "largestClusterMaxShare": 0.4,
+      "largestClusterMaxCount": 240
+    },
+    "documentLayoutSharing": {
+      "born_digital_pdf_common": true,
+      "largestClusterMaxShare": 0.35,
+      "largestClusterMaxCount": 210
+    },
+    "documentGraphSharing": {
+      "largestClusterMaxShare": 0.18,
+      "largestClusterMaxCount": 108,
+      "note": "Many routine packs can share the same document-existence graph."
+    },
+    "evidenceGraphSharing": {
+      "largestClusterMaxShare": 0.15,
+      "largestClusterMaxCount": 90
+    }
+  },
+  "distinguishingAxesForCombinedSignature": [
+    { "axis": "facts", "illustrativeCardinality": 12 },
+    { "axis": "partiesAttribution", "illustrativeCardinality": 6 },
+    { "axis": "evidenceStates", "illustrativeCardinality": 6 },
+    { "axis": "contradictions", "illustrativeCardinality": 5 },
+    { "axis": "documentRelationships", "illustrativeCardinality": 6 },
+    { "axis": "procedure", "illustrativeCardinality": 5 },
+    { "axis": "defence", "illustrativeCardinality": 6 },
+    { "axis": "missingMaterial", "illustrativeCardinality": 5 },
+    { "axis": "expectedCaseBrainBehaviour", "illustrativeCardinality": 5 }
+  ],
+  "combinatorialLowerBound": {
+    "method": "Conservative product using only a subset of axes with reduced cardinalities to avoid overclaim.",
+    "reducedAxesUsed": [
+      "facts(8)",
+      "partiesAttribution(4)",
+      "evidenceStates(4)",
+      "contradictions(3)",
+      "documentRelationships(4)",
+      "procedure(3)",
+      "defence(4)",
+      "missingMaterial(3)",
+      "expectedCaseBrainBehaviour(3)"
+    ],
+    "product": 165888,
+    "calculation": "8*4*4*3*4*3*4*3*3 = 165888",
+    "minimumDistinctAxesVsNearestNeighbour": 2,
+    "implication": "Even under reduced cardinalities, available substantive combinations >> 600, so routine matters need not invent ID/salt/cosmetic uniqueness.",
+    "withSharedPublicForms": "Holding publicFormStructure fixed still leaves 165888 combinations across the nine axes."
+  },
+  "nonCollapseGuarantees": [
+    "L1 identities remain unique (caseId/packet/source/output hashes).",
+    "Combined semantic signature target unique rate = 1.0 within routine_volume.",
+    "Combined signature dominance cap = 0.5% (max cluster 3) as fail-closed brake only.",
+    "Cosmetic uniqueness rejection detector blocks manufactured diversity.",
+    "Document/evidence graph clustering within caps does not alone satisfy uniqueness."
+  ],
+  "explicitlyNotProvenHere": [
+    "Actual selection or generation of 600 matters",
+    "Empirical cluster histograms from a membership",
+    "PASS on routine coverage"
+  ],
+  "validationHooks": [
+    "When routine_volume membership exists: report shared form repetition counts (informational).",
+    "Assert combinedSemanticSignature unique rate == 1.0 for the 600.",
+    "Assert documentGraph/evidenceGraph largest shares ≤ caps.",
+    "Assert cosmetic detector reject count for accepted members == 0."
+  ]
+}

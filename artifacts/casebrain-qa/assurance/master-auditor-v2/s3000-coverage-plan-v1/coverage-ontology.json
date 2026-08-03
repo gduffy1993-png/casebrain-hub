@@ -1,0 +1,330 @@
+{
+  "schemaVersion": "s3000-coverage-ontology@1.0.0",
+  "locked": true,
+  "jurisdiction": "England and Wales",
+  "purpose": "Define measurable multidimensional coverage axes for a future 3000-case criminal-defence corpus. Not a claim of universal legal enumeration.",
+  "casesSelectedOrGenerated": false,
+  "countingRules": {
+    "primaryHomeExclusive": "Exactly one primaryStratumHome per case; home quotas sum to 3000.",
+    "secondaryTagsAdditive": "Secondary tags and cross-cutting axes may appear on any case; floors are minima, not exclusive homes.",
+    "multiDimensionAllowed": true,
+    "cosmeticOnlyDoesNotCount": "Name/date/ID/layout-noise-only changes do not create a new coverage cell.",
+    "absenceIsCoverage": "Deliberate missing, referred-only, unsupported, and not_exercised states are first-class coverage cells when truth-keyed."
+  },
+  "axes": {
+    "primaryStratumHome": {
+      "id": "primaryStratumHome",
+      "cardinality": "exactly_one",
+      "values": [
+        {
+          "id": "routine_volume",
+          "label": "Routine volume matters",
+          "homeQuota": 600,
+          "includes": [
+            "shoplifting_theft",
+            "low_value_criminal_damage",
+            "common_assault_battery",
+            "public_order_summary",
+            "simple_possession",
+            "motoring_sjp_summary",
+            "bail_condition_simple",
+            "harassment_first_complaint_thin"
+          ],
+          "excludesAsHome": [
+            "homicide",
+            "indictable_only_sexual",
+            "heavy_native_digital_export_as_primary_purpose",
+            "appeal_as_primary_purpose"
+          ]
+        },
+        {
+          "id": "serious_violence_sexual",
+          "label": "Serious violence / sexual matters",
+          "homeQuota": 600,
+          "includes": [
+            "abh_s20_s18",
+            "robbery_aggravated_burglary",
+            "strangulation",
+            "rape_sexual_assault",
+            "historic_sexual_abe",
+            "child_cruelty_serious",
+            "homicide_awaiting_qualified_review_structural_only_when_tagged"
+          ],
+          "notes": "Homicide/serious sexual charge wording may remain awaiting_qualified_legal_review; structural coverage still counts when explicitly tagged."
+        },
+        {
+          "id": "digital_phone_financial_attribution",
+          "label": "Digital / phone / financial / attribution matters",
+          "homeQuota": 450,
+          "includes": [
+            "phone_download_attribution",
+            "encro_handle_mapping",
+            "social_media_handles",
+            "bank_device_subscriber",
+            "fraud_transaction_schedules",
+            "anpr_telematics",
+            "prison_calls",
+            "cloud_export_native"
+          ]
+        },
+        {
+          "id": "disclosure_multi_defendant_procedural",
+          "label": "Disclosure / multi-defendant / procedural matters",
+          "homeQuota": 450,
+          "includes": [
+            "mg6_series_cpiA",
+            "unused_schedule_gaps",
+            "late_disclosure",
+            "multi_defendant_segregation",
+            "joinder_severance",
+            "charge_mg5_hearing_conflicts",
+            "defence_statement_consequences",
+            "pii_application_structural"
+          ]
+        },
+        {
+          "id": "youth_mental_health_welsh_interpreter_pii",
+          "label": "Youth / mental-health / Welsh / interpreter / translation / PII matters",
+          "homeQuota": 300,
+          "includes": [
+            "youth_aa_yjs",
+            "intermediary_ground_rules",
+            "fitness_to_plead",
+            "mental_health_remand",
+            "welsh_language_source_authority",
+            "interpreter_lifecycle",
+            "certified_translation_pairing",
+            "pii_sensitive_schedule_boundary"
+          ]
+        },
+        {
+          "id": "heavy_ocr_scanned_malformed_encrypted_mixed",
+          "label": "Heavy / OCR / scanned / malformed / encrypted / mixed-format matters",
+          "homeQuota": 300,
+          "includes": [
+            "page_volume_heavy",
+            "poor_ocr",
+            "rotated_duplicate_pages",
+            "mixed_born_digital_and_scan",
+            "password_protected_pdf",
+            "corrupt_recoverable_pdf",
+            "native_csv_xlsx_json_eml_with_pdf",
+            "unsupported_declared_format"
+          ]
+        },
+        {
+          "id": "bail_sentencing_newton_appeal_unusual",
+          "label": "Bail / sentencing / Newton / appeal / unusual court pathways",
+          "homeQuota": 300,
+          "includes": [
+            "opposed_bail_variation_breach",
+            "basis_of_plea_dispute",
+            "newton_hearing",
+            "psr_dangerousness_ancillary",
+            "magistrates_to_crown_appeal",
+            "conviction_or_sentence_appeal_structural",
+            "sjp_to_allocation_unusual",
+            "civil_criminal_order_overlap_pathway"
+          ]
+        }
+      ]
+    },
+    "complexityTier": {
+      "id": "complexityTier",
+      "cardinality": "exactly_one",
+      "values": [
+        { "id": "easy", "quota": 900, "meaning": "Thin coherent pack; single primary trap; low page/doc load." },
+        { "id": "moderate", "quota": 1200, "meaning": "Multiple documents; one or two meaningful conflicts; ordinary Crown or busy Magistrates." },
+        { "id": "complex", "quota": 600, "meaning": "Multi-trap; multi-defendant or amended instruments or dense chronology." },
+        { "id": "heavy", "quota": 300, "meaning": "High page/doc load and/or native mixed formats and/or multi-stage procedural lifecycle." }
+      ]
+    },
+    "documentCountBand": {
+      "id": "documentCountBand",
+      "cardinality": "exactly_one",
+      "values": [
+        { "id": "docs_1_5", "quota": 600 },
+        { "id": "docs_6_15", "quota": 900 },
+        { "id": "docs_16_40", "quota": 800 },
+        { "id": "docs_41_100", "quota": 500 },
+        { "id": "docs_101_plus", "quota": 200 }
+      ]
+    },
+    "pageVolumeBand": {
+      "id": "pageVolumeBand",
+      "cardinality": "exactly_one",
+      "values": [
+        { "id": "pages_1_20", "quota": 500 },
+        { "id": "pages_21_80", "quota": 900 },
+        { "id": "pages_81_150", "quota": 700 },
+        { "id": "pages_151_300", "quota": 600 },
+        { "id": "pages_301_500", "quota": 200 },
+        { "id": "pages_501_plus", "quota": 100 }
+      ]
+    },
+    "chargeInstrumentState": {
+      "id": "chargeInstrumentState",
+      "cardinality": "exactly_one_primary_plus_optional_tags",
+      "values": [
+        { "id": "charge_only_initial", "floor": 400 },
+        { "id": "amended_instrument", "floor": 500 },
+        { "id": "superseded_history_present", "floor": 350 },
+        { "id": "operative_indictment", "floor": 500 },
+        { "id": "mixed_counts_or_alternatives", "floor": 400 },
+        { "id": "gap_ngap_or_allocation_split", "floor": 350 },
+        { "id": "conflicting_mg5_charge_hearing", "floor": 500 }
+      ],
+      "note": "Floors may sum above 3000 because a case can satisfy more than one charge-state tag; each case still has one primaryChargeState."
+    },
+    "evidenceServiceState": {
+      "id": "evidenceServiceState",
+      "cardinality": "multi_tag_with_primary",
+      "values": [
+        { "id": "served_complete", "floor": 800 },
+        { "id": "partial", "floor": 700 },
+        { "id": "missing_truth_keyed", "floor": 500 },
+        { "id": "referred_only", "floor": 500 },
+        { "id": "unreliable_or_contested", "floor": 400 },
+        { "id": "later_disclosure_wave", "floor": 300 }
+      ]
+    },
+    "attributionAndCoDefendantTrap": {
+      "id": "attributionAndCoDefendantTrap",
+      "cardinality": "multi_tag_with_primary",
+      "values": [
+        { "id": "single_defendant_clean_attribution", "floor": 700 },
+        { "id": "wrong_person_phone_or_exhibit", "floor": 250 },
+        { "id": "device_account_user_sender_separation", "floor": 250 },
+        { "id": "co_defendant_bleed", "floor": 300 },
+        { "id": "exhibit_label_collision", "floor": 250 },
+        { "id": "alias_or_aka_collision", "floor": 200 },
+        { "id": "handle_unmapped", "floor": 200 },
+        { "id": "multi_defendant_segregation_required", "floor": 350 },
+        { "id": "joint_enterprise_or_role_dispute", "floor": 200 }
+      ]
+    },
+    "chronologyConflict": {
+      "id": "chronologyConflict",
+      "cardinality": "exactly_one_primary",
+      "values": [
+        { "id": "chronology_consistent", "quota": 1200 },
+        { "id": "date_or_timestamp_conflict", "quota": 500 },
+        { "id": "custody_clock_conflict", "quota": 300 },
+        { "id": "interview_timing_conflict", "quota": 300 },
+        { "id": "hearing_listing_split", "quota": 400 },
+        { "id": "service_timeline_conflict", "quota": 300 }
+      ]
+    },
+    "defencePosition": {
+      "id": "defencePosition",
+      "cardinality": "exactly_one_primary",
+      "values": [
+        { "id": "deny", "quota": 700 },
+        { "id": "partial_admit", "quota": 400 },
+        { "id": "self_defence_or_defence_of_another", "quota": 250 },
+        { "id": "alibi", "quota": 250 },
+        { "id": "no_comment_or_pace_issue", "quota": 300 },
+        { "id": "abuse_of_process_or_exclusion", "quota": 150 },
+        { "id": "fitness_or_capacity_issue", "quota": 150 },
+        { "id": "nrm_or_s45_indicator_structural", "quota": 100 },
+        { "id": "basis_of_plea_dispute", "quota": 250 },
+        { "id": "neutral_or_undeclared_early", "quota": 450 }
+      ]
+    },
+    "proceduralStage": {
+      "id": "proceduralStage",
+      "cardinality": "exactly_one_primary",
+      "values": [
+        { "id": "police_station_pace", "quota": 350 },
+        { "id": "charge_first_hearing", "quota": 400 },
+        { "id": "bail_remand", "quota": 300 },
+        { "id": "ptph_or_bcm", "quota": 400 },
+        { "id": "disclosure_cpiA", "quota": 400 },
+        { "id": "trial_preparation", "quota": 300 },
+        { "id": "sentence_or_newton", "quota": 250 },
+        { "id": "appeal", "quota": 200 },
+        { "id": "unusual_pathway", "quota": 200 },
+        { "id": "multi_stage_lifecycle", "quota": 200 }
+      ]
+    },
+    "documentLayoutOrNativeFormat": {
+      "id": "documentLayoutOrNativeFormat",
+      "cardinality": "multi_tag_with_primary",
+      "values": [
+        { "id": "born_digital_pdf", "floor": 700 },
+        { "id": "scanned_searchable_ocr", "floor": 500 },
+        { "id": "mixed_born_and_scan", "floor": 400 },
+        { "id": "poor_ocr_rotated_or_duplicate", "floor": 250 },
+        { "id": "table_or_schedule_heavy", "floor": 250 },
+        { "id": "docx_native", "floor": 150 },
+        { "id": "csv_or_xlsx_native", "floor": 150 },
+        { "id": "eml_or_msg", "floor": 150 },
+        { "id": "image_or_screenshot_pack", "floor": 150 },
+        { "id": "encrypted_or_password_protected", "floor": 100 },
+        { "id": "malformed_or_corrupt_recoverable", "floor": 100 },
+        { "id": "unsupported_format_declared", "floor": 100 }
+      ]
+    },
+    "productionExits": {
+      "id": "productionExits",
+      "cardinality": "per_exit_declaration_required",
+      "sixProductionExits": [
+        "view",
+        "copy",
+        "export",
+        "api",
+        "pdf",
+        "composed_prose"
+      ],
+      "browserAvailability": {
+        "id": "browser",
+        "default": "not_exercised_unless_separately_authorised",
+        "plannedDeclaredAvailableFloor": 50,
+        "note": "Browser is tracked separately from the six production exits; availability ≠ exercised."
+      },
+      "rules": [
+        "Every future case must declare each of the six exits as planned_exercise, deliberate_not_exercised, or blocked_by_absence.",
+        "Silent omission of an exit is forbidden.",
+        "Exit coverage is measured later against declarations; this blueprint only locks the declaration schema and floors."
+      ],
+      "floorsWhenExercisedLater": {
+        "view": 3000,
+        "copy": 3000,
+        "export": 2500,
+        "api": 2500,
+        "pdf": 1500,
+        "composed_prose": 2500,
+        "browser_declared_available": 50
+      }
+    },
+    "deliberateAbsenceAndUnsupported": {
+      "id": "deliberateAbsenceAndUnsupported",
+      "cardinality": "multi_tag",
+      "values": [
+        { "id": "truth_keyed_missing_source", "floor": 300 },
+        { "id": "referred_not_served", "floor": 250 },
+        { "id": "index_says_served_body_absent", "floor": 200 },
+        { "id": "unsupported_native_input_not_exercised", "floor": 100 },
+        { "id": "thin_index_only_pack", "floor": 150 },
+        { "id": "encrypted_unread_without_password", "floor": 80 }
+      ]
+    }
+  },
+  "deferredSpecialistVisibleButOutsideClaim": [
+    "terrorism_national_security",
+    "extradition",
+    "private_prosecutions",
+    "complex_regulatory_crime",
+    "prison_law_parole_recall",
+    "military_service_justice",
+    "corporate_manslaughter",
+    "deaths_in_custody_closed_procedures"
+  ],
+  "representationStatuses": [
+    "planned_substantive",
+    "planned_structural_only",
+    "awaiting_qualified_legal_review",
+    "deferred_specialist",
+    "not_applicable_with_reason"
+  ]
+}

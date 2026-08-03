@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "s3000-coverage-gap-report-schema@1.0.0",
+  "locked": true,
+  "casesSelectedOrGenerated": false,
+  "purpose": "Machine-readable schema for reporting coverage gaps against the locked ontology and quota matrix. No gap instance is populated by this blueprint.",
+  "reportDocument": {
+    "requiredTopLevelFields": [
+      "schemaVersion",
+      "generatedAt",
+      "authorityBaselineCommit",
+      "blueprintRef",
+      "populationCountObserved",
+      "membershipSha256OrNull",
+      "quotaCompliance",
+      "couplingCompliance",
+      "uniquenessCompliance",
+      "shardCompliance",
+      "gapCells",
+      "overfilledCells",
+      "deferredSpecialistVisible",
+      "honestyBounds",
+      "programmePassSupported"
+    ],
+    "programmePassSupportedMustBe": false,
+    "blueprintRef": {
+      "ontology": "coverage-ontology.json",
+      "quotaMatrix": "quota-matrix.json",
+      "shards": "shard-allocation-policy.json"
+    }
+  },
+  "gapCellSchema": {
+    "type": "object",
+    "required": [
+      "gapId",
+      "axis",
+      "cellId",
+      "quotaKind",
+      "requiredCount",
+      "observedCount",
+      "deficit",
+      "severity",
+      "blockingForFreeze",
+      "suggestedFillStrategy",
+      "relatedAxes"
+    ],
+    "properties": {
+      "gapId": { "type": "string", "pattern": "^GAP-[0-9]{4}$" },
+      "axis": {
+        "type": "string",
+        "enum": [
+          "primaryStratumHome",
+          "complexityTier",
+          "documentCountBand",
+          "pageVolumeBand",
+          "chargeInstrumentState",
+          "evidenceServiceState",
+          "attributionAndCoDefendantTrap",
+          "chronologyConflict",
+          "defencePosition",
+          "proceduralStage",
+          "documentLayoutOrNativeFormat",
+          "productionExits",
+          "browserAvailability",
+          "deliberateAbsenceAndUnsupported",
+          "crossCuttingCoupling",
+          "semanticUniqueness",
+          "shardEnvelope"
+        ]
+      },
+      "cellId": { "type": "string" },
+      "quotaKind": {
+        "type": "string",
+        "enum": ["homeExclusive", "floorMultiTag", "declarationFloor", "coupling", "uniqueness", "shard"]
+      },
+      "requiredCount": { "type": "integer", "minimum": 0 },
+      "observedCount": { "type": "integer", "minimum": 0 },
+      "deficit": { "type": "integer", "minimum": 0 },
+      "severity": {
+        "type": "string",
+        "enum": ["blocking", "major", "minor", "informational"]
+      },
+      "blockingForFreeze": { "type": "boolean" },
+      "suggestedFillStrategy": {
+        "type": "string",
+        "enum": [
+          "add_new_unique_matters",
+          "retag_existing_if_truth_supports",
+          "rebalance_across_shards",
+          "declare_deliberate_not_exercised",
+          "defer_specialist_with_reason",
+          "await_qualified_legal_review",
+          "no_fill_honesty_bound"
+        ]
+      },
+      "relatedAxes": { "type": "array", "items": { "type": "string" } },
+      "exampleMissingAssertion": { "type": "string" },
+      "notes": { "type": "string" }
+    }
+  },
+  "quotaComplianceSchema": {
+    "perAxis": {
+      "axis": "string",
+      "kind": "string",
+      "rows": [
+        {
+          "cellId": "string",
+          "required": "integer",
+          "observed": "integer",
+          "status": "met|deficit|overfill|not_applicable"
+        }
+      ]
+    }
+  },
+  "uniquenessComplianceSchema": {
+    "policyRef": "semantic-uniqueness-dimensions@1.1.0",
+    "requiredFields": [
+      "uniqueCaseIds",
+      "uniquePacketHashes",
+      "uniqueCompleteSourceFingerprints",
+      "uniqueCompleteOutputFingerprints",
+      "combinedSemanticSignatureUniqueRate",
+      "combinedSemanticSignatureLargestClusterShareByStratum",
+      "documentGraphLargestClusterShareByStratum",
+      "evidenceGraphLargestClusterShareByStratum",
+      "dimensionClusterHistograms",
+      "publicFormRepetitionInformational",
+      "safetyWordingRepetitionReport",
+      "cosmeticUniquenessRejectionHits",
+      "nearestNeighbourAxisDeltaDistribution",
+      "rejectedSubstitutionAttempts",
+      "dominanceCapBreaches"
+    ],
+    "withdrawnFields": [
+      "largestExactCluster_blanket_max_1",
+      "largestNearDuplicateCluster_blanket_max_1",
+      "uniqueDocumentRelationshipFingerprints_required_3000",
+      "uniqueSourceFingerprints_required_3000_as_semantic_rule"
+    ]
+  },
+  "shardComplianceSchema": {
+    "perShard": [
+      {
+        "shardId": "S01",
+        "caseCount": 250,
+        "primaryHomeCounts": {},
+        "complexityCounts": {},
+        "minimumFloors": {},
+        "capViolations": [],
+        "status": "ok|gap|cap_violation"
+      }
+    ]
+  },
+  "honestyBoundsRequiredText": [
+    "This report measures progress against the locked S3000 coverage plan.",
+    "It does not claim every legal possibility can be enumerated.",
+    "Deferred specialist domains remain outside the coverage claim even when visible.",
+    "programmePassSupported remains false unless a separately authorised checkpoint says otherwise."
+  ],
+  "severityPolicy": {
+    "homeExclusiveDeficit": "blocking",
+    "couplingDeficit": "blocking",
+    "l1IdentityDuplicate": "blocking",
+    "combinedSemanticSignatureDuplicate": "blocking",
+    "dominanceCapBreach": "blocking",
+    "cosmeticUniquenessHit": "blocking",
+    "wrongfulRejectSharedPublicFormOrSingleDimension": "blocking",
+    "individualDimensionClusterGt1": "informational_allowed",
+    "floorMultiTagDeficit": "major_unless_marked_blocking_in_matrix",
+    "browserFloorDeficit": "minor_until_browser_lane_authorised",
+    "overfillWithoutCapBreach": "informational"
+  },
+  "emptyInstanceNote": "No gapCells are emitted by this blueprint checkpoint; schema only."
+}

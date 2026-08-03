@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "s3000-shard-allocation-policy@1.0.0",
+  "locked": true,
+  "casesSelectedOrGenerated": false,
+  "population": 3000,
+  "shardCount": 12,
+  "casesPerShard": 250,
+  "shardIds": [
+    "S01", "S02", "S03", "S04", "S05", "S06",
+    "S07", "S08", "S09", "S10", "S11", "S12"
+  ],
+  "designGoals": [
+    "Each shard is a balanced mini-corpus, not a mono-stratum batch.",
+    "Parallel audit/remediation can run per shard without waiting for full 3000.",
+    "Global uniqueness and global quotas remain authoritative; shard quotas are local envelopes.",
+    "No shard becomes a covert overfitting lane for one trap family."
+  ],
+  "perShardPrimaryHomeEnvelope": {
+    "note": "Exact integers; 12 shards × values = global primary homes.",
+    "routine_volume": 50,
+    "serious_violence_sexual": 50,
+    "digital_phone_financial_attribution": { "base": 37, "remainderShards": ["S01", "S02", "S03", "S04", "S05", "S06"], "remainderEach": 1, "effective": "37 or 38" },
+    "disclosure_multi_defendant_procedural": { "base": 37, "remainderShards": ["S07", "S08", "S09", "S10", "S11", "S12"], "remainderEach": 1, "effective": "37 or 38" },
+    "youth_mental_health_welsh_interpreter_pii": 25,
+    "heavy_ocr_scanned_malformed_encrypted_mixed": 25,
+    "bail_sentencing_newton_appeal_unusual": 25
+  },
+  "exactPerShardPrimaryHome": {
+    "explanation": "digital remainder on S01–S06 (+1); disclosure remainder on S07–S12 (+1). All shards total 250.",
+    "S01_to_S06": {
+      "routine_volume": 50,
+      "serious_violence_sexual": 50,
+      "digital_phone_financial_attribution": 38,
+      "disclosure_multi_defendant_procedural": 37,
+      "youth_mental_health_welsh_interpreter_pii": 25,
+      "heavy_ocr_scanned_malformed_encrypted_mixed": 25,
+      "bail_sentencing_newton_appeal_unusual": 25,
+      "total": 250
+    },
+    "S07_to_S12": {
+      "routine_volume": 50,
+      "serious_violence_sexual": 50,
+      "digital_phone_financial_attribution": 37,
+      "disclosure_multi_defendant_procedural": 38,
+      "youth_mental_health_welsh_interpreter_pii": 25,
+      "heavy_ocr_scanned_malformed_encrypted_mixed": 25,
+      "bail_sentencing_newton_appeal_unusual": 25,
+      "total": 250
+    }
+  },
+  "perShardComplexityEnvelope": {
+    "easy": 75,
+    "moderate": 100,
+    "complex": 50,
+    "heavy": 25,
+    "total": 250
+  },
+  "perShardMinimumFloors": {
+    "non_clean_attribution_trap": 40,
+    "evidence_partial_missing_or_referred": 55,
+    "chronology_conflict_any": 40,
+    "amended_or_superseded_or_conflicting_charge": 40,
+    "native_non_pdf_or_mixed_or_degraded_layout": 35,
+    "deliberate_absence_tag": 20,
+    "defence_position_not_deny_or_neutral": 55,
+    "procedural_stage_beyond_charge_first_hearing": 90
+  },
+  "balanceCaps": {
+    "maxShareAnyPrimaryHomeInsideShard": 0.24,
+    "maxShareAnySingleOffenceFamilyInsideShard": 0.12,
+    "maxShareAnySingleAttributionTrapInsideShard": 0.16,
+    "maxShareAnySingleLayoutPrimaryInsideShard": 0.36,
+    "forbidMonoTrapShard": true
+  },
+  "shardRoles": {
+    "S01": { "role": "pilot_calibration", "notes": "First shard authorised for any future dry-run selection only after plan acceptance." },
+    "S02": { "role": "calibration_replicate", "notes": "Must not be a cosmetic near-copy of S01; same envelopes, distinct combined semantic signatures (L2), not manufactured ID/salt diversity." },
+    "S03_to_S08": { "role": "main_parallel_wave", "notes": "Ordinary parallel coverage shards." },
+    "S09_to_S10": { "role": "stress_enriched", "notes": "Still obey envelopes, but prefer packing remaining heavy/complex coupling slack here if global floors need catch-up." },
+    "S11_to_S12": { "role": "delayed_validation_candidates", "notes": "May later host sealed-truth delayed validation under separate custody protocol; not selected or sealed by this blueprint." }
+  },
+  "allocationAlgorithmPolicy": {
+    "order": [
+      "Assign L1 identities and L2 combined semantic signatures under layered uniqueness policy (no generation here).",
+      "Fill primaryStratumHome quotas into shard envelopes.",
+      "Satisfy complexityTier envelopes per shard.",
+      "Satisfy per-shard minimum floors.",
+      "Backfill remaining cross-cutting floors globally with shard-cap checks.",
+      "Reject L1 duplicates, combined-signature duplicates, dominance-cap breaches, and cosmetic-uniqueness hits; do not reject shared public forms or single-dimension clusters alone."
+    ],
+    "rebalancing": "If a shard cannot meet a floor without violating a cap, move candidate to another shard; never manufacture uniqueness via IDs/salts/cosmetics.",
+    "noSequentialFamilyFill": "Do not fill shard 1 with all of one family then shard 2 with the next."
+  },
+  "parallelismPolicy": {
+    "maxConcurrentShardsSuggested": 4,
+    "shardIndependence": "Shard processing must not mutate another shard's membership or truth keys.",
+    "globalLedgerRequired": "Coverage-gap and uniqueness reports remain global, with per-shard rollups."
+  },
+  "exitDeclarationPolicyPerShard": {
+    "everyCaseDeclaresSixExitsPlusBrowser": true,
+    "browserDeclaredAvailableGlobalFloor": 50,
+    "browserSpread": "At least 4 shards must contain ≥1 browser_declared_available case when that floor is filled later."
+  },
+  "forbiddenShardPatterns": [
+    "All heavy cases concentrated in one shard",
+    "All youth/Welsh/interpreter/PII cases concentrated in one shard",
+    "All appeal/Newton cases concentrated in one shard",
+    "A shard that is >50% easy routine_volume",
+    "A shard used as cosmetic clone farm of another shard"
+  ]
+}
