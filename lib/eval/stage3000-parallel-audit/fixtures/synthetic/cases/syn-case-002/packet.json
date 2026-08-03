@@ -1,0 +1,8 @@
+{
+  "caseId": "syn-case-002",
+  "presentInputs": [
+    "packet.json",
+    "casebrain-output.json",
+    "included_solicitor_visible_wording"
+  ]
+}
