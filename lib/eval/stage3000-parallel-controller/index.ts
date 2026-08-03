@@ -19,5 +19,6 @@ export * from "./checkpoints";
 export * from "./checkpoint-store";
 export * from "./reconciliation";
 export * from "./generator-port";
+export * from "./diverse-v2144-generator-port";
 export * from "./pass-gate";
 export * from "./controller";

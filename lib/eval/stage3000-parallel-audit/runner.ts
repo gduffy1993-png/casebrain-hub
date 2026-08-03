@@ -347,9 +347,9 @@ export async function runParallelAuditFoundation(
 
 function extractExactFromEvidence(receipt: MachineReceipt, index: number): string {
   // Fixtures may put EXACT::<wording> markers in plainEnglish for unit retention tests.
-  const m = receipt.plainEnglish.match(/EXACT::<<(.*?)>>/s);
+  const m = receipt.plainEnglish.match(/EXACT::<<([\s\S]*?)>>/);
   if (m) return m[1] ?? "";
-  const multi = [...receipt.plainEnglish.matchAll(/EXACT\[(\d+)\]::<<(.*?)>>/gs)];
+  const multi = [...receipt.plainEnglish.matchAll(/EXACT\[(\d+)\]::<<([\s\S]*?)>>/g)];
   if (multi.length > 0) {
     const hit = multi.find((x) => Number(x[1]) === index);
     return hit?.[2] ?? multi[0]?.[2] ?? "";

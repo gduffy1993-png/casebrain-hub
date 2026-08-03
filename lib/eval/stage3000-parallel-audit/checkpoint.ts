@@ -9,7 +9,8 @@ import path from "node:path";
 import { S3000_CHECKPOINT_SCHEMA } from "./constants";
 import { ledgerKey, sha256Hex } from "./hashes";
 import { appendJsonl, iterateJsonl } from "./jsonl-stream";
-import type { CheckpointRecord, RunnerPhase } from "./types";
+import type { CheckpointRecord } from "./types";
+import type { RunnerPhase } from "./constants";
 
 export type CheckpointStore = {
   ledgerAbsPath: string;

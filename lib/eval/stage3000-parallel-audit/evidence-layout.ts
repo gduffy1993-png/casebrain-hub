@@ -32,7 +32,7 @@ export type EvidencePaths = {
 export function buildEvidencePaths(
   repoRoot: string,
   runId: string,
-  artifactRootRel = S3000_ARTIFACT_ROOT,
+  artifactRootRel: string = S3000_ARTIFACT_ROOT,
 ): EvidencePaths {
   const bulkRootRel = `${artifactRootRel}/bulk-evidence/${runId}`;
   const indexRootRel = `${artifactRootRel}/indexes/${runId}`;

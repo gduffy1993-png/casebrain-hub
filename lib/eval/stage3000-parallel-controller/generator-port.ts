@@ -136,10 +136,14 @@ export function bindAcceptedGeneratorPort(
   if (port.generatorVersionPin === GENERATOR_VERSION_PIN_UNBOUND) {
     throw new Error("cannot bind placeholder unbound version pin");
   }
-  if (!port.generatorVersionPin.includes("V2.1.2") && !port.generatorVersionPin.startsWith("SYNTHETIC-")) {
-    // Allow synthetic pins in contracts; require V2.1.2 marker for real binds later.
+  if (
+    !port.generatorVersionPin.includes("V2.1.2") &&
+    !port.generatorVersionPin.includes("V2.1.4.4") &&
+    !port.generatorVersionPin.startsWith("SYNTHETIC-")
+  ) {
+    // Allow synthetic pins in contracts; require accepted V2.1.2 / V2.1.4.4 marker for real binds.
     throw new Error(
-      `refusing bind: generatorVersionPin must reference accepted V2.1.2 (got ${port.generatorVersionPin})`,
+      `refusing bind: generatorVersionPin must reference accepted V2.1.2 or V2.1.4.4 (got ${port.generatorVersionPin})`,
     );
   }
   return port;
