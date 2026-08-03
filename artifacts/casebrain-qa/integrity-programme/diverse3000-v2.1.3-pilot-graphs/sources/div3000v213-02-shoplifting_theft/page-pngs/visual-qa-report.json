@@ -1,0 +1,146 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/bundle-fictional-test.pdf",
+  "pageCount": 8,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-001.png",
+      "pngSha256": "0f5341060c49a632c003e39a16fc06ec1c869efc0556e47587e30a380aa7b227",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1915,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.26,
+        "nonWhiteRatio": 0.1254,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-002.png",
+      "pngSha256": "5a30ec80cceffd8cb6b2a80a92c90af2e600664689b498bc93a3913c1719c68e",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 2156,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.52,
+        "nonWhiteRatio": 0.1315,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-003.png",
+      "pngSha256": "9e1ad968ecb2e9d69b03b214edcd6c1a82a60b15ee8b2574011c3a1c132eb456",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1713,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 244.43,
+        "nonWhiteRatio": 0.0836,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-004.png",
+      "pngSha256": "2b8373bd7fa343c3ce5d6b75ad809bd317c94a06b27fef519375698331c7174b",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1280,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 245.55,
+        "nonWhiteRatio": 0.0759,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-005.png",
+      "pngSha256": "f1ed4ca95c75d7ab68ff07d29ad64bd98c273e4b26b82f3fbc6cbe66545f68eb",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 691,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.97,
+        "nonWhiteRatio": 0.0538,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-006.png",
+      "pngSha256": "9ee203d44b378d1e7f866c41ea395f396d757b51d333deb3090e0d6b061a92d1",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1282,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.81,
+        "nonWhiteRatio": 0.0903,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-007.png",
+      "pngSha256": "ac6564cfde0eea3cf0fa9fdfd415d5c9b6872830e7233026ff355f7779379031",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1026,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.53,
+        "nonWhiteRatio": 0.0853,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-008.png",
+      "pngSha256": "8bf0fb324bb9262ef453075ade7f72d099eb37136556f3a4b1a16497ee9cfccb",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 679,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.07,
+        "nonWhiteRatio": 0.0391,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "eb91b02c5520c309b913cac1de798b1370e3504c16c8d71e5ea64823c4f26836",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

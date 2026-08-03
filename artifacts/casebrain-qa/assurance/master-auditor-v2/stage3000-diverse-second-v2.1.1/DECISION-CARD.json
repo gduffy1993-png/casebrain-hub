@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "diverse3000-v2.1.1-decision-card@1.0.0",
+  "verdict": "PILOT_GATE_INCOMPLETE_PENDING_DOCUMENT_REALISM__GENUINE_CONTROL_EXECUTION__OUTPUT_STRENGTH",
+  "v21ClaimCorrected": "PILOT_GATE_INCOMPLETE_PENDING_SOURCE_AND_VISUAL_REMEDIATION",
+  "v211MembershipSha256": "d109bcd431eede97e8d9fc1fdf260c507453239cdc0af7bb2b3d54c631f69777",
+  "parentV21MembershipSha256": "1ec51fc426293cb5af5a1b1ed47c4e13cbd578d7438df7086a216c4432b65c2f",
+  "gatePass": false,
+  "checks": {
+    "pdfOk": true,
+    "pngOk": true,
+    "visualStrictOk": true,
+    "missingOk": true,
+    "noInventedMissingPages": true,
+    "productionOk": true,
+    "coreOk": true,
+    "coreEvaluatedCount": 15,
+    "coreTargetCount": 15,
+    "candidateFreezeBeforeTruth": true
+  },
+  "doNot": {
+    "commit": true,
+    "push": true,
+    "merge": true,
+    "deploy": true,
+    "scaleBeyond20": true,
+    "corpusPass": true
+  },
+  "originalUnsupportedGatePassPreservedIn": "pilot-gate-result.json",
+  "correctionReport": "pilot-gate-claim-correction.json",
+  "supersededByLineage": "stage3000-diverse-second-v2.1.2",
+  "correctedBy": "stage3000-diverse-second-v2.1.2",
+  "correctedAt": "2026-08-02T22:59:14.179Z",
+  "originalVerdictPreservedInClaimCorrection": true,
+  "note": "Corrected incomplete — pilot-gate-result.json deliberately unchanged as historical evidence."
+}

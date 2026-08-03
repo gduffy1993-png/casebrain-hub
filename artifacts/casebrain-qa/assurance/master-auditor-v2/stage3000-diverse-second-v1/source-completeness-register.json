@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "source-completeness-register@1.0.0",
+  "counts": {
+    "deliberate_truth_keyed_missing_source": 300,
+    "complete_source_packet": 2627,
+    "unsupported_native_input_not_exercised": 73
+  }
+}

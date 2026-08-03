@@ -1,0 +1,8 @@
+{
+  "verdict": "PILOT_GATE_PASS_STOP_FOR_CODEX_BEFORE_SCALE",
+  "scaleGateAccepted": false,
+  "scaleRecommended": true,
+  "gatePass": true,
+  "blockers": [],
+  "v213ClaimCorrected": "PILOT_GATE_INCOMPLETE_PENDING_PROVENANCE_BOUND_SUBSTANTIVE_COVERAGE__EXIT_CAPABILITY_RECONCILIATION__CANDIDATE_TRIAGE"
+}

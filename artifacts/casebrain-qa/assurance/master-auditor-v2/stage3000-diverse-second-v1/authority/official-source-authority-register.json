@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "official-source-authority-register@1.0.0",
+  "frozen": true,
+  "frozenAt": "2026-08-02T18:27:36.954Z",
+  "retrievalDate": "2026-08-02",
+  "jurisdiction": "England and Wales",
+  "pendingFetch": false,
+  "doNotSilentlyChangeDuringFrozenRun": true,
+  "blogsMarketingUnauthoritativeForbidden": true,
+  "qualifiedLegalConfirmationStillRequiredForAll": true,
+  "records": [
+    {
+      "title": "Criminal Procedure Rules 2025 and Criminal Practice Directions 2023",
+      "issuingBody": "Criminal Procedure Rule Committee / Ministry of Justice",
+      "url": "https://www.gov.uk/guidance/criminal-procedure-rules-2025-and-criminal-practice-directions-2023",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": "2026-04-06",
+      "applicableVersion": "Criminal Procedure Rules 2025; Practice Directions 2023 (as updated)",
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Pinned procedural rules and practice directions for criminal courts",
+      "supports": [
+        "structure",
+        "procedure"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": true,
+      "notes": "GOV.UK guidance page last updated 6 April 2026 at retrieval."
+    },
+    {
+      "title": "Criminal Procedure Rules forms",
+      "issuingBody": "Ministry of Justice / Criminal Procedure Rule Committee",
+      "url": "https://www.gov.uk/guidance/criminal-procedure-rules-forms",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": null,
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Official CPR forms catalogue for structure/workflow coverage",
+      "supports": [
+        "structure",
+        "procedure"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "URL pinned; full page body not independently re-fetched in this freeze pass."
+    },
+    {
+      "title": "Criminal casefiles: forms, standards and file structure",
+      "issuingBody": "UK Government (Manual of Guidance / MG forms)",
+      "url": "https://www.gov.uk/government/publications/manual-of-guidance-and-mg-forms/criminal-casefiles-forms-standards-and-file-structure-accessible",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": null,
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "National File Standard and MG-form structure reference",
+      "supports": [
+        "structure",
+        "procedure"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "URL pinned for MG/casefile structure; not used as charge-wording gold."
+    },
+    {
+      "title": "CPS Prosecution Guidance Library",
+      "issuingBody": "Crown Prosecution Service",
+      "url": "https://www.cps.gov.uk/prosecution-guidance-library",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": null,
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Index of CPS prosecution guidance",
+      "supports": [
+        "procedure",
+        "specialist_review"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "Library index pinned; individual guides require separate confirmation."
+    },
+    {
+      "title": "CPS Disclosure Manual",
+      "issuingBody": "Crown Prosecution Service",
+      "url": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": "2022-07-14",
+      "applicableVersion": "Disclosure Manual (refreshed 14 July 2022); applies investigations from 4 April 2005",
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Disclosure duties including unused, sensitive, PII and defence disclosure structure",
+      "supports": [
+        "procedure",
+        "structure",
+        "specialist_review"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": true,
+      "notes": "Page states Revised 14 December 2018; Refreshed 14 July 2022."
+    },
+    {
+      "title": "Disclosure Manual Chapter 30 — Digital Material",
+      "issuingBody": "Crown Prosecution Service",
+      "url": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual-chapter-30-digital-material",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": "Chapter 30",
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Digital material disclosure workflow structure",
+      "supports": [
+        "procedure",
+        "structure"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "URL pinned; chapter linked from Disclosure Manual index."
+    },
+    {
+      "title": "Where to add case materials (HMCTS Common Platform)",
+      "issuingBody": "HMCTS / GOV.UK",
+      "url": "https://www.gov.uk/government/publications/how-to-use-hmcts-common-platform/where-to-add-case-materials",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": null,
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Common Platform material section placement",
+      "supports": [
+        "structure",
+        "procedure"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "URL pinned for structure only."
+    },
+    {
+      "title": "Add case documents to the Crown Court Digital Case System",
+      "issuingBody": "HMCTS / GOV.UK",
+      "url": "https://www.gov.uk/government/publications/add-case-documents-to-the-crown-court-digital-case-system",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": null,
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Crown Court DCS document structure",
+      "supports": [
+        "structure",
+        "procedure"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "URL pinned for structure only."
+    },
+    {
+      "title": "Forensic Science Activities — Statutory Code of Practice Version 2",
+      "issuingBody": "Forensic Science Regulator / GOV.UK",
+      "url": "https://www.gov.uk/government/publications/forensic-science-activities-statutory-code-of-practice-version-2",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": "Version 2",
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Forensic activity code structure and limits language",
+      "supports": [
+        "structure",
+        "specialist_review"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "URL pinned; specialist forensic conclusions remain deferred."
+    },
+    {
+      "title": "Criminal legal aid application forms",
+      "issuingBody": "Legal Aid Agency / GOV.UK",
+      "url": "https://www.gov.uk/government/collections/criminal-legal-aid-application-forms",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": null,
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Legal-aid application form structures",
+      "supports": [
+        "structure",
+        "procedure"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "URL pinned; not billing authenticity proof."
+    },
+    {
+      "title": "Legal aid crime claim forms",
+      "issuingBody": "Legal Aid Agency / GOV.UK",
+      "url": "https://www.gov.uk/government/collections/legal-aid-crime-claim-forms",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": null,
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Crime claim form structures",
+      "supports": [
+        "structure",
+        "procedure"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "URL pinned."
+    },
+    {
+      "title": "Crown Court Compendium",
+      "issuingBody": "Judiciary of England and Wales",
+      "url": "https://www.judiciary.uk/guidance-and-resources/crown-court-compendium/",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": null,
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Judicial compendium resource for specialist/procedure review boundaries",
+      "supports": [
+        "procedure",
+        "specialist_review"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "URL pinned; not used to invent directions."
+    },
+    {
+      "title": "Sentencing Council for England and Wales",
+      "issuingBody": "Sentencing Council",
+      "url": "https://www.sentencingcouncil.org.uk/",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": "2026-07-09",
+      "applicableVersion": "Current public guidelines site at retrieval",
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Sentencing guideline authority index",
+      "supports": [
+        "procedure",
+        "specialist_review"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": true,
+      "notes": "Home page retrieved; individual offence guidelines not auto-approved as charge gold."
+    },
+    {
+      "title": "SRA confidentiality of client information",
+      "issuingBody": "Solicitors Regulation Authority",
+      "url": "https://www.sra.org.uk/solicitors/guidance/confidentiality-client-information/",
+      "retrievalDate": "2026-08-02",
+      "publicationOrUpdateDate": null,
+      "applicableVersion": null,
+      "jurisdiction": "England and Wales",
+      "coveragePurpose": "Confidentiality / technology guidance boundary for privilege and copyability",
+      "supports": [
+        "procedure",
+        "specialist_review"
+      ],
+      "qualifiedLegalConfirmationStillRequired": true,
+      "fetchOk": false,
+      "notes": "URL pinned for confidentiality boundary design only."
+    }
+  ],
+  "fetchSummary": {
+    "total": 14,
+    "fetchOk": 3,
+    "urlPinnedOnly": 11
+  },
+  "note": "Frozen before second-3000 generation. Partial page-body fetch does not weaken the pin: URLs and retrieval date are fixed for this run."
+}

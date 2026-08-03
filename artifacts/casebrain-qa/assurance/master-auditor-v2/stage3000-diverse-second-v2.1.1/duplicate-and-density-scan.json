@@ -1,0 +1,104 @@
+{
+  "rows": [
+    {
+      "caseId": "div3000v211-01-common_assault_battery",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-02-shoplifting_theft",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-03-going_equipped",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-04-twoc",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-05-bladed_articles",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-06-affray",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-07-sexual_assault",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-08-strangulation_suffocation",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-09-blackmail",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-10-drugs_conspiracy_supply",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-11-social_media_attribution",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-12-perverting_course_of_justice",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-13-witness_intimidation",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-14-contempt",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-15-prison_offences",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-16-hearsay_res_gestae",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-17-corporate_manslaughter",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-18-conspiracy_to_defraud",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-19-riot",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    },
+    {
+      "caseId": "div3000v211-20-diplomatic_immunity",
+      "exactTextDuplicateGroups": [],
+      "pngDuplicateGroups": {}
+    }
+  ]
+}

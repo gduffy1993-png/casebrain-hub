@@ -1,0 +1,647 @@
+{
+  "caseId": "div3000v213-05-bladed_articles",
+  "generatedAt": "2026-08-03T01:07:17.121Z",
+  "source": "v2.1.2-structured-maa-output",
+  "chargeInstruments": [
+    {
+      "instrumentId": "inst-written_charge",
+      "instrumentType": "written_charge",
+      "exactWording": "## Particulars",
+      "count": 1,
+      "defendantAllocation": "defendant_0",
+      "sourceDocument": "written_charge",
+      "sourcePage": "1",
+      "sourcePageIdentity": "written_charge/page/1",
+      "pageIdentityKnown": true,
+      "status": "operative",
+      "version": "1",
+      "replacesInstrumentId": null,
+      "supersededByInstrumentId": null
+    }
+  ],
+  "evidenceStates": [
+    {
+      "source": "written_charge",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "1",
+      "sourcePageIdentity": "written_charge/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Written charge / requisition (fictional test) · written_charge/page/1",
+      "label": "written_charge::written_charge/page/1"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG05/page/1",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/1",
+      "label": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG05/page/2",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/2",
+      "label": "MG05::MG05/page/2"
+    },
+    {
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG6 File front sheet / index (fictional test) · MG06/page/1",
+      "label": "MG06::MG06/page/1"
+    },
+    {
+      "source": "MG12_exhibits",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG12_exhibits/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG12 exhibit list (fictional test) · MG12_exhibits/page/1",
+      "label": "MG12_exhibits",
+      "evidenceUnitId": "eu-MG12_exhibits",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG12_exhibits",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG12_exhibits/page/2",
+      "compiledPage": "6",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG12 exhibit list (fictional test) · MG12_exhibits/page/2",
+      "label": "MG12_exhibits::MG12_exhibits/page/2"
+    },
+    {
+      "source": "MG15_interview",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG15_interview/page/1",
+      "compiledPage": "7",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG15 interview record (fictional test) · MG15_interview/page/1",
+      "label": "MG15_interview",
+      "evidenceUnitId": "eu-MG15_interview",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "interview"
+    },
+    {
+      "source": "MG15_interview",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG15_interview/page/2",
+      "compiledPage": "8",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG15 interview record (fictional test) · MG15_interview/page/2",
+      "label": "MG15_interview::MG15_interview/page/2"
+    },
+    {
+      "source": "MG15_interview",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "3",
+      "sourcePageIdentity": "MG15_interview/page/3",
+      "compiledPage": "9",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG15 interview record (fictional test) · MG15_interview/page/3",
+      "label": "MG15_interview::MG15_interview/page/3"
+    },
+    {
+      "source": "defence_statement_draft",
+      "sourceDocumentIdentity": "defence_statement_draft",
+      "sourcePage": "1",
+      "sourcePageIdentity": "defence_statement_draft/page/1",
+      "compiledPage": "10",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Defence statement draft (fictional test) · defence_statement_draft/page/1",
+      "label": "defence_statement_draft",
+      "evidenceUnitId": "eu-defence_statement_draft",
+      "subjectDefendantId": "defendant_0",
+      "existence": "draft",
+      "inferredSourceState": "draft",
+      "existenceLabel": "draft",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "defence_statement_draft",
+      "sourceDocumentIdentity": "defence_statement_draft",
+      "sourcePage": "2",
+      "sourcePageIdentity": "defence_statement_draft/page/2",
+      "compiledPage": "11",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Defence statement draft (fictional test) · defence_statement_draft/page/2",
+      "label": "defence_statement_draft::defence_statement_draft/page/2"
+    },
+    {
+      "source": "extra_context_2",
+      "sourceDocumentIdentity": "extra_context_2",
+      "sourcePage": "1",
+      "sourcePageIdentity": "extra_context_2/page/1",
+      "compiledPage": "12",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Additional context schedule (fictional test) · extra_context_2/page/1",
+      "label": "extra_context_2",
+      "evidenceUnitId": "eu-extra_context_2",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    }
+  ],
+  "chronologyEvents": [],
+  "provenanceRecords": [
+    {
+      "occurrenceRef": "/evidenceStates/0",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/1",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/2",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/3",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/4",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/5",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "2",
+      "compiledPage": "6",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/6",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "1",
+      "compiledPage": "7",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/7",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "2",
+      "compiledPage": "8",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/8",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "3",
+      "compiledPage": "9",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/9",
+      "sourceDocumentIdentity": "defence_statement_draft",
+      "sourcePage": "1",
+      "compiledPage": "10",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/10",
+      "sourceDocumentIdentity": "defence_statement_draft",
+      "sourcePage": "2",
+      "compiledPage": "11",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/11",
+      "sourceDocumentIdentity": "extra_context_2",
+      "sourcePage": "1",
+      "compiledPage": "12",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    }
+  ],
+  "warningsAndGaps": {
+    "chaseItems": [],
+    "doNotOverstate": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+    ],
+    "hardRules": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+    ]
+  },
+  "chaseRelationships": [],
+  "chaseAuditMetadata": [],
+  "exitPayloadReceipts": {
+    "view": {
+      "payloadIdentity": "sha256:362da4416a9f66c8049cc9786b25eecac5ef3f1b79f4901414cb9687cfb117da",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "view"
+      ],
+      "generatedAt": "2026-08-03T01:07:17.120Z"
+    },
+    "copy": {
+      "payloadIdentity": "sha256:95e570b1c6aa0fc6904a399600702416e7cab5aedae5f241821ade30d51152f9",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "copy"
+      ],
+      "generatedAt": "2026-08-03T01:07:17.120Z"
+    },
+    "export": {
+      "payloadIdentity": "sha256:1936b4261e9da1689f6a18ce54b597ac444e0557e1bdcf8287c723c5fccc99b1",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "export"
+      ],
+      "generatedAt": "2026-08-03T01:07:17.121Z"
+    },
+    "api": {
+      "payloadIdentity": "sha256:5871fbbc43df96afdb8ca897d5cd45b972c69dc9eae8aa7ade154e21d07bced2",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "api"
+      ],
+      "generatedAt": "2026-08-03T01:07:17.121Z"
+    },
+    "pdf": {
+      "payloadIdentity": "sha256:34c90e255862980f47586416f6e791cd74d2ca74d9dd6a2c803fe614dfd849c0",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "pdf"
+      ],
+      "generatedAt": "2026-08-03T01:07:17.121Z"
+    },
+    "composed_prose": {
+      "payloadIdentity": "sha256:52743d68442a31d7df4602c73e88af2b7c3aaf41878dc2751334cc1f96ea1aa5",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "composed_prose"
+      ],
+      "generatedAt": "2026-08-03T01:07:17.121Z"
+    },
+    "authenticated_browser": {
+      "payloadIdentity": "sha256:55d39dea9bfbd32f75a48e0fa65e5ec239a8e1b5d0863723200541e6a8d0d6ac",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "unavailable",
+      "unavailableReason": "Authenticated browser exit not exercised in Stage-3000 diverse pack.",
+      "metadataOnly": true,
+      "realExitPayloadPresent": false,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "authenticated_browser"
+      ]
+    }
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: bladed articles; defence on instructions section 45 indicator.",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-div3000v213-05-bladed_articles",
+    "caseId": "div3000v213-05-bladed_articles",
+    "generatedAt": "2026-08-03T01:07:17.121Z",
+    "exportType": "diverse3000_v2_1_3",
+    "sendability": "needs_solicitor_review",
+    "reviewFooter": "Solicitor review required before send.",
+    "warningCount": 0,
+    "appVersion": "v2.1.3",
+    "bundleVersionLabel": "diverse3000-v2.1.3",
+    "blockedReason": null,
+    "solicitorVisibleSummary": "On bladed articles copy/export/API/PDF exits: charge status operative; defence section 45 indicator. For this bladed articles pack, no referred-absent masters are declared."
+  },
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "MG05",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG05",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG5 Case summary (fictional test) · MG05/page/1"
+    },
+    {
+      "label": "MG12_exhibits",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG12_exhibits",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG12_exhibits",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG12 exhibit list (fictional test) · MG12_exhibits/page/1"
+    },
+    {
+      "label": "MG15_interview",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG15_interview",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG15_interview",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "interview",
+      "note": "MG15 interview record (fictional test) · MG15_interview/page/1"
+    },
+    {
+      "label": "defence_statement_draft",
+      "existence": "draft",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-defence_statement_draft",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "defence_statement_draft",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "Defence statement draft (fictional test) · defence_statement_draft/page/1"
+    },
+    {
+      "label": "extra_context_2",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-extra_context_2",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "extra_context_2",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "Additional context schedule (fictional test) · extra_context_2/page/1"
+    }
+  ],
+  "attributionGraph": [
+    {
+      "documentId": "written_charge",
+      "evidenceUnitId": "eu-written_charge",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "written_charge/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG05/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG06",
+      "evidenceUnitId": "eu-MG06",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG12_exhibits",
+      "evidenceUnitId": "eu-MG12_exhibits",
+      "ownerRole": "document_owner",
+      "makerName": "Ownership unclear on papers",
+      "ownershipState": "unclear",
+      "sourcePage": "MG12_exhibits/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG15_interview",
+      "evidenceUnitId": "eu-MG15_interview",
+      "ownerRole": "document_owner",
+      "makerName": "Ownership unclear on papers",
+      "ownershipState": "unclear",
+      "sourcePage": "MG15_interview/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "defence_statement_draft",
+      "evidenceUnitId": "eu-defence_statement_draft",
+      "ownerRole": "witness_maker",
+      "makerName": "Witness maker (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "defence_statement_draft/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "extra_context_2",
+      "evidenceUnitId": "eu-extra_context_2",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "extra_context_2/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    }
+  ],
+  "chaseProvenanceLinks": [],
+  "solicitorFacingSurfaces": {
+    "charges": {
+      "recordedOrUnresolved": "For bladed articles: recorded charge position is ## Particulars. Instrument state: operative.",
+      "sourceInstrument": "For bladed articles: source instrument written_charge at 1; status operative.",
+      "limitation": "For bladed articles: allegation recorded on the instrument is not proof of guilt."
+    },
+    "keyFacts": {
+      "factLine": "Matter family bladed articles: defence on instructions is section 45 indicator; procedural stage police investigation; charge status operative.",
+      "limitation": "For this bladed articles pack, no referred-absent masters are declared."
+    },
+    "fiveAnswers": {
+      "whatEvidenceSays": "On bladed articles papers, 5 evidence unit(s) with page identity are present; they do not by themselves establish the allegation against the defendant.",
+      "existenceVsReliability": "For bladed articles: existence labels on the evidence schedule must not be read as reliability or proof.",
+      "provenance": "For bladed articles: provenance for referred-absent items anchors to MG6 page MG06/page/1 without inventing master content."
+    },
+    "warRoom": {
+      "issue": "Case-specific issue for bladed articles: charge status operative; defence section 45 indicator; procedure police investigation.",
+      "whyItMatters": "Why it matters on bladed articles: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+      "safePosition": "Safe current position on bladed articles: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+      "nextAction": "Next action on bladed articles: reconcile MG5 against MG6 before any court send."
+    },
+    "controlRoom": {
+      "issue": "Control focus for bladed articles: disclosure and completeness against charge status operative.",
+      "whyItMatters": "On bladed articles, missing or partial disclosure changes what may safely be said on copy/export/API exits.",
+      "safePosition": "Safe current position for bladed articles: solicitor review required before send; authenticated browser remains not exercised.",
+      "nextAction": "Next action for bladed articles: chase only particularised missing items; keep request identifiers in audit metadata only."
+    },
+    "disclosureChase": {
+      "item": "nil outstanding on bladed articles",
+      "whyItMatters": "On bladed articles, no chase item is outstanding on this pack.",
+      "professionalRequest": "No outstanding disclosure chase item is currently particularised for bladed articles."
+    },
+    "composedProse": {
+      "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: bladed articles; defence on instructions section 45 indicator.",
+      "cpsChase": "Please provide the referred disclosure item.",
+      "clientDisclaimer": "Fictional test material — not legal advice."
+    },
+    "copyExportApiPdf": {
+      "meaning": "On bladed articles copy/export/API/PDF exits: charge status operative; defence section 45 indicator. For this bladed articles pack, no referred-absent masters are declared.",
+      "chase": "No outstanding disclosure chase item is currently particularised for bladed articles."
+    }
+  },
+  "composedProse": {
+    "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: bladed articles; defence on instructions section 45 indicator.",
+    "cpsChase": "Please provide the referred disclosure item.",
+    "clientDisclaimer": "Fictional test material — not legal advice.",
+    "limitations": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+    ],
+    "allegation": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.\n\nAction: Check the operative charge sheet or amendment record.",
+    "chargeCompleteness": {
+      "sourceChargeText": "",
+      "provenance": "No recorded charge wording on papers.",
+      "instruments": [],
+      "displayedChargeText": "",
+      "completenessStatus": "unresolved",
+      "recoverySource": null,
+      "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+      "requiredAction": "Action: Check the operative charge sheet or amendment record."
+    }
+  },
+  "disclosureChase": {
+    "professionalRequest": "No outstanding disclosure chase item is currently particularised for bladed articles.",
+    "item": "nil outstanding on bladed articles",
+    "whyItMatters": "On bladed articles, no chase item is outstanding on this pack."
+  },
+  "warRoom": {
+    "issue": "Case-specific issue for bladed articles: charge status operative; defence section 45 indicator; procedure police investigation.",
+    "whyItMatters": "Why it matters on bladed articles: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+    "safeCurrentPosition": "Safe current position on bladed articles: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+    "nextAction": "Next action on bladed articles: reconcile MG5 against MG6 before any court send."
+  },
+  "copyLines": [
+    "On bladed articles copy/export/API/PDF exits: charge status operative; defence section 45 indicator. For this bladed articles pack, no referred-absent masters are declared.",
+    "No outstanding disclosure chase item is currently particularised for bladed articles."
+  ],
+  "requiredLimitations": [
+    "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+    "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+  ],
+  "pdf": {}
+}

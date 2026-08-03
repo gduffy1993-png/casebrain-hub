@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "diverse3000-v2.1.4.1-exact-provenance-validation@1.0.0",
+  "labelLengthWildcardRemoved": true,
+  "sourceBackedMissingExactRef": 0,
+  "wrongDocumentBindings": 0,
+  "mg5BoundToWrittenCharge": 0,
+  "requirements": {
+    "supportingDocumentId": true,
+    "exactSourcePage": true,
+    "pageIdentityKnown": true,
+    "sourceTextHashOrStructuredFieldRef": true,
+    "derivationHandlerId": true,
+    "supportingCanonicalFactOrFindingId": true
+  },
+  "sampleMissing": [],
+  "sampleWrongDoc": []
+}

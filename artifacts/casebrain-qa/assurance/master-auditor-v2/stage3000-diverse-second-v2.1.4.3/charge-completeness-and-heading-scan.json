@@ -1,0 +1,832 @@
+{
+  "rows": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/courtNote/text",
+      "text": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. The allegation remains unproved on the current papers. The client denies the allegation. The matter remains at the police-inv",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "The operative written charge is recorded at page 1 of the written charge.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "text": "The client denies the allegation. The matter remains at the police-investigation stage. The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "text": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. The allegation remains unproved on the current papers. The client denies the allegation. The matter remains at the police-inv",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "text": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. The client denies the allegation. The following referred material remains without page content and must not be treated as ser",
+      "headingAsCharge": false,
+      "incompleteOperative": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "text": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. The client denies the allegation. The following referred material remains without page content and must not be treated as ser",
+      "headingAsCharge": false,
+      "incompleteOperative": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "text": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. The client denies the allegation. The following referred material remains without page content and must not be treated as ser",
+      "headingAsCharge": false,
+      "incompleteOperative": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "text": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. The client denies the allegation. The following referred material remains without page content and must not be treated as ser",
+      "headingAsCharge": false,
+      "incompleteOperative": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "text": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. The client denies the allegation. The following referred material remains without page content and must not be treated as ser",
+      "headingAsCharge": false,
+      "incompleteOperative": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/copyLines/0",
+      "text": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. The client denies the allegation. The following referred material remains without page content and must not be treated as ser",
+      "headingAsCharge": false,
+      "incompleteOperative": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/courtNote/text",
+      "text": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968. The allegation remains unproved on the current papers. The client advances an alibi on instructions. The matter remains at the tri",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "The operative indictment is recorded at page 1 of the indictment operative.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "text": "The client advances an alibi on instructions. The matter remains at the trial-preparation stage. The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "text": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968. The allegation remains unproved on the current papers. The client advances an alibi on instructions. The matter remains at the tri",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "text": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968. The client advances an alibi on instructions. No specific outstanding disclosure item has been identified from the available paper",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "text": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968. The client advances an alibi on instructions. No specific outstanding disclosure item has been identified from the available paper",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "text": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968. The client advances an alibi on instructions. No specific outstanding disclosure item has been identified from the available paper",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "text": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968. The client advances an alibi on instructions. No specific outstanding disclosure item has been identified from the available paper",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "text": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968. The client advances an alibi on instructions. No specific outstanding disclosure item has been identified from the available paper",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/copyLines/0",
+      "text": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968. The client advances an alibi on instructions. No specific outstanding disclosure item has been identified from the available paper",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/composedProse/chargeCompleteness/instruments",
+      "text": "",
+      "headingAsCharge": true,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/sourceInstrument",
+      "text": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/charges/limitation",
+      "text": "The allegation recorded on the instrument is not proof of guilt.",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/chargeStatus",
+      "text": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statut",
+      "headingAsCharge": false,
+      "incompleteOperative": false
+    }
+  ],
+  "headingOrIncompleteOperative": 26,
+  "pass": false
+}

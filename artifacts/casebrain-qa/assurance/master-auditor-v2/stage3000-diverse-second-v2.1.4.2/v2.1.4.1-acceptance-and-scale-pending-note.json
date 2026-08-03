@@ -1,0 +1,12 @@
+{
+  "v2141Accepted": [
+    "audit_semantics",
+    "exit_honesty",
+    "contracts",
+    "path_scoped_tsc",
+    "fresh_build"
+  ],
+  "scaleGateUnacceptedSolelyBecause": "Corrected auditor identified 405 fail_closed_unresolved_reference solicitor-visible leaves on V2.1.4.1",
+  "v2141PreservedByteForByte": true,
+  "remediationPilot": "stage3000-diverse-second-v2.1.4.2"
+}

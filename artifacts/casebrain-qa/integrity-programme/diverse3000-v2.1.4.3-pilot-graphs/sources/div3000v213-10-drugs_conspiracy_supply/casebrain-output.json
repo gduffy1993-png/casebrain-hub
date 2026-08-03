@@ -1,0 +1,1963 @@
+{
+  "caseId": "div3000v213-10-drugs_conspiracy_supply",
+  "generatedAt": "2026-08-03T02:25:35.535Z",
+  "source": "v2.1.2-structured-maa-output",
+  "chargeInstruments": [
+    {
+      "instrumentId": "inst-indictment_operative",
+      "instrumentType": "indictment",
+      "exactWording": "",
+      "chargeWordingComplete": false,
+      "chargeFoundFragment": "Charge wording not pinned — structural only.",
+      "chargeCompletenessReason": "Extracted particulars lack a clear statutory or common-law cue.",
+      "count": 1,
+      "defendantAllocation": "defendant_0+defendant_1",
+      "sourceDocument": "indictment_operative",
+      "sourcePage": "1",
+      "sourcePageIdentity": "indictment_operative/page/1",
+      "pageIdentityKnown": true,
+      "status": "operative",
+      "version": "1",
+      "replacesInstrumentId": null,
+      "supersededByInstrumentId": null
+    }
+  ],
+  "evidenceStates": [
+    {
+      "source": "indictment_operative",
+      "sourceDocumentIdentity": "indictment_operative",
+      "sourcePage": "1",
+      "sourcePageIdentity": "indictment_operative/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Indictment (fictional test — not operative) · indictment_operative/page/1",
+      "label": "indictment_operative::indictment_operative/page/1"
+    },
+    {
+      "source": "indictment_operative",
+      "sourceDocumentIdentity": "indictment_operative",
+      "sourcePage": "2",
+      "sourcePageIdentity": "indictment_operative/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Indictment (fictional test — not operative) · indictment_operative/page/2",
+      "label": "indictment_operative::indictment_operative/page/2"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG05/page/1",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/1",
+      "label": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG05/page/2",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/2",
+      "label": "MG05::MG05/page/2"
+    },
+    {
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG6 File front sheet / index (fictional test) · MG06/page/1",
+      "label": "MG06::MG06/page/1"
+    },
+    {
+      "source": "MG12_exhibits",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG12_exhibits/page/1",
+      "compiledPage": "6",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG12 exhibit list (fictional test) · MG12_exhibits/page/1",
+      "label": "MG12_exhibits",
+      "evidenceUnitId": "eu-MG12_exhibits",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG12_exhibits",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG12_exhibits/page/2",
+      "compiledPage": "7",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG12 exhibit list (fictional test) · MG12_exhibits/page/2",
+      "label": "MG12_exhibits::MG12_exhibits/page/2"
+    },
+    {
+      "source": "MG15_interview",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG15_interview/page/1",
+      "compiledPage": "8",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG15 interview record (fictional test) · MG15_interview/page/1",
+      "label": "MG15_interview",
+      "evidenceUnitId": "eu-MG15_interview",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "interview"
+    },
+    {
+      "source": "MG15_interview",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG15_interview/page/2",
+      "compiledPage": "9",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG15 interview record (fictional test) · MG15_interview/page/2",
+      "label": "MG15_interview::MG15_interview/page/2"
+    },
+    {
+      "source": "MG15_interview",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "3",
+      "sourcePageIdentity": "MG15_interview/page/3",
+      "compiledPage": "10",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG15 interview record (fictional test) · MG15_interview/page/3",
+      "label": "MG15_interview::MG15_interview/page/3"
+    },
+    {
+      "source": "cctv_clip_schedule",
+      "sourceDocumentIdentity": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "sourcePageIdentity": "cctv_clip_schedule/page/1",
+      "compiledPage": "11",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "CCTV / BWV clip schedule (fictional test) · cctv_clip_schedule/page/1",
+      "label": "cctv_clip_schedule",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "subjectDefendantId": "defendant_0",
+      "existence": "incomplete",
+      "inferredSourceState": "incomplete",
+      "existenceLabel": "incomplete",
+      "evidenceTypeOrModality": "clip_or_still"
+    },
+    {
+      "source": "media_metadata",
+      "sourceDocumentIdentity": "media_metadata",
+      "sourcePage": "1",
+      "sourcePageIdentity": "media_metadata/page/1",
+      "compiledPage": "12",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Media metadata fixture (native bytes not_exercised) · media_metadata/page/1",
+      "label": "media_metadata::media_metadata/page/1"
+    },
+    {
+      "source": "extra_context_1",
+      "sourceDocumentIdentity": "extra_context_1",
+      "sourcePage": "1",
+      "sourcePageIdentity": "extra_context_1/page/1",
+      "compiledPage": "13",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Additional context schedule (fictional test) · extra_context_1/page/1",
+      "label": "extra_context_1",
+      "evidenceUnitId": "eu-extra_context_1",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "label": "referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "subjectDefendantId": "defendant_0",
+      "existence": "missing",
+      "inferredSourceState": "missing",
+      "existenceLabel": "missing",
+      "evidenceTypeOrModality": "generic",
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG06 index referral · MG06/page/1",
+      "limitationReason": null
+    }
+  ],
+  "chronologyEvents": [],
+  "solicitorLeafProvenance": {
+    "/solicitorFacingSurfaces/charges/recordedOrUnresolved": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Extracted particulars lack a clear statutory or common-law cue.",
+      "nextAction": "Check the operative charge sheet or amendment record."
+    },
+    "/solicitorFacingSurfaces/charges/sourceInstrument": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Extracted particulars lack a clear statutory or common-law cue.",
+      "nextAction": "Obtain or confirm the operative charge instrument wording."
+    },
+    "/solicitorFacingSurfaces/charges/limitation": {
+      "classificationHint": "universal_safety",
+      "supportingCanonicalFactOrFindingIds": [],
+      "supportingReferences": [],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/keyFacts/defencePosition": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "fact:defence_instructions"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/keyFacts/proceduralStage": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "fact:procedural_stage"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.proceduralLifecycle",
+          "factId": "fact:procedural_stage",
+          "title": "Procedural stage"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/keyFacts/chargeStatus": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Extracted particulars lack a clear statutory or common-law cue.",
+      "nextAction": "Check the operative charge sheet or amendment record."
+    },
+    "/solicitorFacingSurfaces/keyFacts/limitation": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master",
+        "eu-MG06"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "pageIdentity:MG06/page/1",
+          "factId": "eu-MG06",
+          "title": "MG6"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "The following referred material remains without page content and must not be treated as served: the complete master recording or media referred to in the disclosure material but not supplied.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "fact:evidence_unit_count",
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:evidenceStates.servedCount",
+          "factId": "fact:evidence_unit_count",
+          "title": "Evidence schedule count"
+        },
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/fiveAnswers/existenceVsReliability": {
+      "classificationHint": "universal_safety",
+      "supportingCanonicalFactOrFindingIds": [],
+      "supportingReferences": [],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/fiveAnswers/provenance": {
+      "classificationHint": "substantive_source_backed",
+      "supportingCanonicalFactOrFindingIds": [
+        "eu-MG06"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "pageIdentity:MG06/page/1",
+          "factId": "eu-MG06",
+          "title": "MG6"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/warRoom/issue": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "fact:defence_instructions",
+        "fact:procedural_stage",
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.proceduralLifecycle",
+          "factId": "fact:procedural_stage",
+          "title": "Procedural stage"
+        },
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/warRoom/whyItMatters": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative",
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "pageIdentity:MG06/page/1",
+          "factId": "eu-MG06",
+          "title": "MG6"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/warRoom/safePosition": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative",
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/warRoom/nextAction": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Requested disclosure remains outstanding.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/solicitorFacingSurfaces/controlRoom/issue": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/controlRoom/whyItMatters": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master",
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        },
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/controlRoom/safePosition": {
+      "classificationHint": "universal_safety",
+      "supportingCanonicalFactOrFindingIds": [],
+      "supportingReferences": [],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/controlRoom/nextAction": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/disclosureChase/item": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Item is referred or outstanding and cannot be quoted as served content.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/solicitorFacingSurfaces/disclosureChase/whyItMatters": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "The item is referred or outstanding on the papers and cannot be quoted as served content.",
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/disclosureChase/professionalRequest": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Requested disclosure remains outstanding.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/solicitorFacingSurfaces/composedProse/courtLine": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "fact:defence_instructions",
+        "fact:procedural_stage",
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.proceduralLifecycle",
+          "factId": "fact:procedural_stage",
+          "title": "Procedural stage"
+        },
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/composedProse/cpsChase": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Outstanding disclosure chase.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/solicitorFacingSurfaces/composedProse/clientDisclaimer": {
+      "classificationHint": "universal_safety",
+      "supportingCanonicalFactOrFindingIds": [],
+      "supportingReferences": [],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/copyExportApiPdf/meaning": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative",
+        "fact:defence_instructions",
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/copyExportApiPdf/chase": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Outstanding disclosure chase.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative",
+        "fact:defence_instructions",
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative",
+        "fact:defence_instructions",
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative",
+        "fact:defence_instructions",
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/exportVersion/solicitorVisibleSummary": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative",
+        "fact:defence_instructions",
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/solicitorFacingSurfaces/copyExportApiPdf/chase#copy": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Outstanding disclosure chase.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/composedProse/courtLine": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "fact:defence_instructions",
+        "fact:procedural_stage",
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.proceduralLifecycle",
+          "factId": "fact:procedural_stage",
+          "title": "Procedural stage"
+        },
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/composedProse/cpsChase": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Outstanding disclosure chase.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/composedProse/clientDisclaimer": {
+      "classificationHint": "universal_safety",
+      "supportingCanonicalFactOrFindingIds": [],
+      "supportingReferences": [],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/disclosureChase/item": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Item is referred or outstanding and cannot be quoted as served content.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/disclosureChase/whyItMatters": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "The item is referred or outstanding on the papers and cannot be quoted as served content.",
+      "nextAction": null
+    },
+    "/disclosureChase/professionalRequest": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Requested disclosure remains outstanding.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/warRoom/issue": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "fact:defence_instructions",
+        "fact:procedural_stage",
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.proceduralLifecycle",
+          "factId": "fact:procedural_stage",
+          "title": "Procedural stage"
+        },
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/warRoom/whyItMatters": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative",
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "pageIdentity:MG06/page/1",
+          "factId": "eu-MG06",
+          "title": "MG6"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/warRoom/safeCurrentPosition": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative",
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/warRoom/nextAction": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Requested disclosure remains outstanding.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "/courtNote/text": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "fact:defence_instructions",
+        "fact:procedural_stage",
+        "inst-indictment_operative"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.proceduralLifecycle",
+          "factId": "fact:procedural_stage",
+          "title": "Procedural stage"
+        },
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/copyLines/meaning": {
+      "classificationHint": "substantive_derived_conclusion",
+      "supportingCanonicalFactOrFindingIds": [
+        "inst-indictment_operative",
+        "fact:defence_instructions",
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "indictment_operative",
+          "sourcePage": "indictment_operative/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "chargeInstrumentId:inst-indictment_operative",
+          "factId": "inst-indictment_operative",
+          "title": "indictment"
+        },
+        {
+          "documentId": null,
+          "sourcePage": null,
+          "pageIdentityKnown": false,
+          "fieldRef": "structuredField:matter.defencePosition",
+          "factId": "fact:defence_instructions",
+          "title": "Client instructions"
+        },
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": null,
+      "nextAction": null
+    },
+    "/copyLines/chase": {
+      "classificationHint": "substantive_explicitly_unresolved",
+      "supportingCanonicalFactOrFindingIds": [
+        "req-absent-referred_missing_master"
+      ],
+      "supportingReferences": [
+        {
+          "documentId": "MG06",
+          "sourcePage": "MG06/page/1",
+          "pageIdentityKnown": true,
+          "fieldRef": "evidenceUnitId:eu-absent-referred_missing_master",
+          "factId": "req-absent-referred_missing_master",
+          "title": "referred_missing_master"
+        }
+      ],
+      "derivationHandlerId": "v2.1.4.3-professional-semantic-wording@1.0.0",
+      "copyable": true,
+      "ordinaryExit": true,
+      "limitation": "Outstanding disclosure chase.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    }
+  },
+  "solicitorWordingBeforeAfter": [
+    {
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client disputes consent on instructions. The matter remains at the police-investigation stage."
+    },
+    {
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client disputes consent on instructions."
+    }
+  ],
+  "provenanceRecords": [
+    {
+      "occurrenceRef": "/evidenceStates/0",
+      "sourceDocumentIdentity": "indictment_operative",
+      "sourcePage": "1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/1",
+      "sourceDocumentIdentity": "indictment_operative",
+      "sourcePage": "2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/2",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/3",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/4",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/5",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "1",
+      "compiledPage": "6",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/6",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "2",
+      "compiledPage": "7",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/7",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "1",
+      "compiledPage": "8",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/8",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "2",
+      "compiledPage": "9",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/9",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "3",
+      "compiledPage": "10",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/10",
+      "sourceDocumentIdentity": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "compiledPage": "11",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/11",
+      "sourceDocumentIdentity": "media_metadata",
+      "sourcePage": "1",
+      "compiledPage": "12",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/12",
+      "sourceDocumentIdentity": "extra_context_1",
+      "sourcePage": "1",
+      "compiledPage": "13",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/13",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    }
+  ],
+  "warningsAndGaps": {
+    "chaseItems": [
+      {
+        "label": "referred_missing_master",
+        "requestId": "req-absent-referred_missing_master",
+        "evidenceUnitId": "eu-absent-referred_missing_master",
+        "resolutionState": "missing",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Absent/referred item referred_missing_master listed for chase; no page content invented.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "export"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Please provide the complete master recording or media referred to in the disclosure material but not supplied.",
+        "requestedState": "missing",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+        "chase_to_evidence_provenance_link": true
+      }
+    ],
+    "doNotOverstate": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ],
+    "hardRules": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ]
+  },
+  "chaseRelationships": [
+    {
+      "label": "referred_missing_master",
+      "requestId": "req-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "resolutionState": "missing",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Absent/referred item referred_missing_master listed for chase; no page content invented.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "export"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Please provide the complete master recording or media referred to in the disclosure material but not supplied.",
+      "requestedState": "missing",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "chase_to_evidence_provenance_link": true
+    }
+  ],
+  "chaseAuditMetadata": [
+    {
+      "requestId": "req-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    }
+  ],
+  "exitPayloadReceipts": {
+    "view": {
+      "payloadIdentity": "sha256:fed9e509719030fa1d10085de78bdd24df0e7550188bc6b610963df9c6cca6b0",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-10-drugs_conspiracy_supply",
+      "surfaceList": [
+        "view"
+      ],
+      "generatedAt": "2026-08-03T02:25:35.533Z"
+    },
+    "copy": {
+      "payloadIdentity": "sha256:a1134d4c6e11f446d2b6de766653150dcf7b5184be6ee07c2045edd4c35628ca",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-10-drugs_conspiracy_supply",
+      "surfaceList": [
+        "copy"
+      ],
+      "generatedAt": "2026-08-03T02:25:35.533Z"
+    },
+    "export": {
+      "payloadIdentity": "sha256:f1d623cef1c41916af3d57c2e98ff2d5b19c4c2e5172f8f4380b577a10371e1c",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-10-drugs_conspiracy_supply",
+      "surfaceList": [
+        "export"
+      ],
+      "generatedAt": "2026-08-03T02:25:35.533Z"
+    },
+    "api": {
+      "payloadIdentity": "sha256:9df95acdf9812087c79007ed45128eddff74b35d1ac5ef5a7a88d6357f367f1a",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-10-drugs_conspiracy_supply",
+      "surfaceList": [
+        "api"
+      ],
+      "generatedAt": "2026-08-03T02:25:35.533Z"
+    },
+    "pdf": {
+      "payloadIdentity": "sha256:0550f798d274ecd99f48bd260cb292a8586c4353efbf442a1e0289a7acb93d6e",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-10-drugs_conspiracy_supply",
+      "surfaceList": [
+        "pdf"
+      ],
+      "generatedAt": "2026-08-03T02:25:35.533Z"
+    },
+    "composed_prose": {
+      "payloadIdentity": "sha256:2eba8821c7dbf6f3f9134b60bc6c97d1e57750184abf3bc7b71da5d141de991d",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-10-drugs_conspiracy_supply",
+      "surfaceList": [
+        "composed_prose"
+      ],
+      "generatedAt": "2026-08-03T02:25:35.533Z"
+    },
+    "authenticated_browser": {
+      "payloadIdentity": "sha256:cf1cc88f2c28ee46f1389c9d4e262e571e2391f1a03bef632989b30893673162",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "unavailable",
+      "unavailableReason": "Authenticated browser exit not exercised in Stage-3000 diverse pack.",
+      "metadataOnly": true,
+      "realExitPayloadPresent": false,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-10-drugs_conspiracy_supply",
+      "surfaceList": [
+        "authenticated_browser"
+      ]
+    }
+  },
+  "courtNote": {
+    "text": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client disputes consent on instructions. The matter remains at the police-investigation stage.",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-div3000v213-10-drugs_conspiracy_supply",
+    "caseId": "div3000v213-10-drugs_conspiracy_supply",
+    "generatedAt": "2026-08-03T02:25:35.535Z",
+    "exportType": "diverse3000_v2_1_3",
+    "sendability": "needs_solicitor_review",
+    "reviewFooter": "Solicitor review required before send.",
+    "warningCount": 2,
+    "appVersion": "v2.1.3",
+    "bundleVersionLabel": "diverse3000-v2.1.3",
+    "blockedReason": null,
+    "solicitorVisibleSummary": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record. The client disputes consent on instructions. The following referred material remains without page content and must not be treated as served: the complete master recording or media referred to in the disclosure material but not supplied."
+  },
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "MG05",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG05",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG5 Case summary (fictional test) · MG05/page/1"
+    },
+    {
+      "label": "MG12_exhibits",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG12_exhibits",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG12_exhibits",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG12 exhibit list (fictional test) · MG12_exhibits/page/1"
+    },
+    {
+      "label": "MG15_interview",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG15_interview",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG15_interview",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "interview",
+      "note": "MG15 interview record (fictional test) · MG15_interview/page/1"
+    },
+    {
+      "label": "cctv_clip_schedule",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "clip_or_still",
+      "note": "CCTV / BWV clip schedule (fictional test) · cctv_clip_schedule/page/1"
+    },
+    {
+      "label": "extra_context_1",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-extra_context_1",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "extra_context_1",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "Additional context schedule (fictional test) · extra_context_1/page/1"
+    },
+    {
+      "label": "referred_missing_master",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG06 index referral · MG06/page/1"
+    }
+  ],
+  "attributionGraph": [
+    {
+      "documentId": "indictment_operative",
+      "evidenceUnitId": "eu-indictment_operative",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "indictment_operative/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG05/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG06",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG12_exhibits",
+      "evidenceUnitId": "eu-MG12_exhibits",
+      "ownerRole": "document_owner",
+      "makerName": "Ownership unclear on papers",
+      "ownershipState": "unclear",
+      "sourcePage": "MG12_exhibits/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG15_interview",
+      "evidenceUnitId": "eu-MG15_interview",
+      "ownerRole": "document_owner",
+      "makerName": "Ownership unclear on papers",
+      "ownershipState": "unclear",
+      "sourcePage": "MG15_interview/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "cctv_clip_schedule",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "cctv_clip_schedule/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "media_metadata",
+      "evidenceUnitId": "eu-media_metadata",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "media_metadata/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "extra_context_1",
+      "evidenceUnitId": "eu-extra_context_1",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "extra_context_1/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    }
+  ],
+  "chaseProvenanceLinks": [
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/0",
+      "requestId": "req-absent-referred_missing_master",
+      "chaseLabel": "referred_missing_master",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    }
+  ],
+  "solicitorFacingSurfaces": {
+    "charges": {
+      "recordedOrUnresolved": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record.",
+      "sourceInstrument": "An instrument is present at page 1, but complete charge wording is not confirmed.",
+      "limitation": "The allegation recorded on the instrument is not proof of guilt."
+    },
+    "keyFacts": {
+      "defencePosition": "The client disputes consent on instructions.",
+      "proceduralStage": "The matter remains at the police-investigation stage.",
+      "chargeStatus": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record.",
+      "limitation": "The following referred material remains without page content and must not be treated as served: the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "fiveAnswers": {
+      "whatEvidenceSays": "6 evidence unit(s) with page identity are present on the papers; they do not by themselves establish the allegation against the defendant.",
+      "existenceVsReliability": "Existence labels on the evidence schedule must not be read as reliability or proof.",
+      "provenance": "Provenance for referred material that has not been supplied anchors to MG6 MG06/page/1 without inventing master content."
+    },
+    "warRoom": {
+      "issue": "The client disputes consent on instructions. The matter remains at the police-investigation stage. What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record.",
+      "whyItMatters": "Incorrect charge or instrument precedence, or quoting material that has not been supplied, would mislead the court-facing position.",
+      "safePosition": "Treat the allegation as unproved; prefer operative instruments; do not summarise material that has not been supplied.",
+      "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "controlRoom": {
+      "issue": "Disclosure and completeness must be checked against the operative charge position.",
+      "whyItMatters": "Missing or partial disclosure changes what may safely be said on copy, export, and API exits.",
+      "safePosition": "Solicitor review is required before send. Authenticated browser remains not exercised.",
+      "nextAction": "Chase only the particularised missing item. Keep identifiers in protected audit records only."
+    },
+    "disclosureChase": {
+      "item": "the complete master recording or media referred to in the disclosure material but not supplied",
+      "whyItMatters": "The item is referred or outstanding on the papers and cannot be quoted as served content.",
+      "professionalRequest": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    },
+    "composedProse": {
+      "courtLine": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client disputes consent on instructions. The matter remains at the police-investigation stage.",
+      "cpsChase": "Please provide the complete master recording or media referred to in the disclosure material but not supplied.",
+      "clientDisclaimer": "Fictional test material — not legal advice."
+    },
+    "copyExportApiPdf": {
+      "meaning": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record. The client disputes consent on instructions. The following referred material remains without page content and must not be treated as served: the complete master recording or media referred to in the disclosure material but not supplied.",
+      "chase": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+    }
+  },
+  "composedProse": {
+    "courtLine": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client disputes consent on instructions. The matter remains at the police-investigation stage.",
+    "cpsChase": "Please provide the complete master recording or media referred to in the disclosure material but not supplied.",
+    "clientDisclaimer": "Fictional test material — not legal advice.",
+    "limitations": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ],
+    "allegation": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.\n\nAction: Check the operative charge sheet or amendment record.",
+    "chargeCompleteness": {
+      "sourceChargeText": "",
+      "provenance": "No recorded charge wording on papers.",
+      "instruments": [],
+      "displayedChargeText": "",
+      "completenessStatus": "unresolved",
+      "recoverySource": null,
+      "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+      "requiredAction": "Action: Check the operative charge sheet or amendment record."
+    }
+  },
+  "disclosureChase": {
+    "professionalRequest": "Please provide the complete master recording or media referred to in the disclosure material but not supplied.",
+    "item": "the complete master recording or media referred to in the disclosure material but not supplied",
+    "whyItMatters": "The item is referred or outstanding on the papers and cannot be quoted as served content."
+  },
+  "warRoom": {
+    "issue": "The client disputes consent on instructions. The matter remains at the police-investigation stage. What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record.",
+    "whyItMatters": "Incorrect charge or instrument precedence, or quoting material that has not been supplied, would mislead the court-facing position.",
+    "safeCurrentPosition": "Treat the allegation as unproved; prefer operative instruments; do not summarise material that has not been supplied.",
+    "nextAction": "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+  },
+  "copyLines": [
+    "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record. The client disputes consent on instructions. The following referred material remains without page content and must not be treated as served: the complete master recording or media referred to in the disclosure material but not supplied.",
+    "Please provide the complete master recording or media referred to in the disclosure material but not supplied."
+  ],
+  "requiredLimitations": [
+    "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+    "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding",
+    "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+  ],
+  "pdf": {}
+}

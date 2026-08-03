@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "CODEX-TECHNICAL-SCALE-GATE-ACCEPTANCE@1.0.0",
+  "accepted": true,
+  "acceptedAt": "2026-08-03T13:20:00.000Z",
+  "effectivePilotVersion": "V2.1.4.4",
+  "acceptanceScope": "second_diverse_3000_calibration_only",
+  "scaleSelectionPreparationAllowed": true,
+  "scaleExecutionAllowed": false,
+  "scaleExecutionBlockedUntil": "integration_baseline_frozen",
+  "corpusPassSupported": false,
+  "stage3000CompletionSupported": false,
+  "programmePassSupported": false,
+  "qualifiedSolicitorApproval": false,
+  "deploymentAuthorised": false,
+  "mergeAuthorised": false,
+  "additiveOnly": true,
+  "doesNotRewrite": [
+    "pilot-gate-result.json",
+    "STOP-FOR-CODEX-REVIEW.json",
+    "DECISION-CARD.json",
+    "EXACT-SHA256-MANIFEST.json"
+  ],
+  "preservedHistoricalCorrections": {
+    "V2.1.4.2": "PILOT_GATE_INCOMPLETE_PENDING_PROFESSIONAL_SEMANTIC_OUTPUT_QUALITY",
+    "V2.1.4.3": "PILOT_GATE_INCOMPLETE_PENDING_ORDINARY_VISIBLE_SYSTEM_LANGUAGE_REMOVAL__HONEST_STRING_DENOMINATOR"
+  },
+  "hashes": {
+    "membershipSha256": "e103baa3e0e53bc0062b36f3446896337b7ba99e7213fe23c4c34426201edfde",
+    "candidateFreezeSha256": "4a788439aa97be17a73c5ccd066be5725805694a9bc1e4922c44673e44abe3a3"
+  },
+  "verifiedEvidence": {
+    "frozenMatters": 20,
+    "pdfsRegenerated": false,
+    "ordinaryNonEmptySolicitorVisibleDenominator": 700,
+    "emptyOrNotExercisedCountedAsProfessionalPass": 0,
+    "uniqueOrdinaryWordingStrings": 76,
+    "systemHarnessWordingHits": 0,
+    "rawEnumApiExitBrowserStatePageIdentityAuditHandlerSchemaUnitSNotPinnedStructuralOnlyLeakage": 0,
+    "headingAsChargeDefects": 0,
+    "brokenSentenceJoins": 0,
+    "lowercaseRecognisedAcronyms": 0,
+    "unsupportedStatutoryAssertions": 0,
+    "ordinaryVisibleFailClosed": 0,
+    "derivedConclusionsMissingDependencies": 0,
+    "remainingTenMg6ReferralAnchors": {
+      "count": 10,
+      "classification": "protected_audit_only",
+      "copyable": false,
+      "ordinaryExit": false
+    },
+    "bnd05": 15,
+    "atr02": 7,
+    "untriagedFindings": 0,
+    "confirmedApplicationDefectsInExercisedPilotScope": 0,
+    "pdfExit": "not_exercised",
+    "authenticatedBrowser": "not_exercised",
+    "apiEvidence": "builder_payload_only_not_authenticated_http",
+    "focusedContractsExit": 0,
+    "pathScopedTypescriptExit": 0,
+    "freshNextBuildExit": 0,
+    "exactSha256ManifestRowsVerified": "26/26"
+  },
+  "limitations": [
+    "Technical pilot scale gate only for second diverse 3,000 calibration preparation",
+    "Does not authorise scale execution until integration baseline is frozen",
+    "Does not support corpus PASS, Stage-3000 completion, or programme PASS",
+    "Independent semantic pass is technical only; reviewer identity and decision remain blank",
+    "No qualified solicitor approval is claimed or implied",
+    "API evidence is builder payload only, not authenticated HTTP capture",
+    "PDF and authenticated browser remain honestly not_exercised",
+    "Does not authorise merge or deployment"
+  ],
+  "artefactRoot": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/",
+  "exactEvidenceManifest": "EXACT-SHA256-MANIFEST.json",
+  "worktree": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-diverse",
+  "branch": "programme/stage3000-diverse-second-3000",
+  "baselineHeadAtAcceptanceRecording": "308b7cb633f83d7c998bc80adf87356de346b3e9"
+}

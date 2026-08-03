@@ -1,0 +1,156 @@
+{
+  "caseId": "div3000v211-01-common_assault_battery",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "815461b055d3d40319127a590108c27657fe89af5c6378fdeeb88ff4e58c5f12",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "purpose": "charge_instrument_particulars",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\npageIdentity=written_charge/page/1\n## Written charge / requisition\n## Particulars\nMatter family: common assault battery\nDefendant count modelled: 3\nCharge: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nProvision note: CJA 1988 s.39\nThis instrument is modelled as the operative charging document for fictional-test purposes only.\nProcedural stage: police investigation.\nDo not treat this summary as proof of the allegation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-01-common_assault_battery\nDocument id | written_charge\nKind | written_charge\nLifecycle state | operative\nPage purpose | charge_instrument_particulars\nFamily | common assault battery\nProcedure | police investigation\nDefence on instructions | factual denial\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for common assault battery must respect served vs absent papers.\nPrecise next action: verify written_charge/page/1 against MG06 before any external send.\nSource/page pointer: written_charge/page/1",
+          "textHash": "3c8e2f36f07392bb6d73e8f5e2bbe1fd2e2cd9e3e03ca08264f6158c4a54d57e",
+          "headings": [
+            "Written charge / requisition",
+            "Particulars"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "purpose": "charge_defendant_allocation",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\npageIdentity=written_charge/page/2\n## Defendant allocation\nCounts allocated across 3 modelled defendants.\nAttribution of each count must remain defendant-specific.\nNo cross-defendant bleed is authorised by this fictional instrument.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-01-common_assault_battery\nDocument id | written_charge\nKind | written_charge\nLifecycle state | operative\nPage purpose | charge_defendant_allocation\nFamily | common assault battery\nProcedure | police investigation\nDefence on instructions | factual denial\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for common assault battery must respect served vs absent papers.\nPrecise next action: verify written_charge/page/2 against MG06 before any external send.\nSource/page pointer: written_charge/page/2",
+          "textHash": "c4f405a675a1fab31df72fc4e848c4490f1eeb98e970b37d928910dd2b4a9be2",
+          "headings": [
+            "Defendant allocation"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "68b8f06a2ebb66244cdff0d3b98d79a62c3a8cd7f1f59a23af1b18cbb46515dd",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/1\n## MG5 Case summary\n## Narrative\nFamily under review: common assault battery\nDefence position on instructions: factual denial\nProcedural stage: police investigation\nAllegation under review: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: common assault battery.\nDefence position modelled: factual denial.\nProcedural stage: police investigation.\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nEvidence emphasis seed 1: mg11_draft, cctv_clip, cctv_master_referred.\nWitness outline: complainant account recorded as allegation only — not proved.\nOfficer summary limited to disclosed papers in this pack.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-01-common_assault_battery\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_case_summary_narrative\nFamily | common assault battery\nProcedure | police investigation\nDefence on instructions | factual denial\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for common assault battery must respect served vs absent papers.\nPrecise next action: verify MG05/page/1 against MG06 before any external send.\nSource/page pointer: MG05/page/1",
+          "textHash": "b31281279fcb7d2cedd87e9a4e80292dca2eba4777f19408ce8b9f2081ee86a5",
+          "headings": [
+            "MG5 Case summary",
+            "Narrative"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/2\n## Evidence outline\n## Limitations\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): referred_missing_master.\nReliability: MG5 narrative must not be read as establishing guilt.\nNext action: reconcile MG5 against MG6 index for div3000v211-01-common_assault_battery before any court-facing send.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-01-common_assault_battery\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_evidence_outline\nFamily | common assault battery\nProcedure | police investigation\nDefence on instructions | factual denial\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for common assault battery must respect served vs absent papers.\nPrecise next action: verify MG05/page/2 against MG06 before any external send.\nSource/page pointer: MG05/page/2",
+          "textHash": "9e58b24390a56b347f924822bca1c0d3781e110a1a2822384ffe4087f81cf674",
+          "headings": [
+            "Evidence outline",
+            "Limitations"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "3a81bc5bccd575f5f6d4aeb0e19c2e515ad7c771e91a090fe913305cc7f96161",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\npageIdentity=MG06/page/1\n## MG6 File front sheet / index\n## Inventory\nIndex of papers for this fictional matter:\n- written charge / requisition — see written_charge\n- MG5 case summary — served\n- disclosure / unused schedule — see schedules\n- referred_missing_master — REFERRED ABSENT — not served; do not quote content\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nCaseBrain must not quote or summarise nonexistent content for referred-absent items.\nChase binding: disclosure chase must request referred_missing_master by identity, pointing to this MG6 page.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-01-common_assault_battery\nDocument id | MG06\nKind | mg06\nLifecycle state | served\nPage purpose | mg6_file_index\nFamily | common assault battery\nProcedure | police investigation\nDefence on instructions | factual denial\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for common assault battery must respect served vs absent papers.\nPrecise next action: verify MG06/page/1 against MG06 before any external send.\nSource/page pointer: MG06/page/1",
+          "textHash": "3a81bc5bccd575f5f6d4aeb0e19c2e515ad7c771e91a090fe913305cc7f96161",
+          "headings": [
+            "MG6 File front sheet / index",
+            "Inventory"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "0ee6ad3e06cf210ebcdb51ee086b46778bd17cc95cc559d1f0ddfafe3710d400",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_or_digital_schedule",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\npageIdentity=cctv_clip_schedule/page/1\n## Media / digital schedule\nSchedule for common assault battery matter.\nClip / extract entries served where marked; masters may be referred-only.\nFICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nAbsent masters referred via MG6: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-01-common_assault_battery\nDocument id | cctv_clip_schedule\nKind | media_schedule\nLifecycle state | partial\nPage purpose | media_or_digital_schedule\nFamily | common assault battery\nProcedure | police investigation\nDefence on instructions | factual denial\n\n## Status / limitation / next action\nStatus: partial\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for common assault battery must respect served vs absent papers.\nPrecise next action: verify cctv_clip_schedule/page/1 against MG06 before any external send.\nSource/page pointer: cctv_clip_schedule/page/1",
+          "textHash": "0ee6ad3e06cf210ebcdb51ee086b46778bd17cc95cc559d1f0ddfafe3710d400",
+          "headings": [
+            "Media / digital schedule"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "a718f06f7dc8f04f9b28cecf38c2d5c61a42580c33f0e48342e765ebc5324384",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "metadata_only_fixture",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\npageIdentity=media_metadata/page/1\n## Media metadata\nNative video/audio bytes: not_exercised.\nMetadata fields only — hash/path placeholders for fictional test.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nCannot summarise native content that was never supplied.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-01-common_assault_battery\nDocument id | media_metadata\nKind | metadata_fixture\nLifecycle state | metadata_only\nPage purpose | metadata_only_fixture\nFamily | common assault battery\nProcedure | police investigation\nDefence on instructions | factual denial\n\n## Status / limitation / next action\nStatus: metadata_only\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for common assault battery must respect served vs absent papers.\nPrecise next action: verify media_metadata/page/1 against MG06 before any external send.\nSource/page pointer: media_metadata/page/1",
+          "textHash": "a718f06f7dc8f04f9b28cecf38c2d5c61a42580c33f0e48342e765ebc5324384",
+          "headings": [
+            "Media metadata"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "2f1e0d51a9dcffb50bd2e9be314245b4c7314f7f55f7b165e599a24652f54dd3",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\npageIdentity=defence_proof_extract/page/1\n## Defence proof of evidence extract\n## PRIVILEGED\nPosition on instructions: factual denial\nThis extract is privilege-separated. Not for ordinary copy/export/API send.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: factual_denial. Not for ordinary copy/export.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-01-common_assault_battery\nDocument id | defence_proof_extract\nKind | defence_proof\nLifecycle state | privileged\nPage purpose | defence_privileged_extract\nFamily | common assault battery\nProcedure | police investigation\nDefence on instructions | factual denial\n\n## Status / limitation / next action\nStatus: privileged\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for common assault battery must respect served vs absent papers.\nPrecise next action: verify defence_proof_extract/page/1 against MG06 before any external send.\nSource/page pointer: defence_proof_extract/page/1",
+          "textHash": "2f1e0d51a9dcffb50bd2e9be314245b4c7314f7f55f7b165e599a24652f54dd3",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ]
+        }
+      ],
+      "privilegeSeparated": true,
+      "realPaginatedFile": true
+    }
+  ]
+}

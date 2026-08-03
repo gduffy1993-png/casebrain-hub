@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "diverse3000-v2.1.4.3-remaining-10@1.0.0",
+  "count": 10,
+  "rows": [
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "view",
+      "jsonPointer": "/evidenceStates/5/evidenceAnchor",
+      "exactWording": "MG06 index referral · MG06/page/1",
+      "copyable": false,
+      "ordinaryExit": false,
+      "reason": "Inventory evidenceStates evidenceAnchor for MG06 referral of absent items — protected audit / inventory, not ordinary solicitor-facing wording. V2.1.4.3 classifies matching anchors as protected_audit_only.",
+      "remediationInV2143": "protected_audit_only when evidenceAnchor is MG06 index referral / absent-item inventory text"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "view",
+      "jsonPointer": "/evidenceStates/6/evidenceAnchor",
+      "exactWording": "MG06 index referral · MG06/page/1",
+      "copyable": false,
+      "ordinaryExit": false,
+      "reason": "Inventory evidenceStates evidenceAnchor for MG06 referral of absent items — protected audit / inventory, not ordinary solicitor-facing wording. V2.1.4.3 classifies matching anchors as protected_audit_only.",
+      "remediationInV2143": "protected_audit_only when evidenceAnchor is MG06 index referral / absent-item inventory text"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "view",
+      "jsonPointer": "/evidenceStates/7/evidenceAnchor",
+      "exactWording": "MG06 index referral · MG06/page/1",
+      "copyable": false,
+      "ordinaryExit": false,
+      "reason": "Inventory evidenceStates evidenceAnchor for MG06 referral of absent items — protected audit / inventory, not ordinary solicitor-facing wording. V2.1.4.3 classifies matching anchors as protected_audit_only.",
+      "remediationInV2143": "protected_audit_only when evidenceAnchor is MG06 index referral / absent-item inventory text"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "view",
+      "jsonPointer": "/evidenceStates/8/evidenceAnchor",
+      "exactWording": "MG06 index referral · MG06/page/1",
+      "copyable": false,
+      "ordinaryExit": false,
+      "reason": "Inventory evidenceStates evidenceAnchor for MG06 referral of absent items — protected audit / inventory, not ordinary solicitor-facing wording. V2.1.4.3 classifies matching anchors as protected_audit_only.",
+      "remediationInV2143": "protected_audit_only when evidenceAnchor is MG06 index referral / absent-item inventory text"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "view",
+      "jsonPointer": "/evidenceStates/11/evidenceAnchor",
+      "exactWording": "MG06 index referral · MG06/page/1",
+      "copyable": false,
+      "ordinaryExit": false,
+      "reason": "Inventory evidenceStates evidenceAnchor for MG06 referral of absent items — protected audit / inventory, not ordinary solicitor-facing wording. V2.1.4.3 classifies matching anchors as protected_audit_only.",
+      "remediationInV2143": "protected_audit_only when evidenceAnchor is MG06 index referral / absent-item inventory text"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "view",
+      "jsonPointer": "/evidenceStates/12/evidenceAnchor",
+      "exactWording": "MG06 index referral · MG06/page/1",
+      "copyable": false,
+      "ordinaryExit": false,
+      "reason": "Inventory evidenceStates evidenceAnchor for MG06 referral of absent items — protected audit / inventory, not ordinary solicitor-facing wording. V2.1.4.3 classifies matching anchors as protected_audit_only.",
+      "remediationInV2143": "protected_audit_only when evidenceAnchor is MG06 index referral / absent-item inventory text"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "view",
+      "jsonPointer": "/evidenceStates/8/evidenceAnchor",
+      "exactWording": "MG06 index referral · MG06/page/1",
+      "copyable": false,
+      "ordinaryExit": false,
+      "reason": "Inventory evidenceStates evidenceAnchor for MG06 referral of absent items — protected audit / inventory, not ordinary solicitor-facing wording. V2.1.4.3 classifies matching anchors as protected_audit_only.",
+      "remediationInV2143": "protected_audit_only when evidenceAnchor is MG06 index referral / absent-item inventory text"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "view",
+      "jsonPointer": "/evidenceStates/9/evidenceAnchor",
+      "exactWording": "MG06 index referral · MG06/page/1",
+      "copyable": false,
+      "ordinaryExit": false,
+      "reason": "Inventory evidenceStates evidenceAnchor for MG06 referral of absent items — protected audit / inventory, not ordinary solicitor-facing wording. V2.1.4.3 classifies matching anchors as protected_audit_only.",
+      "remediationInV2143": "protected_audit_only when evidenceAnchor is MG06 index referral / absent-item inventory text"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "view",
+      "jsonPointer": "/evidenceStates/8/evidenceAnchor",
+      "exactWording": "MG06 index referral · MG06/page/1",
+      "copyable": false,
+      "ordinaryExit": false,
+      "reason": "Inventory evidenceStates evidenceAnchor for MG06 referral of absent items — protected audit / inventory, not ordinary solicitor-facing wording. V2.1.4.3 classifies matching anchors as protected_audit_only.",
+      "remediationInV2143": "protected_audit_only when evidenceAnchor is MG06 index referral / absent-item inventory text"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "view",
+      "jsonPointer": "/evidenceStates/9/evidenceAnchor",
+      "exactWording": "MG06 index referral · MG06/page/1",
+      "copyable": false,
+      "ordinaryExit": false,
+      "reason": "Inventory evidenceStates evidenceAnchor for MG06 referral of absent items — protected audit / inventory, not ordinary solicitor-facing wording. V2.1.4.3 classifies matching anchors as protected_audit_only.",
+      "remediationInV2143": "protected_audit_only when evidenceAnchor is MG06 index referral / absent-item inventory text"
+    }
+  ],
+  "allProtectedOrUnavailable": true
+}

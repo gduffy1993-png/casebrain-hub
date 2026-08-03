@@ -1,0 +1,43 @@
+{
+  "files": [
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.4.3-professional-semantic-wording.ts",
+      "sha256": "82c5e24c4958a0b08e43c033b381134d1656d7a87c025d4e656e942c3da38d6a",
+      "bytes": 45204
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.2-structured-maa-output.ts",
+      "sha256": "d62b13bce00728a52a8b2c3f6c32668991df5de261aa4888caf759a2e39a56d6",
+      "bytes": 41827
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.4-provenance-leaf-classifier.ts",
+      "sha256": "19fde3718f641578989a9c8b9ee6d709c9e9540c571f6c05835ffeca71570c23",
+      "bytes": 45816
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.4.3-focused-contracts.test.ts",
+      "sha256": "c196a68967b1ab1576b55ce3b3c24b80e65bec3536d30ad7f8817f81c4568812",
+      "bytes": 3432
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/build-v2.1.4.3-professional-semantic.ts",
+      "sha256": "6f55d9b21bd4540e4ed9ec7a36b9f1fcaaaeb352e45f44d54e21ae65b23dba3d",
+      "bytes": 33158
+    },
+    {
+      "path": "tsconfig.v2143-path-scoped.json",
+      "sha256": "4f91cca6fd557517b49625423296ad39594706b33d16ac31390770ed7eea4d3d",
+      "bytes": 752
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.2/pilot-gate-claim-correction.json",
+      "sha256": "42c07076b6453568dd5db2869d24a5add9646105da1eee822595d998ed1ff8d0",
+      "bytes": 1636
+    }
+  ],
+  "artefactRoots": [
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.3/",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.4.3-pilot-graphs/"
+  ]
+}

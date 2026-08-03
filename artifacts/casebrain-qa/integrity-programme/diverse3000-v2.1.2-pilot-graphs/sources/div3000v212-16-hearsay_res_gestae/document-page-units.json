@@ -1,0 +1,212 @@
+{
+  "caseId": "div3000v212-16-hearsay_res_gestae",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "purpose": "charge_instrument_particulars",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Written charge / requisition (fictional test)\nMatter family (fictional): hearsay res gestae\n## Written charge / requisition\n## Statement of offence\n## Particulars\nCourt / venue (modelled): Magistrates' Court (modelled)\nDefendant count modelled: 3\nSTATEMENT OF OFFENCE\nCharge wording not pinned — structural only.\nContrary to the modelled statutory provision for this family.\nCharge wording status: structural_only\nPARTICULARS OF OFFENCE\nIt is alleged that within the charged window the defendant(s) committed the offence set out above.\nPlace and date particularised by reference to the served MG5 narrative and witness papers.\nProcedural stage: police investigation.\nDefence position on instructions: section 45 indicator.\nThis instrument is modelled as the charging document for fictional-test purposes only.\nDo not treat this summary as proof of the allegation.\nService: modelled with initial disclosure; return date to be fixed by listing office.\nCertificate of service and administrative endorsement appear on the rendered form.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "6972ee03e28ede56d23224575fbdcb4f6c6375e3d75978aa3c5a2698ea7bf265",
+          "headings": [
+            "Written charge / requisition",
+            "Statement of offence",
+            "Particulars"
+          ],
+          "layoutKind": "written_charge"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "purpose": "charge_defendant_allocation",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Written charge / requisition (fictional test)\nMatter family (fictional): hearsay res gestae\n## Defendant allocation table\n## Counts\nCount | Defendant index | Allocation note\n----- | ---------------- | ---------------\n1.1 | D1 | Count attribution must remain defendant-specific\n1.2 | D2 | Count attribution must remain defendant-specific\n1.3 | D3 | Count attribution must remain defendant-specific\nNo cross-defendant bleed is authorised by this fictional instrument.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "e98d0a15ee739abca6f364fb01b19379b1aabc4e89287c0267f6d69506e7b766",
+          "headings": [
+            "Defendant allocation table",
+            "Counts"
+          ],
+          "layoutKind": "written_charge"
+        }
+      ],
+      "contentHash": "e24800ff63914b24a94ebb03de7e153deb41787bd2eb58c0ea264dae951507e4",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "written_charge"
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): hearsay res gestae\n## MG5 — Case summary\n## Offence summary\n## Key evidence narrative\nDefendant / matter family: hearsay res gestae\nDefence on instructions: section 45 indicator\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\n\nNARRATIVE\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: hearsay res gestae.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 5: mg11_draft, cctv_clip, cctv_master_referred.\n\nWitness outline: complainant account recorded as allegation only — not proved.\nReliability: MG5 narrative must not be read as establishing guilt.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "a63c901d517b3075fe5a1aad93da9096b1c0c4a939e472d2bf6cb84122f930ae",
+          "headings": [
+            "MG5 — Case summary",
+            "Offence summary",
+            "Key evidence narrative"
+          ],
+          "layoutKind": "mg05"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): hearsay res gestae\n## Evidence outline\n## Limitations\n## Next action\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): referred_missing_master.\nNext action: reconcile MG5 against MG6 index before any court-facing send.\nDo not quote referred-absent masters as if content were available.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "91a96f3f1c413975946c1a980cb7ed05007139fa3556386a85f33d37d8eec38b",
+          "headings": [
+            "Evidence outline",
+            "Limitations",
+            "Next action"
+          ],
+          "layoutKind": "mg05"
+        }
+      ],
+      "contentHash": "768cff6f9fd9504bf31f25edcc99e650c5b0a5a5fa60082b11aa17f8656a01d8",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg05"
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG6 File front sheet / index (fictional test)\nMatter family (fictional): hearsay res gestae\n## MG6 — File front sheet / index\n## Inventory\nSeq | Document | Kind | Status\n--- | -------- | ---- | ------\n1 | Written charge / indictment | instrument | see pack\n2 | MG5 case summary | mg05 | served\n3 | Disclosure / unused | schedule | see schedules\n4 | referred_missing_master | referred | ABSENT — not served\n\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nChase binding: request referred_missing_master by identity against this MG6 page.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "656be36d1c871b07ae964d1087d83d817e99528d294776a02ae9047b439a2aa1",
+          "headings": [
+            "MG6 — File front sheet / index",
+            "Inventory"
+          ],
+          "layoutKind": "mg06"
+        }
+      ],
+      "contentHash": "656be36d1c871b07ae964d1087d83d817e99528d294776a02ae9047b439a2aa1",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg06"
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_clip_schedule_log",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: CCTV / BWV clip schedule (fictional test)\nMatter family (fictional): hearsay res gestae\n## CCTV / BWV clip schedule\n## Served clips\nClip | Source | Start | End | Master | Status\n---- | ------ | ----- | --- | ------ | ------\nC1 | High St cam 3 | 21:02:10 | 21:04:44 | M-HS-3 | clip served\nC2 | BWV PC Fictional | 21:05:01 | 21:07:18 | M-BWV-01 | clip served\nC3 | Store cam | 20:58:00 | 21:01:00 | M-ST-2 | partial\nAbsent masters referred: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "28cdb12599cf689934d5a38898717cee88fbacf8378eb2228ca770e3f2edc47d",
+          "headings": [
+            "CCTV / BWV clip schedule",
+            "Served clips"
+          ],
+          "layoutKind": "media_schedule"
+        }
+      ],
+      "contentHash": "28cdb12599cf689934d5a38898717cee88fbacf8378eb2228ca770e3f2edc47d",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "media_schedule"
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "media_metadata_only",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Media metadata fixture (native bytes not_exercised)\nMatter family (fictional): hearsay res gestae\n## Media metadata fixture\n## Native bytes not_exercised\nNative video/audio bytes: not_exercised.\npath: /fictional/media/clip_C1.mp4\nsha256: ft-meta-placeholder\ncodec / duration: modelled placeholders only\nCannot summarise native content that was never supplied.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "9728d674c9cf3aef2c6e6a0ec6848b90a1db7675f7fa709547e942e7187fe41c",
+          "headings": [
+            "Media metadata fixture",
+            "Native bytes not_exercised"
+          ],
+          "layoutKind": "metadata_fixture"
+        }
+      ],
+      "contentHash": "9728d674c9cf3aef2c6e6a0ec6848b90a1db7675f7fa709547e942e7187fe41c",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "metadata_fixture"
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): hearsay res gestae\n## Defence proof of evidence extract\n## PRIVILEGED\nPRIVILEGED — defence working extract. Not for ordinary copy/export/API send.\nPosition on instructions: section 45 indicator\nIssues to explore: attribution, continuity, missing masters, charge particularity.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "383dee04d2cf33adef6ff31a6bdf7309d334a2de71376cf782f8996693046c20",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ],
+          "layoutKind": "defence_proof"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "purpose": "defence_issues_and_requests",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): hearsay res gestae\n## Issues list\n## Requests\nMissing/referred chase candidates: referred_missing_master.\nProof extract remains privilege-separated in this fictional pack.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "9425a50b3003084f032f4a7e05a1c59c16acaf08b34ce2866df1883eb67e8911",
+          "headings": [
+            "Issues list",
+            "Requests"
+          ],
+          "layoutKind": "defence_proof"
+        }
+      ],
+      "contentHash": "5cf503a310a02c7f999b30128bc2f85d9252dfba83faca3a18aa0d8d12ea3ed5",
+      "realPaginatedFile": true,
+      "privilegeSeparated": true,
+      "publicTemplateRef": "defence_proof"
+    },
+    {
+      "docId": "extra_context_2",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_2/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Additional context schedule (fictional test)\nMatter family (fictional): hearsay res gestae\n## Additional context schedule (fictional test)\n## Particulars\nKind: context_schedule\nLifecycle state: served\nFamily: hearsay res gestae\nStage: police investigation\nFICTIONAL TEST MATERIAL — additional coherent schedule for hearsay_res_gestae emphasising section_45_indicator and written_charge.\nStatus: served.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "03eeef7dd8b4e834b115bd4ea35412e6027d132219c034e5ca3059a4ea796762",
+          "headings": [
+            "Additional context schedule (fictional test)",
+            "Particulars"
+          ],
+          "layoutKind": "generic_specialist"
+        }
+      ],
+      "contentHash": "03eeef7dd8b4e834b115bd4ea35412e6027d132219c034e5ca3059a4ea796762",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "generic_specialist"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "STOP-FOR-CODEX-REVIEW@1.0.0",
+  "stoppedAt": "2026-08-03T01:07:31.599Z",
+  "reason": "V2.1.4 audit-semantics correction complete — stop uncommitted before scale",
+  "gatePass": true,
+  "scaleRecommended": true,
+  "scaleGateAccepted": false,
+  "blockers": [],
+  "prohibitions": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "scale_beyond_20",
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS"
+  ],
+  "preserved": {
+    "v213": "e103baa3e0e53bc0062b36f3446896337b7ba99e7213fe23c4c34426201edfde",
+    "candidateLedger": "4a788439aa97be17a73c5ccd066be5725805694a9bc1e4922c44673e44abe3a3"
+  },
+  "v213ClaimCorrected": "PILOT_GATE_INCOMPLETE_PENDING_PROVENANCE_BOUND_SUBSTANTIVE_COVERAGE__EXIT_CAPABILITY_RECONCILIATION__CANDIDATE_TRIAGE",
+  "deliverables": {
+    "v213Correction": "../stage3000-diverse-second-v2.1.3/pilot-gate-claim-correction.json",
+    "provenanceLeafLedger": "ledgers/provenance-bound-substantive-leaf-ledger.jsonl",
+    "exitReconcile": "exit-capability-coverage-reconciliation-matrix.json",
+    "disposition552": "ledgers/v2.1.3-552-occurrence-disposition-ledger.jsonl",
+    "candidateVsReceipt": "candidate-vs-receipt-reconciliation.json",
+    "sharedRoots": "shared-root-register.json",
+    "beforeAfter": "before-after-regression-report.json",
+    "contracts": "contracts-proof.json",
+    "buildTsc": "build-and-tsc-receipt.json",
+    "manifest": "CHANGED-FILE-MANIFEST.json",
+    "decisionCard": "DECISION-CARD.json"
+  }
+}

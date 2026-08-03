@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "diverse3000-v2.1.4.1-source-pdf-hash-lock@1.0.0",
+  "allMatchMembership": true,
+  "note": "Source/input PDF realism lock only — never used as CaseBrain output-PDF exit proof",
+  "pages": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/bundle-fictional-test.pdf",
+      "sha256": "0e3d437d40f801a1177968e3924968c814a74be461968550dcb81bfea4691cdf",
+      "bytes": 19105,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/bundle-fictional-test.pdf",
+      "sha256": "81f67f0073c8f2b89c57a93a7b233a524dd8ce5a4453666eaa0310b242322eab",
+      "bytes": 16595,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/bundle-fictional-test.pdf",
+      "sha256": "15d27d62ac0c8ab5a055c13841544324201eebe97e186d3e36528c664098eb7a",
+      "bytes": 14651,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/bundle-fictional-test.pdf",
+      "sha256": "f704c982b7cea33c6481f7ddd14f177598e962fb8bd0f638a7a2eca8d9296adc",
+      "bytes": 16538,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/bundle-fictional-test.pdf",
+      "sha256": "a0a66502fe86e711f158b7aec75cb0b96d4d0fe96591099b568c2aaa904923fd",
+      "bytes": 25533,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/bundle-fictional-test.pdf",
+      "sha256": "eae49ac6111015bc11551694fe04121deaed65d94a0c6caa5f3d2d90c409df23",
+      "bytes": 19162,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/bundle-fictional-test.pdf",
+      "sha256": "943071958804de13f13e6b5d8883bd5922813a60671ba75c89a9bc31a6f5d3a6",
+      "bytes": 15483,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/bundle-fictional-test.pdf",
+      "sha256": "3cb63dcfb6dddc7fb50437c1fbf0ef281b3c962d0d9b688e4f0b2b2cde07f86d",
+      "bytes": 29432,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/bundle-fictional-test.pdf",
+      "sha256": "ff0a1b47ff35d4c715e0d72af15dad49677e63580a75f9949158a264c5fd7329",
+      "bytes": 19117,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/bundle-fictional-test.pdf",
+      "sha256": "0973b7087945d91a6b427c47417510542bbfce7e1bc04da5c9cc5d8d3bd5b441",
+      "bytes": 27047,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/bundle-fictional-test.pdf",
+      "sha256": "49e49818f516bb553805ac8696c5ac44419a559c541956b917c86f015e15688d",
+      "bytes": 24970,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/bundle-fictional-test.pdf",
+      "sha256": "cc9aff6b762963aa4c9de5102415905dab42859fca70cf795490275fba454b46",
+      "bytes": 21566,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/bundle-fictional-test.pdf",
+      "sha256": "0d9b5d2e6b88b89244efbfd0386771d2eade441b4269385985a714d0dc03b0f5",
+      "bytes": 20251,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/bundle-fictional-test.pdf",
+      "sha256": "bb38010e4b417b49f62e19964cbd1ab6e650262582edb60d5beb247863e6e59f",
+      "bytes": 20210,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/bundle-fictional-test.pdf",
+      "sha256": "d3bc3cb46330774c9fff19e55887ee05920ce4f59ae5fc3dcdca709ea85d0dae",
+      "bytes": 20244,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/bundle-fictional-test.pdf",
+      "sha256": "4fc42516dca10b8ed94a30779c6037bc521418450b47a02cf3b84b63d61e0d69",
+      "bytes": 20274,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/bundle-fictional-test.pdf",
+      "sha256": "170f10eddcb930940b16e64f9af8536b82e90f9422dce880db789635ec834c03",
+      "bytes": 19194,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/bundle-fictional-test.pdf",
+      "sha256": "7fc9c0fa55b6e79c16680ea0f0f92589f1e28a48bfd5436c4c99727d73523930",
+      "bytes": 23671,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/bundle-fictional-test.pdf",
+      "sha256": "4c80a69cb4819081fc9bf9ea75d038b26255cd8b49a4d6778027dca1c1a4ca7d",
+      "bytes": 20395,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "role": "source_input_pack_pdf",
+      "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/bundle-fictional-test.pdf",
+      "sha256": "52d85079592a626a08cc8689b308a36ef9764acb120d116e10559739eda99fb9",
+      "bytes": 19380,
+      "matchesMembership": true,
+      "notOutputPdfProof": true
+    }
+  ]
+}

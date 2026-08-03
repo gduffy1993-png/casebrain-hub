@@ -1,0 +1,44 @@
+{
+  "caseId": "div3000v211-03-going_equipped",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-03-going_equipped/bundle-fictional-test.pdf",
+  "sha256": "76648215ce5c1fd17a2000d60614f95b96e85556bc34437dc3a667edf7680b6c",
+  "pageCount": 6,
+  "pageMap": [
+    {
+      "pageIdentity": "written_charge/page/1",
+      "pdfPageNumber": 1,
+      "docId": "written_charge",
+      "purpose": "charge_instrument_particulars"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 2,
+      "docId": "MG05",
+      "purpose": "mg5_case_summary_narrative"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 3,
+      "docId": "MG05",
+      "purpose": "mg5_evidence_outline"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 4,
+      "docId": "MG06",
+      "purpose": "mg6_file_index"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 5,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_privileged_extract"
+    },
+    {
+      "pageIdentity": "extra_context_1/page/1",
+      "pdfPageNumber": 6,
+      "docId": "extra_context_1",
+      "purpose": "document_specific_body"
+    }
+  ]
+}

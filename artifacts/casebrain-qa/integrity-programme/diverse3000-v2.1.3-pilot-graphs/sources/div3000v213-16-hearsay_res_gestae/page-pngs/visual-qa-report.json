@@ -1,0 +1,180 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/bundle-fictional-test.pdf",
+  "pageCount": 10,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-001.png",
+      "pngSha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 2881,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 240.16,
+        "nonWhiteRatio": 0.1492,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-002.png",
+      "pngSha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 2653,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 240.68,
+        "nonWhiteRatio": 0.1434,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-003.png",
+      "pngSha256": "d2a7aa00d8a232b6b7473c8580707afd80a8b91862a621b26b23e8156c3fed05",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1738,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 244.34,
+        "nonWhiteRatio": 0.0843,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-004.png",
+      "pngSha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1272,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 245.59,
+        "nonWhiteRatio": 0.0757,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-005.png",
+      "pngSha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 711,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.92,
+        "nonWhiteRatio": 0.0542,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-006.png",
+      "pngSha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 588,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.29,
+        "nonWhiteRatio": 0.0498,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-007.png",
+      "pngSha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 421,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.64,
+        "nonWhiteRatio": 0.0479,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-008.png",
+      "pngSha256": "9ed33f7016d8934281194dc706b8fe8883dcb725f9c4d7ae53f73ed9938b62c5",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1313,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.73,
+        "nonWhiteRatio": 0.0911,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-009.png",
+      "pngSha256": "0f29a5d6b087d0d6d68fefce95d9a370fd64bdd90ae763a722456dab8437bb9c",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1038,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.5,
+        "nonWhiteRatio": 0.0856,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 10,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-010.png",
+      "pngSha256": "494781b22d83412c4e48045c2b1aee6a221b6ecba3af50f0b7507d4f3aa3925a",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 712,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.96,
+        "nonWhiteRatio": 0.0401,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "26a130a30f5c354b8be60bae8baff9d7724bb3d2a07fc6488714a666dc67397d",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

@@ -1,0 +1,343 @@
+{
+  "rendered": 20,
+  "rows": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "pdfSha256": "0e3d437d40f801a1177968e3924968c814a74be461968550dcb81bfea4691cdf",
+      "pageCount": 9,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "written_charge",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof"
+      ]
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "pdfSha256": "81f67f0073c8f2b89c57a93a7b233a524dd8ce5a4453666eaa0310b242322eab",
+      "pageCount": 8,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "indictment",
+        "mg05",
+        "mg06",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "pdfSha256": "15d27d62ac0c8ab5a055c13841544324201eebe97e186d3e36528c664098eb7a",
+      "pageCount": 7,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "written_charge",
+        "mg05",
+        "mg06",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "pdfSha256": "f704c982b7cea33c6481f7ddd14f177598e962fb8bd0f638a7a2eca8d9296adc",
+      "pageCount": 8,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "indictment",
+        "mg05",
+        "mg06",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "pdfSha256": "a0a66502fe86e711f158b7aec75cb0b96d4d0fe96591099b568c2aaa904923fd",
+      "pageCount": 14,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "written_charge",
+        "mg05",
+        "mg06",
+        "exhibit_schedule",
+        "interview_record",
+        "defence_proof",
+        "mg11_statement",
+        "mg11_continuation",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "pdfSha256": "eae49ac6111015bc11551694fe04121deaed65d94a0c6caa5f3d2d90c409df23",
+      "pageCount": 10,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "indictment",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "pdfSha256": "943071958804de13f13e6b5d8883bd5922813a60671ba75c89a9bc31a6f5d3a6",
+      "pageCount": 7,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "indictment",
+        "mg05",
+        "mg06",
+        "defence_proof"
+      ]
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "pdfSha256": "3cb63dcfb6dddc7fb50437c1fbf0ef281b3c962d0d9b688e4f0b2b2cde07f86d",
+      "pageCount": 17,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "indictment",
+        "mg05",
+        "mg06",
+        "mg11_statement",
+        "mg11_continuation",
+        "court_order",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "pdfSha256": "ff0a1b47ff35d4c715e0d72af15dad49677e63580a75f9949158a264c5fd7329",
+      "pageCount": 10,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "indictment",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "pdfSha256": "0973b7087945d91a6b427c47417510542bbfce7e1bc04da5c9cc5d8d3bd5b441",
+      "pageCount": 15,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "indictment",
+        "mg05",
+        "mg06",
+        "exhibit_schedule",
+        "interview_record",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "pdfSha256": "49e49818f516bb553805ac8696c5ac44419a559c541956b917c86f015e15688d",
+      "pageCount": 14,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "indictment",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "phone_download_schedule",
+        "mg06c",
+        "defence_proof"
+      ]
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "pdfSha256": "cc9aff6b762963aa4c9de5102415905dab42859fca70cf795490275fba454b46",
+      "pageCount": 11,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "written_charge",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "pdfSha256": "0d9b5d2e6b88b89244efbfd0386771d2eade441b4269385985a714d0dc03b0f5",
+      "pageCount": 10,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "written_charge",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "pdfSha256": "bb38010e4b417b49f62e19964cbd1ab6e650262582edb60d5beb247863e6e59f",
+      "pageCount": 10,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "written_charge",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "pdfSha256": "d3bc3cb46330774c9fff19e55887ee05920ce4f59ae5fc3dcdca709ea85d0dae",
+      "pageCount": 10,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "written_charge",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "pdfSha256": "4fc42516dca10b8ed94a30779c6037bc521418450b47a02cf3b84b63d61e0d69",
+      "pageCount": 10,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "written_charge",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "pdfSha256": "170f10eddcb930940b16e64f9af8536b82e90f9422dce880db789635ec834c03",
+      "pageCount": 9,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "written_charge",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof"
+      ]
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "pdfSha256": "7fc9c0fa55b6e79c16680ea0f0f92589f1e28a48bfd5436c4c99727d73523930",
+      "pageCount": 13,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "indictment",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "phone_download_schedule",
+        "mg06c",
+        "defence_proof"
+      ]
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "pdfSha256": "4c80a69cb4819081fc9bf9ea75d038b26255cd8b49a4d6778027dca1c1a4ca7d",
+      "pageCount": 10,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "written_charge",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "pdfSha256": "52d85079592a626a08cc8689b308a36ef9764acb120d116e10559739eda99fb9",
+      "pageCount": 10,
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/bundle-fictional-test.pdf",
+      "visualFailedPages": [],
+      "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/contact-sheet.png",
+      "layoutKinds": [
+        "indictment",
+        "mg05",
+        "mg06",
+        "media_schedule",
+        "metadata_fixture",
+        "defence_proof",
+        "generic_specialist"
+      ]
+    }
+  ]
+}

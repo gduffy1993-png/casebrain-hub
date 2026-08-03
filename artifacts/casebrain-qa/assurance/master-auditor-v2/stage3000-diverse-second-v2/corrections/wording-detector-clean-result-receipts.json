@@ -1,0 +1,62 @@
+{
+  "receipts": [
+    {
+      "schemaVersion": "maa-v2-clean-result-receipt@1.0.0",
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "controlVersion": "2.0.0",
+      "implementationStatus": "specified_not_implemented",
+      "handlerId": null,
+      "engineId": null,
+      "detectorEntrypoint": "lib/criminal/absolute-proof-wording.ts#containsAbsoluteProofWording",
+      "prerequisitesPresent": [
+        "v2_surfaces.jsonl",
+        "packet_local_solicitor_visible_text"
+      ],
+      "applicableUnitCount": 3000,
+      "inspectedFieldRefs": [
+        "surfaces[].text",
+        "surfaces[].textHash",
+        "surfaces[].surfaceId"
+      ],
+      "inspectedSourceOutputHash": "71ec5f83d4300d3d79e85eff2520c2f854516a4d4ed9b550a92276a2ec675de1",
+      "result": "clean_no_findings",
+      "findingIds": [],
+      "contracts": {
+        "positive": null,
+        "negative": null,
+        "unavailable": "missing_prereq_or_handler → not_exercised / unresolved — never PASS",
+        "mutation": "not_exercised_in_v2_bulk_lane"
+      },
+      "note": "Clean result only proves the named wording/completeness detector returned no hits on packet-local surfaces — not that charge/attribution/provenance/chronology/chase/cross-exit controls ran."
+    },
+    {
+      "schemaVersion": "maa-v2-clean-result-receipt@1.0.0",
+      "controlId": "MAA-COMPLETENESS",
+      "controlVersion": "1.0.0",
+      "implementationStatus": "implemented",
+      "handlerId": null,
+      "engineId": null,
+      "detectorEntrypoint": "scripts/assurance/stage3000-diverse-second/v2-materialise-and-maa.ts#detect EMPTY_SURFACE_TEXT",
+      "prerequisitesPresent": [
+        "v2_surfaces.jsonl",
+        "packet_local_solicitor_visible_text"
+      ],
+      "applicableUnitCount": 3000,
+      "inspectedFieldRefs": [
+        "surfaces[].text",
+        "surfaces[].textHash",
+        "surfaces[].surfaceId"
+      ],
+      "inspectedSourceOutputHash": "71ec5f83d4300d3d79e85eff2520c2f854516a4d4ed9b550a92276a2ec675de1",
+      "result": "clean_no_findings",
+      "findingIds": [],
+      "contracts": {
+        "positive": null,
+        "negative": null,
+        "unavailable": "missing_prereq_or_handler → not_exercised / unresolved — never PASS",
+        "mutation": "not_exercised_in_v2_bulk_lane"
+      },
+      "note": "Clean result only proves the named wording/completeness detector returned no hits on packet-local surfaces — not that charge/attribution/provenance/chronology/chase/cross-exit controls ran."
+    }
+  ]
+}

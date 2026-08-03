@@ -1,0 +1,9 @@
+{
+  "steps": [
+    "candidate_freeze_receipt_written",
+    "truth_opened",
+    "disposition"
+  ],
+  "candidateFreezeSha256": "4a788439aa97be17a73c5ccd066be5725805694a9bc1e4922c44673e44abe3a3",
+  "freezeBeforeTruth": true
+}

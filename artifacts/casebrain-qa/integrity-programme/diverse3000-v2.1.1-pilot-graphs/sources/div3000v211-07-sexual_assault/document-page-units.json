@@ -1,0 +1,103 @@
+{
+  "caseId": "div3000v211-07-sexual_assault",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "00fe42d417d73aae4e709ac63e0ad2a7b644a68af97c77d3b388441784175d46",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\npageIdentity=indictment_operative/page/1\n## Indictment (fictional test — not operative)\nKind: indictment\nLifecycle state: operative\nFamily: sexual assault\nStage: pet\nFICTIONAL TEST MATERIAL\nIndictment placeholder for sexual assault — charge wording not pinned; structural only.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-07-sexual_assault\nDocument id | indictment_operative\nKind | indictment\nLifecycle state | operative\nPage purpose | document_specific_body\nFamily | sexual assault\nProcedure | pet\nDefence on instructions | abuse of process argument\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for sexual assault must respect served vs absent papers.\nPrecise next action: verify indictment_operative/page/1 against MG06 before any external send.\nSource/page pointer: indictment_operative/page/1",
+          "textHash": "00fe42d417d73aae4e709ac63e0ad2a7b644a68af97c77d3b388441784175d46",
+          "headings": [
+            "Indictment (fictional test — not operative)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "4d8d5185a4689c44b02eb1a3b7880f9a09b0875b9c83cd3c425a323db2e422bd",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/1\n## MG5 Case summary\n## Narrative\nFamily under review: sexual assault\nDefence position on instructions: abuse of process argument\nProcedural stage: pet\nAllegation under review: Charge wording not pinned — structural only.\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: sexual assault.\nDefence position modelled: abuse of process argument.\nProcedural stage: pet.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_signed, mg11_draft, cctv_clip.\nWitness outline: complainant account recorded as allegation only — not proved.\nOfficer summary limited to disclosed papers in this pack.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-07-sexual_assault\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_case_summary_narrative\nFamily | sexual assault\nProcedure | pet\nDefence on instructions | abuse of process argument\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for sexual assault must respect served vs absent papers.\nPrecise next action: verify MG05/page/1 against MG06 before any external send.\nSource/page pointer: MG05/page/1",
+          "textHash": "20ebb7d6bdeb2f0ddbef7979662d8186180b495b0dea8f5848878651284502bd",
+          "headings": [
+            "MG5 Case summary",
+            "Narrative"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/2\n## Evidence outline\n## Limitations\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): abe_or_special_measures, third_party_material_note.\nReliability: MG5 narrative must not be read as establishing guilt.\nNext action: reconcile MG5 against MG6 index for div3000v211-07-sexual_assault before any court-facing send.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-07-sexual_assault\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_evidence_outline\nFamily | sexual assault\nProcedure | pet\nDefence on instructions | abuse of process argument\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for sexual assault must respect served vs absent papers.\nPrecise next action: verify MG05/page/2 against MG06 before any external send.\nSource/page pointer: MG05/page/2",
+          "textHash": "ce66a98301e0bde03e75c84171b65f4876386b9e7307348755c3f7e1cdbf6823",
+          "headings": [
+            "Evidence outline",
+            "Limitations"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "0c201e0b1c042acfca85424cc0d566975380afa903ae186d38d2b61422aef50e",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\npageIdentity=MG06/page/1\n## MG6 File front sheet / index\n## Inventory\nIndex of papers for this fictional matter:\n- written charge / requisition — see written_charge\n- MG5 case summary — served\n- disclosure / unused schedule — see schedules\n- abe_or_special_measures — REFERRED ABSENT — not served; do not quote content\n- third_party_material_note — REFERRED ABSENT — not served; do not quote content\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nCaseBrain must not quote or summarise nonexistent content for referred-absent items.\nChase binding: disclosure chase must request abe_or_special_measures, third_party_material_note by identity, pointing to this MG6 page.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-07-sexual_assault\nDocument id | MG06\nKind | mg06\nLifecycle state | served\nPage purpose | mg6_file_index\nFamily | sexual assault\nProcedure | pet\nDefence on instructions | abuse of process argument\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for sexual assault must respect served vs absent papers.\nPrecise next action: verify MG06/page/1 against MG06 before any external send.\nSource/page pointer: MG06/page/1",
+          "textHash": "0c201e0b1c042acfca85424cc0d566975380afa903ae186d38d2b61422aef50e",
+          "headings": [
+            "MG6 File front sheet / index",
+            "Inventory"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "45ab9f093cc37dfc3a235abe668cee3ffe5c9f5d62c87efca50f51817bf30839",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\npageIdentity=defence_proof_extract/page/1\n## Defence proof of evidence extract\n## PRIVILEGED\nPosition on instructions: abuse of process argument\nThis extract is privilege-separated. Not for ordinary copy/export/API send.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: abuse_of_process_argument. Not for ordinary copy/export.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-07-sexual_assault\nDocument id | defence_proof_extract\nKind | defence_proof\nLifecycle state | privileged\nPage purpose | defence_privileged_extract\nFamily | sexual assault\nProcedure | pet\nDefence on instructions | abuse of process argument\n\n## Status / limitation / next action\nStatus: privileged\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for sexual assault must respect served vs absent papers.\nPrecise next action: verify defence_proof_extract/page/1 against MG06 before any external send.\nSource/page pointer: defence_proof_extract/page/1",
+          "textHash": "45ab9f093cc37dfc3a235abe668cee3ffe5c9f5d62c87efca50f51817bf30839",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ]
+        }
+      ],
+      "privilegeSeparated": true,
+      "realPaginatedFile": true
+    }
+  ]
+}

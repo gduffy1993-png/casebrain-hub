@@ -1,0 +1,5585 @@
+{
+  "rows": [
+    {
+      "caseId": "div3000v212-01-common_assault_battery",
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "2ed38cf3bdfe73ea6ce333cf1bdd1374d348174050b745ed8783354fc1a5411c",
+      "layoutKinds": [
+        "written_charge"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "written_charge",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pageIndex": 1,
+          "purpose": "charge_instrument_particulars",
+          "layoutKind": "written_charge",
+          "textHash": "638c54be4e7d70279849cb2fc0b3b0e8bc51ab04af79561e48824eec3438a0c7",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pageIndex": 2,
+          "purpose": "charge_defendant_allocation",
+          "layoutKind": "written_charge",
+          "textHash": "a789a4cb4c605663977b2a7fa265150a018acc2fbba4084c2f00e5294ee4815d",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-01-common_assault_battery",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "6330cbb868cfcdee4fe8958ba2ea0c4b91271395c09d207fe8bd2baabfe41882",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "276a40f37abcb82841ebe0fb1c34f808eeec23c067858733b1c3011adc954a9b",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "6dabaae232a8bef3fd604dbde195c302a319c4eb699f54132e5feecd692a1ce5",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-01-common_assault_battery",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "73a01642aba28e8a38a0be4af3a399dac76ce473493bc6cbb6997c4e55920f58",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "73a01642aba28e8a38a0be4af3a399dac76ce473493bc6cbb6997c4e55920f58",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-01-common_assault_battery",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "5c3e27a11bac614210abf297be5a3df4312dabac7f9ea32a935db2e26094cde3",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "5c3e27a11bac614210abf297be5a3df4312dabac7f9ea32a935db2e26094cde3",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-01-common_assault_battery",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "eefb76293ea7c13f17ff5477feff9ff7553950813c6dea492380d51b69ca113b",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "eefb76293ea7c13f17ff5477feff9ff7553950813c6dea492380d51b69ca113b",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-01-common_assault_battery",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "895e4770a90e7d57cafa39b254db0c543998101fcd19f40b217d05382dfb9940",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "9438e9ae36f23b008748091a3f0558b243f762fb71cae94c1616ec8a94e06c90",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "5f7c6f2bb173f0204ab66f9df05fd5758eb3754e72136e182873b1ab88ab6b02",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-01-common_assault_battery",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-02-shoplifting_theft",
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "797389461145f50ceebf856675d41447c059af138dbff25b89d4edbee2bd285b",
+      "layoutKinds": [
+        "indictment"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "indictment_operative",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pageIndex": 1,
+          "purpose": "indictment_count_particulars",
+          "layoutKind": "indictment",
+          "textHash": "cd956d9c812d908bbb03e9445f010cb9e9931105ee36e4c33efdc30f35be1425",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pageIndex": 2,
+          "purpose": "indictment_further_counts_or_history",
+          "layoutKind": "indictment",
+          "textHash": "405c16ee157a9c1c8dfa312f35d0364378e794f98d7ca74d013b1a1caa80f1b5",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-02-shoplifting_theft",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "375af950d5b7e4080abf70be6902ff1e57ee19738100b486b6801eb2c980d340",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "17431cdc43444599fb88513cd434e570490d2024e42b2ff337156c6e91060b38",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "93fdc327e917ba58b9eccac0121ea8ccdbe40464e9a445d76c523a0030a32ffb",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-02-shoplifting_theft",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "26ba9f470fc872b9ede000266ffad2a85bfd6c2f864ca819320e487e2f27761f",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "26ba9f470fc872b9ede000266ffad2a85bfd6c2f864ca819320e487e2f27761f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-02-shoplifting_theft",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "50869a24716c0c962e02c8c96eed1d96b781c9b9cad11d95896b4e2e23a21aac",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "5ea36a96a4e7c63e2d97f86e60870975e810bafbd6ac5c908364f8aba38c327a",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "55a9cca471cc581e1701c2296d12a492846ea445e68b25251ec2ace938cbb062",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-02-shoplifting_theft",
+      "docId": "extra_context_5",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "b4a9d330979c802f58847f070a93e4fbe09f3556f46f967cb6ae49cdf9c645c2",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_5",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_5/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "b4a9d330979c802f58847f070a93e4fbe09f3556f46f967cb6ae49cdf9c645c2",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-03-going_equipped",
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "5216956a950b44c2e066ef8aa9b522e583d88554e31534dd97b921acba7d590e",
+      "layoutKinds": [
+        "written_charge"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "written_charge",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pageIndex": 1,
+          "purpose": "charge_instrument_particulars",
+          "layoutKind": "written_charge",
+          "textHash": "5216956a950b44c2e066ef8aa9b522e583d88554e31534dd97b921acba7d590e",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-03-going_equipped",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "99a5908f2e527e165861f409a63c5bda2073660a761328817f2fba15f517760e",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "d3d975c2d3afcba057c338d66fc8949137f1b8da5ce901d89c90765268868a74",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "b5f6a7451604ecd84e419b94b2802440c9615becfa57a089d7d37e962263c0bc",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-03-going_equipped",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "ec802e18238fff6f413687f25e956846806fd2b1c9ea14ce6184f436e0d03ee7",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "ec802e18238fff6f413687f25e956846806fd2b1c9ea14ce6184f436e0d03ee7",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-03-going_equipped",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "9d3681a20a91def7798778c3d3b5f6add1f06bdb173b9825e305d06dc99f0753",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "48348d4c7b28223f0de977f4f21a24d3936a52503e149f2cdbb9a6aa6779a55c",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "b7c31bbc35ec87c47c03481398cd2c6cddac888cec522438ac0914f59c10eaf8",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-03-going_equipped",
+      "docId": "extra_context_1",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "f755c588dabac7b0248cf316c261f208e6b1cf31b75232e130ab15a8fa79f8d7",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_1",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_1/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "f755c588dabac7b0248cf316c261f208e6b1cf31b75232e130ab15a8fa79f8d7",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-04-twoc",
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "670e22f976f4b9b6174a6b660860f6e07971fbbd2b87f1d6621578e9463f7550",
+      "layoutKinds": [
+        "indictment"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "indictment_operative",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pageIndex": 1,
+          "purpose": "indictment_count_particulars",
+          "layoutKind": "indictment",
+          "textHash": "79cf77fcdef6724831be308599698c2d254690ca2a5367a81798fe7042696a76",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pageIndex": 2,
+          "purpose": "indictment_further_counts_or_history",
+          "layoutKind": "indictment",
+          "textHash": "4d1fc6c9c65971c2354ce982ad0a09aa49c25c79bbc3d9cba444058507f08d48",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-04-twoc",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "53f60296db5d777370cf4ae577cfa47a06aa1a499767c3dd97b8dc03367607d8",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "248c0647ddc925312d42769221714d6ff849a1334d56cc2b7e93f15334cd9a37",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "91150b5e62b00215640902c0da7a88cbc6bb30b5369f311f7a617ed35d11f6bc",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-04-twoc",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "d78f5772444a741f9bf4d78741bc4d7f3ff86627c11a351d7553548fbde9c25d",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "d78f5772444a741f9bf4d78741bc4d7f3ff86627c11a351d7553548fbde9c25d",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-04-twoc",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "9d28268cafbb9172fb71ca1836d4deb93a93c47547358f6081c8d59ff41e1efe",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "626efb5e059e833ffdae62b8864797416b62d27094e8d13307d2da2a23224efa",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "4c4f3eb0af2bdf0fef2197de252f77c6f1ebd00c7ae6462181a9c0024a6a96ef",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-04-twoc",
+      "docId": "extra_context_6",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "b393348277cce75e5cf5bda3d951985d136e07c6a0a48be6665949db21d7ef15",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_6",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_6/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "b393348277cce75e5cf5bda3d951985d136e07c6a0a48be6665949db21d7ef15",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-05-bladed_articles",
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "b5491a928244bb31fe72e013eb0dd6d88a1c158738e3d5dc22d42602b080d2dc",
+      "layoutKinds": [
+        "written_charge"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "written_charge",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pageIndex": 1,
+          "purpose": "charge_instrument_particulars",
+          "layoutKind": "written_charge",
+          "textHash": "b5491a928244bb31fe72e013eb0dd6d88a1c158738e3d5dc22d42602b080d2dc",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-05-bladed_articles",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "ca13d51f344e15e135e86598aeeb06255d5827e656259d65046d8eeb5cc39b5f",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "e118bebe8c9d69057a34bd929086c5ef0882413fbaea10d37c145e0678568837",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "1f446459557868388fdded156d6b0fd4868598d2af1e75d82e1332b367c31afe",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-05-bladed_articles",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "cdb67bacffc38b3e4a73f5afc7295169991726f861ea07a72507dd38c6a55067",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "cdb67bacffc38b3e4a73f5afc7295169991726f861ea07a72507dd38c6a55067",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-05-bladed_articles",
+      "docId": "MG12_exhibits",
+      "title": "MG12 exhibit list (fictional test)",
+      "kind": "mg12",
+      "state": "served",
+      "contentHash": "cb3c32c078532d91f5c342834e50fb7f7deda8468e93aeb161c152d80c0f0d4d",
+      "layoutKinds": [
+        "exhibit_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG12_exhibits",
+      "pages": [
+        {
+          "pageIdentity": "MG12_exhibits/page/1",
+          "pageIndex": 1,
+          "purpose": "exhibit_list_mg12",
+          "layoutKind": "exhibit_schedule",
+          "textHash": "4e0bcaf27e9dff8a49c3eeaf27f79e7ee4dc3a69db865bb1990abe4d17d80d9f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG12_exhibits/page/2",
+          "pageIndex": 2,
+          "purpose": "exhibit_list_further_items",
+          "layoutKind": "exhibit_schedule",
+          "textHash": "7246b41b3b222b07236a1e3f815366c5cbb03e9592c8a93487c44058959e5833",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-05-bladed_articles",
+      "docId": "MG15_interview",
+      "title": "MG15 interview record (fictional test)",
+      "kind": "mg15",
+      "state": "served",
+      "contentHash": "e37bf8895d3b684273e51ea931b6d8f3f11ebd870c2aae0f17f6c6243b53f233",
+      "layoutKinds": [
+        "interview_record"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG15_interview",
+      "pages": [
+        {
+          "pageIdentity": "MG15_interview/page/1",
+          "pageIndex": 1,
+          "purpose": "interview_opening_caution",
+          "layoutKind": "interview_record",
+          "textHash": "b106b02c230005c7e63f14633aeed9945086b900e9b80da8d76b3d85223763e1",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG15_interview/page/2",
+          "pageIndex": 2,
+          "purpose": "interview_qa_summary",
+          "layoutKind": "interview_record",
+          "textHash": "22ed7809a5686c5e090197baecbe448c7d33b84a65f99e733d0cc88451ac38e6",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG15_interview/page/3",
+          "pageIndex": 3,
+          "purpose": "interview_exhibits_produced",
+          "layoutKind": "interview_record",
+          "textHash": "53c3e457ad968e890681cd2720dc6fa7e873d374d5dafafd2638de79ce21cdb8",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-05-bladed_articles",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "dcbfaa0726ffaa06d6e96d6b02341f20d2e4bd705e4cc965c3f44dec2fe4f957",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "4430c079649eaf43475f7d7d21f2f6a3a02fcc1561d86b8e8053fe2fadbc9a82",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "2593be7a0590f192f9eaf9c2b99a03871c441b36802846cc5c5a3b66a4a4deb7",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-05-bladed_articles",
+      "docId": "defence_statement_draft",
+      "title": "Defence statement draft (fictional test)",
+      "kind": "defence_statement",
+      "state": "draft",
+      "contentHash": "b5746cb2c80c3e209297e61d2f96e0cbc4fc246cc7951e29dcca4502f87533c7",
+      "layoutKinds": [
+        "mg11_statement",
+        "mg11_continuation"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_statement_draft",
+      "pages": [
+        {
+          "pageIdentity": "defence_statement_draft/page/1",
+          "pageIndex": 1,
+          "purpose": "witness_statement_opening",
+          "layoutKind": "mg11_statement",
+          "textHash": "84398f531e10525076cc7920b9f63ed6f4e3e8c74c1d6e1bc24807c622be05d7",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_statement_draft/page/2",
+          "pageIndex": 2,
+          "purpose": "witness_statement_continuation_paras_4",
+          "layoutKind": "mg11_continuation",
+          "textHash": "9df48c5dabe3fffab65733d36e19a86ee9622fd47397af28ddd3f0c75186bbaa",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-05-bladed_articles",
+      "docId": "extra_context_2",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "d78bc3373f507c39c59d591dc9650c91c796f85d18314df6d0a0f0a7df7eb663",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_2",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_2/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "d78bc3373f507c39c59d591dc9650c91c796f85d18314df6d0a0f0a7df7eb663",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-06-affray",
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "8c0454fcbc1f04b9d4129c06bfe16f90abfc05c434185de097bc47edb0598461",
+      "layoutKinds": [
+        "indictment"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "indictment_operative",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pageIndex": 1,
+          "purpose": "indictment_count_particulars",
+          "layoutKind": "indictment",
+          "textHash": "9f09ea943f5413b7f010ba410cd1b7927343939b442c7ae3d91550200f0fac7f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pageIndex": 2,
+          "purpose": "indictment_further_counts_or_history",
+          "layoutKind": "indictment",
+          "textHash": "fc1e6fed2e6f905145bd9a2cde6c6b9ecc2926d22fd14a70bb45b2581e16191e",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-06-affray",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "49c321f2c5ec888a2a453c29c6a36df5c847b1b1fcfbd59f9223a18f8b1f3b77",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "11d028fc7c1e2e3ade21d623b4094c35d96b37a6f141a1a1036a000695d96de0",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "93e1800ec4eb4423ef04e8e5d40527c2d2121b2279c6d3d982a54add24a59e1c",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-06-affray",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "cb0d01db7fa8480fcb2d2ff3b4985f03d84d5bb692f3549097ecaaa43cbeee42",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "cb0d01db7fa8480fcb2d2ff3b4985f03d84d5bb692f3549097ecaaa43cbeee42",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-06-affray",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "5ac4b2b111383d32a253d498e28c566116aa10ff560e4c20be1b66aa679926e2",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "5ac4b2b111383d32a253d498e28c566116aa10ff560e4c20be1b66aa679926e2",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-06-affray",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "2550210f28f24e557d1554876def5a5b3aa324bf17abea7423e071e6a2b57ecf",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "2550210f28f24e557d1554876def5a5b3aa324bf17abea7423e071e6a2b57ecf",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-06-affray",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "0283d874e337ebd2c23e064ffd5938ab43b42ff75556e2ef73cbd8133ec6ee78",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "10aeaec50aaa7efbf491f5c791819e9470a0ee660eeb3740afd684de7cec804f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "aec9fe3bb35ad2a4f9cc259a866ff4235be679210cd778664f37034f307fcdfb",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-06-affray",
+      "docId": "extra_context_7",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "aa164ca61e647bf512dc028632813fda4e4f4b4e3df1ca833ac24b78493b6a33",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_7",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_7/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "aa164ca61e647bf512dc028632813fda4e4f4b4e3df1ca833ac24b78493b6a33",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-06-affray",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-07-sexual_assault",
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "c11246392927711c0d1efbf2eec2dc56959918afd8300726a889636baba880e4",
+      "layoutKinds": [
+        "indictment"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "indictment_operative",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pageIndex": 1,
+          "purpose": "indictment_count_particulars",
+          "layoutKind": "indictment",
+          "textHash": "9d418144c2ee9d9848c797d2af7168faa2ca0b1df152ba7e14ed100fd2b01d04",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pageIndex": 2,
+          "purpose": "indictment_further_counts_or_history",
+          "layoutKind": "indictment",
+          "textHash": "253cb9b99a5ef35bda6ba9e43c5c1ce0efec56b8722b322bcff029deefe8ce51",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-07-sexual_assault",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "e62502a13a48eed3a4f7171672993d84631ee5085385525097e7e0411d372592",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "03a066643c17910574211076f9bef26305eb1cfab5fd72e4031f4a58f8772010",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "a06e6cfc23290e3c47a3e2deeb8a9bbc97d0f5af49ac24f877e56781ebfc6940",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-07-sexual_assault",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "88c3035e25549d0cd5e30b4bdcab74fb9c994a986acca26c5eaa750ffe1db318",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "88c3035e25549d0cd5e30b4bdcab74fb9c994a986acca26c5eaa750ffe1db318",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-07-sexual_assault",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "f88a08246f845c412044b267393c12def5bfe281d3fe716044fa560cca584485",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "8fb52f6bd4568a4c98f37b88e586edb1dbf173422cb6d6573fda7783da9cbdef",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "dd4c159a1e61d77f29f9ad5299319a0d94230564d65be80f79c91aba7e908997",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-07-sexual_assault",
+      "docId": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "abe_or_special_measures",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-07-sexual_assault",
+      "docId": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "third_party_material_note",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "324c861a3c60af33f3bd6f0a54ec097c82d0938cfa20dfe6b6d814ab1f7f8680",
+      "layoutKinds": [
+        "indictment"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "indictment_operative",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pageIndex": 1,
+          "purpose": "indictment_count_particulars",
+          "layoutKind": "indictment",
+          "textHash": "cd7ef56fc7f9dd4bf7ac832cce0f7eaecd5a97d29e770bad2128ebab32adce38",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pageIndex": 2,
+          "purpose": "indictment_further_counts_or_history",
+          "layoutKind": "indictment",
+          "textHash": "2648b6439724872c9edb993f97234fd6fef7b2b28705beab8819acad962f65d9",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "d3b5faa0d0d202b7db1916f61f09c0875e56f38b06d94453e64c34befbd42db7",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "b79ada664f3f9294aacddc07e41ca0a7766d763b01e21938fd4343e940b559fe",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "079eaa8a82776f28e443a6811fd6a8112e926772bb574fa5138d5c34a8d3a55d",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "eb690b20e12cd1bf9c7077b13f15a7de30d7290b46d05f7c8e47c5aa206f9bf4",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "eb690b20e12cd1bf9c7077b13f15a7de30d7290b46d05f7c8e47c5aa206f9bf4",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "MG11_complainant_signed",
+      "title": "MG11 complainant statement — signed (fictional test)",
+      "kind": "mg11",
+      "state": "signed",
+      "contentHash": "95636034aea513a15e43f1e9de6a934b3a9b5eda1d0d4d9ec24ee62944d31fc7",
+      "layoutKinds": [
+        "mg11_statement",
+        "mg11_continuation"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG11_complainant_signed",
+      "pages": [
+        {
+          "pageIdentity": "MG11_complainant_signed/page/1",
+          "pageIndex": 1,
+          "purpose": "witness_statement_opening",
+          "layoutKind": "mg11_statement",
+          "textHash": "680d319be6571ea72e5d10c2cff775536b7996038db12329cb2e1f7224c8c294",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG11_complainant_signed/page/2",
+          "pageIndex": 2,
+          "purpose": "witness_statement_continuation_paras_4",
+          "layoutKind": "mg11_continuation",
+          "textHash": "4d7ed74e04933ea413f404d32ed4f288f0afc3f474cd4464bd2a6312c2acb095",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG11_complainant_signed/page/3",
+          "pageIndex": 3,
+          "purpose": "witness_statement_continuation_paras_7",
+          "layoutKind": "mg11_continuation",
+          "textHash": "d16d2a89164c9c965ebefdec44b5f1b7e5f8c5cd2f9cd36c3b4b7556717bbe25",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "MG11_complainant_draft",
+      "title": "MG11 complainant statement — earlier draft (fictional test)",
+      "kind": "mg11_draft",
+      "state": "draft_superseded",
+      "contentHash": "d67058b361de72adf23f5e95934a7ccdd6cfa0dbb595ebd491ddabc1ae2dd515",
+      "layoutKinds": [
+        "mg11_statement",
+        "mg11_continuation"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG11_complainant_draft",
+      "pages": [
+        {
+          "pageIdentity": "MG11_complainant_draft/page/1",
+          "pageIndex": 1,
+          "purpose": "witness_statement_opening",
+          "layoutKind": "mg11_statement",
+          "textHash": "ed425a1ff5ae247ab2804f5dd22be198e355a58c2db0e4602f2cd247cef6cc44",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG11_complainant_draft/page/2",
+          "pageIndex": 2,
+          "purpose": "witness_statement_continuation_paras_4",
+          "layoutKind": "mg11_continuation",
+          "textHash": "3f8f2f5d8e2edec04f6f678e4850d1d1781aa17564ab5a4358ebaeb6e23af6bd",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG11_complainant_draft/page/3",
+          "pageIndex": 3,
+          "purpose": "witness_statement_continuation_paras_7",
+          "layoutKind": "mg11_continuation",
+          "textHash": "3d08a2685df11dc80cfa31f8b68e02c4fd053b926d214a7bc640d98245360617",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "order_or_bail",
+      "title": "Protective order / bail conditions extract (fictional test)",
+      "kind": "order",
+      "state": "served",
+      "contentHash": "22e497f2e27cc277ff2c0f3f5c93bb2e7827b435e3755bf71d5ec2e00212747c",
+      "layoutKinds": [
+        "court_order"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "order_or_bail",
+      "pages": [
+        {
+          "pageIdentity": "order_or_bail/page/1",
+          "pageIndex": 1,
+          "purpose": "court_order_operative_paragraphs",
+          "layoutKind": "court_order",
+          "textHash": "22e497f2e27cc277ff2c0f3f5c93bb2e7827b435e3755bf71d5ec2e00212747c",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "f22b7b4963d71b496684d9bd51663c61b76f916f7f13befd53ad1f5f86708f33",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "f22b7b4963d71b496684d9bd51663c61b76f916f7f13befd53ad1f5f86708f33",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "0e82e6a1251dba6ff29ef55975a40d1132d4f2ce282faafeca6853c0651246df",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "0e82e6a1251dba6ff29ef55975a40d1132d4f2ce282faafeca6853c0651246df",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "77ecabb188e14bf5bf72b8452caf5b1141a967095c95af2fd5cd25b7516eb767",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "39e648358b1a4e1aac92646d12048b45cab88cb3560d8b63f8dbf8b29699aa8b",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "629fb3ea8307b52a558b9609e41a28c6f87c3d0cf5392cc84c1d89b80fe2e4ca",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "extra_context_5",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "17a46adb89268c469fe3399779f71fffce6dfec812ef0735bd3a97eac787e541",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_5",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_5/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "17a46adb89268c469fe3399779f71fffce6dfec812ef0735bd3a97eac787e541",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-08-strangulation_suffocation",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-09-blackmail",
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "5e854d0a7a09a510433882b084e4de63f7a301027202e5f0d2c10edf2afd4e62",
+      "layoutKinds": [
+        "indictment"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "indictment_operative",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pageIndex": 1,
+          "purpose": "indictment_count_particulars",
+          "layoutKind": "indictment",
+          "textHash": "b5b38724c7a5548cbce7eea98313d07d37b2abfa96bfbfc3d771e864ab8ddb51",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pageIndex": 2,
+          "purpose": "indictment_further_counts_or_history",
+          "layoutKind": "indictment",
+          "textHash": "0bdda4066ab54000131296c3fbf6fdb25cc3e7ab3d9974b965bcd5df434a1ad8",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-09-blackmail",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "aa3b2ee2f6c3914cb5f44bc37913c14e18bd2190af1bdb0674cdbb8e1398125b",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "2693fb54ca5d1dc5e3f99aa21e61d06cb9b760ab513841303f66179760c73c75",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "abb0ff3cf64b264c0c598bef2f6a814758b3ef28541108bd325450a3398d93c2",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-09-blackmail",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "3488d7ab9c94ebe69725e091c634775c898d26b1b2ab2a94cb6b6a880296cd4f",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "3488d7ab9c94ebe69725e091c634775c898d26b1b2ab2a94cb6b6a880296cd4f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-09-blackmail",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "a49169ffdab96e73169e98d62ef4400843d555e60b837d5129b4ffd3e634853d",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "a49169ffdab96e73169e98d62ef4400843d555e60b837d5129b4ffd3e634853d",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-09-blackmail",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "c94c4bb58f7f69bf6c96488ecfa65f010950f52442c6ff3baf2711380d60acbe",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "c94c4bb58f7f69bf6c96488ecfa65f010950f52442c6ff3baf2711380d60acbe",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-09-blackmail",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "2426dff2a0d41b3a53dc09ea7374f1e4f586d6d7c13cecc6b194165c90a7c7d1",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "d23bf19df5693233eafbc49d866fcf5c331bec79cd6767cd913be014c6c012b1",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "a50f2ee4376262024823e376f9697b8dafea64f9c6714eab6c31a9259948e7d1",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-09-blackmail",
+      "docId": "extra_context_3",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "6c90d149b1b85ed668d855213ddfc999edf0e122c3063dcb84e5a0b5e5d052e2",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_3",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_3/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "6c90d149b1b85ed668d855213ddfc999edf0e122c3063dcb84e5a0b5e5d052e2",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-09-blackmail",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-10-drugs_conspiracy_supply",
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "74c7cd7c0428bdaa591e476a5b8037778cff99ddfd5c5eab8ddb6329740f0ef7",
+      "layoutKinds": [
+        "indictment"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "indictment_operative",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pageIndex": 1,
+          "purpose": "indictment_count_particulars",
+          "layoutKind": "indictment",
+          "textHash": "c133b2c3a1469d5bc9515110511691cab658fc34e9ad2cb00d3118610e35639d",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pageIndex": 2,
+          "purpose": "indictment_further_counts_or_history",
+          "layoutKind": "indictment",
+          "textHash": "9167757753b508e76c845ecf52778930fb928c363d9a06af57dfda4117f270da",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-10-drugs_conspiracy_supply",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "05536c2a304ed6cf3517c2606285a49df123b7bc48d8cd092e8192967ff87778",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "a598f4370e5b490a21f4197e8ed4e502a68f5cd90409b4f7c7d505dd2c959442",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "d9b8c35b1422fc21dc8fe4453ff09777c38ccacd69862ae4a1269a66671fb348",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-10-drugs_conspiracy_supply",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "ef57b3f9c475ef07368c0f86583e3e29c66a21c5a3f96a7f636e7571913fa293",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "ef57b3f9c475ef07368c0f86583e3e29c66a21c5a3f96a7f636e7571913fa293",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-10-drugs_conspiracy_supply",
+      "docId": "MG12_exhibits",
+      "title": "MG12 exhibit list (fictional test)",
+      "kind": "mg12",
+      "state": "served",
+      "contentHash": "5b5af9685a50247b7f7cc4c07297e5ffcf467c13ccb24915d7e15b5052d6c65c",
+      "layoutKinds": [
+        "exhibit_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG12_exhibits",
+      "pages": [
+        {
+          "pageIdentity": "MG12_exhibits/page/1",
+          "pageIndex": 1,
+          "purpose": "exhibit_list_mg12",
+          "layoutKind": "exhibit_schedule",
+          "textHash": "e926e556c5ec874791570a1e3086bbcd617b2c67124215d6baefeae1e8caf96c",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG12_exhibits/page/2",
+          "pageIndex": 2,
+          "purpose": "exhibit_list_further_items",
+          "layoutKind": "exhibit_schedule",
+          "textHash": "ff1370936cfd3d02295ddb18b7e5ad101cc247bbbaaa5a8268a3457807b5f727",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-10-drugs_conspiracy_supply",
+      "docId": "MG15_interview",
+      "title": "MG15 interview record (fictional test)",
+      "kind": "mg15",
+      "state": "served",
+      "contentHash": "363242ea52a4981985e417f6a6817e583ff8e1b23927320c6b94424717b7b580",
+      "layoutKinds": [
+        "interview_record"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG15_interview",
+      "pages": [
+        {
+          "pageIdentity": "MG15_interview/page/1",
+          "pageIndex": 1,
+          "purpose": "interview_opening_caution",
+          "layoutKind": "interview_record",
+          "textHash": "9fa2797041dacee3bb013cec4a18fdb62adbdb3ee9eb73cb7369244e60c55458",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG15_interview/page/2",
+          "pageIndex": 2,
+          "purpose": "interview_qa_summary",
+          "layoutKind": "interview_record",
+          "textHash": "9af9f52162c458fd6ae617cf6fd53bc1114257581a54133a8c088acbb9954c20",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG15_interview/page/3",
+          "pageIndex": 3,
+          "purpose": "interview_exhibits_produced",
+          "layoutKind": "interview_record",
+          "textHash": "14a1d02d9729aec72134a140600e7dd43759bd1bd56e5dd9f9c5f1d6909e14e9",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-10-drugs_conspiracy_supply",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "67e460b5ba00b4f7d7b1976f595f8a9af57bd0ff9851f6b12f1dbe6d17f9ad89",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "67e460b5ba00b4f7d7b1976f595f8a9af57bd0ff9851f6b12f1dbe6d17f9ad89",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-10-drugs_conspiracy_supply",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "9e262da54043e7f94d06a3e462a90db3296a4f150526a1e058a5aca85e91d182",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "9e262da54043e7f94d06a3e462a90db3296a4f150526a1e058a5aca85e91d182",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-10-drugs_conspiracy_supply",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "ebf5dbcd9b851ee5a1cffa0d2db1a8a89745828a0a3081c34ebb8650e3240306",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "426ccc35734261addf4929b61b5c8c5be7b7f3f1b8c4ec398741312d0d36b59c",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "1299925aa97cbaa40bee6b4577c3ecd466c09cf1c15e7cc4b55530f339a7948a",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-10-drugs_conspiracy_supply",
+      "docId": "extra_context_1",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "a520d03d14fa5b35a98b628e394b2a61620f7f69b7e9de7016b1bf707da8a029",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_1",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_1/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "a520d03d14fa5b35a98b628e394b2a61620f7f69b7e9de7016b1bf707da8a029",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-10-drugs_conspiracy_supply",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-11-social_media_attribution",
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "5042e290c5a71e3de27645d2b6db3ce766e9a194f7ee46816cb71ca7a331cbf3",
+      "layoutKinds": [
+        "indictment"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "indictment_operative",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pageIndex": 1,
+          "purpose": "indictment_count_particulars",
+          "layoutKind": "indictment",
+          "textHash": "990d3d120d2f66996897ae093bc4effeea7d7d54d9d84d9db1a0ce25f2b23708",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pageIndex": 2,
+          "purpose": "indictment_further_counts_or_history",
+          "layoutKind": "indictment",
+          "textHash": "67a858267e581b5a2df7e2a4776227e154059f282716b0c0aff56531871c8c88",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-11-social_media_attribution",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "641419cb041be2fae84a666dc11b1f5b7d8ce3624b49a565ea8a7a991a7817a2",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "b3baee8911a49c2dba3e94d08509c07ebe80c7c14657958fb4f93c4679b4e5a6",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "d4559b380cad408d4145397d9c57f46f0ed5f18550f14994a4f2856259c5d4b8",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-11-social_media_attribution",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "3ea5f5ef645ebfe2f8f3d4ab5800cc4b18379b902ab849dbbc409dc68d8e1188",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "3ea5f5ef645ebfe2f8f3d4ab5800cc4b18379b902ab849dbbc409dc68d8e1188",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-11-social_media_attribution",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "c8e1447dfcc922071c05ef7606514da2193b6e7350a72da97aee98fe7fea070b",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "c8e1447dfcc922071c05ef7606514da2193b6e7350a72da97aee98fe7fea070b",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-11-social_media_attribution",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "cea7fb5c1fa9ea945e183c8c9ea825bbd4207b060792e3442ef7bcc77777e7ce",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "cea7fb5c1fa9ea945e183c8c9ea825bbd4207b060792e3442ef7bcc77777e7ce",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-11-social_media_attribution",
+      "docId": "phone_download_schedule",
+      "title": "Phone download / attribution schedule (fictional test)",
+      "kind": "digital_schedule",
+      "state": "incomplete",
+      "contentHash": "5f7dc9ed7c709de449fa1dc24829f87bb1b1463e4b3d95e0b2cff53a8c7778ca",
+      "layoutKinds": [
+        "phone_download_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "phone_download_schedule",
+      "pages": [
+        {
+          "pageIdentity": "phone_download_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "phone_extraction_schedule",
+          "layoutKind": "phone_download_schedule",
+          "textHash": "6eecdecaa879d39191fec94817aece3a30e2db52f300bce368628a9d633cf346",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "phone_download_schedule/page/2",
+          "pageIndex": 2,
+          "purpose": "phone_call_and_app_rows",
+          "layoutKind": "phone_download_schedule",
+          "textHash": "ddd4fdd7bd06f66a1ee6a2a36b51bc067e974679d3f1618b7094abeb6a4a70fd",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-11-social_media_attribution",
+      "docId": "unused_schedule_mg6c",
+      "title": "Unused material schedule extract (fictional test)",
+      "kind": "disclosure_unused",
+      "state": "served",
+      "contentHash": "5bc7cd06b573112fc3d27294c11cc0063511bbc6912d9a0f4cdc87dd0b246a69",
+      "layoutKinds": [
+        "mg06c"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "unused_schedule_mg6c",
+      "pages": [
+        {
+          "pageIdentity": "unused_schedule_mg6c/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6c_unused_schedule",
+          "layoutKind": "mg06c",
+          "textHash": "9f778b882e657c51ac8247ffb1cb5836f29cda6365b3c9a87c0159e521043a06",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "unused_schedule_mg6c/page/2",
+          "pageIndex": 2,
+          "purpose": "unused_schedule_continuation_decisions",
+          "layoutKind": "mg06c",
+          "textHash": "0fcef34bf5d4e992742c0ba176d3f6c8b6fe3460c5704c3605fe8fe828320177",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-11-social_media_attribution",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "a1527829a45e9ad54dbfe5ef738a196c5453ac664827a9c8a3ef276951920ce9",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "84896938bc002397ea4cbcbba19f54fe6fd560f1290672e63f126c868c45a1fa",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "88ad1102814c9e849f6898583f5c37f3b4cff165eb4fba0484efcffeaf06f15f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-11-social_media_attribution",
+      "docId": "extra_context_8",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "d3464b3210274427fd8d7e1e85b8353294740d50323bf66bc51ff68dd4e06058",
+      "layoutKinds": [
+        "phone_download_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_8",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_8/page/1",
+          "pageIndex": 1,
+          "purpose": "phone_extraction_schedule",
+          "layoutKind": "phone_download_schedule",
+          "textHash": "d3464b3210274427fd8d7e1e85b8353294740d50323bf66bc51ff68dd4e06058",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-11-social_media_attribution",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-12-perverting_course_of_justice",
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "e1da1a14767b87b804b88565037952a747e91ede8eac532342b09899e0b3e935",
+      "layoutKinds": [
+        "written_charge"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "written_charge",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pageIndex": 1,
+          "purpose": "charge_instrument_particulars",
+          "layoutKind": "written_charge",
+          "textHash": "684a932774ca7e137b366b3a8c0bd27afc62e381b02aafdfa9ca403d6e9667e5",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pageIndex": 2,
+          "purpose": "charge_defendant_allocation",
+          "layoutKind": "written_charge",
+          "textHash": "7403a5158f68b2b7d26d03324150106414dd89e845de4b5369e663a65420da42",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-12-perverting_course_of_justice",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "31f5a3ba1a03a4ba12d0a999c5425d1b2c578cf126f870cffd2dd6b5b1875a67",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "103ab97536f20ba0e3b6ebe57a9afecc0dff52103fdb8ad045be048c2d03e312",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "8d539153f8c54145bedb58aab25b9382044f6668566a6011c90e0bd3ee90c45f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-12-perverting_course_of_justice",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "c2ad41729b5a84702a2463aa3d94181aa7d86505f98cf8d1409310f8f3dbfc87",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "c2ad41729b5a84702a2463aa3d94181aa7d86505f98cf8d1409310f8f3dbfc87",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-12-perverting_course_of_justice",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "cb9679fe837e5d9b28f5ef2bfcb30dd44483c35bd15aaaca3eb644f9911f0c55",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "cb9679fe837e5d9b28f5ef2bfcb30dd44483c35bd15aaaca3eb644f9911f0c55",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-12-perverting_course_of_justice",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "b4d59db73a6610299d09542b7b4a297ea355b58558222b1e30b251c2f0ef77e7",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "b4d59db73a6610299d09542b7b4a297ea355b58558222b1e30b251c2f0ef77e7",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-12-perverting_course_of_justice",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "85430d18e6c378abb86ff9f6fe65184a90ae707d52acc913330f9004a3155d8d",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "69870c69d92802c71ae4f27dd4b2c0d9cdec93c4df1508032c56e1cbee36a39f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "e9573cecc137b8dc62107c47fb3465486a974c9e9d6d43a1cecee60eb1cc2012",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-12-perverting_course_of_justice",
+      "docId": "scan_layout_note",
+      "title": "Scan/OCR layout problem note (fictional test)",
+      "kind": "layout_defect",
+      "state": "served",
+      "contentHash": "dabd29c7b6840f43482b866f82d7edbddeabcf9db7ad6753958b2ab54a8afee1",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "scan_layout_note",
+      "pages": [
+        {
+          "pageIdentity": "scan_layout_note/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "dabd29c7b6840f43482b866f82d7edbddeabcf9db7ad6753958b2ab54a8afee1",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-12-perverting_course_of_justice",
+      "docId": "extra_context_6",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "ee627afda417b113e150a3dda9335669ed155f0bf60614bf5cc9ee484efe4819",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_6",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_6/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "ee627afda417b113e150a3dda9335669ed155f0bf60614bf5cc9ee484efe4819",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-12-perverting_course_of_justice",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-13-witness_intimidation",
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "49e35744c7f5d45d1e83ff217620b077be2f9f3446707fc9bd1e16a471289afd",
+      "layoutKinds": [
+        "written_charge"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "written_charge",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pageIndex": 1,
+          "purpose": "charge_instrument_particulars",
+          "layoutKind": "written_charge",
+          "textHash": "a17a2c5e3cce399626b046b3aa5c1addc5027cff00114339443e79696261b945",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pageIndex": 2,
+          "purpose": "charge_defendant_allocation",
+          "layoutKind": "written_charge",
+          "textHash": "00aa95fd285c229be69395a3a2a11d5af8bc3bd40e3518f8ed5936cb71b1a757",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-13-witness_intimidation",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "055faf4b275209f12e271734495748ac7e36ab9f3a96eb041e040662e0be73d3",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "1762f5719f7c5a3e98099708602fa2a863b475b89325408def8a9280a7402f65",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "6b205649ebd1bf3aa32f4f84612cc00e8b6f9d9a98ee1a6e85687a57eabd92b8",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-13-witness_intimidation",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "ccde178e42abf5fa16f6d5d564ecab748f2093c312fc3348e50bc4de10c8d9d1",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "ccde178e42abf5fa16f6d5d564ecab748f2093c312fc3348e50bc4de10c8d9d1",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-13-witness_intimidation",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "23b7ede7f89a2cf07db54a1f8adc8cc9f1156c1d9fb9f645139f6a9596458f43",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "23b7ede7f89a2cf07db54a1f8adc8cc9f1156c1d9fb9f645139f6a9596458f43",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-13-witness_intimidation",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "b465dc41a1d7999d3bb447050d0bb1b0ddfd0168301e3892dd5123374a828470",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "b465dc41a1d7999d3bb447050d0bb1b0ddfd0168301e3892dd5123374a828470",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-13-witness_intimidation",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "415c13f30bc9dd8431da6403cc9d02e67973c7887cf03d48cbcf9da1e60081b2",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "282a77073c5637b8e32606988a7824e6e19fdd4bab059b322b86fe5a0cf0e3dc",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "a0bf44aded7aa49634e465d9dcf22a1ad3581db3b21d5f77903db760db4753e6",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-13-witness_intimidation",
+      "docId": "extra_context_5",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "8435f63c5e75e25207376da3db8b550a9cb95fda2ea0e89d4af8aa7b807d8f93",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_5",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_5/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "8435f63c5e75e25207376da3db8b550a9cb95fda2ea0e89d4af8aa7b807d8f93",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-13-witness_intimidation",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-14-contempt",
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "ebf957344d801910df90b54cc4db87c0f3e2669320a3e3d9401c7f93e8d131cb",
+      "layoutKinds": [
+        "written_charge"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "written_charge",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pageIndex": 1,
+          "purpose": "charge_instrument_particulars",
+          "layoutKind": "written_charge",
+          "textHash": "3a0b5159a6d27a238e273e5c678496a0d5bbe4150e0e4984b707608918199dcd",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pageIndex": 2,
+          "purpose": "charge_defendant_allocation",
+          "layoutKind": "written_charge",
+          "textHash": "74a65a43a059ff6a1dfd8d6469d5695e9d083e3d3f93d775e4bedfc520ea8f7b",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-14-contempt",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "8a5d410a59a9195b82cf9b6ce3ad6ac73f03a420ff07520e454b8d72c55d690c",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "dcc65ebf83340f02c6e465fba4beefcf219b1da5d4ad77a30ae84051293b04bf",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "2ef5d63a724b781c9d48f88397b92824dc8a27104b9a4020afb4d9abe3d161a5",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-14-contempt",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "6230ef215c8f38b3623c6f228755f664bc7176629e1c27c79739d5b01e29b226",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "6230ef215c8f38b3623c6f228755f664bc7176629e1c27c79739d5b01e29b226",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-14-contempt",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "60202d85256d7f25238fd013e0f94af172108f8e5825fb7011c0cadbfd294ed9",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "60202d85256d7f25238fd013e0f94af172108f8e5825fb7011c0cadbfd294ed9",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-14-contempt",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "29f10b2050968d6f306b91fe8e60c9d99275619e1bc2e6dc49e091f86f1e17fc",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "29f10b2050968d6f306b91fe8e60c9d99275619e1bc2e6dc49e091f86f1e17fc",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-14-contempt",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "23d04e1c759812e3d44a058ed625ce33c7693fb6e1cca924456cf04573fb95bd",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "545b4e2139cd4bf7d24a758e4cce9fbb35d4a3a745655ee7bdec114bd41ee50e",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "d3e4049483ce7635e2f02df48e8facc044ae0218e2196f0f3b05383665903dbc",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-14-contempt",
+      "docId": "extra_context_4",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "06a0107f6586edd3890c78ebbe0ebeb1b3187d5678629f8e0c6a769e924f868a",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_4",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_4/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "06a0107f6586edd3890c78ebbe0ebeb1b3187d5678629f8e0c6a769e924f868a",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-14-contempt",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-15-prison_offences",
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "637316952f6203537195ca9be13741a7b8d50c63206b39114558cd2e1c239c25",
+      "layoutKinds": [
+        "written_charge"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "written_charge",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pageIndex": 1,
+          "purpose": "charge_instrument_particulars",
+          "layoutKind": "written_charge",
+          "textHash": "53c1a13e8ec660e1c23339de1ff4d6b5944be472b7f89e309314dfcfc70473ff",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pageIndex": 2,
+          "purpose": "charge_defendant_allocation",
+          "layoutKind": "written_charge",
+          "textHash": "e6f537a53951e315d203a3b543c267481c4f0b0c8a11e6f619d99a5a5685ec92",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-15-prison_offences",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "95581040570b4127d6ded546061be4c10967cac91c5c06a060e9e0057c7396e6",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "d5653a3f14a22e67ec9e8883cb9b481615bf36ccaa14dfb6633f12f07a1ba38a",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "03a15d02a221973eea94c9bc056cc07c0d38e787c697878b3deba2afe9caccb2",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-15-prison_offences",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "9118f23033072eb9aaf40453542081de95caa66a9c065873681a18a8e303938d",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "9118f23033072eb9aaf40453542081de95caa66a9c065873681a18a8e303938d",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-15-prison_offences",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "77215e3a62b7de5174d0701d9f10667c6df11b658e6cf14bba858e027b2b14eb",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "77215e3a62b7de5174d0701d9f10667c6df11b658e6cf14bba858e027b2b14eb",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-15-prison_offences",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "5d2a2846fe0c80d6d4cbdbb266624f5f47d3c5ca604f7bc7dabfd3cdf9eb37f4",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "5d2a2846fe0c80d6d4cbdbb266624f5f47d3c5ca604f7bc7dabfd3cdf9eb37f4",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-15-prison_offences",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "96f47bb1b00c448a047d312a2b0b2ed9d00e118a7d7ce69aad2eb62735492e65",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "6696809bf652d115291ecc0b00f00abd467ada6fb92eefdd499af86cb9a63ee8",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "ab1c9ab0455b656c8a4f578f3d17a6d33e1784ea496d4d9ba0d3b8195bb8fc2f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-15-prison_offences",
+      "docId": "extra_context_3",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "bafa8815853b4d80e005e7af815e2b6414366f09a6d729cdd0e455c067b0e5a8",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_3",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_3/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "bafa8815853b4d80e005e7af815e2b6414366f09a6d729cdd0e455c067b0e5a8",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-15-prison_offences",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-16-hearsay_res_gestae",
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "e24800ff63914b24a94ebb03de7e153deb41787bd2eb58c0ea264dae951507e4",
+      "layoutKinds": [
+        "written_charge"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "written_charge",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pageIndex": 1,
+          "purpose": "charge_instrument_particulars",
+          "layoutKind": "written_charge",
+          "textHash": "6972ee03e28ede56d23224575fbdcb4f6c6375e3d75978aa3c5a2698ea7bf265",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pageIndex": 2,
+          "purpose": "charge_defendant_allocation",
+          "layoutKind": "written_charge",
+          "textHash": "e98d0a15ee739abca6f364fb01b19379b1aabc4e89287c0267f6d69506e7b766",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-16-hearsay_res_gestae",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "768cff6f9fd9504bf31f25edcc99e650c5b0a5a5fa60082b11aa17f8656a01d8",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "a63c901d517b3075fe5a1aad93da9096b1c0c4a939e472d2bf6cb84122f930ae",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "91a96f3f1c413975946c1a980cb7ed05007139fa3556386a85f33d37d8eec38b",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-16-hearsay_res_gestae",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "656be36d1c871b07ae964d1087d83d817e99528d294776a02ae9047b439a2aa1",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "656be36d1c871b07ae964d1087d83d817e99528d294776a02ae9047b439a2aa1",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-16-hearsay_res_gestae",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "28cdb12599cf689934d5a38898717cee88fbacf8378eb2228ca770e3f2edc47d",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "28cdb12599cf689934d5a38898717cee88fbacf8378eb2228ca770e3f2edc47d",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-16-hearsay_res_gestae",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "9728d674c9cf3aef2c6e6a0ec6848b90a1db7675f7fa709547e942e7187fe41c",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "9728d674c9cf3aef2c6e6a0ec6848b90a1db7675f7fa709547e942e7187fe41c",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-16-hearsay_res_gestae",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "5cf503a310a02c7f999b30128bc2f85d9252dfba83faca3a18aa0d8d12ea3ed5",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "383dee04d2cf33adef6ff31a6bdf7309d334a2de71376cf782f8996693046c20",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "9425a50b3003084f032f4a7e05a1c59c16acaf08b34ce2866df1883eb67e8911",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-16-hearsay_res_gestae",
+      "docId": "extra_context_2",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "03eeef7dd8b4e834b115bd4ea35412e6027d132219c034e5ca3059a4ea796762",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_2",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_2/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "03eeef7dd8b4e834b115bd4ea35412e6027d132219c034e5ca3059a4ea796762",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-16-hearsay_res_gestae",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-17-corporate_manslaughter",
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "32815fa48ce7dfef4215dff9b2a275aee4d5445fbdc76d97d8f494423d38970c",
+      "layoutKinds": [
+        "written_charge"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "written_charge",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pageIndex": 1,
+          "purpose": "charge_instrument_particulars",
+          "layoutKind": "written_charge",
+          "textHash": "6b37a22f325f5664a9ff6277d90f252030dca980ee2cfd61d29167c32f1d137b",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pageIndex": 2,
+          "purpose": "charge_defendant_allocation",
+          "layoutKind": "written_charge",
+          "textHash": "1cdc1e6b8e38f6c5fe19dbf66ce0897964621d8f3520c44c0748873490fa10cb",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-17-corporate_manslaughter",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "a3ddbaa5615929e18b3186a8f46bec33e68e5d879255911828b802b8291ad04c",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "bfda41a25273ba41ea6bde786b760ca429f0e46cb2a5cd323534aa1331235200",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "d0b1fab35cf115f7e29a8270b66b6f8b49426a72f6a2306dff7b28f50c53b5a0",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-17-corporate_manslaughter",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "b2d34a1118a2cbf2625a37f78cea29714943bd9d3f9159dd7b67d2a037685afa",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "b2d34a1118a2cbf2625a37f78cea29714943bd9d3f9159dd7b67d2a037685afa",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-17-corporate_manslaughter",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "ffe44122604b1e0e5dcaf74ff7c70688cfb7fd2f3691742780ea61fdb2ee2a2e",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "ffe44122604b1e0e5dcaf74ff7c70688cfb7fd2f3691742780ea61fdb2ee2a2e",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-17-corporate_manslaughter",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "6c2fd54ba573eaf044ac4dcbf20388784828d380efb7001c23bf98a0d041cd7f",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "6c2fd54ba573eaf044ac4dcbf20388784828d380efb7001c23bf98a0d041cd7f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-17-corporate_manslaughter",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "35519a3a072ce8728c5562d4bb2b80b043be5e222b6e2d7b5ddc22b9e3cbdaac",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "7c703bb29ae60c302911e182f3289b2287ae2a519bebd162d70a50bc91525c2a",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "be04771a8d3e1bb36d0f5e84c2044965b3cb9cf005d7907d69a5645e54a0823d",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-17-corporate_manslaughter",
+      "docId": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "abe_or_special_measures",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-17-corporate_manslaughter",
+      "docId": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "third_party_material_note",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-17-corporate_manslaughter",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "a62d00e4fbc7c5f6782e193404f4227904dc9c6220ea42a0193933d5c726c5ba",
+      "layoutKinds": [
+        "indictment"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "indictment_operative",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pageIndex": 1,
+          "purpose": "indictment_count_particulars",
+          "layoutKind": "indictment",
+          "textHash": "4ca57dae368dcc0e50e560bd378d724b5183c4c4b6ed0c0387b2830f3b51d01a",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pageIndex": 2,
+          "purpose": "indictment_further_counts_or_history",
+          "layoutKind": "indictment",
+          "textHash": "3e6398ddb379a7fa54993aa6af14f68653d00fdfb7a7592c0aac70f82d4d3495",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "515ba17c80a5d00dfcc0f2cdb9168c248fbea18478457d71052c9ce4db6e4b1f",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "ab8034eb317e808ee241ed4f4587d7f68a22d30fe4d8ee0e402b3579cfd9a7c8",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "f2c42d5edea423f0cdaff1532957566829464f5e5123965c013bb46380c20bed",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "f78a9edd6adfd7bceceb60e6e866d6f34caea2d28625ea8cff4d299befa0ab18",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "f78a9edd6adfd7bceceb60e6e866d6f34caea2d28625ea8cff4d299befa0ab18",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "86ebea8245cae1cca903eeb59459036dd8bf0e13dc10753eddc22dc4124c0dc0",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "86ebea8245cae1cca903eeb59459036dd8bf0e13dc10753eddc22dc4124c0dc0",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "e32144351b299e0172c95936b93b7599093045bda416d6a3f5ff5bd042781770",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "e32144351b299e0172c95936b93b7599093045bda416d6a3f5ff5bd042781770",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "phone_download_schedule",
+      "title": "Phone download / attribution schedule (fictional test)",
+      "kind": "digital_schedule",
+      "state": "incomplete",
+      "contentHash": "8fc427e5e6a9eaa780f081794a7c8539f3d52234ce2256754bb57f84f6f4e331",
+      "layoutKinds": [
+        "phone_download_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "phone_download_schedule",
+      "pages": [
+        {
+          "pageIdentity": "phone_download_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "phone_extraction_schedule",
+          "layoutKind": "phone_download_schedule",
+          "textHash": "447657a86aab36bb08fad89b3076c8564a0331e06cb4ae567d8c4c46fd205fa8",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "phone_download_schedule/page/2",
+          "pageIndex": 2,
+          "purpose": "phone_call_and_app_rows",
+          "layoutKind": "phone_download_schedule",
+          "textHash": "2e090c7b324db2d96c3c43dec4dcafeb2fa2e6f12dd66cfaf5d1d62d123da4ba",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "unused_schedule_mg6c",
+      "title": "Unused material schedule extract (fictional test)",
+      "kind": "disclosure_unused",
+      "state": "served",
+      "contentHash": "5b2dc0a70528f61dc1bb9a46ff8692c128493ac18add5a35077e96c311bbdc42",
+      "layoutKinds": [
+        "mg06c"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "unused_schedule_mg6c",
+      "pages": [
+        {
+          "pageIdentity": "unused_schedule_mg6c/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6c_unused_schedule",
+          "layoutKind": "mg06c",
+          "textHash": "d93fe49943599ba04d4fdbf41d694caf37960097431fc709df0d98a3ff208b34",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "unused_schedule_mg6c/page/2",
+          "pageIndex": 2,
+          "purpose": "unused_schedule_continuation_decisions",
+          "layoutKind": "mg06c",
+          "textHash": "531fa2e5fb233bfe92524ce0c30b30d38a652b80e9d01c50f71546f75a3a23f6",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "47e97ca36db9d994717ca12ddb196f0054442984f3b3988aa07afa4700f86268",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "d8ed00ebe67ad75d3cfe85b119791e39dd6c872c00e706e900b9a3a09319b629",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "f85d4de36c276c75cc5b2965ef01f9ee36e3d688ee710c541108007974c3c235",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "abe_or_special_measures",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "third_party_material_note",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-18-conspiracy_to_defraud",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-19-riot",
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "90ec995c75759bf275b58e4cb017c1863e701d00fdb09a473439f81e0cd94a53",
+      "layoutKinds": [
+        "written_charge"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "written_charge",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pageIndex": 1,
+          "purpose": "charge_instrument_particulars",
+          "layoutKind": "written_charge",
+          "textHash": "9800f9e303db2b36288e8365b87719ef63915fdf90a82d5b432adc1cc4c0034c",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pageIndex": 2,
+          "purpose": "charge_defendant_allocation",
+          "layoutKind": "written_charge",
+          "textHash": "cebbf297b624e22026258f3371f34d76236a549179eea3d21e8141ddfa8ce815",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-19-riot",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "4772f1b4608c00dd4dcbf1ae4feff75cb8570737afbd42bc49bbbb88f2a38ea1",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "2f748712d6dfeddc09446d2b0d8f6efd1ba728d9af81083771552d3cb3f4bf51",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "5a8528a78008a203b4cc3ffab1b231be76d1cd058e6befc7dd823ec0f2002608",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-19-riot",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "23e27fd3d63c1b08304763e0d57007a06dcc1230084f3c61eb0f0802b76a106e",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "23e27fd3d63c1b08304763e0d57007a06dcc1230084f3c61eb0f0802b76a106e",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-19-riot",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "bfbbcf26fe836458a1ea871baa2e69e63754201633e0964ec261314ece73eca1",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "bfbbcf26fe836458a1ea871baa2e69e63754201633e0964ec261314ece73eca1",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-19-riot",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "e0d3fe6473d13dffa4bdb95fa667810ac195ea772c5f002f96b700686827f79d",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "e0d3fe6473d13dffa4bdb95fa667810ac195ea772c5f002f96b700686827f79d",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-19-riot",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "956d2f731b85a9b037947eb3ed69693b7a6b153bdc5acf09a742afe37fd2760a",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "641d23172d209a1a379bc7a5356edb39fd2386c69ac77d05ef100f9fa6e9c5fa",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "a48a401ce6bf209a9a37363b89553e5c4a49ebc998e4d2b7e0bb2cd1bab804a3",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-19-riot",
+      "docId": "extra_context_2",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "bf408d465c9752a8684abaf3d18287329b0027ff72c2a6c65d236717ed49293e",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_2",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_2/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "bf408d465c9752a8684abaf3d18287329b0027ff72c2a6c65d236717ed49293e",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-19-riot",
+      "docId": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "abe_or_special_measures",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-19-riot",
+      "docId": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "third_party_material_note",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-19-riot",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-20-diplomatic_immunity",
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "5659ae1530a3ef171efff257a9281e195fd4b829c5296c02c3d8b75ac7754b3c",
+      "layoutKinds": [
+        "indictment"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "indictment_operative",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pageIndex": 1,
+          "purpose": "indictment_count_particulars",
+          "layoutKind": "indictment",
+          "textHash": "9c77cbb63b79b14059737222f16a1727dd88d0fc4a33216cf1f2aad56351326f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pageIndex": 2,
+          "purpose": "indictment_further_counts_or_history",
+          "layoutKind": "indictment",
+          "textHash": "f20ecce287678ce2069ddb9f72baa1aec144cb1334135cf8cfd7317fc6b1e4bd",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-20-diplomatic_immunity",
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "13aea06bc574b9d98a5bf5a50cde388a1f8141f48fb26b3043ee6a00a9667899",
+      "layoutKinds": [
+        "mg05"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG05",
+      "pages": [
+        {
+          "pageIdentity": "MG05/page/1",
+          "pageIndex": 1,
+          "purpose": "mg5_case_summary_narrative",
+          "layoutKind": "mg05",
+          "textHash": "e792b4f27552ea000bfee516fa99193ada9861824d4292a0c701c1c6d133a5a2",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pageIndex": 2,
+          "purpose": "mg5_evidence_outline",
+          "layoutKind": "mg05",
+          "textHash": "789222ef12700906f175c6db82cca7dffa64c1cead5048747249d4080ca87c6f",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-20-diplomatic_immunity",
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "2a7ebf145df957bc2e2d0b51591bd1b0d5044077fe2b128f3253ea20b2feaf5d",
+      "layoutKinds": [
+        "mg06"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "MG06",
+      "pages": [
+        {
+          "pageIdentity": "MG06/page/1",
+          "pageIndex": 1,
+          "purpose": "mg6_file_index",
+          "layoutKind": "mg06",
+          "textHash": "2a7ebf145df957bc2e2d0b51591bd1b0d5044077fe2b128f3253ea20b2feaf5d",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-20-diplomatic_immunity",
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "55de7de30adb997dce8f764ab1b46f275c947555148d2b472da52bffd02a254a",
+      "layoutKinds": [
+        "media_schedule"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "cctv_clip_schedule",
+      "pages": [
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pageIndex": 1,
+          "purpose": "media_clip_schedule_log",
+          "layoutKind": "media_schedule",
+          "textHash": "55de7de30adb997dce8f764ab1b46f275c947555148d2b472da52bffd02a254a",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-20-diplomatic_immunity",
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "dc450249d31c602917f0c9d09c66914c13ba5d330a96cb5219fa1588a3847a4b",
+      "layoutKinds": [
+        "metadata_fixture"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "media_metadata",
+      "pages": [
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pageIndex": 1,
+          "purpose": "media_metadata_only",
+          "layoutKind": "metadata_fixture",
+          "textHash": "dc450249d31c602917f0c9d09c66914c13ba5d330a96cb5219fa1588a3847a4b",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-20-diplomatic_immunity",
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "36d20ab8caec96d5929cb344adb710a20a9d128be95cf9bbc61eb73491f88e92",
+      "layoutKinds": [
+        "defence_proof"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "defence_proof_extract",
+      "pages": [
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pageIndex": 1,
+          "purpose": "defence_privileged_extract",
+          "layoutKind": "defence_proof",
+          "textHash": "dd1ca522ee343a8def1578cd7b3a5f80d4ad0c14756a1e8a2c99242000a27c24",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pageIndex": 2,
+          "purpose": "defence_issues_and_requests",
+          "layoutKind": "defence_proof",
+          "textHash": "853623103783f6f439cab207f5825f739fceb8d039d9d69d13d31b9c75e9efaa",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": true
+    },
+    {
+      "caseId": "div3000v212-20-diplomatic_immunity",
+      "docId": "extra_context_7",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "be6fd06cfd50606a610dd48b704e4d0d78189028f9479b62176ba46f783d3ace",
+      "layoutKinds": [
+        "generic_specialist"
+      ],
+      "exactTextFieldsInspected": [
+        "pages[].text",
+        "pages[].purpose",
+        "pages[].headings",
+        "pages[].layoutKind"
+      ],
+      "sourceIdentity": "extra_context_7",
+      "pages": [
+        {
+          "pageIdentity": "extra_context_7/page/1",
+          "pageIndex": 1,
+          "purpose": "document_specific_body",
+          "layoutKind": "generic_specialist",
+          "textHash": "be6fd06cfd50606a610dd48b704e4d0d78189028f9479b62176ba46f783d3ace",
+          "sourcePageVersusCompiledPage": "source_page",
+          "extractionReadOutcome": "read_ok",
+          "unreadSections": []
+        }
+      ],
+      "realPaginatedFile": true,
+      "privilegeSeparated": false
+    },
+    {
+      "caseId": "div3000v212-20-diplomatic_immunity",
+      "docId": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "abe_or_special_measures",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-20-diplomatic_immunity",
+      "docId": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "third_party_material_note",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v212-20-diplomatic_immunity",
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": null,
+      "exactTextFieldsInspected": [],
+      "sourceIdentity": "referred_missing_master",
+      "pages": [],
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1"
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "caseId": "div3000v21-11-social_media_attribution",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "0573f6cf1314399a90565fb50b397df7ec9955b1a03119c5f2f2bc9b00d94e05",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/1\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndictment placeholder for social media attribution — charge wording not pinned; structural only.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "3f8752a9ff863003994e422664f9837969891e92f6bba9e9c6b7ade4c3db5180"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/2\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for indictment_operative.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "4449f890d87a66eec727679fb373be733c240d2be7db9e55cd1c8738c505d69c"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "df178cf876f3ec83be4ed24411750490b2d78e77917dd50ef88ded7271dd32be",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: social media attribution.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_draft, cctv_clip, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "6f08bbb81db1ef1ae56e7f9b4f88ee5ebccaae32b7846e69a8f9a363caee0873"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "07abe4da98e2316ac44a3244c01dcd35e442e4d6cd7585fec9244fe7afea864c"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "7d059d24d57ab5fe11c708ec2a715d0d84eeb29cb99eb8e859f30a54bd7e95f1"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "371306e15cfbeac22bb5c820b21bd7ade6095a1766cc49d41068a0f7a11af941",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "6938087863ab1d4088c5acf1e054ea805e3130d03443be152ddd303cff1120eb"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "5d14d37c1ba639d7c7a059a09fe74b8daf1e7489e84475bf71cbdfc3df93b4dd"
+        }
+      ]
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "47a4bdfdd39466b485be558031c524bab146c1f053898cc63a78182f20dc4a59",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/1\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "92fbe6b4f834318d2b419cd92ba6e7f80eed5629271d68e3c5e4cb01bd70d3dd"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/2\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for cctv_clip_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "ecea012c62a7858831087c7607510ffb2990729bfcd00b4c8798869981586976"
+        }
+      ]
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "60a45be977279ec478809e95567c1bbf897969b4603463199df11f96276d8bca",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/1\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "1806e82464967d1a29ad7545381842394d0b4e5e7971bd7e9ce849f1301ed182"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "media_metadata/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/2\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for media_metadata.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "25200a1b8ae48287461ac8d77c995d07fdb03a9cdf3bad2129bd07c6535e807e"
+        }
+      ]
+    },
+    {
+      "docId": "phone_download_schedule",
+      "title": "Phone download / attribution schedule (fictional test)",
+      "kind": "digital_schedule",
+      "state": "incomplete",
+      "contentHash": "92958aef5bc44916cc1a20fdd7943586b12b57a4f720c768ee56b70980ee77ee",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "phone_download_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Phone download / attribution schedule (fictional test)\nDocument id: phone_download_schedule\nKind: digital_schedule\nLifecycle state: incomplete\nPage identity: phone_download_schedule/page/1\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nDevice / account / user / sender / author separation required. Partial extraction.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d57ab985d7f387f10bc3eca5cf9dd3a7c535c3a36e0dd9427596f4f1e3862fb9"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "phone_download_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Phone download / attribution schedule (fictional test)\nDocument id: phone_download_schedule\nKind: digital_schedule\nLifecycle state: incomplete\nPage identity: phone_download_schedule/page/2\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for phone_download_schedule.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "ad880758bce195ba499cdd23bf453ef8d362f14eed51b7434ecbc3f0ce868c38"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "phone_download_schedule/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Phone download / attribution schedule (fictional test)\nDocument id: phone_download_schedule\nKind: digital_schedule\nLifecycle state: incomplete\nPage identity: phone_download_schedule/page/3\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for phone_download_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "6549522e34a205b3e51161b11e4fdbfc8cc93d9b87ab2131ac395e6d1656bdfd"
+        }
+      ]
+    },
+    {
+      "docId": "unused_schedule_mg6c",
+      "title": "Unused material schedule extract (fictional test)",
+      "kind": "disclosure_unused",
+      "state": "served",
+      "contentHash": "8dd3f104dcfa7e3709f988f473aceb4bec4ff8ebc1634b63d88fd11171f59b05",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "unused_schedule_mg6c/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Unused material schedule extract (fictional test)\nDocument id: unused_schedule_mg6c\nKind: disclosure_unused\nLifecycle state: served\nPage identity: unused_schedule_mg6c/page/1\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — unused items listed; PII redaction markers present.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "fb6fa118ae9885609a24e8a0db8d4af39992cc467a9e3b97a364775a3ce499e9"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "unused_schedule_mg6c/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Unused material schedule extract (fictional test)\nDocument id: unused_schedule_mg6c\nKind: disclosure_unused\nLifecycle state: served\nPage identity: unused_schedule_mg6c/page/2\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for unused_schedule_mg6c.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "7dadcff0602a70ebfbc0cee7e033657c14ef72c0a57d27632cf3fa4bc24656be"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "591fe54ded3a1db8c00a97ffb1afeded9d556de4aedaaa692683fdcc4e7e9a0a",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "5214e7adf75700a855320d25cf37208ee128161aa22041881a062dfbd20a8e1b"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "12344dd92beff8f3a21ef66ac4f8be652add088ada0f876815540cc0961d0978"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "94beac9c47be15a910e8d2b47eea9f387b7da0dd53d358ba916d93a743cb4697"
+        }
+      ]
+    },
+    {
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": "6fd5e150d4802fc11477388ec25f9a14d05671ed7c241804184d5c752acb44ec",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "referred_missing_master/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/1\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — index refers to this item; file absent. Must not treat as served.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "9d8fb3bda20cedfd4a929c2307c10c498acc9311464367bddf15f7c6f9358537"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "referred_missing_master/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/2\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for referred_missing_master.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "46fa368cb4e4c9ec86f85ec3c564f917d7f3d634506a35ef6482eefd7b6e7f2a"
+        }
+      ]
+    },
+    {
+      "docId": "extra_context_8",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "641fda9d1f989f9405ae183f27b644fbae61f9176e9ea3b7e7ba8859aebbe971",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_8/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_8\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_8/page/1\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — additional coherent schedule for social_media_attribution emphasising section_45_indicator and indictment.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "a71f64254fb9164786da34a9d6b07e36827d4c4ef2d8ed43c1166a269804ee0b"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "extra_context_8/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_8\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_8/page/2\nMatter family under review: social media attribution\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for extra_context_8.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "16face43ae93cdfbe7e87918764c8d877c79b76cffa86d17b71051e99d79c044"
+        }
+      ]
+    }
+  ]
+}

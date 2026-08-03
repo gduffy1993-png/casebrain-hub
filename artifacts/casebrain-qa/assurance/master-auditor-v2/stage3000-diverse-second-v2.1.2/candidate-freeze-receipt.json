@@ -1,0 +1,8 @@
+{
+  "frozenAt": "2026-08-02T22:59:13.955Z",
+  "candidateLedgerSha256": "6b29083d4882acae62101b49a8509d293c76213b5c0b0bc50ce3b9de62c79302",
+  "candidateCount": 552,
+  "truthOpenedBeforeFreeze": false,
+  "source": "named_control_findings_before_truth_open",
+  "orderedMembershipSha256": "c698ce950cb92bbf88faab331cee9b816934e9083753897a2412e87bfa59413c"
+}

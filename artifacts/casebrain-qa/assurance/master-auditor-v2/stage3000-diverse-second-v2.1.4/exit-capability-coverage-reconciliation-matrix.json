@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "diverse3000-v2.1.4-exit-reconcile@1.0.0",
+  "exitKeys": [
+    "view",
+    "copy",
+    "export",
+    "api",
+    "pdf",
+    "composed_prose",
+    "authenticated_browser"
+  ],
+  "classes": [
+    "genuine_runtime_exit",
+    "genuine_production_builder_payload",
+    "partial_fields_only",
+    "not_exercised",
+    "unavailable_missing_adapter"
+  ],
+  "rows": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 57,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "0e3d437d40f801a1177968e3924968c814a74be461968550dcb81bfea4691cdf",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 48,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "81f67f0073c8f2b89c57a93a7b233a524dd8ce5a4453666eaa0310b242322eab",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 46,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "15d27d62ac0c8ab5a055c13841544324201eebe97e186d3e36528c664098eb7a",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 48,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "f704c982b7cea33c6481f7ddd14f177598e962fb8bd0f638a7a2eca8d9296adc",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 71,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "a0a66502fe86e711f158b7aec75cb0b96d4d0fe96591099b568c2aaa904923fd",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 62,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "eae49ac6111015bc11551694fe04121deaed65d94a0c6caa5f3d2d90c409df23",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 57,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "943071958804de13f13e6b5d8883bd5922813a60671ba75c89a9bc31a6f5d3a6",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 85,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "3cb63dcfb6dddc7fb50437c1fbf0ef281b3c962d0d9b688e4f0b2b2cde07f86d",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 62,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "ff0a1b47ff35d4c715e0d72af15dad49677e63580a75f9949158a264c5fd7329",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 80,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "0973b7087945d91a6b427c47417510542bbfce7e1bc04da5c9cc5d8d3bd5b441",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 76,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "49e49818f516bb553805ac8696c5ac44419a559c541956b917c86f015e15688d",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 67,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "cc9aff6b762963aa4c9de5102415905dab42859fca70cf795490275fba454b46",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 62,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "0d9b5d2e6b88b89244efbfd0386771d2eade441b4269385985a714d0dc03b0f5",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 62,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "bb38010e4b417b49f62e19964cbd1ab6e650262582edb60d5beb247863e6e59f",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 62,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "d3bc3cb46330774c9fff19e55887ee05920ce4f59ae5fc3dcdca709ea85d0dae",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 62,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "4fc42516dca10b8ed94a30779c6037bc521418450b47a02cf3b84b63d61e0d69",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 75,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "170f10eddcb930940b16e64f9af8536b82e90f9422dce880db789635ec834c03",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 89,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "7fc9c0fa55b6e79c16680ea0f0f92589f1e28a48bfd5436c4c99727d73523930",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 80,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "4c80a69cb4819081fc9bf9ea75d038b26255cd8b49a4d6778027dca1c1a4ca7d",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "exits": {
+        "view": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 80,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 0,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "export": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 3,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "note": "Shared-builder serialised payload — NOT authenticated HTTP API capture",
+          "authenticatedHttpCapture": false
+        },
+        "pdf": {
+          "capabilityClass": "genuine_runtime_exit",
+          "coverageClass": "genuine_runtime_exit",
+          "reconcile": "ok",
+          "pdfBytesPresent": true,
+          "pdfSha256": "52d85079592a626a08cc8689b308a36ef9764acb120d116e10559739eda99fb9",
+          "note": "Actual PDF bytes present and parse-header checked"
+        },
+        "composed_prose": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 4,
+          "note": "Capability from exitPayloadReceipts / production builder — not leaf-presence alone"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "Authenticated browser honestly not exercised"
+        }
+      },
+      "exitCompletenessFail": false
+    }
+  ],
+  "allReconcileOk": true
+}

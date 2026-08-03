@@ -1,0 +1,1356 @@
+{
+  "schemaVersion": "diverse3000-v1-semantic-diversity-audit@1.0.0",
+  "generatedAt": "2026-08-02T20:15:21.407Z",
+  "orderedMembershipSha256": "273e5f5f3145a8c01be81f8f721dcf7f8e20ea0208b312997f75199276cd69fb",
+  "populationCount": 3000,
+  "normalisationMethod": [
+    "lowercase",
+    "strip case IDs (div3000/messy-pdf)",
+    "strip dates",
+    "strip orderIndex / matterLocalSalt / trapId salts / revision tokens",
+    "replace generator forename/surname list with <NAME>",
+    "replace primary family token in narrative with <FAMILY> for narrative cluster",
+    "collapse punctuation/digits for near-dup key",
+    "SHA-256 of normalised payload = cluster key"
+  ],
+  "forcedUniquenessDisclaimer": "V1 generation forced unique cryptographic fingerprints including salts; this audit measures post-normalisation semantic collapse and does not force a desired score.",
+  "scaffoldObservations": {
+    "fourDocumentSkeletonCases": 3000,
+    "structuralFictionalChargeWordingCases": 2249,
+    "pdfMarkedButPendingOrRequestedCases": 500,
+    "renderedPdfValidatedCases": 0
+  },
+  "clusterSummaries": [
+    {
+      "label": "factual_narratives",
+      "clusterCount": 854,
+      "singletonClusters": 635,
+      "largestCluster": 37,
+      "top10": [
+        {
+          "clusterKey": "d3ddd2d0aef4da2e6224ffab",
+          "fullKeySha256": "d3ddd2d0aef4da2e6224ffab3747c68087e197cb15d73e657184fa42955078e8",
+          "size": 37,
+          "representativeCases": [
+            "div3000-0335-employee_theft",
+            "div3000-0395-employee_theft",
+            "div3000-0455-handling_stolen_goods",
+            "div3000-0515-going_equipped",
+            "div3000-0635-burglary_non_dwelling"
+          ]
+        },
+        {
+          "clusterKey": "a058c2baba008eb085159bf5",
+          "fullKeySha256": "a058c2baba008eb085159bf5190bfbe6ae256890429075215bcc2f9db8261b8d",
+          "size": 36,
+          "representativeCases": [
+            "div3000-0336-employee_theft",
+            "div3000-0396-employee_theft",
+            "div3000-0456-handling_stolen_goods",
+            "div3000-0516-going_equipped",
+            "div3000-0636-burglary_non_dwelling"
+          ]
+        },
+        {
+          "clusterKey": "b4cc2f4dc91b401dacb66dfc",
+          "fullKeySha256": "b4cc2f4dc91b401dacb66dfc5cda83f5daf010712bb70951ed3e8cd035c65e71",
+          "size": 36,
+          "representativeCases": [
+            "div3000-0377-employee_theft",
+            "div3000-0437-handling_stolen_goods",
+            "div3000-0497-going_equipped",
+            "div3000-0557-going_equipped",
+            "div3000-0677-burglary_non_dwelling"
+          ]
+        },
+        {
+          "clusterKey": "72f6ca7344b861b7de32a6dc",
+          "fullKeySha256": "72f6ca7344b861b7de32a6dc6d5babb6b6217e67586c82224bff421f01fd86f5",
+          "size": 36,
+          "representativeCases": [
+            "div3000-0378-employee_theft",
+            "div3000-0438-handling_stolen_goods",
+            "div3000-0498-going_equipped",
+            "div3000-0558-going_equipped",
+            "div3000-0678-burglary_non_dwelling"
+          ]
+        },
+        {
+          "clusterKey": "4db62f3864cf1ce1d90160ab",
+          "fullKeySha256": "4db62f3864cf1ce1d90160ab64fdab38686027f216ca454c1b0896a3a6262487",
+          "size": 36,
+          "representativeCases": [
+            "div3000-0379-employee_theft",
+            "div3000-0439-handling_stolen_goods",
+            "div3000-0499-going_equipped",
+            "div3000-0559-going_equipped",
+            "div3000-0679-burglary_non_dwelling"
+          ]
+        },
+        {
+          "clusterKey": "e4a65aff80c4e5615930dad4",
+          "fullKeySha256": "e4a65aff80c4e5615930dad4e8956313e9913c477cc571a556a3843f23e42c33",
+          "size": 36,
+          "representativeCases": [
+            "div3000-0380-employee_theft",
+            "div3000-0440-handling_stolen_goods",
+            "div3000-0500-going_equipped",
+            "div3000-0560-going_equipped",
+            "div3000-0680-burglary_non_dwelling"
+          ]
+        },
+        {
+          "clusterKey": "8983de108cb453b359769367",
+          "fullKeySha256": "8983de108cb453b35976936758a7eb17f0ca6f8a6806266fd8003459beefc8f0",
+          "size": 36,
+          "representativeCases": [
+            "div3000-0381-employee_theft",
+            "div3000-0441-handling_stolen_goods",
+            "div3000-0501-going_equipped",
+            "div3000-0681-burglary_non_dwelling",
+            "div3000-0741-criminal_damage"
+          ]
+        },
+        {
+          "clusterKey": "776301bf54c825aac0789a49",
+          "fullKeySha256": "776301bf54c825aac0789a49a78a4f4c9c9ba0d8dac43541224960f44c106937",
+          "size": 36,
+          "representativeCases": [
+            "div3000-0383-employee_theft",
+            "div3000-0443-handling_stolen_goods",
+            "div3000-0503-going_equipped",
+            "div3000-0683-burglary_non_dwelling",
+            "div3000-0743-criminal_damage"
+          ]
+        },
+        {
+          "clusterKey": "2e2afe87bfc78999073fd345",
+          "fullKeySha256": "2e2afe87bfc78999073fd34549184f85f1bb1ce89972e2943de6a8103c0ff36e",
+          "size": 35,
+          "representativeCases": [
+            "div3000-0337-employee_theft",
+            "div3000-0397-employee_theft",
+            "div3000-0457-handling_stolen_goods",
+            "div3000-0517-going_equipped",
+            "div3000-0637-burglary_non_dwelling"
+          ]
+        },
+        {
+          "clusterKey": "02c6daa2cb60d4619a420608",
+          "fullKeySha256": "02c6daa2cb60d4619a4206083e4548051748fabab5d350261ca39a8f7c52fb21",
+          "size": 35,
+          "representativeCases": [
+            "div3000-0340-employee_theft",
+            "div3000-0400-employee_theft",
+            "div3000-0460-handling_stolen_goods",
+            "div3000-0520-going_equipped",
+            "div3000-0640-burglary_non_dwelling"
+          ]
+        }
+      ],
+      "meanClusterSize": 3.51288056206089,
+      "casesInClustersGte5": 2047,
+      "casesInClustersGte20": 2047,
+      "casesInLargest": 37
+    },
+    {
+      "label": "charge_and_count_structures",
+      "clusterCount": 110,
+      "singletonClusters": 0,
+      "largestCluster": 114,
+      "top10": [
+        {
+          "clusterKey": "1447cccbc0bc86211debc549",
+          "fullKeySha256": "1447cccbc0bc86211debc5498be538a7be0d5f834bb32f88092c12341e9b3547",
+          "size": 114,
+          "representativeCases": [
+            "div3000-1601-s20_gbh_wounding",
+            "div3000-1602-s20_gbh_wounding",
+            "div3000-1603-s20_gbh_wounding",
+            "div3000-1604-s20_gbh_wounding",
+            "div3000-1605-s20_gbh_wounding"
+          ]
+        },
+        {
+          "clusterKey": "76693d3d7b336d4ff5561322",
+          "fullKeySha256": "76693d3d7b336d4ff5561322b2cb25506962a623cb2885b17fa55d5c7c806a46",
+          "size": 85,
+          "representativeCases": [
+            "div3000-0001-common_assault_battery",
+            "div3000-0002-common_assault_battery",
+            "div3000-0003-common_assault_battery",
+            "div3000-0004-common_assault_battery",
+            "div3000-0005-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "b468bcf99815dc26cc87cde1",
+          "fullKeySha256": "b468bcf99815dc26cc87cde118b98c25e8a59531ad8ca4b569883ec14cb7b0b0",
+          "size": 85,
+          "representativeCases": [
+            "div3000-0086-assault_emergency_worker",
+            "div3000-0087-assault_emergency_worker",
+            "div3000-0088-assault_emergency_worker",
+            "div3000-0089-assault_emergency_worker",
+            "div3000-0090-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "caec7c1f4f1d618c9d84298c",
+          "fullKeySha256": "caec7c1f4f1d618c9d84298c396ce58b9285ea391a2815251dd153ef868a45ca",
+          "size": 85,
+          "representativeCases": [
+            "div3000-0171-abh",
+            "div3000-0172-abh",
+            "div3000-0173-abh",
+            "div3000-0174-abh",
+            "div3000-0175-abh"
+          ]
+        },
+        {
+          "clusterKey": "ee61ac6804d86c0829109254",
+          "fullKeySha256": "ee61ac6804d86c0829109254d6374c48f16ee53c3e5ed0bf69457b92d66b62ea",
+          "size": 78,
+          "representativeCases": [
+            "div3000-0256-shoplifting_theft",
+            "div3000-0257-shoplifting_theft",
+            "div3000-0258-shoplifting_theft",
+            "div3000-0259-shoplifting_theft",
+            "div3000-0260-shoplifting_theft"
+          ]
+        },
+        {
+          "clusterKey": "a9f945fb47881b9a9c267e98",
+          "fullKeySha256": "a9f945fb47881b9a9c267e98158ca9ce651b2c2eac3cab6b08318cb8462f30f8",
+          "size": 78,
+          "representativeCases": [
+            "div3000-0334-employee_theft",
+            "div3000-0335-employee_theft",
+            "div3000-0336-employee_theft",
+            "div3000-0337-employee_theft",
+            "div3000-0338-employee_theft"
+          ]
+        },
+        {
+          "clusterKey": "c9d6a4292668dc294e407e7f",
+          "fullKeySha256": "c9d6a4292668dc294e407e7f7bc31fdbbcf8c8471fc52b8e41a237f0e0c31ca8",
+          "size": 78,
+          "representativeCases": [
+            "div3000-0412-handling_stolen_goods",
+            "div3000-0413-handling_stolen_goods",
+            "div3000-0414-handling_stolen_goods",
+            "div3000-0415-handling_stolen_goods",
+            "div3000-0416-handling_stolen_goods"
+          ]
+        },
+        {
+          "clusterKey": "f0bf4119d577c2be4129f446",
+          "fullKeySha256": "f0bf4119d577c2be4129f44657e7db08b05300349bb81e429e5c44c47738c7fc",
+          "size": 71,
+          "representativeCases": [
+            "div3000-0490-going_equipped",
+            "div3000-0491-going_equipped",
+            "div3000-0492-going_equipped",
+            "div3000-0493-going_equipped",
+            "div3000-0494-going_equipped"
+          ]
+        },
+        {
+          "clusterKey": "8e8c61a84f7eca6d6b6b3176",
+          "fullKeySha256": "8e8c61a84f7eca6d6b6b31764a51b27a20fe569a7776e47ba8e9aab15738bdab",
+          "size": 71,
+          "representativeCases": [
+            "div3000-0561-burglary_dwelling",
+            "div3000-0562-burglary_dwelling",
+            "div3000-0563-burglary_dwelling",
+            "div3000-0564-burglary_dwelling",
+            "div3000-0565-burglary_dwelling"
+          ]
+        },
+        {
+          "clusterKey": "f3c0457f0c83bc901bc7f9e6",
+          "fullKeySha256": "f3c0457f0c83bc901bc7f9e63f1bbd356c09f1e112e135483603fccb5531c750",
+          "size": 71,
+          "representativeCases": [
+            "div3000-0632-burglary_non_dwelling",
+            "div3000-0633-burglary_non_dwelling",
+            "div3000-0634-burglary_non_dwelling",
+            "div3000-0635-burglary_non_dwelling",
+            "div3000-0636-burglary_non_dwelling"
+          ]
+        }
+      ],
+      "meanClusterSize": 27.272727272727273,
+      "casesInClustersGte5": 2952,
+      "casesInClustersGte20": 2583,
+      "casesInLargest": 114
+    },
+    {
+      "label": "defence_positions",
+      "clusterCount": 12,
+      "singletonClusters": 0,
+      "largestCluster": 250,
+      "top10": [
+        {
+          "clusterKey": "e1dcab45ac196ee9f0a375cf",
+          "fullKeySha256": "e1dcab45ac196ee9f0a375cf947a4be2f91925fa59829cf729feddb1b0c09476",
+          "size": 250,
+          "representativeCases": [
+            "div3000-0001-common_assault_battery",
+            "div3000-0013-common_assault_battery",
+            "div3000-0025-common_assault_battery",
+            "div3000-0037-common_assault_battery",
+            "div3000-0049-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "4de1044731377b66182fe3f5",
+          "fullKeySha256": "4de1044731377b66182fe3f5cf582944f00412fd37977783652818fef971d306",
+          "size": 250,
+          "representativeCases": [
+            "div3000-0002-common_assault_battery",
+            "div3000-0014-common_assault_battery",
+            "div3000-0026-common_assault_battery",
+            "div3000-0038-common_assault_battery",
+            "div3000-0050-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "2069478c342f81dacf67fddd",
+          "fullKeySha256": "2069478c342f81dacf67fdddb1db2258c8629d3487b551ab854b92e8fd39aef7",
+          "size": 250,
+          "representativeCases": [
+            "div3000-0003-common_assault_battery",
+            "div3000-0015-common_assault_battery",
+            "div3000-0027-common_assault_battery",
+            "div3000-0039-common_assault_battery",
+            "div3000-0051-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "a44805a8486a36d040648972",
+          "fullKeySha256": "a44805a8486a36d04064897256aabbf075bcff8c5c4cd882c6cbdef2075ea137",
+          "size": 250,
+          "representativeCases": [
+            "div3000-0004-common_assault_battery",
+            "div3000-0016-common_assault_battery",
+            "div3000-0028-common_assault_battery",
+            "div3000-0040-common_assault_battery",
+            "div3000-0052-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "e11817ced4c5d522bfb50ec3",
+          "fullKeySha256": "e11817ced4c5d522bfb50ec332e60fdbbe59d19f3635e50accd920e63b8de116",
+          "size": 250,
+          "representativeCases": [
+            "div3000-0005-common_assault_battery",
+            "div3000-0017-common_assault_battery",
+            "div3000-0029-common_assault_battery",
+            "div3000-0041-common_assault_battery",
+            "div3000-0053-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "80346065ac87b36ecaf4eb95",
+          "fullKeySha256": "80346065ac87b36ecaf4eb953e875377df8d113368dc4227d46ad66a9c029324",
+          "size": 250,
+          "representativeCases": [
+            "div3000-0006-common_assault_battery",
+            "div3000-0018-common_assault_battery",
+            "div3000-0030-common_assault_battery",
+            "div3000-0042-common_assault_battery",
+            "div3000-0054-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "99dd033a60aebce4eeb02822",
+          "fullKeySha256": "99dd033a60aebce4eeb02822639cbe4d76d1cd78b4517e70e23819417e7126e3",
+          "size": 250,
+          "representativeCases": [
+            "div3000-0007-common_assault_battery",
+            "div3000-0019-common_assault_battery",
+            "div3000-0031-common_assault_battery",
+            "div3000-0043-common_assault_battery",
+            "div3000-0055-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "318d7a796cd53aced1e3de0a",
+          "fullKeySha256": "318d7a796cd53aced1e3de0a8fcb0d57ef0e1e5e31d1161d1894665d2aa88fd1",
+          "size": 250,
+          "representativeCases": [
+            "div3000-0008-common_assault_battery",
+            "div3000-0020-common_assault_battery",
+            "div3000-0032-common_assault_battery",
+            "div3000-0044-common_assault_battery",
+            "div3000-0056-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "fdb74a35c690d62acc6ce0c2",
+          "fullKeySha256": "fdb74a35c690d62acc6ce0c282b840176c0d5b627ce8977558522af20b0737d9",
+          "size": 250,
+          "representativeCases": [
+            "div3000-0009-common_assault_battery",
+            "div3000-0021-common_assault_battery",
+            "div3000-0033-common_assault_battery",
+            "div3000-0045-common_assault_battery",
+            "div3000-0057-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "b099b056bb9b7412ccfeca5c",
+          "fullKeySha256": "b099b056bb9b7412ccfeca5cf823f22e34fe5a67c8c19e84d7c9383aa2bd72f3",
+          "size": 250,
+          "representativeCases": [
+            "div3000-0010-common_assault_battery",
+            "div3000-0022-common_assault_battery",
+            "div3000-0034-common_assault_battery",
+            "div3000-0046-common_assault_battery",
+            "div3000-0058-common_assault_battery"
+          ]
+        }
+      ],
+      "meanClusterSize": 250,
+      "casesInClustersGte5": 3000,
+      "casesInClustersGte20": 3000,
+      "casesInLargest": 250
+    },
+    {
+      "label": "evidence_state_graphs",
+      "clusterCount": 23,
+      "singletonClusters": 0,
+      "largestCluster": 584,
+      "top10": [
+        {
+          "clusterKey": "09454e130d71a187d2731c54",
+          "fullKeySha256": "09454e130d71a187d2731c54e3aecc1ba8192eb4af7620ac9a4374efb42f55e7",
+          "size": 584,
+          "representativeCases": [
+            "div3000-0002-common_assault_battery",
+            "div3000-0007-common_assault_battery",
+            "div3000-0012-common_assault_battery",
+            "div3000-0017-common_assault_battery",
+            "div3000-0022-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "6f943ee2e2946e55bfec1ea9",
+          "fullKeySha256": "6f943ee2e2946e55bfec1ea9b9b827db988eb0d2177498fe1979b12ce60dca70",
+          "size": 584,
+          "representativeCases": [
+            "div3000-0004-common_assault_battery",
+            "div3000-0009-common_assault_battery",
+            "div3000-0014-common_assault_battery",
+            "div3000-0019-common_assault_battery",
+            "div3000-0024-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "05083adc5a14cc81f2cb1db1",
+          "fullKeySha256": "05083adc5a14cc81f2cb1db170dd59fbc410032b7f8403ac9beb9f5ac7d82c85",
+          "size": 584,
+          "representativeCases": [
+            "div3000-0005-common_assault_battery",
+            "div3000-0010-common_assault_battery",
+            "div3000-0015-common_assault_battery",
+            "div3000-0020-common_assault_battery",
+            "div3000-0025-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "1a0dc15b707cfbaedcd01713",
+          "fullKeySha256": "1a0dc15b707cfbaedcd0171349626931e1c29821ea213ca0337f01e82fc3a930",
+          "size": 583,
+          "representativeCases": [
+            "div3000-0003-common_assault_battery",
+            "div3000-0008-common_assault_battery",
+            "div3000-0013-common_assault_battery",
+            "div3000-0018-common_assault_battery",
+            "div3000-0023-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "867a496c87f293b746d861e6",
+          "fullKeySha256": "867a496c87f293b746d861e6d9ff143dcfd36eff6e2a6e564bc1ced7f49c1641",
+          "size": 292,
+          "representativeCases": [
+            "div3000-0006-common_assault_battery",
+            "div3000-0016-common_assault_battery",
+            "div3000-0026-common_assault_battery",
+            "div3000-0036-common_assault_battery",
+            "div3000-0046-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "014c60a57e771e281c35814f",
+          "fullKeySha256": "014c60a57e771e281c35814fba6f76ca3d9276335bf0f7c871fee8021ede9bc5",
+          "size": 100,
+          "representativeCases": [
+            "div3000-0001-common_assault_battery",
+            "div3000-0031-common_assault_battery",
+            "div3000-0061-common_assault_battery",
+            "div3000-0091-assault_emergency_worker",
+            "div3000-0121-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "293ddae98cd7288582f1ef72",
+          "fullKeySha256": "293ddae98cd7288582f1ef72fbeb6c7a2d7241f1033aaeda2472a5e99f7405c4",
+          "size": 100,
+          "representativeCases": [
+            "div3000-0011-common_assault_battery",
+            "div3000-0041-common_assault_battery",
+            "div3000-0071-common_assault_battery",
+            "div3000-0101-assault_emergency_worker",
+            "div3000-0131-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "d9a85d2abc43f4202d54c50f",
+          "fullKeySha256": "d9a85d2abc43f4202d54c50fbdac6c8868844728526876e0f4ad1d6b90dfc183",
+          "size": 100,
+          "representativeCases": [
+            "div3000-0021-common_assault_battery",
+            "div3000-0051-common_assault_battery",
+            "div3000-0081-common_assault_battery",
+            "div3000-0111-assault_emergency_worker",
+            "div3000-0141-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "4c4ddcdd7b92f8c5613b38c9",
+          "fullKeySha256": "4c4ddcdd7b92f8c5613b38c9a1b1e6b1c445b440ec166bd55410268df566c5ef",
+          "size": 6,
+          "representativeCases": [
+            "div3000-0038-common_assault_battery",
+            "div3000-0593-burglary_dwelling",
+            "div3000-1148-stalking",
+            "div3000-1703-s18_gbh_wounding",
+            "div3000-2258-social_media_attribution"
+          ]
+        },
+        {
+          "clusterKey": "d56731e5d92389dfbf262628",
+          "fullKeySha256": "d56731e5d92389dfbf262628c86578b3d4ff45cf03614203aa73e8a57fc82ae3",
+          "size": 6,
+          "representativeCases": [
+            "div3000-0075-common_assault_battery",
+            "div3000-0630-burglary_dwelling",
+            "div3000-1185-harassment",
+            "div3000-1740-strangulation_suffocation",
+            "div3000-2295-dangerous_driving"
+          ]
+        }
+      ],
+      "meanClusterSize": 130.43478260869566,
+      "casesInClustersGte5": 2992,
+      "casesInClustersGte20": 2927,
+      "casesInLargest": 584
+    },
+    {
+      "label": "chronologies",
+      "clusterCount": 1124,
+      "singletonClusters": 496,
+      "largestCluster": 12,
+      "top10": [
+        {
+          "clusterKey": "61747f54552396d4c8125ccb",
+          "fullKeySha256": "61747f54552396d4c8125ccb1b7e1e391df68d292965dd124401bdbf9b969c1a",
+          "size": 12,
+          "representativeCases": [
+            "div3000-1601-s20_gbh_wounding",
+            "div3000-1611-s20_gbh_wounding",
+            "div3000-1621-s20_gbh_wounding",
+            "div3000-1631-s20_gbh_wounding",
+            "div3000-1641-s20_gbh_wounding"
+          ]
+        },
+        {
+          "clusterKey": "0afcb6e0b5002d00169d1273",
+          "fullKeySha256": "0afcb6e0b5002d00169d12734d30ebb7ef2f07ec564e1d9f69903d2f073b118c",
+          "size": 12,
+          "representativeCases": [
+            "div3000-1603-s20_gbh_wounding",
+            "div3000-1613-s20_gbh_wounding",
+            "div3000-1623-s20_gbh_wounding",
+            "div3000-1633-s20_gbh_wounding",
+            "div3000-1643-s20_gbh_wounding"
+          ]
+        },
+        {
+          "clusterKey": "3e1aa252272f58a3469704cd",
+          "fullKeySha256": "3e1aa252272f58a3469704cd92a687897e701dd4a0cedb0cefa1518e5fa5af48",
+          "size": 11,
+          "representativeCases": [
+            "div3000-1605-s20_gbh_wounding",
+            "div3000-1615-s20_gbh_wounding",
+            "div3000-1625-s20_gbh_wounding",
+            "div3000-1635-s20_gbh_wounding",
+            "div3000-1645-s20_gbh_wounding"
+          ]
+        },
+        {
+          "clusterKey": "ae433238f2f8fa742afa5b98",
+          "fullKeySha256": "ae433238f2f8fa742afa5b98c5054772bee36c8484371091c32122a6f1e63a16",
+          "size": 11,
+          "representativeCases": [
+            "div3000-1607-s20_gbh_wounding",
+            "div3000-1617-s20_gbh_wounding",
+            "div3000-1627-s20_gbh_wounding",
+            "div3000-1637-s20_gbh_wounding",
+            "div3000-1647-s20_gbh_wounding"
+          ]
+        },
+        {
+          "clusterKey": "38fc0a38634d3ddd5a6f200e",
+          "fullKeySha256": "38fc0a38634d3ddd5a6f200e32ef12bf02b5f521da2dc0a6a226c59d2e4ec6d3",
+          "size": 11,
+          "representativeCases": [
+            "div3000-1609-s20_gbh_wounding",
+            "div3000-1619-s20_gbh_wounding",
+            "div3000-1629-s20_gbh_wounding",
+            "div3000-1639-s20_gbh_wounding",
+            "div3000-1649-s20_gbh_wounding"
+          ]
+        },
+        {
+          "clusterKey": "e08ae46699a073e2afd5c220",
+          "fullKeySha256": "e08ae46699a073e2afd5c2207aaa54b8ac0ff70d28be95919677a3ae4cdf4095",
+          "size": 10,
+          "representativeCases": [
+            "div3000-1602-s20_gbh_wounding",
+            "div3000-1622-s20_gbh_wounding",
+            "div3000-1632-s20_gbh_wounding",
+            "div3000-1642-s20_gbh_wounding",
+            "div3000-1652-s20_gbh_wounding"
+          ]
+        },
+        {
+          "clusterKey": "ccd39516d5fc2199deb50de6",
+          "fullKeySha256": "ccd39516d5fc2199deb50de6dd153b26811c5480cf4ab2cfa273bc7e4e5e059b",
+          "size": 10,
+          "representativeCases": [
+            "div3000-1604-s20_gbh_wounding",
+            "div3000-1614-s20_gbh_wounding",
+            "div3000-1634-s20_gbh_wounding",
+            "div3000-1644-s20_gbh_wounding",
+            "div3000-1654-s20_gbh_wounding"
+          ]
+        },
+        {
+          "clusterKey": "d3033d1f903bab0a42abee0f",
+          "fullKeySha256": "d3033d1f903bab0a42abee0f5b55bb08f9f9451f8f977c2f53ffeffe1d38ac97",
+          "size": 10,
+          "representativeCases": [
+            "div3000-1610-s20_gbh_wounding",
+            "div3000-1620-s20_gbh_wounding",
+            "div3000-1630-s20_gbh_wounding",
+            "div3000-1640-s20_gbh_wounding",
+            "div3000-1650-s20_gbh_wounding"
+          ]
+        },
+        {
+          "clusterKey": "b5cc23b818925d0a10e15d9c",
+          "fullKeySha256": "b5cc23b818925d0a10e15d9cb4864f3b3364544b604ee682deab4a3fd44883df",
+          "size": 9,
+          "representativeCases": [
+            "div3000-0001-common_assault_battery",
+            "div3000-0011-common_assault_battery",
+            "div3000-0021-common_assault_battery",
+            "div3000-0031-common_assault_battery",
+            "div3000-0041-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "b7d5e41342796f8f2c73a67a",
+          "fullKeySha256": "b7d5e41342796f8f2c73a67a10d5e185a26a061019d2958345078f738e6686d7",
+          "size": 9,
+          "representativeCases": [
+            "div3000-0003-common_assault_battery",
+            "div3000-0013-common_assault_battery",
+            "div3000-0023-common_assault_battery",
+            "div3000-0033-common_assault_battery",
+            "div3000-0043-common_assault_battery"
+          ]
+        }
+      ],
+      "meanClusterSize": 2.6690391459074734,
+      "casesInClustersGte5": 1347,
+      "casesInClustersGte20": 0,
+      "casesInLargest": 12
+    },
+    {
+      "label": "document_relationship_graphs",
+      "clusterCount": 71,
+      "singletonClusters": 16,
+      "largestCluster": 195,
+      "top10": [
+        {
+          "clusterKey": "8b251fe138d11a4fbf9f590a",
+          "fullKeySha256": "8b251fe138d11a4fbf9f590a21a3c22159d02c9867b45425d3b59418c4b8b1e1",
+          "size": 195,
+          "representativeCases": [
+            "div3000-0002-common_assault_battery",
+            "div3000-0012-common_assault_battery",
+            "div3000-0032-common_assault_battery",
+            "div3000-0042-common_assault_battery",
+            "div3000-0062-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "132589a1f1d47c8a8f129e22",
+          "fullKeySha256": "132589a1f1d47c8a8f129e22e5c6917f9b9acf85d4ba0b2ffa6df0133f6a985a",
+          "size": 195,
+          "representativeCases": [
+            "div3000-0006-common_assault_battery",
+            "div3000-0026-common_assault_battery",
+            "div3000-0036-common_assault_battery",
+            "div3000-0056-common_assault_battery",
+            "div3000-0066-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "981677a9f8fc3da704ba06d9",
+          "fullKeySha256": "981677a9f8fc3da704ba06d9d287ea9f738119c7083e49f64170245648b23b68",
+          "size": 195,
+          "representativeCases": [
+            "div3000-0014-common_assault_battery",
+            "div3000-0024-common_assault_battery",
+            "div3000-0044-common_assault_battery",
+            "div3000-0054-common_assault_battery",
+            "div3000-0074-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "1169b2c0fc742450719ed8bd",
+          "fullKeySha256": "1169b2c0fc742450719ed8bdf9fb8e4643db70b8afaa2b12690632b7520cb031",
+          "size": 194,
+          "representativeCases": [
+            "div3000-0008-common_assault_battery",
+            "div3000-0018-common_assault_battery",
+            "div3000-0048-common_assault_battery",
+            "div3000-0068-common_assault_battery",
+            "div3000-0078-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "107b43d05bed0ae5b0c11e1c",
+          "fullKeySha256": "107b43d05bed0ae5b0c11e1cce0fc63e7d6fe03f99763492fe3cd50a5749efc7",
+          "size": 194,
+          "representativeCases": [
+            "div3000-0020-common_assault_battery",
+            "div3000-0030-common_assault_battery",
+            "div3000-0050-common_assault_battery",
+            "div3000-0060-common_assault_battery",
+            "div3000-0080-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "e7d3c04b5eba6d66059003f2",
+          "fullKeySha256": "e7d3c04b5eba6d66059003f2a6436259ff5ac7352fbcdf026e4a42416afb1b1b",
+          "size": 98,
+          "representativeCases": [
+            "div3000-0003-common_assault_battery",
+            "div3000-0023-common_assault_battery",
+            "div3000-0063-common_assault_battery",
+            "div3000-0083-common_assault_battery",
+            "div3000-0123-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "c97ccab8de3bd2f6b8305bfb",
+          "fullKeySha256": "c97ccab8de3bd2f6b8305bfb011e7d91adae36ab84cc236318820b08b16787e8",
+          "size": 98,
+          "representativeCases": [
+            "div3000-0005-common_assault_battery",
+            "div3000-0045-common_assault_battery",
+            "div3000-0065-common_assault_battery",
+            "div3000-0105-assault_emergency_worker",
+            "div3000-0125-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "f299c1cf82c041619763460d",
+          "fullKeySha256": "f299c1cf82c041619763460dfb28df9dc92f8bca7ba0f4e1d3fef4c13e984b5e",
+          "size": 98,
+          "representativeCases": [
+            "div3000-0010-common_assault_battery",
+            "div3000-0040-common_assault_battery",
+            "div3000-0070-common_assault_battery",
+            "div3000-0100-assault_emergency_worker",
+            "div3000-0130-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "1612c86d73fe1593be41db7a",
+          "fullKeySha256": "1612c86d73fe1593be41db7a27b8e5f6b6810d43bf9d561b0aa1868b75dd09a1",
+          "size": 98,
+          "representativeCases": [
+            "div3000-0027-common_assault_battery",
+            "div3000-0047-common_assault_battery",
+            "div3000-0087-assault_emergency_worker",
+            "div3000-0107-assault_emergency_worker",
+            "div3000-0147-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "eede92fc7b58b2c49e34ed43",
+          "fullKeySha256": "eede92fc7b58b2c49e34ed430f18372e50eb8b7ef38097a944439a8801c8963c",
+          "size": 97,
+          "representativeCases": [
+            "div3000-0004-common_assault_battery",
+            "div3000-0034-common_assault_battery",
+            "div3000-0064-common_assault_battery",
+            "div3000-0094-assault_emergency_worker",
+            "div3000-0124-assault_emergency_worker"
+          ]
+        }
+      ],
+      "meanClusterSize": 42.25352112676056,
+      "casesInClustersGte5": 2927,
+      "casesInClustersGte20": 2927,
+      "casesInLargest": 195
+    },
+    {
+      "label": "missing_material_patterns",
+      "clusterCount": 16,
+      "singletonClusters": 0,
+      "largestCluster": 2627,
+      "top10": [
+        {
+          "clusterKey": "e3b0c44298fc1c149afbf4c8",
+          "fullKeySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size": 2627,
+          "representativeCases": [
+            "div3000-0002-common_assault_battery",
+            "div3000-0003-common_assault_battery",
+            "div3000-0004-common_assault_battery",
+            "div3000-0005-common_assault_battery",
+            "div3000-0006-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "3489a30d2aeb68bba7fa75e3",
+          "fullKeySha256": "3489a30d2aeb68bba7fa75e3313219a3123077f3b5c7d2f0b9a558d106379c40",
+          "size": 103,
+          "representativeCases": [
+            "div3000-0001-common_assault_battery",
+            "div3000-0031-common_assault_battery",
+            "div3000-0061-common_assault_battery",
+            "div3000-0091-assault_emergency_worker",
+            "div3000-0121-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "960f6e8c1216de847e250518",
+          "fullKeySha256": "960f6e8c1216de847e2505188c39a296167098228ae1de6fb5642638d6a05c79",
+          "size": 103,
+          "representativeCases": [
+            "div3000-0021-common_assault_battery",
+            "div3000-0051-common_assault_battery",
+            "div3000-0081-common_assault_battery",
+            "div3000-0111-assault_emergency_worker",
+            "div3000-0141-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "7654c2a7aa39a0a7ddc9609d",
+          "fullKeySha256": "7654c2a7aa39a0a7ddc9609d33666f7ff06fad29faf79e36b1802822f9db41c2",
+          "size": 102,
+          "representativeCases": [
+            "div3000-0011-common_assault_battery",
+            "div3000-0041-common_assault_battery",
+            "div3000-0071-common_assault_battery",
+            "div3000-0101-assault_emergency_worker",
+            "div3000-0131-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "9a245ed65629ea8d8e205bac",
+          "fullKeySha256": "9a245ed65629ea8d8e205bacdb0f1b352addba389bf57f63564820fd1325fc84",
+          "size": 6,
+          "representativeCases": [
+            "div3000-0038-common_assault_battery",
+            "div3000-0593-burglary_dwelling",
+            "div3000-1148-stalking",
+            "div3000-1703-s18_gbh_wounding",
+            "div3000-2258-social_media_attribution"
+          ]
+        },
+        {
+          "clusterKey": "863dbbba2831ae0e19569ef5",
+          "fullKeySha256": "863dbbba2831ae0e19569ef5e94b9cd931022601803a389d68064e79119ce2f0",
+          "size": 6,
+          "representativeCases": [
+            "div3000-0075-common_assault_battery",
+            "div3000-0630-burglary_dwelling",
+            "div3000-1185-harassment",
+            "div3000-1740-strangulation_suffocation",
+            "div3000-2295-dangerous_driving"
+          ]
+        },
+        {
+          "clusterKey": "a2efccc4e42e799699d317c4",
+          "fullKeySha256": "a2efccc4e42e799699d317c4198c6621715427e22b960418b9c373afadb7411f",
+          "size": 6,
+          "representativeCases": [
+            "div3000-0112-assault_emergency_worker",
+            "div3000-0667-burglary_non_dwelling",
+            "div3000-1222-restraining_order_breach",
+            "div3000-1777-aggravated_burglary",
+            "div3000-2332-murder"
+          ]
+        },
+        {
+          "clusterKey": "056f2119598d0f6b066b46d9",
+          "fullKeySha256": "056f2119598d0f6b066b46d92f2cef161328f251f6f9a508646b6a1648cf0643",
+          "size": 6,
+          "representativeCases": [
+            "div3000-0149-assault_emergency_worker",
+            "div3000-0704-criminal_damage",
+            "div3000-1259-bail_breach",
+            "div3000-1814-aggravated_burglary",
+            "div3000-2369-rape"
+          ]
+        },
+        {
+          "clusterKey": "7c27490880610318dc9749f2",
+          "fullKeySha256": "7c27490880610318dc9749f2c87155b49aa2c483c85d090c0895366d8dc6f4d2",
+          "size": 6,
+          "representativeCases": [
+            "div3000-0223-abh",
+            "div3000-0778-twoc",
+            "div3000-1333-affray",
+            "div3000-1888-blackmail",
+            "div3000-2443-wasting_police_time"
+          ]
+        },
+        {
+          "clusterKey": "08c3dfa92851fede699e0bda",
+          "fullKeySha256": "08c3dfa92851fede699e0bda23b34e7e617042bd032c25b18a716b6b2bb47695",
+          "size": 5,
+          "representativeCases": [
+            "div3000-0260-shoplifting_theft",
+            "div3000-0815-twoc",
+            "div3000-1370-public_order_harassment_fear",
+            "div3000-1925-arson",
+            "div3000-2480-witness_intimidation"
+          ]
+        }
+      ],
+      "meanClusterSize": 187.5,
+      "casesInClustersGte5": 3000,
+      "casesInClustersGte20": 2935,
+      "casesInLargest": 2627
+    },
+    {
+      "label": "contradiction_traps",
+      "clusterCount": 110,
+      "singletonClusters": 0,
+      "largestCluster": 98,
+      "top10": [
+        {
+          "clusterKey": "87949220df8606fa6b2bb96b",
+          "fullKeySha256": "87949220df8606fa6b2bb96b3a594380dd7884aafdcd5f0bf889d135f47e31a8",
+          "size": 98,
+          "representativeCases": [
+            "div3000-0005-common_assault_battery",
+            "div3000-0053-common_assault_battery",
+            "div3000-0065-common_assault_battery",
+            "div3000-0125-assault_emergency_worker",
+            "div3000-0149-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "5a20b864b96e62139ce2ba5e",
+          "fullKeySha256": "5a20b864b96e62139ce2ba5ed97c8782489b7d7c3afc3e588ecd986fdf5f807a",
+          "size": 83,
+          "representativeCases": [
+            "div3000-0006-common_assault_battery",
+            "div3000-0042-common_assault_battery",
+            "div3000-0066-common_assault_battery",
+            "div3000-0078-common_assault_battery",
+            "div3000-0126-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "a650622fa80dfa975cdfc4dd",
+          "fullKeySha256": "a650622fa80dfa975cdfc4ddbb162ba35e28803910f362d07820cc520befed54",
+          "size": 82,
+          "representativeCases": [
+            "div3000-0013-common_assault_battery",
+            "div3000-0025-common_assault_battery",
+            "div3000-0085-common_assault_battery",
+            "div3000-0133-assault_emergency_worker",
+            "div3000-0145-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "814f0b13335833ed441c4fa2",
+          "fullKeySha256": "814f0b13335833ed441c4fa2ac9cf4d47dc44f3dd362504276f1fe451ca9bf2c",
+          "size": 82,
+          "representativeCases": [
+            "div3000-0016-common_assault_battery",
+            "div3000-0028-common_assault_battery",
+            "div3000-0076-common_assault_battery",
+            "div3000-0136-assault_emergency_worker",
+            "div3000-0148-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "35b921a6a5fa9dac90936f0d",
+          "fullKeySha256": "35b921a6a5fa9dac90936f0ded72181a57b3453cc7a5a2f39cd49c6aada90f0e",
+          "size": 82,
+          "representativeCases": [
+            "div3000-0026-common_assault_battery",
+            "div3000-0086-assault_emergency_worker",
+            "div3000-0098-assault_emergency_worker",
+            "div3000-0122-assault_emergency_worker",
+            "div3000-0146-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "dbcd0c534ac45d24708e47d2",
+          "fullKeySha256": "dbcd0c534ac45d24708e47d2221d1469704f4e164ee08e54634b7899c1016f61",
+          "size": 82,
+          "representativeCases": [
+            "div3000-0045-common_assault_battery",
+            "div3000-0093-assault_emergency_worker",
+            "div3000-0105-assault_emergency_worker",
+            "div3000-0117-assault_emergency_worker",
+            "div3000-0165-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "82f2e772e549dc04ade0b170",
+          "fullKeySha256": "82f2e772e549dc04ade0b17006ebdadf62083f55e8cee73b345f83863f443cad",
+          "size": 75,
+          "representativeCases": [
+            "div3000-0003-common_assault_battery",
+            "div3000-0051-common_assault_battery",
+            "div3000-0111-assault_emergency_worker",
+            "div3000-0123-assault_emergency_worker",
+            "div3000-0171-abh"
+          ]
+        },
+        {
+          "clusterKey": "55b385add87a9f6f3ed9049f",
+          "fullKeySha256": "55b385add87a9f6f3ed9049fa02c2229d61b09cbdfeaa0e34d2ae51fe285d62b",
+          "size": 75,
+          "representativeCases": [
+            "div3000-0035-common_assault_battery",
+            "div3000-0047-common_assault_battery",
+            "div3000-0059-common_assault_battery",
+            "div3000-0095-assault_emergency_worker",
+            "div3000-0155-assault_emergency_worker"
+          ]
+        },
+        {
+          "clusterKey": "8a930f349446578edb030d35",
+          "fullKeySha256": "8a930f349446578edb030d35ee0f4a511e5c3b1ec5391e48f16ef708538762fd",
+          "size": 58,
+          "representativeCases": [
+            "div3000-0001-common_assault_battery",
+            "div3000-0037-common_assault_battery",
+            "div3000-0061-common_assault_battery",
+            "div3000-0121-assault_emergency_worker",
+            "div3000-0181-abh"
+          ]
+        },
+        {
+          "clusterKey": "9029a715bb8ddfa19809ee38",
+          "fullKeySha256": "9029a715bb8ddfa19809ee38592eef42b3db1c2f07c846dbf804eccebcb2c7fa",
+          "size": 57,
+          "representativeCases": [
+            "div3000-0011-common_assault_battery",
+            "div3000-0071-common_assault_battery",
+            "div3000-0131-assault_emergency_worker",
+            "div3000-0167-assault_emergency_worker",
+            "div3000-0191-abh"
+          ]
+        }
+      ],
+      "meanClusterSize": 27.272727272727273,
+      "casesInClustersGte5": 3000,
+      "casesInClustersGte20": 2549,
+      "casesInLargest": 98
+    },
+    {
+      "label": "source_document_structures",
+      "clusterCount": 3,
+      "singletonClusters": 0,
+      "largestCluster": 2627,
+      "top10": [
+        {
+          "clusterKey": "9b86cec3ff6d7a240b46aaaf",
+          "fullKeySha256": "9b86cec3ff6d7a240b46aaafe03264ff51237fe2e97f0b28d66f2167c2249b90",
+          "size": 2627,
+          "representativeCases": [
+            "div3000-0002-common_assault_battery",
+            "div3000-0003-common_assault_battery",
+            "div3000-0004-common_assault_battery",
+            "div3000-0005-common_assault_battery",
+            "div3000-0006-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "3daf87c34a06e68f60c7fed1",
+          "fullKeySha256": "3daf87c34a06e68f60c7fed12623bb6583ca3be6c4367d72b1e3ff09e50c3be5",
+          "size": 300,
+          "representativeCases": [
+            "div3000-0001-common_assault_battery",
+            "div3000-0011-common_assault_battery",
+            "div3000-0021-common_assault_battery",
+            "div3000-0031-common_assault_battery",
+            "div3000-0041-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "8c83b2174bab54e2e6bd7fef",
+          "fullKeySha256": "8c83b2174bab54e2e6bd7fef9c8c05b952330dd590e8178798a689886dc920ba",
+          "size": 73,
+          "representativeCases": [
+            "div3000-0038-common_assault_battery",
+            "div3000-0075-common_assault_battery",
+            "div3000-0112-assault_emergency_worker",
+            "div3000-0149-assault_emergency_worker",
+            "div3000-0186-abh"
+          ]
+        }
+      ],
+      "meanClusterSize": 1000,
+      "casesInClustersGte5": 3000,
+      "casesInClustersGte20": 3000,
+      "casesInLargest": 2627
+    },
+    {
+      "label": "solicitor_visible_output_wording",
+      "clusterCount": 2785,
+      "singletonClusters": 2570,
+      "largestCluster": 2,
+      "top10": [
+        {
+          "clusterKey": "aa7f41c721a9cdff446c4760",
+          "fullKeySha256": "aa7f41c721a9cdff446c47606dfdd1103fd758e485d3bda33e1cb61d34a9e237",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0001-common_assault_battery",
+            "div3000-0061-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "ff769b985d7e737f94e15226",
+          "fullKeySha256": "ff769b985d7e737f94e1522616c8288c4e55b63b94f4e9f390f140756e1979ee",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0002-common_assault_battery",
+            "div3000-0062-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "c339b4a5225d0201a8625ea3",
+          "fullKeySha256": "c339b4a5225d0201a8625ea3401e07b9a2c312f366d58ab9be9ba6d218ec5ea5",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0003-common_assault_battery",
+            "div3000-0063-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "80db27bc1d1739e8b71b5228",
+          "fullKeySha256": "80db27bc1d1739e8b71b52282b77316ec3381fb6502ff3f1334e6142a993e0a7",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0004-common_assault_battery",
+            "div3000-0064-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "ee534f7ad754a0ab4dcb069b",
+          "fullKeySha256": "ee534f7ad754a0ab4dcb069bdb065443c68a1bdae756104afaa361d788bf2147",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0005-common_assault_battery",
+            "div3000-0065-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "e294e2bd04856196140261a9",
+          "fullKeySha256": "e294e2bd04856196140261a99aec550e1a5e74745e70e6bea661aecdcb4068b2",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0006-common_assault_battery",
+            "div3000-0066-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "b6b44e3f8549cc98564e0459",
+          "fullKeySha256": "b6b44e3f8549cc98564e0459d49bddcc47b4086e4aae487a2fb2d6f7dac95768",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0007-common_assault_battery",
+            "div3000-0067-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "2ffd235b198ce7feec422108",
+          "fullKeySha256": "2ffd235b198ce7feec4221081d070844ca7cccd29ca33571448062506c89767f",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0008-common_assault_battery",
+            "div3000-0068-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "bd9203cc7e668f4b2ca47a23",
+          "fullKeySha256": "bd9203cc7e668f4b2ca47a230894cd309c7ea83df9fe402f7694935b0ea65895",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0009-common_assault_battery",
+            "div3000-0069-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "8d7ac4c5f122a6b8a040c0b0",
+          "fullKeySha256": "8d7ac4c5f122a6b8a040c0b00ba07c0752c101b286a2ce2a92126a3331ec1f94",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0010-common_assault_battery",
+            "div3000-0070-common_assault_battery"
+          ]
+        }
+      ],
+      "meanClusterSize": 1.0771992818671454,
+      "casesInClustersGte5": 0,
+      "casesInClustersGte20": 0,
+      "casesInLargest": 2
+    },
+    {
+      "label": "combined_semantic_signature",
+      "clusterCount": 2916,
+      "singletonClusters": 2832,
+      "largestCluster": 2,
+      "top10": [
+        {
+          "clusterKey": "21c259bc713bdc1a11584d85",
+          "fullKeySha256": "21c259bc713bdc1a11584d85a602da6a17e1a713ca5cacf28f385847dd034a6d",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0001-common_assault_battery",
+            "div3000-0061-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "d7401a31dc113396e9595b61",
+          "fullKeySha256": "d7401a31dc113396e9595b6197bc960877fd34785dbaca2ad1bc59f7aaef14c5",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0005-common_assault_battery",
+            "div3000-0065-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "13d55e5a7a3fb9fe49218def",
+          "fullKeySha256": "13d55e5a7a3fb9fe49218def0779ddd38ae51961cebbc7ca9568d486a6d4975d",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0006-common_assault_battery",
+            "div3000-0066-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "14647a882a48d1f914a3dcb9",
+          "fullKeySha256": "14647a882a48d1f914a3dcb90ddfce72a67a33a60c87b11b3511be09163248fa",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0010-common_assault_battery",
+            "div3000-0070-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "8894bb4357815cab874c662d",
+          "fullKeySha256": "8894bb4357815cab874c662da1d6ad70ac9c31136860ebea5db396e0e42321db",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0011-common_assault_battery",
+            "div3000-0071-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "00a8bb751a9f548a12307854",
+          "fullKeySha256": "00a8bb751a9f548a1230785498c5c3c5ea9a73ecde88a6a29d831217fcbd9a71",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0016-common_assault_battery",
+            "div3000-0076-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "bab3ced28cccb470d21a4686",
+          "fullKeySha256": "bab3ced28cccb470d21a468629faca6df1cefe89150383a77f2e105fbddab6a8",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0020-common_assault_battery",
+            "div3000-0080-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "2b2f3bc4e36a7394836f9ef4",
+          "fullKeySha256": "2b2f3bc4e36a7394836f9ef423dd011e2527c33526508532c56b1b505a587ac2",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0021-common_assault_battery",
+            "div3000-0081-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "7ba44a03e9ae5aa54818b361",
+          "fullKeySha256": "7ba44a03e9ae5aa54818b361da5ea3aaa18100da6f9c889a88532bd2973bc514",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0025-common_assault_battery",
+            "div3000-0085-common_assault_battery"
+          ]
+        },
+        {
+          "clusterKey": "af72635b810f3d9df4c0b23a",
+          "fullKeySha256": "af72635b810f3d9df4c0b23a0eb63c106189f7bc313ea6881e01af97bbc3ee94",
+          "size": 2,
+          "representativeCases": [
+            "div3000-0086-assault_emergency_worker",
+            "div3000-0146-assault_emergency_worker"
+          ]
+        }
+      ],
+      "meanClusterSize": 1.02880658436214,
+      "casesInClustersGte5": 0,
+      "casesInClustersGte20": 0,
+      "casesInLargest": 2
+    }
+  ],
+  "headline": {
+    "combinedSemanticClusterCount": 2916,
+    "combinedLargestCluster": 2,
+    "combinedSingletons": 2832,
+    "outputWordingLargestCluster": 2,
+    "sourceStructureLargestCluster": 2627,
+    "narrativeLargestCluster": 37
+  },
+  "detectionNotes": [
+    "exact duplicates: same normalised SHA",
+    "parameter-substitution clones: large narrative/evidence clusters with family/name stripped",
+    "repeated fixed templates: source_document_structures and output_wording large clusters",
+    "largestCluster:1 from V1 uniqueness report is REJECTED as unsupported"
+  ],
+  "crossCorpusOverlap": {
+    "firstLedgerAvailable": true,
+    "firstMembershipSha256": "dcf6c382fe1b41ef34624c03764c8dc785de04a13f5344784aee03b9a192d4ae",
+    "firstUniqueContentOutputFingerprints": 70,
+    "v1FamilyCount": 111,
+    "firstFamilyCount": 58,
+    "sharedFamilyLabelStrings": 0,
+    "note": "Label overlap is not semantic case overlap; V1 narratives are synthetic thin-text, first census is messy-pdf v9 clones"
+  }
+}

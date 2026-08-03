@@ -1,0 +1,850 @@
+{
+  "caseId": "div3000v213-08-strangulation_suffocation",
+  "generatedAt": "2026-08-03T01:33:59.930Z",
+  "source": "v2.1.2-structured-maa-output",
+  "chargeInstruments": [
+    {
+      "instrumentId": "inst-indictment_operative",
+      "instrumentType": "indictment",
+      "exactWording": "## PARTICULARS OF OFFENCE",
+      "count": 1,
+      "defendantAllocation": "defendant_0+defendant_1",
+      "sourceDocument": "indictment_operative",
+      "sourcePage": "1",
+      "sourcePageIdentity": "indictment_operative/page/1",
+      "pageIdentityKnown": true,
+      "status": "operative",
+      "version": "1",
+      "replacesInstrumentId": null,
+      "supersededByInstrumentId": null
+    }
+  ],
+  "evidenceStates": [
+    {
+      "source": "indictment_operative",
+      "sourceDocumentIdentity": "indictment_operative",
+      "sourcePage": "1",
+      "sourcePageIdentity": "indictment_operative/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Indictment (fictional test — not operative) · indictment_operative/page/1",
+      "label": "indictment_operative::indictment_operative/page/1"
+    },
+    {
+      "source": "indictment_operative",
+      "sourceDocumentIdentity": "indictment_operative",
+      "sourcePage": "2",
+      "sourcePageIdentity": "indictment_operative/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Indictment (fictional test — not operative) · indictment_operative/page/2",
+      "label": "indictment_operative::indictment_operative/page/2"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG05/page/1",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/1",
+      "label": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG05/page/2",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/2",
+      "label": "MG05::MG05/page/2"
+    },
+    {
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG6 File front sheet / index (fictional test) · MG06/page/1",
+      "label": "MG06::MG06/page/1"
+    },
+    {
+      "source": "MG11_complainant_signed",
+      "sourceDocumentIdentity": "MG11_complainant_signed",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG11_complainant_signed/page/1",
+      "compiledPage": "6",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG11 complainant statement — signed (fictional test) · MG11_complainant_signed/page/1",
+      "label": "MG11_complainant_signed",
+      "evidenceUnitId": "eu-MG11_complainant_signed",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG11_complainant_signed",
+      "sourceDocumentIdentity": "MG11_complainant_signed",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG11_complainant_signed/page/2",
+      "compiledPage": "7",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG11 complainant statement — signed (fictional test) · MG11_complainant_signed/page/2",
+      "label": "MG11_complainant_signed::MG11_complainant_signed/page/2"
+    },
+    {
+      "source": "MG11_complainant_signed",
+      "sourceDocumentIdentity": "MG11_complainant_signed",
+      "sourcePage": "3",
+      "sourcePageIdentity": "MG11_complainant_signed/page/3",
+      "compiledPage": "8",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG11 complainant statement — signed (fictional test) · MG11_complainant_signed/page/3",
+      "label": "MG11_complainant_signed::MG11_complainant_signed/page/3"
+    },
+    {
+      "source": "MG11_complainant_draft",
+      "sourceDocumentIdentity": "MG11_complainant_draft",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG11_complainant_draft/page/1",
+      "compiledPage": "9",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG11 complainant statement — earlier draft (fictional test) · MG11_complainant_draft/page/1",
+      "label": "MG11_complainant_draft",
+      "evidenceUnitId": "eu-MG11_complainant_draft",
+      "subjectDefendantId": "defendant_0",
+      "existence": "draft_superseded",
+      "inferredSourceState": "draft_superseded",
+      "existenceLabel": "draft_superseded",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG11_complainant_draft",
+      "sourceDocumentIdentity": "MG11_complainant_draft",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG11_complainant_draft/page/2",
+      "compiledPage": "10",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG11 complainant statement — earlier draft (fictional test) · MG11_complainant_draft/page/2",
+      "label": "MG11_complainant_draft::MG11_complainant_draft/page/2"
+    },
+    {
+      "source": "MG11_complainant_draft",
+      "sourceDocumentIdentity": "MG11_complainant_draft",
+      "sourcePage": "3",
+      "sourcePageIdentity": "MG11_complainant_draft/page/3",
+      "compiledPage": "11",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG11 complainant statement — earlier draft (fictional test) · MG11_complainant_draft/page/3",
+      "label": "MG11_complainant_draft::MG11_complainant_draft/page/3"
+    },
+    {
+      "source": "order_or_bail",
+      "sourceDocumentIdentity": "order_or_bail",
+      "sourcePage": "1",
+      "sourcePageIdentity": "order_or_bail/page/1",
+      "compiledPage": "12",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Protective order / bail conditions extract (fictional test) · order_or_bail/page/1",
+      "label": "order_or_bail",
+      "evidenceUnitId": "eu-order_or_bail",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "cctv_clip_schedule",
+      "sourceDocumentIdentity": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "sourcePageIdentity": "cctv_clip_schedule/page/1",
+      "compiledPage": "13",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "CCTV / BWV clip schedule (fictional test) · cctv_clip_schedule/page/1",
+      "label": "cctv_clip_schedule",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "subjectDefendantId": "defendant_0",
+      "existence": "incomplete",
+      "inferredSourceState": "incomplete",
+      "existenceLabel": "incomplete",
+      "evidenceTypeOrModality": "clip_or_still"
+    },
+    {
+      "source": "media_metadata",
+      "sourceDocumentIdentity": "media_metadata",
+      "sourcePage": "1",
+      "sourcePageIdentity": "media_metadata/page/1",
+      "compiledPage": "14",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Media metadata fixture (native bytes not_exercised) · media_metadata/page/1",
+      "label": "media_metadata::media_metadata/page/1"
+    },
+    {
+      "source": "extra_context_5",
+      "sourceDocumentIdentity": "extra_context_5",
+      "sourcePage": "1",
+      "sourcePageIdentity": "extra_context_5/page/1",
+      "compiledPage": "15",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Additional context schedule (fictional test) · extra_context_5/page/1",
+      "label": "extra_context_5",
+      "evidenceUnitId": "eu-extra_context_5",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "label": "referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "subjectDefendantId": "defendant_0",
+      "existence": "missing",
+      "inferredSourceState": "missing",
+      "existenceLabel": "missing",
+      "evidenceTypeOrModality": "generic",
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG06 index referral · MG06/page/1",
+      "limitationReason": null
+    }
+  ],
+  "chronologyEvents": [],
+  "provenanceRecords": [
+    {
+      "occurrenceRef": "/evidenceStates/0",
+      "sourceDocumentIdentity": "indictment_operative",
+      "sourcePage": "1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/1",
+      "sourceDocumentIdentity": "indictment_operative",
+      "sourcePage": "2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/2",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/3",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/4",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/5",
+      "sourceDocumentIdentity": "MG11_complainant_signed",
+      "sourcePage": "1",
+      "compiledPage": "6",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/6",
+      "sourceDocumentIdentity": "MG11_complainant_signed",
+      "sourcePage": "2",
+      "compiledPage": "7",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/7",
+      "sourceDocumentIdentity": "MG11_complainant_signed",
+      "sourcePage": "3",
+      "compiledPage": "8",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/8",
+      "sourceDocumentIdentity": "MG11_complainant_draft",
+      "sourcePage": "1",
+      "compiledPage": "9",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/9",
+      "sourceDocumentIdentity": "MG11_complainant_draft",
+      "sourcePage": "2",
+      "compiledPage": "10",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/10",
+      "sourceDocumentIdentity": "MG11_complainant_draft",
+      "sourcePage": "3",
+      "compiledPage": "11",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/11",
+      "sourceDocumentIdentity": "order_or_bail",
+      "sourcePage": "1",
+      "compiledPage": "12",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/12",
+      "sourceDocumentIdentity": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "compiledPage": "13",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/13",
+      "sourceDocumentIdentity": "media_metadata",
+      "sourcePage": "1",
+      "compiledPage": "14",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/14",
+      "sourceDocumentIdentity": "extra_context_5",
+      "sourcePage": "1",
+      "compiledPage": "15",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/15",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    }
+  ],
+  "warningsAndGaps": {
+    "chaseItems": [
+      {
+        "label": "referred_missing_master",
+        "requestId": "req-absent-referred_missing_master",
+        "evidenceUnitId": "eu-absent-referred_missing_master",
+        "resolutionState": "missing",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Absent/referred item referred_missing_master listed for chase; no page content invented.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "export"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Regarding strangulation suffocation: Please provide referred missing master.",
+        "requestedState": "missing",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+        "chase_to_evidence_provenance_link": true
+      }
+    ],
+    "doNotOverstate": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ],
+    "hardRules": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ]
+  },
+  "chaseRelationships": [
+    {
+      "label": "referred_missing_master",
+      "requestId": "req-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "resolutionState": "missing",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Absent/referred item referred_missing_master listed for chase; no page content invented.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "export"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Regarding strangulation suffocation: Please provide referred missing master.",
+      "requestedState": "missing",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "chase_to_evidence_provenance_link": true
+    }
+  ],
+  "chaseAuditMetadata": [
+    {
+      "requestId": "req-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    }
+  ],
+  "exitPayloadReceipts": {
+    "view": {
+      "payloadIdentity": "sha256:ded6fda1436070ab45c8ed50a7463e422422d1c786b157341d7f6824d64c11e7",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-08-strangulation_suffocation",
+      "surfaceList": [
+        "view"
+      ],
+      "generatedAt": "2026-08-03T01:33:59.883Z"
+    },
+    "copy": {
+      "payloadIdentity": "sha256:cd56b52d3f5e8ccddc504fc8cb7df3379912295f870ea035c1e770974d1bf01a",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-08-strangulation_suffocation",
+      "surfaceList": [
+        "copy"
+      ],
+      "generatedAt": "2026-08-03T01:33:59.929Z"
+    },
+    "export": {
+      "payloadIdentity": "sha256:cf33bd04591c30155be242a0f68fb419146303068fa84e00108840bff8eddcd1",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-08-strangulation_suffocation",
+      "surfaceList": [
+        "export"
+      ],
+      "generatedAt": "2026-08-03T01:33:59.929Z"
+    },
+    "api": {
+      "payloadIdentity": "sha256:b958cb7202cc744f4ecabe2e83f267637d3b90c493eee0fdff4365b5aa41c638",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-08-strangulation_suffocation",
+      "surfaceList": [
+        "api"
+      ],
+      "generatedAt": "2026-08-03T01:33:59.929Z"
+    },
+    "pdf": {
+      "payloadIdentity": "sha256:fd9f57da611338b0dfc0b81f99580d8efd70f79988a81540a80b77fb47732973",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-08-strangulation_suffocation",
+      "surfaceList": [
+        "pdf"
+      ],
+      "generatedAt": "2026-08-03T01:33:59.929Z"
+    },
+    "composed_prose": {
+      "payloadIdentity": "sha256:042742fa7c12e017fb02f7049f0aa556083dd184b39711f5c24201df2d7f6c35",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-08-strangulation_suffocation",
+      "surfaceList": [
+        "composed_prose"
+      ],
+      "generatedAt": "2026-08-03T01:33:59.929Z"
+    },
+    "authenticated_browser": {
+      "payloadIdentity": "sha256:5a7092b0ee276e3d3f60eb6993900b533d6e502b1c7b9bef30185bfa616a3066",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "unavailable",
+      "unavailableReason": "Authenticated browser exit not exercised in Stage-3000 diverse pack.",
+      "metadataOnly": true,
+      "realExitPayloadPresent": false,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-08-strangulation_suffocation",
+      "surfaceList": [
+        "authenticated_browser"
+      ]
+    }
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: strangulation suffocation; defence on instructions section 45 indicator.",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-div3000v213-08-strangulation_suffocation",
+    "caseId": "div3000v213-08-strangulation_suffocation",
+    "generatedAt": "2026-08-03T01:33:59.930Z",
+    "exportType": "diverse3000_v2_1_3",
+    "sendability": "needs_solicitor_review",
+    "reviewFooter": "Solicitor review required before send.",
+    "warningCount": 2,
+    "appVersion": "v2.1.3",
+    "bundleVersionLabel": "diverse3000-v2.1.3",
+    "blockedReason": null,
+    "solicitorVisibleSummary": "On strangulation suffocation copy/export/API/PDF exits: charge status operative; defence section 45 indicator. For this strangulation suffocation pack, referred/absent items remain without page content: referred_missing_master."
+  },
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "MG05",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG05",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG5 Case summary (fictional test) · MG05/page/1"
+    },
+    {
+      "label": "MG11_complainant_signed",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG11_complainant_signed",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG11_complainant_signed",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG11 complainant statement — signed (fictional test) · MG11_complainant_signed/page/1"
+    },
+    {
+      "label": "MG11_complainant_draft",
+      "existence": "draft_superseded",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG11_complainant_draft",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG11_complainant_draft",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG11 complainant statement — earlier draft (fictional test) · MG11_complainant_draft/page/1"
+    },
+    {
+      "label": "order_or_bail",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-order_or_bail",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "order_or_bail",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "Protective order / bail conditions extract (fictional test) · order_or_bail/page/1"
+    },
+    {
+      "label": "cctv_clip_schedule",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "clip_or_still",
+      "note": "CCTV / BWV clip schedule (fictional test) · cctv_clip_schedule/page/1"
+    },
+    {
+      "label": "extra_context_5",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-extra_context_5",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "extra_context_5",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "Additional context schedule (fictional test) · extra_context_5/page/1"
+    },
+    {
+      "label": "referred_missing_master",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG06 index referral · MG06/page/1"
+    }
+  ],
+  "attributionGraph": [
+    {
+      "documentId": "indictment_operative",
+      "evidenceUnitId": "eu-indictment_operative",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "indictment_operative/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG05/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG06",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG11_complainant_signed",
+      "evidenceUnitId": "eu-MG11_complainant_signed",
+      "ownerRole": "witness_maker",
+      "makerName": "Witness maker (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG11_complainant_signed/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG11_complainant_draft",
+      "evidenceUnitId": "eu-MG11_complainant_draft",
+      "ownerRole": "witness_maker",
+      "makerName": "Witness maker (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG11_complainant_draft/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "order_or_bail",
+      "evidenceUnitId": "eu-order_or_bail",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "order_or_bail/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "cctv_clip_schedule",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "cctv_clip_schedule/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "media_metadata",
+      "evidenceUnitId": "eu-media_metadata",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "media_metadata/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "extra_context_5",
+      "evidenceUnitId": "eu-extra_context_5",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "extra_context_5/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    }
+  ],
+  "chaseProvenanceLinks": [
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/0",
+      "requestId": "req-absent-referred_missing_master",
+      "chaseLabel": "referred_missing_master",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    }
+  ],
+  "solicitorFacingSurfaces": {
+    "charges": {
+      "recordedOrUnresolved": "For strangulation suffocation: recorded charge position is ## PARTICULARS OF OFFENCE. Instrument state: operative.",
+      "sourceInstrument": "For strangulation suffocation: source instrument indictment at 1; status operative.",
+      "limitation": "For strangulation suffocation: allegation recorded on the instrument is not proof of guilt."
+    },
+    "keyFacts": {
+      "factLine": "Matter family strangulation suffocation: defence on instructions is section 45 indicator; procedural stage police investigation; charge status operative.",
+      "limitation": "For this strangulation suffocation pack, referred/absent items remain without page content: referred_missing_master."
+    },
+    "fiveAnswers": {
+      "whatEvidenceSays": "On strangulation suffocation papers, 7 evidence unit(s) with page identity are present; they do not by themselves establish the allegation against the defendant.",
+      "existenceVsReliability": "For strangulation suffocation: existence labels on the evidence schedule must not be read as reliability or proof.",
+      "provenance": "For strangulation suffocation: provenance for referred-absent items anchors to MG6 page MG06/page/1 without inventing master content."
+    },
+    "warRoom": {
+      "issue": "Case-specific issue for strangulation suffocation: charge status operative; defence section 45 indicator; procedure police investigation.",
+      "whyItMatters": "Why it matters on strangulation suffocation: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+      "safePosition": "Safe current position on strangulation suffocation: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+      "nextAction": "Next action on strangulation suffocation: Regarding strangulation suffocation: Regarding strangulation suffocation: Please provide referred missing master."
+    },
+    "controlRoom": {
+      "issue": "Control focus for strangulation suffocation: disclosure and completeness against charge status operative.",
+      "whyItMatters": "On strangulation suffocation, missing or partial disclosure changes what may safely be said on copy/export/API exits.",
+      "safePosition": "Safe current position for strangulation suffocation: solicitor review required before send; authenticated browser remains not exercised.",
+      "nextAction": "Next action for strangulation suffocation: chase only particularised missing items; keep request identifiers in audit metadata only."
+    },
+    "disclosureChase": {
+      "item": "referred missing master",
+      "whyItMatters": "On strangulation suffocation, the item is referred or outstanding on the papers and cannot be quoted as served content.",
+      "professionalRequest": "Regarding strangulation suffocation: Regarding strangulation suffocation: Please provide referred missing master."
+    },
+    "composedProse": {
+      "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: strangulation suffocation; defence on instructions section 45 indicator.",
+      "cpsChase": "Regarding strangulation suffocation: Regarding strangulation suffocation: Please provide referred missing master.",
+      "clientDisclaimer": "Fictional test material — not legal advice."
+    },
+    "copyExportApiPdf": {
+      "meaning": "On strangulation suffocation copy/export/API/PDF exits: charge status operative; defence section 45 indicator. For this strangulation suffocation pack, referred/absent items remain without page content: referred_missing_master.",
+      "chase": "Regarding strangulation suffocation: Regarding strangulation suffocation: Please provide referred missing master."
+    }
+  },
+  "composedProse": {
+    "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: strangulation suffocation; defence on instructions section 45 indicator.",
+    "cpsChase": "Regarding strangulation suffocation: Regarding strangulation suffocation: Please provide referred missing master.",
+    "clientDisclaimer": "Fictional test material — not legal advice.",
+    "limitations": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ],
+    "allegation": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.\n\nAction: Check the operative charge sheet or amendment record.",
+    "chargeCompleteness": {
+      "sourceChargeText": "",
+      "provenance": "No recorded charge wording on papers.",
+      "instruments": [],
+      "displayedChargeText": "",
+      "completenessStatus": "unresolved",
+      "recoverySource": null,
+      "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+      "requiredAction": "Action: Check the operative charge sheet or amendment record."
+    }
+  },
+  "disclosureChase": {
+    "professionalRequest": "Regarding strangulation suffocation: Regarding strangulation suffocation: Please provide referred missing master.",
+    "item": "referred missing master",
+    "whyItMatters": "On strangulation suffocation, the item is referred or outstanding on the papers and cannot be quoted as served content."
+  },
+  "warRoom": {
+    "issue": "Case-specific issue for strangulation suffocation: charge status operative; defence section 45 indicator; procedure police investigation.",
+    "whyItMatters": "Why it matters on strangulation suffocation: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+    "safeCurrentPosition": "Safe current position on strangulation suffocation: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+    "nextAction": "Next action on strangulation suffocation: Regarding strangulation suffocation: Regarding strangulation suffocation: Please provide referred missing master."
+  },
+  "copyLines": [
+    "On strangulation suffocation copy/export/API/PDF exits: charge status operative; defence section 45 indicator. For this strangulation suffocation pack, referred/absent items remain without page content: referred_missing_master.",
+    "Regarding strangulation suffocation: Regarding strangulation suffocation: Please provide referred missing master."
+  ],
+  "requiredLimitations": [
+    "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+    "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+  ],
+  "pdf": {}
+}

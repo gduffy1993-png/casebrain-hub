@@ -1,0 +1,5 @@
+{
+  "v2142PreservedByteForByte": true,
+  "correctedStatus": "PILOT_GATE_INCOMPLETE_PENDING_PROFESSIONAL_SEMANTIC_OUTPUT_QUALITY",
+  "sidecar": "../stage3000-diverse-second-v2.1.4.2/pilot-gate-claim-correction.json"
+}

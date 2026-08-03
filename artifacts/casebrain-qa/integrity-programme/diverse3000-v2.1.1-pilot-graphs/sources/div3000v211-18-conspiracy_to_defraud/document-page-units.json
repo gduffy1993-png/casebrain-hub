@@ -1,0 +1,187 @@
+{
+  "caseId": "div3000v211-18-conspiracy_to_defraud",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "0f7ac340d4ddb25ecb2b52089cc0871a253c393f1b55d8ba7d96728a147dc6f9",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\npageIdentity=indictment_operative/page/1\n## Indictment (fictional test — not operative)\nKind: indictment\nLifecycle state: operative\nFamily: conspiracy to defraud\nStage: trial prep\nFICTIONAL TEST MATERIAL\nIndictment placeholder for conspiracy to defraud — charge wording not pinned; structural only.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-18-conspiracy_to_defraud\nDocument id | indictment_operative\nKind | indictment\nLifecycle state | operative\nPage purpose | document_specific_body\nFamily | conspiracy to defraud\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for conspiracy to defraud must respect served vs absent papers.\nPrecise next action: verify indictment_operative/page/1 against MG06 before any external send.\nSource/page pointer: indictment_operative/page/1",
+          "textHash": "0f7ac340d4ddb25ecb2b52089cc0871a253c393f1b55d8ba7d96728a147dc6f9",
+          "headings": [
+            "Indictment (fictional test — not operative)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "842a15280464599fb287e880c23166983894a8689dcadfc5f180d7962ef22901",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/1\n## MG5 Case summary\n## Narrative\nFamily under review: conspiracy to defraud\nDefence position on instructions: lack of intent\nProcedural stage: trial prep\nAllegation under review: Charge wording not pinned — structural only.\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: conspiracy to defraud.\nDefence position modelled: lack of intent.\nProcedural stage: trial prep.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 2: mg11_draft, cctv_clip, cctv_master_referred.\nWitness outline: complainant account recorded as allegation only — not proved.\nOfficer summary limited to disclosed papers in this pack.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-18-conspiracy_to_defraud\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_case_summary_narrative\nFamily | conspiracy to defraud\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for conspiracy to defraud must respect served vs absent papers.\nPrecise next action: verify MG05/page/1 against MG06 before any external send.\nSource/page pointer: MG05/page/1",
+          "textHash": "de4145b85ff508c590468c0f40afffdaf04dcbc2e3ffc3807b3b8fa33a7e7ce9",
+          "headings": [
+            "MG5 Case summary",
+            "Narrative"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/2\n## Evidence outline\n## Limitations\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): abe_or_special_measures, third_party_material_note, referred_missing_master.\nReliability: MG5 narrative must not be read as establishing guilt.\nNext action: reconcile MG5 against MG6 index for div3000v211-18-conspiracy_to_defraud before any court-facing send.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-18-conspiracy_to_defraud\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_evidence_outline\nFamily | conspiracy to defraud\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for conspiracy to defraud must respect served vs absent papers.\nPrecise next action: verify MG05/page/2 against MG06 before any external send.\nSource/page pointer: MG05/page/2",
+          "textHash": "b86c3b01396149655b0709c9fddec6ab612220b3d6cf1eff0e84691c91246037",
+          "headings": [
+            "Evidence outline",
+            "Limitations"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "922049fdb8958613cb2904820dc16ae55470b0f91bf83da6a43f04f2cfa02082",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\npageIdentity=MG06/page/1\n## MG6 File front sheet / index\n## Inventory\nIndex of papers for this fictional matter:\n- written charge / requisition — see written_charge\n- MG5 case summary — served\n- disclosure / unused schedule — see schedules\n- abe_or_special_measures — REFERRED ABSENT — not served; do not quote content\n- third_party_material_note — REFERRED ABSENT — not served; do not quote content\n- referred_missing_master — REFERRED ABSENT — not served; do not quote content\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nCaseBrain must not quote or summarise nonexistent content for referred-absent items.\nChase binding: disclosure chase must request abe_or_special_measures, third_party_material_note, referred_missing_master by identity, pointing to this MG6 page.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-18-conspiracy_to_defraud\nDocument id | MG06\nKind | mg06\nLifecycle state | served\nPage purpose | mg6_file_index\nFamily | conspiracy to defraud\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for conspiracy to defraud must respect served vs absent papers.\nPrecise next action: verify MG06/page/1 against MG06 before any external send.\nSource/page pointer: MG06/page/1",
+          "textHash": "922049fdb8958613cb2904820dc16ae55470b0f91bf83da6a43f04f2cfa02082",
+          "headings": [
+            "MG6 File front sheet / index",
+            "Inventory"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "0825f46f38cffefe008aca563c89b7ce6391bc3c495db38bfba4fbbf4b381059",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_or_digital_schedule",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\npageIdentity=cctv_clip_schedule/page/1\n## Media / digital schedule\nSchedule for conspiracy to defraud matter.\nClip / extract entries served where marked; masters may be referred-only.\nFICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nAbsent masters referred via MG6: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-18-conspiracy_to_defraud\nDocument id | cctv_clip_schedule\nKind | media_schedule\nLifecycle state | partial\nPage purpose | media_or_digital_schedule\nFamily | conspiracy to defraud\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: partial\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for conspiracy to defraud must respect served vs absent papers.\nPrecise next action: verify cctv_clip_schedule/page/1 against MG06 before any external send.\nSource/page pointer: cctv_clip_schedule/page/1",
+          "textHash": "0825f46f38cffefe008aca563c89b7ce6391bc3c495db38bfba4fbbf4b381059",
+          "headings": [
+            "Media / digital schedule"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "48d709a42f3daed7ea3050200d54e1ea52e2b3817c20fa3240c5b21f7e37a1c9",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "metadata_only_fixture",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\npageIdentity=media_metadata/page/1\n## Media metadata\nNative video/audio bytes: not_exercised.\nMetadata fields only — hash/path placeholders for fictional test.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nCannot summarise native content that was never supplied.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-18-conspiracy_to_defraud\nDocument id | media_metadata\nKind | metadata_fixture\nLifecycle state | metadata_only\nPage purpose | metadata_only_fixture\nFamily | conspiracy to defraud\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: metadata_only\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for conspiracy to defraud must respect served vs absent papers.\nPrecise next action: verify media_metadata/page/1 against MG06 before any external send.\nSource/page pointer: media_metadata/page/1",
+          "textHash": "48d709a42f3daed7ea3050200d54e1ea52e2b3817c20fa3240c5b21f7e37a1c9",
+          "headings": [
+            "Media metadata"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "phone_download_schedule",
+      "title": "Phone download / attribution schedule (fictional test)",
+      "kind": "digital_schedule",
+      "state": "incomplete",
+      "contentHash": "e88804a5f74e4005dfdfe61fbd77b57a0aeaeb33bba471f820660ebc7a494e34",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "phone_download_schedule/page/1",
+          "purpose": "media_or_digital_schedule",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Phone download / attribution schedule (fictional test)\npageIdentity=phone_download_schedule/page/1\n## Media / digital schedule\nSchedule for conspiracy to defraud matter.\nClip / extract entries served where marked; masters may be referred-only.\nFICTIONAL TEST MATERIAL\nDevice / account / user / sender / author separation required. Partial extraction.\nAbsent masters referred via MG6: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-18-conspiracy_to_defraud\nDocument id | phone_download_schedule\nKind | digital_schedule\nLifecycle state | incomplete\nPage purpose | media_or_digital_schedule\nFamily | conspiracy to defraud\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: incomplete\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for conspiracy to defraud must respect served vs absent papers.\nPrecise next action: verify phone_download_schedule/page/1 against MG06 before any external send.\nSource/page pointer: phone_download_schedule/page/1",
+          "textHash": "e88804a5f74e4005dfdfe61fbd77b57a0aeaeb33bba471f820660ebc7a494e34",
+          "headings": [
+            "Media / digital schedule"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "unused_schedule_mg6c",
+      "title": "Unused material schedule extract (fictional test)",
+      "kind": "disclosure_unused",
+      "state": "served",
+      "contentHash": "0ddc153b7dbdc760a467df3df6442dda56a91ad78531e4398c3b5b0071433c8b",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "unused_schedule_mg6c/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Unused material schedule extract (fictional test)\npageIdentity=unused_schedule_mg6c/page/1\n## Unused material schedule extract (fictional test)\nKind: disclosure_unused\nLifecycle state: served\nFamily: conspiracy to defraud\nStage: trial prep\nFICTIONAL TEST MATERIAL — unused items listed; PII redaction markers present.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-18-conspiracy_to_defraud\nDocument id | unused_schedule_mg6c\nKind | disclosure_unused\nLifecycle state | served\nPage purpose | document_specific_body\nFamily | conspiracy to defraud\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for conspiracy to defraud must respect served vs absent papers.\nPrecise next action: verify unused_schedule_mg6c/page/1 against MG06 before any external send.\nSource/page pointer: unused_schedule_mg6c/page/1",
+          "textHash": "0ddc153b7dbdc760a467df3df6442dda56a91ad78531e4398c3b5b0071433c8b",
+          "headings": [
+            "Unused material schedule extract (fictional test)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "4d16607c5cdbcd78b91e633589660311206c4ae91d08a6a2ab69555683188823",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\npageIdentity=defence_proof_extract/page/1\n## Defence proof of evidence extract\n## PRIVILEGED\nPosition on instructions: lack of intent\nThis extract is privilege-separated. Not for ordinary copy/export/API send.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: lack_of_intent. Not for ordinary copy/export.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-18-conspiracy_to_defraud\nDocument id | defence_proof_extract\nKind | defence_proof\nLifecycle state | privileged\nPage purpose | defence_privileged_extract\nFamily | conspiracy to defraud\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: privileged\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for conspiracy to defraud must respect served vs absent papers.\nPrecise next action: verify defence_proof_extract/page/1 against MG06 before any external send.\nSource/page pointer: defence_proof_extract/page/1",
+          "textHash": "4d16607c5cdbcd78b91e633589660311206c4ae91d08a6a2ab69555683188823",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ]
+        }
+      ],
+      "privilegeSeparated": true,
+      "realPaginatedFile": true
+    }
+  ]
+}

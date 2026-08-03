@@ -1,0 +1,139 @@
+{
+  "caseId": "div3000v212-07-sexual_assault",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "purpose": "indictment_count_particulars",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): sexual assault\n## INDICTMENT\n## Count 1 — STATEMENT OF OFFENCE\n## PARTICULARS OF OFFENCE\nIN THE CROWN COURT AT [FICTIONAL VENUE]\nTHE KING v. [FICTIONAL DEFENDANT]\n\nCOUNT 1\nSTATEMENT OF OFFENCE\nCharge wording not pinned — structural only.\nContrary to the modelled statutory provision for this family.\n\nPARTICULARS OF OFFENCE\nThe defendant on a date unknown within the charged window, at a place particularised in the served papers, committed the offence alleged in Count 1.\nThe Crown relies on the served MG5 narrative, witness statements and media schedules listed on the MG6 index.\nLifecycle state: operative.\nModelled as operative indictment for fictional-test purposes only.\nPlea / endorsement: not recorded on Count 1 page — see instrument history where present.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "9d418144c2ee9d9848c797d2af7168faa2ca0b1df152ba7e14ed100fd2b01d04",
+          "headings": [
+            "INDICTMENT",
+            "Count 1 — STATEMENT OF OFFENCE",
+            "PARTICULARS OF OFFENCE"
+          ],
+          "layoutKind": "indictment"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "purpose": "indictment_further_counts_or_history",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): sexual assault\n## Further counts / instrument history\nNo additional counts pinned; this page records instrument history and endorsement only.\nDefence position on instructions: abuse of process argument.\nProcedure: pet.\nEndorsement block: fictional clerk stamp; listing date modelled.\nContinuity: prefer the operative instrument over draft/superseded counterparts when both exist.\nDo not treat indictment endorsement as proof of the allegation.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "253cb9b99a5ef35bda6ba9e43c5c1ce0efec56b8722b322bcff029deefe8ce51",
+          "headings": [
+            "Further counts / instrument history"
+          ],
+          "layoutKind": "indictment"
+        }
+      ],
+      "contentHash": "c11246392927711c0d1efbf2eec2dc56959918afd8300726a889636baba880e4",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "indictment"
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): sexual assault\n## MG5 — Case summary\n## Offence summary\n## Key evidence narrative\nDefendant / matter family: sexual assault\nDefence on instructions: abuse of process argument\nProcedural stage: pet\nAllegation under review: Charge wording not pinned — structural only.\n\nNARRATIVE\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: sexual assault.\nDefence position modelled: abuse of process argument.\nProcedural stage: pet.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_signed, mg11_draft, cctv_clip.\n\nWitness outline: complainant account recorded as allegation only — not proved.\nReliability: MG5 narrative must not be read as establishing guilt.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "03a066643c17910574211076f9bef26305eb1cfab5fd72e4031f4a58f8772010",
+          "headings": [
+            "MG5 — Case summary",
+            "Offence summary",
+            "Key evidence narrative"
+          ],
+          "layoutKind": "mg05"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): sexual assault\n## Evidence outline\n## Limitations\n## Next action\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): abe_or_special_measures, third_party_material_note.\nNext action: reconcile MG5 against MG6 index before any court-facing send.\nDo not quote referred-absent masters as if content were available.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "a06e6cfc23290e3c47a3e2deeb8a9bbc97d0f5af49ac24f877e56781ebfc6940",
+          "headings": [
+            "Evidence outline",
+            "Limitations",
+            "Next action"
+          ],
+          "layoutKind": "mg05"
+        }
+      ],
+      "contentHash": "e62502a13a48eed3a4f7171672993d84631ee5085385525097e7e0411d372592",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg05"
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG6 File front sheet / index (fictional test)\nMatter family (fictional): sexual assault\n## MG6 — File front sheet / index\n## Inventory\nSeq | Document | Kind | Status\n--- | -------- | ---- | ------\n1 | Written charge / indictment | instrument | see pack\n2 | MG5 case summary | mg05 | served\n3 | Disclosure / unused | schedule | see schedules\n4 | abe_or_special_measures | referred | ABSENT — not served\n5 | third_party_material_note | referred | ABSENT — not served\n\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nChase binding: request abe_or_special_measures, third_party_material_note by identity against this MG6 page.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "88c3035e25549d0cd5e30b4bdcab74fb9c994a986acca26c5eaa750ffe1db318",
+          "headings": [
+            "MG6 — File front sheet / index",
+            "Inventory"
+          ],
+          "layoutKind": "mg06"
+        }
+      ],
+      "contentHash": "88c3035e25549d0cd5e30b4bdcab74fb9c994a986acca26c5eaa750ffe1db318",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg06"
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): sexual assault\n## Defence proof of evidence extract\n## PRIVILEGED\nPRIVILEGED — defence working extract. Not for ordinary copy/export/API send.\nPosition on instructions: abuse of process argument\nIssues to explore: attribution, continuity, missing masters, charge particularity.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: abuse_of_process_argument. Not for ordinary copy/export.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "8fb52f6bd4568a4c98f37b88e586edb1dbf173422cb6d6573fda7783da9cbdef",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ],
+          "layoutKind": "defence_proof"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "purpose": "defence_issues_and_requests",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): sexual assault\n## Issues list\n## Requests\nMissing/referred chase candidates: abe_or_special_measures, third_party_material_note.\nProof extract remains privilege-separated in this fictional pack.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "dd4c159a1e61d77f29f9ad5299319a0d94230564d65be80f79c91aba7e908997",
+          "headings": [
+            "Issues list",
+            "Requests"
+          ],
+          "layoutKind": "defence_proof"
+        }
+      ],
+      "contentHash": "f88a08246f845c412044b267393c12def5bfe281d3fe716044fa560cca584485",
+      "realPaginatedFile": true,
+      "privilegeSeparated": true,
+      "publicTemplateRef": "defence_proof"
+    }
+  ]
+}

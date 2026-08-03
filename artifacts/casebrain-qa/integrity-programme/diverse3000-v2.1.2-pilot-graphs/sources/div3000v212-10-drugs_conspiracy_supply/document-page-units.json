@@ -1,0 +1,293 @@
+{
+  "caseId": "div3000v212-10-drugs_conspiracy_supply",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "purpose": "indictment_count_particulars",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): drugs conspiracy supply\n## INDICTMENT\n## Count 1 — STATEMENT OF OFFENCE\n## PARTICULARS OF OFFENCE\nIN THE CROWN COURT AT [FICTIONAL VENUE]\nTHE KING v. [FICTIONAL DEFENDANT]\n\nCOUNT 1\nSTATEMENT OF OFFENCE\nCharge wording not pinned — structural only.\nContrary to the modelled statutory provision for this family.\n\nPARTICULARS OF OFFENCE\nThe defendant on a date unknown within the charged window, at a place particularised in the served papers, committed the offence alleged in Count 1.\nThe Crown relies on the served MG5 narrative, witness statements and media schedules listed on the MG6 index.\nLifecycle state: operative.\nModelled as operative indictment for fictional-test purposes only.\nPlea / endorsement: not recorded on Count 1 page — see instrument history where present.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "c133b2c3a1469d5bc9515110511691cab658fc34e9ad2cb00d3118610e35639d",
+          "headings": [
+            "INDICTMENT",
+            "Count 1 — STATEMENT OF OFFENCE",
+            "PARTICULARS OF OFFENCE"
+          ],
+          "layoutKind": "indictment"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "purpose": "indictment_further_counts_or_history",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): drugs conspiracy supply\n## Further counts / instrument history\nFurther count allocation across 2 defendants — each count remains defendant-specific.\nDefence position on instructions: consent dispute.\nProcedure: police investigation.\nEndorsement block: fictional clerk stamp; listing date modelled.\nContinuity: prefer the operative instrument over draft/superseded counterparts when both exist.\nDo not treat indictment endorsement as proof of the allegation.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "9167757753b508e76c845ecf52778930fb928c363d9a06af57dfda4117f270da",
+          "headings": [
+            "Further counts / instrument history"
+          ],
+          "layoutKind": "indictment"
+        }
+      ],
+      "contentHash": "74c7cd7c0428bdaa591e476a5b8037778cff99ddfd5c5eab8ddb6329740f0ef7",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "indictment"
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): drugs conspiracy supply\n## MG5 — Case summary\n## Offence summary\n## Key evidence narrative\nDefendant / matter family: drugs conspiracy supply\nDefence on instructions: consent dispute\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\n\nNARRATIVE\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: drugs conspiracy supply.\nDefence position modelled: consent dispute.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 2: mg11_draft, cctv_clip, cctv_master_referred.\n\nWitness outline: complainant account recorded as allegation only — not proved.\nReliability: MG5 narrative must not be read as establishing guilt.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "a598f4370e5b490a21f4197e8ed4e502a68f5cd90409b4f7c7d505dd2c959442",
+          "headings": [
+            "MG5 — Case summary",
+            "Offence summary",
+            "Key evidence narrative"
+          ],
+          "layoutKind": "mg05"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): drugs conspiracy supply\n## Evidence outline\n## Limitations\n## Next action\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): referred_missing_master.\nNext action: reconcile MG5 against MG6 index before any court-facing send.\nDo not quote referred-absent masters as if content were available.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "d9b8c35b1422fc21dc8fe4453ff09777c38ccacd69862ae4a1269a66671fb348",
+          "headings": [
+            "Evidence outline",
+            "Limitations",
+            "Next action"
+          ],
+          "layoutKind": "mg05"
+        }
+      ],
+      "contentHash": "05536c2a304ed6cf3517c2606285a49df123b7bc48d8cd092e8192967ff87778",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg05"
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG6 File front sheet / index (fictional test)\nMatter family (fictional): drugs conspiracy supply\n## MG6 — File front sheet / index\n## Inventory\nSeq | Document | Kind | Status\n--- | -------- | ---- | ------\n1 | Written charge / indictment | instrument | see pack\n2 | MG5 case summary | mg05 | served\n3 | Disclosure / unused | schedule | see schedules\n4 | referred_missing_master | referred | ABSENT — not served\n\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nChase binding: request referred_missing_master by identity against this MG6 page.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "ef57b3f9c475ef07368c0f86583e3e29c66a21c5a3f96a7f636e7571913fa293",
+          "headings": [
+            "MG6 — File front sheet / index",
+            "Inventory"
+          ],
+          "layoutKind": "mg06"
+        }
+      ],
+      "contentHash": "ef57b3f9c475ef07368c0f86583e3e29c66a21c5a3f96a7f636e7571913fa293",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg06"
+    },
+    {
+      "docId": "MG12_exhibits",
+      "title": "MG12 exhibit list (fictional test)",
+      "kind": "mg12",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG12_exhibits/page/1",
+          "purpose": "exhibit_list_mg12",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG12 exhibit list (fictional test)\nMatter family (fictional): drugs conspiracy supply\n## Exhibit list (MG12-style)\n## Inventory\nEx# | Description | Recovered by | Location | Continuity\n--- | ----------- | ------------ | -------- | ----------\nEX1 | Sealed bag / device | PC Fictional | Store A | CR-01\nEX2 | Clothing item | CSI Fictional | Store B | CR-02\nEX3 | Phone handset | Digital unit | Faraday | see phone schedule\nContinuity must be checked against continuity record.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "e926e556c5ec874791570a1e3086bbcd617b2c67124215d6baefeae1e8caf96c",
+          "headings": [
+            "Exhibit list (MG12-style)",
+            "Inventory"
+          ],
+          "layoutKind": "exhibit_schedule"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG12_exhibits/page/2",
+          "purpose": "exhibit_list_further_items",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG12 exhibit list (fictional test)\nMatter family (fictional): drugs conspiracy supply\n## Further exhibits\nEx# | Description | Note\n--- | ----------- | ----\nEX4 | Swab set | SFR linked\nEX5 | Document bundle | copies served\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "ff1370936cfd3d02295ddb18b7e5ad101cc247bbbaaa5a8268a3457807b5f727",
+          "headings": [
+            "Further exhibits"
+          ],
+          "layoutKind": "exhibit_schedule"
+        }
+      ],
+      "contentHash": "5b5af9685a50247b7f7cc4c07297e5ffcf467c13ccb24915d7e15b5052d6c65c",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "exhibit_schedule"
+    },
+    {
+      "docId": "MG15_interview",
+      "title": "MG15 interview record (fictional test)",
+      "kind": "mg15",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG15_interview/page/1",
+          "purpose": "interview_opening_caution",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG15 interview record (fictional test)\nMatter family (fictional): drugs conspiracy supply\n## Interview record (MG15-style)\n## Identifiers\n## Caution\nInterview URN: FT-INT-MG15INTE\nMatter family: drugs conspiracy supply\nTape / digital media ref: FT-INT-01 (fictional)\nPersons present: interviewing officer; suspect; solicitor (modelled).\nCaution administered (fictional wording mark only).\nDefence position context: consent dispute.\nState: served.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "9fa2797041dacee3bb013cec4a18fdb62adbdb3ee9eb73cb7369244e60c55458",
+          "headings": [
+            "Interview record (MG15-style)",
+            "Identifiers",
+            "Caution"
+          ],
+          "layoutKind": "interview_record"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG15_interview/page/2",
+          "purpose": "interview_qa_summary",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG15 interview record (fictional test)\nMatter family (fictional): drugs conspiracy supply\n## Interview summary / Q&A extract\nQ: Account of movements on the material date?\nA: Position on instructions — consent dispute.\nQ: Comment on the allegation instrument?\nA: Allegation not admitted as proved; account limited to disclosed papers.\nFICTIONAL TEST MATERIAL\nInterview. Defence consent_dispute. Incomplete transcript marker: no.\nTranscript status: modelled complete for fictional test.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "9af9f52162c458fd6ae617cf6fd53bc1114257581a54133a8c088acbb9954c20",
+          "headings": [
+            "Interview summary / Q&A extract"
+          ],
+          "layoutKind": "interview_record"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG15_interview/page/3",
+          "purpose": "interview_exhibits_produced",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG15 interview record (fictional test)\nMatter family (fictional): drugs conspiracy supply\n## Exhibits produced in interview\nExhibit | Shown | Response noted\n------- | ----- | --------------\nEX1 still | yes | no comment / denial per instructions\nClip schedule ref | yes | continuity to be checked\nEnd of interview / times recorded (fictional).\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "14a1d02d9729aec72134a140600e7dd43759bd1bd56e5dd9f9c5f1d6909e14e9",
+          "headings": [
+            "Exhibits produced in interview"
+          ],
+          "layoutKind": "interview_record"
+        }
+      ],
+      "contentHash": "363242ea52a4981985e417f6a6817e583ff8e1b23927320c6b94424717b7b580",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "interview_record"
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_clip_schedule_log",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: CCTV / BWV clip schedule (fictional test)\nMatter family (fictional): drugs conspiracy supply\n## CCTV / BWV clip schedule\n## Served clips\nClip | Source | Start | End | Master | Status\n---- | ------ | ----- | --- | ------ | ------\nC1 | High St cam 3 | 21:02:10 | 21:04:44 | M-HS-3 | clip served\nC2 | BWV PC Fictional | 21:05:01 | 21:07:18 | M-BWV-01 | clip served\nC3 | Store cam | 20:58:00 | 21:01:00 | M-ST-2 | partial\nAbsent masters referred: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "67e460b5ba00b4f7d7b1976f595f8a9af57bd0ff9851f6b12f1dbe6d17f9ad89",
+          "headings": [
+            "CCTV / BWV clip schedule",
+            "Served clips"
+          ],
+          "layoutKind": "media_schedule"
+        }
+      ],
+      "contentHash": "67e460b5ba00b4f7d7b1976f595f8a9af57bd0ff9851f6b12f1dbe6d17f9ad89",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "media_schedule"
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "media_metadata_only",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Media metadata fixture (native bytes not_exercised)\nMatter family (fictional): drugs conspiracy supply\n## Media metadata fixture\n## Native bytes not_exercised\nNative video/audio bytes: not_exercised.\npath: /fictional/media/clip_C1.mp4\nsha256: ft-meta-placeholder\ncodec / duration: modelled placeholders only\nCannot summarise native content that was never supplied.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "9e262da54043e7f94d06a3e462a90db3296a4f150526a1e058a5aca85e91d182",
+          "headings": [
+            "Media metadata fixture",
+            "Native bytes not_exercised"
+          ],
+          "layoutKind": "metadata_fixture"
+        }
+      ],
+      "contentHash": "9e262da54043e7f94d06a3e462a90db3296a4f150526a1e058a5aca85e91d182",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "metadata_fixture"
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): drugs conspiracy supply\n## Defence proof of evidence extract\n## PRIVILEGED\nPRIVILEGED — defence working extract. Not for ordinary copy/export/API send.\nPosition on instructions: consent dispute\nIssues to explore: attribution, continuity, missing masters, charge particularity.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: consent_dispute. Not for ordinary copy/export.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "426ccc35734261addf4929b61b5c8c5be7b7f3f1b8c4ec398741312d0d36b59c",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ],
+          "layoutKind": "defence_proof"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "purpose": "defence_issues_and_requests",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): drugs conspiracy supply\n## Issues list\n## Requests\nMissing/referred chase candidates: referred_missing_master.\nProof extract remains privilege-separated in this fictional pack.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "1299925aa97cbaa40bee6b4577c3ecd466c09cf1c15e7cc4b55530f339a7948a",
+          "headings": [
+            "Issues list",
+            "Requests"
+          ],
+          "layoutKind": "defence_proof"
+        }
+      ],
+      "contentHash": "ebf5dbcd9b851ee5a1cffa0d2db1a8a89745828a0a3081c34ebb8650e3240306",
+      "realPaginatedFile": true,
+      "privilegeSeparated": true,
+      "publicTemplateRef": "defence_proof"
+    },
+    {
+      "docId": "extra_context_1",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_1/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Additional context schedule (fictional test)\nMatter family (fictional): drugs conspiracy supply\n## Additional context schedule (fictional test)\n## Particulars\nKind: context_schedule\nLifecycle state: served\nFamily: drugs conspiracy supply\nStage: police investigation\nFICTIONAL TEST MATERIAL — additional coherent schedule for drugs_conspiracy_supply emphasising consent_dispute and indictment.\nStatus: served.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "a520d03d14fa5b35a98b628e394b2a61620f7f69b7e9de7016b1bf707da8a029",
+          "headings": [
+            "Additional context schedule (fictional test)",
+            "Particulars"
+          ],
+          "layoutKind": "generic_specialist"
+        }
+      ],
+      "contentHash": "a520d03d14fa5b35a98b628e394b2a61620f7f69b7e9de7016b1bf707da8a029",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "generic_specialist"
+    }
+  ]
+}

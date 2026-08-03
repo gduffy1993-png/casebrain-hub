@@ -1,0 +1,12 @@
+{
+  "files": [
+    "scripts/assurance/stage3000-diverse-second/v2.1.4.2-solicitor-visible-wording.ts",
+    "scripts/assurance/stage3000-diverse-second/v2.1.2-structured-maa-output.ts",
+    "scripts/assurance/stage3000-diverse-second/v2.1.4-provenance-leaf-classifier.ts",
+    "scripts/assurance/stage3000-diverse-second/v2.1.4.2-focused-contracts.test.ts",
+    "scripts/assurance/stage3000-diverse-second/build-v2.1.4.2-visible-fail-closed.ts",
+    "tsconfig.v2142-path-scoped.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.2/",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.4.2-pilot-graphs/"
+  ]
+}

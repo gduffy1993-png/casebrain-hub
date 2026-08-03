@@ -1,0 +1,211 @@
+{
+  "caseId": "div3000v213-09-blackmail",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "purpose": "indictment_count_particulars",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): blackmail\n## INDICTMENT\n## Count 1 — STATEMENT OF OFFENCE\n## PARTICULARS OF OFFENCE\nIN THE CROWN COURT AT [FICTIONAL VENUE]\nTHE KING v. [FICTIONAL DEFENDANT]\n\nCOUNT 1\nSTATEMENT OF OFFENCE\nCharge wording not pinned — structural only.\nContrary to the modelled statutory provision for this family.\n\nPARTICULARS OF OFFENCE\nThe defendant on a date unknown within the charged window, at a place particularised in the served papers, committed the offence alleged in Count 1.\nThe Crown relies on the served MG5 narrative, witness statements and media schedules listed on the MG6 index.\nLifecycle state: operative.\nModelled as operative indictment for fictional-test purposes only.\nPlea / endorsement: not recorded on Count 1 page — see instrument history where present.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "b5b38724c7a5548cbce7eea98313d07d37b2abfa96bfbfc3d771e864ab8ddb51",
+          "headings": [
+            "INDICTMENT",
+            "Count 1 — STATEMENT OF OFFENCE",
+            "PARTICULARS OF OFFENCE"
+          ],
+          "layoutKind": "indictment"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "purpose": "indictment_further_counts_or_history",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): blackmail\n## Further counts / instrument history\nFurther count allocation across 2 defendants — each count remains defendant-specific.\nDefence position on instructions: factual denial.\nProcedure: police investigation.\nEndorsement block: fictional clerk stamp; listing date modelled.\nContinuity: prefer the operative instrument over draft/superseded counterparts when both exist.\nDo not treat indictment endorsement as proof of the allegation.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "0bdda4066ab54000131296c3fbf6fdb25cc3e7ab3d9974b965bcd5df434a1ad8",
+          "headings": [
+            "Further counts / instrument history"
+          ],
+          "layoutKind": "indictment"
+        }
+      ],
+      "contentHash": "5e854d0a7a09a510433882b084e4de63f7a301027202e5f0d2c10edf2afd4e62",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "indictment"
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): blackmail\n## MG5 — Case summary\n## Offence summary\n## Key evidence narrative\nDefendant / matter family: blackmail\nDefence on instructions: factual denial\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\n\nNARRATIVE\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: blackmail.\nDefence position modelled: factual denial.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 3: mg11_draft, cctv_clip, cctv_master_referred.\n\nWitness outline: complainant account recorded as allegation only — not proved.\nReliability: MG5 narrative must not be read as establishing guilt.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "2693fb54ca5d1dc5e3f99aa21e61d06cb9b760ab513841303f66179760c73c75",
+          "headings": [
+            "MG5 — Case summary",
+            "Offence summary",
+            "Key evidence narrative"
+          ],
+          "layoutKind": "mg05"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): blackmail\n## Evidence outline\n## Limitations\n## Next action\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): referred_missing_master.\nNext action: reconcile MG5 against MG6 index before any court-facing send.\nDo not quote referred-absent masters as if content were available.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "abb0ff3cf64b264c0c598bef2f6a814758b3ef28541108bd325450a3398d93c2",
+          "headings": [
+            "Evidence outline",
+            "Limitations",
+            "Next action"
+          ],
+          "layoutKind": "mg05"
+        }
+      ],
+      "contentHash": "aa3b2ee2f6c3914cb5f44bc37913c14e18bd2190af1bdb0674cdbb8e1398125b",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg05"
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG6 File front sheet / index (fictional test)\nMatter family (fictional): blackmail\n## MG6 — File front sheet / index\n## Inventory\nSeq | Document | Kind | Status\n--- | -------- | ---- | ------\n1 | Written charge / indictment | instrument | see pack\n2 | MG5 case summary | mg05 | served\n3 | Disclosure / unused | schedule | see schedules\n4 | referred_missing_master | referred | ABSENT — not served\n\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nChase binding: request referred_missing_master by identity against this MG6 page.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "3488d7ab9c94ebe69725e091c634775c898d26b1b2ab2a94cb6b6a880296cd4f",
+          "headings": [
+            "MG6 — File front sheet / index",
+            "Inventory"
+          ],
+          "layoutKind": "mg06"
+        }
+      ],
+      "contentHash": "3488d7ab9c94ebe69725e091c634775c898d26b1b2ab2a94cb6b6a880296cd4f",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg06"
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_clip_schedule_log",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: CCTV / BWV clip schedule (fictional test)\nMatter family (fictional): blackmail\n## CCTV / BWV clip schedule\n## Served clips\nClip | Source | Start | End | Master | Status\n---- | ------ | ----- | --- | ------ | ------\nC1 | High St cam 3 | 21:02:10 | 21:04:44 | M-HS-3 | clip served\nC2 | BWV PC Fictional | 21:05:01 | 21:07:18 | M-BWV-01 | clip served\nC3 | Store cam | 20:58:00 | 21:01:00 | M-ST-2 | partial\nAbsent masters referred: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "a49169ffdab96e73169e98d62ef4400843d555e60b837d5129b4ffd3e634853d",
+          "headings": [
+            "CCTV / BWV clip schedule",
+            "Served clips"
+          ],
+          "layoutKind": "media_schedule"
+        }
+      ],
+      "contentHash": "a49169ffdab96e73169e98d62ef4400843d555e60b837d5129b4ffd3e634853d",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "media_schedule"
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "media_metadata_only",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Media metadata fixture (native bytes not_exercised)\nMatter family (fictional): blackmail\n## Media metadata fixture\n## Native bytes not_exercised\nNative video/audio bytes: not_exercised.\npath: /fictional/media/clip_C1.mp4\nsha256: ft-meta-placeholder\ncodec / duration: modelled placeholders only\nCannot summarise native content that was never supplied.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "c94c4bb58f7f69bf6c96488ecfa65f010950f52442c6ff3baf2711380d60acbe",
+          "headings": [
+            "Media metadata fixture",
+            "Native bytes not_exercised"
+          ],
+          "layoutKind": "metadata_fixture"
+        }
+      ],
+      "contentHash": "c94c4bb58f7f69bf6c96488ecfa65f010950f52442c6ff3baf2711380d60acbe",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "metadata_fixture"
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): blackmail\n## Defence proof of evidence extract\n## PRIVILEGED\nPRIVILEGED — defence working extract. Not for ordinary copy/export/API send.\nPosition on instructions: factual denial\nIssues to explore: attribution, continuity, missing masters, charge particularity.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: factual_denial. Not for ordinary copy/export.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "d23bf19df5693233eafbc49d866fcf5c331bec79cd6767cd913be014c6c012b1",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ],
+          "layoutKind": "defence_proof"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "purpose": "defence_issues_and_requests",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): blackmail\n## Issues list\n## Requests\nMissing/referred chase candidates: referred_missing_master.\nProof extract remains privilege-separated in this fictional pack.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "a50f2ee4376262024823e376f9697b8dafea64f9c6714eab6c31a9259948e7d1",
+          "headings": [
+            "Issues list",
+            "Requests"
+          ],
+          "layoutKind": "defence_proof"
+        }
+      ],
+      "contentHash": "2426dff2a0d41b3a53dc09ea7374f1e4f586d6d7c13cecc6b194165c90a7c7d1",
+      "realPaginatedFile": true,
+      "privilegeSeparated": true,
+      "publicTemplateRef": "defence_proof"
+    },
+    {
+      "docId": "extra_context_3",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_3/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Additional context schedule (fictional test)\nMatter family (fictional): blackmail\n## Additional context schedule (fictional test)\n## Particulars\nKind: context_schedule\nLifecycle state: served\nFamily: blackmail\nStage: police investigation\nFICTIONAL TEST MATERIAL — additional coherent schedule for blackmail emphasising factual_denial and indictment.\nStatus: served.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "6c90d149b1b85ed668d855213ddfc999edf0e122c3063dcb84e5a0b5e5d052e2",
+          "headings": [
+            "Additional context schedule (fictional test)",
+            "Particulars"
+          ],
+          "layoutKind": "generic_specialist"
+        }
+      ],
+      "contentHash": "6c90d149b1b85ed668d855213ddfc999edf0e122c3063dcb84e5a0b5e5d052e2",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "generic_specialist"
+    }
+  ]
+}

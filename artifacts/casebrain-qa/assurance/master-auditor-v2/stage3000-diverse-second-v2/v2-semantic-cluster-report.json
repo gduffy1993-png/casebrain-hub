@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "diverse3000-v2-semantic-cluster-report@1.0.0",
+  "generatedAt": "2026-08-02T20:25:20.885Z",
+  "orderedMembershipSha256": "be4f3bec455c220267aaf3dc265292aa20c1cd763c5d7c5fe5d2df2cb88a25c9",
+  "normalisationMethod": [
+    "strip case ids",
+    "strip dates",
+    "strip generator names",
+    "collapse punctuation",
+    "sha256"
+  ],
+  "forcedUniquenessDisclaimer": "V2 substantive fingerprints exclude caseId/names/dates/salts; collisions rejected via document-structure mutation, not salts.",
+  "sourceDocumentStructureClusters": 469,
+  "sourceStructureLargestCluster": 275,
+  "narrativeCombinedClusters": 2576,
+  "narrativeLargestCluster": 4,
+  "documentCountHistogram": {
+    "4": 2,
+    "5": 548,
+    "6": 425,
+    "7": 649,
+    "8": 637,
+    "9": 328,
+    "10": 268,
+    "11": 109,
+    "12": 24,
+    "13": 8,
+    "14": 2
+  },
+  "chargeWordingStatusCounts": {
+    "pinned_inventory": 723,
+    "structural_only": 2249,
+    "awaiting_qualified_review": 28
+  },
+  "comparedToV1": {
+    "v1SourceStructureLargestCluster": 2627,
+    "v2SourceStructureLargestCluster": 275,
+    "v1FourDocAll3000": true,
+    "v2VariableDocCounts": true
+  }
+}

@@ -1,0 +1,586 @@
+{
+  "caseId": "div3000v213-01-common_assault_battery",
+  "generatedAt": "2026-08-03T01:07:16.613Z",
+  "source": "v2.1.2-structured-maa-output",
+  "chargeInstruments": [
+    {
+      "instrumentId": "inst-written_charge",
+      "instrumentType": "written_charge",
+      "exactWording": "Battery, contrary to common law and section 39 of the Criminal Justice Act 1988",
+      "count": 1,
+      "defendantAllocation": "defendant_0+defendant_1+defendant_2",
+      "sourceDocument": "written_charge",
+      "sourcePage": "1",
+      "sourcePageIdentity": "written_charge/page/1",
+      "pageIdentityKnown": true,
+      "status": "operative",
+      "version": "1",
+      "replacesInstrumentId": null,
+      "supersededByInstrumentId": null
+    }
+  ],
+  "evidenceStates": [
+    {
+      "source": "written_charge",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "1",
+      "sourcePageIdentity": "written_charge/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Written charge / requisition (fictional test) · written_charge/page/1",
+      "label": "written_charge::written_charge/page/1"
+    },
+    {
+      "source": "written_charge",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "2",
+      "sourcePageIdentity": "written_charge/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Written charge / requisition (fictional test) · written_charge/page/2",
+      "label": "written_charge::written_charge/page/2"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG05/page/1",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/1",
+      "label": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG05/page/2",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/2",
+      "label": "MG05::MG05/page/2"
+    },
+    {
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG6 File front sheet / index (fictional test) · MG06/page/1",
+      "label": "MG06::MG06/page/1"
+    },
+    {
+      "source": "cctv_clip_schedule",
+      "sourceDocumentIdentity": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "sourcePageIdentity": "cctv_clip_schedule/page/1",
+      "compiledPage": "6",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "CCTV / BWV clip schedule (fictional test) · cctv_clip_schedule/page/1",
+      "label": "cctv_clip_schedule",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "subjectDefendantId": "defendant_0",
+      "existence": "incomplete",
+      "inferredSourceState": "incomplete",
+      "existenceLabel": "incomplete",
+      "evidenceTypeOrModality": "clip_or_still"
+    },
+    {
+      "source": "media_metadata",
+      "sourceDocumentIdentity": "media_metadata",
+      "sourcePage": "1",
+      "sourcePageIdentity": "media_metadata/page/1",
+      "compiledPage": "7",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Media metadata fixture (native bytes not_exercised) · media_metadata/page/1",
+      "label": "media_metadata::media_metadata/page/1"
+    },
+    {
+      "label": "referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "subjectDefendantId": "defendant_0",
+      "existence": "missing",
+      "inferredSourceState": "missing",
+      "existenceLabel": "missing",
+      "evidenceTypeOrModality": "generic",
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG06 index referral · MG06/page/1",
+      "limitationReason": null
+    }
+  ],
+  "chronologyEvents": [],
+  "provenanceRecords": [
+    {
+      "occurrenceRef": "/evidenceStates/0",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/1",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/2",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/3",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/4",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/5",
+      "sourceDocumentIdentity": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "compiledPage": "6",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/6",
+      "sourceDocumentIdentity": "media_metadata",
+      "sourcePage": "1",
+      "compiledPage": "7",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/7",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    }
+  ],
+  "warningsAndGaps": {
+    "chaseItems": [
+      {
+        "label": "referred_missing_master",
+        "requestId": "req-absent-referred_missing_master",
+        "evidenceUnitId": "eu-absent-referred_missing_master",
+        "resolutionState": "missing",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Absent/referred item referred_missing_master listed for chase; no page content invented.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "export"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Regarding common assault battery: Please provide referred missing master.",
+        "requestedState": "missing",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+        "chase_to_evidence_provenance_link": true
+      }
+    ],
+    "doNotOverstate": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ],
+    "hardRules": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ]
+  },
+  "chaseRelationships": [
+    {
+      "label": "referred_missing_master",
+      "requestId": "req-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "resolutionState": "missing",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Absent/referred item referred_missing_master listed for chase; no page content invented.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "export"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Regarding common assault battery: Please provide referred missing master.",
+      "requestedState": "missing",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "chase_to_evidence_provenance_link": true
+    }
+  ],
+  "chaseAuditMetadata": [
+    {
+      "requestId": "req-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    }
+  ],
+  "exitPayloadReceipts": {
+    "view": {
+      "payloadIdentity": "sha256:f78dc58155cba0c0781203ece0858fa196eac349adec9249b81be5870976642a",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-01-common_assault_battery",
+      "surfaceList": [
+        "view"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.611Z"
+    },
+    "copy": {
+      "payloadIdentity": "sha256:14e0bc7d306013f6bf08ca892478ad4e78f9da289361284b7692907f6791e427",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-01-common_assault_battery",
+      "surfaceList": [
+        "copy"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.611Z"
+    },
+    "export": {
+      "payloadIdentity": "sha256:1fe3d08a670f31c06b3ef00aa471a10b019e491cb9613d28354b635125645457",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-01-common_assault_battery",
+      "surfaceList": [
+        "export"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.611Z"
+    },
+    "api": {
+      "payloadIdentity": "sha256:0804c9dd867e78fb6723889d29474ee77ce2f0208bb115781fe391d1ef4988d7",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-01-common_assault_battery",
+      "surfaceList": [
+        "api"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.611Z"
+    },
+    "pdf": {
+      "payloadIdentity": "sha256:ce928dfb2bcb342c11636b32f4bfa10d5c0403bc5ce37ca7be8a2b415d8a5e0d",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-01-common_assault_battery",
+      "surfaceList": [
+        "pdf"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.611Z"
+    },
+    "composed_prose": {
+      "payloadIdentity": "sha256:5619b8b978f0814c59d64b55334338fab1ae519d2ff9dd624b48dd406b9a3ad7",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-01-common_assault_battery",
+      "surfaceList": [
+        "composed_prose"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.611Z"
+    },
+    "authenticated_browser": {
+      "payloadIdentity": "sha256:de5d4915c0f0d39cca59546ad95412f15cf76684677110c60a19869e19f02274",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "unavailable",
+      "unavailableReason": "Authenticated browser exit not exercised in Stage-3000 diverse pack.",
+      "metadataOnly": true,
+      "realExitPayloadPresent": false,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-01-common_assault_battery",
+      "surfaceList": [
+        "authenticated_browser"
+      ]
+    }
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that battery, contrary to common law and section 39 of the Criminal Justice Act 1988 remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: common assault battery; defence on instructions factual denial.",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-div3000v213-01-common_assault_battery",
+    "caseId": "div3000v213-01-common_assault_battery",
+    "generatedAt": "2026-08-03T01:07:16.614Z",
+    "exportType": "diverse3000_v2_1_3",
+    "sendability": "needs_solicitor_review",
+    "reviewFooter": "Solicitor review required before send.",
+    "warningCount": 2,
+    "appVersion": "v2.1.3",
+    "bundleVersionLabel": "diverse3000-v2.1.3",
+    "blockedReason": null,
+    "solicitorVisibleSummary": "On common assault battery copy/export/API/PDF exits: charge status operative; defence factual denial. For this common assault battery pack, referred/absent items remain without page content: referred_missing_master."
+  },
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "MG05",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG05",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG5 Case summary (fictional test) · MG05/page/1"
+    },
+    {
+      "label": "cctv_clip_schedule",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "clip_or_still",
+      "note": "CCTV / BWV clip schedule (fictional test) · cctv_clip_schedule/page/1"
+    },
+    {
+      "label": "referred_missing_master",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG06 index referral · MG06/page/1"
+    }
+  ],
+  "attributionGraph": [
+    {
+      "documentId": "written_charge",
+      "evidenceUnitId": "eu-written_charge",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "written_charge/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG05/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG06",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "cctv_clip_schedule",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "cctv_clip_schedule/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "media_metadata",
+      "evidenceUnitId": "eu-media_metadata",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "media_metadata/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    }
+  ],
+  "chaseProvenanceLinks": [
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/0",
+      "requestId": "req-absent-referred_missing_master",
+      "chaseLabel": "referred_missing_master",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    }
+  ],
+  "solicitorFacingSurfaces": {
+    "charges": {
+      "recordedOrUnresolved": "For common assault battery: recorded charge position is Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. Instrument state: operative.",
+      "sourceInstrument": "For common assault battery: source instrument written_charge at 1; status operative.",
+      "limitation": "For common assault battery: allegation recorded on the instrument is not proof of guilt."
+    },
+    "keyFacts": {
+      "factLine": "Matter family common assault battery: defence on instructions is factual denial; procedural stage police investigation; charge status operative.",
+      "limitation": "For this common assault battery pack, referred/absent items remain without page content: referred_missing_master."
+    },
+    "fiveAnswers": {
+      "whatEvidenceSays": "On common assault battery papers, 3 evidence unit(s) with page identity are present; they do not by themselves establish the allegation against the defendant.",
+      "existenceVsReliability": "For common assault battery: existence labels on the evidence schedule must not be read as reliability or proof.",
+      "provenance": "For common assault battery: provenance for referred-absent items anchors to MG6 page MG06/page/1 without inventing master content."
+    },
+    "warRoom": {
+      "issue": "Case-specific issue for common assault battery: charge status operative; defence factual denial; procedure police investigation.",
+      "whyItMatters": "Why it matters on common assault battery: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+      "safePosition": "Safe current position on common assault battery: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+      "nextAction": "Next action on common assault battery: Regarding common assault battery: Regarding common assault battery: Please provide referred missing master."
+    },
+    "controlRoom": {
+      "issue": "Control focus for common assault battery: disclosure and completeness against charge status operative.",
+      "whyItMatters": "On common assault battery, missing or partial disclosure changes what may safely be said on copy/export/API exits.",
+      "safePosition": "Safe current position for common assault battery: solicitor review required before send; authenticated browser remains not exercised.",
+      "nextAction": "Next action for common assault battery: chase only particularised missing items; keep request identifiers in audit metadata only."
+    },
+    "disclosureChase": {
+      "item": "referred missing master",
+      "whyItMatters": "On common assault battery, the item is referred or outstanding on the papers and cannot be quoted as served content.",
+      "professionalRequest": "Regarding common assault battery: Regarding common assault battery: Please provide referred missing master."
+    },
+    "composedProse": {
+      "courtLine": "The defence asks the court to record that battery, contrary to common law and section 39 of the Criminal Justice Act 1988 remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: common assault battery; defence on instructions factual denial.",
+      "cpsChase": "Regarding common assault battery: Regarding common assault battery: Please provide referred missing master.",
+      "clientDisclaimer": "Fictional test material — not legal advice."
+    },
+    "copyExportApiPdf": {
+      "meaning": "On common assault battery copy/export/API/PDF exits: charge status operative; defence factual denial. For this common assault battery pack, referred/absent items remain without page content: referred_missing_master.",
+      "chase": "Regarding common assault battery: Regarding common assault battery: Please provide referred missing master."
+    }
+  },
+  "composedProse": {
+    "courtLine": "The defence asks the court to record that battery, contrary to common law and section 39 of the Criminal Justice Act 1988 remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: common assault battery; defence on instructions factual denial.",
+    "cpsChase": "Regarding common assault battery: Regarding common assault battery: Please provide referred missing master.",
+    "clientDisclaimer": "Fictional test material — not legal advice.",
+    "limitations": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ],
+    "allegation": "Battery, contrary to common law and section 39 of the Criminal Justice Act 1988",
+    "chargeCompleteness": {
+      "sourceChargeText": "Battery, contrary to common law and section 39 of the Criminal Justice Act 1988",
+      "provenance": null,
+      "instruments": [],
+      "displayedChargeText": "Battery, contrary to common law and section 39 of the Criminal Justice Act 1988",
+      "completenessStatus": "complete",
+      "recoverySource": null,
+      "warning": null,
+      "requiredAction": null
+    }
+  },
+  "disclosureChase": {
+    "professionalRequest": "Regarding common assault battery: Regarding common assault battery: Please provide referred missing master.",
+    "item": "referred missing master",
+    "whyItMatters": "On common assault battery, the item is referred or outstanding on the papers and cannot be quoted as served content."
+  },
+  "warRoom": {
+    "issue": "Case-specific issue for common assault battery: charge status operative; defence factual denial; procedure police investigation.",
+    "whyItMatters": "Why it matters on common assault battery: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+    "safeCurrentPosition": "Safe current position on common assault battery: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+    "nextAction": "Next action on common assault battery: Regarding common assault battery: Regarding common assault battery: Please provide referred missing master."
+  },
+  "copyLines": [
+    "On common assault battery copy/export/API/PDF exits: charge status operative; defence factual denial. For this common assault battery pack, referred/absent items remain without page content: referred_missing_master.",
+    "Regarding common assault battery: Regarding common assault battery: Please provide referred missing master."
+  ],
+  "requiredLimitations": [
+    "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+    "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+  ],
+  "pdf": {}
+}

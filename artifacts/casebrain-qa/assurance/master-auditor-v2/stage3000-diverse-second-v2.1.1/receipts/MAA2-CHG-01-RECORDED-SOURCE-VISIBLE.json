@@ -1,0 +1,118 @@
+{
+  "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "specified_not_implemented",
+  "handlerId": "v2.1.1-pilot-evaluator:MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+  "detectorInvoked": true,
+  "prerequisitesPresent": [
+    "v2.1.1_document_page_units",
+    "v2.1.1_pdf_png_visual_qa",
+    "buildLiveProductionSurfacesFromDocumentUnits",
+    "missing_absence_contracts"
+  ],
+  "prerequisitesSatisfied": true,
+  "applicableUnitCount": 20,
+  "inspectedFieldRefs": [
+    "document-page-units",
+    "source-reading-ledger",
+    "missing-document-correction-ledger",
+    "production-surfaces",
+    "surfaces.jsonl"
+  ],
+  "inspectedHashes": {
+    "surfacesSha256": "5b60b50179d7affc74ffd5136ab76c99eb7238d64ca5f57d48fe9ac9da295866",
+    "sourceReadingRows": 164,
+    "missingLedgerRows": 25,
+    "productionOkCount": 20,
+    "chargeStatuses": [
+      {
+        "caseId": "div3000v211-01-common_assault_battery",
+        "family": "common_assault_battery"
+      },
+      {
+        "caseId": "div3000v211-02-shoplifting_theft",
+        "family": "shoplifting_theft"
+      },
+      {
+        "caseId": "div3000v211-03-going_equipped",
+        "family": "going_equipped"
+      },
+      {
+        "caseId": "div3000v211-04-twoc",
+        "family": "twoc"
+      },
+      {
+        "caseId": "div3000v211-05-bladed_articles",
+        "family": "bladed_articles"
+      },
+      {
+        "caseId": "div3000v211-06-affray",
+        "family": "affray"
+      },
+      {
+        "caseId": "div3000v211-07-sexual_assault",
+        "family": "sexual_assault"
+      },
+      {
+        "caseId": "div3000v211-08-strangulation_suffocation",
+        "family": "strangulation_suffocation"
+      },
+      {
+        "caseId": "div3000v211-09-blackmail",
+        "family": "blackmail"
+      },
+      {
+        "caseId": "div3000v211-10-drugs_conspiracy_supply",
+        "family": "drugs_conspiracy_supply"
+      },
+      {
+        "caseId": "div3000v211-11-social_media_attribution",
+        "family": "social_media_attribution"
+      },
+      {
+        "caseId": "div3000v211-12-perverting_course_of_justice",
+        "family": "perverting_course_of_justice"
+      },
+      {
+        "caseId": "div3000v211-13-witness_intimidation",
+        "family": "witness_intimidation"
+      },
+      {
+        "caseId": "div3000v211-14-contempt",
+        "family": "contempt"
+      },
+      {
+        "caseId": "div3000v211-15-prison_offences",
+        "family": "prison_offences"
+      },
+      {
+        "caseId": "div3000v211-16-hearsay_res_gestae",
+        "family": "hearsay_res_gestae"
+      },
+      {
+        "caseId": "div3000v211-17-corporate_manslaughter",
+        "family": "corporate_manslaughter"
+      },
+      {
+        "caseId": "div3000v211-18-conspiracy_to_defraud",
+        "family": "conspiracy_to_defraud"
+      },
+      {
+        "caseId": "div3000v211-19-riot",
+        "family": "riot"
+      },
+      {
+        "caseId": "div3000v211-20-diplomatic_immunity",
+        "family": "diplomatic_immunity"
+      }
+    ]
+  },
+  "result": "clean_no_findings",
+  "findingIds": [],
+  "contracts": {
+    "positive": "exercise_MAA2-CHG-01-RECORDED-SOURCE-VISIBLE_on_pilot20",
+    "negative": "must_not_claim_PASS_without_receipt",
+    "unavailable": "missing_prereq → not_exercised / unresolved — never PASS",
+    "mutation": "rerun_same_v2.1.1_membership"
+  }
+}

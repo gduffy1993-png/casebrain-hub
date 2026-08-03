@@ -1,0 +1,245 @@
+{
+  "schemaVersion": "diverse3000-v2-matter@1.0.0",
+  "v1CaseId": "div3000-2951-diplomatic_immunity",
+  "caseId": "div3000v213-20-diplomatic_immunity",
+  "orderIndex": 2950,
+  "primaryFamily": "diplomatic_immunity",
+  "tier": "specialist_structural",
+  "fictionalBanner": "FICTIONAL TEST MATERIAL",
+  "charge": {
+    "wording": null,
+    "provision": "unpinned:diplomatic_immunity",
+    "wordingStatus": "structural_only",
+    "structuralNote": "No pinned current source-supported charge wording in research register for this family — classified structural_only / awaiting qualified review; do not invent operative wording."
+  },
+  "defencePosition": "no_case_to_answer_focus",
+  "proceduralLifecycle": "trial_prep",
+  "defendantCount": 2,
+  "countAllocation": 3,
+  "evidenceStateGraph": [
+    {
+      "item": "indictment_operative",
+      "kind": "indictment",
+      "state": "operative",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "MG05",
+      "kind": "mg05",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 4
+    },
+    {
+      "item": "MG06",
+      "kind": "mg06",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "cctv_clip_schedule",
+      "kind": "media_schedule",
+      "state": "partial",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "media_metadata",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "abe_or_special_measures",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "third_party_material_note",
+      "kind": "third_party",
+      "state": "referred_only",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "defence_proof_extract",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "referred_missing_master",
+      "kind": "missing_referred",
+      "state": "missing",
+      "ownerDefendantIndex": 0,
+      "pages": 0
+    },
+    {
+      "item": "extra_context_7",
+      "kind": "context_schedule",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    }
+  ],
+  "documentRelationshipGraph": {
+    "nodes": [
+      {
+        "id": "indictment_operative",
+        "kind": "indictment",
+        "state": "operative"
+      },
+      {
+        "id": "MG05",
+        "kind": "mg05",
+        "state": "served"
+      },
+      {
+        "id": "MG06",
+        "kind": "mg06",
+        "state": "served"
+      },
+      {
+        "id": "cctv_clip_schedule",
+        "kind": "media_schedule",
+        "state": "partial"
+      },
+      {
+        "id": "media_metadata",
+        "kind": "metadata_fixture",
+        "state": "metadata_only"
+      },
+      {
+        "id": "abe_or_special_measures",
+        "kind": "abe_sm",
+        "state": "referred_only"
+      },
+      {
+        "id": "third_party_material_note",
+        "kind": "third_party",
+        "state": "referred_only"
+      },
+      {
+        "id": "defence_proof_extract",
+        "kind": "defence_proof",
+        "state": "privileged"
+      },
+      {
+        "id": "referred_missing_master",
+        "kind": "missing_referred",
+        "state": "missing"
+      },
+      {
+        "id": "extra_context_7",
+        "kind": "context_schedule",
+        "state": "served"
+      }
+    ],
+    "edges": [
+      {
+        "from": "MG06",
+        "to": "MG05",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG06",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "cctv_clip_schedule",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "media_metadata",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "abe_or_special_measures",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "third_party_material_note",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "defence_proof_extract",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "referred_missing_master",
+        "relation": "indexes_but_absent"
+      },
+      {
+        "from": "MG06",
+        "to": "extra_context_7",
+        "relation": "indexes"
+      }
+    ]
+  },
+  "missingMaterialGraph": [
+    {
+      "item": "media_metadata",
+      "state": "metadata_only",
+      "referredFrom": "MG06"
+    },
+    {
+      "item": "abe_or_special_measures",
+      "state": "referred_only",
+      "referredFrom": "MG06"
+    },
+    {
+      "item": "third_party_material_note",
+      "state": "referred_only",
+      "referredFrom": "MG06"
+    },
+    {
+      "item": "referred_missing_master",
+      "state": "missing",
+      "referredFrom": "MG06"
+    }
+  ],
+  "contradictionTrapGraph": [
+    {
+      "description": "diplomatic_immunity trap with no_case_to_answer_focus at trial_prep",
+      "secondary": "missing_referred"
+    }
+  ],
+  "chronology": [
+    {
+      "event": "alleged_incident_window",
+      "detail": "fictional incident window for diplomatic_immunity"
+    },
+    {
+      "event": "first_account",
+      "detail": "first account recorded"
+    },
+    {
+      "event": "charge_or_process",
+      "detail": "structural:diplomatic_immunity"
+    },
+    {
+      "event": "hearing_marker",
+      "detail": "Cardiff Magistrates' Court <DATE>"
+    }
+  ],
+  "sourceCompleteness": "deliberate_truth_keyed_missing_source",
+  "documentCount": 10,
+  "v2CaseId": "div3000v2-2951-diplomatic_immunity",
+  "v212CaseId": "div3000v212-20-diplomatic_immunity",
+  "v211CaseId": "div3000v211-20-diplomatic_immunity",
+  "v21CaseId": "div3000v21-20-diplomatic_immunity",
+  "pilotOrderIndex": 19
+}

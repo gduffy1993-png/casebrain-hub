@@ -1,0 +1,794 @@
+{
+  "caseId": "div3000v213-17-corporate_manslaughter",
+  "generatedAt": "2026-08-03T01:34:02.503Z",
+  "source": "v2.1.2-structured-maa-output",
+  "chargeInstruments": [
+    {
+      "instrumentId": "inst-written_charge",
+      "instrumentType": "written_charge",
+      "exactWording": "## Particulars",
+      "count": 1,
+      "defendantAllocation": "defendant_0+defendant_1",
+      "sourceDocument": "written_charge",
+      "sourcePage": "1",
+      "sourcePageIdentity": "written_charge/page/1",
+      "pageIdentityKnown": true,
+      "status": "operative",
+      "version": "1",
+      "replacesInstrumentId": null,
+      "supersededByInstrumentId": null
+    }
+  ],
+  "evidenceStates": [
+    {
+      "source": "written_charge",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "1",
+      "sourcePageIdentity": "written_charge/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Written charge / requisition (fictional test) · written_charge/page/1",
+      "label": "written_charge::written_charge/page/1"
+    },
+    {
+      "source": "written_charge",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "2",
+      "sourcePageIdentity": "written_charge/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Written charge / requisition (fictional test) · written_charge/page/2",
+      "label": "written_charge::written_charge/page/2"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG05/page/1",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/1",
+      "label": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG05/page/2",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/2",
+      "label": "MG05::MG05/page/2"
+    },
+    {
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG6 File front sheet / index (fictional test) · MG06/page/1",
+      "label": "MG06::MG06/page/1"
+    },
+    {
+      "source": "cctv_clip_schedule",
+      "sourceDocumentIdentity": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "sourcePageIdentity": "cctv_clip_schedule/page/1",
+      "compiledPage": "6",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "CCTV / BWV clip schedule (fictional test) · cctv_clip_schedule/page/1",
+      "label": "cctv_clip_schedule",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "subjectDefendantId": "defendant_0",
+      "existence": "incomplete",
+      "inferredSourceState": "incomplete",
+      "existenceLabel": "incomplete",
+      "evidenceTypeOrModality": "clip_or_still"
+    },
+    {
+      "source": "media_metadata",
+      "sourceDocumentIdentity": "media_metadata",
+      "sourcePage": "1",
+      "sourcePageIdentity": "media_metadata/page/1",
+      "compiledPage": "7",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Media metadata fixture (native bytes not_exercised) · media_metadata/page/1",
+      "label": "media_metadata::media_metadata/page/1"
+    },
+    {
+      "label": "abe_or_special_measures",
+      "evidenceUnitId": "eu-absent-abe_or_special_measures",
+      "subjectDefendantId": "defendant_0",
+      "existence": "referred_absent",
+      "inferredSourceState": "referred_absent",
+      "existenceLabel": "referred_absent",
+      "evidenceTypeOrModality": "generic",
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG06 index referral · MG06/page/1",
+      "limitationReason": null
+    },
+    {
+      "label": "third_party_material_note",
+      "evidenceUnitId": "eu-absent-third_party_material_note",
+      "subjectDefendantId": "defendant_0",
+      "existence": "referred_absent",
+      "inferredSourceState": "referred_absent",
+      "existenceLabel": "referred_absent",
+      "evidenceTypeOrModality": "generic",
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG06 index referral · MG06/page/1",
+      "limitationReason": null
+    },
+    {
+      "label": "referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "subjectDefendantId": "defendant_0",
+      "existence": "missing",
+      "inferredSourceState": "missing",
+      "existenceLabel": "missing",
+      "evidenceTypeOrModality": "generic",
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG06 index referral · MG06/page/1",
+      "limitationReason": null
+    }
+  ],
+  "chronologyEvents": [],
+  "provenanceRecords": [
+    {
+      "occurrenceRef": "/evidenceStates/0",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/1",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/2",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/3",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/4",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/5",
+      "sourceDocumentIdentity": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "compiledPage": "6",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/6",
+      "sourceDocumentIdentity": "media_metadata",
+      "sourcePage": "1",
+      "compiledPage": "7",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/7",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/8",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/9",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    }
+  ],
+  "warningsAndGaps": {
+    "chaseItems": [
+      {
+        "label": "abe_or_special_measures",
+        "requestId": "req-absent-abe_or_special_measures",
+        "evidenceUnitId": "eu-absent-abe_or_special_measures",
+        "resolutionState": "outstanding_referred",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Absent/referred item abe_or_special_measures listed for chase; no page content invented.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "export"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Regarding corporate manslaughter: Please provide abe or special measures.",
+        "requestedState": "referred_absent",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-abe_or_special_measures",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-absent-abe_or_special_measures",
+        "chase_to_evidence_provenance_link": true
+      },
+      {
+        "label": "third_party_material_note",
+        "requestId": "req-absent-third_party_material_note",
+        "evidenceUnitId": "eu-absent-third_party_material_note",
+        "resolutionState": "outstanding_referred",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Absent/referred item third_party_material_note listed for chase; no page content invented.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "export"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Regarding corporate manslaughter: Please provide third party material note.",
+        "requestedState": "referred_absent",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-third_party_material_note",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-absent-third_party_material_note",
+        "chase_to_evidence_provenance_link": true
+      },
+      {
+        "label": "referred_missing_master",
+        "requestId": "req-absent-referred_missing_master",
+        "evidenceUnitId": "eu-absent-referred_missing_master",
+        "resolutionState": "missing",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Absent/referred item referred_missing_master listed for chase; no page content invented.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "export"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Regarding corporate manslaughter: Please provide referred missing master.",
+        "requestedState": "missing",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+        "chase_to_evidence_provenance_link": true
+      }
+    ],
+    "doNotOverstate": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ],
+    "hardRules": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ]
+  },
+  "chaseRelationships": [
+    {
+      "label": "abe_or_special_measures",
+      "requestId": "req-absent-abe_or_special_measures",
+      "evidenceUnitId": "eu-absent-abe_or_special_measures",
+      "resolutionState": "outstanding_referred",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Absent/referred item abe_or_special_measures listed for chase; no page content invented.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "export"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Regarding corporate manslaughter: Please provide abe or special measures.",
+      "requestedState": "referred_absent",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-abe_or_special_measures",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-abe_or_special_measures",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "label": "third_party_material_note",
+      "requestId": "req-absent-third_party_material_note",
+      "evidenceUnitId": "eu-absent-third_party_material_note",
+      "resolutionState": "outstanding_referred",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Absent/referred item third_party_material_note listed for chase; no page content invented.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "export"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Regarding corporate manslaughter: Please provide third party material note.",
+      "requestedState": "referred_absent",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-third_party_material_note",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-third_party_material_note",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "label": "referred_missing_master",
+      "requestId": "req-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "resolutionState": "missing",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Absent/referred item referred_missing_master listed for chase; no page content invented.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "export"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Regarding corporate manslaughter: Please provide referred missing master.",
+      "requestedState": "missing",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "chase_to_evidence_provenance_link": true
+    }
+  ],
+  "chaseAuditMetadata": [
+    {
+      "requestId": "req-absent-abe_or_special_measures",
+      "evidenceUnitId": "eu-absent-abe_or_special_measures",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-abe_or_special_measures",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    },
+    {
+      "requestId": "req-absent-third_party_material_note",
+      "evidenceUnitId": "eu-absent-third_party_material_note",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-third_party_material_note",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    },
+    {
+      "requestId": "req-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    }
+  ],
+  "exitPayloadReceipts": {
+    "view": {
+      "payloadIdentity": "sha256:3fe1e8cccc5bbb3b117a202da52d445a6987e466bc1bafa642cbcd76ffb5d996",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-17-corporate_manslaughter",
+      "surfaceList": [
+        "view"
+      ],
+      "generatedAt": "2026-08-03T01:34:02.503Z"
+    },
+    "copy": {
+      "payloadIdentity": "sha256:28d69b129951468725a84d6fdfd550b8cf65073f28cbdd274ac24a4d42bba16b",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-17-corporate_manslaughter",
+      "surfaceList": [
+        "copy"
+      ],
+      "generatedAt": "2026-08-03T01:34:02.503Z"
+    },
+    "export": {
+      "payloadIdentity": "sha256:beeeafa2a443a9245fca227382f7872f5e42a5e50932cd7d0c3f524367e8f41e",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-17-corporate_manslaughter",
+      "surfaceList": [
+        "export"
+      ],
+      "generatedAt": "2026-08-03T01:34:02.503Z"
+    },
+    "api": {
+      "payloadIdentity": "sha256:d6d233436f43d0c27fd60d1f98e138e23a6f1eafc0642d3b339c2f8d254c3843",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-17-corporate_manslaughter",
+      "surfaceList": [
+        "api"
+      ],
+      "generatedAt": "2026-08-03T01:34:02.503Z"
+    },
+    "pdf": {
+      "payloadIdentity": "sha256:ca11a10d4d4d62ba28c10f35540c26be29afd1996a4a3e9a186a75bbb9c1d2fb",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-17-corporate_manslaughter",
+      "surfaceList": [
+        "pdf"
+      ],
+      "generatedAt": "2026-08-03T01:34:02.503Z"
+    },
+    "composed_prose": {
+      "payloadIdentity": "sha256:6c34a350460817be937c92447499b85e3db08c9250fb65b7eae36c71efc15847",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-17-corporate_manslaughter",
+      "surfaceList": [
+        "composed_prose"
+      ],
+      "generatedAt": "2026-08-03T01:34:02.503Z"
+    },
+    "authenticated_browser": {
+      "payloadIdentity": "sha256:eebe450becd5563fe2eda30587b5651ef6985e7fd00bff93eaf207ce0e0baabb",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "unavailable",
+      "unavailableReason": "Authenticated browser exit not exercised in Stage-3000 diverse pack.",
+      "metadataOnly": true,
+      "realExitPayloadPresent": false,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-17-corporate_manslaughter",
+      "surfaceList": [
+        "authenticated_browser"
+      ]
+    }
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: corporate manslaughter; defence on instructions consent dispute.",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-div3000v213-17-corporate_manslaughter",
+    "caseId": "div3000v213-17-corporate_manslaughter",
+    "generatedAt": "2026-08-03T01:34:02.503Z",
+    "exportType": "diverse3000_v2_1_3",
+    "sendability": "needs_solicitor_review",
+    "reviewFooter": "Solicitor review required before send.",
+    "warningCount": 4,
+    "appVersion": "v2.1.3",
+    "bundleVersionLabel": "diverse3000-v2.1.3",
+    "blockedReason": null,
+    "solicitorVisibleSummary": "On corporate manslaughter copy/export/API/PDF exits: charge status operative; defence consent dispute. For this corporate manslaughter pack, referred/absent items remain without page content: abe_or_special_measures; third_party_material_note; referred_missing_master."
+  },
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "MG05",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG05",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG5 Case summary (fictional test) · MG05/page/1"
+    },
+    {
+      "label": "cctv_clip_schedule",
+      "existence": "incomplete",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "cctv_clip_schedule",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "clip_or_still",
+      "note": "CCTV / BWV clip schedule (fictional test) · cctv_clip_schedule/page/1"
+    },
+    {
+      "label": "abe_or_special_measures",
+      "existence": "referred_absent",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-absent-abe_or_special_measures",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG06 index referral · MG06/page/1"
+    },
+    {
+      "label": "third_party_material_note",
+      "existence": "referred_absent",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-absent-third_party_material_note",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG06 index referral · MG06/page/1"
+    },
+    {
+      "label": "referred_missing_master",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG06 index referral · MG06/page/1"
+    }
+  ],
+  "attributionGraph": [
+    {
+      "documentId": "written_charge",
+      "evidenceUnitId": "eu-written_charge",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "written_charge/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG05/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG06",
+      "evidenceUnitId": "eu-absent-abe_or_special_measures",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "cctv_clip_schedule",
+      "evidenceUnitId": "eu-cctv_clip_schedule",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "cctv_clip_schedule/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "media_metadata",
+      "evidenceUnitId": "eu-media_metadata",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "media_metadata/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    }
+  ],
+  "chaseProvenanceLinks": [
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/0",
+      "requestId": "req-absent-abe_or_special_measures",
+      "chaseLabel": "abe_or_special_measures",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-abe_or_special_measures",
+      "evidenceUnitId": "eu-absent-abe_or_special_measures",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-abe_or_special_measures",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/1",
+      "requestId": "req-absent-third_party_material_note",
+      "chaseLabel": "third_party_material_note",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-third_party_material_note",
+      "evidenceUnitId": "eu-absent-third_party_material_note",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-third_party_material_note",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/2",
+      "requestId": "req-absent-referred_missing_master",
+      "chaseLabel": "referred_missing_master",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "evidenceUnitId": "eu-absent-referred_missing_master",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-absent-referred_missing_master",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    }
+  ],
+  "solicitorFacingSurfaces": {
+    "charges": {
+      "recordedOrUnresolved": "For corporate manslaughter: recorded charge position is ## Particulars. Instrument state: operative.",
+      "sourceInstrument": "For corporate manslaughter: source instrument written_charge at 1; status operative.",
+      "limitation": "For corporate manslaughter: allegation recorded on the instrument is not proof of guilt."
+    },
+    "keyFacts": {
+      "factLine": "Matter family corporate manslaughter: defence on instructions is consent dispute; procedural stage police investigation; charge status operative.",
+      "limitation": "For this corporate manslaughter pack, referred/absent items remain without page content: abe_or_special_measures; third_party_material_note; referred_missing_master."
+    },
+    "fiveAnswers": {
+      "whatEvidenceSays": "On corporate manslaughter papers, 5 evidence unit(s) with page identity are present; they do not by themselves establish the allegation against the defendant.",
+      "existenceVsReliability": "For corporate manslaughter: existence labels on the evidence schedule must not be read as reliability or proof.",
+      "provenance": "For corporate manslaughter: provenance for referred-absent items anchors to MG6 page MG06/page/1 without inventing master content."
+    },
+    "warRoom": {
+      "issue": "Case-specific issue for corporate manslaughter: charge status operative; defence consent dispute; procedure police investigation.",
+      "whyItMatters": "Why it matters on corporate manslaughter: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+      "safePosition": "Safe current position on corporate manslaughter: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+      "nextAction": "Next action on corporate manslaughter: Regarding corporate manslaughter: Regarding corporate manslaughter: Please provide abe or special measures."
+    },
+    "controlRoom": {
+      "issue": "Control focus for corporate manslaughter: disclosure and completeness against charge status operative.",
+      "whyItMatters": "On corporate manslaughter, missing or partial disclosure changes what may safely be said on copy/export/API exits.",
+      "safePosition": "Safe current position for corporate manslaughter: solicitor review required before send; authenticated browser remains not exercised.",
+      "nextAction": "Next action for corporate manslaughter: chase only particularised missing items; keep request identifiers in audit metadata only."
+    },
+    "disclosureChase": {
+      "item": "abe or special measures",
+      "whyItMatters": "On corporate manslaughter, the item is referred or outstanding on the papers and cannot be quoted as served content.",
+      "professionalRequest": "Regarding corporate manslaughter: Regarding corporate manslaughter: Please provide abe or special measures."
+    },
+    "composedProse": {
+      "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: corporate manslaughter; defence on instructions consent dispute.",
+      "cpsChase": "Regarding corporate manslaughter: Regarding corporate manslaughter: Please provide abe or special measures.",
+      "clientDisclaimer": "Fictional test material — not legal advice."
+    },
+    "copyExportApiPdf": {
+      "meaning": "On corporate manslaughter copy/export/API/PDF exits: charge status operative; defence consent dispute. For this corporate manslaughter pack, referred/absent items remain without page content: abe_or_special_measures; third_party_material_note; referred_missing_master.",
+      "chase": "Regarding corporate manslaughter: Regarding corporate manslaughter: Please provide abe or special measures."
+    }
+  },
+  "composedProse": {
+    "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: corporate manslaughter; defence on instructions consent dispute.",
+    "cpsChase": "Regarding corporate manslaughter: Regarding corporate manslaughter: Please provide abe or special measures.",
+    "clientDisclaimer": "Fictional test material — not legal advice.",
+    "limitations": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+    ],
+    "allegation": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.\n\nAction: Check the operative charge sheet or amendment record.",
+    "chargeCompleteness": {
+      "sourceChargeText": "",
+      "provenance": "No recorded charge wording on papers.",
+      "instruments": [],
+      "displayedChargeText": "",
+      "completenessStatus": "unresolved",
+      "recoverySource": null,
+      "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+      "requiredAction": "Action: Check the operative charge sheet or amendment record."
+    }
+  },
+  "disclosureChase": {
+    "professionalRequest": "Regarding corporate manslaughter: Regarding corporate manslaughter: Please provide abe or special measures.",
+    "item": "abe or special measures",
+    "whyItMatters": "On corporate manslaughter, the item is referred or outstanding on the papers and cannot be quoted as served content."
+  },
+  "warRoom": {
+    "issue": "Case-specific issue for corporate manslaughter: charge status operative; defence consent dispute; procedure police investigation.",
+    "whyItMatters": "Why it matters on corporate manslaughter: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+    "safeCurrentPosition": "Safe current position on corporate manslaughter: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+    "nextAction": "Next action on corporate manslaughter: Regarding corporate manslaughter: Regarding corporate manslaughter: Please provide abe or special measures."
+  },
+  "copyLines": [
+    "On corporate manslaughter copy/export/API/PDF exits: charge status operative; defence consent dispute. For this corporate manslaughter pack, referred/absent items remain without page content: abe_or_special_measures; third_party_material_note; referred_missing_master.",
+    "Regarding corporate manslaughter: Regarding corporate manslaughter: Please provide abe or special measures."
+  ],
+  "requiredLimitations": [
+    "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+    "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page"
+  ],
+  "pdf": {}
+}

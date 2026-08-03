@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "first3000-source-debt-reconciliation@1.0.0",
+  "generatedAt": "2026-08-02T18:24:47.678Z",
+  "firstFrozenMembershipSha256": "dcf6c382fe1b41ef34624c03764c8dc785de04a13f5344784aee03b9a192d4ae",
+  "firstLedgerRoot": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-census\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-existing-census-v1-final-corrections",
+  "firstFreezeMutated": false,
+  "occurrenceCount": 980,
+  "uniqueCases": 800,
+  "classificationCounts": {
+    "genuinely_unavailable_or_unsupported": 980
+  },
+  "findingCodeCounts": {
+    "ABSOLUTE_PROOF_WORDING": 800,
+    "INTERNAL_LANGUAGE_LEAK": 180
+  },
+  "sharedRoots": [
+    {
+      "rootId": "0387cb9e6cab407c",
+      "count": 800,
+      "findingCode": "ABSOLUTE_PROOF_WORDING",
+      "reason": "truth_key_not_on_disk"
+    },
+    {
+      "rootId": "735820a55c3ada8d",
+      "count": 180,
+      "findingCode": "INTERNAL_LANGUAGE_LEAK",
+      "reason": "truth_key_not_on_disk"
+    }
+  ],
+  "rulesApplied": [
+    "Preserve frozen first-3000 run",
+    "Categories recoverable_source_debt and corpus_harness_or_serialisation_debt may be repaired only via shared logic in separately versioned derivative",
+    "Categories intentional_missing_evidence_test, genuinely_unavailable_or_unsupported, unresolved_ownership remain missing/unresolved/not_exercised",
+    "Never turn unavailable evidence into PASS",
+    "Do not regenerate the first corpus"
+  ],
+  "headline": "All 980 unresolved_source occurrences are truth_key_not_on_disk on v9_catalog cases (no ESA/truth pack). Classified genuinely_unavailable_or_unsupported for truth scoring — not manufactured recoverable papers.",
+  "occurrencesRef": "recoverable-vs-intentional-vs-unavailable-register.json"
+}

@@ -1,0 +1,25 @@
+{
+  "ordinaryVisibleStrings": 720,
+  "professionalPass": 720,
+  "professionalDefect": 0,
+  "defectCounts": {
+    "headingAsCharge": 0,
+    "brokenJoins": 0,
+    "rawEnums": 0,
+    "lowerAcronyms": 0,
+    "vagueDisclosure": 0,
+    "unsupportedStatutory": 0,
+    "incompleteOperativeCharge": 0,
+    "ordinaryFailClosed": 0,
+    "derivedMissing": 0
+  },
+  "leafClassCounts": {
+    "protected_audit_only": 574,
+    "not_exercised": 392,
+    "universal_safety": 252,
+    "substantive_derived_conclusion": 312,
+    "substantive_source_backed": 166,
+    "substantive_explicitly_unresolved": 231
+  },
+  "semanticDefectSample": []
+}

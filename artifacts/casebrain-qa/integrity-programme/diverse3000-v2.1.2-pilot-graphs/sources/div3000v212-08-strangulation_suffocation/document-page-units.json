@@ -1,0 +1,333 @@
+{
+  "caseId": "div3000v212-08-strangulation_suffocation",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "purpose": "indictment_count_particulars",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): strangulation suffocation\n## INDICTMENT\n## Count 1 — STATEMENT OF OFFENCE\n## PARTICULARS OF OFFENCE\nIN THE CROWN COURT AT [FICTIONAL VENUE]\nTHE KING v. [FICTIONAL DEFENDANT]\n\nCOUNT 1\nSTATEMENT OF OFFENCE\nCharge wording not pinned — structural only.\nContrary to the modelled statutory provision for this family.\n\nPARTICULARS OF OFFENCE\nThe defendant on a date unknown within the charged window, at a place particularised in the served papers, committed the offence alleged in Count 1.\nThe Crown relies on the served MG5 narrative, witness statements and media schedules listed on the MG6 index.\nLifecycle state: operative.\nModelled as operative indictment for fictional-test purposes only.\nPlea / endorsement: not recorded on Count 1 page — see instrument history where present.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "cd7ef56fc7f9dd4bf7ac832cce0f7eaecd5a97d29e770bad2128ebab32adce38",
+          "headings": [
+            "INDICTMENT",
+            "Count 1 — STATEMENT OF OFFENCE",
+            "PARTICULARS OF OFFENCE"
+          ],
+          "layoutKind": "indictment"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "purpose": "indictment_further_counts_or_history",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): strangulation suffocation\n## Further counts / instrument history\nFurther count allocation across 2 defendants — each count remains defendant-specific.\nDefence position on instructions: section 45 indicator.\nProcedure: police investigation.\nEndorsement block: fictional clerk stamp; listing date modelled.\nContinuity: prefer the operative instrument over draft/superseded counterparts when both exist.\nDo not treat indictment endorsement as proof of the allegation.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "2648b6439724872c9edb993f97234fd6fef7b2b28705beab8819acad962f65d9",
+          "headings": [
+            "Further counts / instrument history"
+          ],
+          "layoutKind": "indictment"
+        }
+      ],
+      "contentHash": "324c861a3c60af33f3bd6f0a54ec097c82d0938cfa20dfe6b6d814ab1f7f8680",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "indictment"
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): strangulation suffocation\n## MG5 — Case summary\n## Offence summary\n## Key evidence narrative\nDefendant / matter family: strangulation suffocation\nDefence on instructions: section 45 indicator\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\n\nNARRATIVE\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: strangulation suffocation.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 4: mg11_draft, cctv_clip, cctv_master_referred.\n\nWitness outline: complainant account recorded as allegation only — not proved.\nReliability: MG5 narrative must not be read as establishing guilt.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "b79ada664f3f9294aacddc07e41ca0a7766d763b01e21938fd4343e940b559fe",
+          "headings": [
+            "MG5 — Case summary",
+            "Offence summary",
+            "Key evidence narrative"
+          ],
+          "layoutKind": "mg05"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): strangulation suffocation\n## Evidence outline\n## Limitations\n## Next action\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): referred_missing_master.\nNext action: reconcile MG5 against MG6 index before any court-facing send.\nDo not quote referred-absent masters as if content were available.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "079eaa8a82776f28e443a6811fd6a8112e926772bb574fa5138d5c34a8d3a55d",
+          "headings": [
+            "Evidence outline",
+            "Limitations",
+            "Next action"
+          ],
+          "layoutKind": "mg05"
+        }
+      ],
+      "contentHash": "d3b5faa0d0d202b7db1916f61f09c0875e56f38b06d94453e64c34befbd42db7",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg05"
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG6 File front sheet / index (fictional test)\nMatter family (fictional): strangulation suffocation\n## MG6 — File front sheet / index\n## Inventory\nSeq | Document | Kind | Status\n--- | -------- | ---- | ------\n1 | Written charge / indictment | instrument | see pack\n2 | MG5 case summary | mg05 | served\n3 | Disclosure / unused | schedule | see schedules\n4 | referred_missing_master | referred | ABSENT — not served\n\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nChase binding: request referred_missing_master by identity against this MG6 page.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "eb690b20e12cd1bf9c7077b13f15a7de30d7290b46d05f7c8e47c5aa206f9bf4",
+          "headings": [
+            "MG6 — File front sheet / index",
+            "Inventory"
+          ],
+          "layoutKind": "mg06"
+        }
+      ],
+      "contentHash": "eb690b20e12cd1bf9c7077b13f15a7de30d7290b46d05f7c8e47c5aa206f9bf4",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg06"
+    },
+    {
+      "docId": "MG11_complainant_signed",
+      "title": "MG11 complainant statement — signed (fictional test)",
+      "kind": "mg11",
+      "state": "signed",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG11_complainant_signed/page/1",
+          "purpose": "witness_statement_opening",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG11 complainant statement — signed (fictional test)\nMatter family (fictional): strangulation suffocation\n## MG11 — Witness statement\n## Declaration\n## Statement\nCriminal Procedure Rules / MG11 declaration (fictional test form):\nThis statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true.\n\nURN / page: MG11_complainant_signed/page/1\nMatter family: strangulation suffocation\n1. I am the maker of this fictional-test statement.\n2. I give this account concerning the strangulation suffocation allegation under review.\n3. FICTIONAL TEST MATERIAL\nSigned first account. Defence position section_45_indicator. Do not treat as proved fact.\n4. Defence position context recorded elsewhere: section 45 indicator.\nSignature block: ______________________  Date: [fictional]\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "680d319be6571ea72e5d10c2cff775536b7996038db12329cb2e1f7224c8c294",
+          "headings": [
+            "MG11 — Witness statement",
+            "Declaration",
+            "Statement"
+          ],
+          "layoutKind": "mg11_statement"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG11_complainant_signed/page/2",
+          "purpose": "witness_statement_continuation_paras_4",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG11 complainant statement — signed (fictional test)\nMatter family (fictional): strangulation suffocation\n## MG11 — Continuation sheet\n## Continuation of MG11_complainant_signed\nContinues statement MG11_complainant_signed from page 1 — not a free-standing document.\nURN carry-forward: MG11_complainant_signed\n4. Further detail of first contact with police (fictional timeline).\n5. Description of location and persons present limited to disclosed papers.\n6. I confirm I have read this continuation and it forms part of my statement.\nNo generic filler: each paragraph advances the account.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "4d7ed74e04933ea413f404d32ed4f288f0afc3f474cd4464bd2a6312c2acb095",
+          "headings": [
+            "MG11 — Continuation sheet",
+            "Continuation of MG11_complainant_signed"
+          ],
+          "layoutKind": "mg11_continuation"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG11_complainant_signed/page/3",
+          "purpose": "witness_statement_continuation_paras_7",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG11 complainant statement — signed (fictional test)\nMatter family (fictional): strangulation suffocation\n## MG11 — Continuation sheet\n## Continuation of MG11_complainant_signed\nContinues statement MG11_complainant_signed from page 1 — not a free-standing document.\nURN carry-forward: MG11_complainant_signed\n7. Further detail of first contact with police (fictional timeline).\n8. Description of location and persons present limited to disclosed papers.\n9. I confirm I have read this continuation and it forms part of my statement.\nNo generic filler: each paragraph advances the account.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "d16d2a89164c9c965ebefdec44b5f1b7e5f8c5cd2f9cd36c3b4b7556717bbe25",
+          "headings": [
+            "MG11 — Continuation sheet",
+            "Continuation of MG11_complainant_signed"
+          ],
+          "layoutKind": "mg11_continuation"
+        }
+      ],
+      "contentHash": "95636034aea513a15e43f1e9de6a934b3a9b5eda1d0d4d9ec24ee62944d31fc7",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg11_statement"
+    },
+    {
+      "docId": "MG11_complainant_draft",
+      "title": "MG11 complainant statement — earlier draft (fictional test)",
+      "kind": "mg11_draft",
+      "state": "draft_superseded",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG11_complainant_draft/page/1",
+          "purpose": "witness_statement_opening",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG11 complainant statement — earlier draft (fictional test)\nMatter family (fictional): strangulation suffocation\n## MG11 — Witness statement\n## Declaration\n## Statement\nCriminal Procedure Rules / MG11 declaration (fictional test form):\nThis statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true.\n\nURN / page: MG11_complainant_draft/page/1\nMatter family: strangulation suffocation\n1. I am the maker of this fictional-test statement.\n2. I give this account concerning the strangulation suffocation allegation under review.\n3. FICTIONAL TEST MATERIAL — draft differs from signed version on timing of first disclosure.\n4. Defence position context recorded elsewhere: section 45 indicator.\nSignature block: ______________________  Date: [fictional]\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "ed425a1ff5ae247ab2804f5dd22be198e355a58c2db0e4602f2cd247cef6cc44",
+          "headings": [
+            "MG11 — Witness statement",
+            "Declaration",
+            "Statement"
+          ],
+          "layoutKind": "mg11_statement"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG11_complainant_draft/page/2",
+          "purpose": "witness_statement_continuation_paras_4",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG11 complainant statement — earlier draft (fictional test)\nMatter family (fictional): strangulation suffocation\n## MG11 — Continuation sheet\n## Continuation of MG11_complainant_draft\nContinues statement MG11_complainant_draft from page 1 — not a free-standing document.\nURN carry-forward: MG11_complainant_draft\n4. Further detail of first contact with police (fictional timeline).\n5. Description of location and persons present limited to disclosed papers.\n6. I confirm I have read this continuation and it forms part of my statement.\nNo generic filler: each paragraph advances the account.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "3f8f2f5d8e2edec04f6f678e4850d1d1781aa17564ab5a4358ebaeb6e23af6bd",
+          "headings": [
+            "MG11 — Continuation sheet",
+            "Continuation of MG11_complainant_draft"
+          ],
+          "layoutKind": "mg11_continuation"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG11_complainant_draft/page/3",
+          "purpose": "witness_statement_continuation_paras_7",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG11 complainant statement — earlier draft (fictional test)\nMatter family (fictional): strangulation suffocation\n## MG11 — Continuation sheet\n## Continuation of MG11_complainant_draft\nContinues statement MG11_complainant_draft from page 1 — not a free-standing document.\nURN carry-forward: MG11_complainant_draft\n7. Further detail of first contact with police (fictional timeline).\n8. Description of location and persons present limited to disclosed papers.\n9. I confirm I have read this continuation and it forms part of my statement.\nNo generic filler: each paragraph advances the account.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "3d08a2685df11dc80cfa31f8b68e02c4fd053b926d214a7bc640d98245360617",
+          "headings": [
+            "MG11 — Continuation sheet",
+            "Continuation of MG11_complainant_draft"
+          ],
+          "layoutKind": "mg11_continuation"
+        }
+      ],
+      "contentHash": "d67058b361de72adf23f5e95934a7ccdd6cfa0dbb595ebd491ddabc1ae2dd515",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg11_statement"
+    },
+    {
+      "docId": "order_or_bail",
+      "title": "Protective order / bail conditions extract (fictional test)",
+      "kind": "order",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "order_or_bail/page/1",
+          "purpose": "court_order_operative_paragraphs",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Protective order / bail conditions extract (fictional test)\nMatter family (fictional): strangulation suffocation\n## Court order\n## Operative paragraphs\nIN THE MAGISTRATES' COURT (MODELLED) (modelled)\nMatter family: strangulation suffocation\nIT IS ORDERED THAT (fictional test):\n1. Conditions / directions as modelled for this pack.\n2. Breach must be proved separately and is not established by this extract.\nRelated family: strangulation suffocation.\nFICTIONAL TEST MATERIAL — conditions alleged; breach must be proved separately.\nEndorsement: fictional judicial/clerk block only.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "22e497f2e27cc277ff2c0f3f5c93bb2e7827b435e3755bf71d5ec2e00212747c",
+          "headings": [
+            "Court order",
+            "Operative paragraphs"
+          ],
+          "layoutKind": "court_order"
+        }
+      ],
+      "contentHash": "22e497f2e27cc277ff2c0f3f5c93bb2e7827b435e3755bf71d5ec2e00212747c",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "court_order"
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_clip_schedule_log",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: CCTV / BWV clip schedule (fictional test)\nMatter family (fictional): strangulation suffocation\n## CCTV / BWV clip schedule\n## Served clips\nClip | Source | Start | End | Master | Status\n---- | ------ | ----- | --- | ------ | ------\nC1 | High St cam 3 | 21:02:10 | 21:04:44 | M-HS-3 | clip served\nC2 | BWV PC Fictional | 21:05:01 | 21:07:18 | M-BWV-01 | clip served\nC3 | Store cam | 20:58:00 | 21:01:00 | M-ST-2 | partial\nAbsent masters referred: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "f22b7b4963d71b496684d9bd51663c61b76f916f7f13befd53ad1f5f86708f33",
+          "headings": [
+            "CCTV / BWV clip schedule",
+            "Served clips"
+          ],
+          "layoutKind": "media_schedule"
+        }
+      ],
+      "contentHash": "f22b7b4963d71b496684d9bd51663c61b76f916f7f13befd53ad1f5f86708f33",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "media_schedule"
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "media_metadata_only",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Media metadata fixture (native bytes not_exercised)\nMatter family (fictional): strangulation suffocation\n## Media metadata fixture\n## Native bytes not_exercised\nNative video/audio bytes: not_exercised.\npath: /fictional/media/clip_C1.mp4\nsha256: ft-meta-placeholder\ncodec / duration: modelled placeholders only\nCannot summarise native content that was never supplied.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "0e82e6a1251dba6ff29ef55975a40d1132d4f2ce282faafeca6853c0651246df",
+          "headings": [
+            "Media metadata fixture",
+            "Native bytes not_exercised"
+          ],
+          "layoutKind": "metadata_fixture"
+        }
+      ],
+      "contentHash": "0e82e6a1251dba6ff29ef55975a40d1132d4f2ce282faafeca6853c0651246df",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "metadata_fixture"
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): strangulation suffocation\n## Defence proof of evidence extract\n## PRIVILEGED\nPRIVILEGED — defence working extract. Not for ordinary copy/export/API send.\nPosition on instructions: section 45 indicator\nIssues to explore: attribution, continuity, missing masters, charge particularity.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "39e648358b1a4e1aac92646d12048b45cab88cb3560d8b63f8dbf8b29699aa8b",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ],
+          "layoutKind": "defence_proof"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "purpose": "defence_issues_and_requests",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): strangulation suffocation\n## Issues list\n## Requests\nMissing/referred chase candidates: referred_missing_master.\nProof extract remains privilege-separated in this fictional pack.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "629fb3ea8307b52a558b9609e41a28c6f87c3d0cf5392cc84c1d89b80fe2e4ca",
+          "headings": [
+            "Issues list",
+            "Requests"
+          ],
+          "layoutKind": "defence_proof"
+        }
+      ],
+      "contentHash": "77ecabb188e14bf5bf72b8452caf5b1141a967095c95af2fd5cd25b7516eb767",
+      "realPaginatedFile": true,
+      "privilegeSeparated": true,
+      "publicTemplateRef": "defence_proof"
+    },
+    {
+      "docId": "extra_context_5",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_5/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Additional context schedule (fictional test)\nMatter family (fictional): strangulation suffocation\n## Additional context schedule (fictional test)\n## Particulars\nKind: context_schedule\nLifecycle state: served\nFamily: strangulation suffocation\nStage: police investigation\nFICTIONAL TEST MATERIAL — additional coherent schedule for strangulation_suffocation emphasising section_45_indicator and indictment.\nStatus: served.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "17a46adb89268c469fe3399779f71fffce6dfec812ef0735bd3a97eac787e541",
+          "headings": [
+            "Additional context schedule (fictional test)",
+            "Particulars"
+          ],
+          "layoutKind": "generic_specialist"
+        }
+      ],
+      "contentHash": "17a46adb89268c469fe3399779f71fffce6dfec812ef0735bd3a97eac787e541",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "generic_specialist"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "caseId": "div3000v211-04-twoc",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "4db4fea7f4be2fd45c696eaaf63f703e0e01b1bd696e250ed5aa2f93012df749",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\npageIdentity=indictment_operative/page/1\n## Indictment (fictional test — not operative)\nKind: indictment\nLifecycle state: operative\nFamily: twoc\nStage: trial prep\nFICTIONAL TEST MATERIAL\nIndictment placeholder for twoc — charge wording not pinned; structural only.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-04-twoc\nDocument id | indictment_operative\nKind | indictment\nLifecycle state | operative\nPage purpose | document_specific_body\nFamily | twoc\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for twoc must respect served vs absent papers.\nPrecise next action: verify indictment_operative/page/1 against MG06 before any external send.\nSource/page pointer: indictment_operative/page/1",
+          "textHash": "4db4fea7f4be2fd45c696eaaf63f703e0e01b1bd696e250ed5aa2f93012df749",
+          "headings": [
+            "Indictment (fictional test — not operative)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "80d2691f77abdc87d0d6c33ee6fdb2a14bf250d858f6d6985c3f5efc547eb8e8",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/1\n## MG5 Case summary\n## Narrative\nFamily under review: twoc\nDefence position on instructions: lack of intent\nProcedural stage: trial prep\nAllegation under review: Charge wording not pinned — structural only.\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: twoc.\nDefence position modelled: lack of intent.\nProcedural stage: trial prep.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_signed, mg11_draft, cctv_clip.\nWitness outline: complainant account recorded as allegation only — not proved.\nOfficer summary limited to disclosed papers in this pack.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-04-twoc\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_case_summary_narrative\nFamily | twoc\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for twoc must respect served vs absent papers.\nPrecise next action: verify MG05/page/1 against MG06 before any external send.\nSource/page pointer: MG05/page/1",
+          "textHash": "eb59daae348badf85c0cc219594b157be0cd316fb6081c387e0d98a18a600d00",
+          "headings": [
+            "MG5 Case summary",
+            "Narrative"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/2\n## Evidence outline\n## Limitations\nEvidence listed is limited to items served or partially served in the pack.\nNo deliberate missing-item markers declared on the completeness contract.\nReliability: MG5 narrative must not be read as establishing guilt.\nNext action: reconcile MG5 against MG6 index for div3000v211-04-twoc before any court-facing send.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-04-twoc\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_evidence_outline\nFamily | twoc\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for twoc must respect served vs absent papers.\nPrecise next action: verify MG05/page/2 against MG06 before any external send.\nSource/page pointer: MG05/page/2",
+          "textHash": "f5c6e5719202e59e9020b60ca47ed40458ef9983a78ed409f2d0cf04910538d0",
+          "headings": [
+            "Evidence outline",
+            "Limitations"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "96b3f308fba4fb7a9824ca64dc0177f375d9546c32cbf9f84d14fbd48a60e04c",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\npageIdentity=MG06/page/1\n## MG6 File front sheet / index\n## Inventory\nIndex of papers for this fictional matter:\n- written charge / requisition — see written_charge\n- MG5 case summary — served\n- disclosure / unused schedule — see schedules\n- (no referred-absent masters declared)\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nCaseBrain must not quote or summarise nonexistent content for referred-absent items.\nChase binding: disclosure chase must request nil by identity, pointing to this MG6 page.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-04-twoc\nDocument id | MG06\nKind | mg06\nLifecycle state | served\nPage purpose | mg6_file_index\nFamily | twoc\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for twoc must respect served vs absent papers.\nPrecise next action: verify MG06/page/1 against MG06 before any external send.\nSource/page pointer: MG06/page/1",
+          "textHash": "96b3f308fba4fb7a9824ca64dc0177f375d9546c32cbf9f84d14fbd48a60e04c",
+          "headings": [
+            "MG6 File front sheet / index",
+            "Inventory"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "18344a03d4c307b5f53d128efa56b3762a1ce9cd5a7674081992e4be2773590e",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\npageIdentity=defence_proof_extract/page/1\n## Defence proof of evidence extract\n## PRIVILEGED\nPosition on instructions: lack of intent\nThis extract is privilege-separated. Not for ordinary copy/export/API send.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: lack_of_intent. Not for ordinary copy/export.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-04-twoc\nDocument id | defence_proof_extract\nKind | defence_proof\nLifecycle state | privileged\nPage purpose | defence_privileged_extract\nFamily | twoc\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: privileged\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for twoc must respect served vs absent papers.\nPrecise next action: verify defence_proof_extract/page/1 against MG06 before any external send.\nSource/page pointer: defence_proof_extract/page/1",
+          "textHash": "18344a03d4c307b5f53d128efa56b3762a1ce9cd5a7674081992e4be2773590e",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ]
+        }
+      ],
+      "privilegeSeparated": true,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "extra_context_6",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "2e5c689d701708cffe26f4c7a88f5bbfc4354913949740aeee8fe49c387f31a9",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_6/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\npageIdentity=extra_context_6/page/1\n## Additional context schedule (fictional test)\nKind: context_schedule\nLifecycle state: served\nFamily: twoc\nStage: trial prep\nFICTIONAL TEST MATERIAL — additional coherent schedule for twoc emphasising lack_of_intent and indictment.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-04-twoc\nDocument id | extra_context_6\nKind | context_schedule\nLifecycle state | served\nPage purpose | document_specific_body\nFamily | twoc\nProcedure | trial prep\nDefence on instructions | lack of intent\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for twoc must respect served vs absent papers.\nPrecise next action: verify extra_context_6/page/1 against MG06 before any external send.\nSource/page pointer: extra_context_6/page/1",
+          "textHash": "2e5c689d701708cffe26f4c7a88f5bbfc4354913949740aeee8fe49c387f31a9",
+          "headings": [
+            "Additional context schedule (fictional test)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    }
+  ]
+}

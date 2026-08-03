@@ -1,0 +1,299 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/bundle-fictional-test.pdf",
+  "pageCount": 17,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-001.png",
+      "pngSha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1881,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.3,
+        "nonWhiteRatio": 0.1249,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-002.png",
+      "pngSha256": "3162ef3e3cecd9adcb21f7cfde7a4871255db682a415249b48a78b193331b8fc",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 2179,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.45,
+        "nonWhiteRatio": 0.1321,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-003.png",
+      "pngSha256": "05b8854d3221e0f538186507d6c158cbdc6f8302d371f5000bec52f339c07a3f",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1745,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 244.32,
+        "nonWhiteRatio": 0.0844,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-004.png",
+      "pngSha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1272,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 245.59,
+        "nonWhiteRatio": 0.0757,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-005.png",
+      "pngSha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 711,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.92,
+        "nonWhiteRatio": 0.0542,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-006.png",
+      "pngSha256": "3b740c5000eafe447fbd0c93dea7b6bb14f325da832ed2afe86ad1e50bf216f6",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1127,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 246.84,
+        "nonWhiteRatio": 0.0507,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-007.png",
+      "pngSha256": "bf8671ec128f2a650510dca79bdfc5973b93b98de08f83b03d2931e08725f1c3",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 825,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.81,
+        "nonWhiteRatio": 0.0414,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-008.png",
+      "pngSha256": "10bf31147b8b2d8e37877b4b393c49aa081c022e959895381bd0dca2761f18d7",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 825,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.8,
+        "nonWhiteRatio": 0.0414,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-009.png",
+      "pngSha256": "48a032cd7b3d0e8bac5afb43798b540403401eaef306fb5f5855c121cdcc7da0",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1113,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 246.9,
+        "nonWhiteRatio": 0.0501,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 10,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-010.png",
+      "pngSha256": "1f2a47025ed7d0e6459f659211e8439902f9223edd6dea5bcba941430700e07f",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 824,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.8,
+        "nonWhiteRatio": 0.0414,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 11,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-011.png",
+      "pngSha256": "dd9da398a9dc2df25122329a0596c2e0f7511a937b94193009a99d86f0a55991",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 824,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.81,
+        "nonWhiteRatio": 0.0413,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 12,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-012.png",
+      "pngSha256": "063c5a4b3c362752268e253b550e67df6ad6f9f7d648a1f82fbca2735b470662",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 855,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.47,
+        "nonWhiteRatio": 0.0448,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 13,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-013.png",
+      "pngSha256": "4675f1d19c389c6af04487de953ba77b90a70e66b402cd80cca11386976e2863",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 589,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.29,
+        "nonWhiteRatio": 0.0498,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 14,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-014.png",
+      "pngSha256": "3fc45004aa78d2807d5fbd828c15ffec35da3cb6720b1191a25bcb6e990971b2",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 422,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.64,
+        "nonWhiteRatio": 0.0479,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 15,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-015.png",
+      "pngSha256": "aaf2fcaa1586b30bfae4417b057408b291bebb74134c1178f019c53f99d4be7a",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1321,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.71,
+        "nonWhiteRatio": 0.0912,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 16,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-016.png",
+      "pngSha256": "443066759e00e08b2997a849fb79be9f5856db318a50ee0d24a016f907ff07b8",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1046,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.48,
+        "nonWhiteRatio": 0.0857,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 17,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-017.png",
+      "pngSha256": "44f17a27448adaec3132981b47fe1beca142f07226eda528f7d0fd77760c0748",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 729,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.92,
+        "nonWhiteRatio": 0.0404,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "6727f9c863228e9028384e39b43ca03f7b1a4a6e6eae415a93cc79d398f2b7fe",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

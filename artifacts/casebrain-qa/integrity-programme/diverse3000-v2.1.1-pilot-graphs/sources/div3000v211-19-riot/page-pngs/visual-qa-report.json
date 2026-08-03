@@ -1,0 +1,163 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/bundle-fictional-test.pdf",
+  "pageCount": 9,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-001.png",
+      "pngSha256": "f5d9068629f1bcca2144de5ec3f7ddd2cfc7de2822081ccbfb935b7dff6b80f8",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1407,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.66,
+        "nonWhiteRatio": 0.045,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-002.png",
+      "pngSha256": "7b2d583fa1371b3a0412e4d07aca4e5948dd858c47fb7aa8c5aa432959c74752",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1168,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.46,
+        "nonWhiteRatio": 0.0393,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-003.png",
+      "pngSha256": "d37cd473aca33ca97ca7506ee803eb906546203ab020ed7fcc2e0397b5adede4",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1558,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.96,
+        "nonWhiteRatio": 0.0502,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-004.png",
+      "pngSha256": "7437b645ef28b10a14a5746e7801140526c273ef54efcd021b6541cb98d8f629",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1278,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.1,
+        "nonWhiteRatio": 0.0423,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-005.png",
+      "pngSha256": "3977a7d978a582f3e61ae95fad340d552dcf5520304b2810d0b223faa453e07b",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1683,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.48,
+        "nonWhiteRatio": 0.0531,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-006.png",
+      "pngSha256": "00222aa4645eff04860cedae2e0e5170fa3813213f35ebf47720d6364a2825d4",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1292,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.02,
+        "nonWhiteRatio": 0.0426,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-007.png",
+      "pngSha256": "99694c99a5abc895fc3088c1adbd51966eb4e2d3aa0bbf88bc197e3d5b7aa7c3",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1265,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.03,
+        "nonWhiteRatio": 0.0424,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-008.png",
+      "pngSha256": "6566532d2d03bcb2430e01dbc5e190d444824feb641f380cf579733e133dc677",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1421,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.6,
+        "nonWhiteRatio": 0.0459,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-009.png",
+      "pngSha256": "fa87fa87e8eef48544cab007c3cdbeb7c17abd41a7e26817e04d4dff9cbc1d51",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1320,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.99,
+        "nonWhiteRatio": 0.0431,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "f58858d8de51fe7116e56b5aeba6ae96344ebb4516de0857d4243eef09b45877",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

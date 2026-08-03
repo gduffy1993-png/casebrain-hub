@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": "diverse3000-v2.1.4.1-copy-payload-exit@1.0.0",
+  "rule": "Claimed genuine applicable copy exit with zero captured payload/wording must fail",
+  "cases": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "c1fb97d2e6c6911edc2d1c62738734e96ec015e317fec792faa3b18f8cd81d27",
+        "39259f2d1615f9ee12c1bab10d0f3922a78edb35ed3976a6b9f991823679c00e",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "95c8e5bef606a2ffe65886c16c39e42c849b42cc72488c8ddd27795337955ffa",
+        "c50ffc64c3ea8b20f23536c7e8576f5699f3fb59299758d2b9c29420e390d4ca",
+        "c1fb97d2e6c6911edc2d1c62738734e96ec015e317fec792faa3b18f8cd81d27",
+        "c50ffc64c3ea8b20f23536c7e8576f5699f3fb59299758d2b9c29420e390d4ca",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "a317a499fc6035c4807d714fc30108f10ff33296372fca0816a77b1b271b06cc",
+        "c50ffc64c3ea8b20f23536c7e8576f5699f3fb59299758d2b9c29420e390d4ca",
+        "a317a499fc6035c4807d714fc30108f10ff33296372fca0816a77b1b271b06cc",
+        "c50ffc64c3ea8b20f23536c7e8576f5699f3fb59299758d2b9c29420e390d4ca"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "c1fb97d2e6c6911edc2d1c62738734e96ec015e317fec792faa3b18f8cd81d27",
+          "textPreview": "The defence asks the court to record that battery, contrary to common law and section 39 of the Criminal Justice Act 1988 remains not safely confirmed on the cu"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "39259f2d1615f9ee12c1bab10d0f3922a78edb35ed3976a6b9f991823679c00e",
+          "textPreview": "Regarding common assault battery: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "95c8e5bef606a2ffe65886c16c39e42c849b42cc72488c8ddd27795337955ffa",
+          "textPreview": "On common assault battery, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 11,
+      "wordingHashes": [
+        "0fa992d07b7c10adea1fe03d2bc90fa69ba0412ed17ea58173219fc254f69984",
+        "34dda3903f5ff9bf9cda8c8b3431b150bf1c15aeb62cefd4ead87b9ddf24b923",
+        "67edf63575f0091a64324a014230c7fe092619e1fc1af8b07a1da8cbd8abafc1",
+        "59c159788ec79f05a4de5b23d348225e1b184fc97ff53e7e856ede132f441edf",
+        "0fa992d07b7c10adea1fe03d2bc90fa69ba0412ed17ea58173219fc254f69984",
+        "23aba85a518e054c505103406621a0cd2795c25f518fef9c059b1cbdaa099c9a",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "3f00f3e025163bb92469ba0989a1a915bcee8564ac71cd6ab8798149eedad9a1",
+        "59c159788ec79f05a4de5b23d348225e1b184fc97ff53e7e856ede132f441edf",
+        "3f00f3e025163bb92469ba0989a1a915bcee8564ac71cd6ab8798149eedad9a1",
+        "59c159788ec79f05a4de5b23d348225e1b184fc97ff53e7e856ede132f441edf"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "0fa992d07b7c10adea1fe03d2bc90fa69ba0412ed17ea58173219fc254f69984",
+          "textPreview": "The defence asks the court to record that theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968 remains not safely confirmed on the current"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "34dda3903f5ff9bf9cda8c8b3431b150bf1c15aeb62cefd4ead87b9ddf24b923",
+          "textPreview": "nil outstanding on shoplifting theft"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "67edf63575f0091a64324a014230c7fe092619e1fc1af8b07a1da8cbd8abafc1",
+          "textPreview": "On shoplifting theft, no chase item is outstanding on this pack."
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/professionalRequest",
+          "wordingHash": "59c159788ec79f05a4de5b23d348225e1b184fc97ff53e7e856ede132f441edf",
+          "textPreview": "No outstanding disclosure chase item is currently particularised for shoplifting theft."
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+          "wordingHash": "0fa992d07b7c10adea1fe03d2bc90fa69ba0412ed17ea58173219fc254f69984",
+          "textPreview": "The defence asks the court to record that theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968 remains not safely confirmed on the current"
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 11,
+      "wordingHashes": [
+        "e92493ee106c8142cde4bdeb81029120e56afa7c7677934f096e194648d092e9",
+        "86d44c46bf200ae7bbfc4f06c5f6e1de6ceb65b32ef61cb16a125d81de1c6fa3",
+        "49d8ca2fcd4a3eb6a6be693f1c1f64bf6bb9c0b36d1d95af8e2701fc7ebbb735",
+        "89dccfe6da29aecc24c148d6c99207daba01dece369706801f7032dcb9b2225e",
+        "e92493ee106c8142cde4bdeb81029120e56afa7c7677934f096e194648d092e9",
+        "23aba85a518e054c505103406621a0cd2795c25f518fef9c059b1cbdaa099c9a",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "25e40e3ec6cd2a3042bd0d01d66e2f355b56ecf0a0985cef9d49d2ea9d153705",
+        "89dccfe6da29aecc24c148d6c99207daba01dece369706801f7032dcb9b2225e",
+        "25e40e3ec6cd2a3042bd0d01d66e2f355b56ecf0a0985cef9d49d2ea9d153705",
+        "89dccfe6da29aecc24c148d6c99207daba01dece369706801f7032dcb9b2225e"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "e92493ee106c8142cde4bdeb81029120e56afa7c7677934f096e194648d092e9",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "86d44c46bf200ae7bbfc4f06c5f6e1de6ceb65b32ef61cb16a125d81de1c6fa3",
+          "textPreview": "nil outstanding on going equipped"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "49d8ca2fcd4a3eb6a6be693f1c1f64bf6bb9c0b36d1d95af8e2701fc7ebbb735",
+          "textPreview": "On going equipped, no chase item is outstanding on this pack."
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/professionalRequest",
+          "wordingHash": "89dccfe6da29aecc24c148d6c99207daba01dece369706801f7032dcb9b2225e",
+          "textPreview": "No outstanding disclosure chase item is currently particularised for going equipped."
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+          "wordingHash": "e92493ee106c8142cde4bdeb81029120e56afa7c7677934f096e194648d092e9",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 11,
+      "wordingHashes": [
+        "a6732c1805ff1ea65f301fdfbf5754c23e50f608abb3d5bc79577368102f645b",
+        "ef574cc89b5fd65fc72adedad1f6a6d6e5418d8a8990fa54b034dd8696fd2779",
+        "1ce7281fb7ed7e6cd38acd3c90005d15691cf82c98140f0279f6438d94382b62",
+        "28808208f73b5b5076164f02b852b915e838be1104f3fd0090f727d49f637380",
+        "a6732c1805ff1ea65f301fdfbf5754c23e50f608abb3d5bc79577368102f645b",
+        "23aba85a518e054c505103406621a0cd2795c25f518fef9c059b1cbdaa099c9a",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "b180512478dcb0891d1be1d1ec22a8ba40dfc19e506f6d52ee7084d4786792d5",
+        "28808208f73b5b5076164f02b852b915e838be1104f3fd0090f727d49f637380",
+        "b180512478dcb0891d1be1d1ec22a8ba40dfc19e506f6d52ee7084d4786792d5",
+        "28808208f73b5b5076164f02b852b915e838be1104f3fd0090f727d49f637380"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "a6732c1805ff1ea65f301fdfbf5754c23e50f608abb3d5bc79577368102f645b",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "ef574cc89b5fd65fc72adedad1f6a6d6e5418d8a8990fa54b034dd8696fd2779",
+          "textPreview": "nil outstanding on twoc"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "1ce7281fb7ed7e6cd38acd3c90005d15691cf82c98140f0279f6438d94382b62",
+          "textPreview": "On twoc, no chase item is outstanding on this pack."
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/professionalRequest",
+          "wordingHash": "28808208f73b5b5076164f02b852b915e838be1104f3fd0090f727d49f637380",
+          "textPreview": "No outstanding disclosure chase item is currently particularised for twoc."
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+          "wordingHash": "a6732c1805ff1ea65f301fdfbf5754c23e50f608abb3d5bc79577368102f645b",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 11,
+      "wordingHashes": [
+        "647f81fb5ce521b6cc0aeac5862bffab0c0f030a71cf70f9c875a80976fdfea6",
+        "d817fc6d2cfe568440ad61bacf73ca8941512d313e4a7c097b967f9d10b659ec",
+        "a60d48b83e42baf9556a67cbd00bf0576492a978f6386e68c0a67e2588f22da7",
+        "540682cfe109fe6903ba79cef664d68ff6505aeebadeae5a72411d7535c88e07",
+        "647f81fb5ce521b6cc0aeac5862bffab0c0f030a71cf70f9c875a80976fdfea6",
+        "23aba85a518e054c505103406621a0cd2795c25f518fef9c059b1cbdaa099c9a",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "0201211c53bcdbbd9ee7039f73b5d9e004dd09d581a9fb7e29b60711a2550d81",
+        "540682cfe109fe6903ba79cef664d68ff6505aeebadeae5a72411d7535c88e07",
+        "0201211c53bcdbbd9ee7039f73b5d9e004dd09d581a9fb7e29b60711a2550d81",
+        "540682cfe109fe6903ba79cef664d68ff6505aeebadeae5a72411d7535c88e07"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "647f81fb5ce521b6cc0aeac5862bffab0c0f030a71cf70f9c875a80976fdfea6",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "d817fc6d2cfe568440ad61bacf73ca8941512d313e4a7c097b967f9d10b659ec",
+          "textPreview": "nil outstanding on bladed articles"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "a60d48b83e42baf9556a67cbd00bf0576492a978f6386e68c0a67e2588f22da7",
+          "textPreview": "On bladed articles, no chase item is outstanding on this pack."
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/professionalRequest",
+          "wordingHash": "540682cfe109fe6903ba79cef664d68ff6505aeebadeae5a72411d7535c88e07",
+          "textPreview": "No outstanding disclosure chase item is currently particularised for bladed articles."
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+          "wordingHash": "647f81fb5ce521b6cc0aeac5862bffab0c0f030a71cf70f9c875a80976fdfea6",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "7bb304b316fcdcc8796221773be129bcb73872ec6593d76ba973339328fa9c74",
+        "810feaccc829339c1bcca0161258d0932dd8160b165ed05a73fcdb985d340a6b",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "be2b5a4cf0db1cb349dd0173f1d6062e7143edae5ee1aeb482e7d1bcae0469a0",
+        "91c62cb2d9ff61eb8def58018c89956f4f74c3d995e488e37d5dea9be3d84da6",
+        "7bb304b316fcdcc8796221773be129bcb73872ec6593d76ba973339328fa9c74",
+        "91c62cb2d9ff61eb8def58018c89956f4f74c3d995e488e37d5dea9be3d84da6",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "76fb55938af94c7c8c4a8687d6c4e8c95ae69bd575bffb9881cbe9c96a05dd61",
+        "91c62cb2d9ff61eb8def58018c89956f4f74c3d995e488e37d5dea9be3d84da6",
+        "76fb55938af94c7c8c4a8687d6c4e8c95ae69bd575bffb9881cbe9c96a05dd61",
+        "91c62cb2d9ff61eb8def58018c89956f4f74c3d995e488e37d5dea9be3d84da6"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "7bb304b316fcdcc8796221773be129bcb73872ec6593d76ba973339328fa9c74",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "810feaccc829339c1bcca0161258d0932dd8160b165ed05a73fcdb985d340a6b",
+          "textPreview": "Regarding affray: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "be2b5a4cf0db1cb349dd0173f1d6062e7143edae5ee1aeb482e7d1bcae0469a0",
+          "textPreview": "On affray, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 15,
+      "wordingHashes": [
+        "d19bae4537369a3eee27cbd501be35de7b81f24cc6c46dde96fbbc054d90b417",
+        "68b9bef856946d707672f5610f9b3a1663ed90b8ed23fb75d5ad2efff8006c03",
+        "3721e75e5251e9ec75c288b2598c7e89cf58294e154a1be4232b94a4d1894b71",
+        "049f141b3a23cb8fbd03b855172096fd79c07e2846ea49d27e890424a7df7226",
+        "56abd327b46d967aa8e225bbf01d5c449e68307ec2aeaaebbc1de68f945cdb59",
+        "fcbc01c7ec91c544fe7b56c74d9bb70b396369fea1289b40161c09a92ec421aa",
+        "7041e2179ecccea95acecb645968ead0beb56b10dce62d6173116db0ea544854",
+        "27fbd0d7e8ecad87b0f7c2bb01421d7c6a7816c37366e324fe931af6823d2900",
+        "d19bae4537369a3eee27cbd501be35de7b81f24cc6c46dde96fbbc054d90b417",
+        "27fbd0d7e8ecad87b0f7c2bb01421d7c6a7816c37366e324fe931af6823d2900",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "3f9df860183a39cec790ee1d06e4bf956909bb390086ef783978bd3e97bbd948",
+        "27fbd0d7e8ecad87b0f7c2bb01421d7c6a7816c37366e324fe931af6823d2900",
+        "3f9df860183a39cec790ee1d06e4bf956909bb390086ef783978bd3e97bbd948",
+        "27fbd0d7e8ecad87b0f7c2bb01421d7c6a7816c37366e324fe931af6823d2900"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "d19bae4537369a3eee27cbd501be35de7b81f24cc6c46dde96fbbc054d90b417",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "68b9bef856946d707672f5610f9b3a1663ed90b8ed23fb75d5ad2efff8006c03",
+          "textPreview": "Regarding sexual assault: Please provide abe or special measures."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "3721e75e5251e9ec75c288b2598c7e89cf58294e154a1be4232b94a4d1894b71",
+          "textPreview": "abe_or_special_measures"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/1/copySuggestion",
+          "wordingHash": "049f141b3a23cb8fbd03b855172096fd79c07e2846ea49d27e890424a7df7226",
+          "textPreview": "Regarding sexual assault: Please provide third party material note."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/1/label",
+          "wordingHash": "56abd327b46d967aa8e225bbf01d5c449e68307ec2aeaaebbc1de68f945cdb59",
+          "textPreview": "third_party_material_note"
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "6fc4b93aa9f7a9532bf8179f26a66ddaa1c3fc6c3ba890e5458669a07e9dd0bb",
+        "70d73163460c8fa2b07aca79c07b4ef09431290feb32a233f02b16266eebf44b",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "ee4d6e9bc9d665c93e56579f7034f83f479bca7bc1cf4363b34cd369016c4a63",
+        "eb31dd30eee04270684bff14399d1fb55e8ab0deab8ffd5621354a5effa1fb07",
+        "6fc4b93aa9f7a9532bf8179f26a66ddaa1c3fc6c3ba890e5458669a07e9dd0bb",
+        "eb31dd30eee04270684bff14399d1fb55e8ab0deab8ffd5621354a5effa1fb07",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "663d0f0a38b8631d5b44865824b246f9655c89ea204905440fb8fc30239c9c74",
+        "eb31dd30eee04270684bff14399d1fb55e8ab0deab8ffd5621354a5effa1fb07",
+        "663d0f0a38b8631d5b44865824b246f9655c89ea204905440fb8fc30239c9c74",
+        "eb31dd30eee04270684bff14399d1fb55e8ab0deab8ffd5621354a5effa1fb07"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "6fc4b93aa9f7a9532bf8179f26a66ddaa1c3fc6c3ba890e5458669a07e9dd0bb",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "70d73163460c8fa2b07aca79c07b4ef09431290feb32a233f02b16266eebf44b",
+          "textPreview": "Regarding strangulation suffocation: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "ee4d6e9bc9d665c93e56579f7034f83f479bca7bc1cf4363b34cd369016c4a63",
+          "textPreview": "On strangulation suffocation, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "919fff48e5e044baf365653ce02d68820e8ecde6a0203709f12e52fdda2e3381",
+        "42058109da5d613fde1ef622ecd195d7244b9774be11bd484cf30145798b4d65",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "1a5d745a38dd345d7c16182a9c4a19d63fff4777607dd0729a1fc4b41eb607b8",
+        "4ddea60d2b0eddc6f4f7630933e06b59578b53b34025a2b85472d52a7d37e08a",
+        "919fff48e5e044baf365653ce02d68820e8ecde6a0203709f12e52fdda2e3381",
+        "4ddea60d2b0eddc6f4f7630933e06b59578b53b34025a2b85472d52a7d37e08a",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "aa415ee565f434601f9fd9c1dba347203de1fa8ef0bc072a3d46726fec9c2181",
+        "4ddea60d2b0eddc6f4f7630933e06b59578b53b34025a2b85472d52a7d37e08a",
+        "aa415ee565f434601f9fd9c1dba347203de1fa8ef0bc072a3d46726fec9c2181",
+        "4ddea60d2b0eddc6f4f7630933e06b59578b53b34025a2b85472d52a7d37e08a"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "919fff48e5e044baf365653ce02d68820e8ecde6a0203709f12e52fdda2e3381",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "42058109da5d613fde1ef622ecd195d7244b9774be11bd484cf30145798b4d65",
+          "textPreview": "Regarding blackmail: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "1a5d745a38dd345d7c16182a9c4a19d63fff4777607dd0729a1fc4b41eb607b8",
+          "textPreview": "On blackmail, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "c9acb9b6c252068c844be88725f108a48ee936b84dae033772f43750e48f0a93",
+        "507daa22a8911073b8ec9ffe1ab954c2fd4b8734894098c1f3c0cbd1fc111655",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "65b9cbfda761341c605e7d4cdec030f5c3f47678ebcadd81c881fa95d626628b",
+        "0a6398fc0b6a191a4b341e5fa7d4c94c29129dc5a5e07be57013e4aba8333be2",
+        "c9acb9b6c252068c844be88725f108a48ee936b84dae033772f43750e48f0a93",
+        "0a6398fc0b6a191a4b341e5fa7d4c94c29129dc5a5e07be57013e4aba8333be2",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "cf1b5777ffb9f2667271cb17fc00fb38679c7c70f747daf608fd5c80ca4d4660",
+        "0a6398fc0b6a191a4b341e5fa7d4c94c29129dc5a5e07be57013e4aba8333be2",
+        "cf1b5777ffb9f2667271cb17fc00fb38679c7c70f747daf608fd5c80ca4d4660",
+        "0a6398fc0b6a191a4b341e5fa7d4c94c29129dc5a5e07be57013e4aba8333be2"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "c9acb9b6c252068c844be88725f108a48ee936b84dae033772f43750e48f0a93",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "507daa22a8911073b8ec9ffe1ab954c2fd4b8734894098c1f3c0cbd1fc111655",
+          "textPreview": "Regarding drugs conspiracy supply: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "65b9cbfda761341c605e7d4cdec030f5c3f47678ebcadd81c881fa95d626628b",
+          "textPreview": "On drugs conspiracy supply, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "f989cb7fad7637ef1a7a8c095b7fc85164d1b2cca0560a2294e313a21e0e07ec",
+        "ca982cbd6096d61b9080856f563a1794cefdb5b6949e3a1afed2c0f406e2327b",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "238b3f86ffc89170028d5224b564d76e654854261f20beacc9652abf94b85aca",
+        "30d9e451e55dbf5097cdbf45712a539c5d4f27d74544624e5943ba12a2924b71",
+        "f989cb7fad7637ef1a7a8c095b7fc85164d1b2cca0560a2294e313a21e0e07ec",
+        "30d9e451e55dbf5097cdbf45712a539c5d4f27d74544624e5943ba12a2924b71",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "8a0686b97a21cb2315cdde13fd007d4a50cbe825ee73ef5b5cfdd9d5ff2d0375",
+        "30d9e451e55dbf5097cdbf45712a539c5d4f27d74544624e5943ba12a2924b71",
+        "8a0686b97a21cb2315cdde13fd007d4a50cbe825ee73ef5b5cfdd9d5ff2d0375",
+        "30d9e451e55dbf5097cdbf45712a539c5d4f27d74544624e5943ba12a2924b71"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "f989cb7fad7637ef1a7a8c095b7fc85164d1b2cca0560a2294e313a21e0e07ec",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "ca982cbd6096d61b9080856f563a1794cefdb5b6949e3a1afed2c0f406e2327b",
+          "textPreview": "Regarding social media attribution: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "238b3f86ffc89170028d5224b564d76e654854261f20beacc9652abf94b85aca",
+          "textPreview": "On social media attribution, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "11482b975017a0c3c431caf90a3fc2bd79139a6c1ae23b5d11e627dbcd109afd",
+        "6fc61984573872dfe20125d20c6d12d60ce588fcd31ea1bf1c6a8bbe29d8ec0a",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "c2f434d29ade878a9f9a959d2c80c0ef105e38f625234a0899f8f424e4d0136f",
+        "050c73b7fb37b7257f00787a8cdde173202a5fa5cf93b8d6fb32ab63fe0c66dd",
+        "11482b975017a0c3c431caf90a3fc2bd79139a6c1ae23b5d11e627dbcd109afd",
+        "050c73b7fb37b7257f00787a8cdde173202a5fa5cf93b8d6fb32ab63fe0c66dd",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "9cf7a83f384e0f7a4c020070585f810f4b5f11d81e2cc2ee757391bac7980130",
+        "050c73b7fb37b7257f00787a8cdde173202a5fa5cf93b8d6fb32ab63fe0c66dd",
+        "9cf7a83f384e0f7a4c020070585f810f4b5f11d81e2cc2ee757391bac7980130",
+        "050c73b7fb37b7257f00787a8cdde173202a5fa5cf93b8d6fb32ab63fe0c66dd"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "11482b975017a0c3c431caf90a3fc2bd79139a6c1ae23b5d11e627dbcd109afd",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "6fc61984573872dfe20125d20c6d12d60ce588fcd31ea1bf1c6a8bbe29d8ec0a",
+          "textPreview": "Regarding perverting course of justice: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "c2f434d29ade878a9f9a959d2c80c0ef105e38f625234a0899f8f424e4d0136f",
+          "textPreview": "On perverting course of justice, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "33cc29396542c7d44dc4a30b61fd8520488d330bda6c038953844c45f840a8ca",
+        "4ed1866871de2aad021d98d05e695754e15f7b416a82c5e21b0e014a92879181",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "841a7f040c25e05059876327ab0339b29e2d3357ac513594bc97c7d49cdc1baf",
+        "8e606275d87a0ca903d31cb633ed0ea89333865de3ce1304d861589b989b1b39",
+        "33cc29396542c7d44dc4a30b61fd8520488d330bda6c038953844c45f840a8ca",
+        "8e606275d87a0ca903d31cb633ed0ea89333865de3ce1304d861589b989b1b39",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "21eb186af1d9f994909947098f846dcd3fd64b13ca302c3ac237bd6f1ea128e0",
+        "8e606275d87a0ca903d31cb633ed0ea89333865de3ce1304d861589b989b1b39",
+        "21eb186af1d9f994909947098f846dcd3fd64b13ca302c3ac237bd6f1ea128e0",
+        "8e606275d87a0ca903d31cb633ed0ea89333865de3ce1304d861589b989b1b39"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "33cc29396542c7d44dc4a30b61fd8520488d330bda6c038953844c45f840a8ca",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "4ed1866871de2aad021d98d05e695754e15f7b416a82c5e21b0e014a92879181",
+          "textPreview": "Regarding witness intimidation: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "841a7f040c25e05059876327ab0339b29e2d3357ac513594bc97c7d49cdc1baf",
+          "textPreview": "On witness intimidation, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "1e2465cf56e6d9337c84fe03173408ca25d7639486c4aab9ac61fd4269d40123",
+        "fe014176c0a072d9a35ca731d17ebe0d905c93f75b2f71347502f60e32ea35ac",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "a6cd529d1c7ecec4b3ddccdb3c4de942ad46a6c8e591170c7cf93349a66da312",
+        "17d9f9eff134b50ba3a81a91a7624f25e88bd751361a0de70456ee8cfabcc22b",
+        "1e2465cf56e6d9337c84fe03173408ca25d7639486c4aab9ac61fd4269d40123",
+        "17d9f9eff134b50ba3a81a91a7624f25e88bd751361a0de70456ee8cfabcc22b",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "7bd2a3420714a28d7243a17d5d56de39b5a1a458ab5fe576f86f6dab934aabb2",
+        "17d9f9eff134b50ba3a81a91a7624f25e88bd751361a0de70456ee8cfabcc22b",
+        "7bd2a3420714a28d7243a17d5d56de39b5a1a458ab5fe576f86f6dab934aabb2",
+        "17d9f9eff134b50ba3a81a91a7624f25e88bd751361a0de70456ee8cfabcc22b"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "1e2465cf56e6d9337c84fe03173408ca25d7639486c4aab9ac61fd4269d40123",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "fe014176c0a072d9a35ca731d17ebe0d905c93f75b2f71347502f60e32ea35ac",
+          "textPreview": "Regarding contempt: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "a6cd529d1c7ecec4b3ddccdb3c4de942ad46a6c8e591170c7cf93349a66da312",
+          "textPreview": "On contempt, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "ef61222bcfdca03999b0414b9fa0cd6313aff15693df30dc25390fe96fe09b8d",
+        "38530f3372aedf58176b86b226cb1b004d172accfeb254c095765b16eedcf225",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "06770eb6abb6ae5750cba3720956746334d5d059dad841be77396888bba52149",
+        "4f44662dcaf52a68555534878f8f649b9a21874d3ed5272346079cd20f069d4b",
+        "ef61222bcfdca03999b0414b9fa0cd6313aff15693df30dc25390fe96fe09b8d",
+        "4f44662dcaf52a68555534878f8f649b9a21874d3ed5272346079cd20f069d4b",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "aa1640a6ed26323bb47920f6b7f1bc6045320f09ff2da1a022b67840052afe73",
+        "4f44662dcaf52a68555534878f8f649b9a21874d3ed5272346079cd20f069d4b",
+        "aa1640a6ed26323bb47920f6b7f1bc6045320f09ff2da1a022b67840052afe73",
+        "4f44662dcaf52a68555534878f8f649b9a21874d3ed5272346079cd20f069d4b"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "ef61222bcfdca03999b0414b9fa0cd6313aff15693df30dc25390fe96fe09b8d",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "38530f3372aedf58176b86b226cb1b004d172accfeb254c095765b16eedcf225",
+          "textPreview": "Regarding prison offences: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "06770eb6abb6ae5750cba3720956746334d5d059dad841be77396888bba52149",
+          "textPreview": "On prison offences, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 13,
+      "wordingHashes": [
+        "80092f8c9584dccb57877826e357773d565095c49328449eec9e4178ee889018",
+        "180a08333e39cd830e0c53a33e6f0852dd0f95066a366df281b48a202dcc14dd",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+        "6e23a24eecace521b8829a6a94d718188e8061908201fca05bb896f015f3cbef",
+        "37fd8214fb5f795de5c6b8ac3bbf3e4b9a874fbfaee44d44cd35ea0c2f5fc0ce",
+        "80092f8c9584dccb57877826e357773d565095c49328449eec9e4178ee889018",
+        "37fd8214fb5f795de5c6b8ac3bbf3e4b9a874fbfaee44d44cd35ea0c2f5fc0ce",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "327eac096d8dbc1efddbff5b065ef4bc8d0a87bdb950adad4fe637d97bbb0e6f",
+        "37fd8214fb5f795de5c6b8ac3bbf3e4b9a874fbfaee44d44cd35ea0c2f5fc0ce",
+        "327eac096d8dbc1efddbff5b065ef4bc8d0a87bdb950adad4fe637d97bbb0e6f",
+        "37fd8214fb5f795de5c6b8ac3bbf3e4b9a874fbfaee44d44cd35ea0c2f5fc0ce"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "80092f8c9584dccb57877826e357773d565095c49328449eec9e4178ee889018",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "180a08333e39cd830e0c53a33e6f0852dd0f95066a366df281b48a202dcc14dd",
+          "textPreview": "Regarding hearsay res gestae: Please provide referred missing master."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+          "textPreview": "referred_missing_master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/item",
+          "wordingHash": "c4c92a2d2596f4a01dc26ba41a4d046cb7e0aa790177309bfe36cd9ce4290f67",
+          "textPreview": "referred missing master"
+        },
+        {
+          "jsonPointer": "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+          "wordingHash": "6e23a24eecace521b8829a6a94d718188e8061908201fca05bb896f015f3cbef",
+          "textPreview": "On hearsay res gestae, the item is referred or outstanding on the papers and cannot be quoted as served content."
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 17,
+      "wordingHashes": [
+        "3b7606b9935739ce0958ee464d4de4dcb8e180f049d2722344585e08129b9cfe",
+        "7b3e4358f316be5eb77a3f49ee81240418a93475133feb6ac5ff72252970b0e1",
+        "3721e75e5251e9ec75c288b2598c7e89cf58294e154a1be4232b94a4d1894b71",
+        "1a19bf1b9c8105472266dbdc458490047243c7a0d9bb919138f541ce2c730543",
+        "56abd327b46d967aa8e225bbf01d5c449e68307ec2aeaaebbc1de68f945cdb59",
+        "5b7023b33b5b2d72af78db879636143121c51e1a71a4e60728df1506ab90efff",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "fcbc01c7ec91c544fe7b56c74d9bb70b396369fea1289b40161c09a92ec421aa",
+        "456fcdfe1abc4aeb46e001c5c907d3349982147eee4087aa65a966c7838f02e0",
+        "eef56d90c79dcbb34a8dca004a3cdb3c0c85349776d50cf0e7e0c800e6d22382",
+        "3b7606b9935739ce0958ee464d4de4dcb8e180f049d2722344585e08129b9cfe",
+        "eef56d90c79dcbb34a8dca004a3cdb3c0c85349776d50cf0e7e0c800e6d22382",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "d148314ee61e81d791ebb26ce6cc05bb1108a1b57fe3413579651a5ee7a7a1e2",
+        "eef56d90c79dcbb34a8dca004a3cdb3c0c85349776d50cf0e7e0c800e6d22382",
+        "d148314ee61e81d791ebb26ce6cc05bb1108a1b57fe3413579651a5ee7a7a1e2",
+        "eef56d90c79dcbb34a8dca004a3cdb3c0c85349776d50cf0e7e0c800e6d22382"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "3b7606b9935739ce0958ee464d4de4dcb8e180f049d2722344585e08129b9cfe",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "7b3e4358f316be5eb77a3f49ee81240418a93475133feb6ac5ff72252970b0e1",
+          "textPreview": "Regarding corporate manslaughter: Please provide abe or special measures."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "3721e75e5251e9ec75c288b2598c7e89cf58294e154a1be4232b94a4d1894b71",
+          "textPreview": "abe_or_special_measures"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/1/copySuggestion",
+          "wordingHash": "1a19bf1b9c8105472266dbdc458490047243c7a0d9bb919138f541ce2c730543",
+          "textPreview": "Regarding corporate manslaughter: Please provide third party material note."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/1/label",
+          "wordingHash": "56abd327b46d967aa8e225bbf01d5c449e68307ec2aeaaebbc1de68f945cdb59",
+          "textPreview": "third_party_material_note"
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 17,
+      "wordingHashes": [
+        "a72fd38c9c5f32f099449632a355a2bb04e94c33b055ff92107997638f67fef2",
+        "a74ac85dbba73cd5d78b764b43f99bd13c4861cae9083a9095e165ba16f7b063",
+        "3721e75e5251e9ec75c288b2598c7e89cf58294e154a1be4232b94a4d1894b71",
+        "bc58fad69c8867133b8b26419ee7abe7722d59e87797d9d39b896eb1d2907b10",
+        "56abd327b46d967aa8e225bbf01d5c449e68307ec2aeaaebbc1de68f945cdb59",
+        "7dc1396626221b0ccecf4c367f239d10b0cc584128d37e17586cb544e6cef896",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "fcbc01c7ec91c544fe7b56c74d9bb70b396369fea1289b40161c09a92ec421aa",
+        "8a993c832b5a0ca99e14c465fd21426a1d8257be779ac8529129efd04cacd298",
+        "9179d7358bdff0c37fd9122b08b84b650503d4bb6b9dbe9bc5d4253cc7568ee8",
+        "a72fd38c9c5f32f099449632a355a2bb04e94c33b055ff92107997638f67fef2",
+        "9179d7358bdff0c37fd9122b08b84b650503d4bb6b9dbe9bc5d4253cc7568ee8",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "baefec1db97eef9c5a541951e1163e5b37ba31fdd866ea72582b2eb9a4918e43",
+        "9179d7358bdff0c37fd9122b08b84b650503d4bb6b9dbe9bc5d4253cc7568ee8",
+        "baefec1db97eef9c5a541951e1163e5b37ba31fdd866ea72582b2eb9a4918e43",
+        "9179d7358bdff0c37fd9122b08b84b650503d4bb6b9dbe9bc5d4253cc7568ee8"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "a72fd38c9c5f32f099449632a355a2bb04e94c33b055ff92107997638f67fef2",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "a74ac85dbba73cd5d78b764b43f99bd13c4861cae9083a9095e165ba16f7b063",
+          "textPreview": "Regarding conspiracy to defraud: Please provide abe or special measures."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "3721e75e5251e9ec75c288b2598c7e89cf58294e154a1be4232b94a4d1894b71",
+          "textPreview": "abe_or_special_measures"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/1/copySuggestion",
+          "wordingHash": "bc58fad69c8867133b8b26419ee7abe7722d59e87797d9d39b896eb1d2907b10",
+          "textPreview": "Regarding conspiracy to defraud: Please provide third party material note."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/1/label",
+          "wordingHash": "56abd327b46d967aa8e225bbf01d5c449e68307ec2aeaaebbc1de68f945cdb59",
+          "textPreview": "third_party_material_note"
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 17,
+      "wordingHashes": [
+        "c8e103d2a6b5c60b11aebb1d496fe5bfd0f671cf1dbb49e15622bc7a05bd3b1d",
+        "a83173b05fb94d4a3c4f92153865c6044e5385f6ae8a39337b3a21544c03a84e",
+        "3721e75e5251e9ec75c288b2598c7e89cf58294e154a1be4232b94a4d1894b71",
+        "a32643ba929b19d05df1b6dab8261358f8ed21ef8ac4eef8eb696b4e98b9a28a",
+        "56abd327b46d967aa8e225bbf01d5c449e68307ec2aeaaebbc1de68f945cdb59",
+        "dba02f4ba845d7249c0e2396dbd713676da805960403eab359c60708a5544317",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "fcbc01c7ec91c544fe7b56c74d9bb70b396369fea1289b40161c09a92ec421aa",
+        "9934307ffe5c8642c3dcb97b27f5dcb0c6d2d85bfe7d103d666c57a1cf78532b",
+        "77835e73638c0873381c2d26bb5089a39ba0b6a5461466d9517f0129990be832",
+        "c8e103d2a6b5c60b11aebb1d496fe5bfd0f671cf1dbb49e15622bc7a05bd3b1d",
+        "77835e73638c0873381c2d26bb5089a39ba0b6a5461466d9517f0129990be832",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "8371be38c907ddf76589dcdb51ee7f0bc8e8e3e8a2c9c308b40b1e474385b7fa",
+        "77835e73638c0873381c2d26bb5089a39ba0b6a5461466d9517f0129990be832",
+        "8371be38c907ddf76589dcdb51ee7f0bc8e8e3e8a2c9c308b40b1e474385b7fa",
+        "77835e73638c0873381c2d26bb5089a39ba0b6a5461466d9517f0129990be832"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "c8e103d2a6b5c60b11aebb1d496fe5bfd0f671cf1dbb49e15622bc7a05bd3b1d",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "a83173b05fb94d4a3c4f92153865c6044e5385f6ae8a39337b3a21544c03a84e",
+          "textPreview": "Regarding riot: Please provide abe or special measures."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "3721e75e5251e9ec75c288b2598c7e89cf58294e154a1be4232b94a4d1894b71",
+          "textPreview": "abe_or_special_measures"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/1/copySuggestion",
+          "wordingHash": "a32643ba929b19d05df1b6dab8261358f8ed21ef8ac4eef8eb696b4e98b9a28a",
+          "textPreview": "Regarding riot: Please provide third party material note."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/1/label",
+          "wordingHash": "56abd327b46d967aa8e225bbf01d5c449e68307ec2aeaaebbc1de68f945cdb59",
+          "textPreview": "third_party_material_note"
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "status": "genuine_copy_payload_captured",
+      "copyLineCount": 2,
+      "visibleLeafCount": 17,
+      "wordingHashes": [
+        "e4695b06c2c16e759679bdb39c3b0056963242cddc3fc766d19bec297dc0372a",
+        "1a4a74c521653db519d3a4dfc9c0f3939b4eb02683a7a9c70db536a114691a44",
+        "3721e75e5251e9ec75c288b2598c7e89cf58294e154a1be4232b94a4d1894b71",
+        "1e94bd4933ecc4c7bfc28b0cf15b2d05a9362c957ade5e741e7fc1c875feba04",
+        "56abd327b46d967aa8e225bbf01d5c449e68307ec2aeaaebbc1de68f945cdb59",
+        "12984ad55e1de916cb8f48a5a927c1bcf36f5b3625dbe9531f08077fe59e60e6",
+        "436b1f005d9923979040d8409c7001eb935d2884b34dca28f35460a99c94dc15",
+        "fcbc01c7ec91c544fe7b56c74d9bb70b396369fea1289b40161c09a92ec421aa",
+        "cdc7f2d63c30639d50b186cdccba877f5d83817ca778bc26d1c1af1c9e9d524d",
+        "f5f601942c5a4fdaac84b121f52bff9c208046c3d52bf1ad86ff365746616358",
+        "e4695b06c2c16e759679bdb39c3b0056963242cddc3fc766d19bec297dc0372a",
+        "f5f601942c5a4fdaac84b121f52bff9c208046c3d52bf1ad86ff365746616358",
+        "a34a52a43f157b62d6073e0711c7f85315c6530b5b068c36f4ae55820bdbb7ea",
+        "e754baecd4ffd8bed198fd35d8114946011a5f367757faf3df56ffd5f8a3d74a",
+        "f5f601942c5a4fdaac84b121f52bff9c208046c3d52bf1ad86ff365746616358",
+        "e754baecd4ffd8bed198fd35d8114946011a5f367757faf3df56ffd5f8a3d74a",
+        "f5f601942c5a4fdaac84b121f52bff9c208046c3d52bf1ad86ff365746616358"
+      ],
+      "sampleLeaves": [
+        {
+          "jsonPointer": "/courtNote/text",
+          "wordingHash": "e4695b06c2c16e759679bdb39c3b0056963242cddc3fc766d19bec297dc0372a",
+          "textPreview": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/copySuggestion",
+          "wordingHash": "1a4a74c521653db519d3a4dfc9c0f3939b4eb02683a7a9c70db536a114691a44",
+          "textPreview": "Regarding diplomatic immunity: Please provide abe or special measures."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/0/label",
+          "wordingHash": "3721e75e5251e9ec75c288b2598c7e89cf58294e154a1be4232b94a4d1894b71",
+          "textPreview": "abe_or_special_measures"
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/1/copySuggestion",
+          "wordingHash": "1e94bd4933ecc4c7bfc28b0cf15b2d05a9362c957ade5e741e7fc1c875feba04",
+          "textPreview": "Regarding diplomatic immunity: Please provide third party material note."
+        },
+        {
+          "jsonPointer": "/warningsAndGaps/chaseItems/1/label",
+          "wordingHash": "56abd327b46d967aa8e225bbf01d5c449e68307ec2aeaaebbc1de68f945cdb59",
+          "textPreview": "third_party_material_note"
+        }
+      ],
+      "reason": "Real CaseBrain copyLines payload + visible leaves captured"
+    }
+  ],
+  "copyGenuineZeroPayload": 0,
+  "positiveContract": {
+    "description": "Populated copyLines + visible leaves → genuine_production_builder_payload",
+    "holds": true
+  },
+  "negativeContract": {
+    "description": "Zero visible copy leaves → not_exercised (never genuine)",
+    "holds": true
+  }
+}

@@ -1,0 +1,484 @@
+{
+  "rows": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988."
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "The operative recorded charge is: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. The allegation remains unproved on the current papers. The client denies the allegation. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client denies the allegation."
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968."
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "The operative recorded charge is: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968. The allegation remains unproved on the current papers. The client advances an alibi on instructions. The matter remains at the trial-preparation stage."
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the trial-preparation stage."
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client advances an alibi on instructions."
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client disputes consent on instructions. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client disputes consent on instructions."
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client disputes intent on instructions. The matter remains at the trial-preparation stage."
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the trial-preparation stage."
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client disputes intent on instructions."
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified."
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. On instructions, the defence will test whether the prosecution evidence establishes a case to answer. The matter remains at the trial-preparation stage."
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the trial-preparation stage."
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "On instructions, the defence will test whether the prosecution evidence establishes a case to answer."
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. On instructions, there may be an abuse-of-process argument; that remains a potential issue requiring confirmation from the evidence and procedural history. The matter remains listed for a plea and trial preparation hearing."
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains listed for a plea and trial preparation hearing."
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "On instructions, there may be an abuse-of-process argument; that remains a potential issue requiring confirmation from the evidence and procedural history."
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified."
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client denies the allegation. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client denies the allegation."
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client disputes consent on instructions. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client disputes consent on instructions."
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified."
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client denies the allegation. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client denies the allegation."
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified."
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client disputes consent on instructions. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client disputes consent on instructions."
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client denies the allegation. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client denies the allegation."
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified."
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client disputes consent on instructions. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client disputes consent on instructions."
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The client disputes intent on instructions. The matter remains at the trial-preparation stage."
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the trial-preparation stage."
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The client disputes intent on instructions."
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified. The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the police-investigation stage."
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "The papers refer to a possible section 45 issue. The statutory basis and factual foundation are not pinned on the current pack, so no statutory defence is identified."
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "pointer": "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+      "beforePattern": "The recorded charge is: ## Particulars.",
+      "after": "What was found on the instrument was a structural heading or incomplete extract only (“Charge wording not pinned — structural only.”). Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Next action: check the operative charge sheet or amendment record."
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "pointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "beforePattern": "Action: … remains not safely confirmed…",
+      "after": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet or amendment record. On instructions, the defence will test whether the prosecution evidence establishes a case to answer. The matter remains at the trial-preparation stage."
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "beforePattern": "The procedural stage is pet.",
+      "after": "The matter remains at the trial-preparation stage."
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "pointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "beforePattern": "section-45 indicator / no case to answer focus",
+      "after": "On instructions, the defence will test whether the prosecution evidence establishes a case to answer."
+    }
+  ]
+}

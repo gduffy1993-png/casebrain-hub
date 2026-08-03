@@ -1,0 +1,71 @@
+{
+  "caseId": "div3000v213-01-common_assault_battery",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/bundle-fictional-test.pdf",
+  "sha256": "0e3d437d40f801a1177968e3924968c814a74be461968550dcb81bfea4691cdf",
+  "pageCount": 9,
+  "pageMap": [
+    {
+      "pageIdentity": "written_charge/page/1",
+      "pdfPageNumber": 1,
+      "docId": "written_charge",
+      "purpose": "charge_instrument_particulars",
+      "layoutKind": "written_charge"
+    },
+    {
+      "pageIdentity": "written_charge/page/2",
+      "pdfPageNumber": 2,
+      "docId": "written_charge",
+      "purpose": "charge_defendant_allocation",
+      "layoutKind": "written_charge"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 3,
+      "docId": "MG05",
+      "purpose": "mg5_case_summary_narrative",
+      "layoutKind": "mg05"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 4,
+      "docId": "MG05",
+      "purpose": "mg5_evidence_outline",
+      "layoutKind": "mg05"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 5,
+      "docId": "MG06",
+      "purpose": "mg6_file_index",
+      "layoutKind": "mg06"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/1",
+      "pdfPageNumber": 6,
+      "docId": "cctv_clip_schedule",
+      "purpose": "media_clip_schedule_log",
+      "layoutKind": "media_schedule"
+    },
+    {
+      "pageIdentity": "media_metadata/page/1",
+      "pdfPageNumber": 7,
+      "docId": "media_metadata",
+      "purpose": "media_metadata_only",
+      "layoutKind": "metadata_fixture"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 8,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_privileged_extract",
+      "layoutKind": "defence_proof"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/2",
+      "pdfPageNumber": 9,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_issues_and_requests",
+      "layoutKind": "defence_proof"
+    }
+  ]
+}

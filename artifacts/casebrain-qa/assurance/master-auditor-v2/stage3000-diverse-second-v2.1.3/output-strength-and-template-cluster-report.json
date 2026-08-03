@@ -1,0 +1,389 @@
+{
+  "population": 20,
+  "unit": "solicitor_visible_LEAF_strings",
+  "universalSafetyPattern": "/^(solicitor review required\\.?|fictional test material(?:\\s+only)?[^.]*\\.?|do not overstate\\.?|client disclaimer[:.].*|not legal advice\\.?)$/i",
+  "substantiveCoveragePass": true,
+  "substantiveCoveragePct": 100,
+  "familyClusters": [
+    {
+      "family": "labels",
+      "substantiveUniqueTemplates": 0,
+      "substantiveLargestCluster": 0,
+      "universalSafetyUniqueTemplates": 1,
+      "universalSafetyLargestCluster": 152,
+      "topSubstantiveSamples": []
+    },
+    {
+      "family": "empty_array_section",
+      "substantiveUniqueTemplates": 0,
+      "substantiveLargestCluster": 0,
+      "universalSafetyUniqueTemplates": 0,
+      "universalSafetyLargestCluster": 0,
+      "topSubstantiveSamples": []
+    },
+    {
+      "family": "composed_prose",
+      "substantiveUniqueTemplates": 40,
+      "substantiveLargestCluster": 1,
+      "universalSafetyUniqueTemplates": 1,
+      "universalSafetyLargestCluster": 20,
+      "topSubstantiveSamples": [
+        {
+          "hash": "29692033bf21",
+          "count": 1,
+          "sample": "The defence asks the court to record that battery, contrary to common law and section 39 of the Criminal Justice Act 1988 remains not safely confirmed on the cu"
+        },
+        {
+          "hash": "c8097fe6a4ca",
+          "count": 1,
+          "sample": "Regarding common assault battery: Regarding common assault battery: Please provide the complete master media referred to in the disclosure material."
+        },
+        {
+          "hash": "1a31a0aaee44",
+          "count": 1,
+          "sample": "The defence asks the court to record that theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968 remains not safely confirmed on the current"
+        }
+      ]
+    },
+    {
+      "family": "court",
+      "substantiveUniqueTemplates": 20,
+      "substantiveLargestCluster": 1,
+      "universalSafetyUniqueTemplates": 1,
+      "universalSafetyLargestCluster": 20,
+      "topSubstantiveSamples": [
+        {
+          "hash": "29692033bf21",
+          "count": 1,
+          "sample": "The defence asks the court to record that battery, contrary to common law and section 39 of the Criminal Justice Act 1988 remains not safely confirmed on the cu"
+        },
+        {
+          "hash": "1a31a0aaee44",
+          "count": 1,
+          "sample": "The defence asks the court to record that theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968 remains not safely confirmed on the current"
+        },
+        {
+          "hash": "18f273c48e2a",
+          "count": 1,
+          "sample": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Ac"
+        }
+      ]
+    },
+    {
+      "family": "chase",
+      "substantiveUniqueTemplates": 116,
+      "substantiveLargestCluster": 1,
+      "universalSafetyUniqueTemplates": 0,
+      "universalSafetyLargestCluster": 0,
+      "topSubstantiveSamples": [
+        {
+          "hash": "6564cccd4a3c",
+          "count": 1,
+          "sample": "Regarding common assault battery: Please provide the complete master media referred to in the disclosure material."
+        },
+        {
+          "hash": "671cbf10b3ad",
+          "count": 1,
+          "sample": "Regarding common assault battery: Please provide the MG6 index entry that refers to further material."
+        },
+        {
+          "hash": "13a0ca14ae08",
+          "count": 1,
+          "sample": "Regarding common assault battery: Please provide Absent masters."
+        }
+      ]
+    },
+    {
+      "family": "evidence_state_row",
+      "substantiveUniqueTemplates": 16,
+      "substantiveLargestCluster": 60,
+      "universalSafetyUniqueTemplates": 0,
+      "universalSafetyLargestCluster": 0,
+      "topSubstantiveSamples": [
+        {
+          "hash": "e6c082113c50",
+          "count": 60,
+          "sample": "MG5 Case summary (fictional test) · MG05/page/1"
+        },
+        {
+          "hash": "0d3eeb971f95",
+          "count": 32,
+          "sample": "Additional context schedule (fictional test) · extra_context_5/page/1"
+        },
+        {
+          "hash": "27fd9c61b3dc",
+          "count": 30,
+          "sample": "CCTV / BWV clip schedule (fictional test) · cctv_clip_schedule/page/1"
+        }
+      ]
+    },
+    {
+      "family": "export",
+      "substantiveUniqueTemplates": 20,
+      "substantiveLargestCluster": 1,
+      "universalSafetyUniqueTemplates": 1,
+      "universalSafetyLargestCluster": 20,
+      "topSubstantiveSamples": [
+        {
+          "hash": "214247525835",
+          "count": 1,
+          "sample": "On common assault battery copy/export/API/PDF exits: charge status operative; defence factual denial. For this common assault battery pack, referred/absent item"
+        },
+        {
+          "hash": "9427bf0c9a6b",
+          "count": 1,
+          "sample": "On shoplifting theft copy/export/API/PDF exits: charge status operative; defence alibi. For this shoplifting theft pack, no referred-absent masters are declared"
+        },
+        {
+          "hash": "11af214bef81",
+          "count": 1,
+          "sample": "On going equipped copy/export/API/PDF exits: charge status operative; defence consent dispute. For this going equipped pack, no referred-absent masters are decl"
+        }
+      ]
+    },
+    {
+      "family": "safety_banners",
+      "substantiveUniqueTemplates": 9,
+      "substantiveLargestCluster": 15,
+      "universalSafetyUniqueTemplates": 9,
+      "universalSafetyLargestCluster": 20,
+      "topSubstantiveSamples": [
+        {
+          "hash": "b9dbe4ece4bc",
+          "count": 15,
+          "sample": "Do not say BWV shows or confirms events unless the clip is served."
+        },
+        {
+          "hash": "61ba90e04d79",
+          "count": 15,
+          "sample": "Identification remains conditional on served CCTV once disclosed and reviewed."
+        },
+        {
+          "hash": "bd1b73b915be",
+          "count": 15,
+          "sample": "Do not state \"CCTV confirms\" — CCTV is not fully served on papers"
+        }
+      ]
+    },
+    {
+      "family": "charges",
+      "substantiveUniqueTemplates": 60,
+      "substantiveLargestCluster": 1,
+      "universalSafetyUniqueTemplates": 0,
+      "universalSafetyLargestCluster": 0,
+      "topSubstantiveSamples": [
+        {
+          "hash": "c455484889d2",
+          "count": 1,
+          "sample": "For common assault battery: recorded charge position is Battery, contrary to common law and section 39 of the Criminal Justice Act 1988. Instrument state: opera"
+        },
+        {
+          "hash": "f20220405726",
+          "count": 1,
+          "sample": "For common assault battery: source instrument written_charge at written_charge/page/1; status operative."
+        },
+        {
+          "hash": "da35e16972e6",
+          "count": 1,
+          "sample": "For common assault battery: allegation recorded on the instrument is not proof of guilt."
+        }
+      ]
+    },
+    {
+      "family": "key_facts",
+      "substantiveUniqueTemplates": 40,
+      "substantiveLargestCluster": 1,
+      "universalSafetyUniqueTemplates": 0,
+      "universalSafetyLargestCluster": 0,
+      "topSubstantiveSamples": [
+        {
+          "hash": "0eed7cffaa49",
+          "count": 1,
+          "sample": "Matter family common assault battery: defence on instructions is factual denial; procedural stage police investigation; charge status operative."
+        },
+        {
+          "hash": "8efa205ddcf3",
+          "count": 1,
+          "sample": "For this common assault battery pack, referred/absent items remain without page content: Referred master media / full record (missing)."
+        },
+        {
+          "hash": "d088f4c10142",
+          "count": 1,
+          "sample": "Matter family shoplifting theft: defence on instructions is alibi; procedural stage trial prep; charge status operative."
+        }
+      ]
+    },
+    {
+      "family": "five_answers",
+      "substantiveUniqueTemplates": 60,
+      "substantiveLargestCluster": 1,
+      "universalSafetyUniqueTemplates": 0,
+      "universalSafetyLargestCluster": 0,
+      "topSubstantiveSamples": [
+        {
+          "hash": "38abd8fa0187",
+          "count": 1,
+          "sample": "On common assault battery papers, 5 evidence unit(s) with page identity are present; they do not by themselves establish the allegation against the defendant."
+        },
+        {
+          "hash": "aab27180ab14",
+          "count": 1,
+          "sample": "For common assault battery: existence labels on the evidence schedule must not be read as reliability or proof."
+        },
+        {
+          "hash": "bd211d2765ad",
+          "count": 1,
+          "sample": "For common assault battery: provenance for referred-absent items anchors to MG6 page MG06/page/1 without inventing master content."
+        }
+      ]
+    },
+    {
+      "family": "war_room",
+      "substantiveUniqueTemplates": 80,
+      "substantiveLargestCluster": 1,
+      "universalSafetyUniqueTemplates": 0,
+      "universalSafetyLargestCluster": 0,
+      "topSubstantiveSamples": [
+        {
+          "hash": "baec8d2e70f5",
+          "count": 1,
+          "sample": "Case-specific issue for common assault battery: charge status operative; defence factual denial; procedure police investigation."
+        },
+        {
+          "hash": "2777309a0b96",
+          "count": 1,
+          "sample": "Why it matters on common assault battery: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position."
+        },
+        {
+          "hash": "70e2e7357599",
+          "count": 1,
+          "sample": "Safe current position on common assault battery: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters."
+        }
+      ]
+    },
+    {
+      "family": "control_room",
+      "substantiveUniqueTemplates": 80,
+      "substantiveLargestCluster": 1,
+      "universalSafetyUniqueTemplates": 0,
+      "universalSafetyLargestCluster": 0,
+      "topSubstantiveSamples": [
+        {
+          "hash": "c93479d9ddbc",
+          "count": 1,
+          "sample": "Control focus for common assault battery: disclosure and completeness against charge status operative."
+        },
+        {
+          "hash": "da695c8ce66b",
+          "count": 1,
+          "sample": "On common assault battery, missing or partial disclosure changes what may safely be said on copy/export/API exits."
+        },
+        {
+          "hash": "425986d36ddd",
+          "count": 1,
+          "sample": "Safe current position for common assault battery: solicitor review required before send; authenticated browser remains not exercised."
+        }
+      ]
+    },
+    {
+      "family": "copy",
+      "substantiveUniqueTemplates": 40,
+      "substantiveLargestCluster": 4,
+      "universalSafetyUniqueTemplates": 0,
+      "universalSafetyLargestCluster": 0,
+      "topSubstantiveSamples": [
+        {
+          "hash": "214247525835",
+          "count": 4,
+          "sample": "On common assault battery copy/export/API/PDF exits: charge status operative; defence factual denial. For this common assault battery pack, referred/absent item"
+        },
+        {
+          "hash": "9427bf0c9a6b",
+          "count": 4,
+          "sample": "On shoplifting theft copy/export/API/PDF exits: charge status operative; defence alibi. For this shoplifting theft pack, no referred-absent masters are declared"
+        },
+        {
+          "hash": "11af214bef81",
+          "count": 4,
+          "sample": "On going equipped copy/export/API/PDF exits: charge status operative; defence consent dispute. For this going equipped pack, no referred-absent masters are decl"
+        }
+      ]
+    }
+  ],
+  "largestSubstantiveCluster": 4,
+  "outputStrengthOk": true,
+  "exception": null,
+  "beforeAfterVsV211": {
+    "before": {
+      "population": 20,
+      "clusters": [
+        {
+          "surfaceId": "charges",
+          "uniqueTemplates": 3,
+          "largestCluster": 10
+        },
+        {
+          "surfaceId": "key_facts",
+          "uniqueTemplates": 12,
+          "largestCluster": 6
+        },
+        {
+          "surfaceId": "war_room",
+          "uniqueTemplates": 20,
+          "largestCluster": 1
+        },
+        {
+          "surfaceId": "disclosure_chase",
+          "uniqueTemplates": 20,
+          "largestCluster": 1
+        },
+        {
+          "surfaceId": "control_room",
+          "uniqueTemplates": 20,
+          "largestCluster": 1
+        },
+        {
+          "surfaceId": "five_answers",
+          "uniqueTemplates": 10,
+          "largestCluster": 10
+        },
+        {
+          "surfaceId": "composed_prose_court",
+          "uniqueTemplates": 3,
+          "largestCluster": 18
+        },
+        {
+          "surfaceId": "composed_prose_chase",
+          "uniqueTemplates": 2,
+          "largestCluster": 16
+        },
+        {
+          "surfaceId": "export_pack",
+          "uniqueTemplates": 20,
+          "largestCluster": 1
+        },
+        {
+          "surfaceId": "api",
+          "uniqueTemplates": 14,
+          "largestCluster": 5
+        },
+        {
+          "surfaceId": "pdf_exit",
+          "uniqueTemplates": 5,
+          "largestCluster": 13
+        },
+        {
+          "surfaceId": "copy_lines",
+          "uniqueTemplates": 5,
+          "largestCluster": 13
+        }
+      ],
+      "sourceBackedRequirement": "Substantive analysis must change with facts/evidence/charge/procedure; universal warnings may repeat.",
+      "productionClass": "genuine_production_builder"
+    },
+    "afterLargestSubstantiveCluster": 4,
+    "afterFamilyCount": 14
+  },
+  "sourceBackedRequirement": "Substantive LEAF analysis must change with facts/evidence/charge/procedure; universal safety warnings may repeat.",
+  "productionClass": "genuine_production_builder"
+}

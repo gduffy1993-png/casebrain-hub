@@ -1,0 +1,224 @@
+{
+  "caseId": "div3000v21-17-corporate_manslaughter",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "56b133b32b89feb91455211651462049064b2762ef644ec091ddbbca7bfac7a9",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/1\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — written charge structure for corporate manslaughter; wording not pinned.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "4b7d9e11b4cbda58c2d6994c70c64d0b43762e737393a7c885be33eb47612d5d"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/2\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for written_charge.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "e00e3eaf6fd223fe1c2bdefc7b38fa65659afc987ab28a3dc6ddbf042e12287d"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "ebfed31988cf00d1e5ae819c6aef50a577c16941e7c7d5a9791d9a322f68cdd9",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: corporate manslaughter.\nDefence position modelled: consent dispute.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_draft, cctv_clip, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "4f4ffb4435fc98f85b60d9c3391de1408b7a39fc79f4492fe4ecfb65e6d79fcb"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "787d0a2dadae7ad07ad8b5b1b07a24c8112f0d2295922e11cc5bf7dc2d204bb6"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d3fe0786fb1c5fde21e1e9b09348e5e28ded0e143643919894f5a2242fb391c7"
+        },
+        {
+          "pageIndex": 4,
+          "pageIdentity": "MG05/page/4",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/4\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 4 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "2966cf9576a388853a90e8ae277c2c3a7b653074934c2c54702a290cded516c0"
+        },
+        {
+          "pageIndex": 5,
+          "pageIdentity": "MG05/page/5",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/5\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 5 for MG05.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "68769c8144253f61b0507410165ba6d7e42c1b816ff8004961f82d416424d208"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "292e3a08b0ab4770103a539f547b77ffb95e31fbd22443d2255d084e23decd1b",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "36d84fccc7cec86bb2a9aa458b1d3d152e04cfe4673cd3a8a2ea16f62fff1acb"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "3a4efa6228e881f8b63874215ac983c9c9ab4cea8d139c773a00ba45e4376fcc"
+        }
+      ]
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "8b4384beda4dab46bed440c8b0e482db2cf0ab3022c02ef4fdae2dfeccc3ceaf",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/1\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "9160b601a597607c1c5e9c9f4833a60d0c71d041d08bb894770fb8680e291f38"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/2\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for cctv_clip_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d2bbb34e1d35278971667b337c9bd9e35d708f25a3c080299abeb8187a57c04d"
+        }
+      ]
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "9cbce7e1303553aad4b8cb4950268c18f4c2f5c041f61762cdc9a188a653c2de",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/1\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "9ceae30435305cdaa6d92590198f25499611d9dfaebce8db908b1143d282c236"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "media_metadata/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/2\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for media_metadata.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d19c7c3ac47332f0c54dd57c352ba00034c9221851dda0f3687da25f423e2cb5"
+        }
+      ]
+    },
+    {
+      "docId": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "contentHash": "098545c0e8a105640be40bfece6530f3d38323176e0a63a41d7ca6f6657a32ce",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "abe_or_special_measures/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/1\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — ABE / special measures structure. Qualified legal review still required for substantive conclusions.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "401d3c72628998a32b6f00f6fa74643b36e5d348f2a5fbbb67b1109050309c3c"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "abe_or_special_measures/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/2\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for abe_or_special_measures.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "5129bd01a97671c391817acd82d5de3f768bb6111a424ced8c05a7aa28bf7f28"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "abe_or_special_measures/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/3\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for abe_or_special_measures.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "6acb1d080c6e22ed9291f9a29dccf0d6f726fef8625345ba4d01fa03c026eb42"
+        }
+      ]
+    },
+    {
+      "docId": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "contentHash": "9fd90c6ad7df0108e231a546ffc9ac126284ae7cf6172282529cca33b313b373",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "third_party_material_note/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Third-party / counselling material note (fictional test)\nDocument id: third_party_material_note\nKind: third_party\nLifecycle state: referred_only\nPage identity: third_party_material_note/page/1\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — third-party records referred; not served. Privilege/PII boundaries apply.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "143b9e9b72066d464320cbdb1a2c2675cdee9770e6adef41b7f9d9b16157f320"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "third_party_material_note/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Third-party / counselling material note (fictional test)\nDocument id: third_party_material_note\nKind: third_party\nLifecycle state: referred_only\nPage identity: third_party_material_note/page/2\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for third_party_material_note.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "fd5d2e5fffe6366937bec0cdc15edd9f7b6d38d40803989272bb2e59ae5f1492"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "d81f4ffe3a9d25000de601b6697220e7e8e1b3887848350de80ca9776e6ee3da",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: consent_dispute. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "e70ca3135019dedc7bade24ae073e9c1387bf3da0aa462752491b758b6f3b4ea"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "44a0f31e24be23f9eb298dfcf5c715ee02cdc054d4e40a84fb063150a5757259"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "e95cad55ec903e1a9477564e76a66b2f6d47114e3686bdf8b4cafa5bdb4f0632"
+        }
+      ]
+    },
+    {
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": "a1ebcd33993be8f902ad1f91cf94f47214a15368f89582c5018ca17b5b47ed08",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "referred_missing_master/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/1\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — index refers to this item; file absent. Must not treat as served.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "31561d86d7c9e0e41584de14109698e131d1a58c0daee8d7723985ea048425fc"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "referred_missing_master/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/2\nMatter family under review: corporate manslaughter\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for referred_missing_master.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "44164bae0c666c9c7aa8041cd15444b98cfa4b268fde54f140853e47e9b624bb"
+        }
+      ]
+    }
+  ]
+}

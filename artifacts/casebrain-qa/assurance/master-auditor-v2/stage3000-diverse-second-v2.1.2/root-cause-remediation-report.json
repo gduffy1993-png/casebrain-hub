@@ -1,0 +1,29 @@
+{
+  "ownership": [
+    {
+      "defect": "universal_sparse_layout",
+      "owningLayer": "v2.1.1_pdf_render",
+      "remediation": "v2.1.2-document-kind-layouts kind-specific PDF builders + densified charge/indictment"
+    },
+    {
+      "defect": "generic_control_receipt_shortcut",
+      "owningLayer": "v2.1.1_pilot_evaluator_receipts",
+      "remediation": "runNamedControlsForCase with Batch-9 / wording / completeness handlers"
+    },
+    {
+      "defect": "output_strength_clusters",
+      "owningLayer": "v2.1.1_surface_json_blobs",
+      "remediation": "solicitor-visible LEAF strings + universal-safety separation"
+    },
+    {
+      "defect": "atr02_chs03_phrase_probe_only",
+      "owningLayer": "v2.1.2_named_control_runner_structured",
+      "remediation": "exerciseAtr02/exerciseChs03 against attributionGraph / chaseProvenanceLinks with behavioural contracts"
+    },
+    {
+      "defect": "visual_qa_heuristics_only",
+      "owningLayer": "geometry_png_heuristics",
+      "remediation": "AI document-realism visual review kept separate from geometry; densify + remove harness footers"
+    }
+  ]
+}

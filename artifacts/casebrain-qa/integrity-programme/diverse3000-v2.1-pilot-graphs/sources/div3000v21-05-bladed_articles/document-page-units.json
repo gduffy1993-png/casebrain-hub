@@ -1,0 +1,203 @@
+{
+  "caseId": "div3000v21-05-bladed_articles",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "3083b97a8c6ad8d064da5fc82df2de6fdfdd128d930716c4e76f9fd074a183fc",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/1\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — written charge structure for bladed articles; wording not pinned.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "46cd8a1a84f4a7bbc7765ca39ac4e8b03e366d66cdef952a2fdcb1b3e8926817"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/2\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for written_charge.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "8697b57979b1e441abf4ea7cc0e63a26ef5a214da9a5672e82a535a6713f9776"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "49cbb34b1e926f9af798e7c4370431c583dbe95cb45f0c3f71ada8bf46ea9550",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: bladed articles.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_signed, mg11_draft, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "53227c0577eeda2862a8d8bb35f3429ba55c6c225a18149fcb280d8140cdea7c"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "5c9bd4b1beb86fe56b7b99ea34778ca0a8fc44956e073320edc1de5022b7716f"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "2be19117453275bed9b30fa862488550a13176975b74bcbb93ca48e0b4010f7e"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "581ef0908bab5143c06f4b73631da284f73c20caf046a5e701470326b758016e",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "e65e8f8703505169756757aaac5186ed4264a77e14093fd9977edeed53dd8385"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "e3cbe2e524bcb6b70ddfbd78f9e03985cc0d818c93286db551e3a7424b3a14ba"
+        }
+      ]
+    },
+    {
+      "docId": "MG12_exhibits",
+      "title": "MG12 exhibit list (fictional test)",
+      "kind": "mg12",
+      "state": "served",
+      "contentHash": "260b830226860977210be40b659ec629f1523344de4f9522a128a3de1a7f4bfa",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG12_exhibits/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG12 exhibit list (fictional test)\nDocument id: MG12_exhibits\nKind: mg12\nLifecycle state: served\nPage identity: MG12_exhibits/page/1\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nExhibits: drugs bag / device / weapon label as applicable. Continuity must be checked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "87fc20d24806603d0fc683daae3a517b67fe21370efc839901a96515f5a1d54d"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG12_exhibits/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG12 exhibit list (fictional test)\nDocument id: MG12_exhibits\nKind: mg12\nLifecycle state: served\nPage identity: MG12_exhibits/page/2\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG12_exhibits.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "b29660ca95e379d97d82ec288cf55c5bcf5c5b9fed6ab9f3f05172e34c572543"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG12_exhibits/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG12 exhibit list (fictional test)\nDocument id: MG12_exhibits\nKind: mg12\nLifecycle state: served\nPage identity: MG12_exhibits/page/3\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG12_exhibits.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "8757e7965830c011141f3325897b4e8de45acec93bf5afde70ee5a08fab79466"
+        }
+      ]
+    },
+    {
+      "docId": "MG15_interview",
+      "title": "MG15 interview record (fictional test)",
+      "kind": "mg15",
+      "state": "served",
+      "contentHash": "7bf256876f0e6802440ea9ef9189771a02d0173ec487a7f39dac3b02329bbecd",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG15_interview/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG15 interview record (fictional test)\nDocument id: MG15_interview\nKind: mg15\nLifecycle state: served\nPage identity: MG15_interview/page/1\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nInterview. Defence section_45_indicator. Incomplete transcript marker: no.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "9494ab9cf2e1f3b9f04f45c6a9a70d4b7ee1fc2ed858a56c1dc0ae5583a6c896"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG15_interview/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG15 interview record (fictional test)\nDocument id: MG15_interview\nKind: mg15\nLifecycle state: served\nPage identity: MG15_interview/page/2\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG15_interview.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "c11e953d37ede28ecc9ee3b7bbbedeb5b22375447695b3a9eabbafcffa3ea1ba"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG15_interview/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG15 interview record (fictional test)\nDocument id: MG15_interview\nKind: mg15\nLifecycle state: served\nPage identity: MG15_interview/page/3\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG15_interview.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "0dae26d04c93ae72d32b3e563b0be67ff7f311dc27262a50dc543fe6f077d6ad"
+        },
+        {
+          "pageIndex": 4,
+          "pageIdentity": "MG15_interview/page/4",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG15 interview record (fictional test)\nDocument id: MG15_interview\nKind: mg15\nLifecycle state: served\nPage identity: MG15_interview/page/4\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 4 for MG15_interview.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "654ae82b5cc684a6ad86306ab570a37714888902d2a7cf64c1b571f694115b48"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "a678d94c9b27942da6d41ea1f83bdcadea593c902767908cb8cce0b80d6a2f93",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "8df32cbe37768e01130fa9cb3267d78e8207ec6227bb3d201545cec0e74a4201"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "b3364f147fab11b98374b71fe180ab129c4814c0de7764db83b10d819e27dc2c"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "bdc45d7e3264083124c6f1a04cc1f16849e12ac58f84e6c9d61322e3d51e5033"
+        }
+      ]
+    },
+    {
+      "docId": "defence_statement_draft",
+      "title": "Defence statement draft (fictional test)",
+      "kind": "defence_statement",
+      "state": "draft",
+      "contentHash": "dfe3769678c42707f844ae581d0ac3c79391cf8b10fa77c3b5b50b1ac35765aa",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_statement_draft/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence statement draft (fictional test)\nDocument id: defence_statement_draft\nKind: defence_statement\nLifecycle state: draft\nPage identity: defence_statement_draft/page/1\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — draft defence statement structure.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: this document is draft; do not treat as the operative instrument.\nDefendant count modelled: 1.",
+          "textHash": "12506780f60c87d4fdde0179f97f6fe3998f19ea415eeb11bae2db99cd2f096a"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_statement_draft/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence statement draft (fictional test)\nDocument id: defence_statement_draft\nKind: defence_statement\nLifecycle state: draft\nPage identity: defence_statement_draft/page/2\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_statement_draft.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: this document is draft; do not treat as the operative instrument.\nDefendant count modelled: 1.",
+          "textHash": "555e1c7f41b791db68ab5f40320504f34e56b3a74154d70285784c2937084ebc"
+        }
+      ]
+    },
+    {
+      "docId": "extra_context_2",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "2b4aa41b5274fa83433201fe0c8e77e3c0cd94ca9ba38db2454ff6caf0d3bb24",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_2/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_2\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_2/page/1\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — additional coherent schedule for bladed_articles emphasising section_45_indicator and written_charge.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "45ed70f116c02fa223e2da035fab641a23e60d547426ddedda6f6cecc15b5e4d"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "extra_context_2/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_2\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_2/page/2\nMatter family under review: bladed articles\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for extra_context_2.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "8b50b67f74581c327caa2b982513f89d6cc7d57002819459100295f12dd917c1"
+        }
+      ]
+    }
+  ]
+}

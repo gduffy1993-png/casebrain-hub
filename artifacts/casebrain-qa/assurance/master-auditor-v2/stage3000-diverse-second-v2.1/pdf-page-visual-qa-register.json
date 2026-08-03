@@ -1,0 +1,2548 @@
+{
+  "rows": [
+    {
+      "caseId": "div3000v21-01-common_assault_battery",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-02-shoplifting_theft",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_5/page/1",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_5/page/2",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-03-going_equipped",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/5",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_1/page/1",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_1/page/2",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-04-twoc",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_6/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_6/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-05-bladed_articles",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG12_exhibits/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG12_exhibits/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG12_exhibits/page/3",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG15_interview/page/1",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG15_interview/page/2",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG15_interview/page/3",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG15_interview/page/4",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_statement_draft/page/1",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_statement_draft/page/2",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_2/page/1",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_2/page/2",
+          "pdfPageNumber": 21,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-06-affray",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/5",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_7/page/1",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_7/page/2",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-07-sexual_assault",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/1",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/2",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/3",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "third_party_material_note/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "third_party_material_note/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-08-strangulation_suffocation",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG11_complainant_signed/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG11_complainant_signed/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG11_complainant_signed/page/3",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG11_complainant_signed/page/4",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG11_complainant_draft/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG11_complainant_draft/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG11_complainant_draft/page/3",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "order_or_bail/page/1",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "order_or_bail/page/2",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 21,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 22,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 23,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 24,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/3",
+          "pdfPageNumber": 25,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_5/page/1",
+          "pdfPageNumber": 26,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_5/page/2",
+          "pdfPageNumber": 27,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-09-blackmail",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_3/page/1",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_3/page/2",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-10-drugs_conspiracy_supply",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/5",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG12_exhibits/page/1",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG12_exhibits/page/2",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG12_exhibits/page/3",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG15_interview/page/1",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG15_interview/page/2",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG15_interview/page/3",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG15_interview/page/4",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 21,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 22,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 23,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 24,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 25,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_1/page/1",
+          "pdfPageNumber": 26,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_1/page/2",
+          "pdfPageNumber": 27,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-11-social_media_attribution",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "phone_download_schedule/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "phone_download_schedule/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "phone_download_schedule/page/3",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "unused_schedule_mg6c/page/1",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "unused_schedule_mg6c/page/2",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 21,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_8/page/1",
+          "pdfPageNumber": 22,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_8/page/2",
+          "pdfPageNumber": 23,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-12-perverting_course_of_justice",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "scan_layout_note/page/1",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "scan_layout_note/page/2",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/3",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_6/page/1",
+          "pdfPageNumber": 21,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_6/page/2",
+          "pdfPageNumber": 22,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-13-witness_intimidation",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_5/page/1",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_5/page/2",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-14-contempt",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/5",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_4/page/1",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_4/page/2",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-15-prison_offences",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_3/page/1",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_3/page/2",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-16-hearsay_res_gestae",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_2/page/1",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_2/page/2",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-17-corporate_manslaughter",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/5",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/1",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/2",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/3",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "third_party_material_note/page/1",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "third_party_material_note/page/2",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 21,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 22,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 23,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-18-conspiracy_to_defraud",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "phone_download_schedule/page/1",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "phone_download_schedule/page/2",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "phone_download_schedule/page/3",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "unused_schedule_mg6c/page/1",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "unused_schedule_mg6c/page/2",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/1",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/2",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/3",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "third_party_material_note/page/1",
+          "pdfPageNumber": 21,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "third_party_material_note/page/2",
+          "pdfPageNumber": 22,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 23,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 24,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 25,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 26,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 27,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-19-riot",
+      "pages": [
+        {
+          "pageIdentity": "written_charge/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "written_charge/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/3",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "third_party_material_note/page/1",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "third_party_material_note/page/2",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 21,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_2/page/1",
+          "pdfPageNumber": 22,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_2/page/2",
+          "pdfPageNumber": 23,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    },
+    {
+      "caseId": "div3000v21-20-diplomatic_immunity",
+      "pages": [
+        {
+          "pageIdentity": "indictment_operative/page/1",
+          "pdfPageNumber": 1,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "indictment_operative/page/2",
+          "pdfPageNumber": 2,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/1",
+          "pdfPageNumber": 3,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/2",
+          "pdfPageNumber": 4,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/3",
+          "pdfPageNumber": 5,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/4",
+          "pdfPageNumber": 6,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG05/page/5",
+          "pdfPageNumber": 7,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/1",
+          "pdfPageNumber": 8,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "MG06/page/2",
+          "pdfPageNumber": 9,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "pdfPageNumber": 10,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "pdfPageNumber": 11,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/1",
+          "pdfPageNumber": 12,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "media_metadata/page/2",
+          "pdfPageNumber": 13,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/1",
+          "pdfPageNumber": 14,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/2",
+          "pdfPageNumber": 15,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "abe_or_special_measures/page/3",
+          "pdfPageNumber": 16,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "third_party_material_note/page/1",
+          "pdfPageNumber": 17,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "third_party_material_note/page/2",
+          "pdfPageNumber": 18,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/1",
+          "pdfPageNumber": 19,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/2",
+          "pdfPageNumber": 20,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "defence_proof_extract/page/3",
+          "pdfPageNumber": 21,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/1",
+          "pdfPageNumber": 22,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "referred_missing_master/page/2",
+          "pdfPageNumber": 23,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_7/page/1",
+          "pdfPageNumber": 24,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        },
+        {
+          "pageIdentity": "extra_context_7/page/2",
+          "pdfPageNumber": 25,
+          "autoVisualQa": "pass_text_banner_and_identity",
+          "extractionOutcome": "text_embedded_ok"
+        }
+      ],
+      "allAutoPass": true
+    }
+  ]
+}

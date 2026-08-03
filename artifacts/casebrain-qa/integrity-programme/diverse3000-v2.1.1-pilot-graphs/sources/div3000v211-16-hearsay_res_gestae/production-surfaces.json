@@ -1,0 +1,185 @@
+{
+  "caseId": "div3000v211-16-hearsay_res_gestae",
+  "charges": [],
+  "chaseLabels": [
+    "MG6 may refer"
+  ],
+  "evidenceState": {
+    "items": [
+      {
+        "label": "Officer summary limited",
+        "key": "officer summary limited::generic",
+        "modality": "generic",
+        "state": "served",
+        "aliases": [
+          "Officer summary limited"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "Officer summary limited",
+            "state": "served",
+            "sourceDocumentTitle": "MG5 Case summary (fictional test)",
+            "sourceDocumentType": "mg05",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendant": null
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      },
+      {
+        "label": "Limitations Evidence listed is limited to items",
+        "key": "limitations evidence listed is limited to items::generic",
+        "modality": "generic",
+        "state": "served",
+        "aliases": [
+          "Limitations Evidence listed is limited to items"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "Limitations Evidence listed is limited to items",
+            "state": "served",
+            "sourceDocumentTitle": "MG5 Case summary (fictional test)",
+            "sourceDocumentType": "mg05",
+            "sourcePage": "p.2",
+            "compiledPage": "p.2",
+            "pageIdentityKnown": true,
+            "defendant": null
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      },
+      {
+        "label": "MG6 may refer",
+        "key": "mg6 may refer::generic",
+        "modality": "generic",
+        "state": "missing",
+        "aliases": [
+          "MG6 may refer"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "MG6 may refer",
+            "state": "missing",
+            "sourceDocumentTitle": "MG6 File front sheet / index (fictional test)",
+            "sourceDocumentType": "mg06",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendant": null
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      },
+      {
+        "label": "Clip / extract entries",
+        "key": "clip extract entries::clip_or_still",
+        "modality": "clip_or_still",
+        "state": "served",
+        "aliases": [
+          "Clip / extract entries"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "Clip / extract entries",
+            "state": "served",
+            "sourceDocumentTitle": "CCTV / BWV clip schedule (fictional test)",
+            "sourceDocumentType": "media_schedule",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendant": null
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      },
+      {
+        "label": "FICTIONAL TEST MATERIAL Clip",
+        "key": "fictional test material clip::clip_or_still",
+        "modality": "clip_or_still",
+        "state": "served",
+        "aliases": [
+          "FICTIONAL TEST MATERIAL Clip"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "FICTIONAL TEST MATERIAL Clip",
+            "state": "served",
+            "sourceDocumentTitle": "CCTV / BWV clip schedule (fictional test)",
+            "sourceDocumentType": "media_schedule",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendant": null
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      }
+    ],
+    "contradictions": [],
+    "chaseRequests": [
+      {
+        "label": "MG6 may refer",
+        "key": "mg6 may refer::generic",
+        "modality": "generic",
+        "state": "missing",
+        "defendants": [],
+        "reason": "Not served on current disclosure",
+        "unresolved": false
+      }
+    ],
+    "suppressed": []
+  },
+  "attributionSummary": {
+    "defendantCountModelled": 3
+  },
+  "hearingLifecycle": {
+    "latest": null,
+    "superseded": [],
+    "conflict": false,
+    "conflictDescription": null,
+    "basis": "none"
+  },
+  "composedProse": {
+    "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review.",
+    "cpsChase": "Please provide MG6 may refer. Chase wording is provisional pending solicitor review.",
+    "clientDisclaimer": "[CaseBrain — client-safe summary. Evidence state: provisional. Provenance: Additional context schedule (fictional test) (context_schedule) · p.1 (compiled p.1) · state: served · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof. Not for court or CPS use.]",
+    "limitations": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof"
+    ],
+    "allegation": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.\n\nAction: Check the operative charge sheet or amendment record.",
+    "chargeCompleteness": {
+      "sourceChargeText": "",
+      "provenance": "No recorded charge wording on papers.",
+      "instruments": [],
+      "displayedChargeText": "",
+      "completenessStatus": "unresolved",
+      "recoverySource": null,
+      "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+      "requiredAction": "Action: Check the operative charge sheet or amendment record."
+    }
+  },
+  "crossExit": {
+    "ok": true,
+    "contradictions": []
+  },
+  "requiredLimitations": [
+    "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof"
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/bundle-fictional-test.pdf",
+  "pageCount": 14,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-001.png",
+      "pngSha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1881,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.3,
+        "nonWhiteRatio": 0.1249,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-002.png",
+      "pngSha256": "3162ef3e3cecd9adcb21f7cfde7a4871255db682a415249b48a78b193331b8fc",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 2179,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.45,
+        "nonWhiteRatio": 0.1321,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-003.png",
+      "pngSha256": "2bdd9ad8fc0fcb5bb3aff213b2498bbc800c446cd8a4f4df3bcbc42338e87628",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1744,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 244.33,
+        "nonWhiteRatio": 0.0844,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-004.png",
+      "pngSha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1272,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 245.59,
+        "nonWhiteRatio": 0.0757,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-005.png",
+      "pngSha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 711,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.92,
+        "nonWhiteRatio": 0.0542,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-006.png",
+      "pngSha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 588,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.29,
+        "nonWhiteRatio": 0.0498,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-007.png",
+      "pngSha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 421,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.64,
+        "nonWhiteRatio": 0.0479,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-008.png",
+      "pngSha256": "18997fec264c784775a70a34290d4307f4ed407a6dae7fa7891dfffc8b99f208",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 821,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.73,
+        "nonWhiteRatio": 0.0544,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-009.png",
+      "pngSha256": "157c12b449dfba863de7dc011840b64b2d47527198167125e2308eef09bcb277",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 509,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.33,
+        "nonWhiteRatio": 0.0493,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 10,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-010.png",
+      "pngSha256": "82098c06d58fd2e9a34823bf5de6321492c9fd164e4363ad6c4f3d020eceb399",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 602,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.16,
+        "nonWhiteRatio": 0.0509,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 11,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-011.png",
+      "pngSha256": "589e38dfcc769fb3fa9d7a25a4c84429e786b3434412ac6dbc322a2c77fdfa32",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 512,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.37,
+        "nonWhiteRatio": 0.049,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 12,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-012.png",
+      "pngSha256": "6e02c6855906331223d295fef0cd3f46fc179353739d8274a4edb52590ee40aa",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1320,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.7,
+        "nonWhiteRatio": 0.0912,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 13,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-013.png",
+      "pngSha256": "53dd929c11bc6d8ecb505f66dcaae88408ee5f0840de79795532af050e471cf0",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1045,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.47,
+        "nonWhiteRatio": 0.0858,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 14,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-014.png",
+      "pngSha256": "347a36712cbff8c72231d9fa4c71525e4f6207b0d32a0dae54d84c1f7928b1fe",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 836,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.69,
+        "nonWhiteRatio": 0.0548,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "f2b1bc2d9f89f052bf61ea4b695297dd22b10b0240042ea2f04775a95eb7fada",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

@@ -1,0 +1,177 @@
+{
+  "caseId": "div3000v211-13-witness_intimidation",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "0e003ab2668454a07bd757c06a1e14a5f70a715a9cd36e196f357812ee0735ba",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "purpose": "charge_instrument_particulars",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\npageIdentity=written_charge/page/1\n## Written charge / requisition\n## Particulars\nMatter family: witness intimidation\nDefendant count modelled: 2\nCharge: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nProvision note: unpinned:witness_intimidation\nThis instrument is modelled as the operative charging document for fictional-test purposes only.\nProcedural stage: police investigation.\nDo not treat this summary as proof of the allegation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-13-witness_intimidation\nDocument id | written_charge\nKind | written_charge\nLifecycle state | operative\nPage purpose | charge_instrument_particulars\nFamily | witness intimidation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for witness intimidation must respect served vs absent papers.\nPrecise next action: verify written_charge/page/1 against MG06 before any external send.\nSource/page pointer: written_charge/page/1",
+          "textHash": "d546741ac4d22a5eb0627b08dbeeb4080bb5890587efe2def4d9fd7c7edd507f",
+          "headings": [
+            "Written charge / requisition",
+            "Particulars"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "purpose": "charge_defendant_allocation",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\npageIdentity=written_charge/page/2\n## Defendant allocation\nCounts allocated across 2 modelled defendants.\nAttribution of each count must remain defendant-specific.\nNo cross-defendant bleed is authorised by this fictional instrument.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-13-witness_intimidation\nDocument id | written_charge\nKind | written_charge\nLifecycle state | operative\nPage purpose | charge_defendant_allocation\nFamily | witness intimidation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for witness intimidation must respect served vs absent papers.\nPrecise next action: verify written_charge/page/2 against MG06 before any external send.\nSource/page pointer: written_charge/page/2",
+          "textHash": "e819aa5fa83362c446cba2e15a4fc3d6276b31255f2bb08a9302d4bafd2036c4",
+          "headings": [
+            "Defendant allocation"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "7e75ea04494c5a7c8f9a1de09e8d4a8284fc180cf0a8527bbb4491816f93aa31",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/1\n## MG5 Case summary\n## Narrative\nFamily under review: witness intimidation\nDefence position on instructions: section 45 indicator\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: witness intimidation.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 3: mg11_draft, cctv_clip, cctv_master_referred.\nWitness outline: complainant account recorded as allegation only — not proved.\nOfficer summary limited to disclosed papers in this pack.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-13-witness_intimidation\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_case_summary_narrative\nFamily | witness intimidation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for witness intimidation must respect served vs absent papers.\nPrecise next action: verify MG05/page/1 against MG06 before any external send.\nSource/page pointer: MG05/page/1",
+          "textHash": "100cd5cbdec527fba71b21b2839333cb8e2a057a174233bbedac414b6f247412",
+          "headings": [
+            "MG5 Case summary",
+            "Narrative"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/2\n## Evidence outline\n## Limitations\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): referred_missing_master.\nReliability: MG5 narrative must not be read as establishing guilt.\nNext action: reconcile MG5 against MG6 index for div3000v211-13-witness_intimidation before any court-facing send.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-13-witness_intimidation\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_evidence_outline\nFamily | witness intimidation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for witness intimidation must respect served vs absent papers.\nPrecise next action: verify MG05/page/2 against MG06 before any external send.\nSource/page pointer: MG05/page/2",
+          "textHash": "aeffb01dd4792b708e1daf42994a6de3da2ed1adb59e06300ecde39cb2482a16",
+          "headings": [
+            "Evidence outline",
+            "Limitations"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "3dd438449ca4132c4ed9a18ee6801046ecf9dbd2619e45a04c0b056e84282fd7",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\npageIdentity=MG06/page/1\n## MG6 File front sheet / index\n## Inventory\nIndex of papers for this fictional matter:\n- written charge / requisition — see written_charge\n- MG5 case summary — served\n- disclosure / unused schedule — see schedules\n- referred_missing_master — REFERRED ABSENT — not served; do not quote content\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nCaseBrain must not quote or summarise nonexistent content for referred-absent items.\nChase binding: disclosure chase must request referred_missing_master by identity, pointing to this MG6 page.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-13-witness_intimidation\nDocument id | MG06\nKind | mg06\nLifecycle state | served\nPage purpose | mg6_file_index\nFamily | witness intimidation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for witness intimidation must respect served vs absent papers.\nPrecise next action: verify MG06/page/1 against MG06 before any external send.\nSource/page pointer: MG06/page/1",
+          "textHash": "3dd438449ca4132c4ed9a18ee6801046ecf9dbd2619e45a04c0b056e84282fd7",
+          "headings": [
+            "MG6 File front sheet / index",
+            "Inventory"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "0d79e114eb97b6ded176f8426b58b11dd301012f3ae8c968a4da72f8b94ba8b7",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_or_digital_schedule",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\npageIdentity=cctv_clip_schedule/page/1\n## Media / digital schedule\nSchedule for witness intimidation matter.\nClip / extract entries served where marked; masters may be referred-only.\nFICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nAbsent masters referred via MG6: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-13-witness_intimidation\nDocument id | cctv_clip_schedule\nKind | media_schedule\nLifecycle state | partial\nPage purpose | media_or_digital_schedule\nFamily | witness intimidation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: partial\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for witness intimidation must respect served vs absent papers.\nPrecise next action: verify cctv_clip_schedule/page/1 against MG06 before any external send.\nSource/page pointer: cctv_clip_schedule/page/1",
+          "textHash": "0d79e114eb97b6ded176f8426b58b11dd301012f3ae8c968a4da72f8b94ba8b7",
+          "headings": [
+            "Media / digital schedule"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "7161a24af8abc691285fa16072debbd06aa1e90bd6aff0fb725f6b4fac747467",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "metadata_only_fixture",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\npageIdentity=media_metadata/page/1\n## Media metadata\nNative video/audio bytes: not_exercised.\nMetadata fields only — hash/path placeholders for fictional test.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nCannot summarise native content that was never supplied.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-13-witness_intimidation\nDocument id | media_metadata\nKind | metadata_fixture\nLifecycle state | metadata_only\nPage purpose | metadata_only_fixture\nFamily | witness intimidation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: metadata_only\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for witness intimidation must respect served vs absent papers.\nPrecise next action: verify media_metadata/page/1 against MG06 before any external send.\nSource/page pointer: media_metadata/page/1",
+          "textHash": "7161a24af8abc691285fa16072debbd06aa1e90bd6aff0fb725f6b4fac747467",
+          "headings": [
+            "Media metadata"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "b1be2956a7e73b00b61d8834378ecda82f38593e3f30ad0f708d997c9d29d59d",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\npageIdentity=defence_proof_extract/page/1\n## Defence proof of evidence extract\n## PRIVILEGED\nPosition on instructions: section 45 indicator\nThis extract is privilege-separated. Not for ordinary copy/export/API send.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-13-witness_intimidation\nDocument id | defence_proof_extract\nKind | defence_proof\nLifecycle state | privileged\nPage purpose | defence_privileged_extract\nFamily | witness intimidation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: privileged\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for witness intimidation must respect served vs absent papers.\nPrecise next action: verify defence_proof_extract/page/1 against MG06 before any external send.\nSource/page pointer: defence_proof_extract/page/1",
+          "textHash": "b1be2956a7e73b00b61d8834378ecda82f38593e3f30ad0f708d997c9d29d59d",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ]
+        }
+      ],
+      "privilegeSeparated": true,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "extra_context_5",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "31533c57e2801caf1d84fae31a9ebc63696a480e873ae11371352c21f6f1b171",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_5/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\npageIdentity=extra_context_5/page/1\n## Additional context schedule (fictional test)\nKind: context_schedule\nLifecycle state: served\nFamily: witness intimidation\nStage: police investigation\nFICTIONAL TEST MATERIAL — additional coherent schedule for witness_intimidation emphasising section_45_indicator and written_charge.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-13-witness_intimidation\nDocument id | extra_context_5\nKind | context_schedule\nLifecycle state | served\nPage purpose | document_specific_body\nFamily | witness intimidation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for witness intimidation must respect served vs absent papers.\nPrecise next action: verify extra_context_5/page/1 against MG06 before any external send.\nSource/page pointer: extra_context_5/page/1",
+          "textHash": "31533c57e2801caf1d84fae31a9ebc63696a480e873ae11371352c21f6f1b171",
+          "headings": [
+            "Additional context schedule (fictional test)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "caseId": "div3000v211-08-strangulation_suffocation",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "4515090959a128091b362cda145ebbc2abc1c9a6392b05545eba66e8ce22de6b",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\npageIdentity=indictment_operative/page/1\n## Indictment (fictional test — not operative)\nKind: indictment\nLifecycle state: operative\nFamily: strangulation suffocation\nStage: police investigation\nFICTIONAL TEST MATERIAL\nIndictment placeholder for strangulation suffocation — charge wording not pinned; structural only.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | indictment_operative\nKind | indictment\nLifecycle state | operative\nPage purpose | document_specific_body\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify indictment_operative/page/1 against MG06 before any external send.\nSource/page pointer: indictment_operative/page/1",
+          "textHash": "4515090959a128091b362cda145ebbc2abc1c9a6392b05545eba66e8ce22de6b",
+          "headings": [
+            "Indictment (fictional test — not operative)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "5b8fd6147ab760560c9d68ba8ff4e6a97bb2aa4238a898724744e9f026ddf806",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/1\n## MG5 Case summary\n## Narrative\nFamily under review: strangulation suffocation\nDefence position on instructions: section 45 indicator\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: strangulation suffocation.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 4: mg11_draft, cctv_clip, cctv_master_referred.\nWitness outline: complainant account recorded as allegation only — not proved.\nOfficer summary limited to disclosed papers in this pack.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_case_summary_narrative\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify MG05/page/1 against MG06 before any external send.\nSource/page pointer: MG05/page/1",
+          "textHash": "b5a6011bed0887842d5b1c495b82c1d13c1f5fa435eee636f6335a6fbcec0099",
+          "headings": [
+            "MG5 Case summary",
+            "Narrative"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/2\n## Evidence outline\n## Limitations\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): referred_missing_master.\nReliability: MG5 narrative must not be read as establishing guilt.\nNext action: reconcile MG5 against MG6 index for div3000v211-08-strangulation_suffocation before any court-facing send.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_evidence_outline\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify MG05/page/2 against MG06 before any external send.\nSource/page pointer: MG05/page/2",
+          "textHash": "b32d15136fa71735228154359174aeef93e3fdc0d675f8f1829a2dbae64bca83",
+          "headings": [
+            "Evidence outline",
+            "Limitations"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "74d3c2410077f332f966d721606ff45974210f60da859cd5ef93e4e361974294",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\npageIdentity=MG06/page/1\n## MG6 File front sheet / index\n## Inventory\nIndex of papers for this fictional matter:\n- written charge / requisition — see written_charge\n- MG5 case summary — served\n- disclosure / unused schedule — see schedules\n- referred_missing_master — REFERRED ABSENT — not served; do not quote content\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nCaseBrain must not quote or summarise nonexistent content for referred-absent items.\nChase binding: disclosure chase must request referred_missing_master by identity, pointing to this MG6 page.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | MG06\nKind | mg06\nLifecycle state | served\nPage purpose | mg6_file_index\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify MG06/page/1 against MG06 before any external send.\nSource/page pointer: MG06/page/1",
+          "textHash": "74d3c2410077f332f966d721606ff45974210f60da859cd5ef93e4e361974294",
+          "headings": [
+            "MG6 File front sheet / index",
+            "Inventory"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG11_complainant_signed",
+      "title": "MG11 complainant statement — signed (fictional test)",
+      "kind": "mg11",
+      "state": "signed",
+      "contentHash": "6f465c571a8de4e8d22f2849bd4e454b1a9faa0bab8c4d6dd46c9d83a83a3d14",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG11_complainant_signed/page/1",
+          "purpose": "witness_or_defendant_statement",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG11 complainant statement — signed (fictional test)\npageIdentity=MG11_complainant_signed/page/1\n## Statement\nStatement material for strangulation suffocation.\nAccount recorded as allegation/denial material — not proved fact.\nFICTIONAL TEST MATERIAL\nSigned first account. Defence position section_45_indicator. Do not treat as proved fact.\nDefence position context: section 45 indicator.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | MG11_complainant_signed\nKind | mg11\nLifecycle state | signed\nPage purpose | witness_or_defendant_statement\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: signed\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify MG11_complainant_signed/page/1 against MG06 before any external send.\nSource/page pointer: MG11_complainant_signed/page/1",
+          "textHash": "6f465c571a8de4e8d22f2849bd4e454b1a9faa0bab8c4d6dd46c9d83a83a3d14",
+          "headings": [
+            "Statement"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG11_complainant_draft",
+      "title": "MG11 complainant statement — earlier draft (fictional test)",
+      "kind": "mg11_draft",
+      "state": "draft_superseded",
+      "contentHash": "1ee43c017e96c329ef8eeee452f9b77935a8af1acbfc803734c2c563974db075",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG11_complainant_draft/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG11 complainant statement — earlier draft (fictional test)\npageIdentity=MG11_complainant_draft/page/1\n## MG11 complainant statement — earlier draft (fictional test)\nKind: mg11_draft\nLifecycle state: draft_superseded\nFamily: strangulation suffocation\nStage: police investigation\nFICTIONAL TEST MATERIAL — draft differs from signed version on timing of first disclosure.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | MG11_complainant_draft\nKind | mg11_draft\nLifecycle state | draft_superseded\nPage purpose | document_specific_body\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: draft_superseded\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify MG11_complainant_draft/page/1 against MG06 before any external send.\nSource/page pointer: MG11_complainant_draft/page/1",
+          "textHash": "10543e1d11267a36447f91f15cf38be7102487ed195d0b36b00f19f1bcc0ecfa",
+          "headings": [
+            "MG11 complainant statement — earlier draft (fictional test)"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG11_complainant_draft/page/2",
+          "purpose": "lifecycle_history_not_operative",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG11 complainant statement — earlier draft (fictional test)\npageIdentity=MG11_complainant_draft/page/2\n## Lifecycle history\nThis document is draft_superseded.\nDo not treat as the operative instrument.\nOperative precedence must prefer signed/served/operative counterparts.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | MG11_complainant_draft\nKind | mg11_draft\nLifecycle state | draft_superseded\nPage purpose | lifecycle_history_not_operative\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: draft_superseded\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify MG11_complainant_draft/page/2 against MG06 before any external send.\nSource/page pointer: MG11_complainant_draft/page/2",
+          "textHash": "b13c88f37b504aab7f7ef248449d7dccfcb558eed061a55b81e3657d3a86b14e",
+          "headings": [
+            "Lifecycle history"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "order_or_bail",
+      "title": "Protective order / bail conditions extract (fictional test)",
+      "kind": "order",
+      "state": "served",
+      "contentHash": "046b76e79c9ef832fd9effb037969e3bb0f4baaf95d8d8c270b69e2f17aeaae3",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "order_or_bail/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Protective order / bail conditions extract (fictional test)\npageIdentity=order_or_bail/page/1\n## Protective order / bail conditions extract (fictional test)\nKind: order\nLifecycle state: served\nFamily: strangulation suffocation\nStage: police investigation\nFICTIONAL TEST MATERIAL — conditions alleged; breach must be proved separately.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | order_or_bail\nKind | order\nLifecycle state | served\nPage purpose | document_specific_body\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify order_or_bail/page/1 against MG06 before any external send.\nSource/page pointer: order_or_bail/page/1",
+          "textHash": "046b76e79c9ef832fd9effb037969e3bb0f4baaf95d8d8c270b69e2f17aeaae3",
+          "headings": [
+            "Protective order / bail conditions extract (fictional test)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "4bfb54c8b3abd10dbfb41e341db6aceecf802db31b327256ccc2b058338e990b",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_or_digital_schedule",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\npageIdentity=cctv_clip_schedule/page/1\n## Media / digital schedule\nSchedule for strangulation suffocation matter.\nClip / extract entries served where marked; masters may be referred-only.\nFICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nAbsent masters referred via MG6: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | cctv_clip_schedule\nKind | media_schedule\nLifecycle state | partial\nPage purpose | media_or_digital_schedule\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: partial\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify cctv_clip_schedule/page/1 against MG06 before any external send.\nSource/page pointer: cctv_clip_schedule/page/1",
+          "textHash": "4bfb54c8b3abd10dbfb41e341db6aceecf802db31b327256ccc2b058338e990b",
+          "headings": [
+            "Media / digital schedule"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "40ffb2bd73ff94e471ee01cf28deb883d0adfbccecfa6e4e44d7363c8f659912",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "metadata_only_fixture",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\npageIdentity=media_metadata/page/1\n## Media metadata\nNative video/audio bytes: not_exercised.\nMetadata fields only — hash/path placeholders for fictional test.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nCannot summarise native content that was never supplied.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | media_metadata\nKind | metadata_fixture\nLifecycle state | metadata_only\nPage purpose | metadata_only_fixture\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: metadata_only\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify media_metadata/page/1 against MG06 before any external send.\nSource/page pointer: media_metadata/page/1",
+          "textHash": "40ffb2bd73ff94e471ee01cf28deb883d0adfbccecfa6e4e44d7363c8f659912",
+          "headings": [
+            "Media metadata"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "741e6a0390f67c85d7ddbc8f25e96056bfb9a1112f19cbc82c36912c945d2c40",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\npageIdentity=defence_proof_extract/page/1\n## Defence proof of evidence extract\n## PRIVILEGED\nPosition on instructions: section 45 indicator\nThis extract is privilege-separated. Not for ordinary copy/export/API send.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | defence_proof_extract\nKind | defence_proof\nLifecycle state | privileged\nPage purpose | defence_privileged_extract\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: privileged\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify defence_proof_extract/page/1 against MG06 before any external send.\nSource/page pointer: defence_proof_extract/page/1",
+          "textHash": "741e6a0390f67c85d7ddbc8f25e96056bfb9a1112f19cbc82c36912c945d2c40",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ]
+        }
+      ],
+      "privilegeSeparated": true,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "extra_context_5",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "4e161591cb994949f506a104e3947ed4042dcc0b58286918b9d4bfe716452795",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_5/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\npageIdentity=extra_context_5/page/1\n## Additional context schedule (fictional test)\nKind: context_schedule\nLifecycle state: served\nFamily: strangulation suffocation\nStage: police investigation\nFICTIONAL TEST MATERIAL — additional coherent schedule for strangulation_suffocation emphasising section_45_indicator and indictment.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-08-strangulation_suffocation\nDocument id | extra_context_5\nKind | context_schedule\nLifecycle state | served\nPage purpose | document_specific_body\nFamily | strangulation suffocation\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for strangulation suffocation must respect served vs absent papers.\nPrecise next action: verify extra_context_5/page/1 against MG06 before any external send.\nSource/page pointer: extra_context_5/page/1",
+          "textHash": "4e161591cb994949f506a104e3947ed4042dcc0b58286918b9d4bfe716452795",
+          "headings": [
+            "Additional context schedule (fictional test)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+TAP version 13
+# Subtest: v2.1.3 focused control contracts
+    # Subtest: MAA2-BND-02-INSTRUMENT-STATUS: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 1 - MAA2-BND-02-INSTRUMENT-STATUS: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 15.9748
+      ...
+    # Subtest: MAA2-BND-04-VERSION-PRECEDENCE: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 2 - MAA2-BND-04-VERSION-PRECEDENCE: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 3.573
+      ...
+    # Subtest: MAA2-BND-05-MISSING-ATTACHMENTS: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 3 - MAA2-BND-05-MISSING-ATTACHMENTS: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 5.8961
+      ...
+    # Subtest: MAA2-CHG-01-RECORDED-SOURCE-VISIBLE: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 4 - MAA2-CHG-01-RECORDED-SOURCE-VISIBLE: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 3.9224
+      ...
+    # Subtest: MAA2-CHG-05-OPERATIVE-INSTRUMENT: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 5 - MAA2-CHG-05-OPERATIVE-INSTRUMENT: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 5.0522
+      ...
+    # Subtest: MAA2-ATR-01-DEFENDANT-SEPARATION: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 6 - MAA2-ATR-01-DEFENDANT-SEPARATION: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 3.3962
+      ...
+    # Subtest: MAA2-ATR-02-DOCUMENT-OWNERSHIP: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 7 - MAA2-ATR-02-DOCUMENT-OWNERSHIP: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 1.0086
+      ...
+    # Subtest: MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 8 - MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 3.5688
+      ...
+    # Subtest: MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 9 - MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 4.6032
+      ...
+    # Subtest: MAA2-CHS-02-SPECIFIC-ITEM-REQUEST: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 10 - MAA2-CHS-02-SPECIFIC-ITEM-REQUEST: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 3.3732
+      ...
+    # Subtest: MAA2-CHS-03-PROVENANCE-LINK: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 11 - MAA2-CHS-03-PROVENANCE-LINK: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 1.2006
+      ...
+    # Subtest: MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 12 - MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 3.0025
+      ...
+    # Subtest: MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 13 - MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 3.0524
+      ...
+    # Subtest: MAA-COMPLETENESS: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 14 - MAA-COMPLETENESS: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 4.8979
+      ...
+    # Subtest: MAA2-WRD-15-NO-ABSOLUTE-PROOF: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+    ok 15 - MAA2-WRD-15-NO-ABSOLUTE-PROOF: genuine behavioural alteration (positive||negative; no honest-skip PASS)
+      ---
+      duration_ms: 1.9291
+      ...
+    # Subtest: reports 14 evaluated / 1 not_exercised accounting expectation for CHR-05
+    ok 16 - reports 14 evaluated / 1 not_exercised accounting expectation for CHR-05
+      ---
+      duration_ms: 2.1376
+      ...
+    1..16
+ok 1 - v2.1.3 focused control contracts
+  ---
+  duration_ms: 68.932
+  type: 'suite'
+  ...
+1..1
+# tests 16
+# suites 1
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 775.9824

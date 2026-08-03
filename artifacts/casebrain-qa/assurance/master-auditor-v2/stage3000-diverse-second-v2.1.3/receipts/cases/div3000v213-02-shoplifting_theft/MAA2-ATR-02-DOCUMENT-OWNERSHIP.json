@@ -1,0 +1,52 @@
+{
+  "caseId": "div3000v213-02-shoplifting_theft",
+  "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+  "handlerModule": "scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts",
+  "handlerFunction": "exerciseAtr02",
+  "handlerId": "document_ownership_structured",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "structured_named_evaluator_v2.1.2",
+  "exerciseStatus": "evaluated",
+  "applicable": true,
+  "applicableUnitCount": 4,
+  "missingPrerequisiteReason": null,
+  "inputFieldRefs": [
+    "/attributionGraph/0",
+    "/attributionGraph/1",
+    "/attributionGraph/2",
+    "/attributionGraph/3"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "6b3cc3e78366d576072d3b1729e6035614064923cf7bb34643d15613ac17e710",
+    "findingsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [],
+  "findings": [],
+  "contracts": {
+    "positive": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-ATR-02-DOCUMENT-OWNERSHIP-positive",
+    "negative": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-ATR-02-DOCUMENT-OWNERSHIP-negative",
+    "unavailable": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-ATR-02-DOCUMENT-OWNERSHIP-unavailable",
+    "mutation": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-ATR-02-DOCUMENT-OWNERSHIP-mutation"
+  },
+  "receiptNote": "ATR-02 evaluated on attributionGraph rows=4; findings=0."
+}

@@ -1,0 +1,35 @@
+{
+  "gatePass": true,
+  "status": "PILOT_GATE_PASS",
+  "checks": {
+    "pdfOk": true,
+    "pngOk": true,
+    "visualStrictOk": true,
+    "missingOk": true,
+    "noInventedMissingPages": true,
+    "productionOk": true,
+    "coreOk": true,
+    "coreEvaluatedCount": 15,
+    "coreTargetCount": 15,
+    "candidateFreezeBeforeTruth": true
+  },
+  "evaluatedCoreControls": [
+    "MAA2-BND-02-INSTRUMENT-STATUS",
+    "MAA2-BND-04-VERSION-PRECEDENCE",
+    "MAA2-BND-05-MISSING-ATTACHMENTS",
+    "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+    "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+    "MAA2-ATR-01-DEFENDANT-SEPARATION",
+    "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+    "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+    "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+    "MAA2-CHS-03-PROVENANCE-LINK",
+    "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+    "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+    "MAA-COMPLETENESS",
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF"
+  ],
+  "candidateCount": 0,
+  "note": "PASS requires source absence honesty, PNG visual QA, genuine production bridge, and all core named controls receipt-backed."
+}

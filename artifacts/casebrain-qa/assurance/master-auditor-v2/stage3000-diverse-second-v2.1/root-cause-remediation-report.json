@@ -1,0 +1,21 @@
+{
+  "ownership": [
+    {
+      "cluster": "do_not_overstate_identical_3000",
+      "owningLayer": "v2_packet_compose",
+      "remediation": "V2.1 case-specific do-not clauses from missing/superseded/chargeStatus + page pointer"
+    },
+    {
+      "cluster": "chase_export_1825",
+      "owningLayer": "v2_packet_compose",
+      "remediation": "V2.1 chase/export vary by actual missingMaterialGraph and operative instruments"
+    },
+    {
+      "cluster": "interface_preview_2249",
+      "owningLayer": "v2_packet_compose",
+      "remediation": "V2.1 preview includes family/procedure/defence/chargeStatus/limits from source"
+    }
+  ],
+  "caseIdPatches": false,
+  "truthUsedAtGeneration": false
+}

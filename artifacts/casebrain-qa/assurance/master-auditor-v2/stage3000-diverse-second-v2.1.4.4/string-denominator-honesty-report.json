@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "diverse3000-v2.1.4.4-denominator@1.0.0",
+  "buckets": {
+    "ordinaryNonEmpty": 700,
+    "protectedAudit": 574,
+    "unavailableNotExercised": 392,
+    "emptyOptional": 0,
+    "machineMetadata": 0
+  },
+  "professionalVisibleDenominator": 700,
+  "emptyOrNotExercisedCountedAsProfessionalPass": 0,
+  "pass": true
+}

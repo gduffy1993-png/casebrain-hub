@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "diverse3000-v1-to-v2-lineage@1.0.0",
+  "v1MembershipSha256": "273e5f5f3145a8c01be81f8f721dcf7f8e20ea0208b312997f75199276cd69fb",
+  "v2MembershipSha256": "be4f3bec455c220267aaf3dc265292aa20c1cd763c5d7c5fe5d2df2cb88a25c9",
+  "count": 3000,
+  "ledger": "ledgers/v2-lineage.jsonl"
+}

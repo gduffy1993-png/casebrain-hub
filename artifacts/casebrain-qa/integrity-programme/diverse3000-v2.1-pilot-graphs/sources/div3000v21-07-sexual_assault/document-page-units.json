@@ -1,0 +1,155 @@
+{
+  "caseId": "div3000v21-07-sexual_assault",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "82c3e3501c5695f63f1591b1535593a58e37e6fb99cf3a4bb8d65f6ce6ef1f41",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/1\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndictment placeholder for sexual assault — charge wording not pinned; structural only.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "c814e30e758bdac8ae7bd98356856b79a978dfbaa862a149ad59a4e9748cf39d"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/2\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for indictment_operative.\nIndex cross-reference: the following items are not confirmed as served — abe_or_special_measures, third_party_material_note.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "0da20b6497c01dde6dcfafd854e3668a81ecbeccd34895d62149722c3db9d8d0"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "d98f6edea0be52946b6b8cb4c5fafd6f56c4f98327520b68a93643d739bb874b",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: sexual assault.\nDefence position modelled: abuse of process argument.\nProcedural stage: pet.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_signed, mg11_draft, cctv_clip.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "047d1c1cef734bbdfe87121876b0c85741547397926d37f545cbb3148bfbfbdc"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "24c6b9d3c5276381ba7731e05ff8854a5293a917779c8317084070d89641cbcf"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "78dd87b2cbaeadd96ea66923fb0f9d711638b8b6b1ff39c0e70b19403936fdf9"
+        },
+        {
+          "pageIndex": 4,
+          "pageIdentity": "MG05/page/4",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/4\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 4 for MG05.\nIndex cross-reference: the following items are not confirmed as served — abe_or_special_measures, third_party_material_note.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "1611e242f5cbdce03237d6063d398a752447a4625b9bd760e0062188cf7ab9d2"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "6ea2679cac29daf63cf12a8fbefc4f15cc0a3f9fb1a0663c129c45af0e1c338e",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "677818c2b2e64a9430ea18f6731cd795879dd83fdbdc548ab4385aaf709fe68e"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: the following items are not confirmed as served — abe_or_special_measures, third_party_material_note.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "e48a3cb631e78a2cc9f93ac7a184f6626a78ba804c194cb4a04efca5891577d4"
+        }
+      ]
+    },
+    {
+      "docId": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "contentHash": "cf9b226d001b9975dba61bbb98cd0f8f92cee6f7d4d7aa251a4c46f287335035",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "abe_or_special_measures/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/1\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — ABE / special measures structure. Qualified legal review still required for substantive conclusions.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "20a5202eeea6a85212d170a55d1c7b35fd0f14b30009d2794d499a4ac82e573e"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "abe_or_special_measures/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/2\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for abe_or_special_measures.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "8daf91271a70b74f10adff5a98e78e705e6e80e1b1eef4444f6446136fcf12dd"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "abe_or_special_measures/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/3\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for abe_or_special_measures.\nIndex cross-reference: the following items are not confirmed as served — abe_or_special_measures, third_party_material_note.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "d9fb01e69ff7b035d11f0a97a28fafe6c89d477a2908f5462807f4568621c3fa"
+        }
+      ]
+    },
+    {
+      "docId": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "contentHash": "13a7a14121c1e60eff65e7918d90ffc9c9f4a92c2cb608e580982152926454e9",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "third_party_material_note/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Third-party / counselling material note (fictional test)\nDocument id: third_party_material_note\nKind: third_party\nLifecycle state: referred_only\nPage identity: third_party_material_note/page/1\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — third-party records referred; not served. Privilege/PII boundaries apply.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "5728e6c71296c32ce7bb514f5ac9e4461d41f00144f00b5d208d7963687e8eba"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "third_party_material_note/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Third-party / counselling material note (fictional test)\nDocument id: third_party_material_note\nKind: third_party\nLifecycle state: referred_only\nPage identity: third_party_material_note/page/2\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for third_party_material_note.\nIndex cross-reference: the following items are not confirmed as served — abe_or_special_measures, third_party_material_note.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "0bf2c0ad4549d2ad7092ad4ec3c54c9238c8020b3d190d9574911610d7d3feeb"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "2a93a4cdf2ad924fee94350b397f0724e0dc0e83dd6a50fc8408fb854bd9315e",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: abuse_of_process_argument. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "dc836a61ef5caf4e8b1a137c3e6221a7bdf1c2f782c378164a24835e9d5afdc9"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "319ad0ceb0dd0b334d908339007f10621547b98d48e1f7aa530de5a3922d9d44"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: sexual assault\nProcedural stage: pet\nDefence position on instructions: abuse of process argument\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: the following items are not confirmed as served — abe_or_special_measures, third_party_material_note.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "60547a20afe230dae1e15276e7c40d41e85941c01776c02f9c1a50915388746f"
+        }
+      ]
+    }
+  ]
+}

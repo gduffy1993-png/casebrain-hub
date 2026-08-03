@@ -1,0 +1,426 @@
+{
+  "caseId": "div3000v213-03-going_equipped",
+  "generatedAt": "2026-08-03T01:07:16.855Z",
+  "source": "v2.1.2-structured-maa-output",
+  "chargeInstruments": [
+    {
+      "instrumentId": "inst-written_charge",
+      "instrumentType": "written_charge",
+      "exactWording": "## Particulars",
+      "count": 1,
+      "defendantAllocation": "defendant_0",
+      "sourceDocument": "written_charge",
+      "sourcePage": "1",
+      "sourcePageIdentity": "written_charge/page/1",
+      "pageIdentityKnown": true,
+      "status": "operative",
+      "version": "1",
+      "replacesInstrumentId": null,
+      "supersededByInstrumentId": null
+    }
+  ],
+  "evidenceStates": [
+    {
+      "source": "written_charge",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "1",
+      "sourcePageIdentity": "written_charge/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Written charge / requisition (fictional test) · written_charge/page/1",
+      "label": "written_charge::written_charge/page/1"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG05/page/1",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/1",
+      "label": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "sourcePageIdentity": "MG05/page/2",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/2",
+      "label": "MG05::MG05/page/2"
+    },
+    {
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "sourcePageIdentity": "MG06/page/1",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG6 File front sheet / index (fictional test) · MG06/page/1",
+      "label": "MG06::MG06/page/1"
+    },
+    {
+      "source": "extra_context_1",
+      "sourceDocumentIdentity": "extra_context_1",
+      "sourcePage": "1",
+      "sourcePageIdentity": "extra_context_1/page/1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Additional context schedule (fictional test) · extra_context_1/page/1",
+      "label": "extra_context_1",
+      "evidenceUnitId": "eu-extra_context_1",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    }
+  ],
+  "chronologyEvents": [],
+  "provenanceRecords": [
+    {
+      "occurrenceRef": "/evidenceStates/0",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/1",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "1",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/2",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "2",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/3",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "1",
+      "compiledPage": "4",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/4",
+      "sourceDocumentIdentity": "extra_context_1",
+      "sourcePage": "1",
+      "compiledPage": "5",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    }
+  ],
+  "warningsAndGaps": {
+    "chaseItems": [],
+    "doNotOverstate": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof"
+    ],
+    "hardRules": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof"
+    ]
+  },
+  "chaseRelationships": [],
+  "chaseAuditMetadata": [],
+  "exitPayloadReceipts": {
+    "view": {
+      "payloadIdentity": "sha256:c7b909c7a57d0cde690c59869bde13cf72d9c78f9b87fcf66d30ddce3ba852c3",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-03-going_equipped",
+      "surfaceList": [
+        "view"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.854Z"
+    },
+    "copy": {
+      "payloadIdentity": "sha256:349337a6c29ce01ea2c743ae4490adec7b16250f75445d9cb72925c1dc8baec6",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-03-going_equipped",
+      "surfaceList": [
+        "copy"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.854Z"
+    },
+    "export": {
+      "payloadIdentity": "sha256:3d97344791306b147b978f444dbb0ff1f91a3a87d7197f3737febe2a651c87ea",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-03-going_equipped",
+      "surfaceList": [
+        "export"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.854Z"
+    },
+    "api": {
+      "payloadIdentity": "sha256:8a5d7d0bd2ace7466563e5c52f4861d67d26bf1da278833d55c27e2f12c77014",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-03-going_equipped",
+      "surfaceList": [
+        "api"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.854Z"
+    },
+    "pdf": {
+      "payloadIdentity": "sha256:9c43285e8add2e1e3be7f520586c6f0d288ebc997373cbc8322f799aff51f31b",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-03-going_equipped",
+      "surfaceList": [
+        "pdf"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.854Z"
+    },
+    "composed_prose": {
+      "payloadIdentity": "sha256:d6fd087a0855b72284435fbc56cedaf9a77d3002bd86a15822165bb4ce6ca518",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-03-going_equipped",
+      "surfaceList": [
+        "composed_prose"
+      ],
+      "generatedAt": "2026-08-03T01:07:16.854Z"
+    },
+    "authenticated_browser": {
+      "payloadIdentity": "sha256:8e2d19b3deb3c1c141f1af75e8f7dd7ea045c5e0a9f47040887cf46a7a218282",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": false,
+      "quarantineScope": "partial",
+      "sendability": "unavailable",
+      "unavailableReason": "Authenticated browser exit not exercised in Stage-3000 diverse pack.",
+      "metadataOnly": true,
+      "realExitPayloadPresent": false,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-03-going_equipped",
+      "surfaceList": [
+        "authenticated_browser"
+      ]
+    }
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: going equipped; defence on instructions consent dispute.",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-div3000v213-03-going_equipped",
+    "caseId": "div3000v213-03-going_equipped",
+    "generatedAt": "2026-08-03T01:07:16.855Z",
+    "exportType": "diverse3000_v2_1_3",
+    "sendability": "needs_solicitor_review",
+    "reviewFooter": "Solicitor review required before send.",
+    "warningCount": 0,
+    "appVersion": "v2.1.3",
+    "bundleVersionLabel": "diverse3000-v2.1.3",
+    "blockedReason": null,
+    "solicitorVisibleSummary": "On going equipped copy/export/API/PDF exits: charge status operative; defence consent dispute. For this going equipped pack, no referred-absent masters are declared."
+  },
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "MG05",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG05",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG5 Case summary (fictional test) · MG05/page/1"
+    },
+    {
+      "label": "extra_context_1",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-extra_context_1",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "extra_context_1",
+      "sourcePage": "1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "Additional context schedule (fictional test) · extra_context_1/page/1"
+    }
+  ],
+  "attributionGraph": [
+    {
+      "documentId": "written_charge",
+      "evidenceUnitId": "eu-written_charge",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "written_charge/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG05/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG06",
+      "evidenceUnitId": "eu-MG06",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "extra_context_1",
+      "evidenceUnitId": "eu-extra_context_1",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "extra_context_1/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    }
+  ],
+  "chaseProvenanceLinks": [],
+  "solicitorFacingSurfaces": {
+    "charges": {
+      "recordedOrUnresolved": "For going equipped: recorded charge position is ## Particulars. Instrument state: operative.",
+      "sourceInstrument": "For going equipped: source instrument written_charge at 1; status operative.",
+      "limitation": "For going equipped: allegation recorded on the instrument is not proof of guilt."
+    },
+    "keyFacts": {
+      "factLine": "Matter family going equipped: defence on instructions is consent dispute; procedural stage police investigation; charge status operative.",
+      "limitation": "For this going equipped pack, no referred-absent masters are declared."
+    },
+    "fiveAnswers": {
+      "whatEvidenceSays": "On going equipped papers, 2 evidence unit(s) with page identity are present; they do not by themselves establish the allegation against the defendant.",
+      "existenceVsReliability": "For going equipped: existence labels on the evidence schedule must not be read as reliability or proof.",
+      "provenance": "For going equipped: provenance for referred-absent items anchors to MG6 page MG06/page/1 without inventing master content."
+    },
+    "warRoom": {
+      "issue": "Case-specific issue for going equipped: charge status operative; defence consent dispute; procedure police investigation.",
+      "whyItMatters": "Why it matters on going equipped: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+      "safePosition": "Safe current position on going equipped: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+      "nextAction": "Next action on going equipped: reconcile MG5 against MG6 before any court send."
+    },
+    "controlRoom": {
+      "issue": "Control focus for going equipped: disclosure and completeness against charge status operative.",
+      "whyItMatters": "On going equipped, missing or partial disclosure changes what may safely be said on copy/export/API exits.",
+      "safePosition": "Safe current position for going equipped: solicitor review required before send; authenticated browser remains not exercised.",
+      "nextAction": "Next action for going equipped: chase only particularised missing items; keep request identifiers in audit metadata only."
+    },
+    "disclosureChase": {
+      "item": "nil outstanding on going equipped",
+      "whyItMatters": "On going equipped, no chase item is outstanding on this pack.",
+      "professionalRequest": "No outstanding disclosure chase item is currently particularised for going equipped."
+    },
+    "composedProse": {
+      "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: going equipped; defence on instructions consent dispute.",
+      "cpsChase": "Please provide the referred disclosure item.",
+      "clientDisclaimer": "Fictional test material — not legal advice."
+    },
+    "copyExportApiPdf": {
+      "meaning": "On going equipped copy/export/API/PDF exits: charge status operative; defence consent dispute. For this going equipped pack, no referred-absent masters are declared.",
+      "chase": "No outstanding disclosure chase item is currently particularised for going equipped."
+    }
+  },
+  "composedProse": {
+    "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: going equipped; defence on instructions consent dispute.",
+    "cpsChase": "Please provide the referred disclosure item.",
+    "clientDisclaimer": "Fictional test material — not legal advice.",
+    "limitations": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof"
+    ],
+    "allegation": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.\n\nAction: Check the operative charge sheet or amendment record.",
+    "chargeCompleteness": {
+      "sourceChargeText": "",
+      "provenance": "No recorded charge wording on papers.",
+      "instruments": [],
+      "displayedChargeText": "",
+      "completenessStatus": "unresolved",
+      "recoverySource": null,
+      "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+      "requiredAction": "Action: Check the operative charge sheet or amendment record."
+    }
+  },
+  "disclosureChase": {
+    "professionalRequest": "No outstanding disclosure chase item is currently particularised for going equipped.",
+    "item": "nil outstanding on going equipped",
+    "whyItMatters": "On going equipped, no chase item is outstanding on this pack."
+  },
+  "warRoom": {
+    "issue": "Case-specific issue for going equipped: charge status operative; defence consent dispute; procedure police investigation.",
+    "whyItMatters": "Why it matters on going equipped: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+    "safeCurrentPosition": "Safe current position on going equipped: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+    "nextAction": "Next action on going equipped: reconcile MG5 against MG6 before any court send."
+  },
+  "copyLines": [
+    "On going equipped copy/export/API/PDF exits: charge status operative; defence consent dispute. For this going equipped pack, no referred-absent masters are declared.",
+    "No outstanding disclosure chase item is currently particularised for going equipped."
+  ],
+  "requiredLimitations": [
+    "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof"
+  ],
+  "pdf": {}
+}

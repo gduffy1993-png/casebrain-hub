@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "STOP-FOR-CODEX-REVIEW@1.0.0",
+  "stoppedAt": "2026-08-03T02:30:46.690Z",
+  "reason": "V2.1.4.3 professional semantic output quality remediation — stop uncommitted for Codex review before scale",
+  "gatePass": true,
+  "scaleRecommended": false,
+  "scaleGateAccepted": false,
+  "v2142PreservedByteForByte": true,
+  "v2142ClaimCorrected": "PILOT_GATE_INCOMPLETE_PENDING_PROFESSIONAL_SEMANTIC_OUTPUT_QUALITY",
+  "blockers": [],
+  "prohibitions": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "scale_beyond_20",
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS",
+    "set_scaleGateAccepted_true"
+  ],
+  "deliverables": {
+    "visibleLedger": "ledgers/professional-visible-string-ledger.jsonl",
+    "semanticSummary": "professional-semantic-quality-summary.json",
+    "chargeScan": "charge-completeness-and-heading-scan.json",
+    "disclosureScan": "disclosure-item-wording-scan.json",
+    "sentenceScan": "sentence-composition-scan.json",
+    "acronymReport": "acronym-and-procedure-vocabulary-report.json",
+    "remaining10": "remaining-10-fail-closed-reconciliation.json",
+    "wordingMap": "before-after-wording-map.json",
+    "derivedDeps": "derived-conclusion-dependency-ledger.json",
+    "exitMatrix": "all-exit-regression-matrix.json",
+    "manifest": "CHANGED-FILE-MANIFEST.json",
+    "decisionCard": "DECISION-CARD.json"
+  }
+}

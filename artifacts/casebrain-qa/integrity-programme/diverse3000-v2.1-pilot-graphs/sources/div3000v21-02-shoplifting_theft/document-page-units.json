@@ -1,0 +1,122 @@
+{
+  "caseId": "div3000v21-02-shoplifting_theft",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "eadeb2b152a7644f7f1a3bf6553b7d6489c41dcbc5712e96ae062a2986999296",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/1\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL\nCount 1\nSTATEMENT OF OFFENCE\nTheft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nPARTICULARS\nThe defendant on a date unknown within the charged window committed the offence alleged.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "33381c2f00d8deff6df15213a9b117e17cadd51cba42ef7349b99c7c3ecadc0e"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/2\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for indictment_operative.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "fafef581724fdace77e5eda008a433f35afc6014c65fa7c3ae07239b8b3d44aa"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "db2d60efc55c4e750080c7f97dca7eca4edbacbe70c9af16ae6b23caa30a7d94",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: shoplifting theft.\nDefence position modelled: alibi.\nProcedural stage: trial prep.\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nEvidence emphasis seed 1: mg11_signed, mg11_draft, cctv_clip.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "5f5bb1560a0d6daea730ea384c91524a71035684811901166295668cb146cabe"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "2d4c8a01ad483823920ca0fcca64f8a8fb2a3344745590925d9d6a5403718901"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 3 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "082885f0136396ec795d982fdfc0e02662113a0235dbe043f626b1e8397e0cb7"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "677a066fa2acda986513cf5ce9d26895a5ccf4279755c324e444f909b0e4ab3d",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "9eb3ef7446b814fc923bb9577c6a7d1d0d2af6c671c6e6a42c892cb99535d49c"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for MG06.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "bdbd7514b11a2f9f8b1b78a1173c2fd52da0e07b3f939a7fa301cedbeb03a067"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "5ec6dbb6bc943c9a44c004e27d3c502ee4cb4bee4e735215b261bf671e573691",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: alibi. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "442153caa0f6b036a4d5de9aff7b1c0256683157b04abeea1be8632dc3764de2"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "26c88d64983e3415a71a453122e8faeeb51a5516a9b2c3e94bf4ca853d92d2f2"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "90fcde9a93cfc432641cbd23492c26682cbf099c50062e02337bd36660c5eeab"
+        }
+      ]
+    },
+    {
+      "docId": "extra_context_5",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "eaca21d0b26abec7bcbda7d3879760e034fe702749bd1f8c61052a3da253bf2a",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_5/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_5\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_5/page/1\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL — additional coherent schedule for shoplifting_theft emphasising alibi and indictment.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "3e216fb19bec6e7967c48a56583773f6ee0bf0ae423aeef32e84fa37c694e2bd"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "extra_context_5/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_5\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_5/page/2\nMatter family under review: shoplifting theft\nProcedural stage: trial prep\nDefence position on instructions: alibi\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for extra_context_5.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "8e344239444ea7926db593a9585afcf2bd001957bc420a4cd2e3c5572d7e8b30"
+        }
+      ]
+    }
+  ]
+}

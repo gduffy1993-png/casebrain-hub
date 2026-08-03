@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "diverse3000-v2.1.2-public-template-map@1.0.0",
+  "source": "scripts/assurance/stage3000-diverse-second/v2.1.2-public-template-map.json",
+  "map": {
+    "written_charge": {
+      "publicStructure": "Written charge / requisition — offence statement, particulars, defendant identity block, court venue, return date.",
+      "referenceNote": "Informed by Criminal Procedure Rules forms catalogue (written charge / requisition structure).",
+      "informedByUrlHint": "https://www.gov.uk/guidance/criminal-procedure-rules-forms"
+    },
+    "indictment": {
+      "publicStructure": "Indictment — count header, STATEMENT OF OFFENCE, PARTICULARS OF OFFENCE, multi-count table where applicable.",
+      "referenceNote": "Informed by Crown Court indictment practice and CPR indictment form structure.",
+      "informedByUrlHint": "https://www.gov.uk/guidance/criminal-procedure-rules-forms"
+    },
+    "mg05": {
+      "publicStructure": "MG5 case summary — defendant/complainant headers, offence summary, key evidence narrative, witness outline, limitations.",
+      "referenceNote": "Informed by Home Office Manual of Guidance MG forms / national file standard (MG5).",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/manual-of-guidance-and-mg-forms/criminal-casefiles-forms-standards-and-file-structure-accessible"
+    },
+    "mg06": {
+      "publicStructure": "MG6 file front sheet / index — multi-column inventory of papers with status (served / referred / absent).",
+      "referenceNote": "Informed by MG6 national file front-sheet / index conventions.",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/manual-of-guidance-and-mg-forms/criminal-casefiles-forms-standards-and-file-structure-accessible"
+    },
+    "mg06c": {
+      "publicStructure": "MG6C unused material schedule — schedule number, description, disclosure decision columns.",
+      "referenceNote": "Informed by MG6C unused schedule structure and CPS Disclosure Manual.",
+      "informedByUrlHint": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual"
+    },
+    "mg11_statement": {
+      "publicStructure": "MG11 witness statement — declaration, personal particulars boxes, numbered statement paragraphs, signature block.",
+      "referenceNote": "Informed by MG11 witness statement form structure (Manual of Guidance).",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/manual-of-guidance-and-mg-forms/criminal-casefiles-forms-standards-and-file-structure-accessible"
+    },
+    "mg11_continuation": {
+      "publicStructure": "MG11 continuation sheet — carries statement URN/page continuation of an existing MG11 page 1; numbered paragraphs only.",
+      "referenceNote": "Informed by MG11 continuation conventions; must not exist without a statement first page.",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/manual-of-guidance-and-mg-forms/criminal-casefiles-forms-standards-and-file-structure-accessible"
+    },
+    "custody_record": {
+      "publicStructure": "Custody record extract — timed detention events, rights, reviews, authorising officer columns.",
+      "referenceNote": "Informed by PACE custody record structural fields commonly disclosed in case files.",
+      "informedByUrlHint": "https://www.gov.uk/guidance/criminal-procedure-rules-2025-and-criminal-practice-directions-2023"
+    },
+    "interview_record": {
+      "publicStructure": "Interview / MG15-style record — tape/URN identifiers, caution, Q&A or summary blocks, exhibits produced.",
+      "referenceNote": "Informed by MG15 interview record structure in Manual of Guidance.",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/manual-of-guidance-and-mg-forms/criminal-casefiles-forms-standards-and-file-structure-accessible"
+    },
+    "media_schedule": {
+      "publicStructure": "Media / BWV / CCTV clip schedule — clip id, source location, start/end, served-vs-master columns.",
+      "referenceNote": "Informed by digital material disclosure practice (CPS Disclosure Manual Ch.30) and Common Platform media sections.",
+      "informedByUrlHint": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual-chapter-30-digital-material"
+    },
+    "master_clip_schedule": {
+      "publicStructure": "Master-versus-clip continuity schedule — master ref, clip extracts, hash/path placeholders, absence markers.",
+      "referenceNote": "Informed by digital material / continuity disclosure expectations; masters may be referred-only.",
+      "informedByUrlHint": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual-chapter-30-digital-material"
+    },
+    "phone_download_schedule": {
+      "publicStructure": "Phone / download / message schedule — device, extraction method, attribution columns, message/call rows.",
+      "referenceNote": "Informed by CPS digital material disclosure structure for device extractions.",
+      "informedByUrlHint": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual-chapter-30-digital-material"
+    },
+    "disclosure_schedule": {
+      "publicStructure": "Disclosure schedule — item id, description, service state, sensitivity/PII flags.",
+      "referenceNote": "Informed by CPS Disclosure Manual schedule practice.",
+      "informedByUrlHint": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual"
+    },
+    "unused_schedule": {
+      "publicStructure": "Unused material schedule — schedule refs, brief description, relevance/disclosure decision.",
+      "referenceNote": "Informed by unused schedule / MG6C practice and Disclosure Manual.",
+      "informedByUrlHint": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual"
+    },
+    "forensic_report": {
+      "publicStructure": "Streamlined / forensic report — exhibit refs, methods limits, findings, SFR caveats.",
+      "referenceNote": "Informed by Forensic Science Regulator code structure and SFR limits practice.",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/forensic-science-activities-statutory-code-of-practice-version-2"
+    },
+    "medical_report": {
+      "publicStructure": "Medical report extract — clinician header, examination findings, opinion limits, confidentiality banner.",
+      "referenceNote": "Informed by typical disclosed medical report sectioning used in criminal case files.",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/add-case-documents-to-the-crown-court-digital-case-system"
+    },
+    "expert_report": {
+      "publicStructure": "Expert report — expertise declaration, instructions, opinion, limitations, CPR Part 19 style headers.",
+      "referenceNote": "Informed by CPR expert evidence form/structure expectations.",
+      "informedByUrlHint": "https://www.gov.uk/guidance/criminal-procedure-rules-2025-and-criminal-practice-directions-2023"
+    },
+    "abe_record": {
+      "publicStructure": "ABE / visually recorded interview record — interview metadata, special measures note, transcript extract markers.",
+      "referenceNote": "Informed by Achieving Best Evidence / special measures structural fields in casefile practice.",
+      "informedByUrlHint": "https://www.cps.gov.uk/prosecution-guidance-library"
+    },
+    "hearing_notice": {
+      "publicStructure": "Hearing notice — court, listing date/time, hearing type, attendance requirements, case identifiers.",
+      "referenceNote": "Informed by HMCTS listing / hearing notice structural fields.",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/how-to-use-hmcts-common-platform/where-to-add-case-materials"
+    },
+    "court_order": {
+      "publicStructure": "Court order — court header, parties, operative paragraphs, judge/clerk endorsement block.",
+      "referenceNote": "Informed by CPR / HMCTS order form structure.",
+      "informedByUrlHint": "https://www.gov.uk/guidance/criminal-procedure-rules-forms"
+    },
+    "exhibit_schedule": {
+      "publicStructure": "Exhibit / MG12-style list — exhibit number, description, recovered by, location, continuity pointer.",
+      "referenceNote": "Informed by MG12 exhibit list structure in Manual of Guidance.",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/manual-of-guidance-and-mg-forms/criminal-casefiles-forms-standards-and-file-structure-accessible"
+    },
+    "continuity_record": {
+      "publicStructure": "Continuity / chain-of-custody record — timed handovers, seal numbers, custodian signatures.",
+      "referenceNote": "Informed by forensic continuity / exhibit movement practice.",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/forensic-science-activities-statutory-code-of-practice-version-2"
+    },
+    "defence_proof": {
+      "publicStructure": "Defence proof of evidence / privileged working extract — privilege band, instructions position, issues list.",
+      "referenceNote": "Informed by defence case preparation structural practice; privilege-separated in fictional packs.",
+      "informedByUrlHint": "https://www.gov.uk/guidance/criminal-procedure-rules-2025-and-criminal-practice-directions-2023"
+    },
+    "email_attachment_summary": {
+      "publicStructure": "Email / attachment summary — headers (From/To/Date/Subject), attachment inventory, hash placeholders.",
+      "referenceNote": "Informed by digital disclosure schedules for native email/attachments.",
+      "informedByUrlHint": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual-chapter-30-digital-material"
+    },
+    "youth_justice_record": {
+      "publicStructure": "Youth justice / YOT record extract — age markers, appropriate adult, youth court listing fields.",
+      "referenceNote": "Informed by youth justice casefile structural fields commonly disclosed.",
+      "informedByUrlHint": "https://www.gov.uk/guidance/criminal-procedure-rules-2025-and-criminal-practice-directions-2023"
+    },
+    "interpreter_record": {
+      "publicStructure": "Interpreter / translation record — language, interpreter identity block, passages interpreted, certificate.",
+      "referenceNote": "Informed by interpreter/translation certification structures used in criminal proceedings.",
+      "informedByUrlHint": "https://www.gov.uk/guidance/criminal-procedure-rules-forms"
+    },
+    "welsh_language_record": {
+      "publicStructure": "Welsh-language proceedings record — language preference, bilingual headings, translation status.",
+      "referenceNote": "Informed by Welsh Language Act / bilingual court document practice in England and Wales.",
+      "informedByUrlHint": "https://www.gov.uk/guidance/criminal-procedure-rules-2025-and-criminal-practice-directions-2023"
+    },
+    "chronology": {
+      "publicStructure": "Case chronology — dated event rows linking procedure, disclosure and evidence milestones.",
+      "referenceNote": "Informed by case-preparation chronology practice used across Common Platform / DCS packs.",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/add-case-documents-to-the-crown-court-digital-case-system"
+    },
+    "metadata_fixture": {
+      "publicStructure": "Media metadata fixture — path/hash/codec/duration fields; native bytes marked not_exercised.",
+      "referenceNote": "Informed by digital material metadata disclosure practice where natives are unavailable.",
+      "informedByUrlHint": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual-chapter-30-digital-material"
+    },
+    "generic_specialist": {
+      "publicStructure": "Specialist / residual case document — titled sections appropriate to kind without universal sparse border layout.",
+      "referenceNote": "Fallback structural layout for specialist kinds; still kind-labelled and dense, not the V2.1.1 universal template.",
+      "informedByUrlHint": "https://www.gov.uk/government/publications/manual-of-guidance-and-mg-forms/criminal-casefiles-forms-standards-and-file-structure-accessible"
+    }
+  }
+}

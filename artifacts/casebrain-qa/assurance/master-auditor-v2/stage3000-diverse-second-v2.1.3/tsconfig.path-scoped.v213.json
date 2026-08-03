@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "scripts/assurance/stage3000-diverse-second/v2.1.2-structured-maa-output.ts",
+    "scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts",
+    "scripts/assurance/stage3000-diverse-second/v2.1.2-document-kind-layouts.ts",
+    "scripts/assurance/stage3000-diverse-second/v2.1.3-focused-contracts.test.ts",
+    "scripts/assurance/stage3000-diverse-second/build-v2.1.3-remediation.ts"
+  ],
+  "exclude": ["node_modules", ".next"]
+}

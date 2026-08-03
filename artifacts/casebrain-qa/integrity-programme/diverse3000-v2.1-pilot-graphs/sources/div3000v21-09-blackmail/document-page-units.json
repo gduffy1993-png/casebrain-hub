@@ -1,0 +1,191 @@
+{
+  "caseId": "div3000v21-09-blackmail",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "1bc664c542d8d03c20294ef1b35186597cf8bb5798c5048b89f25c268919b16f",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/1\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndictment placeholder for blackmail — charge wording not pinned; structural only.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "9c8b8cc825b7e5ae5f06627c8d5a6fc2934bc801b4b5ff1e5cb547ce55e9f747"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/2\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for indictment_operative.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "bb1d361e48a2b1763d8b302f357ec42d78b5e18b81bd5976938a49be25315628"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "c3a44b5c110b44d432f2fbf11ae1ecdecca0b75440f691e8c07d778185ba5ee7",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: blackmail.\nDefence position modelled: factual denial.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 3: mg11_draft, cctv_clip, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "8d26eafb02dc4631e22974c6f1a71711a8a62f855aca9b68c743439a80b2df47"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "935e32f9744acd92ca440138fc9759bf0b1d3e6cb7feb715c7b710109175e698"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b9cf3ed12f6642c7b86bcd62692dbf329bde0cea27bb61dc9863ade04e7cfc29"
+        },
+        {
+          "pageIndex": 4,
+          "pageIdentity": "MG05/page/4",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/4\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 4 for MG05.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b4a481cb66916d97a00f7c8e6697eabba88d9b8baec66b0810ab0dab2327d578"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "f4bf20ae357a3476ce9ee5171b1ae3537d40994c38475003a7b4ca23b36d7fc8",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "6a92161c6fbc42d9233394a03c221707f29a86115122b17ac251af3df8487e9f"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "f5e9fc7906d30584353343c29448a5d5757c2626e473d8e27ff42bdfd1846de5"
+        }
+      ]
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "4b19c3bb94a08e082f5ce0266cba19a9fa62af96cea5664fac8422ccca320f28",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/1\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "30caa5fae0fb88729366c94bb1364a46f6012b5d9f370ba9381ff08e8c3835c1"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/2\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for cctv_clip_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "70d40c52451bc688e2d4bb3cfbd5cb53a327b00cb3cebf00d4391a9db30245e0"
+        }
+      ]
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "c7ff938c05583083f839df4af27fd61f3f905e1e7eb65b75ad3ca9e3eed24ad0",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/1\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "469cefe1ede4229fb98b520d1a4fe89e3884b33c62eb73a3bd05e4dbc1aee61f"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "media_metadata/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/2\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for media_metadata.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c07b3288dd8fb9b834f4a817b640c480cda31db8daeb6e2792b7c3d133f235f0"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "bf49d079522f9a3b9a264f51deece5a317a156a843354cabaa8f40451b7b2318",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: factual_denial. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "57a33a58037bdae7ff0cb9ee0e5b827da915a6864fb7bfd81d8c580296092000"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "378588dde02fe87c6205bb4c93bc409ec308f30315402c3ac529a47e7d19f4f8"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "820acb4db443117df72f07953521ab3bd0906ca875642e588a5b4419a79aedd8"
+        }
+      ]
+    },
+    {
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": "c9d04f6a5d80eb9b835bb642a9a588a3fdc78b0e565a4b114e6ade7f31743458",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "referred_missing_master/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/1\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — index refers to this item; file absent. Must not treat as served.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "86d24f4f6a49484198efd24a993a76b6187e6d8a094217c659324072e70efd09"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "referred_missing_master/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/2\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for referred_missing_master.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "6482da35093ada8d2fcbd3736fe66e9b9e177c1b297e3b07b23b0e639c0022b0"
+        }
+      ]
+    },
+    {
+      "docId": "extra_context_3",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "07c53838c45c80ce933aa64dbd8a7292183b0c8f805ddbde19abb4943e0419bd",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_3/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_3\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_3/page/1\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — additional coherent schedule for blackmail emphasising factual_denial and indictment.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c29158e6e91dccfbecf0729dfa291308c43c9f8c61cf48351bdf141840c0a811"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "extra_context_3/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_3\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_3/page/2\nMatter family under review: blackmail\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for extra_context_3.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "7a13d06304967ea066e877f8fbd389f4d52a0561bb5f9152d65e84d54a409d3a"
+        }
+      ]
+    }
+  ]
+}

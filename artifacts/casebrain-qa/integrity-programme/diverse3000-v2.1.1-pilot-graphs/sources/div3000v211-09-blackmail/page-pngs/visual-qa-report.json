@@ -1,0 +1,146 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/bundle-fictional-test.pdf",
+  "pageCount": 8,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-001.png",
+      "pngSha256": "8856a90c43b2237600c1c6800e2ffe6bbe5293e33fb59a032fa276a9bb4466ae",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1342,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.88,
+        "nonWhiteRatio": 0.0437,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-002.png",
+      "pngSha256": "71d48121ed053f841549e11ff6b1c30b3a689270726ef249c00d8f1d6f196d7d",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1565,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.88,
+        "nonWhiteRatio": 0.0506,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-003.png",
+      "pngSha256": "6c98905da96ac0ce05777cbaa7bf91b96d98392915a3c03960d3e60d5cab00f2",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1239,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.18,
+        "nonWhiteRatio": 0.0418,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-004.png",
+      "pngSha256": "e85d0bfd2e1b592436fbc40b394c431aea8e245c29f3957825e605db22f98621",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1479,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.24,
+        "nonWhiteRatio": 0.0478,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-005.png",
+      "pngSha256": "64e40c8976be904a0e8357f2c9b659c7a68036a19ff4de57b03cfcc9f555676d",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1306,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.95,
+        "nonWhiteRatio": 0.0432,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-006.png",
+      "pngSha256": "f5598880e5d497e01a6ad64f678a94c11a48d2ce8b93076b80200ade48b7f4e3",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1274,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.98,
+        "nonWhiteRatio": 0.0429,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-007.png",
+      "pngSha256": "e709d6f78c16945cfb3615f949df4d3cf44a9d954d6a23ad0ab83639d30e18c8",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1418,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.59,
+        "nonWhiteRatio": 0.0461,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-008.png",
+      "pngSha256": "83065d28233a3c4b9c283c9f739bc6770029bf6272963b1bc9e05ada34d0e8b7",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1328,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.9,
+        "nonWhiteRatio": 0.0438,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "f28e40f820514deb9914f442b1003f2b1d2003e6d9255a0a15bf7767757f1233",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

@@ -1,0 +1,236 @@
+{
+  "caseId": "div3000v213-12-perverting_course_of_justice",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "purpose": "charge_instrument_particulars",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Written charge / requisition (fictional test)\nMatter family (fictional): perverting course of justice\n## Written charge / requisition\n## Statement of offence\n## Particulars\nCourt / venue (modelled): Magistrates' Court (modelled)\nDefendant count modelled: 2\nSTATEMENT OF OFFENCE\nCharge wording not pinned — structural only.\nContrary to the modelled statutory provision for this family.\nCharge wording status: structural_only\nPARTICULARS OF OFFENCE\nIt is alleged that within the charged window the defendant(s) committed the offence set out above.\nPlace and date particularised by reference to the served MG5 narrative and witness papers.\nProcedural stage: police investigation.\nDefence position on instructions: factual denial.\nThis instrument is modelled as the charging document for fictional-test purposes only.\nDo not treat this summary as proof of the allegation.\nService: modelled with initial disclosure; return date to be fixed by listing office.\nCertificate of service and administrative endorsement appear on the rendered form.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "684a932774ca7e137b366b3a8c0bd27afc62e381b02aafdfa9ca403d6e9667e5",
+          "headings": [
+            "Written charge / requisition",
+            "Statement of offence",
+            "Particulars"
+          ],
+          "layoutKind": "written_charge"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "purpose": "charge_defendant_allocation",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Written charge / requisition (fictional test)\nMatter family (fictional): perverting course of justice\n## Defendant allocation table\n## Counts\nCount | Defendant index | Allocation note\n----- | ---------------- | ---------------\n1.1 | D1 | Count attribution must remain defendant-specific\n1.2 | D2 | Count attribution must remain defendant-specific\nNo cross-defendant bleed is authorised by this fictional instrument.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "7403a5158f68b2b7d26d03324150106414dd89e845de4b5369e663a65420da42",
+          "headings": [
+            "Defendant allocation table",
+            "Counts"
+          ],
+          "layoutKind": "written_charge"
+        }
+      ],
+      "contentHash": "e1da1a14767b87b804b88565037952a747e91ede8eac532342b09899e0b3e935",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "written_charge"
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): perverting course of justice\n## MG5 — Case summary\n## Offence summary\n## Key evidence narrative\nDefendant / matter family: perverting course of justice\nDefence on instructions: factual denial\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\n\nNARRATIVE\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: perverting course of justice.\nDefence position modelled: factual denial.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 0: mg11_draft, cctv_clip, cctv_master_referred.\n\nWitness outline: complainant account recorded as allegation only — not proved.\nReliability: MG5 narrative must not be read as establishing guilt.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "103ab97536f20ba0e3b6ebe57a9afecc0dff52103fdb8ad045be048c2d03e312",
+          "headings": [
+            "MG5 — Case summary",
+            "Offence summary",
+            "Key evidence narrative"
+          ],
+          "layoutKind": "mg05"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): perverting course of justice\n## Evidence outline\n## Limitations\n## Next action\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): referred_missing_master.\nNext action: reconcile MG5 against MG6 index before any court-facing send.\nDo not quote referred-absent masters as if content were available.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "8d539153f8c54145bedb58aab25b9382044f6668566a6011c90e0bd3ee90c45f",
+          "headings": [
+            "Evidence outline",
+            "Limitations",
+            "Next action"
+          ],
+          "layoutKind": "mg05"
+        }
+      ],
+      "contentHash": "31f5a3ba1a03a4ba12d0a999c5425d1b2c578cf126f870cffd2dd6b5b1875a67",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg05"
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG6 File front sheet / index (fictional test)\nMatter family (fictional): perverting course of justice\n## MG6 — File front sheet / index\n## Inventory\nSeq | Document | Kind | Status\n--- | -------- | ---- | ------\n1 | Written charge / indictment | instrument | see pack\n2 | MG5 case summary | mg05 | served\n3 | Disclosure / unused | schedule | see schedules\n4 | referred_missing_master | referred | ABSENT — not served\n\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nChase binding: request referred_missing_master by identity against this MG6 page.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "c2ad41729b5a84702a2463aa3d94181aa7d86505f98cf8d1409310f8f3dbfc87",
+          "headings": [
+            "MG6 — File front sheet / index",
+            "Inventory"
+          ],
+          "layoutKind": "mg06"
+        }
+      ],
+      "contentHash": "c2ad41729b5a84702a2463aa3d94181aa7d86505f98cf8d1409310f8f3dbfc87",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg06"
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_clip_schedule_log",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: CCTV / BWV clip schedule (fictional test)\nMatter family (fictional): perverting course of justice\n## CCTV / BWV clip schedule\n## Served clips\nClip | Source | Start | End | Master | Status\n---- | ------ | ----- | --- | ------ | ------\nC1 | High St cam 3 | 21:02:10 | 21:04:44 | M-HS-3 | clip served\nC2 | BWV PC Fictional | 21:05:01 | 21:07:18 | M-BWV-01 | clip served\nC3 | Store cam | 20:58:00 | 21:01:00 | M-ST-2 | partial\nAbsent masters referred: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "cb9679fe837e5d9b28f5ef2bfcb30dd44483c35bd15aaaca3eb644f9911f0c55",
+          "headings": [
+            "CCTV / BWV clip schedule",
+            "Served clips"
+          ],
+          "layoutKind": "media_schedule"
+        }
+      ],
+      "contentHash": "cb9679fe837e5d9b28f5ef2bfcb30dd44483c35bd15aaaca3eb644f9911f0c55",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "media_schedule"
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "media_metadata_only",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Media metadata fixture (native bytes not_exercised)\nMatter family (fictional): perverting course of justice\n## Media metadata fixture\n## Native bytes not_exercised\nNative video/audio bytes: not_exercised.\npath: /fictional/media/clip_C1.mp4\nsha256: ft-meta-placeholder\ncodec / duration: modelled placeholders only\nCannot summarise native content that was never supplied.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "b4d59db73a6610299d09542b7b4a297ea355b58558222b1e30b251c2f0ef77e7",
+          "headings": [
+            "Media metadata fixture",
+            "Native bytes not_exercised"
+          ],
+          "layoutKind": "metadata_fixture"
+        }
+      ],
+      "contentHash": "b4d59db73a6610299d09542b7b4a297ea355b58558222b1e30b251c2f0ef77e7",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "metadata_fixture"
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): perverting course of justice\n## Defence proof of evidence extract\n## PRIVILEGED\nPRIVILEGED — defence working extract. Not for ordinary copy/export/API send.\nPosition on instructions: factual denial\nIssues to explore: attribution, continuity, missing masters, charge particularity.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: factual_denial. Not for ordinary copy/export.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "69870c69d92802c71ae4f27dd4b2c0d9cdec93c4df1508032c56e1cbee36a39f",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ],
+          "layoutKind": "defence_proof"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "purpose": "defence_issues_and_requests",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): perverting course of justice\n## Issues list\n## Requests\nMissing/referred chase candidates: referred_missing_master.\nProof extract remains privilege-separated in this fictional pack.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "e9573cecc137b8dc62107c47fb3465486a974c9e9d6d43a1cecee60eb1cc2012",
+          "headings": [
+            "Issues list",
+            "Requests"
+          ],
+          "layoutKind": "defence_proof"
+        }
+      ],
+      "contentHash": "85430d18e6c378abb86ff9f6fe65184a90ae707d52acc913330f9004a3155d8d",
+      "realPaginatedFile": true,
+      "privilegeSeparated": true,
+      "publicTemplateRef": "defence_proof"
+    },
+    {
+      "docId": "scan_layout_note",
+      "title": "Scan/OCR layout problem note (fictional test)",
+      "kind": "layout_defect",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "scan_layout_note/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Scan/OCR layout problem note (fictional test)\nMatter family (fictional): perverting course of justice\n## Scan/OCR layout problem note (fictional test)\n## Particulars\nKind: layout_defect\nLifecycle state: served\nFamily: perverting course of justice\nStage: police investigation\nFICTIONAL TEST MATERIAL — layout issues: rotated_page. Clean control pages exist elsewhere in pack where required.\nStatus: served.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "dabd29c7b6840f43482b866f82d7edbddeabcf9db7ad6753958b2ab54a8afee1",
+          "headings": [
+            "Scan/OCR layout problem note (fictional test)",
+            "Particulars"
+          ],
+          "layoutKind": "generic_specialist"
+        }
+      ],
+      "contentHash": "dabd29c7b6840f43482b866f82d7edbddeabcf9db7ad6753958b2ab54a8afee1",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "generic_specialist"
+    },
+    {
+      "docId": "extra_context_6",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_6/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Additional context schedule (fictional test)\nMatter family (fictional): perverting course of justice\n## Additional context schedule (fictional test)\n## Particulars\nKind: context_schedule\nLifecycle state: served\nFamily: perverting course of justice\nStage: police investigation\nFICTIONAL TEST MATERIAL — additional coherent schedule for perverting_course_of_justice emphasising factual_denial and written_charge.\nStatus: served.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "ee627afda417b113e150a3dda9335669ed155f0bf60614bf5cc9ee484efe4819",
+          "headings": [
+            "Additional context schedule (fictional test)",
+            "Particulars"
+          ],
+          "layoutKind": "generic_specialist"
+        }
+      ],
+      "contentHash": "ee627afda417b113e150a3dda9335669ed155f0bf60614bf5cc9ee484efe4819",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "generic_specialist"
+    }
+  ]
+}

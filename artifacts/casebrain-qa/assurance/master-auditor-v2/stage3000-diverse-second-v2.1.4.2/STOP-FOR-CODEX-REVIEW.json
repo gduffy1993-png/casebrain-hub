@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "STOP-FOR-CODEX-REVIEW@1.0.0",
+  "stoppedAt": "2026-08-03T02:07:30.942Z",
+  "reason": "V2.1.4.2 visible fail-closed / professional wording remediation — stop uncommitted before scale",
+  "gatePass": true,
+  "scaleRecommended": false,
+  "scaleGateAccepted": false,
+  "v2141PreservedByteForByte": true,
+  "blockers": [],
+  "prohibitions": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "scale_beyond_20",
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS"
+  ],
+  "deliverables": {
+    "wordingMap": "before-after-wording-map.json",
+    "derivedDeps": "derived-conclusion-dependency-ledger.json",
+    "failClosedReconcile": "visible-fail-closed-reconciliation.json",
+    "boundaryScan": "visible-language-boundary-scan.json",
+    "beforeAfter": "before-after-regression-report.json",
+    "contracts": "contracts-proof.json",
+    "buildTsc": "build-and-tsc-receipt.json",
+    "manifest": "CHANGED-FILE-MANIFEST.json",
+    "decisionCard": "DECISION-CARD.json"
+  }
+}

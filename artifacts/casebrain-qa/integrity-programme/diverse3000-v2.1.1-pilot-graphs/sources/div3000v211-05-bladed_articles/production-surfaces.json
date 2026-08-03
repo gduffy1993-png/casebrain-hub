@@ -1,0 +1,275 @@
+{
+  "caseId": "div3000v211-05-bladed_articles",
+  "charges": [],
+  "chaseLabels": [
+    "No deliberate",
+    "MG6 may refer",
+    "transcript marker",
+    "Interview recording",
+    "Interview transcript"
+  ],
+  "evidenceState": {
+    "items": [
+      {
+        "label": "Officer summary limited",
+        "key": "officer summary limited::generic",
+        "modality": "generic",
+        "state": "served",
+        "aliases": [
+          "Officer summary limited"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "Officer summary limited",
+            "state": "served",
+            "sourceDocumentTitle": "MG5 Case summary (fictional test)",
+            "sourceDocumentType": "mg05",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendant": null
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      },
+      {
+        "label": "Limitations Evidence listed is limited to items",
+        "key": "limitations evidence listed is limited to items::generic",
+        "modality": "generic",
+        "state": "served",
+        "aliases": [
+          "Limitations Evidence listed is limited to items"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "Limitations Evidence listed is limited to items",
+            "state": "served",
+            "sourceDocumentTitle": "MG5 Case summary (fictional test)",
+            "sourceDocumentType": "mg05",
+            "sourcePage": "p.2",
+            "compiledPage": "p.2",
+            "pageIdentityKnown": true,
+            "defendant": null
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      },
+      {
+        "label": "No deliberate",
+        "key": "no deliberate::generic",
+        "modality": "generic",
+        "state": "missing",
+        "aliases": [
+          "No deliberate"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "No deliberate",
+            "state": "missing",
+            "sourceDocumentTitle": "MG5 Case summary (fictional test)",
+            "sourceDocumentType": "mg05",
+            "sourcePage": "p.2",
+            "compiledPage": "p.2",
+            "pageIdentityKnown": true,
+            "defendant": null
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      },
+      {
+        "label": "MG6 may refer",
+        "key": "mg6 may refer::generic",
+        "modality": "generic",
+        "state": "missing",
+        "aliases": [
+          "MG6 may refer"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "MG6 may refer",
+            "state": "missing",
+            "sourceDocumentTitle": "MG6 File front sheet / index (fictional test)",
+            "sourceDocumentType": "mg06",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendant": null
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      },
+      {
+        "label": "transcript marker",
+        "key": "transcript marker::transcript",
+        "modality": "transcript",
+        "state": "incomplete",
+        "aliases": [
+          "transcript marker"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "transcript marker",
+            "state": "incomplete",
+            "sourceDocumentTitle": "MG15 interview record (fictional test)",
+            "sourceDocumentType": "mg15",
+            "sourcePage": "p.1",
+            "compiledPage": "p.1",
+            "pageIdentityKnown": true,
+            "defendant": null
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      },
+      {
+        "label": "Interview recording",
+        "key": "interview recording::interview",
+        "modality": "interview",
+        "state": "not_safely_confirmed",
+        "aliases": [
+          "Interview recording"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "Interview recording",
+            "state": "not_safely_confirmed",
+            "sourceDocumentTitle": null,
+            "sourceDocumentType": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false
+          }
+        ],
+        "contradiction": null,
+        "unresolved": true,
+        "limitation": null
+      },
+      {
+        "label": "Interview transcript",
+        "key": "interview transcript::transcript",
+        "modality": "transcript",
+        "state": "incomplete",
+        "aliases": [
+          "Interview transcript"
+        ],
+        "defendants": [],
+        "observations": [
+          {
+            "label": "Interview transcript",
+            "state": "incomplete",
+            "sourceDocumentTitle": null,
+            "sourceDocumentType": null,
+            "sourcePage": null,
+            "compiledPage": null,
+            "pageIdentityKnown": false
+          }
+        ],
+        "contradiction": null,
+        "unresolved": false,
+        "limitation": null
+      }
+    ],
+    "contradictions": [],
+    "chaseRequests": [
+      {
+        "label": "No deliberate",
+        "key": "no deliberate::generic",
+        "modality": "generic",
+        "state": "missing",
+        "defendants": [],
+        "reason": "Not served on current disclosure",
+        "unresolved": false
+      },
+      {
+        "label": "MG6 may refer",
+        "key": "mg6 may refer::generic",
+        "modality": "generic",
+        "state": "missing",
+        "defendants": [],
+        "reason": "Not served on current disclosure",
+        "unresolved": false
+      },
+      {
+        "label": "transcript marker",
+        "key": "transcript marker::transcript",
+        "modality": "transcript",
+        "state": "incomplete",
+        "defendants": [],
+        "reason": "On file but incomplete — request the complete version",
+        "unresolved": false
+      },
+      {
+        "label": "Interview recording",
+        "key": "interview recording::interview",
+        "modality": "interview",
+        "state": "not_safely_confirmed",
+        "defendants": [],
+        "reason": "Referred to in the papers but service is not safely confirmed — confirm on file",
+        "unresolved": true
+      },
+      {
+        "label": "Interview transcript",
+        "key": "interview transcript::transcript",
+        "modality": "transcript",
+        "state": "incomplete",
+        "defendants": [],
+        "reason": "On file but incomplete — request the complete version",
+        "unresolved": false
+      }
+    ],
+    "suppressed": []
+  },
+  "attributionSummary": {
+    "defendantCountModelled": 1
+  },
+  "hearingLifecycle": {
+    "latest": null,
+    "superseded": [],
+    "conflict": false,
+    "conflictDescription": null,
+    "basis": "none"
+  },
+  "composedProse": {
+    "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review.",
+    "cpsChase": "Please provide No deliberate. Chase wording is provisional pending solicitor review.",
+    "clientDisclaimer": "[CaseBrain — client-safe summary. Evidence state: provisional. Provenance: Additional context schedule (fictional test) (context_schedule) · p.1 (compiled p.1) · state: served · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof. Not for court or CPS use.]",
+    "limitations": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+    ],
+    "allegation": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.\n\nAction: Check the operative charge sheet or amendment record.",
+    "chargeCompleteness": {
+      "sourceChargeText": "",
+      "provenance": "No recorded charge wording on papers.",
+      "instruments": [],
+      "displayedChargeText": "",
+      "completenessStatus": "unresolved",
+      "recoverySource": null,
+      "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+      "requiredAction": "Action: Check the operative charge sheet or amendment record."
+    }
+  },
+  "crossExit": {
+    "ok": true,
+    "contradictions": []
+  },
+  "requiredLimitations": [
+    "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+    "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+  ]
+}

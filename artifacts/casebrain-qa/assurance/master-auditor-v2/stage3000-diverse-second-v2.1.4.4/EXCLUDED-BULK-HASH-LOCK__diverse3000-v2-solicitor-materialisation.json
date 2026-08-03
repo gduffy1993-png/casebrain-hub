@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "excluded-bulk-hash-lock@1.0.0",
+  "directory": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-solicitor-materialisation",
+  "fileCount": 1,
+  "bytes": 19352627,
+  "inventorySha256": "160372ead8e6f85b86ad345a0a693f0bfd34bf578f68417ea4deb9830501a5f6",
+  "reason": "bulk_regenerable_local_hash_locked_not_committed",
+  "reproduction": "Retain local tree; regenerate via scripts/assurance/stage3000-diverse-second generators; compare inventorySha256 of path+byte listing",
+  "samplePaths": [
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-solicitor-materialisation/run-v1/surfaces.jsonl"
+  ]
+}

@@ -1,0 +1,26 @@
+  Ôû▓ Next.js 14.2.15
+
+   Creating an optimized production build ...
+   Using tsconfig file: ./tsconfig.build.json
+ ÔÜá Compiled with warnings
+
+./lib/pdf/criminal-strategy-pdf.ts
+module.createRequire failed parsing argument.
+
+Import trace for requested module:
+./lib/pdf/criminal-strategy-pdf.ts
+./app/api/criminal/[caseId]/strategy-export/route.ts
+
+./lib/pdf/criminal-strategy-pdf.ts
+module.createRequire failed parsing argument.
+
+Import trace for requested module:
+./lib/pdf/criminal-strategy-pdf.ts
+./app/api/criminal/[caseId]/strategy-export/route.ts
+
+uncaughtException [Error: EPERM: operation not permitted, open 'C:\Users\gduff\casebrain-hub-wt-s3000-diverse\.next\trace'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\gduff\\casebrain-hub-wt-s3000-diverse\\.next\\trace'
+}

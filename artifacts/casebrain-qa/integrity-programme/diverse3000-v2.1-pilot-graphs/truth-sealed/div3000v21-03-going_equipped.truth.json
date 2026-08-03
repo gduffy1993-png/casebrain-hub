@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "diverse3000-v2.1-truth@1.0.0",
+  "caseId": "div3000v21-03-going_equipped",
+  "sealed": true,
+  "chargeWordingExpected": null,
+  "chargeWordingStatus": "structural_only",
+  "defencePositionExpected": "consent_dispute",
+  "missingExpected": [],
+  "prohibitedConclusions": [
+    "must_not_state_allegation_as_proved_fact",
+    "must_not_treat_missing_as_served",
+    "must_not_treat_draft_as_operative"
+  ]
+}

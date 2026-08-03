@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "diverse3000-cross-perspective-disagreement-register@1.0.0",
+  "perspectives": [
+    "defence_solicitor",
+    "prosecution_challenge",
+    "judicial_neutrality",
+    "evidence_provenance",
+    "disclosure_pii_privilege",
+    "ingestion_source_safety",
+    "wording_communication",
+    "design_information_priority"
+  ],
+  "disagreements": [],
+  "note": "Analytical perspectives only — not human approval."
+}

@@ -1,0 +1,180 @@
+{
+  "population": 20,
+  "unit": "solicitor_visible_LEAF_strings",
+  "universalSafetyPattern": "/do not overstate|fictional test|solicitor review required|do not import .{0,40} unless the papers support it|exact document title, page, evidence state|filename alone as source proof|not safely confirmed on the current|could not be safely completed from the available papers|assumed position may conflict|do not say (bwv|cctv)|identification remains conditional|unless the clip is served|do not treat filename alone|do not state [\\\"']?cctv|exact page is unavailable|unsplit whole-document text|cite the document rather than a page|native bytes not_exercised/i",
+  "familyClusters": [
+    {
+      "family": "labels",
+      "substantiveUniqueTemplates": 0,
+      "substantiveLargestCluster": 0,
+      "universalSafetyUniqueTemplates": 1,
+      "universalSafetyLargestCluster": 172,
+      "topSubstantiveSamples": []
+    },
+    {
+      "family": "empty_array_section",
+      "substantiveUniqueTemplates": 0,
+      "substantiveLargestCluster": 0,
+      "universalSafetyUniqueTemplates": 0,
+      "universalSafetyLargestCluster": 0,
+      "topSubstantiveSamples": []
+    },
+    {
+      "family": "court",
+      "substantiveUniqueTemplates": 0,
+      "substantiveLargestCluster": 0,
+      "universalSafetyUniqueTemplates": 3,
+      "universalSafetyLargestCluster": 18,
+      "topSubstantiveSamples": []
+    },
+    {
+      "family": "evidence_state_row",
+      "substantiveUniqueTemplates": 0,
+      "substantiveLargestCluster": 0,
+      "universalSafetyUniqueTemplates": 19,
+      "universalSafetyLargestCluster": 40,
+      "topSubstantiveSamples": []
+    },
+    {
+      "family": "export",
+      "substantiveUniqueTemplates": 0,
+      "substantiveLargestCluster": 0,
+      "universalSafetyUniqueTemplates": 1,
+      "universalSafetyLargestCluster": 20,
+      "topSubstantiveSamples": []
+    },
+    {
+      "family": "five_answers",
+      "substantiveUniqueTemplates": 0,
+      "substantiveLargestCluster": 0,
+      "universalSafetyUniqueTemplates": 15,
+      "universalSafetyLargestCluster": 20,
+      "topSubstantiveSamples": []
+    },
+    {
+      "family": "chase",
+      "substantiveUniqueTemplates": 1,
+      "substantiveLargestCluster": 15,
+      "universalSafetyUniqueTemplates": 6,
+      "universalSafetyLargestCluster": 5,
+      "topSubstantiveSamples": [
+        {
+          "hash": "6ded8f916b84",
+          "count": 15,
+          "sample": "Please provide Referred master media / full record (missing) (requestId=req-absent-referred_missing_master)."
+        }
+      ],
+      "substantiveLargestClusterForGate": 0,
+      "sourceJustifiedException": true
+    },
+    {
+      "family": "war_room",
+      "substantiveUniqueTemplates": 5,
+      "substantiveLargestCluster": 5,
+      "universalSafetyUniqueTemplates": 13,
+      "universalSafetyLargestCluster": 20,
+      "topSubstantiveSamples": [
+        {
+          "hash": "eba26b35ea7a",
+          "count": 5,
+          "sample": "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served"
+        },
+        {
+          "hash": "44a65670a277",
+          "count": 4,
+          "sample": "Do not import profile-specific evidence unless the bundle supports it."
+        },
+        {
+          "hash": "f9ba6d642295",
+          "count": 1,
+          "sample": "Do not state \"interview confirms\" — Interview material is not fully served"
+        }
+      ]
+    }
+  ],
+  "largestSubstantiveCluster": 5,
+  "outputStrengthOk": true,
+  "exception": {
+    "sourceJustifiedExceptions": [
+      {
+        "family": "chase",
+        "largestCluster": 15,
+        "justification": "Identical chase wording reflects identical absent document identity referred_missing_master shared across multiple V2 source packs; not randomised template collapse.",
+        "sample": "Please provide Referred master media / full record (missing) (requestId=req-absent-referred_missing_master)."
+      }
+    ]
+  },
+  "beforeAfterVsV211": {
+    "before": {
+      "population": 20,
+      "clusters": [
+        {
+          "surfaceId": "charges",
+          "uniqueTemplates": 3,
+          "largestCluster": 10
+        },
+        {
+          "surfaceId": "key_facts",
+          "uniqueTemplates": 12,
+          "largestCluster": 6
+        },
+        {
+          "surfaceId": "war_room",
+          "uniqueTemplates": 20,
+          "largestCluster": 1
+        },
+        {
+          "surfaceId": "disclosure_chase",
+          "uniqueTemplates": 20,
+          "largestCluster": 1
+        },
+        {
+          "surfaceId": "control_room",
+          "uniqueTemplates": 20,
+          "largestCluster": 1
+        },
+        {
+          "surfaceId": "five_answers",
+          "uniqueTemplates": 10,
+          "largestCluster": 10
+        },
+        {
+          "surfaceId": "composed_prose_court",
+          "uniqueTemplates": 3,
+          "largestCluster": 18
+        },
+        {
+          "surfaceId": "composed_prose_chase",
+          "uniqueTemplates": 2,
+          "largestCluster": 16
+        },
+        {
+          "surfaceId": "export_pack",
+          "uniqueTemplates": 20,
+          "largestCluster": 1
+        },
+        {
+          "surfaceId": "api",
+          "uniqueTemplates": 14,
+          "largestCluster": 5
+        },
+        {
+          "surfaceId": "pdf_exit",
+          "uniqueTemplates": 5,
+          "largestCluster": 13
+        },
+        {
+          "surfaceId": "copy_lines",
+          "uniqueTemplates": 5,
+          "largestCluster": 13
+        }
+      ],
+      "sourceBackedRequirement": "Substantive analysis must change with facts/evidence/charge/procedure; universal warnings may repeat.",
+      "productionClass": "genuine_production_builder"
+    },
+    "afterLargestSubstantiveCluster": 5,
+    "afterFamilyCount": 8
+  },
+  "sourceBackedRequirement": "Substantive LEAF analysis must change with facts/evidence/charge/procedure; universal safety warnings may repeat.",
+  "productionClass": "genuine_production_builder"
+}

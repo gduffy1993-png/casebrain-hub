@@ -1,0 +1,177 @@
+{
+  "caseId": "div3000v211-14-contempt",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "a2bf375fcead30ec3c4f4777d4b548ccaebb9b34040172026016da4e3c8d54f9",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "purpose": "charge_instrument_particulars",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\npageIdentity=written_charge/page/1\n## Written charge / requisition\n## Particulars\nMatter family: contempt\nDefendant count modelled: 2\nCharge: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nProvision note: unpinned:contempt\nThis instrument is modelled as the operative charging document for fictional-test purposes only.\nProcedural stage: police investigation.\nDo not treat this summary as proof of the allegation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-14-contempt\nDocument id | written_charge\nKind | written_charge\nLifecycle state | operative\nPage purpose | charge_instrument_particulars\nFamily | contempt\nProcedure | police investigation\nDefence on instructions | consent dispute\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for contempt must respect served vs absent papers.\nPrecise next action: verify written_charge/page/1 against MG06 before any external send.\nSource/page pointer: written_charge/page/1",
+          "textHash": "53fec133952ab22c2ebe8c53f680ef43f6a17305a41b04935b2d8a10c7b93616",
+          "headings": [
+            "Written charge / requisition",
+            "Particulars"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "purpose": "charge_defendant_allocation",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\npageIdentity=written_charge/page/2\n## Defendant allocation\nCounts allocated across 2 modelled defendants.\nAttribution of each count must remain defendant-specific.\nNo cross-defendant bleed is authorised by this fictional instrument.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-14-contempt\nDocument id | written_charge\nKind | written_charge\nLifecycle state | operative\nPage purpose | charge_defendant_allocation\nFamily | contempt\nProcedure | police investigation\nDefence on instructions | consent dispute\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for contempt must respect served vs absent papers.\nPrecise next action: verify written_charge/page/2 against MG06 before any external send.\nSource/page pointer: written_charge/page/2",
+          "textHash": "45b1deb0eb661ae124bcf530548b8cb5e1641bf5012b3b7f50ba255ca1f2633f",
+          "headings": [
+            "Defendant allocation"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "234f0cfd2b5f555418d6fb8aff9ad02741cbabc9075fe185bcaeec80bdfd3cce",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/1\n## MG5 Case summary\n## Narrative\nFamily under review: contempt\nDefence position on instructions: consent dispute\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: contempt.\nDefence position modelled: consent dispute.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 6: mg11_draft, cctv_clip, cctv_master_referred.\nWitness outline: complainant account recorded as allegation only — not proved.\nOfficer summary limited to disclosed papers in this pack.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-14-contempt\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_case_summary_narrative\nFamily | contempt\nProcedure | police investigation\nDefence on instructions | consent dispute\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for contempt must respect served vs absent papers.\nPrecise next action: verify MG05/page/1 against MG06 before any external send.\nSource/page pointer: MG05/page/1",
+          "textHash": "f75f3cad9e13b745d5a15301d97c3554642287802eb19d72f8787a96345c21d2",
+          "headings": [
+            "MG5 Case summary",
+            "Narrative"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/2\n## Evidence outline\n## Limitations\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): referred_missing_master.\nReliability: MG5 narrative must not be read as establishing guilt.\nNext action: reconcile MG5 against MG6 index for div3000v211-14-contempt before any court-facing send.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-14-contempt\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_evidence_outline\nFamily | contempt\nProcedure | police investigation\nDefence on instructions | consent dispute\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for contempt must respect served vs absent papers.\nPrecise next action: verify MG05/page/2 against MG06 before any external send.\nSource/page pointer: MG05/page/2",
+          "textHash": "9d9d61d0e4ff3a030ec516afcb07444a9954aa88cd122a1baa2930de07a6901f",
+          "headings": [
+            "Evidence outline",
+            "Limitations"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "b536fe6a2c0a506006fca25b2c5f5001e37945d30aacbff1868d6a8fa0888a49",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\npageIdentity=MG06/page/1\n## MG6 File front sheet / index\n## Inventory\nIndex of papers for this fictional matter:\n- written charge / requisition — see written_charge\n- MG5 case summary — served\n- disclosure / unused schedule — see schedules\n- referred_missing_master — REFERRED ABSENT — not served; do not quote content\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nCaseBrain must not quote or summarise nonexistent content for referred-absent items.\nChase binding: disclosure chase must request referred_missing_master by identity, pointing to this MG6 page.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-14-contempt\nDocument id | MG06\nKind | mg06\nLifecycle state | served\nPage purpose | mg6_file_index\nFamily | contempt\nProcedure | police investigation\nDefence on instructions | consent dispute\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for contempt must respect served vs absent papers.\nPrecise next action: verify MG06/page/1 against MG06 before any external send.\nSource/page pointer: MG06/page/1",
+          "textHash": "b536fe6a2c0a506006fca25b2c5f5001e37945d30aacbff1868d6a8fa0888a49",
+          "headings": [
+            "MG6 File front sheet / index",
+            "Inventory"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "f6d67cef4988fa53d45f9ef205b02e7533b6cd6cc4cc468353fd1a274e559f3d",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_or_digital_schedule",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\npageIdentity=cctv_clip_schedule/page/1\n## Media / digital schedule\nSchedule for contempt matter.\nClip / extract entries served where marked; masters may be referred-only.\nFICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nAbsent masters referred via MG6: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-14-contempt\nDocument id | cctv_clip_schedule\nKind | media_schedule\nLifecycle state | partial\nPage purpose | media_or_digital_schedule\nFamily | contempt\nProcedure | police investigation\nDefence on instructions | consent dispute\n\n## Status / limitation / next action\nStatus: partial\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for contempt must respect served vs absent papers.\nPrecise next action: verify cctv_clip_schedule/page/1 against MG06 before any external send.\nSource/page pointer: cctv_clip_schedule/page/1",
+          "textHash": "f6d67cef4988fa53d45f9ef205b02e7533b6cd6cc4cc468353fd1a274e559f3d",
+          "headings": [
+            "Media / digital schedule"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "916f4b31fffcc7c585fadbb3e639ccce2da54f39f4dbc0fad4a0cc6b9ff18664",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "metadata_only_fixture",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\npageIdentity=media_metadata/page/1\n## Media metadata\nNative video/audio bytes: not_exercised.\nMetadata fields only — hash/path placeholders for fictional test.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nCannot summarise native content that was never supplied.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-14-contempt\nDocument id | media_metadata\nKind | metadata_fixture\nLifecycle state | metadata_only\nPage purpose | metadata_only_fixture\nFamily | contempt\nProcedure | police investigation\nDefence on instructions | consent dispute\n\n## Status / limitation / next action\nStatus: metadata_only\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for contempt must respect served vs absent papers.\nPrecise next action: verify media_metadata/page/1 against MG06 before any external send.\nSource/page pointer: media_metadata/page/1",
+          "textHash": "916f4b31fffcc7c585fadbb3e639ccce2da54f39f4dbc0fad4a0cc6b9ff18664",
+          "headings": [
+            "Media metadata"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "0d0cbe343008ef38b48e3fb8a299690634bc87c4c712ac23627f184c1d121e09",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\npageIdentity=defence_proof_extract/page/1\n## Defence proof of evidence extract\n## PRIVILEGED\nPosition on instructions: consent dispute\nThis extract is privilege-separated. Not for ordinary copy/export/API send.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: consent_dispute. Not for ordinary copy/export.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-14-contempt\nDocument id | defence_proof_extract\nKind | defence_proof\nLifecycle state | privileged\nPage purpose | defence_privileged_extract\nFamily | contempt\nProcedure | police investigation\nDefence on instructions | consent dispute\n\n## Status / limitation / next action\nStatus: privileged\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for contempt must respect served vs absent papers.\nPrecise next action: verify defence_proof_extract/page/1 against MG06 before any external send.\nSource/page pointer: defence_proof_extract/page/1",
+          "textHash": "0d0cbe343008ef38b48e3fb8a299690634bc87c4c712ac23627f184c1d121e09",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ]
+        }
+      ],
+      "privilegeSeparated": true,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "extra_context_4",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "5c4ad24afbb097d78d5806bf34aaee9fde79f7aa290a6c7c09f2f36d8a039b45",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_4/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\npageIdentity=extra_context_4/page/1\n## Additional context schedule (fictional test)\nKind: context_schedule\nLifecycle state: served\nFamily: contempt\nStage: police investigation\nFICTIONAL TEST MATERIAL — additional coherent schedule for contempt emphasising consent_dispute and written_charge.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-14-contempt\nDocument id | extra_context_4\nKind | context_schedule\nLifecycle state | served\nPage purpose | document_specific_body\nFamily | contempt\nProcedure | police investigation\nDefence on instructions | consent dispute\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for contempt must respect served vs absent papers.\nPrecise next action: verify extra_context_4/page/1 against MG06 before any external send.\nSource/page pointer: extra_context_4/page/1",
+          "textHash": "5c4ad24afbb097d78d5806bf34aaee9fde79f7aa290a6c7c09f2f36d8a039b45",
+          "headings": [
+            "Additional context schedule (fictional test)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    }
+  ]
+}

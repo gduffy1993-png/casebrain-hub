@@ -1,0 +1,6 @@
+build_start=2026-08-03T01:12:46.8814607+01:00
+envSource=main .env.local process-scoped
+command=node C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\next\dist\bin\next build
+cwd=worktree
+build_end=2026-08-03T01:19:39.4171993+01:00
+exitCode=0

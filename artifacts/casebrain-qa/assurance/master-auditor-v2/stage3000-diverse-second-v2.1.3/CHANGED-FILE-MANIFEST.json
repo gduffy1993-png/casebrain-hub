@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "diverse3000-v2.1.3-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-03T00:38:44.607Z",
+  "note": "Literal changed-file manifest for V2.1.3 pilot lane; STOP uncommitted. Does not claim corpus/stage3000/programme PASS.",
+  "fileCount": 19,
+  "files": [
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.2-structured-maa-output.ts",
+      "sha256": "44a52c2f814b0105dd96a7020d598fe0b9985ac837da54554776bc0c01ec91a0",
+      "classification": "pilot_lane_script"
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts",
+      "sha256": "3fb9ca1303ef3be9e99d754a68e149f0ca589e2963e33234b639c2bc5e2633a3",
+      "classification": "pilot_lane_script"
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/build-v2.1.3-remediation.ts",
+      "sha256": "6c004b0c9c2de23e6e386477adc5a24e768af7b20b09376b758fc8f207ab0500",
+      "classification": "pilot_lane_script"
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.3-focused-contracts.test.ts",
+      "sha256": "74c850fe018f0c178455a52bbad4a980d11249c6f61c6161641a768a449a9b8f",
+      "classification": "pilot_lane_script"
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.2-document-kind-layouts.ts",
+      "sha256": "3851bf867c869dfb53eed858c7419f4e45116e5b545b18c63af03a6a645ac029",
+      "classification": "pilot_lane_script"
+    },
+    {
+      "path": "tsconfig.v213-path-scoped.json",
+      "sha256": "6b2284cea53b1aba3ef0b53754521f0a5dcc6f606313736fa062b185deb2780f",
+      "classification": "build_contracts_tsc_receipt"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/pilot-gate-result.json",
+      "sha256": "198fa8234521550eaf8d643b874943f5e0a4b1ed00a4941a57fcbb8fe64f0f2f",
+      "classification": "v213_assurance_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "0c46123b13c325913aa73605710cbec81ca075d51ee5bff7ce7cdd9a48a47e66",
+      "classification": "v213_assurance_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/DECISION-CARD.json",
+      "sha256": "d034d5ebbd0d9b11d4f13e805aa946c3043a6184ff6c0103f1e1294e744f6b71",
+      "classification": "v213_assurance_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/document-realism-ai-visual-review.json",
+      "sha256": "bdf6742a311564ea510fc07aafb4372ed3e11b221439f6c06d44077b2739e56b",
+      "classification": "direct_visual_review"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/substantive-leaf-coverage-matrix.json",
+      "sha256": "46574d4d77b142ac93c59ff09b65a0835e46c519094690162fd7aad4b734a0e6",
+      "classification": "v213_assurance_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/internal-language-boundary-scan.json",
+      "sha256": "4101e07ba5667dac2561bbbcfabacb85db5104c5fb5e95f2569b022706d33dcf",
+      "classification": "v213_assurance_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/output-strength-and-template-cluster-report.json",
+      "sha256": "2f3f340d69c96abe82416b687abe784a61b0a314bccee17496608ac541a2eb64",
+      "classification": "v213_assurance_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/per-control-14-evaluated-1-not-exercised.json",
+      "sha256": "55d10bbe2cf5a4c693dfd1ae739fe3a6b441d4b16f8d1f6dde1407fb5f477acf",
+      "classification": "v213_assurance_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/contracts-proof.json",
+      "sha256": "1e6248dce67fd6709cb712112ea0849ed0f3950e4ce09633eaec6de7e78977f7",
+      "classification": "v213_assurance_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/build-and-tsc-receipt.json",
+      "sha256": "71ca26db6b4e16a1017758632e9e80e982c98007d25b00343d3a5bf13ed17d56",
+      "classification": "build_contracts_tsc_receipt"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/v2.1.2-pilot-gate-claim-correction.json",
+      "sha256": "d82afb29ab193047cd27136f1fd29bbf5240a44c1ee37d9590ea8e893c5152d5",
+      "classification": "historical_claim_correction_or_lock"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.3/frozen-membership-v2.1.3-pilot20.json",
+      "sha256": "00bb1dd4e0489db636736eedbe99328d60934d36a34a9ba608a5e8f75a9e7a0c",
+      "classification": "v213_assurance_artefact"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.2/pilot-gate-claim-correction.json",
+      "sha256": "d82afb29ab193047cd27136f1fd29bbf5240a44c1ee37d9590ea8e893c5152d5",
+      "classification": "v213_assurance_artefact"
+    }
+  ]
+}

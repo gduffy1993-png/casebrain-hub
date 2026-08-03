@@ -1,0 +1,94 @@
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-win32-arm64-msvc isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-x64-musl isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-x64-gnu isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-win32-ia32-msvc isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-arm64-gnu isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-arm64-musl isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-darwin-x64 isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-darwin-arm64 isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+ ÔÜá Compiled with warnings
+
+./lib/pdf/criminal-strategy-pdf.ts
+module.createRequire failed parsing argument.
+
+Import trace for requested module:
+./lib/pdf/criminal-strategy-pdf.ts
+./app/api/criminal/[caseId]/strategy-export/route.ts
+
+./lib/pdf/criminal-strategy-pdf.ts
+module.createRequire failed parsing argument.
+
+Import trace for requested module:
+./lib/pdf/criminal-strategy-pdf.ts
+./app/api/criminal/[caseId]/strategy-export/route.ts
+
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-win32-ia32-msvc isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-x64-musl isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-win32-arm64-msvc isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-arm64-musl isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-x64-gnu isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-darwin-x64 isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-arm64-gnu isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-darwin-arm64 isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (130kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ÔÜá Compiled with warnings
+
+./node_modules/@supabase/realtime-js/dist/module/lib/websocket-factory.js
+A Node.js API is used (process.versions at line: 39) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+Import trace for requested module:
+./node_modules/@supabase/realtime-js/dist/module/lib/websocket-factory.js
+./node_modules/@supabase/realtime-js/dist/module/index.js
+./node_modules/@supabase/supabase-js/dist/index.mjs
+./node_modules/@supabase/ssr/dist/module/createBrowserClient.js
+./node_modules/@supabase/ssr/dist/module/index.js
+
+./node_modules/@supabase/supabase-js/dist/index.mjs
+A Node.js API is used (process.version at line: 395) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+Import trace for requested module:
+./node_modules/@supabase/supabase-js/dist/index.mjs
+./node_modules/@supabase/ssr/dist/module/createBrowserClient.js
+./node_modules/@supabase/ssr/dist/module/index.js
+
+Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-win32-ia32-msvc isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-win32-arm64-msvc isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-x64-gnu isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-arm64-musl isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-arm64-gnu isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-darwin-x64 isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-darwin-arm64 isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item C:\Users\gduff\casebrain-hub-wt-s3000-diverse\node_modules\@next\swc-linux-x64-musl isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+{
+  "ok": true,
+  "gatePass": true,
+  "blockers": [],
+  "ordinaryFailClosedCount": 0,
+  "beforeFailClosed": 405,
+  "afterByControl": {
+    "MAA2-BND-05-MISSING-ATTACHMENTS": 15,
+    "MAA2-ATR-02-DOCUMENT-OWNERSHIP": 7
+  },
+  "derivedMissingDeps": 0,
+  "boundaryDefects": 0,
+  "contractsExit": 0,
+  "tscExit": 0,
+  "npmBuildExit": 0,
+  "leafClassCounts": {
+    "protected_audit_only": 549,
+    "not_exercised": 392,
+    "universal_safety": 248,
+    "substantive_derived_conclusion": 345,
+    "substantive_source_backed": 220,
+    "substantive_explicitly_unresolved": 163,
+    "fail_closed_unresolved_reference": 10
+  }
+}

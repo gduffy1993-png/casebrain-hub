@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "diverse3000-v2.1.3-pilot-gate-claim-correction@1.0.0",
+  "generatedAt": "2026-08-03T01:07:16.549Z",
+  "originalGateReportPreserved": "pilot-gate-result.json",
+  "originalDecisionPreserved": "DECISION-CARD.json",
+  "originalClaim": {
+    "gatePass": true,
+    "status": "PILOT_GATE_PASS_STOP_FOR_CODEX_BEFORE_SCALE",
+    "scaleGateAccepted": false,
+    "note": "Document realism, build, boundary, 14+1 control accounting accepted; overall scale gate not accepted."
+  },
+  "correctedStatus": "PILOT_GATE_INCOMPLETE_PENDING_PROVENANCE_BOUND_SUBSTANTIVE_COVERAGE__EXIT_CAPABILITY_RECONCILIATION__CANDIDATE_TRIAGE",
+  "gatePass": false,
+  "scaleGateAccepted": false,
+  "reasons": [
+    {
+      "id": "length_based_source_backed",
+      "detail": "classifyLeafKind used text length >= 40 as substantive_source_backed — not provenance-bound."
+    },
+    {
+      "id": "exit_capability_leaf_conflation",
+      "detail": "Exit applicability mirrored leaf presence / builder labels rather than versioned exit-capability vs captured payload reconciliation."
+    },
+    {
+      "id": "untriaged_552_candidates",
+      "detail": "552 frozen occurrences were not dispositioned (completeness/SRC-10/BND-05/ATR-02 mix)."
+    }
+  ],
+  "v213MembershipPreserved": "e103baa3e0e53bc0062b36f3446896337b7ba99e7213fe23c4c34426201edfde",
+  "candidateLedgerSha256Preserved": "4a788439aa97be17a73c5ccd066be5725805694a9bc1e4922c44673e44abe3a3",
+  "remediationLineage": "stage3000-diverse-second-v2.1.4",
+  "silentRewriteProhibited": true,
+  "byteForBytePreserve": [
+    "V2",
+    "V2.1",
+    "V2.1.1",
+    "V2.1.2",
+    "V2.1.3"
+  ]
+}

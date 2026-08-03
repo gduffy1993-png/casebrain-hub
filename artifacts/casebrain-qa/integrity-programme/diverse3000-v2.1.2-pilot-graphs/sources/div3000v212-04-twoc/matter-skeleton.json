@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "diverse3000-v2-matter@1.0.0",
+  "v1CaseId": "div3000-0799-twoc",
+  "caseId": "div3000v212-04-twoc",
+  "orderIndex": 798,
+  "primaryFamily": "twoc",
+  "tier": "routine_volume",
+  "fictionalBanner": "FICTIONAL TEST MATERIAL",
+  "charge": {
+    "wording": null,
+    "provision": "unpinned:twoc",
+    "wordingStatus": "structural_only",
+    "structuralNote": "No pinned current source-supported charge wording in research register for this family — classified structural_only / awaiting qualified review; do not invent operative wording."
+  },
+  "defencePosition": "lack_of_intent",
+  "proceduralLifecycle": "trial_prep",
+  "defendantCount": 1,
+  "countAllocation": 3,
+  "evidenceStateGraph": [
+    {
+      "item": "indictment_operative",
+      "kind": "indictment",
+      "state": "operative",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "MG05",
+      "kind": "mg05",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 3
+    },
+    {
+      "item": "MG06",
+      "kind": "mg06",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "defence_proof_extract",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "extra_context_6",
+      "kind": "context_schedule",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    }
+  ],
+  "documentRelationshipGraph": {
+    "nodes": [
+      {
+        "id": "indictment_operative",
+        "kind": "indictment",
+        "state": "operative"
+      },
+      {
+        "id": "MG05",
+        "kind": "mg05",
+        "state": "served"
+      },
+      {
+        "id": "MG06",
+        "kind": "mg06",
+        "state": "served"
+      },
+      {
+        "id": "defence_proof_extract",
+        "kind": "defence_proof",
+        "state": "privileged"
+      },
+      {
+        "id": "extra_context_6",
+        "kind": "context_schedule",
+        "state": "served"
+      }
+    ],
+    "edges": [
+      {
+        "from": "MG06",
+        "to": "MG05",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG06",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "defence_proof_extract",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "extra_context_6",
+        "relation": "indexes"
+      }
+    ]
+  },
+  "missingMaterialGraph": [],
+  "contradictionTrapGraph": [
+    {
+      "description": "twoc trap with lack_of_intent at trial_prep",
+      "secondary": "attribution_or_media_partial"
+    }
+  ],
+  "chronology": [
+    {
+      "event": "alleged_incident_window",
+      "detail": "fictional incident window for twoc"
+    },
+    {
+      "event": "first_account",
+      "detail": "first account recorded"
+    },
+    {
+      "event": "charge_or_process",
+      "detail": "structural:twoc"
+    },
+    {
+      "event": "hearing_marker",
+      "detail": "Leeds Crown Court <DATE>"
+    }
+  ],
+  "sourceCompleteness": "complete_source_packet",
+  "documentCount": 5,
+  "v2CaseId": "div3000v2-0799-twoc",
+  "v211CaseId": "div3000v211-04-twoc",
+  "v21CaseId": "div3000v21-04-twoc",
+  "pilotOrderIndex": 3
+}

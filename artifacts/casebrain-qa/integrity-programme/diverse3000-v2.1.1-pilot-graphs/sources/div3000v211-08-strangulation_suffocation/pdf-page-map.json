@@ -1,0 +1,80 @@
+{
+  "caseId": "div3000v211-08-strangulation_suffocation",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/bundle-fictional-test.pdf",
+  "sha256": "a30e70d29d627947f6514c7571a5b37ba5f9c5f5df95e3f9026c77f00e66dc07",
+  "pageCount": 12,
+  "pageMap": [
+    {
+      "pageIdentity": "indictment_operative/page/1",
+      "pdfPageNumber": 1,
+      "docId": "indictment_operative",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 2,
+      "docId": "MG05",
+      "purpose": "mg5_case_summary_narrative"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 3,
+      "docId": "MG05",
+      "purpose": "mg5_evidence_outline"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 4,
+      "docId": "MG06",
+      "purpose": "mg6_file_index"
+    },
+    {
+      "pageIdentity": "MG11_complainant_signed/page/1",
+      "pdfPageNumber": 5,
+      "docId": "MG11_complainant_signed",
+      "purpose": "witness_or_defendant_statement"
+    },
+    {
+      "pageIdentity": "MG11_complainant_draft/page/1",
+      "pdfPageNumber": 6,
+      "docId": "MG11_complainant_draft",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "MG11_complainant_draft/page/2",
+      "pdfPageNumber": 7,
+      "docId": "MG11_complainant_draft",
+      "purpose": "lifecycle_history_not_operative"
+    },
+    {
+      "pageIdentity": "order_or_bail/page/1",
+      "pdfPageNumber": 8,
+      "docId": "order_or_bail",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/1",
+      "pdfPageNumber": 9,
+      "docId": "cctv_clip_schedule",
+      "purpose": "media_or_digital_schedule"
+    },
+    {
+      "pageIdentity": "media_metadata/page/1",
+      "pdfPageNumber": 10,
+      "docId": "media_metadata",
+      "purpose": "metadata_only_fixture"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 11,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_privileged_extract"
+    },
+    {
+      "pageIdentity": "extra_context_5/page/1",
+      "pdfPageNumber": 12,
+      "docId": "extra_context_5",
+      "purpose": "document_specific_body"
+    }
+  ]
+}

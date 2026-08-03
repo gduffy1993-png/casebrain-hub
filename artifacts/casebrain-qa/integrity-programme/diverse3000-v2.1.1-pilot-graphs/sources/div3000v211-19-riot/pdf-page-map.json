@@ -1,0 +1,62 @@
+{
+  "caseId": "div3000v211-19-riot",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/bundle-fictional-test.pdf",
+  "sha256": "21c6f03b78cf43aabd6db88c2faa0471243ab9a5e1a811089daee99c1f796ea3",
+  "pageCount": 9,
+  "pageMap": [
+    {
+      "pageIdentity": "written_charge/page/1",
+      "pdfPageNumber": 1,
+      "docId": "written_charge",
+      "purpose": "charge_instrument_particulars"
+    },
+    {
+      "pageIdentity": "written_charge/page/2",
+      "pdfPageNumber": 2,
+      "docId": "written_charge",
+      "purpose": "charge_defendant_allocation"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 3,
+      "docId": "MG05",
+      "purpose": "mg5_case_summary_narrative"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 4,
+      "docId": "MG05",
+      "purpose": "mg5_evidence_outline"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 5,
+      "docId": "MG06",
+      "purpose": "mg6_file_index"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/1",
+      "pdfPageNumber": 6,
+      "docId": "cctv_clip_schedule",
+      "purpose": "media_or_digital_schedule"
+    },
+    {
+      "pageIdentity": "media_metadata/page/1",
+      "pdfPageNumber": 7,
+      "docId": "media_metadata",
+      "purpose": "metadata_only_fixture"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 8,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_privileged_extract"
+    },
+    {
+      "pageIdentity": "extra_context_2/page/1",
+      "pdfPageNumber": 9,
+      "docId": "extra_context_2",
+      "purpose": "document_specific_body"
+    }
+  ]
+}

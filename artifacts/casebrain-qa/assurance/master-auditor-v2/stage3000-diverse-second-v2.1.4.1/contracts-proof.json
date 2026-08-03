@@ -1,0 +1,148 @@
+{
+  "controls": [
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-BND-02-INSTRUMENT-STATUS: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=1 (evaluated)."
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-BND-04-VERSION-PRECEDENCE: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=1 (evaluated)."
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-BND-05-MISSING-ATTACHMENTS: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=1 (evaluated)."
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-CHG-01-RECORDED-SOURCE-VISIBLE: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=0 (not_exercised)."
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-CHG-05-OPERATIVE-INSTRUMENT: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=1 (evaluated)."
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-ATR-01-DEFENDANT-SEPARATION: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=1 (evaluated)."
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "ATR-02 structured proof: pos=0 neg=1 una=not_exercised mut=1"
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=1 (evaluated)."
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=1 (evaluated)."
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-CHS-02-SPECIFIC-ITEM-REQUEST: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=1 (evaluated)."
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "CHS-03 structured proof: pos=0 neg=1 una=not_exercised mut=1"
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=0 (not_exercised)."
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "Fixture-backed proof for MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED: posFindings=0 (evaluated), negFindings=1 (evaluated), una=not_exercised, mutFindings=0 (not_exercised)."
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "COMPLETENESS handler proof: pos=0 neg=1 una=not_exercised mut=1"
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "positiveAlters": true,
+      "negativeAlters": true,
+      "unavailableAlters": true,
+      "mutationAlters": true,
+      "detail": "WRD-15 handler proof: pos=0 neg=1 una=not_exercised mut=1"
+    }
+  ],
+  "provenanceClassifier": {
+    "positiveAlters": true,
+    "negativeAlters": true,
+    "unavailableAlters": true,
+    "mutationAlters": true,
+    "detail": "pos=substantive_source_backed/written_charge neg=fail_closed_unresolved_reference una=substantive_explicitly_unresolved mut=fail_closed_unresolved_reference"
+  },
+  "exactProvenanceAdversarial": {
+    "mg5NotWrittenCharge": true,
+    "mg6NotIndictment": true,
+    "labelLengthNotWildcard": true,
+    "removingExactDocChangesResult": true,
+    "mixedClaimsRequireAllRefs": true,
+    "detail": "{\"mg5\":{\"doc\":\"MG05\",\"class\":\"substantive_source_backed\"},\"mg6\":{\"doc\":\"MG06\",\"class\":\"substantive_source_backed\"},\"wildcard\":\"fail_closed_unresolved_reference\",\"withDoc\":\"substantive_source_backed\",\"withoutDoc\":\"fail_closed_unresolved_reference\",\"mixed\":\"fail_closed_unresolved_reference\",\"mixedWithPages\":{\"class\":\"substantive_source_backed\",\"refs\":2}}"
+  },
+  "completenessFourAxes": {
+    "controlId": "MAA-COMPLETENESS",
+    "positiveAlters": true,
+    "negativeAlters": true,
+    "unavailableAlters": true,
+    "mutationAlters": true,
+    "detail": "COMPLETENESS handler proof: pos=0 neg=1 una=not_exercised mut=1"
+  },
+  "gateRequiresAllFourAxes": true
+}

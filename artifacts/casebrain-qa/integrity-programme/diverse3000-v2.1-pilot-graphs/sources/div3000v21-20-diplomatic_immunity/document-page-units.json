@@ -1,0 +1,245 @@
+{
+  "caseId": "div3000v21-20-diplomatic_immunity",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "39c1c0a5136145c400315e6a18d77769211c145705835cbf56fbdad5ca2b4484",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/1\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndictment placeholder for diplomatic immunity — charge wording not pinned; structural only.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b4956e79654ead24851ac224f43a675069c8f67bc291727baa7981aff4a431af"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/2\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for indictment_operative.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "6be9f064ec60f64b3d06c717feaf188875f67e5e1cf61ce5584af0edfe2c18d4"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "1b4e08907d8667813e6dc3272e01e92873b54d7ec0a814bd74c011eb2cb12ea6",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: diplomatic immunity.\nDefence position modelled: no case to answer focus.\nProcedural stage: trial prep.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 4: mg11_draft, cctv_clip, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "111d33e0b821d51c32ace9cef32e1e35676f162f36c0168e40b41cd8f6ab29e0"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "df9607c69ecb5fad5b7d08524d531b27ea18b94afe2fae8a9386f5e36ca28fde"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "140166ff2aaf7b7bf8ef4a19ee39df3ee1bc8e1ff79532c273ec445b90628db3"
+        },
+        {
+          "pageIndex": 4,
+          "pageIdentity": "MG05/page/4",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/4\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 4 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "55bf4a81507d4cbbc6368abec0a8dca15a4e1fc13c4d52dfa4a815506b493fca"
+        },
+        {
+          "pageIndex": 5,
+          "pageIdentity": "MG05/page/5",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/5\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 5 for MG05.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "42dd48008369770ffe9607bc9bc0f928382032f2d9b525ff59200ded258f9f81"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "029ed09fcb1498b287105993a0048b7d9427563da7232f51a594b66974d46d4f",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "ed743a8a0ef090027d380c48f4f4a03d0cfe3732bb958163016d7c9523b625d6"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b3935816cd40590327c84c9de42284738832a9c8c7e9f2ac328dde7ee1a6c384"
+        }
+      ]
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "ff1ca53e719711581bf477f205d2eed269fd72b1a4e21d169fe8d52c3163e875",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/1\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "439a7e1bea3ed3f77eefb4c666ed1bc36ebd2b4262b20a435b3b507921208f3c"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/2\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for cctv_clip_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b5c33ed34b8f1bad3823a421b3abb55bfda6253cb8c1538172933b7d6e65af53"
+        }
+      ]
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "41d5b7d935571657ecd2da75cf39573fd2c64753a314eecd2258e6bdb62d2686",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/1\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "951b7bcffabf76c4e0f50921988f4a5b06c83fe558e539d861d13342eeab7a38"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "media_metadata/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/2\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for media_metadata.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "364111aec1cad3591849365a7cb2f86480287c98921eace669d3e3c754b653f6"
+        }
+      ]
+    },
+    {
+      "docId": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "contentHash": "9d6cc5af741f91ddd8ed9312067c8fcaeeb91e46b179b7e2085a9148d03fbf3e",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "abe_or_special_measures/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/1\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — ABE / special measures structure. Qualified legal review still required for substantive conclusions.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "26758a4e7667f1aae092f590c87808ec064334bcab8829c2dd00121129310914"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "abe_or_special_measures/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/2\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for abe_or_special_measures.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "9d3bb4b886ea8a772801d5be00bc95b8f7751950149206df3c3bdc61e79dd5df"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "abe_or_special_measures/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/3\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for abe_or_special_measures.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "42bdbe5f8b8488a9250fb505265b2b0dd13547055e7deb4a49091af2c8fff322"
+        }
+      ]
+    },
+    {
+      "docId": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "contentHash": "133f9cec8e85a435c5f10e04d3c184e71f62139881c0effd0d1bbcb06c4b407c",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "third_party_material_note/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Third-party / counselling material note (fictional test)\nDocument id: third_party_material_note\nKind: third_party\nLifecycle state: referred_only\nPage identity: third_party_material_note/page/1\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — third-party records referred; not served. Privilege/PII boundaries apply.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "532ddc70470fbc33c5469327c33c59fe57e00f63ecae697db6f614a613047005"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "third_party_material_note/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Third-party / counselling material note (fictional test)\nDocument id: third_party_material_note\nKind: third_party\nLifecycle state: referred_only\nPage identity: third_party_material_note/page/2\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for third_party_material_note.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "5d7767ed73bbaddd479d54dcc50a57fb610d5772dff2a0f6651eeb03afdd42d2"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "205c5310d6c9f108caf6e968398aebbd7deb616277b8fbd4f6a17c761da052fc",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: no_case_to_answer_focus. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "bb9b4d7758b315e839e865ff17f7db0d90086f0134a140f7b4a37419f5d42d3c"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b4c2ae8fdb95703f577b5822f8fe4d6595f82904eb5a783aec4d2f5231ebd3bf"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b66eaa75b41a1706902e9b94adf99e60eb84a93f2984a4ba469873c01677eed3"
+        }
+      ]
+    },
+    {
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": "41da148271f469253278fa445f8b2b7c926f2cd32895d359640aa0ce694408bf",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "referred_missing_master/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/1\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — index refers to this item; file absent. Must not treat as served.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c8dcfd6594adc3c1ce3af69977baec26e9e2e041f01dd6068d7f7fe96dc7636b"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "referred_missing_master/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/2\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for referred_missing_master.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "a730c8c065ee4538ce37c7b07647839ddb3c059e4d9e74f9982257977d317901"
+        }
+      ]
+    },
+    {
+      "docId": "extra_context_7",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "4c90e6d8c93a59ef30d4b949abc22a033c5994a99f177c512883ef329238c315",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_7/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_7\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_7/page/1\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — additional coherent schedule for diplomatic_immunity emphasising no_case_to_answer_focus and indictment.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "a313b2efa522cf6d605dd1f78a9a4e6aee405fddc715df1662af1c8a3c0bd32f"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "extra_context_7/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_7\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_7/page/2\nMatter family under review: diplomatic immunity\nProcedural stage: trial prep\nDefence position on instructions: no case to answer focus\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for extra_context_7.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c90f6fb247be96a5c4f52b369abbec143f82cb821cc4382df586905505595d7b"
+        }
+      ]
+    }
+  ]
+}

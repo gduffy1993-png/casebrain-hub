@@ -1,0 +1,143 @@
+{
+  "caseId": "div3000v21-10-drugs_conspiracy_supply",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1-pilot-graphs/sources/div3000v21-10-drugs_conspiracy_supply/bundle-fictional-test.pdf",
+  "sha256": "63622604bac4d012bdc24e216a06807d5babba2bac3bc8943d97ee80520bd8fb",
+  "pageCount": 27,
+  "pageMap": [
+    {
+      "pageIdentity": "indictment_operative/page/1",
+      "pdfPageNumber": 1,
+      "docId": "indictment_operative"
+    },
+    {
+      "pageIdentity": "indictment_operative/page/2",
+      "pdfPageNumber": 2,
+      "docId": "indictment_operative"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 3,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 4,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/3",
+      "pdfPageNumber": 5,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/4",
+      "pdfPageNumber": 6,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/5",
+      "pdfPageNumber": 7,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 8,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "MG06/page/2",
+      "pdfPageNumber": 9,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "MG12_exhibits/page/1",
+      "pdfPageNumber": 10,
+      "docId": "MG12_exhibits"
+    },
+    {
+      "pageIdentity": "MG12_exhibits/page/2",
+      "pdfPageNumber": 11,
+      "docId": "MG12_exhibits"
+    },
+    {
+      "pageIdentity": "MG12_exhibits/page/3",
+      "pdfPageNumber": 12,
+      "docId": "MG12_exhibits"
+    },
+    {
+      "pageIdentity": "MG15_interview/page/1",
+      "pdfPageNumber": 13,
+      "docId": "MG15_interview"
+    },
+    {
+      "pageIdentity": "MG15_interview/page/2",
+      "pdfPageNumber": 14,
+      "docId": "MG15_interview"
+    },
+    {
+      "pageIdentity": "MG15_interview/page/3",
+      "pdfPageNumber": 15,
+      "docId": "MG15_interview"
+    },
+    {
+      "pageIdentity": "MG15_interview/page/4",
+      "pdfPageNumber": 16,
+      "docId": "MG15_interview"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/1",
+      "pdfPageNumber": 17,
+      "docId": "cctv_clip_schedule"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/2",
+      "pdfPageNumber": 18,
+      "docId": "cctv_clip_schedule"
+    },
+    {
+      "pageIdentity": "media_metadata/page/1",
+      "pdfPageNumber": 19,
+      "docId": "media_metadata"
+    },
+    {
+      "pageIdentity": "media_metadata/page/2",
+      "pdfPageNumber": 20,
+      "docId": "media_metadata"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 21,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/2",
+      "pdfPageNumber": 22,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/3",
+      "pdfPageNumber": 23,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "referred_missing_master/page/1",
+      "pdfPageNumber": 24,
+      "docId": "referred_missing_master"
+    },
+    {
+      "pageIdentity": "referred_missing_master/page/2",
+      "pdfPageNumber": 25,
+      "docId": "referred_missing_master"
+    },
+    {
+      "pageIdentity": "extra_context_1/page/1",
+      "pdfPageNumber": 26,
+      "docId": "extra_context_1"
+    },
+    {
+      "pageIdentity": "extra_context_1/page/2",
+      "pdfPageNumber": 27,
+      "docId": "extra_context_1"
+    }
+  ]
+}

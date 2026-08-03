@@ -1,0 +1,180 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/bundle-fictional-test.pdf",
+  "pageCount": 10,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-001.png",
+      "pngSha256": "55819c236c17cdb63813059fcf47cb15c5564f2ae0b2a9b22099de9ba7238e2c",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1521,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.21,
+        "nonWhiteRatio": 0.0483,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-002.png",
+      "pngSha256": "2ec93e5a1d09428ffa671bbf05b48e9fe2c01db3f57734e5c78c6e4126f141a9",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1234,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.19,
+        "nonWhiteRatio": 0.0413,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-003.png",
+      "pngSha256": "c2798aceca3d03f5023c75abeeea53744e42f3abb6b718fe5a0e0496513d852d",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1660,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.56,
+        "nonWhiteRatio": 0.053,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-004.png",
+      "pngSha256": "4a8fd24dd23003dd69e410281cd22ac4ee6b5b4c5d437b068384eebb52f47559",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1316,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.94,
+        "nonWhiteRatio": 0.0434,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-005.png",
+      "pngSha256": "7933afefff7dc4df2f4b341a8ffbb6f2c6b7e00702ee4aa0a38f522baddf7a34",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1536,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.02,
+        "nonWhiteRatio": 0.0491,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-006.png",
+      "pngSha256": "4ffd80352c95e974cb11255b9ac2c8576684af18af63172908dc7f3a4a010866",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1382,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.67,
+        "nonWhiteRatio": 0.045,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-007.png",
+      "pngSha256": "d26ceb249ee7699fdcbdd2c9611117107acab5775ab633787429d7220bc8cc6b",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1331,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.79,
+        "nonWhiteRatio": 0.0443,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-008.png",
+      "pngSha256": "2cf9d72e33671925dcf46156982720825c3ca73ef93fbda08c5b8754f930573b",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1475,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.41,
+        "nonWhiteRatio": 0.0474,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-009.png",
+      "pngSha256": "69744df43f8947a3639f743503680992b5ecd5de861bbff403f52cdc11ee051c",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1410,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.61,
+        "nonWhiteRatio": 0.0459,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 10,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-010.png",
+      "pngSha256": "721b55f489c76cf209a7c0e814c869d01928a7f9d17b548aef1ee3cffdb37b8a",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1429,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.58,
+        "nonWhiteRatio": 0.0461,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "c2674227fb819b5677f1fabd511f0ebfa2321c14afaa2ffd91e8190d3e225e2d",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

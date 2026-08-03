@@ -1,0 +1,22 @@
+{
+  "before": {
+    "findingCounts": {
+      "MAA-COMPLETENESS": 282,
+      "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE": 248,
+      "MAA2-BND-05-MISSING-ATTACHMENTS": 15,
+      "MAA2-ATR-02-DOCUMENT-OWNERSHIP": 7
+    },
+    "lengthBasedSourceBacked": true
+  },
+  "after": {
+    "findingCounts": {
+      "MAA2-BND-05-MISSING-ATTACHMENTS": 15,
+      "MAA2-ATR-02-DOCUMENT-OWNERSHIP": 7
+    },
+    "provenanceBoundClassifier": true,
+    "src10AdapterFixed": true,
+    "completenessStructuralExcluded": true
+  },
+  "regressionsIntroduced": [],
+  "note": "Same frozen 20; V2.1.3 PDFs hash-locked and not regenerated"
+}

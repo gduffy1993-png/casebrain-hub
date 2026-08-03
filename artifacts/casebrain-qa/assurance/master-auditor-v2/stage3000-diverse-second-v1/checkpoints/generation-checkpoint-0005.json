@@ -1,0 +1,11 @@
+{
+  "checkpoint": 5,
+  "at": "2026-08-02T18:29:51.324Z",
+  "uniqueCaseIds": 5,
+  "uniqueTruthFp": 5,
+  "uniqueDocFp": 5,
+  "uniqueSourceFp": 5,
+  "rejectedSubstitutionAttempts": 0,
+  "freeGiB": 7.817348480224609,
+  "pass": true
+}

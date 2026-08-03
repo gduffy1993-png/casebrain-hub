@@ -1,0 +1,24 @@
+{
+  "ownership": [
+    {
+      "defect": "unsupported_gatePass_true",
+      "owningLayer": "v2.1_pilot_gate_script",
+      "remediation": "corrective report + strict V2.1.1 gate"
+    },
+    {
+      "defect": "invented_missing_document_pages",
+      "owningLayer": "v2.1_expandDocuments",
+      "remediation": "absent items ledger-only with referenced_absent_not_read"
+    },
+    {
+      "defect": "structural_text_called_visual_qa",
+      "owningLayer": "v2.1_visual_qa_register",
+      "remediation": "PNG raster + visual dispositions; rename structural checks"
+    },
+    {
+      "defect": "custom_compose_claimed_as_production",
+      "owningLayer": "v2.1_surface_compose",
+      "remediation": "buildLiveProductionSurfacesFromDocumentUnits bridge"
+    }
+  ]
+}

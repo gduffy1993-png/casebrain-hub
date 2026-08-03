@@ -1,0 +1,82 @@
+{
+  "caseId": "div3000v212-18-conspiracy_to_defraud",
+  "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+  "handlerModule": "scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts",
+  "handlerFunction": "exerciseAtr02",
+  "handlerId": "document_ownership_structured",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "structured_named_evaluator_v2.1.2",
+  "exerciseStatus": "evaluated",
+  "applicable": true,
+  "applicableUnitCount": 7,
+  "missingPrerequisiteReason": null,
+  "inputFieldRefs": [
+    "/attributionGraph/0",
+    "/attributionGraph/1",
+    "/attributionGraph/2",
+    "/attributionGraph/3",
+    "/attributionGraph/4",
+    "/attributionGraph/5",
+    "/attributionGraph/6"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "965c3a93beb4d5d6ffbe8baa7ee32e9765469e733ec341d222e3a651729d7a0e",
+    "findingsSha256": "19d6b54ac08a01ee38c598590d2c7292a1b1dc0a58f4d6bd1e3dd5d507c53e25"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/evidenceStates/8/sourcePage",
+    "/evidenceStates/9/sourcePage",
+    "/evidenceStates/10/sourcePage",
+    "/evidenceStates/11/sourcePage",
+    "/evidenceStates/12/sourcePage",
+    "/evidenceStates/13/sourcePage",
+    "/evidenceStates/14/sourcePage",
+    "/evidenceStates/15/sourcePage",
+    "/evidenceStates/16/sourcePage",
+    "/evidenceStates/17/sourcePage",
+    "/evidenceStates/18/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [
+    "MAA2-ATR-02-DOCUMENT-OWNERSHIP::/attributionGraph/6::ATR_DOCUMENT_OWNERSHIP_UNCLEAR"
+  ],
+  "findings": [
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "handlerId": "document_ownership_structured",
+      "findingCode": "ATR_DOCUMENT_OWNERSHIP_UNCLEAR",
+      "occurrenceRef": "/attributionGraph/6",
+      "exactWording": "unused_schedule_mg6c ownershipState=unclear",
+      "candidateClass": "unresolved",
+      "plainEnglish": "Document ownership/attribution unclear on attribution graph.",
+      "evidenceRefs": [
+        "/attributionGraph/6",
+        "unused_schedule_mg6c/page/1"
+      ]
+    }
+  ],
+  "contracts": {
+    "positive": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-ATR-02-DOCUMENT-OWNERSHIP-positive",
+    "negative": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-ATR-02-DOCUMENT-OWNERSHIP-negative",
+    "unavailable": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-ATR-02-DOCUMENT-OWNERSHIP-unavailable",
+    "mutation": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-ATR-02-DOCUMENT-OWNERSHIP-mutation"
+  },
+  "receiptNote": "ATR-02 evaluated on attributionGraph rows=7; findings=1."
+}

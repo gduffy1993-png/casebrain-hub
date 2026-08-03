@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "diverse3000-v2.1-to-v2.1.1-gate-before-after@1.0.0",
+  "before": {
+    "path": "stage3000-diverse-second-v2.1/pilot-gate-result.json",
+    "claimedGatePass": true,
+    "correctedTo": "PILOT_GATE_INCOMPLETE_PENDING_SOURCE_AND_VISUAL_REMEDIATION",
+    "correctionReport": "stage3000-diverse-second-v2.1/pilot-gate-claim-correction.json"
+  },
+  "after": {
+    "path": "stage3000-diverse-second-v2.1.1/pilot-gate-result.json",
+    "gatePass": true,
+    "status": "PILOT_GATE_PASS",
+    "checks": {
+      "pdfOk": true,
+      "pngOk": true,
+      "visualStrictOk": true,
+      "missingOk": true,
+      "noInventedMissingPages": true,
+      "productionOk": true,
+      "coreOk": true,
+      "coreEvaluatedCount": 15,
+      "coreTargetCount": 15,
+      "candidateFreezeBeforeTruth": true
+    }
+  }
+}

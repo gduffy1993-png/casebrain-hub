@@ -1,0 +1,18 @@
+{
+  "frozenV213Occurrences": 552,
+  "dispositionSummary": {
+    "expected_control_hit": 22,
+    "detector_false_positive": 521,
+    "duplicate_occurrence": 9
+  },
+  "afterSharedFixFindingCounts": {
+    "MAA2-BND-05-MISSING-ATTACHMENTS": 15,
+    "MAA2-ATR-02-DOCUMENT-OWNERSHIP": 7
+  },
+  "beforeFindingCounts": {
+    "MAA-COMPLETENESS": 282,
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE": 248,
+    "MAA2-BND-05-MISSING-ATTACHMENTS": 15,
+    "MAA2-ATR-02-DOCUMENT-OWNERSHIP": 7
+  }
+}

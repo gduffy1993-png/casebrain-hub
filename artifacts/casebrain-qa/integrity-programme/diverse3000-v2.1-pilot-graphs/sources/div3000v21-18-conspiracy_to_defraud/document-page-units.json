@@ -1,0 +1,266 @@
+{
+  "caseId": "div3000v21-18-conspiracy_to_defraud",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "90a5b009cb73ed5b9bcf7e0de3788456185b68bd91122a7d7bab889d010c5fa0",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndictment placeholder for conspiracy to defraud — charge wording not pinned; structural only.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "af2df6e6487720955ed905986d4c00faa3274163abe7f6e9ccd6e6a1dec79451"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for indictment_operative.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "77601ce20e4233fe60705d7c9c716bd7ef6524de70fd6523962b0b095586ca84"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "26b5ce038bc24a0ad3484b4d8d8ef2b1c9533da4bc7564864d4237f880ad17b4",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: conspiracy to defraud.\nDefence position modelled: lack of intent.\nProcedural stage: trial prep.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 2: mg11_draft, cctv_clip, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c9a131c01ad0041b64b54ba8c372510721de2fba3026599739c27d213467ddde"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "7678a96dd0922d995314d4da39511dd6f23b3bac07bb24c3269f8380d4b5c901"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "89f8abdbf3acbd0e364243e8ad9a5cbf9902161bbe92abb2f404937e5c0fa7f5"
+        },
+        {
+          "pageIndex": 4,
+          "pageIdentity": "MG05/page/4",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/4\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 4 for MG05.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "4d13fce2789f8ba948c369313f31cd9299ac8fa787c1698d6041d092fb5e5fa1"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "f13796e4fee07ca836a4807c398f342f8ce051ae6f9ddc5c7f0cb268de10cc67",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "5848ae942e7c5184f6538dc02eedbb4d712355245b25e5268bd4c147b0c0ede2"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "048e5e27986b70f3fe77a0fd96c3b3da7499a2a47396323d6bf5d9c7940a34c2"
+        }
+      ]
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "f94f6a543c8948e8d821d696c79fc40329ddb9421c482b7cedd269a9d53d929d",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "01905d0eb9c01ea73608f7ef900d41b44b00055e1ceaaf779dd7f4294553f528"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for cctv_clip_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c23f8cf93d9d96d1c77c3aebfc43d10f5ec8f1d7a7be34d1b4f6a0fd1a8c9b3c"
+        }
+      ]
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "c667d6ca0456e519ab992362c051f94d33546677694bbddb34f5fb4dda01a994",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "5385b12f61a01080266d92866faeae1dfb038a4236b522c9555ae4d6bb6c6cb2"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "media_metadata/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for media_metadata.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "ec83015e83d452966c8e2dd2ffd409e14bd2c753e4c594b85ee785cbe9a58a4c"
+        }
+      ]
+    },
+    {
+      "docId": "phone_download_schedule",
+      "title": "Phone download / attribution schedule (fictional test)",
+      "kind": "digital_schedule",
+      "state": "incomplete",
+      "contentHash": "217e0bd83c1fc7db1194eba419fa249d1a2fe7154722a25fd222bcd8dc7c8f16",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "phone_download_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Phone download / attribution schedule (fictional test)\nDocument id: phone_download_schedule\nKind: digital_schedule\nLifecycle state: incomplete\nPage identity: phone_download_schedule/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nDevice / account / user / sender / author separation required. Partial extraction.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b4f5999b80d3c7abe0d30445df532632bbd40cf71f747238d2a49c715a274e10"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "phone_download_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Phone download / attribution schedule (fictional test)\nDocument id: phone_download_schedule\nKind: digital_schedule\nLifecycle state: incomplete\nPage identity: phone_download_schedule/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for phone_download_schedule.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "1b563cb29e3e62cba7d299aba9d961251c3f98ed392b6bcf1bf918cfab3ada02"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "phone_download_schedule/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Phone download / attribution schedule (fictional test)\nDocument id: phone_download_schedule\nKind: digital_schedule\nLifecycle state: incomplete\nPage identity: phone_download_schedule/page/3\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for phone_download_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "5804ac9cefe2919bacf4bb9c9dee6fa6302b86be99c952efdf0323b0262cf5b4"
+        }
+      ]
+    },
+    {
+      "docId": "unused_schedule_mg6c",
+      "title": "Unused material schedule extract (fictional test)",
+      "kind": "disclosure_unused",
+      "state": "served",
+      "contentHash": "f8e6ac432d682000f97ad63e6a3923df0605a05026fed16ad044feb01c130f28",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "unused_schedule_mg6c/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Unused material schedule extract (fictional test)\nDocument id: unused_schedule_mg6c\nKind: disclosure_unused\nLifecycle state: served\nPage identity: unused_schedule_mg6c/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — unused items listed; PII redaction markers present.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b43781b89d89f283c25012a454fa5076a3f6ccdc111d27eb0c4ac2d4c3004cf4"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "unused_schedule_mg6c/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Unused material schedule extract (fictional test)\nDocument id: unused_schedule_mg6c\nKind: disclosure_unused\nLifecycle state: served\nPage identity: unused_schedule_mg6c/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for unused_schedule_mg6c.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "1b8ebb94e538477e5a9f5aea3c40f7f43315ce4b58f8798e89bb88428c2c4014"
+        }
+      ]
+    },
+    {
+      "docId": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "contentHash": "654f1023a684256e55e69d1e5697dc86265c380f1149f06bd15b7bbb6aa5b143",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "abe_or_special_measures/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — ABE / special measures structure. Qualified legal review still required for substantive conclusions.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "aad6c485acd2f32837fd2e1432d1f85feddc771df4feda1fc70e73dcafec9fd8"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "abe_or_special_measures/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for abe_or_special_measures.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "47555ba689323b425ea6237ebfc3e80c9f994d1cfeba575a2d92266fd30a09aa"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "abe_or_special_measures/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/3\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for abe_or_special_measures.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "355f8253fed9578d31415629c197ecd4aa8ddf369dc67342d138b9a4751afb7d"
+        }
+      ]
+    },
+    {
+      "docId": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "contentHash": "4811fe26c89df0b69fa667cd01bbafc5ecd4d24faf0f7ac0443a45ecc858ec41",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "third_party_material_note/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Third-party / counselling material note (fictional test)\nDocument id: third_party_material_note\nKind: third_party\nLifecycle state: referred_only\nPage identity: third_party_material_note/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — third-party records referred; not served. Privilege/PII boundaries apply.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "2b0598b6029d5843779e3126d78559b1c0e80e845eb7773f36835245e7c109cd"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "third_party_material_note/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Third-party / counselling material note (fictional test)\nDocument id: third_party_material_note\nKind: third_party\nLifecycle state: referred_only\nPage identity: third_party_material_note/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for third_party_material_note.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "59e75e98ea02e24d701d832c6dbb611f1c0f7d500eddf092edd66a07dca637ad"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "95a6d95925d965800c80c023fb14e8f07f04c95f74e3f4b5b056da785ea7b4d4",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: lack_of_intent. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "54a26c386a35a665510100d1640ac84f17aa4c8b0f6e53ef723294e97d3adbb9"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "cca9eacc667d08025ab924aac92e0c76993b81c9ece5935a9e13ad10e6d2c5e7"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c54e931d6aa93062c67c872acfccdc76a327c1c565576e7c9aebe304d06d1010"
+        }
+      ]
+    },
+    {
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": "ffb08507dd34215cd976795aa15f6949023380bacfe59319a1f816d146b3620d",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "referred_missing_master/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/1\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — index refers to this item; file absent. Must not treat as served.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "f2aeeab43f452596c408fdf8e498db5749429ecd486ce1aa8be2d2b545882a1d"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "referred_missing_master/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/2\nMatter family under review: conspiracy to defraud\nProcedural stage: trial prep\nDefence position on instructions: lack of intent\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for referred_missing_master.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "afef20d04da51361d0b18649f2d6a60c30947cfaadd25e226bf6caa68a886fb5"
+        }
+      ]
+    }
+  ]
+}

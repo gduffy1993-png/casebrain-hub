@@ -1,0 +1,10 @@
+{
+  "command": "node node_modules/typescript/bin/tsc -p tsconfig.v2141-path-scoped.json --noEmit",
+  "tscBin": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-diverse\\node_modules\\typescript\\bin\\tsc",
+  "exitCode": 0,
+  "startedAt": "2026-08-03T01:34:07.679Z",
+  "finishedAt": "2026-08-03T01:34:18.777Z",
+  "stdout": "",
+  "stderr": "",
+  "note": "Genuine worktree-local TypeScript execution — no npx, no manual replacement"
+}

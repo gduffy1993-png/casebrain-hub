@@ -1,0 +1,265 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/bundle-fictional-test.pdf",
+  "pageCount": 15,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-001.png",
+      "pngSha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1881,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.3,
+        "nonWhiteRatio": 0.1249,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-002.png",
+      "pngSha256": "a5519175fcc17e0ef9ced06913eab9457185d8cb4813454b35a6685531e657ab",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 2174,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.45,
+        "nonWhiteRatio": 0.132,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-003.png",
+      "pngSha256": "98ffe13293d242b1ab2216a7c1dce198bd2d738f12727286e5ab15f65c65bd0e",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1709,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 244.4,
+        "nonWhiteRatio": 0.0838,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-004.png",
+      "pngSha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1272,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 245.59,
+        "nonWhiteRatio": 0.0757,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-005.png",
+      "pngSha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 711,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.92,
+        "nonWhiteRatio": 0.0542,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-006.png",
+      "pngSha256": "679c92f44220634d81ecf40049192a3c2bedc4a49bff12eacb9f2cc86e804388",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 520,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.54,
+        "nonWhiteRatio": 0.0479,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-007.png",
+      "pngSha256": "bf8b500a813d5b3c94304cdd47400464f6210ce6b59cd7d0b6ad6fafc309e29e",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 400,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.86,
+        "nonWhiteRatio": 0.0452,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-008.png",
+      "pngSha256": "15cf5c80fea7545bdc4f97b2ef4a3bea27fcf52c531b23cc95d184e492c085f5",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1270,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 245.71,
+        "nonWhiteRatio": 0.072,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-009.png",
+      "pngSha256": "21c3d92e83feed7e5ba3969e6f1d1ad37675c718e0d30401251143d5e1a4e6a3",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1104,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 246.52,
+        "nonWhiteRatio": 0.0645,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 10,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-010.png",
+      "pngSha256": "d34a12cd93c0907c8c299f086fae7f53ea2d1bcce9b61a6f5373be29e51f666f",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 984,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 246.99,
+        "nonWhiteRatio": 0.06,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 11,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-011.png",
+      "pngSha256": "214858a6d62c9b14e557fdf2a8c241409c29d4e0a8601cb357cafdc954b2e6a7",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 589,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.29,
+        "nonWhiteRatio": 0.0498,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 12,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-012.png",
+      "pngSha256": "ecad2c3856320332db9eb1d2227b6ca7df2dddc06757abfade28c9cdfd9513b7",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 422,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.64,
+        "nonWhiteRatio": 0.0479,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 13,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-013.png",
+      "pngSha256": "d4cffadeed32a3c0780aeb548eb0f839980f47f76ae5eb73519e1b12d214c08b",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1309,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.72,
+        "nonWhiteRatio": 0.0911,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 14,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-014.png",
+      "pngSha256": "56fa22e88a9baa5d66856f4bed686f0b4cc79822affe9107979fa4d9c5b2422e",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1044,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.47,
+        "nonWhiteRatio": 0.0858,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 15,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-015.png",
+      "pngSha256": "d614498a6869651ac24f29484a1216d6855bf756b65a4ec17c819cbedaac8255",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 718,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.93,
+        "nonWhiteRatio": 0.0402,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "2e65494e4264e5e2d76253c03693e2e0f39e48c2f13920ff6a5875e90ab34056",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

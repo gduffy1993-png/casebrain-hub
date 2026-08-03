@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "pilot-gate-claim-correction@1.0.0",
+  "correctedPilot": "V2.1.4.3",
+  "artefactRoot": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.3/",
+  "byteForBytePreserved": true,
+  "previousLocalClaim": "PILOT_GATE_PASS_STOP_FOR_CODEX_BEFORE_SCALE",
+  "correctedStatus": "PILOT_GATE_INCOMPLETE_PENDING_ORDINARY_VISIBLE_SYSTEM_LANGUAGE_REMOVAL__HONEST_STRING_DENOMINATOR",
+  "scaleGateAccepted": false,
+  "codexIndependentFindings": [
+    "20 empty/not_exercised values counted as professional_pass",
+    "20× evidence unit(s) with page identity",
+    "20× technical MG6 provenance (anchors to / without inventing / MG6 MG06/page/1)",
+    "40× ordinary-visible API exits / Authenticated browser remains not exercised",
+    "16× ordinary-visible protected audit records",
+    "Harness charge language quoted into ordinary exits (not pinned / structural only / statutory or common-law cue)",
+    "Malformed source-location wording (indictment … of the indictment operative)",
+    "Repeated without page content wording"
+  ],
+  "remediationPilot": "V2.1.4.4",
+  "note": "V2.1.4.3 artefacts remain historical and must not be mutated. Correct via this sidecar only."
+}

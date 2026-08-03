@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "STOP-FOR-CODEX-REVIEW@1.0.0",
+  "stoppedAt": "2026-08-02T21:23:19.199Z",
+  "reason": "V2.1.1 remediation attempt complete — stop before scaling",
+  "gatePass": true,
+  "status": "PILOT_GATE_PASS",
+  "prohibitions": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "scale_beyond_20",
+    "corpus_PASS",
+    "stage3000_completion"
+  ],
+  "preserved": {
+    "v21": "1ec51fc426293cb5af5a1b1ed47c4e13cbd578d7438df7086a216c4432b65c2f",
+    "v211": "d109bcd431eede97e8d9fc1fdf260c507453239cdc0af7bb2b3d54c631f69777",
+    "v2": "be4f3bec455c220267aaf3dc265292aa20c1cd763c5d7c5fe5d2df2cb88a25c9"
+  },
+  "deliverables": {
+    "decisionCard": "DECISION-CARD.json",
+    "beforeAfterGate": "before-after-gate-report.json",
+    "missingDocLedger": "missing-document-correction-ledger.json",
+    "visualQa": "rendered-page-visual-qa-register.json",
+    "exitMatrix": "genuine-exit-capability-matrix.json",
+    "controlMatrix": "per-control-exercise-matrix.json",
+    "outputStrength": "output-strength-and-template-cluster-report.json",
+    "manifest": "CHANGED-FILE-MANIFEST.json",
+    "v21Correction": "../stage3000-diverse-second-v2.1/pilot-gate-claim-correction.json"
+  },
+  "honestyNotes": [
+    "V2.1 original gatePass=true preserved and corrected to PILOT_GATE_INCOMPLETE_PENDING_SOURCE_AND_VISUAL_REMEDIATION",
+    "Visual QA is automated PyMuPDF PNG raster + heuristic dispositions (blank/density/margins/duplicates/text/continuation); not a substitute for independent human page-by-page solicitor visual sign-off",
+    "Core named-control receipts are pilot evaluators over buildLiveProductionSurfacesFromDocumentUnits outputs and absence/source ledgers — not a claim that all 361 registry handlers ran",
+    "Authenticated browser remains not_exercised"
+  ]
+}

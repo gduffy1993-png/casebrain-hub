@@ -1,0 +1,133 @@
+{
+  "caseId": "div3000v21-20-diplomatic_immunity",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1-pilot-graphs/sources/div3000v21-20-diplomatic_immunity/bundle-fictional-test.pdf",
+  "sha256": "2278325fd5cdda0d7e11dce37b99381d46082845b5f0622a7f9554540c1e6c68",
+  "pageCount": 25,
+  "pageMap": [
+    {
+      "pageIdentity": "indictment_operative/page/1",
+      "pdfPageNumber": 1,
+      "docId": "indictment_operative"
+    },
+    {
+      "pageIdentity": "indictment_operative/page/2",
+      "pdfPageNumber": 2,
+      "docId": "indictment_operative"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 3,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 4,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/3",
+      "pdfPageNumber": 5,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/4",
+      "pdfPageNumber": 6,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/5",
+      "pdfPageNumber": 7,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 8,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "MG06/page/2",
+      "pdfPageNumber": 9,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/1",
+      "pdfPageNumber": 10,
+      "docId": "cctv_clip_schedule"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/2",
+      "pdfPageNumber": 11,
+      "docId": "cctv_clip_schedule"
+    },
+    {
+      "pageIdentity": "media_metadata/page/1",
+      "pdfPageNumber": 12,
+      "docId": "media_metadata"
+    },
+    {
+      "pageIdentity": "media_metadata/page/2",
+      "pdfPageNumber": 13,
+      "docId": "media_metadata"
+    },
+    {
+      "pageIdentity": "abe_or_special_measures/page/1",
+      "pdfPageNumber": 14,
+      "docId": "abe_or_special_measures"
+    },
+    {
+      "pageIdentity": "abe_or_special_measures/page/2",
+      "pdfPageNumber": 15,
+      "docId": "abe_or_special_measures"
+    },
+    {
+      "pageIdentity": "abe_or_special_measures/page/3",
+      "pdfPageNumber": 16,
+      "docId": "abe_or_special_measures"
+    },
+    {
+      "pageIdentity": "third_party_material_note/page/1",
+      "pdfPageNumber": 17,
+      "docId": "third_party_material_note"
+    },
+    {
+      "pageIdentity": "third_party_material_note/page/2",
+      "pdfPageNumber": 18,
+      "docId": "third_party_material_note"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 19,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/2",
+      "pdfPageNumber": 20,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/3",
+      "pdfPageNumber": 21,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "referred_missing_master/page/1",
+      "pdfPageNumber": 22,
+      "docId": "referred_missing_master"
+    },
+    {
+      "pageIdentity": "referred_missing_master/page/2",
+      "pdfPageNumber": 23,
+      "docId": "referred_missing_master"
+    },
+    {
+      "pageIdentity": "extra_context_7/page/1",
+      "pdfPageNumber": 24,
+      "docId": "extra_context_7"
+    },
+    {
+      "pageIdentity": "extra_context_7/page/2",
+      "pdfPageNumber": 25,
+      "docId": "extra_context_7"
+    }
+  ]
+}

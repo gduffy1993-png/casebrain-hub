@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "diverse3000-v2.1.1-pilot-gate-claim-correction@1.0.0",
+  "generatedAt": "2026-08-02T21:40:00.000Z",
+  "originalGateReportPreserved": "pilot-gate-result.json",
+  "originalClaim": {
+    "gatePass": true,
+    "status": "PILOT_GATE_PASS",
+    "unsupported": true
+  },
+  "correctedStatus": "PILOT_GATE_INCOMPLETE_PENDING_DOCUMENT_REALISM__GENUINE_CONTROL_EXECUTION__OUTPUT_STRENGTH",
+  "gatePass": false,
+  "reasons": [
+    {
+      "id": "universal_sparse_layout",
+      "detail": "PDFs used one sparse universal border/plain-text test layout across document kinds; geometry-without-clipping is not document realism."
+    },
+    {
+      "id": "generic_control_receipt_shortcut",
+      "detail": "build-v2.1.1-remediation.ts manufactured detectorInvoked/evaluated from productionResults.every(ok) and v2.1.1-pilot-evaluator:* fallbacks — not real named handlers."
+    },
+    {
+      "id": "output_strength_clusters",
+      "detail": "Solicitor-visible substantive clusters exceeded acceptance (composed court ~18/20, chase ~16/20, pdf/copy ~13/20, five answers ~10/20)."
+    },
+    {
+      "id": "visual_qa_heuristics_only",
+      "detail": "Automated blank/clipping heuristics alone cannot produce PASS; document-realism AI visual review of contact sheets was not performed as a gate."
+    }
+  ],
+  "v211MembershipPreserved": "d109bcd431eede97e8d9fc1fdf260c507453239cdc0af7bb2b3d54c631f69777",
+  "remediationLineage": "stage3000-diverse-second-v2.1.2",
+  "silentRewriteProhibited": true,
+  "byteForBytePreserve": ["V2", "V2.1", "V2.1.1"],
+  "note": "Original V2.1.1 pilot-gate-result.json left intact as historical evidence. This corrective report supersedes the PASS claim."
+}

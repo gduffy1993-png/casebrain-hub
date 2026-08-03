@@ -1,0 +1,218 @@
+{
+  "caseId": "div3000v21-12-perverting_course_of_justice",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "d6ad65b49a9036f072145317d5f317349a9a59a0f24b7a89b348fcd8253a9cca",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/1\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — written charge structure for perverting course of justice; wording not pinned.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "0c8d049ccbde0b147d72512aa38499ab41a37f73b8137df7061ad784cfa73b83"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/2\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for written_charge.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "8ff1a2a11288208b760e3a4af9c9290bcc761c1fde02fcc4cd71318a8ee50e70"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "59d14cba8690ec14aa5358b61ba5cc1f299c020bd5f3cb294a3dba8c5e89d243",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: perverting course of justice.\nDefence position modelled: factual denial.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 0: mg11_draft, cctv_clip, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "dc0aca6fd94bde62164419d66d7be1e8c1cf27eeaa31a7f555f9e36a60c8da78"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "18591c38ed27df4e27469e7b2a567bbcf8b95f5ad23101a4df78d20b638c015a"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "86ed0a3955854f77e7bb21f801d3843ff03febc10df63117760310580d2f8e1f"
+        },
+        {
+          "pageIndex": 4,
+          "pageIdentity": "MG05/page/4",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/4\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 4 for MG05.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "f8935666b45bd63aef4ae9a2f900bfccf4d6aaba65d76926b743753bd6e5e3df"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "b66bf251b299536e2a58a53d87f8bdc8aa76da9822f708d9da1f26ee46bddb68",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b1d4d343bce06c3995730ee216947884e7a8b39a4399e71f69acbab0ec4e9e74"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b2f96f167508fb21343279b653d2aaaddc11c936e7acf7babed4c8253073f0a3"
+        }
+      ]
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "6f574bd248e439fd32786965e925d4aaa141167710e6d5acde76133963608a2d",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/1\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "4ec31004d0fc4486fe8fd9a88feafe2164421a6a55d885c093bfcf0f93df6f48"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/2\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for cctv_clip_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "2811c6ece61b1bcbd1994d33b2cb0bd0647bbbc43a8642e8d45123c7fc3215f7"
+        }
+      ]
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "4d30871c1b94a1c3f5e6608cc9beb6ccfc261284aff0b8c58a7cebdbc7170731",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/1\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "fb71fc2705d0e94a8b24591aa3bdd7a82844db3cefcafc485b18292c2c85c40a"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "media_metadata/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/2\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for media_metadata.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "7a244ab1542aef0c13101996e3ba514f2c24e09652423441abc6e0ab7ef73fe0"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "488df1508ce8af7edd98c631e66d67184a9a4c9318136a4aeb48fdb04d64df32",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: factual_denial. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c00418c3912735c734883a2a3df2cac29698b81485fdf0ec87a10b973f166d58"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "08d2c61e6f3dacaa62f106e267595f71f4bd42f45dbdbad8dfa1db492ed9af7e"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "1a4ec992eaabb6c32fc1255693c778ca9e42702a69411e5533579ad24e6a8eb8"
+        }
+      ]
+    },
+    {
+      "docId": "scan_layout_note",
+      "title": "Scan/OCR layout problem note (fictional test)",
+      "kind": "layout_defect",
+      "state": "served",
+      "contentHash": "5b7b4c26c53789e23cb04490c78ecb9bbbf1103c842dd24efc81399d03da2040",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "scan_layout_note/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Scan/OCR layout problem note (fictional test)\nDocument id: scan_layout_note\nKind: layout_defect\nLifecycle state: served\nPage identity: scan_layout_note/page/1\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — layout issues: rotated_page. Clean control pages exist elsewhere in pack where required.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "538536012e779948478929ec583db4dd9c927b2eeee53a367bfd14e743b1d4fd"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "scan_layout_note/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Scan/OCR layout problem note (fictional test)\nDocument id: scan_layout_note\nKind: layout_defect\nLifecycle state: served\nPage identity: scan_layout_note/page/2\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for scan_layout_note.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "9b8a27d32a6e030f703cbd7ff547e88b241d614d526efcf9d25492c225983fa4"
+        }
+      ]
+    },
+    {
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": "62e642ec1ad29d3379f03546d62413a3ceb93aef7f2aea42e37223dea865dd8b",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "referred_missing_master/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/1\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — index refers to this item; file absent. Must not treat as served.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c4a92905144d8f3e1635bef173ce3851cc86ea8c4fe8efc60557893ad11cd284"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "referred_missing_master/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/2\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for referred_missing_master.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "1533f6d80d5a8ccdb74b61c51cf6f2ebd41fbd96e6a3bdad5ef3ee2900706422"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "referred_missing_master/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/3\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for referred_missing_master.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "f3aec904e5760b09d44d86f04adcef34e6d33c40061fef9adf59bc584e953584"
+        }
+      ]
+    },
+    {
+      "docId": "extra_context_6",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "c5d980a0c00473e28ae4558f7718294c6c270eda66e61f87741bd5f17521811a",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_6/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_6\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_6/page/1\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — additional coherent schedule for perverting_course_of_justice emphasising factual_denial and written_charge.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c559c096d6913ed737feda65b175c4d53245fc850e9ee8673210068a8f9321a0"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "extra_context_6/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_6\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_6/page/2\nMatter family under review: perverting course of justice\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for extra_context_6.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "728c81d02faf126461ee876953097aaae6e8db7739e1024f8c0dc0e75559c576"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "diverse3000-exit-audience-matrix@1.0.0",
+  "productionClasses": [
+    "genuine_production_builder_partial",
+    "packet_local_projection",
+    "genuine_authenticated_browser=not_exercised",
+    "unavailable",
+    "not_exercised"
+  ],
+  "surfacesLane": "diverse3000-solicitor-materialisation/run-v1"
+}

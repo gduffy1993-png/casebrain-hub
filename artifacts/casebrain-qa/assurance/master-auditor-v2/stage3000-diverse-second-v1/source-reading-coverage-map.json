@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "diverse3000-source-reading-coverage-map@1.0.0",
+  "documentsReadPerMatter": [
+    "MG05",
+    "MG06",
+    "charge_instrument",
+    "defence_note"
+  ],
+  "unreadNativePdfs": "stratified_pending_or_thin_only",
+  "unsupportedFiles": "marked_not_exercised_where_declared",
+  "silentOmissionForbidden": true
+}

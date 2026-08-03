@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "diverse3000-v2-matter@1.0.0",
+  "v1CaseId": "div3000-1065-bladed_articles",
+  "caseId": "div3000v212-05-bladed_articles",
+  "orderIndex": 1064,
+  "primaryFamily": "bladed_articles",
+  "tier": "routine_volume",
+  "fictionalBanner": "FICTIONAL TEST MATERIAL",
+  "charge": {
+    "wording": null,
+    "provision": "unpinned:bladed_articles",
+    "wordingStatus": "structural_only",
+    "structuralNote": "No pinned current source-supported charge wording in research register for this family — classified structural_only / awaiting qualified review; do not invent operative wording."
+  },
+  "defencePosition": "section_45_indicator",
+  "proceduralLifecycle": "police_investigation",
+  "defendantCount": 1,
+  "countAllocation": 1,
+  "evidenceStateGraph": [
+    {
+      "item": "written_charge",
+      "kind": "written_charge",
+      "state": "operative",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "MG05",
+      "kind": "mg05",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "MG06",
+      "kind": "mg06",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "MG12_exhibits",
+      "kind": "mg12",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "MG15_interview",
+      "kind": "mg15",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 4
+    },
+    {
+      "item": "defence_proof_extract",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "defence_statement_draft",
+      "kind": "defence_statement",
+      "state": "draft",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "extra_context_2",
+      "kind": "context_schedule",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    }
+  ],
+  "documentRelationshipGraph": {
+    "nodes": [
+      {
+        "id": "written_charge",
+        "kind": "written_charge",
+        "state": "operative"
+      },
+      {
+        "id": "MG05",
+        "kind": "mg05",
+        "state": "served"
+      },
+      {
+        "id": "MG06",
+        "kind": "mg06",
+        "state": "served"
+      },
+      {
+        "id": "MG12_exhibits",
+        "kind": "mg12",
+        "state": "served"
+      },
+      {
+        "id": "MG15_interview",
+        "kind": "mg15",
+        "state": "served"
+      },
+      {
+        "id": "defence_proof_extract",
+        "kind": "defence_proof",
+        "state": "privileged"
+      },
+      {
+        "id": "defence_statement_draft",
+        "kind": "defence_statement",
+        "state": "draft"
+      },
+      {
+        "id": "extra_context_2",
+        "kind": "context_schedule",
+        "state": "served"
+      }
+    ],
+    "edges": [
+      {
+        "from": "MG06",
+        "to": "MG05",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG06",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG12_exhibits",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG15_interview",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "defence_proof_extract",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "defence_statement_draft",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "extra_context_2",
+        "relation": "indexes"
+      }
+    ]
+  },
+  "missingMaterialGraph": [],
+  "contradictionTrapGraph": [
+    {
+      "description": "bladed_articles trap with section_45_indicator at police_investigation",
+      "secondary": "attribution_or_media_partial"
+    }
+  ],
+  "chronology": [
+    {
+      "event": "alleged_incident_window",
+      "detail": "fictional incident window for bladed_articles"
+    },
+    {
+      "event": "first_account",
+      "detail": "first account recorded"
+    },
+    {
+      "event": "charge_or_process",
+      "detail": "structural:bladed_articles"
+    },
+    {
+      "event": "hearing_marker",
+      "detail": "Birmingham Magistrates' Court <DATE>"
+    }
+  ],
+  "sourceCompleteness": "complete_source_packet",
+  "documentCount": 8,
+  "v2CaseId": "div3000v2-1065-bladed_articles",
+  "v211CaseId": "div3000v211-05-bladed_articles",
+  "v21CaseId": "div3000v21-05-bladed_articles",
+  "pilotOrderIndex": 4
+}

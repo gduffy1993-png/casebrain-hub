@@ -1,0 +1,163 @@
+{
+  "caseId": "div3000v213-02-shoplifting_theft",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "purpose": "indictment_count_particulars",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): shoplifting theft\n## INDICTMENT\n## Count 1 — STATEMENT OF OFFENCE\n## PARTICULARS OF OFFENCE\nIN THE CROWN COURT AT [FICTIONAL VENUE]\nTHE KING v. [FICTIONAL DEFENDANT]\n\nCOUNT 1\nSTATEMENT OF OFFENCE\nTheft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nContrary to the modelled statutory provision for this family.\n\nPARTICULARS OF OFFENCE\nThe defendant on a date unknown within the charged window, at a place particularised in the served papers, committed the offence alleged in Count 1.\nThe Crown relies on the served MG5 narrative, witness statements and media schedules listed on the MG6 index.\nLifecycle state: operative.\nModelled as operative indictment for fictional-test purposes only.\nPlea / endorsement: not recorded on Count 1 page — see instrument history where present.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "cd956d9c812d908bbb03e9445f010cb9e9931105ee36e4c33efdc30f35be1425",
+          "headings": [
+            "INDICTMENT",
+            "Count 1 — STATEMENT OF OFFENCE",
+            "PARTICULARS OF OFFENCE"
+          ],
+          "layoutKind": "indictment"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "purpose": "indictment_further_counts_or_history",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): shoplifting theft\n## Further counts / instrument history\nNo additional counts pinned; this page records instrument history and endorsement only.\nDefence position on instructions: alibi.\nProcedure: trial prep.\nEndorsement block: fictional clerk stamp; listing date modelled.\nContinuity: prefer the operative instrument over draft/superseded counterparts when both exist.\nDo not treat indictment endorsement as proof of the allegation.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "405c16ee157a9c1c8dfa312f35d0364378e794f98d7ca74d013b1a1caa80f1b5",
+          "headings": [
+            "Further counts / instrument history"
+          ],
+          "layoutKind": "indictment"
+        }
+      ],
+      "contentHash": "797389461145f50ceebf856675d41447c059af138dbff25b89d4edbee2bd285b",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "indictment"
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): shoplifting theft\n## MG5 — Case summary\n## Offence summary\n## Key evidence narrative\nDefendant / matter family: shoplifting theft\nDefence on instructions: alibi\nProcedural stage: trial prep\nAllegation under review: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\n\nNARRATIVE\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: shoplifting theft.\nDefence position modelled: alibi.\nProcedural stage: trial prep.\nAllegation instrument: Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968\nEvidence emphasis seed 1: mg11_signed, mg11_draft, cctv_clip.\n\nWitness outline: complainant account recorded as allegation only — not proved.\nReliability: MG5 narrative must not be read as establishing guilt.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "17431cdc43444599fb88513cd434e570490d2024e42b2ff337156c6e91060b38",
+          "headings": [
+            "MG5 — Case summary",
+            "Offence summary",
+            "Key evidence narrative"
+          ],
+          "layoutKind": "mg05"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): shoplifting theft\n## Evidence outline\n## Limitations\n## Next action\nEvidence listed is limited to items served or partially served in the pack.\nNo deliberate missing-item markers declared on the completeness contract.\nNext action: reconcile MG5 against MG6 index before any court-facing send.\nDo not quote referred-absent masters as if content were available.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "93fdc327e917ba58b9eccac0121ea8ccdbe40464e9a445d76c523a0030a32ffb",
+          "headings": [
+            "Evidence outline",
+            "Limitations",
+            "Next action"
+          ],
+          "layoutKind": "mg05"
+        }
+      ],
+      "contentHash": "375af950d5b7e4080abf70be6902ff1e57ee19738100b486b6801eb2c980d340",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg05"
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG6 File front sheet / index (fictional test)\nMatter family (fictional): shoplifting theft\n## MG6 — File front sheet / index\n## Inventory\nSeq | Document | Kind | Status\n--- | -------- | ---- | ------\n1 | Written charge / indictment | instrument | see pack\n2 | MG5 case summary | mg05 | served\n3 | Disclosure / unused | schedule | see schedules\n4 | (no referred-absent masters declared) | — | —\n\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nChase binding: request nil by identity against this MG6 page.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "26ba9f470fc872b9ede000266ffad2a85bfd6c2f864ca819320e487e2f27761f",
+          "headings": [
+            "MG6 — File front sheet / index",
+            "Inventory"
+          ],
+          "layoutKind": "mg06"
+        }
+      ],
+      "contentHash": "26ba9f470fc872b9ede000266ffad2a85bfd6c2f864ca819320e487e2f27761f",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg06"
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): shoplifting theft\n## Defence proof of evidence extract\n## PRIVILEGED\nPRIVILEGED — defence working extract. Not for ordinary copy/export/API send.\nPosition on instructions: alibi\nIssues to explore: attribution, continuity, missing masters, charge particularity.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: alibi. Not for ordinary copy/export.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "5ea36a96a4e7c63e2d97f86e60870975e810bafbd6ac5c908364f8aba38c327a",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ],
+          "layoutKind": "defence_proof"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "purpose": "defence_issues_and_requests",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): shoplifting theft\n## Issues list\n## Requests\nMissing/referred chase candidates: nil declared.\nProof extract remains privilege-separated in this fictional pack.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "55a9cca471cc581e1701c2296d12a492846ea445e68b25251ec2ace938cbb062",
+          "headings": [
+            "Issues list",
+            "Requests"
+          ],
+          "layoutKind": "defence_proof"
+        }
+      ],
+      "contentHash": "50869a24716c0c962e02c8c96eed1d96b781c9b9cad11d95896b4e2e23a21aac",
+      "realPaginatedFile": true,
+      "privilegeSeparated": true,
+      "publicTemplateRef": "defence_proof"
+    },
+    {
+      "docId": "extra_context_5",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_5/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Additional context schedule (fictional test)\nMatter family (fictional): shoplifting theft\n## Additional context schedule (fictional test)\n## Particulars\nKind: context_schedule\nLifecycle state: served\nFamily: shoplifting theft\nStage: trial prep\nFICTIONAL TEST MATERIAL — additional coherent schedule for shoplifting_theft emphasising alibi and indictment.\nStatus: served.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "b4a9d330979c802f58847f070a93e4fbe09f3556f46f967cb6ae49cdf9c645c2",
+          "headings": [
+            "Additional context schedule (fictional test)",
+            "Particulars"
+          ],
+          "layoutKind": "generic_specialist"
+        }
+      ],
+      "contentHash": "b4a9d330979c802f58847f070a93e4fbe09f3556f46f967cb6ae49cdf9c645c2",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "generic_specialist"
+    }
+  ]
+}

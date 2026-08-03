@@ -1,0 +1,28 @@
+{
+  "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "specified_not_implemented",
+  "handlerId": null,
+  "detectorInvoked": true,
+  "prerequisitesPresent": [
+    "v2.1_document_page_units",
+    "v2.1_surfaces",
+    "shared_gateSolicitorOutput"
+  ],
+  "applicableUnitCount": 20,
+  "inspectedFieldRefs": [
+    "surfaces[].text",
+    "document-page-units pages[].text"
+  ],
+  "inspectedHashes": {
+    "surfacesSha256": "2236f94fd9dc877e22cbbb572a195c23088b521738576c21ce3490de1de0023c"
+  },
+  "result": "clean_no_findings",
+  "findingIds": [],
+  "contracts": {
+    "positive": null,
+    "negative": null,
+    "unavailable": "never_PASS",
+    "mutation": "pilot_rerun_same_membership"
+  }
+}

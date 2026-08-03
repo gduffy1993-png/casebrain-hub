@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "diverse3000-v2-truth-open-sequence@1.0.0",
+  "candidateFreezeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "steps": [
+    "candidate_freeze",
+    "open_truth",
+    "disposition"
+  ]
+}

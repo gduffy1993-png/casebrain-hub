@@ -1,0 +1,60 @@
+{
+  "caseId": "div3000v213-11-social_media_attribution",
+  "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+  "handlerModule": "lib/eval/master-assurance-auditor/v2/stage150/batch9/evaluators.ts",
+  "handlerFunction": "evaluateBatch9Control",
+  "handlerId": "b9_chg_01_recorded_source_visible",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "partially_implemented",
+  "exerciseStatus": "evaluated",
+  "applicable": true,
+  "applicableUnitCount": 1,
+  "missingPrerequisiteReason": null,
+  "inputFieldRefs": [
+    "chargeInstruments[].instrumentId",
+    "chargeInstruments[].sourceDocument"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "e686e774ce368125cc1901f7c7a13467f6c587ea7ada7c20e97d3691d36d6a55",
+    "findingsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/evidenceStates/8/sourcePage",
+    "/evidenceStates/9/sourcePage",
+    "/evidenceStates/10/sourcePage",
+    "/evidenceStates/11/sourcePage",
+    "/evidenceStates/12/sourcePage",
+    "/evidenceStates/13/sourcePage",
+    "/evidenceStates/14/sourcePage",
+    "/evidenceStates/15/sourcePage",
+    "/evidenceStates/16/sourcePage",
+    "/evidenceStates/17/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [],
+  "findings": [],
+  "contracts": {
+    "positive": "scripts/maa-v2-every-word-foundation-contracts.test.ts#positive",
+    "negative": "scripts/maa-v2-every-word-foundation-contracts.test.ts#negative",
+    "unavailable": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg01_unavailable",
+    "mutation": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chg01_mutation"
+  },
+  "receiptNote": "impl=substantive_control_evaluator; availability=unavailable_missing_adapter; namedEvaluator=true; status=evaluated; findings=0; emptyHits≠PASS. Batch-9 owns recorded-source visibility on structured instruments."
+}

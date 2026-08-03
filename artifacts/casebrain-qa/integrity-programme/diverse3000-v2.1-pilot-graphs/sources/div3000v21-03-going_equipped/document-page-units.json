@@ -1,0 +1,134 @@
+{
+  "caseId": "div3000v21-03-going_equipped",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "9d25b61cefd0f4c69bfe5d84750220db3a66fcb3147ec629df5533ac19d74880",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/1\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — written charge structure for going equipped; wording not pinned.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "ad668953ce3be1dcca2631c6c218c1905f31db3437a3c7f37ee453700ec69403"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/2\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for written_charge.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "2807883ea4577b6947278f4c544ca6b9a1b2d38d97443a8e416563f848adc0d9"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "ff1aaf088b94aa99c99d29a2aed29db5c9f9eada0cfa9a47cd791c47cb21f981",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: going equipped.\nDefence position modelled: consent dispute.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_signed, cctv_clip, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "f6c455208c511e5070c02f82c522fccdc0d56c98da158cd51b57d555a26063e0"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "bcd39bbbf3e0bda836ce26eaa2f8b5516ed56cb23bad87901f965500efb6df1a"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "5639b1d5e6b0ef4482674af9c25113ba47cbfea1ea06d990e6f31589d5d3dc4b"
+        },
+        {
+          "pageIndex": 4,
+          "pageIdentity": "MG05/page/4",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/4\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 4 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "c4a54d9552547e0521ac3358b997fb96e4dd9232b2ec6a71e0de2d409b7e3335"
+        },
+        {
+          "pageIndex": 5,
+          "pageIdentity": "MG05/page/5",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/5\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 5 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "a4c512d737ec60718f48ee831aed513f60784ed60beb138cf89697e4b59c5303"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "a22647a0bf57260a1a13cf5b455808db07d8f136484961b5200e87a3d19cf1d6",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "d2a528728da63decc6fbfe3148f0bcc091364e9001b810458942c3eccdcb4d0f"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "189ec83574e7e2f23625a4a9f91da4707d8bea99acd9fcf6a44fe655fa614a78"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "523e0f660724f4916547151585fa2082897cd04d1057a8da6ee40ddd85ffff5c",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: consent_dispute. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "e21185118714dba1c1e8279061f3ea4f4e9f958e7c4352908240ad0428ba15b2"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "acb0850ae649a2c7f78c6c28f1bbf55f795206e53eac0e3cdee7d77d0895bdc0"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "6e567b5132ecf959166e45b2c487433b6e794b9f06faff63be901f03c6c9957f"
+        }
+      ]
+    },
+    {
+      "docId": "extra_context_1",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "45f9091aa804628da07f3b528b1475c5152787afb6f2024b9a093e5bd2215a77",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_1/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_1\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_1/page/1\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — additional coherent schedule for going_equipped emphasising consent_dispute and written_charge.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "16ccd430191f09653f8a911037aae9756a4aec9343437caf5b415001c1c7d265"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "extra_context_1/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_1\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_1/page/2\nMatter family under review: going equipped\nProcedural stage: police investigation\nDefence position on instructions: consent dispute\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for extra_context_1.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 1.",
+          "textHash": "452f5ecf7183739ad64717e7cb7ab7606ed481430a44bac707664ba95fa2b506"
+        }
+      ]
+    }
+  ]
+}

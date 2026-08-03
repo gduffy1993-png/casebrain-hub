@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "diverse3000-v2-matter@1.0.0",
+  "v1CaseId": "div3000-1761-strangulation_suffocation",
+  "caseId": "div3000v212-08-strangulation_suffocation",
+  "orderIndex": 1760,
+  "primaryFamily": "strangulation_suffocation",
+  "tier": "serious_complex_crown",
+  "fictionalBanner": "FICTIONAL TEST MATERIAL",
+  "charge": {
+    "wording": null,
+    "provision": "unpinned:strangulation_suffocation",
+    "wordingStatus": "structural_only",
+    "structuralNote": "No pinned current source-supported charge wording in research register for this family — classified structural_only / awaiting qualified review; do not invent operative wording."
+  },
+  "defencePosition": "section_45_indicator",
+  "proceduralLifecycle": "police_investigation",
+  "defendantCount": 2,
+  "countAllocation": 1,
+  "evidenceStateGraph": [
+    {
+      "item": "indictment_operative",
+      "kind": "indictment",
+      "state": "operative",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "MG05",
+      "kind": "mg05",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "MG06",
+      "kind": "mg06",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "MG11_complainant_signed",
+      "kind": "mg11",
+      "state": "signed",
+      "ownerDefendantIndex": 0,
+      "pages": 3
+    },
+    {
+      "item": "MG11_complainant_draft",
+      "kind": "mg11_draft",
+      "state": "draft_superseded",
+      "ownerDefendantIndex": 0,
+      "pages": 3
+    },
+    {
+      "item": "order_or_bail",
+      "kind": "order",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "cctv_clip_schedule",
+      "kind": "media_schedule",
+      "state": "partial",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "media_metadata",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "defence_proof_extract",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "referred_missing_master",
+      "kind": "missing_referred",
+      "state": "missing",
+      "ownerDefendantIndex": 0,
+      "pages": 0
+    },
+    {
+      "item": "extra_context_5",
+      "kind": "context_schedule",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    }
+  ],
+  "documentRelationshipGraph": {
+    "nodes": [
+      {
+        "id": "indictment_operative",
+        "kind": "indictment",
+        "state": "operative"
+      },
+      {
+        "id": "MG05",
+        "kind": "mg05",
+        "state": "served"
+      },
+      {
+        "id": "MG06",
+        "kind": "mg06",
+        "state": "served"
+      },
+      {
+        "id": "MG11_complainant_signed",
+        "kind": "mg11",
+        "state": "signed"
+      },
+      {
+        "id": "MG11_complainant_draft",
+        "kind": "mg11_draft",
+        "state": "draft_superseded"
+      },
+      {
+        "id": "order_or_bail",
+        "kind": "order",
+        "state": "served"
+      },
+      {
+        "id": "cctv_clip_schedule",
+        "kind": "media_schedule",
+        "state": "partial"
+      },
+      {
+        "id": "media_metadata",
+        "kind": "metadata_fixture",
+        "state": "metadata_only"
+      },
+      {
+        "id": "defence_proof_extract",
+        "kind": "defence_proof",
+        "state": "privileged"
+      },
+      {
+        "id": "referred_missing_master",
+        "kind": "missing_referred",
+        "state": "missing"
+      },
+      {
+        "id": "extra_context_5",
+        "kind": "context_schedule",
+        "state": "served"
+      }
+    ],
+    "edges": [
+      {
+        "from": "MG06",
+        "to": "MG05",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG06",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG11_complainant_signed",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG11_complainant_draft",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "order_or_bail",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "cctv_clip_schedule",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "media_metadata",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "defence_proof_extract",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "referred_missing_master",
+        "relation": "indexes_but_absent"
+      },
+      {
+        "from": "MG06",
+        "to": "extra_context_5",
+        "relation": "indexes"
+      }
+    ]
+  },
+  "missingMaterialGraph": [
+    {
+      "item": "media_metadata",
+      "state": "metadata_only",
+      "referredFrom": "MG06"
+    },
+    {
+      "item": "referred_missing_master",
+      "state": "missing",
+      "referredFrom": "MG06"
+    }
+  ],
+  "contradictionTrapGraph": [
+    {
+      "description": "strangulation_suffocation trap with section_45_indicator at police_investigation",
+      "secondary": "missing_referred"
+    }
+  ],
+  "chronology": [
+    {
+      "event": "alleged_incident_window",
+      "detail": "fictional incident window for strangulation_suffocation"
+    },
+    {
+      "event": "first_account",
+      "detail": "first account recorded"
+    },
+    {
+      "event": "charge_or_process",
+      "detail": "structural:strangulation_suffocation"
+    },
+    {
+      "event": "hearing_marker",
+      "detail": "Cardiff Magistrates' Court <DATE>"
+    }
+  ],
+  "sourceCompleteness": "deliberate_truth_keyed_missing_source",
+  "documentCount": 11,
+  "v2CaseId": "div3000v2-1761-strangulation_suffocation",
+  "v211CaseId": "div3000v211-08-strangulation_suffocation",
+  "v21CaseId": "div3000v21-08-strangulation_suffocation",
+  "pilotOrderIndex": 7
+}

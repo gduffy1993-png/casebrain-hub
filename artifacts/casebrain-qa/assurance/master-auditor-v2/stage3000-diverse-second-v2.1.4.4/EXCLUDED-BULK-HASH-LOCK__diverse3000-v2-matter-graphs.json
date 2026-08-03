@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "excluded-bulk-hash-lock@1.0.0",
+  "directory": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-matter-graphs",
+  "fileCount": 12000,
+  "bytes": 26827024,
+  "inventorySha256": "b900f3ef8e2ebb2792b50486b2fc98ac47ac99b7943eed29c7b563e2c0fafc6c",
+  "reason": "bulk_regenerable_local_hash_locked_not_committed",
+  "reproduction": "Retain local tree; regenerate via scripts/assurance/stage3000-diverse-second generators; compare inventorySha256 of path+byte listing",
+  "samplePaths": [
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-matter-graphs/sources/div3000v2-0001-common_assault_battery/matter-skeleton.json",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-matter-graphs/sources/div3000v2-0001-common_assault_battery/source-document-manifest.json",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-matter-graphs/sources/div3000v2-0001-common_assault_battery/source-pack.json",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-matter-graphs/sources/div3000v2-0002-common_assault_battery/matter-skeleton.json",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-matter-graphs/sources/div3000v2-0002-common_assault_battery/source-document-manifest.json"
+  ]
+}

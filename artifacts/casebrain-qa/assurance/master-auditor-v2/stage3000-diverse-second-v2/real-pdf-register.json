@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "diverse3000-v2-real-pdf-register@1.0.0",
+  "rendered": 0,
+  "notRendered": 3000,
+  "note": "Only rendered_* rows are PDFs. pdf_not_rendered_not_exercised must not be called PDF cases.",
+  "freeGiBAtEnd": 7.452423095703125
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "diverse3000-v2-exit-matrix@1.0.0",
+  "surfacesLane": "diverse3000-v2-solicitor-materialisation/run-v1",
+  "productionClassesUsed": [
+    "packet_local_projection"
+  ],
+  "genuine_production_builder": "not_claimed_for_packet_compose",
+  "genuine_authenticated_browser": "not_exercised",
+  "note": "Do not describe packet_local_projection as genuine CaseBrain production exits."
+}

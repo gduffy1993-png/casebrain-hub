@@ -1,0 +1,62 @@
+{
+  "caseId": "div3000v211-18-conspiracy_to_defraud",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/bundle-fictional-test.pdf",
+  "sha256": "bbcaad5c4d382c4c52021430180f37b5f896f3d69b1de908a3eae7a897e1c56c",
+  "pageCount": 9,
+  "pageMap": [
+    {
+      "pageIdentity": "indictment_operative/page/1",
+      "pdfPageNumber": 1,
+      "docId": "indictment_operative",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 2,
+      "docId": "MG05",
+      "purpose": "mg5_case_summary_narrative"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 3,
+      "docId": "MG05",
+      "purpose": "mg5_evidence_outline"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 4,
+      "docId": "MG06",
+      "purpose": "mg6_file_index"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/1",
+      "pdfPageNumber": 5,
+      "docId": "cctv_clip_schedule",
+      "purpose": "media_or_digital_schedule"
+    },
+    {
+      "pageIdentity": "media_metadata/page/1",
+      "pdfPageNumber": 6,
+      "docId": "media_metadata",
+      "purpose": "metadata_only_fixture"
+    },
+    {
+      "pageIdentity": "phone_download_schedule/page/1",
+      "pdfPageNumber": 7,
+      "docId": "phone_download_schedule",
+      "purpose": "media_or_digital_schedule"
+    },
+    {
+      "pageIdentity": "unused_schedule_mg6c/page/1",
+      "pdfPageNumber": 8,
+      "docId": "unused_schedule_mg6c",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 9,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_privileged_extract"
+    }
+  ]
+}

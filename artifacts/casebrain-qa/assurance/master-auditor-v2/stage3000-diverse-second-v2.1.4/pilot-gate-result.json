@@ -1,0 +1,27 @@
+{
+  "gatePass": true,
+  "scaleRecommended": true,
+  "status": "PILOT_GATE_PASS_STOP_FOR_CODEX_BEFORE_SCALE",
+  "blockers": [],
+  "checks": {
+    "dispositioned552": true,
+    "untriagedCandidateCount": 0,
+    "confirmedApplicationDefects": 0,
+    "provenanceContractsOk": true,
+    "exitReconciliationOk": true,
+    "boundaryLeaks": 0,
+    "pdfHashLockOk": true,
+    "focusedContractsExit": 0,
+    "pathScopedTscExit": 0,
+    "npmBuildExit": 0,
+    "chr05HonestNotExercised": true,
+    "authenticatedBrowserNotExercised": true,
+    "provenanceCoverageFail": 0,
+    "afterFindingCounts": {
+      "MAA2-BND-05-MISSING-ATTACHMENTS": 15,
+      "MAA2-ATR-02-DOCUMENT-OWNERSHIP": 7
+    }
+  },
+  "v213MembershipSha256": "e103baa3e0e53bc0062b36f3446896337b7ba99e7213fe23c4c34426201edfde",
+  "candidateFreezeSha256": "4a788439aa97be17a73c5ccd066be5725805694a9bc1e4922c44673e44abe3a3"
+}

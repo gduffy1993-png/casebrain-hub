@@ -1,0 +1,146 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/bundle-fictional-test.pdf",
+  "pageCount": 8,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-001.png",
+      "pngSha256": "bb44c83a1198b282eace3585e7a34bb7c440b10f0df97c6bc69bb1f9ab0230de",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1526,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.17,
+        "nonWhiteRatio": 0.0489,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-002.png",
+      "pngSha256": "d9038c65249ecc5baee87ab7067e1b8c3c607172b9a55d6df5d2e845f2fd3aa5",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1216,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.27,
+        "nonWhiteRatio": 0.041,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-003.png",
+      "pngSha256": "a49d8ca833b4a2def5b936f8c747204eea5a3273830b605db066391d851c5d51",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1715,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.26,
+        "nonWhiteRatio": 0.0549,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-004.png",
+      "pngSha256": "9e5ed4615e1180d282a9f15c35655be844c41522f7faca8539af171c6d04546f",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1292,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.96,
+        "nonWhiteRatio": 0.0431,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-005.png",
+      "pngSha256": "e68d352f702c13336d26d89fcd878012c21d9cf6a0dd205c707e226c662a80d9",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1518,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.11,
+        "nonWhiteRatio": 0.0489,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-006.png",
+      "pngSha256": "6aa25fffe2ba4f1437e8d40e2a3569d2e1b1edf053a87da8cb498edb243a5add",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1358,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.76,
+        "nonWhiteRatio": 0.0449,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-007.png",
+      "pngSha256": "51ea9d8ae9ee6c826333f741a30b0a0567787d590720c47dea1fa96c415419bf",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1313,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.84,
+        "nonWhiteRatio": 0.0442,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-008.png",
+      "pngSha256": "0d12e8f9dcea926b128da2b9c67f8e698ca1827e99f66ec93a04effe3665216a",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1457,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.41,
+        "nonWhiteRatio": 0.0472,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "4671ab072dc1ba144299abb860df2162c6a3312a6ba2165d77b2e5265f96844a",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

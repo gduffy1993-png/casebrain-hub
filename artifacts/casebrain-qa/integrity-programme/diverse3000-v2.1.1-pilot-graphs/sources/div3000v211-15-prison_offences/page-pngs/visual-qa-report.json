@@ -1,0 +1,163 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/bundle-fictional-test.pdf",
+  "pageCount": 9,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-001.png",
+      "pngSha256": "4f1b336a1d0115e255db1cc09b272ed1b1adf3f26886bb89757cbd46b8d44a9b",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1456,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.47,
+        "nonWhiteRatio": 0.0465,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-002.png",
+      "pngSha256": "d674bf7caa29a8eeecf98ff54577b48d3737601112d35420e729dfed86772ec7",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1195,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.33,
+        "nonWhiteRatio": 0.0402,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-003.png",
+      "pngSha256": "eae15079c8005bc102d47ac3141825d99e5b5c4127ce45dc5357721bc04343f0",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1595,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.81,
+        "nonWhiteRatio": 0.0514,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-004.png",
+      "pngSha256": "f3114ead546071eee09422ed0154e5183666db99bf80a5bae96c80f6f033dae4",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1263,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.08,
+        "nonWhiteRatio": 0.0423,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-005.png",
+      "pngSha256": "d4eaabb9bb40860025deb01097982dd33dcb11dc365d18920f2d0972f120b881",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1497,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.22,
+        "nonWhiteRatio": 0.0481,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-006.png",
+      "pngSha256": "148f179530fe236f6777a160bcaf6f31cf943ef8e4e5a9576093cdcde6edb347",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1330,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.85,
+        "nonWhiteRatio": 0.0438,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-007.png",
+      "pngSha256": "5a0ada57f0b12a6a2aa1f977cc439ce6270be70884f90b99ecf31f2c2fb42e06",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1292,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.91,
+        "nonWhiteRatio": 0.0433,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-008.png",
+      "pngSha256": "98ee6108041cb3510e18c7557ce2260b32d0116944c1442adb27d875fd392765",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1436,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.52,
+        "nonWhiteRatio": 0.0466,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-009.png",
+      "pngSha256": "f2f70f73ea2d8ac04d10db750e28570579e1b29ceaa64488f604906ea761a7e0",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1363,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.79,
+        "nonWhiteRatio": 0.0446,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "a525a1b8430bb85e51639cce0ccbc25ac8b0df21c566cdb2055df734ee7ed318",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

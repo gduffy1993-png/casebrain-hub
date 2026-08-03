@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "diverse3000-v2-official-research-register@1.0.0",
+  "frozen": true,
+  "frozenAt": "2026-08-02T20:18:45.823Z",
+  "retrievalDate": "2026-08-02",
+  "jurisdiction": "England and Wales",
+  "personalDataProhibited": true,
+  "inventLegalWordingProhibited": true,
+  "ifCannotPin": "classify_structural_qualified_or_not_exercised",
+  "records": [
+    {
+      "title": "Criminal Procedure Rules 2025 and Criminal Practice Directions 2023",
+      "url": "https://www.gov.uk/guidance/criminal-procedure-rules-2025-and-criminal-practice-directions-2023",
+      "issuingBody": "Criminal Procedure Rule Committee / MoJ",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "Last updated 6 April 2026",
+      "intendedStructuralUse": "procedure_and_forms_structure",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Criminal Procedure Rules forms",
+      "url": "https://www.gov.uk/guidance/criminal-procedure-rules-forms",
+      "issuingBody": "MoJ / CPRC",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "Last updated 25 February 2025",
+      "intendedStructuralUse": "blank_public_forms_catalogue",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Criminal casefiles forms standards and file structure",
+      "url": "https://www.gov.uk/government/publications/manual-of-guidance-and-mg-forms/criminal-casefiles-forms-standards-and-file-structure-accessible",
+      "issuingBody": "Home Office / MG guidance",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "Version 2.0 published 9 June 2026",
+      "intendedStructuralUse": "mg_form_and_national_file_standard_structure",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "CPS Prosecution Guidance Library",
+      "url": "https://www.cps.gov.uk/prosecution-guidance-library",
+      "issuingBody": "CPS",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": null,
+      "intendedStructuralUse": "offence_guidance_index_not_charge_gold",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "CPS Disclosure Manual",
+      "url": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual",
+      "issuingBody": "CPS",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "Refreshed 14 July 2022",
+      "intendedStructuralUse": "disclosure_schedule_and_pii_structure",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Disclosure Manual Chapter 30 Digital Material",
+      "url": "https://www.cps.gov.uk/prosecution-guidance/disclosure-manual-chapter-30-digital-material",
+      "issuingBody": "CPS",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "Updated 18 June 2026",
+      "intendedStructuralUse": "digital_material_disclosure_structure",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "HMCTS Common Platform — where to add case materials",
+      "url": "https://www.gov.uk/government/publications/how-to-use-hmcts-common-platform/where-to-add-case-materials",
+      "issuingBody": "HMCTS",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "2026 crown copyright page",
+      "intendedStructuralUse": "common_platform_section_mapping",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Add case documents to Crown Court DCS",
+      "url": "https://www.gov.uk/government/publications/add-case-documents-to-the-crown-court-digital-case-system",
+      "issuingBody": "HMCTS",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "Published 5 November 2024",
+      "intendedStructuralUse": "dcs_document_section_structure",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Forensic Science Activities statutory code of practice version 2",
+      "url": "https://www.gov.uk/government/publications/forensic-science-activities-statutory-code-of-practice-version-2",
+      "issuingBody": "Forensic Science Regulator / Home Office",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "Published 5 June 2025; in force 2 October 2025",
+      "intendedStructuralUse": "forensic_limits_and_quality_structure",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Sentencing Council for England and Wales",
+      "url": "https://www.sentencingcouncil.org.uk/",
+      "issuingBody": "Sentencing Council",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": null,
+      "intendedStructuralUse": "sentencing_guideline_index",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Crown Court Compendium",
+      "url": "https://www.judiciary.uk/guidance-and-resources/crown-court-compendium/",
+      "issuingBody": "Courts and Tribunals Judiciary",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "Updated March 2026",
+      "intendedStructuralUse": "judicial_direction_structure_not_prescriptive",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "SRA confidentiality of client information",
+      "url": "https://www.sra.org.uk/solicitors/guidance/confidentiality-client-information/",
+      "issuingBody": "SRA",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "Updated 30 June 2022",
+      "intendedStructuralUse": "privilege_confidentiality_boundary",
+      "fetchOk": true,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Theft Act 1968 (legislation.gov.uk)",
+      "url": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "issuingBody": "legislation.gov.uk",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "UKPGA 1968 c.60",
+      "intendedStructuralUse": "pinned_statutory_structure_for_theft_family_wording",
+      "fetchOk": false,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Offences against the Person Act 1861",
+      "url": "https://www.legislation.gov.uk/ukpga/Vict/24-25/100",
+      "issuingBody": "legislation.gov.uk",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "UKPGA Vict 24-25 c.100",
+      "intendedStructuralUse": "pinned_statutory_structure_for_violence_family_wording",
+      "fetchOk": false,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Protection from Harassment Act 1997",
+      "url": "https://www.legislation.gov.uk/ukpga/1997/40",
+      "issuingBody": "legislation.gov.uk",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "UKPGA 1997 c.40",
+      "intendedStructuralUse": "pinned_statutory_structure_for_harassment_stalking",
+      "fetchOk": false,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Misuse of Drugs Act 1971",
+      "url": "https://www.legislation.gov.uk/ukpga/1971/38",
+      "issuingBody": "legislation.gov.uk",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "UKPGA 1971 c.38",
+      "intendedStructuralUse": "pinned_statutory_structure_for_drugs_family",
+      "fetchOk": false,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Sexual Offences Act 2003",
+      "url": "https://www.legislation.gov.uk/ukpga/2003/42",
+      "issuingBody": "legislation.gov.uk",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "UKPGA 2003 c.42",
+      "intendedStructuralUse": "pinned_statutory_structure_awaiting_qualified_review_for_substantive_wording",
+      "fetchOk": false,
+      "qualifiedLegalConfirmationStillRequired": true
+    },
+    {
+      "title": "Road Traffic Act 1988",
+      "url": "https://www.legislation.gov.uk/ukpga/1988/52",
+      "issuingBody": "legislation.gov.uk",
+      "retrievalDate": "2026-08-02",
+      "versionOrDate": "UKPGA 1988 c.52",
+      "intendedStructuralUse": "pinned_statutory_structure_for_motoring",
+      "fetchOk": false,
+      "qualifiedLegalConfirmationStillRequired": true
+    }
+  ]
+}

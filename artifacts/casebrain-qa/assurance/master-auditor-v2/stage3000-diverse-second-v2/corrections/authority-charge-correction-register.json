@@ -1,0 +1,347 @@
+{
+  "schemaVersion": "diverse3000-authority-charge-correction@1.0.0",
+  "generatedAt": "2026-08-02T20:58:39.826Z",
+  "failedLegislationFetches": [
+    {
+      "title": "Theft Act 1968 (legislation.gov.uk)",
+      "url": "https://www.legislation.gov.uk/ukpga/1968/60"
+    },
+    {
+      "title": "Offences against the Person Act 1861",
+      "url": "https://www.legislation.gov.uk/ukpga/Vict/24-25/100"
+    },
+    {
+      "title": "Protection from Harassment Act 1997",
+      "url": "https://www.legislation.gov.uk/ukpga/1997/40"
+    },
+    {
+      "title": "Misuse of Drugs Act 1971",
+      "url": "https://www.legislation.gov.uk/ukpga/1971/38"
+    },
+    {
+      "title": "Sexual Offences Act 2003",
+      "url": "https://www.legislation.gov.uk/ukpga/2003/42"
+    },
+    {
+      "title": "Road Traffic Act 1988",
+      "url": "https://www.legislation.gov.uk/ukpga/1988/52"
+    }
+  ],
+  "rule": "Failed sources cannot support pinned_inventory",
+  "correctedCharges": [
+    {
+      "family": "shoplifting_theft",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "legislationFetchOk": false,
+      "legislationCannotSupportPinnedInventory": true,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "common_assault_battery",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": null,
+      "legislationFetchOk": null,
+      "legislationCannotSupportPinnedInventory": false,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "abh",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": "https://www.legislation.gov.uk/ukpga/Vict/24-25/100",
+      "legislationFetchOk": false,
+      "legislationCannotSupportPinnedInventory": true,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "assault_emergency_worker",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": null,
+      "legislationFetchOk": null,
+      "legislationCannotSupportPinnedInventory": false,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "harassment",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": "https://www.legislation.gov.uk/ukpga/1997/40",
+      "legislationFetchOk": false,
+      "legislationCannotSupportPinnedInventory": true,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "stalking",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": "https://www.legislation.gov.uk/ukpga/1997/40",
+      "legislationFetchOk": false,
+      "legislationCannotSupportPinnedInventory": true,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "drugs_possession",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": "https://www.legislation.gov.uk/ukpga/1971/38",
+      "legislationFetchOk": false,
+      "legislationCannotSupportPinnedInventory": true,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "drugs_pwits",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": "https://www.legislation.gov.uk/ukpga/1971/38",
+      "legislationFetchOk": false,
+      "legislationCannotSupportPinnedInventory": true,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "robbery",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "legislationFetchOk": false,
+      "legislationCannotSupportPinnedInventory": true,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "burglary_dwelling",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": "https://www.legislation.gov.uk/ukpga/1968/60",
+      "legislationFetchOk": false,
+      "legislationCannotSupportPinnedInventory": true,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "speeding_sjp",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": null,
+      "legislationFetchOk": null,
+      "legislationCannotSupportPinnedInventory": false,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.gov.uk/guidance/criminal-procedure-rules-2025-and-criminal-practice-directions-2023",
+        "sourceTitle": "Criminal Procedure Rules 2025 and Criminal Practice Directions 2023",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "procedure_and_forms_structure",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "excess_alcohol",
+      "previousStatus": "pinned_inventory",
+      "correctedStatus": "pinned_from_corpus_inventory_only",
+      "inventorySource": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+      "legislationUrl": "https://www.legislation.gov.uk/ukpga/1988/52",
+      "legislationFetchOk": false,
+      "legislationCannotSupportPinnedInventory": true,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Wording matches scale3000 CHARGE-WORDING-INVENTORY specimen only. Failed/unfetched legislation.gov.uk URLs do NOT support pinned_inventory legal authority. Structural sources pinned separately where fetchOk. Qualified legal confirmation still required."
+    },
+    {
+      "family": "rape",
+      "previousStatus": "awaiting_qualified_review",
+      "correctedStatus": "awaiting_qualified_review",
+      "inventorySource": null,
+      "legislationUrl": "https://www.legislation.gov.uk/ukpga/2003/42",
+      "legislationFetchOk": false,
+      "legislationCannotSupportPinnedInventory": true,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Remains awaiting qualified legal review; legislation fetch failed or absent. Structural authority index may be cited but does not pin operative charge wording."
+    },
+    {
+      "family": "murder",
+      "previousStatus": "awaiting_qualified_review",
+      "correctedStatus": "awaiting_qualified_review",
+      "inventorySource": null,
+      "legislationUrl": null,
+      "legislationFetchOk": null,
+      "legislationCannotSupportPinnedInventory": false,
+      "structuralAuthorityPin": {
+        "sourceUrl": "https://www.cps.gov.uk/prosecution-guidance-library",
+        "sourceTitle": "CPS Prosecution Guidance Library",
+        "retrievalDate": "2026-08-02",
+        "sectionProvision": "offence_guidance_index_not_charge_gold",
+        "snapshotContentHash": null,
+        "pinKind": "structural_authority_index_not_operative_charge_wording",
+        "supportsPinnedInventoryChargeWording": false
+      },
+      "snapshotContentHash": null,
+      "sectionProvisionRecorded": true,
+      "inventWording": false,
+      "note": "Remains awaiting qualified legal review; legislation fetch failed or absent. Structural authority index may be cited but does not pin operative charge wording."
+    }
+  ],
+  "statusCountsAfterCorrection": {
+    "pinned_from_corpus_inventory_only": 12,
+    "awaiting_qualified_review": 2
+  },
+  "v2MembershipMutated": false,
+  "note": "V2 bulk packs retain prior labels on disk as historical; corrected status applies going forward and to V2.1 pilot."
+}

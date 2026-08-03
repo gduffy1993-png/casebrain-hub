@@ -1,0 +1,68 @@
+{
+  "caseId": "div3000v211-10-drugs_conspiracy_supply",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/bundle-fictional-test.pdf",
+  "sha256": "e551d03807cae26b765d0085d535dcb2d67308521991717151c6ac2c6413ef46",
+  "pageCount": 10,
+  "pageMap": [
+    {
+      "pageIdentity": "indictment_operative/page/1",
+      "pdfPageNumber": 1,
+      "docId": "indictment_operative",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 2,
+      "docId": "MG05",
+      "purpose": "mg5_case_summary_narrative"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 3,
+      "docId": "MG05",
+      "purpose": "mg5_evidence_outline"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 4,
+      "docId": "MG06",
+      "purpose": "mg6_file_index"
+    },
+    {
+      "pageIdentity": "MG12_exhibits/page/1",
+      "pdfPageNumber": 5,
+      "docId": "MG12_exhibits",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "MG15_interview/page/1",
+      "pdfPageNumber": 6,
+      "docId": "MG15_interview",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/1",
+      "pdfPageNumber": 7,
+      "docId": "cctv_clip_schedule",
+      "purpose": "media_or_digital_schedule"
+    },
+    {
+      "pageIdentity": "media_metadata/page/1",
+      "pdfPageNumber": 8,
+      "docId": "media_metadata",
+      "purpose": "metadata_only_fixture"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 9,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_privileged_extract"
+    },
+    {
+      "pageIdentity": "extra_context_1/page/1",
+      "pdfPageNumber": 10,
+      "docId": "extra_context_1",
+      "purpose": "document_specific_body"
+    }
+  ]
+}

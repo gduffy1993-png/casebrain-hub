@@ -1,0 +1,30 @@
+{
+  "rows": [
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/courtNote/text",
+      "text": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet",
+      "defects": []
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "text": "The matter remains listed for a plea and trial preparation hearing.",
+      "defects": []
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "text": "On instructions, there may be an abuse-of-process argument; that remains a potential issue requiring confirmation from the evidence and procedural history. The ",
+      "defects": []
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "text": "Complete charge wording is not confirmed on the current papers. Extracted particulars lack a clear statutory or common-law cue. Check the operative charge sheet",
+      "defects": []
+    }
+  ],
+  "lowercaseAcronymDefects": 0,
+  "pass": true
+}

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "STOP-FOR-CODEX-REVIEW@1.0.0",
+  "stoppedAt": "2026-08-03T00:34:14.886Z",
+  "reason": "V2.1.3 same-20 pilot gate complete — STOP uncommitted for Codex review before any scale",
+  "gatePass": true,
+  "status": "PILOT_GATE_PASS_STOP_FOR_CODEX_BEFORE_SCALE",
+  "blockers": [],
+  "ownership": {
+    "worktree": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-diverse",
+    "branch": "programme/stage3000-diverse-second-3000",
+    "baselineCommit": "308b7cb633f83d7c998bc80adf87356de346b3e9",
+    "doNotTouchWorktrees": [
+      "C:\\Users\\gduff\\casebrain-hub-wt-s3000-controller",
+      "C:\\Users\\gduff\\casebrain-hub-wt-s3000-layout-research",
+      "C:\\Users\\gduff\\casebrain-hub-wt-s3000-audit-runner",
+      "C:\\Users\\gduff\\casebrain-hub-wt-s3000-coverage"
+    ]
+  },
+  "prohibitions": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "scale_beyond_20",
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS",
+    "modify_brain1_or_guardian",
+    "touch_chats_2_to_5_worktrees"
+  ],
+  "preservedByteForByte": {
+    "v2": "be4f3bec455c220267aaf3dc265292aa20c1cd763c5d7c5fe5d2df2cb88a25c9",
+    "v21": "1ec51fc426293cb5af5a1b1ed47c4e13cbd578d7438df7086a216c4432b65c2f",
+    "v211": "d109bcd431eede97e8d9fc1fdf260c507453239cdc0af7bb2b3d54c631f69777",
+    "v212": "c698ce950cb92bbf88faab331cee9b816934e9083753897a2412e87bfa59413c",
+    "v213": "e103baa3e0e53bc0062b36f3446896337b7ba99e7213fe23c4c34426201edfde"
+  },
+  "v212ClaimCorrection": {
+    "correctedStatus": "PILOT_GATE_INCOMPLETE_PENDING_BUILD__FULL_VISUAL_REVIEW__OUTPUT_BOUNDARY__BEHAVIOURAL_CONTRACTS__SUBSTANTIVE_COVERAGE",
+    "report": "v2.1.2-pilot-gate-claim-correction.json",
+    "sidecarAlso": "../stage3000-diverse-second-v2.1.2/pilot-gate-claim-correction.json"
+  },
+  "deliverables": {
+    "v212ClaimCorrection": "v2.1.2-pilot-gate-claim-correction.json",
+    "frozenMembership": "frozen-membership-v2.1.3-pilot20.json",
+    "lineage": "v2.1.2-to-v2.1.3-lineage.json",
+    "decisionCard": "DECISION-CARD.json",
+    "stopForCodex": "STOP-FOR-CODEX-REVIEW.json",
+    "pilotGateResult": "pilot-gate-result.json",
+    "directVisualReview": "document-realism-ai-visual-review.json",
+    "renderedPageQa": "rendered-page-visual-qa-register.json",
+    "internalLanguageBoundary": "internal-language-boundary-scan.json",
+    "substantiveLeafCoverage": "substantive-leaf-coverage-matrix.json",
+    "universalSafetyDenominator": "universal-safety-denominator-report.json",
+    "outputStrength": "output-strength-and-template-cluster-report.json",
+    "controlMatrix14plus1": "per-control-14-evaluated-1-not-exercised.json",
+    "perControlExercise": "per-control-exercise-matrix.json",
+    "behaviouralContractsProof": "contracts-proof.json",
+    "productionExitMatrix": "genuine-exit-capability-matrix.json",
+    "candidateFreeze": "candidate-freeze-receipt.json",
+    "truthOpenSequence": "truth-open-sequence.json",
+    "buildTscContracts": "build-and-tsc-receipt.json",
+    "changedFileManifest": "CHANGED-FILE-MANIFEST.json",
+    "graphsRoot": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/"
+  },
+  "honestyNotes": [
+    "V2 / V2.1 / V2.1.1 / V2.1.2 evidence preserved byte-for-byte; V2.1.2 PASS claim corrected incomplete",
+    "Direct visual reviews = 20; extrapolatedReviews = 0; no ai_visual_pattern_extrapolation",
+    "Not human or solicitor visual sign-off",
+    "14 controls genuinely evaluated; CHR-05 honestly not_exercised (zero hearing-notice denominator)",
+    "WRD-15 and COMPLETENESS have real positive/negative/unavailable/mutation handler contracts",
+    "ATR-02/CHS-03 structured evaluators against attributionGraph / chaseProvenanceLinks",
+    "requestId retained in chaseAuditMetadata only — solicitor-facing prose has zero internal ID leakage",
+    "Substantive coverage 100% of applicable surfaces; universal safety measured separately; largest substantive cluster 4/20",
+    "npm run build exit 0 on worktree-local next after clearing worktree .next",
+    "Authenticated browser remains not_exercised",
+    "No corpus / stage3000 / programme PASS claim"
+  ]
+}

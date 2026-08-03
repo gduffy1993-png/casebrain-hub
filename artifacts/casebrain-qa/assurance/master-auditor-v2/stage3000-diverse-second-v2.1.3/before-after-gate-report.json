@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "diverse3000-v2.1.2-to-v2.1.3-gate-before-after@1.0.0",
+  "before": {
+    "path": "stage3000-diverse-second-v2.1.2/pilot-gate-result.json",
+    "claimedGatePass": true,
+    "correctedTo": "PILOT_GATE_INCOMPLETE_PENDING_BUILD__FULL_VISUAL_REVIEW__OUTPUT_BOUNDARY__BEHAVIOURAL_CONTRACTS__SUBSTANTIVE_COVERAGE",
+    "correctionReport": "stage3000-diverse-second-v2.1.3/v2.1.2-pilot-gate-claim-correction.json",
+    "note": "V2.1.2 pilot-gate-result.json left intact as historical evidence."
+  },
+  "after": {
+    "path": "stage3000-diverse-second-v2.1.3/pilot-gate-result.json",
+    "gatePass": true,
+    "status": "PILOT_GATE_PASS_STOP_FOR_CODEX_BEFORE_SCALE",
+    "blockers": [],
+    "checks": {
+      "same20": true,
+      "missingAbsent": true,
+      "pdfs": true,
+      "pagePurpose": true,
+      "geometryOk": true,
+      "realismVisualGatePass": true,
+      "directVisualReviews": 20,
+      "extrapolatedReviews": 0,
+      "noUniversalTemplateDominance": {
+        "pass": true,
+        "uniqueLayoutKinds": 15,
+        "maxLayoutShare": 0.18867924528301888,
+        "layoutKindCounts": {
+          "written_charge": 18,
+          "mg05": 40,
+          "mg06": 20,
+          "media_schedule": 15,
+          "metadata_fixture": 15,
+          "defence_proof": 40,
+          "indictment": 20,
+          "generic_specialist": 16,
+          "exhibit_schedule": 4,
+          "interview_record": 6,
+          "mg11_statement": 3,
+          "mg11_continuation": 5,
+          "court_order": 1,
+          "phone_download_schedule": 5,
+          "mg06c": 4
+        },
+        "requirement": "unique layoutKinds >= 8 AND no single layoutKind > 40% of pages"
+      },
+      "productionOk": true,
+      "namedHandlersHonest": true,
+      "boundaryOk": true,
+      "substantiveCoveragePass": true,
+      "substantiveCoveragePct": 100,
+      "outputStrengthOk": true,
+      "behaviouralContractsOk": true,
+      "chr05Honest": true,
+      "evaluatedCount": 14,
+      "freezeBeforeTruth": true,
+      "atr02Chs03StructuredOk": true,
+      "npmBuildOk": true
+    }
+  }
+}

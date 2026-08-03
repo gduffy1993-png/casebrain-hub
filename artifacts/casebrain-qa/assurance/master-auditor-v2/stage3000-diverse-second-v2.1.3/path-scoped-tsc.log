@@ -1,0 +1,23 @@
+lib/eval/line-source-proof/pdf-bundle-pipeline.ts(5,22): error TS7016: Could not find a declaration file for module 'pdf-parse'. 'C:/Users/gduff/casebrain-hub-wt-s3000-diverse/node_modules/pdf-parse/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/pdf-parse` if it exists or add a new declaration (.d.ts) file containing `declare module 'pdf-parse';`
+scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts(800,5): error TS2322: Type '{ leafId: string; caseId: string; packetRelativeFile: "casebrain-output.json"; jsonPointer: string; arrayIndex: null; parentObjectIdentity: string; originalDataType: "string"; exactValue: string; ... 9 more ...; finalWordingPresent: boolean; }[]' is not assignable to type 'SourceLeaf[]'.
+  Type '{ leafId: string; caseId: string; packetRelativeFile: "casebrain-output.json"; jsonPointer: string; arrayIndex: null; parentObjectIdentity: string; originalDataType: "string"; exactValue: string; ... 9 more ...; finalWordingPresent: boolean; }' is not assignable to type 'SourceLeaf'.
+    Types of property 'exit' are incompatible.
+      Type 'string' is not assignable to type '"copy" | "view" | "export" | "not_evidenced"'.
+scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts(802,5): error TS2322: Type '{ leafId: string; caseId: string; packetRelativeFile: "casebrain-output.json"; jsonPointer: string; arrayIndex: null; parentObjectIdentity: string; originalDataType: "string"; exactValue: string; ... 9 more ...; finalWordingPresent: boolean; }[]' is not assignable to type 'SourceLeaf[]'.
+  Type '{ leafId: string; caseId: string; packetRelativeFile: "casebrain-output.json"; jsonPointer: string; arrayIndex: null; parentObjectIdentity: string; originalDataType: "string"; exactValue: string; ... 9 more ...; finalWordingPresent: boolean; }' is not assignable to type 'SourceLeaf'.
+    Types of property 'exit' are incompatible.
+      Type 'string' is not assignable to type '"copy" | "view" | "export" | "not_evidenced"'.
+scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts(811,5): error TS2322: Type '{ leafId: string; caseId: string; packetRelativeFile: "casebrain-output.json"; jsonPointer: string; arrayIndex: null; parentObjectIdentity: string; originalDataType: "string"; exactValue: string; ... 9 more ...; finalWordingPresent: boolean; }[]' is not assignable to type 'SourceLeaf[]'.
+  Type '{ leafId: string; caseId: string; packetRelativeFile: "casebrain-output.json"; jsonPointer: string; arrayIndex: null; parentObjectIdentity: string; originalDataType: "string"; exactValue: string; ... 9 more ...; finalWordingPresent: boolean; }' is not assignable to type 'SourceLeaf'.
+    Types of property 'exit' are incompatible.
+      Type 'string' is not assignable to type '"copy" | "view" | "export" | "not_evidenced"'.
+scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts(844,22): error TS2322: Type '{ leafId: string; caseId: string; packetRelativeFile: string; jsonPointer: string; arrayIndex: null; parentObjectIdentity: string; originalDataType: "string"; exactValue: string | null; ... 9 more ...; finalWordingPresent: boolean; }' is not assignable to type 'SourceLeaf'.
+  Types of property 'packetRelativeFile' are incompatible.
+    Type 'string' is not assignable to type '"casebrain-output.json"'.
+scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts(846,22): error TS2322: Type '{ leafId: string; caseId: string; packetRelativeFile: string; jsonPointer: string; arrayIndex: null; parentObjectIdentity: string; originalDataType: "string"; exactValue: string | null; ... 9 more ...; finalWordingPresent: boolean; }' is not assignable to type 'SourceLeaf'.
+  Types of property 'packetRelativeFile' are incompatible.
+    Type 'string' is not assignable to type '"casebrain-output.json"'.
+scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts(853,22): error TS2322: Type '{ leafId: string; caseId: string; packetRelativeFile: string; jsonPointer: string; arrayIndex: null; parentObjectIdentity: string; originalDataType: "string"; exactValue: string | null; ... 9 more ...; finalWordingPresent: boolean; }' is not assignable to type 'SourceLeaf'.
+  Types of property 'packetRelativeFile' are incompatible.
+    Type 'string' is not assignable to type '"casebrain-output.json"'.

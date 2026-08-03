@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "orderedMembershipSha256": "e103baa3e0e53bc0062b36f3446896337b7ba99e7213fe23c4c34426201edfde",
+  "pdfs": 20,
+  "pngPages": 232,
+  "missingCorrected": 25,
+  "productionOk": true,
+  "uniqueLayoutKinds": 15,
+  "maxLayoutShare": 0.18867924528301888,
+  "largestSubstantiveCluster": 20,
+  "evaluatedCoreControls": 14,
+  "chr05NotExercised": true,
+  "boundaryLeaks": 0,
+  "substantiveCoveragePct": 100,
+  "blockers": [
+    "direct_visual_review_incomplete",
+    "outputStrengthOk",
+    "npm_build_exit_nonzero"
+  ],
+  "gatePass": false,
+  "visualFailedTotal": 0
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "acceptance-sha256-addendum@1.0.0",
+  "note": "Additive acceptance receipts only; original EXACT-SHA256-MANIFEST.json 26 rows unchanged",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/CODEX-TECHNICAL-SCALE-GATE-ACCEPTANCE.json",
+      "sha256": "dccd1c29641453549729465d248b53243f1e9491ef2bfa406908683c6001c12f",
+      "bytes": 3438
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/CODEX-TECHNICAL-SCALE-GATE-ACCEPTANCE.md",
+      "sha256": "859136fda87770f7e8cca15593848f9086fe3de1df45af4d8d5ef47656e2640a",
+      "bytes": 2119
+    }
+  ]
+}

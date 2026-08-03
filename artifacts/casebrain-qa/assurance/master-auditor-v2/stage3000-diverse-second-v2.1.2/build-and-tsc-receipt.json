@@ -1,0 +1,14 @@
+{
+  "focusedContractsTest": "15/15 pass via tsx --test v2.1.2-focused-contracts.test.ts",
+  "tscProject": "npx tsc -p tsconfig.json --noEmit reported pre-existing script/lib errors; not introduced as Stage-3000 PASS claim",
+  "npmBuild": {
+    "invoked": true,
+    "command": "node .../next/dist/bin/next build (via main-repo next binary; worktree node_modules incomplete)",
+    "result": "Compiled with warnings then failed EPERM open .next/trace on worktree",
+    "exitCode": 1,
+    "log": "npm-build-log.txt / terminal 111152",
+    "note": "Genuine build attempted; EPERM on worktree .next/trace — recorded without claiming green; no unrelated CaseBrain behaviour repaired"
+  },
+  "pathScopedNote": "Loose tsc on individual assurance scripts fails without project flags; use project tsc / focused contracts",
+  "note": "No corpus / stage3000 / programme PASS claim. STOP uncommitted for Codex review."
+}

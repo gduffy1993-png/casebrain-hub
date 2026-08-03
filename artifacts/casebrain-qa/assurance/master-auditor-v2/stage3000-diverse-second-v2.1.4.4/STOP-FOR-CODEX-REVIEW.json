@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "STOP-FOR-CODEX-REVIEW@1.0.0",
+  "stoppedAt": "2026-08-03T03:02:31.343Z",
+  "reason": "V2.1.4.4 ordinary-visible system language removal + honest string denominator — stop uncommitted for Codex review before scale",
+  "gatePass": true,
+  "scaleRecommended": false,
+  "scaleGateAccepted": false,
+  "v2143PreservedByteForByte": true,
+  "v2143ClaimCorrected": "PILOT_GATE_INCOMPLETE_PENDING_ORDINARY_VISIBLE_SYSTEM_LANGUAGE_REMOVAL__HONEST_STRING_DENOMINATOR",
+  "blockers": [],
+  "prohibitions": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "scale_beyond_20",
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS",
+    "set_scaleGateAccepted_true"
+  ],
+  "deliverables": {
+    "visibleLedger": "ledgers/professional-visible-string-ledger.jsonl",
+    "semanticSummary": "professional-semantic-quality-summary.json",
+    "denominatorHonesty": "string-denominator-honesty-report.json",
+    "boundaryScan": "ordinary-system-language-boundary-scan.json",
+    "semanticQualityPass": "independent-semantic-quality-pass.json",
+    "chargeScan": "charge-completeness-and-heading-scan.json",
+    "disclosureScan": "disclosure-item-wording-scan.json",
+    "sentenceScan": "sentence-composition-scan.json",
+    "acronymReport": "acronym-and-procedure-vocabulary-report.json",
+    "remaining10": "remaining-10-fail-closed-reconciliation.json",
+    "wordingMap": "before-after-wording-map.json",
+    "derivedDeps": "derived-conclusion-dependency-ledger.json",
+    "exitMatrix": "all-exit-regression-matrix.json",
+    "manifest": "CHANGED-FILE-MANIFEST.json",
+    "exactSha256Manifest": "EXACT-SHA256-MANIFEST.json",
+    "decisionCard": "DECISION-CARD.json"
+  }
+}

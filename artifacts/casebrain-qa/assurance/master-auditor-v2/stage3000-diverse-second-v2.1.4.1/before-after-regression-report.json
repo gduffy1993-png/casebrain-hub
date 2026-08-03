@@ -1,0 +1,28 @@
+{
+  "beforeV214": {
+    "findingCounts": {
+      "MAA2-BND-05-MISSING-ATTACHMENTS": 15,
+      "MAA2-ATR-02-DOCUMENT-OWNERSHIP": 7
+    },
+    "labelLengthWildcard": true,
+    "sourcePdfAsOutputProof": true,
+    "copyGenuineZeroLeaf": true,
+    "completenessAxesFalse": true
+  },
+  "after": {
+    "findingCounts": {
+      "MAA2-BND-05-MISSING-ATTACHMENTS": 15,
+      "MAA2-ATR-02-DOCUMENT-OWNERSHIP": 7
+    },
+    "exactProvenanceBinding": true,
+    "sourcePdfAsOutputProof": false,
+    "copyPayloadCapturedOrNotExercised": true,
+    "completenessAxesRequired": true
+  },
+  "regressionsIntroduced": [],
+  "expectedHitsVisible": {
+    "MAA2-BND-05-MISSING-ATTACHMENTS": 15,
+    "MAA2-ATR-02-DOCUMENT-OWNERSHIP": 7
+  },
+  "note": "Same frozen 20; V2.1.3 source PDFs hash-locked and not regenerated; V2.1.4 artefacts preserved"
+}

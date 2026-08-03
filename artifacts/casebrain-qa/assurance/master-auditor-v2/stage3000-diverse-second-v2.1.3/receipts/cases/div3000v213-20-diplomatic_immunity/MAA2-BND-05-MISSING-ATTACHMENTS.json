@@ -1,0 +1,71 @@
+{
+  "caseId": "div3000v213-20-diplomatic_immunity",
+  "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+  "handlerModule": "lib/eval/master-assurance-auditor/v2/stage150/batch9/evaluators.ts",
+  "handlerFunction": "evaluateBatch9Control",
+  "handlerId": "b9_bnd_05_missing_attachments",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "partially_implemented",
+  "exerciseStatus": "evaluated",
+  "applicable": true,
+  "applicableUnitCount": 5,
+  "missingPrerequisiteReason": null,
+  "inputFieldRefs": [
+    "requestId",
+    "resolutionState",
+    "linkedEvidenceOccurrenceRef"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "dcd85ecb64a642428d5c9e32fe50fe21825859a9ccabe288e7a40312134c613e",
+    "findingsSha256": "835d2c3e4c49a02f67ae0fc34bb3f1389508a8c2de9cac0a0a6bc1a9a6f5de9c"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/evidenceStates/8/sourcePage",
+    "/evidenceStates/9/sourcePage",
+    "/evidenceStates/10/sourcePage",
+    "/evidenceStates/11/sourcePage",
+    "/evidenceStates/12/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [
+    "MAA2-BND-05-MISSING-ATTACHMENTS::/warningsAndGaps/chaseItems/2::B9_BND_05_MISSING_ATTACHMENTS"
+  ],
+  "findings": [
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "handlerId": "b9_bnd_05_missing_attachments",
+      "findingCode": "B9_BND_05_MISSING_ATTACHMENTS",
+      "occurrenceRef": "/warningsAndGaps/chaseItems/2",
+      "exactWording": "Referred master media / full record (missing)",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Missing-attachment chase without linked evidence unit.",
+      "evidenceRefs": [
+        "/warningsAndGaps/chaseItems/2"
+      ]
+    }
+  ],
+  "contracts": {
+    "positive": "scripts/maa-v2-every-word-foundation-contracts.test.ts#positive",
+    "negative": "scripts/maa-v2-every-word-foundation-contracts.test.ts#negative",
+    "unavailable": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd05_unavailable",
+    "mutation": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_bnd05_mutation"
+  },
+  "receiptNote": "impl=substantive_control_evaluator; availability=unavailable_missing_structured_field; namedEvaluator=true; status=evaluated; findings=1; emptyHits≠PASS. Batch-9 owns missing-attachment chase binding."
+}

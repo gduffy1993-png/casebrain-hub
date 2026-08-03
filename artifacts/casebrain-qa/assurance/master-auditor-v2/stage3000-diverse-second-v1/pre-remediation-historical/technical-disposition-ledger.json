@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "diverse3000-technical-disposition-summary@1.0.0",
+  "runTag": "pre-remediation",
+  "total": 3000,
+  "byDisposition": {
+    "containment": 3000
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "caseId": "div3000v211-09-blackmail",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/bundle-fictional-test.pdf",
+  "sha256": "33a7f03dd5a35889733a0eabdf9639f054afde93e11b3d3be6ec67c865080cae",
+  "pageCount": 8,
+  "pageMap": [
+    {
+      "pageIdentity": "indictment_operative/page/1",
+      "pdfPageNumber": 1,
+      "docId": "indictment_operative",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 2,
+      "docId": "MG05",
+      "purpose": "mg5_case_summary_narrative"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 3,
+      "docId": "MG05",
+      "purpose": "mg5_evidence_outline"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 4,
+      "docId": "MG06",
+      "purpose": "mg6_file_index"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/1",
+      "pdfPageNumber": 5,
+      "docId": "cctv_clip_schedule",
+      "purpose": "media_or_digital_schedule"
+    },
+    {
+      "pageIdentity": "media_metadata/page/1",
+      "pdfPageNumber": 6,
+      "docId": "media_metadata",
+      "purpose": "metadata_only_fixture"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 7,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_privileged_extract"
+    },
+    {
+      "pageIdentity": "extra_context_3/page/1",
+      "pdfPageNumber": 8,
+      "docId": "extra_context_3",
+      "purpose": "document_specific_body"
+    }
+  ]
+}

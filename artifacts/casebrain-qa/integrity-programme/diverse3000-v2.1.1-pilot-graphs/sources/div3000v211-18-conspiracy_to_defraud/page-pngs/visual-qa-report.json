@@ -1,0 +1,163 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/bundle-fictional-test.pdf",
+  "pageCount": 9,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-001.png",
+      "pngSha256": "ed38cc78c1cac989c111ff804baaad536ab316f6ec0b182556616e9b5f67a68b",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1382,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.75,
+        "nonWhiteRatio": 0.0445,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-002.png",
+      "pngSha256": "317a157beef24d0122bfff3957a458a57381df65433efc38bd7828a6a5542f9a",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1595,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.79,
+        "nonWhiteRatio": 0.0513,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-003.png",
+      "pngSha256": "4a116865686f440ff3606880960c7d62aa15fd3fff9f9d2827586150ac8b89ee",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1330,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.89,
+        "nonWhiteRatio": 0.0439,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-004.png",
+      "pngSha256": "6d4ce00f783f1ede4af0159a6faf02bbec236fc2bae0bb010ddb262902d38d91",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1718,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.33,
+        "nonWhiteRatio": 0.0543,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-005.png",
+      "pngSha256": "2f8032555a38454fceef7e7b264eab00125d1c6931b9a4f6d2b248e30ed05193",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1344,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.8,
+        "nonWhiteRatio": 0.0442,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-006.png",
+      "pngSha256": "cef96373b75e20d069a5c2fc04b47aa179d8874524a4e751031a99f98c54f762",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1300,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.87,
+        "nonWhiteRatio": 0.0435,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-007.png",
+      "pngSha256": "ad496be759b2c5cbfcc9717933f11c924015f2dd1e8c93df7797633c348c350d",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1425,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.49,
+        "nonWhiteRatio": 0.0468,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-008.png",
+      "pngSha256": "d4908b4c7d4e35480d485faecf0105e5e6a20fbafecf6ab5c655e7a850b2f5d5",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1364,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.68,
+        "nonWhiteRatio": 0.0451,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-009.png",
+      "pngSha256": "a487533c3ffc1e15ca36b8f9a9ffb944c9fa9009595919f1a3e02424d379e50f",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1444,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.51,
+        "nonWhiteRatio": 0.0466,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "00fd625571901f32fb3c7e0f8bb2cfd85a7485dce1dd287cbaa506f4b248f39e",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

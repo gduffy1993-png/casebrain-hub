@@ -1,0 +1,16 @@
+{
+  "productionClass": "genuine_production_builder_partial",
+  "builders": [
+    "gateSolicitorOutput",
+    "preserveProtectedAcronyms"
+  ],
+  "authenticatedBrowser": "not_exercised",
+  "packetProjectionSeparated": true,
+  "exitsCaptured": [
+    "view_composed",
+    "copy_capable_chase",
+    "export_preview",
+    "api_interface_preview"
+  ],
+  "pdfExit": "rendered_bundle_fictional_test_pdf"
+}

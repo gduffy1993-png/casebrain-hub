@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "diverse3000-v2-candidate-freeze@1.0.0",
+  "runTag": "pre-remediation",
+  "candidateLedgerSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidateCount": 0,
+  "occurrenceCount": 24000,
+  "orderedMembershipSha256": "be4f3bec455c220267aaf3dc265292aa20c1cd763c5d7c5fe5d2df2cb88a25c9",
+  "truthOpenedBeforeFreeze": false
+}

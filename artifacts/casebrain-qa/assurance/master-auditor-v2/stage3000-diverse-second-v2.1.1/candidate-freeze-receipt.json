@@ -1,0 +1,7 @@
+{
+  "frozenAt": "2026-08-02T21:23:18.800Z",
+  "candidateLedgerSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidateCount": 0,
+  "truthOpenedBeforeFreeze": false,
+  "orderedMembershipSha256": "d109bcd431eede97e8d9fc1fdf260c507453239cdc0af7bb2b3d54c631f69777"
+}

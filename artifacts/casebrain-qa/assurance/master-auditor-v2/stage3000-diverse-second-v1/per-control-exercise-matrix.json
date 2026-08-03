@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "diverse3000-per-control-exercise-matrix@1.0.0",
+  "runTag": "post-remediation",
+  "registryControlCount": 361,
+  "handlerMappedCount": 347,
+  "evaluatedControlIds": [
+    "MAA-COMPLETENESS",
+    "MAA2-WRD-01-GRAMMAR-SENTENCES",
+    "MAA2-WRD-02-NO-MID-TRUNCATION",
+    "MAA2-WRD-03-COMPLETE-DISCLAIMERS",
+    "MAA2-WRD-04-NO-DUPLICATE-PHRASES",
+    "MAA2-WRD-05-TEMPLATE-JOINS",
+    "MAA2-WRD-06-SPACES-PUNCTUATION",
+    "MAA2-WRD-07-LISTS-PIPE-FRAGMENTS",
+    "MAA2-WRD-08-CAPITALISATION",
+    "MAA2-WRD-09-PROTECTED-ACRONYMS",
+    "MAA2-WRD-10-NO-PLACEHOLDERS",
+    "MAA2-WRD-11-NO-GENERIC-FILLER",
+    "MAA2-WRD-12-NO-HOSTILE-SENSATIONAL",
+    "MAA2-WRD-13-WARNINGS-WITH-ACTIONS",
+    "MAA2-WRD-14-NO-EXCESS-DISCLAIMERS",
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF"
+  ],
+  "evaluatedCount": 16,
+  "notExercisedCount": 345,
+  "note": "Wording/completeness detectors evaluated on packet-local surfaces. Browser/heavy/security/external lanes remain not_exercised.",
+  "denominatorCases": 3000
+}

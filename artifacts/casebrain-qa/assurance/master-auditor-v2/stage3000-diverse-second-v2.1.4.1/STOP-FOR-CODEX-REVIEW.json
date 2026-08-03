@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "STOP-FOR-CODEX-REVIEW@1.0.0",
+  "stoppedAt": "2026-08-03T01:39:52.544Z",
+  "reason": "V2.1.4.1 exact provenance / exit evidence / contract+build verification — stop uncommitted before scale",
+  "gatePass": true,
+  "scaleRecommended": false,
+  "scaleGateAccepted": false,
+  "v214PreservedByteForByte": true,
+  "v214ClaimCorrected": "PILOT_GATE_INCOMPLETE_PENDING_EXACT_PROVENANCE_BINDING__REAL_EXIT_EVIDENCE__CONTRACT_AND_BUILD_VERIFICATION",
+  "blockers": [],
+  "prohibitions": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "scale_beyond_20",
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS"
+  ],
+  "preserved": {
+    "v213": "e103baa3e0e53bc0062b36f3446896337b7ba99e7213fe23c4c34426201edfde",
+    "candidateLedger": "4a788439aa97be17a73c5ccd066be5725805694a9bc1e4922c44673e44abe3a3",
+    "v214Artefacts": "C:\\Users\\gduff\\casebrain-hub-wt-s3000-diverse\\artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1.4"
+  },
+  "deliverables": {
+    "v214Correction": "../stage3000-diverse-second-v2.1.4/pilot-gate-claim-correction.json",
+    "exactProvenanceValidation": "exact-provenance-validation-report.json",
+    "crossDocMisbind": "cross-document-misbinding-scan.json",
+    "exitReconcile": "exit-capability-coverage-reconciliation-matrix.json",
+    "outputPdfEvidence": "output-pdf-exit-evidence.json",
+    "copyPayloadEvidence": "copy-payload-exit-evidence.json",
+    "contracts": "contracts-proof.json",
+    "buildTsc": "build-and-tsc-receipt.json",
+    "beforeAfter": "before-after-regression-report.json",
+    "manifest": "CHANGED-FILE-MANIFEST.json",
+    "decisionCard": "DECISION-CARD.json"
+  }
+}

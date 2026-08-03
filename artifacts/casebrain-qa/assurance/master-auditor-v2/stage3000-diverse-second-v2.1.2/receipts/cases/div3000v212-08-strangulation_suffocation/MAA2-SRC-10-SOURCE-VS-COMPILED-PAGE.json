@@ -1,0 +1,298 @@
+{
+  "caseId": "div3000v212-08-strangulation_suffocation",
+  "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+  "handlerModule": "lib/eval/master-assurance-auditor/v2/stage150/batch9/evaluators.ts",
+  "handlerFunction": "evaluateBatch9Control",
+  "handlerId": "b9_src_10_source_vs_compiled_page",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "specified_not_implemented",
+  "exerciseStatus": "evaluated",
+  "applicable": true,
+  "applicableUnitCount": 18,
+  "missingPrerequisiteReason": null,
+  "inputFieldRefs": [
+    "pageIdentityKnown=true",
+    "sourceDocumentIdentity",
+    "sourcePage",
+    "compiledPage"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "db900d19a87bcf331fefc5374dd7dca14644f675002644ba2705a4d6dc0a0502",
+    "findingsSha256": "90d0395f683ccc263cf635381a871ab7d8b1232e8a2349bd201978cee1cfa47e"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/evidenceStates/8/sourcePage",
+    "/evidenceStates/9/sourcePage",
+    "/evidenceStates/10/sourcePage",
+    "/evidenceStates/11/sourcePage",
+    "/evidenceStates/12/sourcePage",
+    "/evidenceStates/13/sourcePage",
+    "/evidenceStates/14/sourcePage",
+    "/evidenceStates/15/sourcePage",
+    "/evidenceStates/16/sourcePage",
+    "/evidenceStates/17/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/0::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/1::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/2::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/3::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/4::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/5::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/6::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/7::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/8::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/9::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/10::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/11::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/12::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/13::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/14::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/15::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/16::B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE::/evidenceStates/17::B9_SRC_10_SOURCE_VS_COMPILED_PAGE"
+  ],
+  "findings": [
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/0",
+      "exactWording": "indictment_operative/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/0"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/1",
+      "exactWording": "indictment_operative/page/2|2",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/1"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/2",
+      "exactWording": "MG05/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/2"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/3",
+      "exactWording": "MG05/page/2|2",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/3"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/4",
+      "exactWording": "MG06/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/4"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/5",
+      "exactWording": "MG11_complainant_signed/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/5"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/6",
+      "exactWording": "MG11_complainant_signed/page/2|2",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/6"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/7",
+      "exactWording": "MG11_complainant_signed/page/3|3",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/7"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/8",
+      "exactWording": "MG11_complainant_draft/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/8"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/9",
+      "exactWording": "MG11_complainant_draft/page/2|2",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/9"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/10",
+      "exactWording": "MG11_complainant_draft/page/3|3",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/10"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/11",
+      "exactWording": "order_or_bail/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/11"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/12",
+      "exactWording": "cctv_clip_schedule/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/12"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/13",
+      "exactWording": "media_metadata/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/13"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/14",
+      "exactWording": "extra_context_5/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/14"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/15",
+      "exactWording": "MG06/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/15"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/16",
+      "exactWording": "MG06/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/16"
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "handlerId": "b9_src_10_source_vs_compiled_page",
+      "findingCode": "B9_SRC_10_SOURCE_VS_COMPILED_PAGE",
+      "occurrenceRef": "/evidenceStates/17",
+      "exactWording": "MG06/page/1|1",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Source/compiled page tokens are not genuine page identities.",
+      "evidenceRefs": [
+        "/evidenceStates/17"
+      ]
+    }
+  ],
+  "contracts": {
+    "positive": "scripts/maa-v2-every-word-foundation-contracts.test.ts#MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+    "negative": "scripts/maa-v2-every-word-foundation-contracts.test.ts#MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+    "unavailable": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_src10_unavailable",
+    "mutation": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_src10_mutation"
+  },
+  "receiptNote": "impl=substantive_control_evaluator; availability=unavailable_missing_structured_field; namedEvaluator=true; status=evaluated; findings=18; emptyHits≠PASS. Batch-9 owns source vs compiled page identity integrity."
+}

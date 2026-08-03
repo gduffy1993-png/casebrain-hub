@@ -1,0 +1,163 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/bundle-fictional-test.pdf",
+  "pageCount": 9,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-001.png",
+      "pngSha256": "8e9738430de16dc0e49f71272be21b35a30f0f335f410dca069a34c1927a40ab",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1477,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.34,
+        "nonWhiteRatio": 0.0474,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-002.png",
+      "pngSha256": "7500888f83713eb2b73670ddc37a22252f1281e3d898bb361d3e9909f67d31f0",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1210,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.28,
+        "nonWhiteRatio": 0.0409,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-003.png",
+      "pngSha256": "f19905dd43490aeeb252a13cf4df369bc10a66c6ae5beddc97bba2c8c34ecd0d",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1628,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.65,
+        "nonWhiteRatio": 0.0526,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-004.png",
+      "pngSha256": "9a7311713f80997232f9d1add5e9917b0e4439a31f4ea38fd0b7c7cad171ff77",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1281,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.98,
+        "nonWhiteRatio": 0.043,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-005.png",
+      "pngSha256": "de21cb3e750cee760b836fc1f67b03bfb4c845aa826173e8e4c0c04f1a9d8640",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1512,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.11,
+        "nonWhiteRatio": 0.0487,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-006.png",
+      "pngSha256": "f7852bfdec97323b0c792d7df44eb9b7d4268c897fade5d2f601fe4f3f5aa7de",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1348,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.75,
+        "nonWhiteRatio": 0.0444,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-007.png",
+      "pngSha256": "801aa86de4c260789651cf657fef4166e7a6cdaf4627f5529c48270c81c6e49f",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1307,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.82,
+        "nonWhiteRatio": 0.0438,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-008.png",
+      "pngSha256": "cbc75a16a39dcabd5f8aa41c3ede49c3f0f99762f10558e97a628dc8c5ddf05d",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1463,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.44,
+        "nonWhiteRatio": 0.0473,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-009.png",
+      "pngSha256": "0f9bb0f62b95ab7e2ac773439cf85aa98625121c5ca37ac3a6fa195c3df771aa",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1390,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.7,
+        "nonWhiteRatio": 0.0455,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "6e289200774c755564ecbdd90bd50153239218d8cd5bac2cdd60143d8e678882",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "performance-and-storage-preflight@1.0.0",
+  "generatedAt": "2026-08-02T18:24:59.049Z",
+  "freeBytes": 7158849536,
+  "freeGiB": 6.67,
+  "stopThresholdGiB": 2,
+  "estimatesGiB": {
+    "matterGraphsJsonAll3000": 0.15,
+    "thinSourcePacksAll3000": 0.6,
+    "stratifiedRenderedPdfSubset500": 0.35,
+    "solicitorSurfacesMaterialisation": 1.2,
+    "maaLedgersReceipts": 0.25,
+    "truthSealedSeparate": 0.2,
+    "peakTotalApprox": 2.75,
+    "fullHeavyPdfAll3000Unsafe": 12
+  },
+  "decision": "STRATIFIED_RENDER_REQUIRED",
+  "plan": {
+    "all3000StructuredMatterGraphs": true,
+    "all3000UniqueSourceDocumentRelationshipFingerprints": true,
+    "renderedPdfNativeSubset": 500,
+    "thinTextSourcePacksForRemainder": 2500,
+    "doNotFabricateCompletedPdfs": true,
+    "heavyBundleLane": "separately_reportable_not_default"
+  },
+  "gate": "CONTINUE_WITH_STRATIFIED_PLAN"
+}

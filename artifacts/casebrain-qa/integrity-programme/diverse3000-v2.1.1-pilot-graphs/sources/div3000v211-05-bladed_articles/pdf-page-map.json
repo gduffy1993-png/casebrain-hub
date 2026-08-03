@@ -1,0 +1,68 @@
+{
+  "caseId": "div3000v211-05-bladed_articles",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/bundle-fictional-test.pdf",
+  "sha256": "82f580d6be8fdbc8c9189df5739e2157970fe85c06c13b9cf52f90eb58b1921c",
+  "pageCount": 10,
+  "pageMap": [
+    {
+      "pageIdentity": "written_charge/page/1",
+      "pdfPageNumber": 1,
+      "docId": "written_charge",
+      "purpose": "charge_instrument_particulars"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 2,
+      "docId": "MG05",
+      "purpose": "mg5_case_summary_narrative"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 3,
+      "docId": "MG05",
+      "purpose": "mg5_evidence_outline"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 4,
+      "docId": "MG06",
+      "purpose": "mg6_file_index"
+    },
+    {
+      "pageIdentity": "MG12_exhibits/page/1",
+      "pdfPageNumber": 5,
+      "docId": "MG12_exhibits",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "MG15_interview/page/1",
+      "pdfPageNumber": 6,
+      "docId": "MG15_interview",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 7,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_privileged_extract"
+    },
+    {
+      "pageIdentity": "defence_statement_draft/page/1",
+      "pdfPageNumber": 8,
+      "docId": "defence_statement_draft",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "defence_statement_draft/page/2",
+      "pdfPageNumber": 9,
+      "docId": "defence_statement_draft",
+      "purpose": "lifecycle_history_not_operative"
+    },
+    {
+      "pageIdentity": "extra_context_2/page/1",
+      "pdfPageNumber": 10,
+      "docId": "extra_context_2",
+      "purpose": "document_specific_body"
+    }
+  ]
+}

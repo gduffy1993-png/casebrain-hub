@@ -1,0 +1,18 @@
+[
+  {
+    "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1.2\\pilot-gate-result.json",
+    "sha256": "88d88bc58773d295f4e02b67eb5798a3c8ccf7ddcf73455e35c2805b8ea3191a"
+  },
+  {
+    "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1.2\\DECISION-CARD.json",
+    "sha256": "30c67c2c6130baf306e9e05a9e5622340627248dcee5aa801c5e27a513e6cdd7"
+  },
+  {
+    "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1.2\\STOP-FOR-CODEX-REVIEW.json",
+    "sha256": "0b11a330e49c3293df85aa019b5c6e4011a58d338653ad4e44856914e4d3b767"
+  },
+  {
+    "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1.2\\frozen-membership-v2.1.2-pilot20.json",
+    "sha256": "45321d34f874476109c5bf520282b22c5066f9b2369dbf5f244e87834b533274"
+  }
+]

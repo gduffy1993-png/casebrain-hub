@@ -1,0 +1,233 @@
+{
+  "caseId": "div3000v21-19-riot",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "90683e937fba6adbf2afa1a32fd9eea5681991e9ee576394b339932f488e7735",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/1\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — written charge structure for riot; wording not pinned.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "2aaa3f7d237ec0c0f1ae72bd2fe2cb17b61d0a35232be3b47c83a0313275d4c9"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/2\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for written_charge.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "8ad17dc573e0d2150e965c92b0eb5c659170b58c7f41616da4e4dbab8c76fdce"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "c5cc630e148fccbef188ed6d556376b30ecdd987922887b05d95379c3d03bce2",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: riot.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 3: mg11_draft, cctv_clip, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "0c643063c89e4ec370d43566c814a47d530d0ff59caeb63bbdd08ec2068ec467"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "53047a904cbc9c44e8036afbe09270ac930393a6331003aa52fc586971924d42"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d4bb5aa0cce1632844855229c4054805dae14efc594e9fb2d63e445f4e4a3d19"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "14f61251d614ef942aa347c4457b3d97813b60534e25843399941d06b485efee",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "dc72c888d8e489b80494e3cebc00a273ae4b31cf00e4631eba039c4e85b5c54b"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "e4265136575b73fe62416586f2260593844d9c95dba95c1af381963fa730d141"
+        }
+      ]
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "a18de46e2bd73b9591f8863b2f67a3b79f78d46dcceb7e889bf74c7a2a223aa0",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/1\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "dee9eafceba8fbab0f2df8199672bc0f7249bd66fbb3d0b9e987fe1e7b875882"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/2\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for cctv_clip_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d4b9abc6964059d809969cf57e8de42cf52c22c99cc69b13e7c1fc2d3469b166"
+        }
+      ]
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "3fa4386e494cdd0f58cb15deece7a534408a57b413ac74f541ae9223f4bded30",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/1\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "120b964c55ee0c7549741845708d308e27f87db397a0e5736eaa5bae32f332fb"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "media_metadata/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/2\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for media_metadata.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "cda6e7cd42929b0cf07dde6949a66e4887868f05a26ac67b66b0d41096eaf161"
+        }
+      ]
+    },
+    {
+      "docId": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "contentHash": "60881fb89c4361c53712caf9e843cd845e45c07cb36a24ced75bbad433624700",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "abe_or_special_measures/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/1\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — ABE / special measures structure. Qualified legal review still required for substantive conclusions.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "10658a75f7fb32fe7c550059c7fe381bbc6ded7869d1da7c9315943737485f4d"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "abe_or_special_measures/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/2\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for abe_or_special_measures.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c00055375173e15a21310a34efa05e56e6c3dbc9a0ba243b4a36ebf8079f28ca"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "abe_or_special_measures/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: ABE / special measures note (fictional test)\nDocument id: abe_or_special_measures\nKind: abe_sm\nLifecycle state: referred_only\nPage identity: abe_or_special_measures/page/3\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for abe_or_special_measures.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "a63c5f1c0db242aab35e3778c4d7c951226637ee767be221726e20012f1a2674"
+        }
+      ]
+    },
+    {
+      "docId": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "contentHash": "4d84b83ea3bebaac6a5c933043f1db87c30528cf3cc5c2890e4d7c17f2d6ae14",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "third_party_material_note/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Third-party / counselling material note (fictional test)\nDocument id: third_party_material_note\nKind: third_party\nLifecycle state: referred_only\nPage identity: third_party_material_note/page/1\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — third-party records referred; not served. Privilege/PII boundaries apply.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "deb74d9623b607ae8217fb6a5adbf2d086c5924d5c700244e9a3e0d2dd8b16a1"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "third_party_material_note/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Third-party / counselling material note (fictional test)\nDocument id: third_party_material_note\nKind: third_party\nLifecycle state: referred_only\nPage identity: third_party_material_note/page/2\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for third_party_material_note.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d6665dbcf10dc2fe62c8c2bd1ec474c863bf122a8109d6d1bc00ee142a629b87"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "65bd9754eb1592ec6674dd5e5fff95dfa32664abc93b568a235bebb16514a787",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d6abf3d13abbdf3421e4f52794456cfb6ce3a218861838050e5954faeee068ad"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "4538f27c5f17f001c2fda233245adcd6833fc896b6135e54a8ede968cf993799"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "6f615205de9ea150a830413ba203a7388d212178cf74b6a32172d20c6f4c30a0"
+        }
+      ]
+    },
+    {
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": "2d3ffbb983d0ce592accb6e1bc526aaa47efc01217a3aa97965c26d100bf636f",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "referred_missing_master/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/1\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — index refers to this item; file absent. Must not treat as served.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "cf1d865ae29b771eca03fae2ce72aaf9021a81da0c00ba396e84f66e093153a0"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "referred_missing_master/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/2\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for referred_missing_master.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "68e66dabc536bcc49b5e75179f622b94373b3c974e40f580970abba73069fda1"
+        }
+      ]
+    },
+    {
+      "docId": "extra_context_2",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "25420fc4507c530c4b738b62fc5c5a79a7d16dbf14fdc5c46810cd1888468d3e",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_2/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_2\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_2/page/1\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — additional coherent schedule for riot emphasising section_45_indicator and written_charge.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "279d5623048de09215b9b90a46e643026a18bd0f1c2866df76e4c2a1c8207051"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "extra_context_2/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_2\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_2/page/2\nMatter family under review: riot\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for extra_context_2.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, abe_or_special_measures, third_party_material_note, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d567fbb66d763c7025465cd75f5ecf54c8522a395393ea8845e681f7ac625ea9"
+        }
+      ]
+    }
+  ]
+}

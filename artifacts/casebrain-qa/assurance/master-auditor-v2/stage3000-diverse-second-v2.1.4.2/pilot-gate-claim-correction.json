@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "diverse3000-pilot-gate-claim-correction@1.0.0",
+  "correctedAt": "2026-08-03T02:20:00.000Z",
+  "preservedPilot": "stage3000-diverse-second-v2.1.4.2",
+  "preserveByteForByte": true,
+  "priorClaimedStatus": "PILOT_GATE_PASS_STOP_FOR_CODEX_BEFORE_SCALE",
+  "correctedStatus": "PILOT_GATE_INCOMPLETE_PENDING_PROFESSIONAL_SEMANTIC_OUTPUT_QUALITY",
+  "scaleGateAccepted": false,
+  "scaleRecommended": false,
+  "reason": "V2.1.4.2 provenance and evidence-boundary remediation remains valuable historical evidence, but Codex inspection of ordinary solicitor-visible outputs found the gate proved only the absence of selected technical patterns — not professional semantic wording quality.",
+  "observedDefectClasses": [
+    "markdown_heading_as_charge_wording",
+    "broken_sentence_composition",
+    "raw_procedural_tokens_pet",
+    "weak_defence_position_labels",
+    "ambiguous_section_45_wording",
+    "unprofessional_disclosure_wording",
+    "lowercase_abe",
+    "raw_absence_labels"
+  ],
+  "codexReadOnlyScanCounts": {
+    "suspiciousOrdinaryVisibleOccurrences": 210,
+    "markdownHeadingUsedAsWording": 108,
+    "lowercaseAbe": 35,
+    "rawAbsenceLabels": 21,
+    "brokenSentenceJoins": 18,
+    "ambiguousSection45": 18,
+    "clunkyNoCaseWording": 6,
+    "rawPetWording": 3,
+    "clunkyAbuseOfProcess": 1
+  },
+  "followOnPilot": "stage3000-diverse-second-v2.1.4.3",
+  "prohibitions": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "scale_beyond_20",
+    "mutate_v2.1.4.2_artefacts",
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS"
+  ]
+}

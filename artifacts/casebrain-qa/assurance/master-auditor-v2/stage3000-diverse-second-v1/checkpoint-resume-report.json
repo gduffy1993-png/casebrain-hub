@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "diverse3000-checkpoint-resume-report@1.0.0",
+  "generationCheckpoints": [
+    5,
+    20,
+    50,
+    150,
+    300,
+    500,
+    1000,
+    2000,
+    3000
+  ],
+  "materialiseCheckpoints": [
+    5,
+    20,
+    50,
+    150,
+    300,
+    500,
+    1000,
+    2000,
+    3000
+  ],
+  "maaCheckpoints": [
+    5,
+    20,
+    50,
+    150,
+    300,
+    500,
+    1000,
+    2000,
+    3000
+  ],
+  "crashCorruptionCount": 0,
+  "resumeSafe": true
+}

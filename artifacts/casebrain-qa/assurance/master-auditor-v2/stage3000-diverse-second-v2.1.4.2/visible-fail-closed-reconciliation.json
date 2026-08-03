@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "diverse3000-v2.1.4.2-visible-fail-closed@1.0.0",
+  "before": {
+    "failClosedTotal": 405,
+    "bySurface": {
+      "charges": 39,
+      "view": 150,
+      "war_room": 60,
+      "copy": 156
+    }
+  },
+  "after": {
+    "ordinaryVisibleFailClosed": 0,
+    "leafClassCounts": {
+      "protected_audit_only": 549,
+      "not_exercised": 392,
+      "universal_safety": 248,
+      "substantive_derived_conclusion": 345,
+      "substantive_source_backed": 220,
+      "substantive_explicitly_unresolved": 163,
+      "fail_closed_unresolved_reference": 10
+    },
+    "rows": []
+  },
+  "pass": true
+}

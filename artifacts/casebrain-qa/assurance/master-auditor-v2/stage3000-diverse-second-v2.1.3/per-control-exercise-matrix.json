@@ -1,0 +1,2923 @@
+{
+  "schemaVersion": "diverse3000-v2.1.3-per-control-exercise-matrix@1.0.0",
+  "coreControlsTargeted": [
+    "MAA2-BND-02-INSTRUMENT-STATUS",
+    "MAA2-BND-04-VERSION-PRECEDENCE",
+    "MAA2-BND-05-MISSING-ATTACHMENTS",
+    "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+    "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+    "MAA2-ATR-01-DEFENDANT-SEPARATION",
+    "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+    "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+    "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+    "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+    "MAA2-CHS-03-PROVENANCE-LINK",
+    "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+    "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+    "MAA-COMPLETENESS",
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF"
+  ],
+  "statusCounts": {
+    "evaluated": 14,
+    "not_counted_evaluated": 1
+  },
+  "evaluatedCount": 14,
+  "note": "A control counts as evaluated only if ≥1 case has exerciseStatus=evaluated AND an actual named handler ran. ATR-02/CHS-03 use structured evaluators (exerciseAtr02/exerciseChs03) against attributionGraph / chaseProvenanceLinks — not phrase probes.",
+  "controls": [
+    {
+      "controlId": "MAA2-BND-02-INSTRUMENT-STATUS",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_02_instrument_status",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-BND-02-INSTRUMENT-STATUS.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-BND-04-VERSION-PRECEDENCE",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_04_version_precedence",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-BND-04-VERSION-PRECEDENCE.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-BND-05-MISSING-ATTACHMENTS",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_bnd_05_missing_attachments",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-BND-05-MISSING-ATTACHMENTS.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-CHG-01-RECORDED-SOURCE-VISIBLE",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_01_recorded_source_visible",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-CHG-01-RECORDED-SOURCE-VISIBLE.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-CHG-05-OPERATIVE-INSTRUMENT",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chg_05_operative_instrument",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-CHG-05-OPERATIVE-INSTRUMENT.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_atr_01_defendant_separation",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-ATR-01-DEFENDANT-SEPARATION.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-ATR-02-DOCUMENT-OWNERSHIP",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": true,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 2,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 2,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 1,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseAtr02",
+          "handlerId": "document_ownership_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-ATR-02-DOCUMENT-OWNERSHIP.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 0,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": false,
+      "countedAsEvaluated": false,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "not_exercised",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+          "applicable": false,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 10,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 8,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 7,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 8,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 17,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 11,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 8,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 18,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 11,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 19,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 18,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 12,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 11,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 11,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 11,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 11,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 12,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 19,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_src_10_source_vs_compiled_page",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-CHS-02-SPECIFIC-ITEM-REQUEST",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_chs_02_specific_item_request",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-CHS-02-SPECIFIC-ITEM-REQUEST.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": true,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-CHS-03-PROVENANCE-LINK.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseChs03",
+          "handlerId": "chase_provenance_structured",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-CHS-03-PROVENANCE-LINK.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_02_evidence_partial_warning",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-XEX-02-EVIDENCE-PARTIAL-WARNING.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateBatch9Control",
+          "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 13,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA-COMPLETENESS.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "exerciseCompleteness",
+          "handlerId": "professional_wording__MAA-COMPLETENESS",
+          "applicable": true,
+          "findingCount": 15,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA-COMPLETENESS.json"
+        }
+      ]
+    },
+    {
+      "controlId": "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+      "denominatorCases": 20,
+      "casesWithRow": 20,
+      "evaluatedCaseCount": 20,
+      "probeOnlyCaseCount": 0,
+      "actualHandlerRan": true,
+      "countedAsEvaluated": true,
+      "structuredNamedEvaluator": false,
+      "phraseProbeOnly": false,
+      "perCase": [
+        {
+          "caseId": "div3000v213-01-common_assault_battery",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-01-common_assault_battery/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-02-shoplifting_theft",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-02-shoplifting_theft/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-03-going_equipped",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-03-going_equipped/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-04-twoc",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-04-twoc/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-05-bladed_articles",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-05-bladed_articles/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-06-affray",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-06-affray/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-07-sexual_assault",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-07-sexual_assault/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-08-strangulation_suffocation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-08-strangulation_suffocation/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-09-blackmail",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-09-blackmail/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-10-drugs_conspiracy_supply",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-10-drugs_conspiracy_supply/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-11-social_media_attribution",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-11-social_media_attribution/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-12-perverting_course_of_justice",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-12-perverting_course_of_justice/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-13-witness_intimidation",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-13-witness_intimidation/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-14-contempt",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-14-contempt/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-15-prison_offences",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-15-prison_offences/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-16-hearsay_res_gestae",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-16-hearsay_res_gestae/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-17-corporate_manslaughter",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-17-corporate_manslaughter/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-18-conspiracy_to_defraud",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-18-conspiracy_to_defraud/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-19-riot",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-19-riot/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        },
+        {
+          "caseId": "div3000v213-20-diplomatic_immunity",
+          "exerciseStatus": "evaluated",
+          "handlerFunction": "evaluateProfessionalWording",
+          "handlerId": "absolute_proof_ban",
+          "applicable": true,
+          "findingCount": 0,
+          "receiptRef": "receipts/cases/div3000v213-20-diplomatic_immunity/MAA2-WRD-15-NO-ABSOLUTE-PROOF.json"
+        }
+      ]
+    }
+  ]
+}

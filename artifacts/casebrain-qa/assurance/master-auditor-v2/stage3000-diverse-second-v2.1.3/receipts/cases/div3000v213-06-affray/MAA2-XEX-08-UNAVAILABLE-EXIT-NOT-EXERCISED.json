@@ -1,0 +1,52 @@
+{
+  "caseId": "div3000v213-06-affray",
+  "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+  "handlerModule": "lib/eval/master-assurance-auditor/v2/stage150/batch9/evaluators.ts",
+  "handlerFunction": "evaluateBatch9Control",
+  "handlerId": "b9_xex_08_unavailable_exit_not_exercised",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "partially_implemented",
+  "exerciseStatus": "evaluated",
+  "applicable": true,
+  "applicableUnitCount": 6,
+  "missingPrerequisiteReason": null,
+  "inputFieldRefs": [
+    "exit_snapshots records materialised"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "9f96bc9d0f316d3806214ae957f7f5eb67c6859fc031ec62366cc8d65485c7ae",
+    "findingsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/evidenceStates/8/sourcePage",
+    "/evidenceStates/9/sourcePage",
+    "/evidenceStates/10/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [],
+  "findings": [],
+  "contracts": {
+    "positive": "scripts/maa-v2-every-word-foundation-contracts.test.ts#positive",
+    "negative": "scripts/maa-v2-every-word-foundation-contracts.test.ts#negative",
+    "unavailable": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex08_unavailable",
+    "mutation": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_xex08_mutation"
+  },
+  "receiptNote": "impl=adapter_integrity_evaluator; availability=runnable_on_ESA; namedEvaluator=true; status=evaluated; findings=0; emptyHits≠PASS. Batch-9 adapter-integrity only — must not imply real exit testing occurred."
+}

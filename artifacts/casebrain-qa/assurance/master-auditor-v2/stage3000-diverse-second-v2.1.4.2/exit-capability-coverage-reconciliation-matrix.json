@@ -1,0 +1,585 @@
+{
+  "rows": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "exits": {
+        "copy": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "leafCount": 11
+        },
+        "pdf": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok",
+          "note": "No CaseBrain output PDF bytes — source pack PDF is INPUT only"
+        },
+        "authenticated_browser": {
+          "capabilityClass": "not_exercised",
+          "coverageClass": "not_exercised",
+          "reconcile": "ok"
+        },
+        "api": {
+          "capabilityClass": "genuine_production_builder_payload",
+          "coverageClass": "genuine_production_builder_payload",
+          "reconcile": "ok",
+          "authenticatedHttpCapture": false,
+          "note": "Builder payload — not authenticated HTTP"
+        }
+      }
+    }
+  ],
+  "allOk": true
+}

@@ -1,0 +1,78 @@
+{
+  "caseId": "div3000v21-03-going_equipped",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1-pilot-graphs/sources/div3000v21-03-going_equipped/bundle-fictional-test.pdf",
+  "sha256": "d4afe82de6d675f23e70fe58164fe88d86f00dd29f6d501ec291c1f2f3d876f1",
+  "pageCount": 14,
+  "pageMap": [
+    {
+      "pageIdentity": "written_charge/page/1",
+      "pdfPageNumber": 1,
+      "docId": "written_charge"
+    },
+    {
+      "pageIdentity": "written_charge/page/2",
+      "pdfPageNumber": 2,
+      "docId": "written_charge"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 3,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 4,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/3",
+      "pdfPageNumber": 5,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/4",
+      "pdfPageNumber": 6,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/5",
+      "pdfPageNumber": 7,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 8,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "MG06/page/2",
+      "pdfPageNumber": 9,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 10,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/2",
+      "pdfPageNumber": 11,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/3",
+      "pdfPageNumber": 12,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "extra_context_1/page/1",
+      "pdfPageNumber": 13,
+      "docId": "extra_context_1"
+    },
+    {
+      "pageIdentity": "extra_context_1/page/2",
+      "pdfPageNumber": 14,
+      "docId": "extra_context_1"
+    }
+  ]
+}

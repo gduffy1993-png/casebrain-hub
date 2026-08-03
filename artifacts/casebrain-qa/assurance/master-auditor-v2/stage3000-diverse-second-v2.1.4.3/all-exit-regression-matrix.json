@@ -1,0 +1,725 @@
+{
+  "rows": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "exits": {
+        "view": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "copy": {
+          "class": "genuine_production_builder_payload",
+          "leafCount": 11,
+          "reconcile": "ok"
+        },
+        "export": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "api": {
+          "class": "genuine_production_builder_payload",
+          "authenticatedHttpCapture": false,
+          "reconcile": "ok"
+        },
+        "pdf": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        },
+        "composed_prose": {
+          "class": "genuine_production_builder_payload",
+          "reconcile": "ok"
+        },
+        "authenticated_browser": {
+          "class": "not_exercised",
+          "reconcile": "ok"
+        }
+      },
+      "exitPayloadReceiptsPresent": true
+    }
+  ],
+  "allOk": true
+}

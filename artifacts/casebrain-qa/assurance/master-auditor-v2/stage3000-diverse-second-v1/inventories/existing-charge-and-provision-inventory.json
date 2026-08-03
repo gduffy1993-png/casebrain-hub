@@ -1,0 +1,322 @@
+{
+  "schemaVersion": "existing-charge-and-provision-inventory@1.0.0",
+  "source": "artifacts/casebrain-qa/integrity-programme/scale3000-charge-wording-inventory/CHARGE-WORDING-INVENTORY.json",
+  "uniqueChargeWordings": 44,
+  "statusTotals": {
+    "verified": 37,
+    "discrepancy": 7,
+    "unresolved": 0
+  },
+  "disclaimer": "verified means no known registry discrepancy pattern — not independent solicitor sign-off",
+  "charges": [
+    {
+      "exactDisplayedWording": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 1(1)",
+      "affectedCaseCount": 541,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Harassment, contrary to section 2 of the Protection from Harassment Act 1997",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 2 of the Protection from Harassment Act 1997",
+      "affectedCaseCount": 433,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Assault an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "affectedCaseCount": 297,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Being concerned in the supply of a controlled drug of Class A, contrary to section 4(2)(b) of the Misuse of Drugs Act 1971",
+      "verificationStatus": "discrepancy",
+      "statutoryProvision": "section 4(2)(",
+      "affectedCaseCount": 269,
+      "qualifiedLegalReviewStillRequired": true
+    },
+    {
+      "exactDisplayedWording": "Burglary in a dwelling, contrary to section 9(1)(b) of the Theft Act 1968",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 9(1)(",
+      "affectedCaseCount": 214,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Fraud by false representation, contrary to section 1 of the Fraud Act 2006",
+      "verificationStatus": "discrepancy",
+      "statutoryProvision": "section 1 of the Fraud Act 2006",
+      "affectedCaseCount": 149,
+      "qualifiedLegalReviewStillRequired": true
+    },
+    {
+      "exactDisplayedWording": "Sexual assault, contrary to section 3 of the Sexual Offences Act 2003",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 3 of the Sexual Offences Act 2003",
+      "affectedCaseCount": 123,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Fail to provide driver details, contrary to section 172(2) of the Road Traffic Act 1988",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 172(2) of the Road Traffic Act 1988",
+      "affectedCaseCount": 93,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Being concerned in the supply of a controlled drug of Class A, namely cocaine",
+      "verificationStatus": "verified",
+      "statutoryProvision": null,
+      "affectedCaseCount": 83,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Robbery, contrary to section 8 of the Theft Act 1968",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 8 of the Theft Act 1968",
+      "affectedCaseCount": 60,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Drive with excess alcohol, contrary to section 5(1)(a) of the Road Traffic Act 1988",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 5(1)(",
+      "affectedCaseCount": 58,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Conspiracy to supply a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
+      "verificationStatus": "discrepancy",
+      "statutoryProvision": "section 4(3) of the Misuse of Drugs Act 1971",
+      "affectedCaseCount": 40,
+      "qualifiedLegalReviewStillRequired": true
+    },
+    {
+      "exactDisplayedWording": "Affray, contrary to section 3 of the Public Order Act 1986",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 3 of the Public Order Act 1986",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Assault by beating, contrary to section 39 of the Criminal Justice Act 1988",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 39 of the Criminal Justice Act 1988",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Assault occasioning actual bodily harm, contrary to section 47 of the Offences Against the Person Act 1861",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 47 of the Offences Against the Person Act 1861",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Assault on an emergency worker, contrary to section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 1 of the Assaults on Emergency Workers (Offences) Act 2018",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Battery, contrary to section 39 of the Criminal Justice Act 1988",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 39 of the Criminal Justice Act 1988",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Being concerned in supply of a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 4(3) of the Misuse of Drugs Act 1971",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Breach of a domestic violence protection notice, contrary to section 25 of the Crime and Security Act 2010",
+      "verificationStatus": "discrepancy",
+      "statutoryProvision": "section 25 of the Crime and Security Act 2010",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": true
+    },
+    {
+      "exactDisplayedWording": "Breach of a restraining order, contrary to section 5(5) of the Protection from Harassment Act 1997",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 5(5) of the Protection from Harassment Act 1997",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Breach of bail conditions, contrary to section 6(3) of the Bail Act 1976",
+      "verificationStatus": "discrepancy",
+      "statutoryProvision": "section 6(3) of the Bail Act 1976",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": true
+    },
+    {
+      "exactDisplayedWording": "Causing death by careless driving, contrary to section 2B of the Road Traffic Act 1988",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 2",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Child cruelty, contrary to section 1 of the Children and Young Persons Act 1933",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 1 of the Children and Young Persons Act 1933",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Common assault, contrary to section 39 of the Criminal Justice Act 1988",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 39 of the Criminal Justice Act 1988",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Conspiracy to import a controlled drug, contrary to section 4(3) of the Misuse of Drugs Act 1971",
+      "verificationStatus": "discrepancy",
+      "statutoryProvision": "section 4(3) of the Misuse of Drugs Act 1971",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": true
+    },
+    {
+      "exactDisplayedWording": "Controlling or coercive behaviour, contrary to section 76 of the Serious Crime Act 2015",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 76 of the Serious Crime Act 2015",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Criminal damage, contrary to section 1(1) of the Criminal Damage Act 1971",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 1(1) of the Criminal Damage Act 1971",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Fraud by abuse of position, contrary to section 4 of the Fraud Act 2006",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 4 of the Fraud Act 2006",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Fraud by false representation, contrary to section 2 of the Fraud Act 2006",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 2 of the Fraud Act 2006",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Handling stolen goods, contrary to section 22(1) of the Theft Act 1968",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 22(1) of the Theft Act 1968",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Malicious communications, contrary to section 1 of the Malicious Communications Act 1988",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 1 of the Malicious Communications Act 1988",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Possession of a bladed article, contrary to section 1 of the Criminal Justice Act 1988",
+      "verificationStatus": "discrepancy",
+      "statutoryProvision": "section 1 of the Criminal Justice Act 1988",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": true
+    },
+    {
+      "exactDisplayedWording": "Possession of a controlled drug, contrary to section 5(2) of the Misuse of Drugs Act 1971",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 5(2) of the Misuse of Drugs Act 1971",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Possession of an offensive weapon, contrary to section 1 of the Prevention of Crime Act 1953",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 1 of the Prevention of Crime Act 1953",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Possession with intent to supply a controlled drug, contrary to section 5(3) of the Misuse of Drugs Act 1971",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 5(3) of the Misuse of Drugs Act 1971",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Rape, contrary to section 1 of the Sexual Offences Act 2003",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 1 of the Sexual Offences Act 2003",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Shoplifting, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 1(1)",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Stalking involving fear of violence, contrary to section 4A of the Protection from Harassment Act 1997",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 4",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Stalking, contrary to section 2A of the Protection from Harassment Act 1997",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 2",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Taking a vehicle without consent, contrary to section 12 of the Theft Act 1968",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 12 of the Theft Act 1968",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Theft from employer, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 1(1)",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Violent disorder, contrary to section 2(1) of the Public Order Act 1986",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 2(1) of the Public Order Act 1986",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Witness intimidation, contrary to section 51 of the Criminal Justice and Public Order Act 1994",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 51 of the Criminal Justice and Public Order Act 1994",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    },
+    {
+      "exactDisplayedWording": "Wounding with intent, contrary to section 18 of the Offences Against the Person Act 1861",
+      "verificationStatus": "verified",
+      "statutoryProvision": "section 18 of the Offences Against the Person Act 1861",
+      "affectedCaseCount": 20,
+      "qualifiedLegalReviewStillRequired": false
+    }
+  ],
+  "missingOffenceFamiliesNote": "First corpus charge set is narrow (44 wordings). Second corpus must expand offence/procedure coverage per catalogue."
+}

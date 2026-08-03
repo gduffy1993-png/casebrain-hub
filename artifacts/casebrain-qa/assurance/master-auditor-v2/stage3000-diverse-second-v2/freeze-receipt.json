@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "diverse3000-v2-freeze-receipt@1.0.0",
+  "orderedMembershipSha256": "be4f3bec455c220267aaf3dc265292aa20c1cd763c5d7c5fe5d2df2cb88a25c9",
+  "truthSealed": true,
+  "truthInaccessibleToMaterialisation": true
+}

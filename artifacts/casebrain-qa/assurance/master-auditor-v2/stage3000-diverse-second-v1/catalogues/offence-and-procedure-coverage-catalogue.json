@@ -1,0 +1,1053 @@
+{
+  "schemaVersion": "offence-and-procedure-coverage-catalogue@1.0.0",
+  "generatedAt": "2026-08-02T18:24:59.043Z",
+  "jurisdiction": "England and Wales",
+  "families": [
+    {
+      "id": "common_assault_battery",
+      "group": "violence_homicide",
+      "label": "common_assault_battery",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "assault_emergency_worker",
+      "group": "violence_homicide",
+      "label": "assault_emergency_worker",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "abh",
+      "group": "violence_homicide",
+      "label": "abh",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "s20_gbh_wounding",
+      "group": "violence_homicide",
+      "label": "s20_gbh_wounding",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "s18_gbh_wounding",
+      "group": "violence_homicide",
+      "label": "s18_gbh_wounding",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "strangulation_suffocation",
+      "group": "violence_homicide",
+      "label": "strangulation_suffocation",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "poisoning",
+      "group": "violence_homicide",
+      "label": "poisoning",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "child_cruelty",
+      "group": "violence_homicide",
+      "label": "child_cruelty",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "murder",
+      "group": "violence_homicide",
+      "label": "murder",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "attempted_murder",
+      "group": "violence_homicide",
+      "label": "attempted_murder",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "voluntary_manslaughter",
+      "group": "violence_homicide",
+      "label": "voluntary_manslaughter",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "involuntary_manslaughter",
+      "group": "violence_homicide",
+      "label": "involuntary_manslaughter",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "gross_negligence_manslaughter",
+      "group": "violence_homicide",
+      "label": "gross_negligence_manslaughter",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "corporate_manslaughter",
+      "group": "violence_homicide",
+      "label": "corporate_manslaughter",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "infanticide",
+      "group": "violence_homicide",
+      "label": "infanticide",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "causing_allowing_death_or_serious_injury",
+      "group": "violence_homicide",
+      "label": "causing_allowing_death_or_serious_injury",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "deaths_in_custody_or_police_contact",
+      "group": "violence_homicide",
+      "label": "deaths_in_custody_or_police_contact",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "non_accidental_head_injury",
+      "group": "violence_homicide",
+      "label": "non_accidental_head_injury",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "shoplifting_theft",
+      "group": "acquisitive_property_dishonesty",
+      "label": "shoplifting_theft",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "employee_theft",
+      "group": "acquisitive_property_dishonesty",
+      "label": "employee_theft",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "handling_stolen_goods",
+      "group": "acquisitive_property_dishonesty",
+      "label": "handling_stolen_goods",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "going_equipped",
+      "group": "acquisitive_property_dishonesty",
+      "label": "going_equipped",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "burglary_dwelling",
+      "group": "acquisitive_property_dishonesty",
+      "label": "burglary_dwelling",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "burglary_non_dwelling",
+      "group": "acquisitive_property_dishonesty",
+      "label": "burglary_non_dwelling",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "aggravated_burglary",
+      "group": "acquisitive_property_dishonesty",
+      "label": "aggravated_burglary",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "robbery",
+      "group": "acquisitive_property_dishonesty",
+      "label": "robbery",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "blackmail",
+      "group": "acquisitive_property_dishonesty",
+      "label": "blackmail",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "criminal_damage",
+      "group": "acquisitive_property_dishonesty",
+      "label": "criminal_damage",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "arson",
+      "group": "acquisitive_property_dishonesty",
+      "label": "arson",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "twoc",
+      "group": "acquisitive_property_dishonesty",
+      "label": "twoc",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "fraud_false_representation",
+      "group": "acquisitive_property_dishonesty",
+      "label": "fraud_false_representation",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "fraud_failing_to_disclose",
+      "group": "acquisitive_property_dishonesty",
+      "label": "fraud_failing_to_disclose",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "fraud_abuse_of_position",
+      "group": "acquisitive_property_dishonesty",
+      "label": "fraud_abuse_of_position",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "false_accounting",
+      "group": "acquisitive_property_dishonesty",
+      "label": "false_accounting",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "forgery_counterfeit",
+      "group": "acquisitive_property_dishonesty",
+      "label": "forgery_counterfeit",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "conspiracy_to_defraud",
+      "group": "acquisitive_property_dishonesty",
+      "label": "conspiracy_to_defraud",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "benefit_welfare_fraud",
+      "group": "acquisitive_property_dishonesty",
+      "label": "benefit_welfare_fraud",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "bribery",
+      "group": "acquisitive_property_dishonesty",
+      "label": "bribery",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "corporate_offending",
+      "group": "acquisitive_property_dishonesty",
+      "label": "corporate_offending",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "drugs_possession",
+      "group": "drugs_gangs_exploitation",
+      "label": "drugs_possession",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "drugs_pwits",
+      "group": "drugs_gangs_exploitation",
+      "label": "drugs_pwits",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "drugs_supply",
+      "group": "drugs_gangs_exploitation",
+      "label": "drugs_supply",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "drugs_conspiracy_supply",
+      "group": "drugs_gangs_exploitation",
+      "label": "drugs_conspiracy_supply",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "drugs_production_cultivation",
+      "group": "drugs_gangs_exploitation",
+      "label": "drugs_production_cultivation",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "drugs_importation",
+      "group": "drugs_gangs_exploitation",
+      "label": "drugs_importation",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "controlled_drug_lab",
+      "group": "drugs_gangs_exploitation",
+      "label": "controlled_drug_lab",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "psychoactive_substances",
+      "group": "drugs_gangs_exploitation",
+      "label": "psychoactive_substances",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "county_lines",
+      "group": "drugs_gangs_exploitation",
+      "label": "county_lines",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "modern_slavery_indicators",
+      "group": "drugs_gangs_exploitation",
+      "label": "modern_slavery_indicators",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "trafficking",
+      "group": "drugs_gangs_exploitation",
+      "label": "trafficking",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "nrm_lifecycle",
+      "group": "drugs_gangs_exploitation",
+      "label": "nrm_lifecycle",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "s45_defence",
+      "group": "drugs_gangs_exploitation",
+      "label": "s45_defence",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "gang_secondary_liability",
+      "group": "drugs_gangs_exploitation",
+      "label": "gang_secondary_liability",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "firearm_possession",
+      "group": "firearms_weapons_explosives",
+      "label": "firearm_possession",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "prohibited_weapons",
+      "group": "firearms_weapons_explosives",
+      "label": "prohibited_weapons",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "firearm_with_intent",
+      "group": "firearms_weapons_explosives",
+      "label": "firearm_with_intent",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "ammunition",
+      "group": "firearms_weapons_explosives",
+      "label": "ammunition",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "imitation_firearms",
+      "group": "firearms_weapons_explosives",
+      "label": "imitation_firearms",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "firearm_conversion",
+      "group": "firearms_weapons_explosives",
+      "label": "firearm_conversion",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "firearm_conspiracy",
+      "group": "firearms_weapons_explosives",
+      "label": "firearm_conspiracy",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "offensive_weapons",
+      "group": "firearms_weapons_explosives",
+      "label": "offensive_weapons",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "bladed_articles",
+      "group": "firearms_weapons_explosives",
+      "label": "bladed_articles",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "threatening_with_weapons",
+      "group": "firearms_weapons_explosives",
+      "label": "threatening_with_weapons",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "explosives",
+      "group": "firearms_weapons_explosives",
+      "label": "explosives",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "forensic_firearms_gsr_limits",
+      "group": "firearms_weapons_explosives",
+      "label": "forensic_firearms_gsr_limits",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "rape",
+      "group": "sexual_child_related",
+      "label": "rape",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "assault_by_penetration",
+      "group": "sexual_child_related",
+      "label": "assault_by_penetration",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "sexual_assault",
+      "group": "sexual_child_related",
+      "label": "sexual_assault",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "historic_sexual",
+      "group": "sexual_child_related",
+      "label": "historic_sexual",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "child_sexual_abuse",
+      "group": "sexual_child_related",
+      "label": "child_sexual_abuse",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "grooming",
+      "group": "sexual_child_related",
+      "label": "grooming",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "indecent_prohibited_images",
+      "group": "sexual_child_related",
+      "label": "indecent_prohibited_images",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "online_sexual_offending",
+      "group": "sexual_child_related",
+      "label": "online_sexual_offending",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "exposure",
+      "group": "sexual_child_related",
+      "label": "exposure",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "voyeurism",
+      "group": "sexual_child_related",
+      "label": "voyeurism",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "intimate_image_offending",
+      "group": "sexual_child_related",
+      "label": "intimate_image_offending",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "sexual_harm_orders",
+      "group": "sexual_child_related",
+      "label": "sexual_harm_orders",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "complainant_sexual_history_s41",
+      "group": "sexual_child_related",
+      "label": "complainant_sexual_history_s41",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "abe_sarc_counselling_third_party",
+      "group": "sexual_child_related",
+      "label": "abe_sarc_counselling_third_party",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "coercive_control",
+      "group": "domestic_abuse_protective_orders",
+      "label": "coercive_control",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "stalking",
+      "group": "domestic_abuse_protective_orders",
+      "label": "stalking",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "harassment",
+      "group": "domestic_abuse_protective_orders",
+      "label": "harassment",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "strangulation_da",
+      "group": "domestic_abuse_protective_orders",
+      "label": "strangulation_da",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "retraction",
+      "group": "domestic_abuse_protective_orders",
+      "label": "retraction",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "hearsay_res_gestae",
+      "group": "domestic_abuse_protective_orders",
+      "label": "hearsay_res_gestae",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "restraining_order_breach",
+      "group": "domestic_abuse_protective_orders",
+      "label": "restraining_order_breach",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "bail_breach",
+      "group": "domestic_abuse_protective_orders",
+      "label": "bail_breach",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "dvpn_dvpo_dapo",
+      "group": "domestic_abuse_protective_orders",
+      "label": "dvpn_dvpo_dapo",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "civil_family_criminal_overlap",
+      "group": "domestic_abuse_protective_orders",
+      "label": "civil_family_criminal_overlap",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "interpreter_lifecycle",
+      "group": "domestic_abuse_protective_orders",
+      "label": "interpreter_lifecycle",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "discontinuance_victim_non_attendance",
+      "group": "domestic_abuse_protective_orders",
+      "label": "discontinuance_victim_non_attendance",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "affray",
+      "group": "public_order_hate_protest",
+      "label": "affray",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "violent_disorder",
+      "group": "public_order_hate_protest",
+      "label": "violent_disorder",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "riot",
+      "group": "public_order_hate_protest",
+      "label": "riot",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "public_order_harassment_fear",
+      "group": "public_order_hate_protest",
+      "label": "public_order_harassment_fear",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "racially_religiously_aggravated",
+      "group": "public_order_hate_protest",
+      "label": "racially_religiously_aggravated",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "disability_hate",
+      "group": "public_order_hate_protest",
+      "label": "disability_hate",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "homophobic_transphobic_hate",
+      "group": "public_order_hate_protest",
+      "label": "homophobic_transphobic_hate",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "protest_offences",
+      "group": "public_order_hate_protest",
+      "label": "protest_offences",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "serious_disruption_orders",
+      "group": "public_order_hate_protest",
+      "label": "serious_disruption_orders",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "trespass_nuisance",
+      "group": "public_order_hate_protest",
+      "label": "trespass_nuisance",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "football_offences_banning",
+      "group": "public_order_hate_protest",
+      "label": "football_offences_banning",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "cma_unauthorised_access",
+      "group": "digital_communications_cyber",
+      "label": "cma_unauthorised_access",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "data_theft",
+      "group": "digital_communications_cyber",
+      "label": "data_theft",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "service_disruption",
+      "group": "digital_communications_cyber",
+      "label": "service_disruption",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "malware_ransomware",
+      "group": "digital_communications_cyber",
+      "label": "malware_ransomware",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "malicious_communications",
+      "group": "digital_communications_cyber",
+      "label": "malicious_communications",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "cyberstalking",
+      "group": "digital_communications_cyber",
+      "label": "cyberstalking",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "social_media_attribution",
+      "group": "digital_communications_cyber",
+      "label": "social_media_attribution",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "online_markets",
+      "group": "digital_communications_cyber",
+      "label": "online_markets",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "cryptocurrency_records",
+      "group": "digital_communications_cyber",
+      "label": "cryptocurrency_records",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "intimate_image_abuse_digital",
+      "group": "digital_communications_cyber",
+      "label": "intimate_image_abuse_digital",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "online_child_abuse_digital",
+      "group": "digital_communications_cyber",
+      "label": "online_child_abuse_digital",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "cross_border_jurisdiction",
+      "group": "digital_communications_cyber",
+      "label": "cross_border_jurisdiction",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "cloud_evidence",
+      "group": "digital_communications_cyber",
+      "label": "cloud_evidence",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "device_account_user_sender_author_separation",
+      "group": "digital_communications_cyber",
+      "label": "device_account_user_sender_author_separation",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "speeding_sjp",
+      "group": "road_traffic",
+      "label": "speeding_sjp",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "section_172",
+      "group": "road_traffic",
+      "label": "section_172",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "no_insurance_licence",
+      "group": "road_traffic",
+      "label": "no_insurance_licence",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "mobile_phone",
+      "group": "road_traffic",
+      "label": "mobile_phone",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "excess_alcohol",
+      "group": "road_traffic",
+      "label": "excess_alcohol",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "drug_driving",
+      "group": "road_traffic",
+      "label": "drug_driving",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "careless_driving",
+      "group": "road_traffic",
+      "label": "careless_driving",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "dangerous_driving",
+      "group": "road_traffic",
+      "label": "dangerous_driving",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "fail_to_stop_report",
+      "group": "road_traffic",
+      "label": "fail_to_stop_report",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "disqualified_driving",
+      "group": "road_traffic",
+      "label": "disqualified_driving",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "vehicle_taking_road",
+      "group": "road_traffic",
+      "label": "vehicle_taking_road",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "causing_serious_injury_by_driving",
+      "group": "road_traffic",
+      "label": "causing_serious_injury_by_driving",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "causing_death_by_driving",
+      "group": "road_traffic",
+      "label": "causing_death_by_driving",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "edr_ecu_telematics_tachograph",
+      "group": "road_traffic",
+      "label": "edr_ecu_telematics_tachograph",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "anpr",
+      "group": "road_traffic",
+      "label": "anpr",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "collision_reconstruction",
+      "group": "road_traffic",
+      "label": "collision_reconstruction",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "foreign_disqualification",
+      "group": "road_traffic",
+      "label": "foreign_disqualification",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "statutory_declarations",
+      "group": "road_traffic",
+      "label": "statutory_declarations",
+      "status": "represented_substantively"
+    },
+    {
+      "id": "perverting_course_of_justice",
+      "group": "public_justice_state",
+      "label": "perverting_course_of_justice",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "wasting_police_time",
+      "group": "public_justice_state",
+      "label": "wasting_police_time",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "witness_intimidation",
+      "group": "public_justice_state",
+      "label": "witness_intimidation",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "assisting_offender",
+      "group": "public_justice_state",
+      "label": "assisting_offender",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "escape_absconding",
+      "group": "public_justice_state",
+      "label": "escape_absconding",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "contempt",
+      "group": "public_justice_state",
+      "label": "contempt",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "juror_misconduct",
+      "group": "public_justice_state",
+      "label": "juror_misconduct",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "misconduct_in_public_office",
+      "group": "public_justice_state",
+      "label": "misconduct_in_public_office",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "allegations_against_police",
+      "group": "public_justice_state",
+      "label": "allegations_against_police",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "prison_offences",
+      "group": "public_justice_state",
+      "label": "prison_offences",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "prohibited_prison_articles",
+      "group": "public_justice_state",
+      "label": "prohibited_prison_articles",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "official_secrets_national_security",
+      "group": "public_justice_state",
+      "label": "official_secrets_national_security",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "terrorism_structures",
+      "group": "public_justice_state",
+      "label": "terrorism_structures",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "immigration_offending",
+      "group": "public_justice_state",
+      "label": "immigration_offending",
+      "status": "represented_structurally_only"
+    },
+    {
+      "id": "election_offending",
+      "group": "public_justice_state",
+      "label": "election_offending",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "diplomatic_immunity",
+      "group": "public_justice_state",
+      "label": "diplomatic_immunity",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "international_cooperation",
+      "group": "public_justice_state",
+      "label": "international_cooperation",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "dangerous_dogs",
+      "group": "specialist_other",
+      "label": "dangerous_dogs",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "animal_offences",
+      "group": "specialist_other",
+      "label": "animal_offences",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "hunting_hare_coursing",
+      "group": "specialist_other",
+      "label": "hunting_hare_coursing",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "fgm",
+      "group": "specialist_other",
+      "label": "fgm",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "forced_marriage",
+      "group": "specialist_other",
+      "label": "forced_marriage",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "honour_based_abuse",
+      "group": "specialist_other",
+      "label": "honour_based_abuse",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "prostitution_exploitation",
+      "group": "specialist_other",
+      "label": "prostitution_exploitation",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "obscene_publications",
+      "group": "specialist_other",
+      "label": "obscene_publications",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "media_public_interest",
+      "group": "specialist_other",
+      "label": "media_public_interest",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "private_prosecutions",
+      "group": "specialist_other",
+      "label": "private_prosecutions",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "extradition",
+      "group": "specialist_other",
+      "label": "extradition",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "education_prosecutions",
+      "group": "specialist_other",
+      "label": "education_prosecutions",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "assisted_suicide",
+      "group": "specialist_other",
+      "label": "assisted_suicide",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "corporate_regulatory",
+      "group": "specialist_other",
+      "label": "corporate_regulatory",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "retrial_after_acquittal",
+      "group": "specialist_other",
+      "label": "retrial_after_acquittal",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "abuse_of_process",
+      "group": "specialist_other",
+      "label": "abuse_of_process",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "non_jury_trial",
+      "group": "specialist_other",
+      "label": "non_jury_trial",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "deceased_suspect",
+      "group": "specialist_other",
+      "label": "deceased_suspect",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "double_jeopardy_retrial",
+      "group": "specialist_other",
+      "label": "double_jeopardy_retrial",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    }
+  ],
+  "statusCounts": {
+    "represented_substantively": 97,
+    "awaiting_qualified_legal_review": 25,
+    "deferred_specialist": 36,
+    "represented_structurally_only": 12
+  },
+  "note": "No family omitted because difficult. Specialist/deferred remain visible."
+}

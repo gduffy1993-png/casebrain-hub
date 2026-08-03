@@ -1,0 +1,53 @@
+{
+  "caseId": "div3000v212-14-contempt",
+  "controlId": "MAA2-ATR-01-DEFENDANT-SEPARATION",
+  "handlerModule": "lib/eval/master-assurance-auditor/v2/stage150/batch9/evaluators.ts",
+  "handlerFunction": "evaluateBatch9Control",
+  "handlerId": "b9_atr_01_defendant_separation",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "partially_implemented",
+  "exerciseStatus": "evaluated",
+  "applicable": true,
+  "applicableUnitCount": 12,
+  "missingPrerequisiteReason": null,
+  "inputFieldRefs": [
+    "evidenceUnitId",
+    "subjectDefendantId|personId"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "7feba8193001bba132424e2e659c0fc9d1d7feaf671766a43fb899c9715552f1",
+    "findingsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/evidenceStates/8/sourcePage",
+    "/evidenceStates/9/sourcePage",
+    "/evidenceStates/10/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [],
+  "findings": [],
+  "contracts": {
+    "positive": "scripts/maa-v2-every-word-foundation-contracts.test.ts#positive",
+    "negative": "scripts/maa-v2-every-word-foundation-contracts.test.ts#negative",
+    "unavailable": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr01_unavailable",
+    "mutation": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_atr01_mutation"
+  },
+  "receiptNote": "impl=substantive_control_evaluator; availability=unavailable_missing_structured_field; namedEvaluator=true; status=evaluated; findings=0; emptyHits≠PASS. Batch-9 owns defendant separation on complete units."
+}

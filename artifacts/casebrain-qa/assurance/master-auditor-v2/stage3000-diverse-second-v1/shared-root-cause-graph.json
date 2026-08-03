@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "diverse3000-shared-root-cause-graph@1.0.0",
+  "roots": [
+    {
+      "rootId": "api_preview_builder_language_consumer_token",
+      "findingCode": "INTERNAL_LANGUAGE_LEAK",
+      "occurrencesPreFix": 3000,
+      "ownership": "diverse3000_materialisation_compose",
+      "cause": "BUILDER_RE matches word consumer in API consumer preview label",
+      "repair": "Rename to Interface preview and remove consumer token; avoid source pack harness phrasing",
+      "caseIdPatches": false
+    }
+  ]
+}

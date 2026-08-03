@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "diverse3000-v2.1.2-pilot-gate-claim-correction@1.0.0",
+  "generatedAt": "2026-08-02T23:20:00.000Z",
+  "originalGateReportPreserved": "pilot-gate-result.json",
+  "hashLock": "preservation/V2.1.2-HASH-LOCK.json",
+  "originalClaim": {
+    "gatePass": true,
+    "status": "PILOT_GATE_PASS",
+    "unsupported": true
+  },
+  "correctedStatus": "PILOT_GATE_INCOMPLETE_PENDING_BUILD__FULL_VISUAL_REVIEW__OUTPUT_BOUNDARY__BEHAVIOURAL_CONTRACTS__SUBSTANTIVE_COVERAGE",
+  "gatePass": false,
+  "reasons": [
+    {
+      "id": "build_eperm",
+      "detail": "npm run build compiled with warnings then exited 1 (EPERM on worktree .next/trace) — not a clean exit 0."
+    },
+    {
+      "id": "visual_review_extrapolation",
+      "detail": "document-realism-ai-visual-review.json directly reviewed only 6 cases and used ai_visual_pattern_extrapolation for the remaining 14."
+    },
+    {
+      "id": "output_boundary_requestId_leak",
+      "detail": "Solicitor-visible chase copySuggestion exposed requestId=req-absent-* machine identifiers."
+    },
+    {
+      "id": "substantive_coverage_incomplete",
+      "detail": "Several surface families had zero substantive leaves; universal_safety swallowed source-backed sentences containing warning phrases."
+    },
+    {
+      "id": "behavioural_contracts_honest_skip",
+      "detail": "Focused contracts treated missing Batch-9 fixtures for MAA-COMPLETENESS and MAA2-WRD-15 as pass via honest-skip — not genuine positive/negative/unavailable/mutation proof."
+    },
+    {
+      "id": "chr05_misreporting_risk",
+      "detail": "14 evaluated + 1 not_exercised (CHR-05) must not be described as 15/15 controls exercised."
+    }
+  ],
+  "v212MembershipPreserved": "c698ce950cb92bbf88faab331cee9b816934e9083753897a2412e87bfa59413c",
+  "remediationLineage": "stage3000-diverse-second-v2.1.3",
+  "silentRewriteProhibited": true,
+  "byteForBytePreserve": ["V2", "V2.1", "V2.1.1", "V2.1.2"],
+  "note": "Original V2.1.2 pilot-gate-result.json left intact as historical evidence. This corrective report supersedes the PASS claim."
+}

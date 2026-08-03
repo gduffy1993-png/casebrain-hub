@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "new3000-population-manifest@1.0.0",
+  "populationCount": 3000,
+  "orderedMembershipSha256": "273e5f5f3145a8c01be81f8f721dcf7f8e20ea0208b312997f75199276cd69fb",
+  "tierCounts": {
+    "routine_volume": 1600,
+    "serious_complex_crown": 800,
+    "procedure_focused": 400,
+    "specialist_structural": 200
+  },
+  "renderPdfCount": 500,
+  "sourceCompleteness": {
+    "deliberate_truth_keyed_missing_source": 300,
+    "complete_source_packet": 2627,
+    "unsupported_native_input_not_exercised": 73
+  }
+}

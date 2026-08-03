@@ -1,0 +1,266 @@
+{
+  "caseId": "div3000v21-08-strangulation_suffocation",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "contentHash": "a5d229edc288d74be44bccfbd970938a5b76c3961dc14c43c88bab045b2341a7",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndictment placeholder for strangulation suffocation — charge wording not pinned; structural only.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d3f66607036154cb509ecebae21f03a2ed286197d46f5599f3de836ae366b466"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Indictment (fictional test — not operative)\nDocument id: indictment_operative\nKind: indictment\nLifecycle state: operative\nPage identity: indictment_operative/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for indictment_operative.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "e71092b42ae2850303c6d5a23aaeeb6ece25574f20d0f88d33326ebd1a6fd9b5"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "44131150fb76225d05c01a5c1a640d05a5c88ebed23be089d8763fface884abb",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: strangulation suffocation.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 4: mg11_draft, cctv_clip, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "25cfa67418166774b573cdb64742696331a96eaa4bbbb510dfcb8778e5bb3aa0"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "7a9b00186d71649b114548dc291330c42fcd62afef8d36a297128f78c299e23a"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG05.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b4a71e3eed99875dd1a3fff5dd7e081b4b4cd96ef5f8bf42157bafd05be963cd"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "3d1ca2690b0939e50d911e80ef7bb88f7969c8fecb64f6df80c435f76cdbed26",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "460bbb1a38b1c952320e1ce479d7f3028cc0ef902ad4d2c26c386ee3b9b81ecc"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG06.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "15932578f37f8e51a08a7046c5bcc6efa58f39f49cfd6aecf467b41aa39e3340"
+        }
+      ]
+    },
+    {
+      "docId": "MG11_complainant_signed",
+      "title": "MG11 complainant statement — signed (fictional test)",
+      "kind": "mg11",
+      "state": "signed",
+      "contentHash": "63f42440a94ff018735164e74af1c960c76b52295d9a0f1737960b0fc12e4a37",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG11_complainant_signed/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG11 complainant statement — signed (fictional test)\nDocument id: MG11_complainant_signed\nKind: mg11\nLifecycle state: signed\nPage identity: MG11_complainant_signed/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nSigned first account. Defence position section_45_indicator. Do not treat as proved fact.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "074d53497630fb2acdb63a88030688ec9c7017d43e79412150ad344473125096"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG11_complainant_signed/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG11 complainant statement — signed (fictional test)\nDocument id: MG11_complainant_signed\nKind: mg11\nLifecycle state: signed\nPage identity: MG11_complainant_signed/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG11_complainant_signed.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "fa2c015943082f13f1409ce80dd15b94d5eb8c41e2d78cad15b339684ec3e7d3"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG11_complainant_signed/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG11 complainant statement — signed (fictional test)\nDocument id: MG11_complainant_signed\nKind: mg11\nLifecycle state: signed\nPage identity: MG11_complainant_signed/page/3\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG11_complainant_signed.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "82c25943e601a983c57eae9b536da98f58c7bf14f9e0cb0675b5ca0f60f974bd"
+        },
+        {
+          "pageIndex": 4,
+          "pageIdentity": "MG11_complainant_signed/page/4",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG11 complainant statement — signed (fictional test)\nDocument id: MG11_complainant_signed\nKind: mg11\nLifecycle state: signed\nPage identity: MG11_complainant_signed/page/4\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 4 for MG11_complainant_signed.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "2addd5c0c036125b503d1ae229abebc8ee2b5a7ad6fa4d6b77efa9d159cf3239"
+        }
+      ]
+    },
+    {
+      "docId": "MG11_complainant_draft",
+      "title": "MG11 complainant statement — earlier draft (fictional test)",
+      "kind": "mg11_draft",
+      "state": "draft_superseded",
+      "contentHash": "90ca60d56c2b2181e4d8ed587b983af5c228181d48818f950dd39d89eedf78a5",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG11_complainant_draft/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG11 complainant statement — earlier draft (fictional test)\nDocument id: MG11_complainant_draft\nKind: mg11_draft\nLifecycle state: draft_superseded\nPage identity: MG11_complainant_draft/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — draft differs from signed version on timing of first disclosure.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: this document is draft_superseded; do not treat as the operative instrument.\nDefendant count modelled: 2.",
+          "textHash": "764d81cd4c55da5d6d8734b61719753005c05ed2e2aa9b999692d47326d3b162"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG11_complainant_draft/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG11 complainant statement — earlier draft (fictional test)\nDocument id: MG11_complainant_draft\nKind: mg11_draft\nLifecycle state: draft_superseded\nPage identity: MG11_complainant_draft/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for MG11_complainant_draft.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: this document is draft_superseded; do not treat as the operative instrument.\nDefendant count modelled: 2.",
+          "textHash": "b4df126054ea5c676d7394f8bb78f46e5b4c850921fb035ac676eb138bb9856a"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG11_complainant_draft/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG11 complainant statement — earlier draft (fictional test)\nDocument id: MG11_complainant_draft\nKind: mg11_draft\nLifecycle state: draft_superseded\nPage identity: MG11_complainant_draft/page/3\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for MG11_complainant_draft.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: this document is draft_superseded; do not treat as the operative instrument.\nDefendant count modelled: 2.",
+          "textHash": "50ba882a0e2676e75d30b47fd4305666a0505c11d08104dfca079a468baae80d"
+        }
+      ]
+    },
+    {
+      "docId": "order_or_bail",
+      "title": "Protective order / bail conditions extract (fictional test)",
+      "kind": "order",
+      "state": "served",
+      "contentHash": "73d0b178272fc794b1185df21a0a5363c725201adbeec90ee560f24f54d2f6f2",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "order_or_bail/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Protective order / bail conditions extract (fictional test)\nDocument id: order_or_bail\nKind: order\nLifecycle state: served\nPage identity: order_or_bail/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — conditions alleged; breach must be proved separately.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "1ef00d17398c3db6e5fdf3521e814c2a3da63a596461b2207db1fc0672610b52"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "order_or_bail/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Protective order / bail conditions extract (fictional test)\nDocument id: order_or_bail\nKind: order\nLifecycle state: served\nPage identity: order_or_bail/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for order_or_bail.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "85c78cff2343c6721f37bcebdd47763e838b354341a9f8272d0c9d4d66a77b13"
+        }
+      ]
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "3186307d414b10951c3efe9c410bdb6720ba027a9a6fa6e476670508e24b2688",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "b9df94e064298dcba5dea3e6c3f08986c3ee10f71e005fc141d968d2d23aba5f"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for cctv_clip_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "4809d00cbb5103919f76b0801ee7306293401f79ea7cecbaa3e78c854fe1d7e3"
+        }
+      ]
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "401948cc7dde11e87be9b1e85a02649d4bf3ecd212ccd64297845e6776d2bf1f",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "52281ab30c91424a74478247b69dab4280408413d66e89449754b8da811c2d79"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "media_metadata/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for media_metadata.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "f44ad20b5a145527a4566c672fcc89efb24aaead7a6adebca491987bc9834944"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "c0489103ca660ad4016fe0cb90cff5bc9abea75b18d8ca1fc8a8a1d3308851e9",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "354565a64ff2acb049646461d730217b82710996d713fba8b8c44ddaa81d58d3"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "1813bffc11ca8dec6dd5cb6fa3d4454db53212fb422fe77f874a685a61dc36c0"
+        }
+      ]
+    },
+    {
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": "6e1386271f2836753181e19e70b551aef6de84f05f6aff8042c101e798cf3f92",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "referred_missing_master/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — index refers to this item; file absent. Must not treat as served.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "bd95a08d41149b2f10ef96aebb673c2ed1edd1a3e3ca77ccda0acb5284d7262a"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "referred_missing_master/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for referred_missing_master.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "d33931bae921979f5a96a938f9dca9a8d7cd0e31054879f637de860d907c162a"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "referred_missing_master/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/3\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 3 for referred_missing_master.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "a4aa1b02db54d5725eb4e05b76f58c147815db2d53197f33b24fe8817e9a288f"
+        }
+      ]
+    },
+    {
+      "docId": "extra_context_5",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "a5f157881883cb57ec24ff7979a64d58b9301a811586dd462698630e9e779116",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_5/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_5\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_5/page/1\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nOpening narrative: FICTIONAL TEST MATERIAL — additional coherent schedule for strangulation_suffocation emphasising section_45_indicator and indictment.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "e49e3d3601115bc218e2a5512a5587425ae45c92fac91faf12395e14c6796e3c"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "extra_context_5/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\nDocument id: extra_context_5\nKind: context_schedule\nLifecycle state: served\nPage identity: extra_context_5/page/2\nMatter family under review: strangulation suffocation\nProcedural stage: police investigation\nDefence position on instructions: section 45 indicator\nAllegation instrument: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nContinuation page 2 for extra_context_5.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 2.",
+          "textHash": "c77a36471dc5f7e629427ecc2e2fdc5e1323cdea34cd7aa93cc86f483c346a20"
+        }
+      ]
+    }
+  ]
+}

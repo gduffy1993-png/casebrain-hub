@@ -1,0 +1,13 @@
+{
+  "gatePass": true,
+  "checks": {
+    "pdfOk": true,
+    "pagesOk": true,
+    "sourceOk": true,
+    "evaluatedOk": true,
+    "outputImproved": true,
+    "candidateFreezeBeforeTruth": true
+  },
+  "evaluatedControlCount": 2,
+  "candidateCount": 0
+}

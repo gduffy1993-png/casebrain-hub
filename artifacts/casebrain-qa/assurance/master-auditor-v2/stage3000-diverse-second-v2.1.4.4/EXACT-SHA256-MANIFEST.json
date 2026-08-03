@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "diverse3000-v2.1.4.4-exact-sha256-manifest@1.0.0",
+  "generatedAt": "2026-08-03T03:05:52.4600979Z",
+  "scaleGateAccepted": false,
+  "gatePass": true,
+  "membershipSha256": "e103baa3e0e53bc0062b36f3446896337b7ba99e7213fe23c4c34426201edfde",
+  "candidateLedgerSha256": "4a788439aa97be17a73c5ccd066be5725805694a9bc1e4922c44673e44abe3a3",
+  "files": [
+    {
+      "bytes": 612151,
+      "sha256": "c7853112efd4593b3d5b4d86c7b36df22a50b1acacde67fdabe8f1ead8734747",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/ledgers/professional-visible-string-ledger.jsonl"
+    },
+    {
+      "bytes": 1647677,
+      "sha256": "d1281a908dd8c1348345cc7e2be198b7470f197738bf6828ae1cda4ee3d58619",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/ledgers/provenance-bound-substantive-leaf-ledger.jsonl"
+    },
+    {
+      "bytes": 407226,
+      "sha256": "b141b81add252e5fc685e9cf80187bf5654dc796396209cb9c1be5a0f0495079",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/ledgers/v2.1.3-552-occurrence-disposition-ledger.jsonl"
+    },
+    {
+      "bytes": 941,
+      "sha256": "50a1323aa2f50f322b859212ed0108bf83f99d355e15fc14095d1329a38cb415",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/professional-semantic-quality-summary.json"
+    },
+    {
+      "bytes": 335,
+      "sha256": "fa4029c921baee10b7b6db4c4e775c547df3e9d3e60e2c7809d6148126754adb",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/string-denominator-honesty-report.json"
+    },
+    {
+      "bytes": 133,
+      "sha256": "d5e193a13604c9e056fc58cb683ea96e01fc1d8ed355e961d03916b583d5c215",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/ordinary-system-language-boundary-scan.json"
+    },
+    {
+      "bytes": 258,
+      "sha256": "5cc2130ffae1f8357d4b3ccd78f5747af296c2c55cb4b7d0de4770fa9c79e30d",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/independent-semantic-quality-pass.json"
+    },
+    {
+      "bytes": 36048,
+      "sha256": "ab209c73e0f4c26de7935f6c76e42d4ee0d22cc77db29b838500c2438e34f31b",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/charge-completeness-and-heading-scan.json"
+    },
+    {
+      "bytes": 33,
+      "sha256": "29fd1adc146b4240724d8883e28ee2d7812f2235c9c03a49fdd274539fabb6d8",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/disclosure-item-wording-scan.json"
+    },
+    {
+      "bytes": 57,
+      "sha256": "7fb0c98e419e44ce25d07972f0a9bb0b89cad3dc5eedeebcdb09798a5d56cae3",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/sentence-composition-scan.json"
+    },
+    {
+      "bytes": 1264,
+      "sha256": "202565fd4b0cdc2a15ba62656bc6d5407c483c51e34f6c6e2dccada25c1c1f4f",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/acronym-and-procedure-vocabulary-report.json"
+    },
+    {
+      "bytes": 6205,
+      "sha256": "827459bfad322b64267f38c44bb46ca2dd8d8e269cb06e93fb8064aefa69acaf",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/remaining-10-fail-closed-reconciliation.json"
+    },
+    {
+      "bytes": 31067,
+      "sha256": "baf6899f1e7758b99c2e23791ef3e8553126570e87d50d21ba13e1a1fb805507",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/before-after-wording-map.json"
+    },
+    {
+      "bytes": 79806,
+      "sha256": "23c9c63a055523ea42d6bff0a04c3908eaa3e7905cf09a83b93c7652234f7f23",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/derived-conclusion-dependency-ledger.json"
+    },
+    {
+      "bytes": 19744,
+      "sha256": "e8197d9251c9816095eeba8caa0169dc20517dac1e248a568dc9d344e69d702c",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/all-exit-regression-matrix.json"
+    },
+    {
+      "bytes": 662,
+      "sha256": "555e66d1386bb27cfeb3d83c06f9fac31f7c3ce164593db4828ca4ef0c957ad0",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/before-after-regression-report.json"
+    },
+    {
+      "bytes": 7749,
+      "sha256": "48502b8e370cdd912f0c349f5a1a8eddb06dd7b239eda09e2c81312494dc288b",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/contracts-proof.json"
+    },
+    {
+      "bytes": 3429,
+      "sha256": "4c21b904f78633657bcc7515f4fb99b591c06026eb1ceaa9a2e0604188ab7ef4",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/contracts-test-receipt.json"
+    },
+    {
+      "bytes": 6993,
+      "sha256": "bb038aebdcb204161bffe16926196b1dd2850602e32d4a03637f19561eea157d",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/build-and-tsc-receipt.json"
+    },
+    {
+      "bytes": 1723,
+      "sha256": "8253f8ab9728c15d3d6c2706f9f4931800c490277e1e2c9e64cb6a9640f19db7",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/CHANGED-FILE-MANIFEST.json"
+    },
+    {
+      "bytes": 160,
+      "sha256": "f76ed7ed953687f554c52d573e2252890d0139289ad07942d05018549429a0c3",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/DECISION-CARD.json"
+    },
+    {
+      "bytes": 338,
+      "sha256": "a9a9710d3587866c222e82baf6ac2476d624b09e3962abfd8dc2dc9e21f0ee5e",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/DECISION-CARD.md"
+    },
+    {
+      "bytes": 1698,
+      "sha256": "ec0550c0035cd1b1f0a019784c4ed3548b421419a5f6005b161df479a97cad4c",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/STOP-FOR-CODEX-REVIEW.json"
+    },
+    {
+      "bytes": 1056,
+      "sha256": "2092ddbb0eb6e608a22a44c964e4da53e1bacaea53b8a09cbff491016b3a0b31",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/pilot-gate-result.json"
+    },
+    {
+      "bytes": 160,
+      "sha256": "d5deb29c33743026626f5030f99f480fa2a97fbcb164eaba0691285b0ceb72ac",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/occurrence-disposition-summary.json"
+    },
+    {
+      "bytes": 248,
+      "sha256": "b59d74f5ced7795e85dfb3c1a6317061e4907cbf223d51e819c3d6c1ce508b79",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/v2.1.4.3-acceptance-and-scale-pending-note.json"
+    }
+  ]
+}

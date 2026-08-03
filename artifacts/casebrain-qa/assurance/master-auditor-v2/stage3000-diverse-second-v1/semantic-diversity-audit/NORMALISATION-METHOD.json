@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "diverse3000-v1-semantic-normalisation@1.0.0",
+  "method": [
+    "lowercase",
+    "strip case IDs (div3000/messy-pdf)",
+    "strip dates",
+    "strip orderIndex / matterLocalSalt / trapId salts / revision tokens",
+    "replace generator forename/surname list with <NAME>",
+    "replace primary family token in narrative with <FAMILY> for narrative cluster",
+    "collapse punctuation/digits for near-dup key",
+    "SHA-256 of normalised payload = cluster key"
+  ]
+}

@@ -1,0 +1,390 @@
+{
+  "schemaVersion": "deferred-specialist-register@1.0.0",
+  "families": [
+    {
+      "id": "murder",
+      "group": "violence_homicide",
+      "label": "murder",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "attempted_murder",
+      "group": "violence_homicide",
+      "label": "attempted_murder",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "voluntary_manslaughter",
+      "group": "violence_homicide",
+      "label": "voluntary_manslaughter",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "involuntary_manslaughter",
+      "group": "violence_homicide",
+      "label": "involuntary_manslaughter",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "gross_negligence_manslaughter",
+      "group": "violence_homicide",
+      "label": "gross_negligence_manslaughter",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "corporate_manslaughter",
+      "group": "violence_homicide",
+      "label": "corporate_manslaughter",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "infanticide",
+      "group": "violence_homicide",
+      "label": "infanticide",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "deaths_in_custody_or_police_contact",
+      "group": "violence_homicide",
+      "label": "deaths_in_custody_or_police_contact",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "conspiracy_to_defraud",
+      "group": "acquisitive_property_dishonesty",
+      "label": "conspiracy_to_defraud",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "bribery",
+      "group": "acquisitive_property_dishonesty",
+      "label": "bribery",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "corporate_offending",
+      "group": "acquisitive_property_dishonesty",
+      "label": "corporate_offending",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "modern_slavery_indicators",
+      "group": "drugs_gangs_exploitation",
+      "label": "modern_slavery_indicators",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "trafficking",
+      "group": "drugs_gangs_exploitation",
+      "label": "trafficking",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "nrm_lifecycle",
+      "group": "drugs_gangs_exploitation",
+      "label": "nrm_lifecycle",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "s45_defence",
+      "group": "drugs_gangs_exploitation",
+      "label": "s45_defence",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "firearm_conspiracy",
+      "group": "firearms_weapons_explosives",
+      "label": "firearm_conspiracy",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "explosives",
+      "group": "firearms_weapons_explosives",
+      "label": "explosives",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "rape",
+      "group": "sexual_child_related",
+      "label": "rape",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "assault_by_penetration",
+      "group": "sexual_child_related",
+      "label": "assault_by_penetration",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "sexual_assault",
+      "group": "sexual_child_related",
+      "label": "sexual_assault",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "historic_sexual",
+      "group": "sexual_child_related",
+      "label": "historic_sexual",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "child_sexual_abuse",
+      "group": "sexual_child_related",
+      "label": "child_sexual_abuse",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "grooming",
+      "group": "sexual_child_related",
+      "label": "grooming",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "indecent_prohibited_images",
+      "group": "sexual_child_related",
+      "label": "indecent_prohibited_images",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "online_sexual_offending",
+      "group": "sexual_child_related",
+      "label": "online_sexual_offending",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "exposure",
+      "group": "sexual_child_related",
+      "label": "exposure",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "voyeurism",
+      "group": "sexual_child_related",
+      "label": "voyeurism",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "intimate_image_offending",
+      "group": "sexual_child_related",
+      "label": "intimate_image_offending",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "sexual_harm_orders",
+      "group": "sexual_child_related",
+      "label": "sexual_harm_orders",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "complainant_sexual_history_s41",
+      "group": "sexual_child_related",
+      "label": "complainant_sexual_history_s41",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "abe_sarc_counselling_third_party",
+      "group": "sexual_child_related",
+      "label": "abe_sarc_counselling_third_party",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "riot",
+      "group": "public_order_hate_protest",
+      "label": "riot",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "serious_disruption_orders",
+      "group": "public_order_hate_protest",
+      "label": "serious_disruption_orders",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "malware_ransomware",
+      "group": "digital_communications_cyber",
+      "label": "malware_ransomware",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "cross_border_jurisdiction",
+      "group": "digital_communications_cyber",
+      "label": "cross_border_jurisdiction",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "causing_death_by_driving",
+      "group": "road_traffic",
+      "label": "causing_death_by_driving",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "collision_reconstruction",
+      "group": "road_traffic",
+      "label": "collision_reconstruction",
+      "status": "awaiting_qualified_legal_review"
+    },
+    {
+      "id": "official_secrets_national_security",
+      "group": "public_justice_state",
+      "label": "official_secrets_national_security",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "terrorism_structures",
+      "group": "public_justice_state",
+      "label": "terrorism_structures",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "election_offending",
+      "group": "public_justice_state",
+      "label": "election_offending",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "diplomatic_immunity",
+      "group": "public_justice_state",
+      "label": "diplomatic_immunity",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "international_cooperation",
+      "group": "public_justice_state",
+      "label": "international_cooperation",
+      "status": "deferred_specialist"
+    },
+    {
+      "id": "dangerous_dogs",
+      "group": "specialist_other",
+      "label": "dangerous_dogs",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "animal_offences",
+      "group": "specialist_other",
+      "label": "animal_offences",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "hunting_hare_coursing",
+      "group": "specialist_other",
+      "label": "hunting_hare_coursing",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "fgm",
+      "group": "specialist_other",
+      "label": "fgm",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "forced_marriage",
+      "group": "specialist_other",
+      "label": "forced_marriage",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "honour_based_abuse",
+      "group": "specialist_other",
+      "label": "honour_based_abuse",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "prostitution_exploitation",
+      "group": "specialist_other",
+      "label": "prostitution_exploitation",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "obscene_publications",
+      "group": "specialist_other",
+      "label": "obscene_publications",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "media_public_interest",
+      "group": "specialist_other",
+      "label": "media_public_interest",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "private_prosecutions",
+      "group": "specialist_other",
+      "label": "private_prosecutions",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "extradition",
+      "group": "specialist_other",
+      "label": "extradition",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "education_prosecutions",
+      "group": "specialist_other",
+      "label": "education_prosecutions",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "assisted_suicide",
+      "group": "specialist_other",
+      "label": "assisted_suicide",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "corporate_regulatory",
+      "group": "specialist_other",
+      "label": "corporate_regulatory",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "retrial_after_acquittal",
+      "group": "specialist_other",
+      "label": "retrial_after_acquittal",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "abuse_of_process",
+      "group": "specialist_other",
+      "label": "abuse_of_process",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "non_jury_trial",
+      "group": "specialist_other",
+      "label": "non_jury_trial",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "deceased_suspect",
+      "group": "specialist_other",
+      "label": "deceased_suspect",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    },
+    {
+      "id": "double_jeopardy_retrial",
+      "group": "specialist_other",
+      "label": "double_jeopardy_retrial",
+      "status": "deferred_specialist",
+      "reason": "Structurally representable; substantive legal conclusions require specialist/qualified review"
+    }
+  ]
+}

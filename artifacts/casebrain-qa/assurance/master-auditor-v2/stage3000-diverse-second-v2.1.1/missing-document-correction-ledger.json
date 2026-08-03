@@ -1,0 +1,682 @@
+{
+  "correctedAbsentEntries": 25,
+  "rows": [
+    {
+      "caseId": "div3000v211-01-common_assault_battery",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-06-affray",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-07-sexual_assault",
+      "expectedDocumentIdentity": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-07-sexual_assault",
+      "expectedDocumentIdentity": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-08-strangulation_suffocation",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-09-blackmail",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-10-drugs_conspiracy_supply",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-11-social_media_attribution",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-12-perverting_course_of_justice",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-13-witness_intimidation",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-14-contempt",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-15-prison_offences",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-16-hearsay_res_gestae",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-17-corporate_manslaughter",
+      "expectedDocumentIdentity": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-17-corporate_manslaughter",
+      "expectedDocumentIdentity": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-17-corporate_manslaughter",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-18-conspiracy_to_defraud",
+      "expectedDocumentIdentity": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-18-conspiracy_to_defraud",
+      "expectedDocumentIdentity": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-18-conspiracy_to_defraud",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-19-riot",
+      "expectedDocumentIdentity": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-19-riot",
+      "expectedDocumentIdentity": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-19-riot",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-20-diplomatic_immunity",
+      "expectedDocumentIdentity": "abe_or_special_measures",
+      "title": "ABE / special measures note (fictional test)",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-20-diplomatic_immunity",
+      "expectedDocumentIdentity": "third_party_material_note",
+      "title": "Third-party / counselling material note (fictional test)",
+      "kind": "third_party",
+      "state": "referred_only",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    },
+    {
+      "caseId": "div3000v211-20-diplomatic_immunity",
+      "expectedDocumentIdentity": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "generatedSourceDocument": false,
+      "generatedPdfPages": false,
+      "pageCount": 0,
+      "realPaginatedFile": false,
+      "extractionReadOutcome": "referenced_absent_not_read",
+      "referringDocumentId": "MG06",
+      "referringPageIdentity": "MG06/page/1",
+      "note": "Absence retained as expected identity only; MG6 may refer; master remains absent."
+    }
+  ],
+  "absenceContracts": [
+    {
+      "caseId": "div3000v211-01-common_assault_battery",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-06-affray",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-07-sexual_assault",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "abe_or_special_measures",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-07-sexual_assault",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "third_party_material_note",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-08-strangulation_suffocation",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-09-blackmail",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-10-drugs_conspiracy_supply",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-11-social_media_attribution",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-12-perverting_course_of_justice",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-13-witness_intimidation",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-14-contempt",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-15-prison_offences",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-16-hearsay_res_gestae",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-17-corporate_manslaughter",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "abe_or_special_measures",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-17-corporate_manslaughter",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "third_party_material_note",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-17-corporate_manslaughter",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-18-conspiracy_to_defraud",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "abe_or_special_measures",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-18-conspiracy_to_defraud",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "third_party_material_note",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-18-conspiracy_to_defraud",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-19-riot",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "abe_or_special_measures",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-19-riot",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "third_party_material_note",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-19-riot",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-20-diplomatic_immunity",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "abe_or_special_measures",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-20-diplomatic_immunity",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "third_party_material_note",
+      "referringPageIdentity": "MG06/page/1"
+    },
+    {
+      "caseId": "div3000v211-20-diplomatic_immunity",
+      "contracts": {
+        "mg6_can_refer_to_absent_master": true,
+        "master_remains_absent": true,
+        "master_has_no_source_pages": true,
+        "chase_points_to_absent_item": true,
+        "casebrain_cannot_quote_or_summarise_nonexistent_content": true
+      },
+      "expectedDocumentIdentity": "referred_missing_master",
+      "referringPageIdentity": "MG06/page/1"
+    }
+  ]
+}

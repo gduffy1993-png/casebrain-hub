@@ -1,0 +1,11 @@
+{
+  "evaluated": 14,
+  "notExercised": [
+    {
+      "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+      "reason": "zero_applicable_hearing_notice_denominator_in_same_20_pack",
+      "doNotInventHearingNotice": true
+    }
+  ],
+  "note": "Report exactly 14 genuinely evaluated + 1 not_exercised. Do not describe as 15/15 controls exercised."
+}

@@ -1,0 +1,198 @@
+{
+  "caseId": "div3000v211-05-bladed_articles",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "257c5095e28b533e52645cfa26339933c61e1daa7b1323f629ab664aa9904d1f",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "purpose": "charge_instrument_particulars",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\npageIdentity=written_charge/page/1\n## Written charge / requisition\n## Particulars\nMatter family: bladed articles\nDefendant count modelled: 1\nCharge: Charge wording not pinned — structural only.\nCharge wording status: structural_only\nProvision note: unpinned:bladed_articles\nThis instrument is modelled as the operative charging document for fictional-test purposes only.\nProcedural stage: police investigation.\nDo not treat this summary as proof of the allegation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-05-bladed_articles\nDocument id | written_charge\nKind | written_charge\nLifecycle state | operative\nPage purpose | charge_instrument_particulars\nFamily | bladed articles\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: operative\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for bladed articles must respect served vs absent papers.\nPrecise next action: verify written_charge/page/1 against MG06 before any external send.\nSource/page pointer: written_charge/page/1",
+          "textHash": "257c5095e28b533e52645cfa26339933c61e1daa7b1323f629ab664aa9904d1f",
+          "headings": [
+            "Written charge / requisition",
+            "Particulars"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "4df53ff4a070e334281842171556a46175afc63f67a77014bf51fc610bc52072",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/1\n## MG5 Case summary\n## Narrative\nFamily under review: bladed articles\nDefence position on instructions: section 45 indicator\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: bladed articles.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_signed, mg11_draft, cctv_master_referred.\nWitness outline: complainant account recorded as allegation only — not proved.\nOfficer summary limited to disclosed papers in this pack.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-05-bladed_articles\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_case_summary_narrative\nFamily | bladed articles\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for bladed articles must respect served vs absent papers.\nPrecise next action: verify MG05/page/1 against MG06 before any external send.\nSource/page pointer: MG05/page/1",
+          "textHash": "2aebf3e5e38cf93324c29b8b2db9da10b3d214ee8e9eff4dec2dc68c92c8cc57",
+          "headings": [
+            "MG5 Case summary",
+            "Narrative"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\npageIdentity=MG05/page/2\n## Evidence outline\n## Limitations\nEvidence listed is limited to items served or partially served in the pack.\nNo deliberate missing-item markers declared on the completeness contract.\nReliability: MG5 narrative must not be read as establishing guilt.\nNext action: reconcile MG5 against MG6 index for div3000v211-05-bladed_articles before any court-facing send.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-05-bladed_articles\nDocument id | MG05\nKind | mg05\nLifecycle state | served\nPage purpose | mg5_evidence_outline\nFamily | bladed articles\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for bladed articles must respect served vs absent papers.\nPrecise next action: verify MG05/page/2 against MG06 before any external send.\nSource/page pointer: MG05/page/2",
+          "textHash": "a2622dcb131a826dc9bf8cfb444b14fb39a30ff6c83a1f9edab674e1021482c5",
+          "headings": [
+            "Evidence outline",
+            "Limitations"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "05670fc6f4d34065834f1525e3358eadad27c2b2f5560dda3683cdf52c0b9b83",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\npageIdentity=MG06/page/1\n## MG6 File front sheet / index\n## Inventory\nIndex of papers for this fictional matter:\n- written charge / requisition — see written_charge\n- MG5 case summary — served\n- disclosure / unused schedule — see schedules\n- (no referred-absent masters declared)\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nCaseBrain must not quote or summarise nonexistent content for referred-absent items.\nChase binding: disclosure chase must request nil by identity, pointing to this MG6 page.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-05-bladed_articles\nDocument id | MG06\nKind | mg06\nLifecycle state | served\nPage purpose | mg6_file_index\nFamily | bladed articles\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for bladed articles must respect served vs absent papers.\nPrecise next action: verify MG06/page/1 against MG06 before any external send.\nSource/page pointer: MG06/page/1",
+          "textHash": "05670fc6f4d34065834f1525e3358eadad27c2b2f5560dda3683cdf52c0b9b83",
+          "headings": [
+            "MG6 File front sheet / index",
+            "Inventory"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG12_exhibits",
+      "title": "MG12 exhibit list (fictional test)",
+      "kind": "mg12",
+      "state": "served",
+      "contentHash": "c210de1d74eea5a8e6223c1f064557d73af52b40b39a15b97803429383e0cf80",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG12_exhibits/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG12 exhibit list (fictional test)\npageIdentity=MG12_exhibits/page/1\n## MG12 exhibit list (fictional test)\nKind: mg12\nLifecycle state: served\nFamily: bladed articles\nStage: police investigation\nFICTIONAL TEST MATERIAL\nExhibits: drugs bag / device / weapon label as applicable. Continuity must be checked.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-05-bladed_articles\nDocument id | MG12_exhibits\nKind | mg12\nLifecycle state | served\nPage purpose | document_specific_body\nFamily | bladed articles\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for bladed articles must respect served vs absent papers.\nPrecise next action: verify MG12_exhibits/page/1 against MG06 before any external send.\nSource/page pointer: MG12_exhibits/page/1",
+          "textHash": "c210de1d74eea5a8e6223c1f064557d73af52b40b39a15b97803429383e0cf80",
+          "headings": [
+            "MG12 exhibit list (fictional test)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "MG15_interview",
+      "title": "MG15 interview record (fictional test)",
+      "kind": "mg15",
+      "state": "served",
+      "contentHash": "08e36a714544260e3e8533c87a3b10763757f4aa090c4e4a694e6e1f21e59d0f",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG15_interview/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG15 interview record (fictional test)\npageIdentity=MG15_interview/page/1\n## MG15 interview record (fictional test)\nKind: mg15\nLifecycle state: served\nFamily: bladed articles\nStage: police investigation\nFICTIONAL TEST MATERIAL\nInterview. Defence section_45_indicator. Incomplete transcript marker: no.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-05-bladed_articles\nDocument id | MG15_interview\nKind | mg15\nLifecycle state | served\nPage purpose | document_specific_body\nFamily | bladed articles\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for bladed articles must respect served vs absent papers.\nPrecise next action: verify MG15_interview/page/1 against MG06 before any external send.\nSource/page pointer: MG15_interview/page/1",
+          "textHash": "08e36a714544260e3e8533c87a3b10763757f4aa090c4e4a694e6e1f21e59d0f",
+          "headings": [
+            "MG15 interview record (fictional test)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "e39d77d2e4bda4b3cdb73641c94d986815467445706057252da547797341f4e0",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\npageIdentity=defence_proof_extract/page/1\n## Defence proof of evidence extract\n## PRIVILEGED\nPosition on instructions: section 45 indicator\nThis extract is privilege-separated. Not for ordinary copy/export/API send.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-05-bladed_articles\nDocument id | defence_proof_extract\nKind | defence_proof\nLifecycle state | privileged\nPage purpose | defence_privileged_extract\nFamily | bladed articles\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: privileged\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for bladed articles must respect served vs absent papers.\nPrecise next action: verify defence_proof_extract/page/1 against MG06 before any external send.\nSource/page pointer: defence_proof_extract/page/1",
+          "textHash": "e39d77d2e4bda4b3cdb73641c94d986815467445706057252da547797341f4e0",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ]
+        }
+      ],
+      "privilegeSeparated": true,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "defence_statement_draft",
+      "title": "Defence statement draft (fictional test)",
+      "kind": "defence_statement",
+      "state": "draft",
+      "contentHash": "97c5e18d20d1a1d79f89327a185efd5afc0976650bc251b65fbb0ae9485a6ae3",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_statement_draft/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence statement draft (fictional test)\npageIdentity=defence_statement_draft/page/1\n## Defence statement draft (fictional test)\nKind: defence_statement\nLifecycle state: draft\nFamily: bladed articles\nStage: police investigation\nFICTIONAL TEST MATERIAL — draft defence statement structure.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-05-bladed_articles\nDocument id | defence_statement_draft\nKind | defence_statement\nLifecycle state | draft\nPage purpose | document_specific_body\nFamily | bladed articles\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: draft\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for bladed articles must respect served vs absent papers.\nPrecise next action: verify defence_statement_draft/page/1 against MG06 before any external send.\nSource/page pointer: defence_statement_draft/page/1",
+          "textHash": "59bd1c9f99e467518190793dd5dc5d5e95e549baa0d0db30ef3373a7c773d4f9",
+          "headings": [
+            "Defence statement draft (fictional test)"
+          ]
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_statement_draft/page/2",
+          "purpose": "lifecycle_history_not_operative",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence statement draft (fictional test)\npageIdentity=defence_statement_draft/page/2\n## Lifecycle history\nThis document is draft.\nDo not treat as the operative instrument.\nOperative precedence must prefer signed/served/operative counterparts.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-05-bladed_articles\nDocument id | defence_statement_draft\nKind | defence_statement\nLifecycle state | draft\nPage purpose | lifecycle_history_not_operative\nFamily | bladed articles\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: draft\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for bladed articles must respect served vs absent papers.\nPrecise next action: verify defence_statement_draft/page/2 against MG06 before any external send.\nSource/page pointer: defence_statement_draft/page/2",
+          "textHash": "fe969ab7452369fac508d8c793e4afd660001ecbab627e09d5f4be9926af8e12",
+          "headings": [
+            "Lifecycle history"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    },
+    {
+      "docId": "extra_context_2",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "contentHash": "e5ddce5c9307be7d8688cd9935a4a7af7d3bd81ff364fbb7440cf86324979704",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_2/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Additional context schedule (fictional test)\npageIdentity=extra_context_2/page/1\n## Additional context schedule (fictional test)\nKind: context_schedule\nLifecycle state: served\nFamily: bladed articles\nStage: police investigation\nFICTIONAL TEST MATERIAL — additional coherent schedule for bladed_articles emphasising section_45_indicator and written_charge.\nPurpose: provide document-specific body text for this kind — not generic continuation.\n\n## Structured fields\nField | Value\n----- | -----\nCase id | div3000v211-05-bladed_articles\nDocument id | extra_context_2\nKind | context_schedule\nLifecycle state | served\nPage purpose | document_specific_body\nFamily | bladed articles\nProcedure | police investigation\nDefence on instructions | section 45 indicator\n\n## Status / limitation / next action\nStatus: served\nLimitation: fictional-test material only — not proof of the allegation.\nPractical consequence: hearing prep for bladed articles must respect served vs absent papers.\nPrecise next action: verify extra_context_2/page/1 against MG06 before any external send.\nSource/page pointer: extra_context_2/page/1",
+          "textHash": "e5ddce5c9307be7d8688cd9935a4a7af7d3bd81ff364fbb7440cf86324979704",
+          "headings": [
+            "Additional context schedule (fictional test)"
+          ]
+        }
+      ],
+      "privilegeSeparated": false,
+      "realPaginatedFile": true
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/bundle-fictional-test.pdf",
+  "pageCount": 8,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-001.png",
+      "pngSha256": "7638fbe806e7c75f7bc9757ccfff6a9211e5001d8b5fa588e703739a9f3f0c14",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1492,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.29,
+        "nonWhiteRatio": 0.0479,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-002.png",
+      "pngSha256": "e027d1403c7f79bf091b935e8d72cf899dbaa7cf5551fbbdfc215964c131ed35",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1217,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.22,
+        "nonWhiteRatio": 0.0411,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-003.png",
+      "pngSha256": "7e62843e0fa5c5ed7efccf254a4e6a6df9162ff05922e52557a926588ba12886",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1633,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.6,
+        "nonWhiteRatio": 0.0529,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-004.png",
+      "pngSha256": "111fed4dd24468354128ae8ef0ee129a5030c7dbec0830b1b8c661d18ab2cd9c",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1346,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.8,
+        "nonWhiteRatio": 0.0448,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-005.png",
+      "pngSha256": "d905c636fd4a6848584d0961774ce208cc0a1597c82e20879a628430fa1ad6c1",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1732,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.24,
+        "nonWhiteRatio": 0.0549,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-006.png",
+      "pngSha256": "03672671667052efed2281211e25d31b1bdd7f5f6ceb49744647ad2369227ada",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1359,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.7,
+        "nonWhiteRatio": 0.045,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-007.png",
+      "pngSha256": "ab8a0fd1992ffa0718cd7ecfc8f4325f6ce6e7f82491e2ec88e034ef49ebfcfd",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1314,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.77,
+        "nonWhiteRatio": 0.0443,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-008.png",
+      "pngSha256": "9ef7cb7edca738948c9d240b6930f98ed63f2ea8954be8dec8f3980caffb928a",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1460,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.41,
+        "nonWhiteRatio": 0.0476,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "65aeff160daddd9199107e5a23704b50c5d4004ae8342910c9694bfbef0a423c",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

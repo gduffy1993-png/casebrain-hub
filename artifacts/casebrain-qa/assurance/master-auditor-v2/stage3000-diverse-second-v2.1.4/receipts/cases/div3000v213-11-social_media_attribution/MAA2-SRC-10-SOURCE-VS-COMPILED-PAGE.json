@@ -1,0 +1,57 @@
+{
+  "caseId": "div3000v213-11-social_media_attribution",
+  "controlId": "MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+  "handlerModule": "lib/eval/master-assurance-auditor/v2/stage150/batch9/evaluators.ts",
+  "handlerFunction": "evaluateBatch9Control",
+  "handlerId": "b9_src_10_source_vs_compiled_page",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "specified_not_implemented",
+  "exerciseStatus": "evaluated",
+  "applicable": true,
+  "applicableUnitCount": 13,
+  "missingPrerequisiteReason": null,
+  "inputFieldRefs": [
+    "pageIdentityKnown=true",
+    "sourceDocumentIdentity",
+    "sourcePage",
+    "compiledPage"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "f0019cce2ecaf781538488a1291358a25774376a513391ec2cf9fae10d3aad6a",
+    "findingsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/evidenceStates/8/sourcePage",
+    "/evidenceStates/9/sourcePage",
+    "/evidenceStates/10/sourcePage",
+    "/evidenceStates/11/sourcePage",
+    "/evidenceStates/12/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [],
+  "findings": [],
+  "contracts": {
+    "positive": "scripts/maa-v2-every-word-foundation-contracts.test.ts#MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+    "negative": "scripts/maa-v2-every-word-foundation-contracts.test.ts#MAA2-SRC-10-SOURCE-VS-COMPILED-PAGE",
+    "unavailable": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_src10_unavailable",
+    "mutation": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_src10_mutation"
+  },
+  "receiptNote": "impl=substantive_control_evaluator; availability=unavailable_missing_structured_field; namedEvaluator=true; status=evaluated; findings=0; emptyHits≠PASS. Batch-9 owns source vs compiled page identity integrity."
+}

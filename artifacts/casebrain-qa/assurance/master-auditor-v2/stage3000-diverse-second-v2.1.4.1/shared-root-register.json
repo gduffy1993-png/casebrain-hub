@@ -1,0 +1,32 @@
+{
+  "roots": [
+    {
+      "sharedRootId": "evidence_row_label_length_wildcard",
+      "owningLayer": "v2.1.4-provenance-leaf-classifier resolveEvidenceRef",
+      "defect": "|| String(row.label||'').length > 0 matched every labelled evidence row (MG5→written_charge)",
+      "remediation": "Exact binding via document ID / page identity / evidence-unit / structured field only",
+      "caseSpecific": false
+    },
+    {
+      "sharedRootId": "source_pdf_as_output_exit_proof",
+      "owningLayer": "build-v2.1.4 exit matrix pdf branch",
+      "defect": "bundle-fictional-test.pdf (INPUT) treated as CaseBrain PDF exit",
+      "remediation": "PDF exit not_exercised unless genuine CaseBrain output PDF bytes exist",
+      "caseSpecific": false
+    },
+    {
+      "sharedRootId": "copy_genuine_zero_leaf",
+      "owningLayer": "exit matrix + leaf surface mapping",
+      "defect": "copy claimed genuine with leafCount=0",
+      "remediation": "Promote copyLines leaves; else mark copy not_exercised",
+      "caseSpecific": false
+    },
+    {
+      "sharedRootId": "completeness_contract_structural_empty_fixture",
+      "owningLayer": "proveControlContracts MAA-COMPLETENESS",
+      "defect": "negative/mutation used included_structural_empty which handler excludes",
+      "remediation": "negative/mutation use empty included_solicitor_visible",
+      "caseSpecific": false
+    }
+  ]
+}

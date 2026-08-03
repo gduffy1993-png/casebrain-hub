@@ -1,0 +1,113 @@
+{
+  "caseId": "div3000v21-05-bladed_articles",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1-pilot-graphs/sources/div3000v21-05-bladed_articles/bundle-fictional-test.pdf",
+  "sha256": "1ec43b01602ddee02b11a9f20e5da856b972491f3177f8f5941aa043762c0a71",
+  "pageCount": 21,
+  "pageMap": [
+    {
+      "pageIdentity": "written_charge/page/1",
+      "pdfPageNumber": 1,
+      "docId": "written_charge"
+    },
+    {
+      "pageIdentity": "written_charge/page/2",
+      "pdfPageNumber": 2,
+      "docId": "written_charge"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 3,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 4,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/3",
+      "pdfPageNumber": 5,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 6,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "MG06/page/2",
+      "pdfPageNumber": 7,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "MG12_exhibits/page/1",
+      "pdfPageNumber": 8,
+      "docId": "MG12_exhibits"
+    },
+    {
+      "pageIdentity": "MG12_exhibits/page/2",
+      "pdfPageNumber": 9,
+      "docId": "MG12_exhibits"
+    },
+    {
+      "pageIdentity": "MG12_exhibits/page/3",
+      "pdfPageNumber": 10,
+      "docId": "MG12_exhibits"
+    },
+    {
+      "pageIdentity": "MG15_interview/page/1",
+      "pdfPageNumber": 11,
+      "docId": "MG15_interview"
+    },
+    {
+      "pageIdentity": "MG15_interview/page/2",
+      "pdfPageNumber": 12,
+      "docId": "MG15_interview"
+    },
+    {
+      "pageIdentity": "MG15_interview/page/3",
+      "pdfPageNumber": 13,
+      "docId": "MG15_interview"
+    },
+    {
+      "pageIdentity": "MG15_interview/page/4",
+      "pdfPageNumber": 14,
+      "docId": "MG15_interview"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 15,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/2",
+      "pdfPageNumber": 16,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/3",
+      "pdfPageNumber": 17,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_statement_draft/page/1",
+      "pdfPageNumber": 18,
+      "docId": "defence_statement_draft"
+    },
+    {
+      "pageIdentity": "defence_statement_draft/page/2",
+      "pdfPageNumber": 19,
+      "docId": "defence_statement_draft"
+    },
+    {
+      "pageIdentity": "extra_context_2/page/1",
+      "pdfPageNumber": 20,
+      "docId": "extra_context_2"
+    },
+    {
+      "pageIdentity": "extra_context_2/page/2",
+      "pdfPageNumber": 21,
+      "docId": "extra_context_2"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "diverse3000-v2-73-control-honesty@1.0.0",
+  "before": {
+    "claimedEvaluated": 73,
+    "method": "control-ID regex/prefix matching in v2-materialise-and-maa.ts",
+    "invalidBecause": "A control name containing CHARGE/EVIDENCE/PROVENANCE/SOURCE/CROSS does not prove its named evaluator ran"
+  },
+  "after": {
+    "evaluated": 2,
+    "probe_evaluated_named_control_not_exercised": 55,
+    "potentially_applicable_missing_handler": 7,
+    "unresolved_missing_prerequisite": 88,
+    "not_exercised": 209,
+    "implementation_status_unknown": 0,
+    "method": "receipt-backed named wording/completeness detectors only"
+  },
+  "genericWordingProbeDoesNotEvidence": [
+    "charge controls",
+    "attribution controls",
+    "provenance controls",
+    "chronology controls",
+    "chase controls",
+    "cross-exit controls"
+  ],
+  "actuallyInvokedControlIds": [
+    "MAA2-WRD-15-NO-ABSOLUTE-PROOF",
+    "MAA-COMPLETENESS"
+  ]
+}

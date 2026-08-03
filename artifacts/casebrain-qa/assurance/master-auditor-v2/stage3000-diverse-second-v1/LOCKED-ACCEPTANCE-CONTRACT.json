@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "stage3000-diverse-second-LOCKED-ACCEPTANCE-CONTRACT@1.0.0",
+  "frozenAt": "2026-08-02T18:24:59.052Z",
+  "authorityBaselineCommit": "308b7cb633f83d7c998bc80adf87356de346b3e9",
+  "programmePassSupported": false,
+  "stage3000CompletionAllowed": false,
+  "corpusPassSupported": false,
+  "claimsForbidden": [
+    "programme_PASS",
+    "corpus_PASS",
+    "stage3000_completion_merely_because_3000_ran",
+    "model_trained",
+    "qualified_solicitor_approval",
+    "legal_authority_approval",
+    "every_possible_criminal_case_covered"
+  ],
+  "protectedAssets": {
+    "firstFrozen3000MembershipSha256": "dcf6c382fe1b41ef34624c03764c8dc785de04a13f5344784aee03b9a192d4ae",
+    "brain1": "unchanged_required",
+    "guardian": "unchanged_required",
+    "phase11": "unchanged_required",
+    "malikPrice": "unchanged_required",
+    "integrityLedger": "unchanged_required",
+    "sealedHoldouts": "do_not_access",
+    "core18Blueprints": "do_not_mutate"
+  },
+  "population": {
+    "exactMatterCount": 3000,
+    "tiers": {
+      "routine_volume": 1600,
+      "serious_complex_crown": 800,
+      "procedure_focused": 400,
+      "specialist_structural": 200
+    },
+    "uniquenessRequired": {
+      "caseIds": 3000,
+      "substantiveTruthFingerprints": 3000,
+      "documentRelationshipFingerprints": 3000,
+      "sourceFingerprints": 3000,
+      "caseBoundOutputFingerprints": 3000
+    },
+    "rejectParameterSubstitutionClones": true,
+    "firstCensusContentCollapseMustNotRecur": true,
+    "maxAllowedLargestSemanticClusterTarget": 25
+  },
+  "sourceCompleteness": [
+    "complete_source_packet",
+    "deliberate_truth_keyed_missing_source",
+    "unsupported_native_input_not_exercised"
+  ],
+  "generationOrder": [
+    "freeze_acceptance_contract",
+    "freeze_coverage_allocation",
+    "freeze_authority_register",
+    "generate_source_packs",
+    "generate_truth_keys_separately",
+    "hash_seal_truth",
+    "materialise_with_truth_inaccessible",
+    "freeze_outputs",
+    "run_controls_source_output_only",
+    "freeze_candidates",
+    "open_truth",
+    "triage",
+    "repair_shared_causes",
+    "rerun_same_frozen_membership"
+  ],
+  "checkpoints": [
+    5,
+    20,
+    50,
+    150,
+    300,
+    500,
+    1000,
+    2000,
+    3000
+  ],
+  "storagePlan": {
+    "all3000StructuredMatterGraphs": true,
+    "all3000UniqueSourceDocumentRelationshipFingerprints": true,
+    "renderedPdfNativeSubset": 500,
+    "thinTextSourcePacksForRemainder": 2500,
+    "doNotFabricateCompletedPdfs": true,
+    "heavyBundleLane": "separately_reportable_not_default"
+  },
+  "storageGate": "CONTINUE_WITH_STRATIFIED_PLAN",
+  "compositionAllocationSha256": "7bddb1885e455231d80eac587a009f7a9592fc7618c1985ba29579b98dd22e94",
+  "offenceCatalogueSha256": "a4df59030a41dcc0a5fccefbe0a53de65761de4363f4001d51485f59498ec6a1",
+  "stopUncommittedAfterPostRemediationRerun": true
+}

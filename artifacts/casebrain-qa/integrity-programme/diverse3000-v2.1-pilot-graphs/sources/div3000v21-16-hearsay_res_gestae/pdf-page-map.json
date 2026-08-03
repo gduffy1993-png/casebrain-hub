@@ -1,0 +1,98 @@
+{
+  "caseId": "div3000v21-16-hearsay_res_gestae",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1-pilot-graphs/sources/div3000v21-16-hearsay_res_gestae/bundle-fictional-test.pdf",
+  "sha256": "e6b0e5bb7d0e7e48c4e0b44dd853a076613a601ad0d3ae7db8323307a9016550",
+  "pageCount": 18,
+  "pageMap": [
+    {
+      "pageIdentity": "written_charge/page/1",
+      "pdfPageNumber": 1,
+      "docId": "written_charge"
+    },
+    {
+      "pageIdentity": "written_charge/page/2",
+      "pdfPageNumber": 2,
+      "docId": "written_charge"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 3,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 4,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/3",
+      "pdfPageNumber": 5,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 6,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "MG06/page/2",
+      "pdfPageNumber": 7,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/1",
+      "pdfPageNumber": 8,
+      "docId": "cctv_clip_schedule"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/2",
+      "pdfPageNumber": 9,
+      "docId": "cctv_clip_schedule"
+    },
+    {
+      "pageIdentity": "media_metadata/page/1",
+      "pdfPageNumber": 10,
+      "docId": "media_metadata"
+    },
+    {
+      "pageIdentity": "media_metadata/page/2",
+      "pdfPageNumber": 11,
+      "docId": "media_metadata"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 12,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/2",
+      "pdfPageNumber": 13,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/3",
+      "pdfPageNumber": 14,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "referred_missing_master/page/1",
+      "pdfPageNumber": 15,
+      "docId": "referred_missing_master"
+    },
+    {
+      "pageIdentity": "referred_missing_master/page/2",
+      "pdfPageNumber": 16,
+      "docId": "referred_missing_master"
+    },
+    {
+      "pageIdentity": "extra_context_2/page/1",
+      "pdfPageNumber": 17,
+      "docId": "extra_context_2"
+    },
+    {
+      "pageIdentity": "extra_context_2/page/2",
+      "pdfPageNumber": 18,
+      "docId": "extra_context_2"
+    }
+  ]
+}

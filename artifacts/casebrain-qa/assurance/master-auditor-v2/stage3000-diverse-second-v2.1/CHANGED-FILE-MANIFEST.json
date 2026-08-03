@@ -1,0 +1,759 @@
+{
+  "generatedAt": "2026-08-02T20:59:20.247Z",
+  "note": "Includes on-disk programme artefacts (many may be gitignored) plus scripts; V1/V2 freezes not rewritten",
+  "totalGitPorcelain": 9,
+  "programmeRelevant": 7,
+  "files": [
+    {
+      "status": "??",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v1/"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1/"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-matter-graphs/"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-solicitor-materialisation/"
+    },
+    {
+      "status": "??",
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1-pilot-graphs/"
+    },
+    {
+      "status": "??",
+      "path": "scripts/assurance/stage3000-diverse-second/"
+    }
+  ],
+  "exactOnDiskProgrammeFiles": [
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2\\corrections\\authority-charge-correction-register.json",
+      "bytes": 18678,
+      "mtime": "2026-08-02T20:58:39.829Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2\\corrections\\before-after-73-control-honesty-report.json",
+      "bytes": 942,
+      "mtime": "2026-08-02T20:58:39.822Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2\\corrections\\per-control-exercise-matrix-corrected.json",
+      "bytes": 211655,
+      "mtime": "2026-08-02T20:58:39.820Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2\\corrections\\PRESERVE-LOCK.json",
+      "bytes": 335,
+      "mtime": "2026-08-02T20:58:39.613Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2\\corrections\\source-reading-honesty-correction.json",
+      "bytes": 409,
+      "mtime": "2026-08-02T20:58:39.830Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2\\corrections\\wording-detector-clean-result-receipts.json",
+      "bytes": 2519,
+      "mtime": "2026-08-02T20:58:39.806Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\candidate-freeze-receipt.json",
+      "bytes": 296,
+      "mtime": "2026-08-02T20:58:53.124Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\CHANGED-FILE-MANIFEST.json",
+      "bytes": 1071,
+      "mtime": "2026-08-02T20:59:20.248Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\DECISION-CARD.json",
+      "bytes": 2257,
+      "mtime": "2026-08-02T20:59:20.240Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\DECISION-CARD.md",
+      "bytes": 753,
+      "mtime": "2026-08-02T20:59:20.241Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\frozen-membership-v2.1-pilot20.json",
+      "bytes": 7476,
+      "mtime": "2026-08-02T20:58:52.975Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\genuine-exit-capability-matrix.json",
+      "bytes": 396,
+      "mtime": "2026-08-02T20:58:53.189Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\ledgers\\candidate-ledger-pre-truth.jsonl",
+      "bytes": 0,
+      "mtime": "2026-08-02T20:58:53.121Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\output-strength-and-template-cluster-report.json",
+      "bytes": 1159,
+      "mtime": "2026-08-02T20:58:53.187Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\pdf-page-visual-qa-register.json",
+      "bytes": 87955,
+      "mtime": "2026-08-02T20:58:52.979Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\per-control-exercise-matrix.json",
+      "bytes": 111262,
+      "mtime": "2026-08-02T20:58:53.174Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\pilot-gate-result.json",
+      "bytes": 249,
+      "mtime": "2026-08-02T20:58:53.235Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\real-pdf-register.json",
+      "bytes": 7413,
+      "mtime": "2026-08-02T20:58:52.978Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\receipts\\MAA-COMPLETENESS.json",
+      "bytes": 712,
+      "mtime": "2026-08-02T20:58:53.168Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\receipts\\MAA2-WRD-15-NO-ABSOLUTE-PROOF.json",
+      "bytes": 739,
+      "mtime": "2026-08-02T20:58:53.170Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\root-cause-remediation-report.json",
+      "bytes": 696,
+      "mtime": "2026-08-02T20:58:53.190Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\source-reading-ledger.json",
+      "bytes": 217376,
+      "mtime": "2026-08-02T20:58:52.983Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\STOP-FOR-CODEX-REVIEW.json",
+      "bytes": 3747,
+      "mtime": "2026-08-02T20:59:20.246Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\technical-disposition-ledger.json",
+      "bytes": 40,
+      "mtime": "2026-08-02T20:58:53.177Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\truth-open-sequence.json",
+      "bytes": 194,
+      "mtime": "2026-08-02T20:58:53.175Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\assurance\\master-auditor-v2\\stage3000-diverse-second-v2.1\\v2-to-v2.1-lineage.json",
+      "bytes": 4652,
+      "mtime": "2026-08-02T20:58:52.976Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-01-common_assault_battery\\bundle-fictional-test.pdf",
+      "bytes": 31185,
+      "mtime": "2026-08-02T20:58:49.344Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-01-common_assault_battery\\document-page-units.json",
+      "bytes": 20061,
+      "mtime": "2026-08-02T20:58:49.388Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-01-common_assault_battery\\matter-skeleton.json",
+      "bytes": 4232,
+      "mtime": "2026-08-02T20:58:49.380Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-01-common_assault_battery\\pdf-page-map.json",
+      "bytes": 2321,
+      "mtime": "2026-08-02T20:58:49.390Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-02-shoplifting_theft\\bundle-fictional-test.pdf",
+      "bytes": 21943,
+      "mtime": "2026-08-02T20:58:49.629Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-02-shoplifting_theft\\document-page-units.json",
+      "bytes": 13746,
+      "mtime": "2026-08-02T20:58:49.676Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-02-shoplifting_theft\\matter-skeleton.json",
+      "bytes": 3153,
+      "mtime": "2026-08-02T20:58:49.675Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-02-shoplifting_theft\\pdf-page-map.json",
+      "bytes": 1712,
+      "mtime": "2026-08-02T20:58:49.723Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-03-going_equipped\\bundle-fictional-test.pdf",
+      "bytes": 24606,
+      "mtime": "2026-08-02T20:58:49.843Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-03-going_equipped\\document-page-units.json",
+      "bytes": 14969,
+      "mtime": "2026-08-02T20:58:49.876Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-03-going_equipped\\matter-skeleton.json",
+      "bytes": 3280,
+      "mtime": "2026-08-02T20:58:49.873Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-03-going_equipped\\pdf-page-map.json",
+      "bytes": 1880,
+      "mtime": "2026-08-02T20:58:49.877Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-04-twoc\\bundle-fictional-test.pdf",
+      "bytes": 22762,
+      "mtime": "2026-08-02T20:58:50.029Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-04-twoc\\document-page-units.json",
+      "bytes": 13814,
+      "mtime": "2026-08-02T20:58:50.061Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-04-twoc\\matter-skeleton.json",
+      "bytes": 3170,
+      "mtime": "2026-08-02T20:58:50.056Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-04-twoc\\pdf-page-map.json",
+      "bytes": 1785,
+      "mtime": "2026-08-02T20:58:50.062Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-05-bladed_articles\\bundle-fictional-test.pdf",
+      "bytes": 36732,
+      "mtime": "2026-08-02T20:58:50.201Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-05-bladed_articles\\document-page-units.json",
+      "bytes": 22722,
+      "mtime": "2026-08-02T20:58:50.229Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-05-bladed_articles\\matter-skeleton.json",
+      "bytes": 4376,
+      "mtime": "2026-08-02T20:58:50.227Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-05-bladed_articles\\pdf-page-map.json",
+      "bytes": 2785,
+      "mtime": "2026-08-02T20:58:50.231Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-06-affray\\bundle-fictional-test.pdf",
+      "bytes": 35154,
+      "mtime": "2026-08-02T20:58:50.413Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-06-affray\\document-page-units.json",
+      "bytes": 22023,
+      "mtime": "2026-08-02T20:58:50.455Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-06-affray\\matter-skeleton.json",
+      "bytes": 4599,
+      "mtime": "2026-08-02T20:58:50.451Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-06-affray\\pdf-page-map.json",
+      "bytes": 2654,
+      "mtime": "2026-08-02T20:58:50.457Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-07-sexual_assault\\bundle-fictional-test.pdf",
+      "bytes": 28423,
+      "mtime": "2026-08-02T20:58:50.637Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-07-sexual_assault\\document-page-units.json",
+      "bytes": 17788,
+      "mtime": "2026-08-02T20:58:50.679Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-07-sexual_assault\\matter-skeleton.json",
+      "bytes": 3929,
+      "mtime": "2026-08-02T20:58:50.673Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-07-sexual_assault\\pdf-page-map.json",
+      "bytes": 2256,
+      "mtime": "2026-08-02T20:58:50.680Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-08-strangulation_suffocation\\bundle-fictional-test.pdf",
+      "bytes": 47594,
+      "mtime": "2026-08-02T20:58:50.814Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-08-strangulation_suffocation\\document-page-units.json",
+      "bytes": 30971,
+      "mtime": "2026-08-02T20:58:50.837Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-08-strangulation_suffocation\\matter-skeleton.json",
+      "bytes": 5884,
+      "mtime": "2026-08-02T20:58:50.835Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-08-strangulation_suffocation\\pdf-page-map.json",
+      "bytes": 3685,
+      "mtime": "2026-08-02T20:58:50.839Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-09-blackmail\\bundle-fictional-test.pdf",
+      "bytes": 33573,
+      "mtime": "2026-08-02T20:58:50.929Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-09-blackmail\\document-page-units.json",
+      "bytes": 21231,
+      "mtime": "2026-08-02T20:58:50.954Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-09-blackmail\\matter-skeleton.json",
+      "bytes": 4632,
+      "mtime": "2026-08-02T20:58:50.952Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-09-blackmail\\pdf-page-map.json",
+      "bytes": 2561,
+      "mtime": "2026-08-02T20:58:50.955Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-10-drugs_conspiracy_supply\\bundle-fictional-test.pdf",
+      "bytes": 47491,
+      "mtime": "2026-08-02T20:58:51.083Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-10-drugs_conspiracy_supply\\document-page-units.json",
+      "bytes": 29707,
+      "mtime": "2026-08-02T20:58:51.119Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-10-drugs_conspiracy_supply\\matter-skeleton.json",
+      "bytes": 5430,
+      "mtime": "2026-08-02T20:58:51.117Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-10-drugs_conspiracy_supply\\pdf-page-map.json",
+      "bytes": 3515,
+      "mtime": "2026-08-02T20:58:51.120Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-11-social_media_attribution\\bundle-fictional-test.pdf",
+      "bytes": 40878,
+      "mtime": "2026-08-02T20:58:51.265Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-11-social_media_attribution\\document-page-units.json",
+      "bytes": 26611,
+      "mtime": "2026-08-02T20:58:51.293Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-11-social_media_attribution\\matter-skeleton.json",
+      "bytes": 5555,
+      "mtime": "2026-08-02T20:58:51.291Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-11-social_media_attribution\\pdf-page-map.json",
+      "bytes": 3165,
+      "mtime": "2026-08-02T20:58:51.315Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-12-perverting_course_of_justice\\bundle-fictional-test.pdf",
+      "bytes": 39040,
+      "mtime": "2026-08-02T20:58:51.436Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-12-perverting_course_of_justice\\document-page-units.json",
+      "bytes": 24935,
+      "mtime": "2026-08-02T20:58:51.459Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-12-perverting_course_of_justice\\matter-skeleton.json",
+      "bytes": 5144,
+      "mtime": "2026-08-02T20:58:51.457Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-12-perverting_course_of_justice\\pdf-page-map.json",
+      "bytes": 2958,
+      "mtime": "2026-08-02T20:58:51.461Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-13-witness_intimidation\\bundle-fictional-test.pdf",
+      "bytes": 31888,
+      "mtime": "2026-08-02T20:58:51.582Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-13-witness_intimidation\\document-page-units.json",
+      "bytes": 20678,
+      "mtime": "2026-08-02T20:58:51.609Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-13-witness_intimidation\\matter-skeleton.json",
+      "bytes": 4725,
+      "mtime": "2026-08-02T20:58:51.608Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-13-witness_intimidation\\pdf-page-map.json",
+      "bytes": 2460,
+      "mtime": "2026-08-02T20:58:51.611Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-14-contempt\\bundle-fictional-test.pdf",
+      "bytes": 35019,
+      "mtime": "2026-08-02T20:58:51.770Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-14-contempt\\document-page-units.json",
+      "bytes": 22043,
+      "mtime": "2026-08-02T20:58:51.794Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-14-contempt\\matter-skeleton.json",
+      "bytes": 4619,
+      "mtime": "2026-08-02T20:58:51.790Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-14-contempt\\pdf-page-map.json",
+      "bytes": 2634,
+      "mtime": "2026-08-02T20:58:51.803Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-15-prison_offences\\bundle-fictional-test.pdf",
+      "bytes": 33511,
+      "mtime": "2026-08-02T20:58:51.904Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-15-prison_offences\\document-page-units.json",
+      "bytes": 21315,
+      "mtime": "2026-08-02T20:58:51.936Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-15-prison_offences\\matter-skeleton.json",
+      "bytes": 4673,
+      "mtime": "2026-08-02T20:58:51.934Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-15-prison_offences\\pdf-page-map.json",
+      "bytes": 2549,
+      "mtime": "2026-08-02T20:58:51.937Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-16-hearsay_res_gestae\\bundle-fictional-test.pdf",
+      "bytes": 31972,
+      "mtime": "2026-08-02T20:58:52.081Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-16-hearsay_res_gestae\\document-page-units.json",
+      "bytes": 20634,
+      "mtime": "2026-08-02T20:58:52.110Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-16-hearsay_res_gestae\\matter-skeleton.json",
+      "bytes": 4709,
+      "mtime": "2026-08-02T20:58:52.106Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-16-hearsay_res_gestae\\pdf-page-map.json",
+      "bytes": 2456,
+      "mtime": "2026-08-02T20:58:52.111Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-17-corporate_manslaughter\\bundle-fictional-test.pdf",
+      "bytes": 41105,
+      "mtime": "2026-08-02T20:58:52.245Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-17-corporate_manslaughter\\document-page-units.json",
+      "bytes": 26305,
+      "mtime": "2026-08-02T20:58:52.272Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-17-corporate_manslaughter\\matter-skeleton.json",
+      "bytes": 5389,
+      "mtime": "2026-08-02T20:58:52.270Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-17-corporate_manslaughter\\pdf-page-map.json",
+      "bytes": 3113,
+      "mtime": "2026-08-02T20:58:52.273Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-18-conspiracy_to_defraud\\bundle-fictional-test.pdf",
+      "bytes": 48168,
+      "mtime": "2026-08-02T20:58:52.470Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-18-conspiracy_to_defraud\\document-page-units.json",
+      "bytes": 31003,
+      "mtime": "2026-08-02T20:58:52.496Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-18-conspiracy_to_defraud\\matter-skeleton.json",
+      "bytes": 6153,
+      "mtime": "2026-08-02T20:58:52.494Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-18-conspiracy_to_defraud\\pdf-page-map.json",
+      "bytes": 3709,
+      "mtime": "2026-08-02T20:58:52.497Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-19-riot\\bundle-fictional-test.pdf",
+      "bytes": 40965,
+      "mtime": "2026-08-02T20:58:52.693Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-19-riot\\document-page-units.json",
+      "bytes": 26576,
+      "mtime": "2026-08-02T20:58:52.721Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-19-riot\\matter-skeleton.json",
+      "bytes": 5626,
+      "mtime": "2026-08-02T20:58:52.719Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-19-riot\\pdf-page-map.json",
+      "bytes": 3121,
+      "mtime": "2026-08-02T20:58:52.722Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-20-diplomatic_immunity\\bundle-fictional-test.pdf",
+      "bytes": 44672,
+      "mtime": "2026-08-02T20:58:52.907Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-20-diplomatic_immunity\\document-page-units.json",
+      "bytes": 28625,
+      "mtime": "2026-08-02T20:58:52.935Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-20-diplomatic_immunity\\matter-skeleton.json",
+      "bytes": 5736,
+      "mtime": "2026-08-02T20:58:52.932Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\sources\\div3000v21-20-diplomatic_immunity\\pdf-page-map.json",
+      "bytes": 3373,
+      "mtime": "2026-08-02T20:58:52.958Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\surfaces.jsonl",
+      "bytes": 156447,
+      "mtime": "2026-08-02T20:58:52.987Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-01-common_assault_battery.truth.json",
+      "bytes": 747,
+      "mtime": "2026-08-02T20:58:49.391Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-02-shoplifting_theft.truth.json",
+      "bytes": 511,
+      "mtime": "2026-08-02T20:58:49.725Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-03-going_equipped.truth.json",
+      "bytes": 428,
+      "mtime": "2026-08-02T20:58:49.879Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-04-twoc.truth.json",
+      "bytes": 417,
+      "mtime": "2026-08-02T20:58:50.063Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-05-bladed_articles.truth.json",
+      "bytes": 434,
+      "mtime": "2026-08-02T20:58:50.232Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-06-affray.truth.json",
+      "bytes": 645,
+      "mtime": "2026-08-02T20:58:50.458Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-07-sexual_assault.truth.json",
+      "bytes": 672,
+      "mtime": "2026-08-02T20:58:50.681Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-08-strangulation_suffocation.truth.json",
+      "bytes": 661,
+      "mtime": "2026-08-02T20:58:50.840Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-09-blackmail.truth.json",
+      "bytes": 639,
+      "mtime": "2026-08-02T20:58:50.956Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-10-drugs_conspiracy_supply.truth.json",
+      "bytes": 654,
+      "mtime": "2026-08-02T20:58:51.121Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-11-social_media_attribution.truth.json",
+      "bytes": 660,
+      "mtime": "2026-08-02T20:58:51.317Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-12-perverting_course_of_justice.truth.json",
+      "bytes": 658,
+      "mtime": "2026-08-02T20:58:51.462Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-13-witness_intimidation.truth.json",
+      "bytes": 656,
+      "mtime": "2026-08-02T20:58:51.612Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-14-contempt.truth.json",
+      "bytes": 639,
+      "mtime": "2026-08-02T20:58:51.804Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-15-prison_offences.truth.json",
+      "bytes": 645,
+      "mtime": "2026-08-02T20:58:51.938Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-16-hearsay_res_gestae.truth.json",
+      "bytes": 654,
+      "mtime": "2026-08-02T20:58:52.112Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-17-corporate_manslaughter.truth.json",
+      "bytes": 885,
+      "mtime": "2026-08-02T20:58:52.274Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-18-conspiracy_to_defraud.truth.json",
+      "bytes": 883,
+      "mtime": "2026-08-02T20:58:52.498Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-19-riot.truth.json",
+      "bytes": 872,
+      "mtime": "2026-08-02T20:58:52.724Z"
+    },
+    {
+      "path": "artifacts\\casebrain-qa\\integrity-programme\\diverse3000-v2.1-pilot-graphs\\truth-sealed\\div3000v21-20-diplomatic_immunity.truth.json",
+      "bytes": 890,
+      "mtime": "2026-08-02T20:58:52.959Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\audit-v1-semantic-diversity.ts",
+      "bytes": 14059,
+      "mtime": "2026-08-02T20:13:31.395Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\build-v2-packs.ts",
+      "bytes": 33664,
+      "mtime": "2026-08-02T20:17:25.182Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\build-v2.1-pilot-20.ts",
+      "bytes": 36992,
+      "mtime": "2026-08-02T20:58:19.896Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\correct-v2-integrity.ts",
+      "bytes": 19833,
+      "mtime": "2026-08-02T20:57:47.654Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\finalize-stop-artefacts.ts",
+      "bytes": 14464,
+      "mtime": "2026-08-02T19:15:23.637Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\finalize-v2-stop.ts",
+      "bytes": 17141,
+      "mtime": "2026-08-02T20:25:03.147Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\freeze-authority-register.ts",
+      "bytes": 10557,
+      "mtime": "2026-08-02T18:26:04.900Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\freeze-contract-and-catalogues.ts",
+      "bytes": 22734,
+      "mtime": "2026-08-02T18:23:12.050Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\freeze-v2-research-register.ts",
+      "bytes": 8075,
+      "mtime": "2026-08-02T20:16:12.170Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\generate-diverse-3000.ts",
+      "bytes": 31234,
+      "mtime": "2026-08-02T18:29:14.851Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\inventory-existing-coverage.ts",
+      "bytes": 10335,
+      "mtime": "2026-08-02T18:22:22.413Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\materialise-diverse-3000.ts",
+      "bytes": 12235,
+      "mtime": "2026-08-02T19:12:50.055Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\preserve-v1-historical.ts",
+      "bytes": 9480,
+      "mtime": "2026-08-02T20:12:58.744Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\reconcile-first3000-debt.ts",
+      "bytes": 15640,
+      "mtime": "2026-08-02T18:21:54.125Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\remediate-and-rerun.ts",
+      "bytes": 3435,
+      "mtime": "2026-08-02T18:27:41.712Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\run-maa-diverse-3000.ts",
+      "bytes": 14616,
+      "mtime": "2026-08-02T19:13:47.400Z"
+    },
+    {
+      "path": "scripts\\assurance\\stage3000-diverse-second\\v2-materialise-and-maa.ts",
+      "bytes": 22539,
+      "mtime": "2026-08-02T20:18:38.885Z"
+    }
+  ],
+  "exactOnDiskCount": 144
+}

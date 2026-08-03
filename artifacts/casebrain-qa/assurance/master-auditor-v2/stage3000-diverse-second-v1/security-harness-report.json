@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "diverse3000-security-harness-report@1.0.0",
+  "securityProbesInflateDenominator": false,
+  "harnessStatus": "scaffold_separate_lane",
+  "outcomesAllowed": [
+    "reject",
+    "quarantine",
+    "contain",
+    "isolate",
+    "not_exercised"
+  ],
+  "penetrationIsoSoc2Sso": "external_future_assurance"
+}

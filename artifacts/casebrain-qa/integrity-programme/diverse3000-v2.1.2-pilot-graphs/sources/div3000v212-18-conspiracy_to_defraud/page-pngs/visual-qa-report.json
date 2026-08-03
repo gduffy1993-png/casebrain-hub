@@ -1,0 +1,231 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/bundle-fictional-test.pdf",
+  "pageCount": 13,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-001.png",
+      "pngSha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1881,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.3,
+        "nonWhiteRatio": 0.1249,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-002.png",
+      "pngSha256": "d3b71dfbde430be9d6de2e701690936264adb8aff1213e581885de68ff4799af",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 2163,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.49,
+        "nonWhiteRatio": 0.1317,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-003.png",
+      "pngSha256": "be0bfcebdebc716fe12be2d01fca84121291ff5b680e11ff5896abe9bbabbd5a",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1682,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 244.5,
+        "nonWhiteRatio": 0.083,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-004.png",
+      "pngSha256": "5fe3b59d35ba9648c0d469e0b2529374a753e8bdc724315bee56238d85bd5393",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1324,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 245.44,
+        "nonWhiteRatio": 0.0769,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-005.png",
+      "pngSha256": "4da167cb6f2fd4537aba34e784b34b1ca7e467b0e7ef3b3127f0c902fd7ac1ad",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 887,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.5,
+        "nonWhiteRatio": 0.0577,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-006.png",
+      "pngSha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 588,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.29,
+        "nonWhiteRatio": 0.0498,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-007.png",
+      "pngSha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 421,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.64,
+        "nonWhiteRatio": 0.0479,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-008.png",
+      "pngSha256": "18997fec264c784775a70a34290d4307f4ed407a6dae7fa7891dfffc8b99f208",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 821,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.73,
+        "nonWhiteRatio": 0.0544,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-009.png",
+      "pngSha256": "c910cff27e7be1bfe0887cae1a3805c205144daed848295f803c7f7898eae1da",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 561,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.21,
+        "nonWhiteRatio": 0.0503,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 10,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-010.png",
+      "pngSha256": "9fd1a95c9776a43f8b586ab0d4f9cd6f17c3cf4e84af04d95b5bd83968a58634",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 654,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.03,
+        "nonWhiteRatio": 0.052,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 11,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-011.png",
+      "pngSha256": "589e38dfcc769fb3fa9d7a25a4c84429e786b3434412ac6dbc322a2c77fdfa32",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 512,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.37,
+        "nonWhiteRatio": 0.049,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 12,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-012.png",
+      "pngSha256": "87b7c027a722f3a7929d9c8c66a43c75efc1d48c0e1ea873f8678766bf20cb4b",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1305,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 241.74,
+        "nonWhiteRatio": 0.0909,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    },
+    {
+      "pdfPageNumber": 13,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-013.png",
+      "pngSha256": "9670ce2f41df4d42cc2f2392fd7adf2085e62d8832b098060a87fe8c33a109ec",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1094,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 242.33,
+        "nonWhiteRatio": 0.087,
+        "edgeContentRatio": 0.21,
+        "marginTight": true
+      },
+      "visualDisposition": "pass_with_notes:margin_content_near_edge_note",
+      "footerIdentityPresent": false
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "cb1e73ce00cf97133472dfc73aa99106a65474fa3aadae8167e824c409046cc2",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

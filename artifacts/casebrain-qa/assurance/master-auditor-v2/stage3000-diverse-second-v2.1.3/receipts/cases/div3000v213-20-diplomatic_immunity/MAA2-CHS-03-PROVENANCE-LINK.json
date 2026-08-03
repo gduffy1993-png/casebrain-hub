@@ -1,0 +1,58 @@
+{
+  "caseId": "div3000v213-20-diplomatic_immunity",
+  "controlId": "MAA2-CHS-03-PROVENANCE-LINK",
+  "handlerModule": "scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts",
+  "handlerFunction": "exerciseChs03",
+  "handlerId": "chase_provenance_structured",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "structured_named_evaluator_v2.1.2",
+  "exerciseStatus": "evaluated",
+  "applicable": true,
+  "applicableUnitCount": 5,
+  "missingPrerequisiteReason": null,
+  "inputFieldRefs": [
+    "/chaseProvenanceLinks/0",
+    "/chaseProvenanceLinks/1",
+    "/chaseProvenanceLinks/2",
+    "/chaseProvenanceLinks/3",
+    "/chaseProvenanceLinks/4"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "28a25f3c3ae422317e59aa9adc66ecf9005203e8f62515909c73168afa1e1e79",
+    "findingsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/evidenceStates/8/sourcePage",
+    "/evidenceStates/9/sourcePage",
+    "/evidenceStates/10/sourcePage",
+    "/evidenceStates/11/sourcePage",
+    "/evidenceStates/12/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [],
+  "findings": [],
+  "contracts": {
+    "positive": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-CHS-03-PROVENANCE-LINK-positive",
+    "negative": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-CHS-03-PROVENANCE-LINK-negative",
+    "unavailable": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-CHS-03-PROVENANCE-LINK-unavailable",
+    "mutation": "scripts/assurance/stage3000-diverse-second/v2.1.2-focused-contracts.test.ts#MAA2-CHS-03-PROVENANCE-LINK-mutation"
+  },
+  "receiptNote": "CHS-03 evaluated on provenance links/chase rows=5; findings=0."
+}

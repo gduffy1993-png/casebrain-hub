@@ -1,0 +1,14 @@
+{
+  "leafCount": 1591,
+  "leafClassCounts": {
+    "universal_safety": 338,
+    "not_exercised": 96,
+    "substantive_source_backed": 472,
+    "substantive_explicitly_unresolved": 280,
+    "fail_closed_unresolved_reference": 405
+  },
+  "failClosedCount": 405,
+  "sourceBackedCount": 472,
+  "sourceBackedMissingExactRef": 0,
+  "wrongDocumentBindings": 0
+}

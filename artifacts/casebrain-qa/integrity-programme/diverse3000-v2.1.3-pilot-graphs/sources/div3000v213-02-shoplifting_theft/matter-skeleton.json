@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "diverse3000-v2-matter@1.0.0",
+  "v1CaseId": "div3000-0267-shoplifting_theft",
+  "caseId": "div3000v213-02-shoplifting_theft",
+  "orderIndex": 266,
+  "primaryFamily": "shoplifting_theft",
+  "tier": "routine_volume",
+  "fictionalBanner": "FICTIONAL TEST MATERIAL",
+  "charge": {
+    "wording": "Theft from a shop, contrary to section 1(1) and 7(1) of the Theft Act 1968",
+    "provision": "Theft Act 1968 s.1",
+    "wordingStatus": "pinned_from_corpus_inventory_only",
+    "structuralNote": null
+  },
+  "defencePosition": "alibi",
+  "proceduralLifecycle": "trial_prep",
+  "defendantCount": 1,
+  "countAllocation": 3,
+  "evidenceStateGraph": [
+    {
+      "item": "indictment_operative",
+      "kind": "indictment",
+      "state": "operative",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "MG05",
+      "kind": "mg05",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "MG06",
+      "kind": "mg06",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "defence_proof_extract",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "extra_context_5",
+      "kind": "context_schedule",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    }
+  ],
+  "documentRelationshipGraph": {
+    "nodes": [
+      {
+        "id": "indictment_operative",
+        "kind": "indictment",
+        "state": "operative"
+      },
+      {
+        "id": "MG05",
+        "kind": "mg05",
+        "state": "served"
+      },
+      {
+        "id": "MG06",
+        "kind": "mg06",
+        "state": "served"
+      },
+      {
+        "id": "defence_proof_extract",
+        "kind": "defence_proof",
+        "state": "privileged"
+      },
+      {
+        "id": "extra_context_5",
+        "kind": "context_schedule",
+        "state": "served"
+      }
+    ],
+    "edges": [
+      {
+        "from": "MG06",
+        "to": "MG05",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG06",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "defence_proof_extract",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "extra_context_5",
+        "relation": "indexes"
+      }
+    ]
+  },
+  "missingMaterialGraph": [],
+  "contradictionTrapGraph": [
+    {
+      "description": "shoplifting_theft trap with alibi at trial_prep",
+      "secondary": "attribution_or_media_partial"
+    }
+  ],
+  "chronology": [
+    {
+      "event": "alleged_incident_window",
+      "detail": "fictional incident window for shoplifting_theft"
+    },
+    {
+      "event": "first_account",
+      "detail": "first account recorded"
+    },
+    {
+      "event": "charge_or_process",
+      "detail": "Theft Act 1968 s.1"
+    },
+    {
+      "event": "hearing_marker",
+      "detail": "Bristol Crown Court <DATE>"
+    }
+  ],
+  "sourceCompleteness": "complete_source_packet",
+  "documentCount": 5,
+  "v2CaseId": "div3000v2-0267-shoplifting_theft",
+  "v212CaseId": "div3000v212-02-shoplifting_theft",
+  "v211CaseId": "div3000v211-02-shoplifting_theft",
+  "v21CaseId": "div3000v21-02-shoplifting_theft",
+  "pilotOrderIndex": 1
+}

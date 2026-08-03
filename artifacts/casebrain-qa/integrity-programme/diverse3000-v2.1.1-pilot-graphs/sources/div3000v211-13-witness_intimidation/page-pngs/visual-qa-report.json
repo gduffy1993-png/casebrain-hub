@@ -1,0 +1,163 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/bundle-fictional-test.pdf",
+  "pageCount": 9,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-001.png",
+      "pngSha256": "6f8aab91306b74488b000210c2bc56b11aec8ff752d99159ae8e11e6f2846e0d",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1487,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.35,
+        "nonWhiteRatio": 0.0474,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-002.png",
+      "pngSha256": "6f344aa5c96670f2868721793b2b4a34f31d38cc58186379b96df6608f52b95a",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1216,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.26,
+        "nonWhiteRatio": 0.0408,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-003.png",
+      "pngSha256": "b1356eca2e74c0fe3ca725775631be9bbf234b2de000d8ece25abe83e7359c47",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1638,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.64,
+        "nonWhiteRatio": 0.0527,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-004.png",
+      "pngSha256": "00acf5063a8c75e7c79f11a10b1814d71b7bcdb2dc206ae0534a97c6eb26cabe",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1289,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.0,
+        "nonWhiteRatio": 0.0429,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-005.png",
+      "pngSha256": "274bae608c5f6a60981761deb3809e483cf60467c7bc502dc0ec831021a8c1c2",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1518,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.13,
+        "nonWhiteRatio": 0.0487,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-006.png",
+      "pngSha256": "e39c804e3307779f2d8b47e078d6e46216f17d8f1566f915176362edf813aca0",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1356,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.77,
+        "nonWhiteRatio": 0.0444,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-007.png",
+      "pngSha256": "9f0ee8f240181201894a8e54084048022d6c5ea2357dc3829354dfc475e8b9ea",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1313,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.84,
+        "nonWhiteRatio": 0.0438,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-008.png",
+      "pngSha256": "776de4a5ba0ae1dd46c391e494e194de68d149f7fea0e28d250b74b612eddda1",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1469,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.4,
+        "nonWhiteRatio": 0.0473,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 9,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-009.png",
+      "pngSha256": "c103f72913f4a39da4b086d1b2cbae92c67f241f75053c54f31f88927712712c",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1400,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.66,
+        "nonWhiteRatio": 0.0455,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "5b3e1ab1d98fd2aeffe7c75ef3117356a079204b21a9ec9a6479cd29df8805f8",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

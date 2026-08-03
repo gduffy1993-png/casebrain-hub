@@ -1,0 +1,32 @@
+{
+  "roots": [
+    {
+      "sharedRootId": "src10_adapter_pageidentity_in_sourcePage",
+      "owningLayer": "v2.1.2-structured-maa-output evidenceStates serializer",
+      "defect": "sourcePage carried full pageIdentity path; compiledPage used within-doc index instead of compiled PDF page number",
+      "remediation": "Emit numeric sourcePage + sourcePageIdentity; compiledPage = sequential compiled PDF page number",
+      "caseSpecific": false
+    },
+    {
+      "sharedRootId": "completeness_structural_empty_overreach",
+      "owningLayer": "v2.1.2-named-control-runner exerciseCompleteness",
+      "defect": "included_structural_empty / optional null arrays treated as completeness defects",
+      "remediation": "Only empty included_solicitor_visible leaves count; exclude fingerprint/optional structural paths",
+      "caseSpecific": false
+    },
+    {
+      "sharedRootId": "deliberate_absent_attachment_control",
+      "owningLayer": "Batch-9 BND-05",
+      "defect": null,
+      "remediation": "No code change — expected_control_hit",
+      "caseSpecific": false
+    },
+    {
+      "sharedRootId": "atr02_unclear_ownership_expected",
+      "owningLayer": "exerciseAtr02",
+      "defect": null,
+      "remediation": "No code change — expected_control_hit",
+      "caseSpecific": false
+    }
+  ]
+}

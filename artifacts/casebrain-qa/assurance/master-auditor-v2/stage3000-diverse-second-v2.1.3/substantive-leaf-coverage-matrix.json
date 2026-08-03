@@ -1,0 +1,3617 @@
+{
+  "schemaVersion": "diverse3000-v2.1.3-substantive-leaf-coverage@1.0.0",
+  "classifications": [
+    "substantive_source_backed",
+    "substantive_explicitly_unresolved",
+    "universal_safety",
+    "label_or_heading",
+    "machine_metadata",
+    "not_exercised"
+  ],
+  "applicableSurfaceCount": 200,
+  "passCount": 200,
+  "substantiveCoveragePct": 100,
+  "pass": true,
+  "rows": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 14,
+      "classes": {
+        "substantive_source_backed": 5,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 4,
+        "machine_metadata": 0,
+        "not_exercised": 5
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 12,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 3,
+        "machine_metadata": 0,
+        "not_exercised": 5
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 13,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 3,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 13,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 3,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 17,
+      "classes": {
+        "substantive_source_backed": 7,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 6,
+        "machine_metadata": 0,
+        "not_exercised": 4
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 14,
+      "classes": {
+        "substantive_source_backed": 5,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 4,
+        "machine_metadata": 0,
+        "not_exercised": 5
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 14,
+      "classes": {
+        "substantive_source_backed": 5,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 4,
+        "machine_metadata": 0,
+        "not_exercised": 5
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 15,
+      "classes": {
+        "substantive_source_backed": 5,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 4,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 15,
+      "classes": {
+        "substantive_source_backed": 5,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 4,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 19,
+      "classes": {
+        "substantive_source_backed": 8,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 7,
+        "machine_metadata": 0,
+        "not_exercised": 4
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 20,
+      "classes": {
+        "substantive_source_backed": 8,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 7,
+        "machine_metadata": 0,
+        "not_exercised": 5
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 15,
+      "classes": {
+        "substantive_source_backed": 5,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 4,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 15,
+      "classes": {
+        "substantive_source_backed": 5,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 4,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 15,
+      "classes": {
+        "substantive_source_backed": 5,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 4,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 15,
+      "classes": {
+        "substantive_source_backed": 5,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 4,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 15,
+      "classes": {
+        "substantive_source_backed": 5,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 4,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 18,
+      "classes": {
+        "substantive_source_backed": 7,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 6,
+        "machine_metadata": 0,
+        "not_exercised": 5
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 24,
+      "classes": {
+        "substantive_source_backed": 10,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 9,
+        "machine_metadata": 0,
+        "not_exercised": 5
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 19,
+      "classes": {
+        "substantive_source_backed": 7,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 6,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "charges",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "key_facts",
+      "applicable": true,
+      "leafCount": 2,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "five_answers",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "war_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 3,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "control_room",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 4,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "chase",
+      "applicable": true,
+      "leafCount": 19,
+      "classes": {
+        "substantive_source_backed": 7,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 6,
+        "machine_metadata": 0,
+        "not_exercised": 6
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "copy",
+      "applicable": true,
+      "leafCount": 5,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 4,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "export",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 1,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "api",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "pdf",
+      "applicable": false,
+      "leafCount": 0,
+      "classes": {
+        "substantive_source_backed": 0,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 0,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 0
+      },
+      "status": "not_exercised"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "composed_prose",
+      "applicable": true,
+      "leafCount": 4,
+      "classes": {
+        "substantive_source_backed": 2,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "surface": "court",
+      "applicable": true,
+      "leafCount": 3,
+      "classes": {
+        "substantive_source_backed": 1,
+        "substantive_explicitly_unresolved": 0,
+        "universal_safety": 1,
+        "label_or_heading": 0,
+        "machine_metadata": 0,
+        "not_exercised": 1
+      },
+      "status": "pass"
+    }
+  ]
+}

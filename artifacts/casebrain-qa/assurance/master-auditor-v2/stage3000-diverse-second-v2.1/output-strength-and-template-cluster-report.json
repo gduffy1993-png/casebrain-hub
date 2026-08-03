@@ -1,0 +1,49 @@
+{
+  "population": 20,
+  "clusters": [
+    {
+      "surfaceId": "court_line",
+      "uniqueTemplates": 20,
+      "largestCluster": 1
+    },
+    {
+      "surfaceId": "client_summary",
+      "uniqueTemplates": 20,
+      "largestCluster": 1
+    },
+    {
+      "surfaceId": "disclosure_chase",
+      "uniqueTemplates": 7,
+      "largestCluster": 11
+    },
+    {
+      "surfaceId": "export_preview",
+      "uniqueTemplates": 9,
+      "largestCluster": 6
+    },
+    {
+      "surfaceId": "evidence_state_map",
+      "uniqueTemplates": 19,
+      "largestCluster": 2
+    },
+    {
+      "surfaceId": "do_not_overstate",
+      "uniqueTemplates": 11,
+      "largestCluster": 5
+    },
+    {
+      "surfaceId": "api_interface_preview",
+      "uniqueTemplates": 20,
+      "largestCluster": 1
+    }
+  ],
+  "comparedToV2Bulk": {
+    "do_not_overstate_was": 3000,
+    "do_not_overstate_now": 5,
+    "disclosure_chase_was": 1825,
+    "disclosure_chase_now": 11,
+    "api_interface_preview_was": 2249,
+    "api_interface_preview_now": 1
+  },
+  "note": "Universal warning lines may still repeat; case-specific clauses must differ with missing/superseded/charge/procedure facts."
+}

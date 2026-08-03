@@ -1,0 +1,68 @@
+{
+  "caseId": "div3000v21-02-shoplifting_theft",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1-pilot-graphs/sources/div3000v21-02-shoplifting_theft/bundle-fictional-test.pdf",
+  "sha256": "6d0c5b0c8e922d1e992d07447e060e3fdf8b792a80e373b0a8f14a93d7064f65",
+  "pageCount": 12,
+  "pageMap": [
+    {
+      "pageIdentity": "indictment_operative/page/1",
+      "pdfPageNumber": 1,
+      "docId": "indictment_operative"
+    },
+    {
+      "pageIdentity": "indictment_operative/page/2",
+      "pdfPageNumber": 2,
+      "docId": "indictment_operative"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 3,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 4,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/3",
+      "pdfPageNumber": 5,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 6,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "MG06/page/2",
+      "pdfPageNumber": 7,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 8,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/2",
+      "pdfPageNumber": 9,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/3",
+      "pdfPageNumber": 10,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "extra_context_5/page/1",
+      "pdfPageNumber": 11,
+      "docId": "extra_context_5"
+    },
+    {
+      "pageIdentity": "extra_context_5/page/2",
+      "pdfPageNumber": 12,
+      "docId": "extra_context_5"
+    }
+  ]
+}

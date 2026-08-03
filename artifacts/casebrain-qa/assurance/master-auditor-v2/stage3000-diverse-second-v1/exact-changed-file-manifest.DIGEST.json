@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "diverse3000-exact-changed-file-manifest-digest@1.0.0",
+  "generatedAt": "2026-08-02T19:15:32.331Z",
+  "manifestPath": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v1/exact-changed-file-manifest.json",
+  "manifestSha256": "fbc08f55b05577b780746647262bc9429998b32fdda31ac8e8f74063c04bf262",
+  "manifestByteLength": 10978,
+  "fileCount": 30,
+  "intendedCommitCount": 26,
+  "excludedCount": 4
+}

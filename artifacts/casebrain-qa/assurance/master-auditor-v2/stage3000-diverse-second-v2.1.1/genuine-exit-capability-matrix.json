@@ -1,0 +1,600 @@
+{
+  "productionBridge": "buildLiveProductionSurfacesFromDocumentUnits",
+  "authenticatedBrowser": "not_exercised",
+  "rows": [
+    {
+      "caseId": "div3000v211-01-common_assault_battery",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-02-shoplifting_theft",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-03-going_equipped",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-04-twoc",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-05-bladed_articles",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-06-affray",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-07-sexual_assault",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-08-strangulation_suffocation",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-09-blackmail",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-10-drugs_conspiracy_supply",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-11-social_media_attribution",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-12-perverting_course_of_justice",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-13-witness_intimidation",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-14-contempt",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-15-prison_offences",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-16-hearsay_res_gestae",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-17-corporate_manslaughter",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-18-conspiracy_to_defraud",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-19-riot",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "caseId": "div3000v211-20-diplomatic_immunity",
+      "exits": {
+        "view_five_answers": "genuine_production_builder",
+        "copy": "genuine_production_builder",
+        "export": "genuine_production_builder",
+        "api": "genuine_production_builder",
+        "pdf": "genuine_production_builder",
+        "composed_prose": "genuine_production_builder",
+        "charges": "genuine_production_builder",
+        "key_facts": "genuine_production_builder",
+        "war_room": "genuine_production_builder",
+        "disclosure_chase": "genuine_production_builder",
+        "control_room": "genuine_production_builder",
+        "authenticated_browser": "not_exercised"
+      }
+    }
+  ],
+  "productionResults": [
+    {
+      "caseId": "div3000v211-01-common_assault_battery",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 0,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-02-shoplifting_theft",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "No deliberate",
+        "MG6 may refer"
+      ],
+      "chargeCount": 1,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-03-going_equipped",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "No deliberate",
+        "MG6 may refer"
+      ],
+      "chargeCount": 0,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-04-twoc",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "No deliberate",
+        "MG6 may refer"
+      ],
+      "chargeCount": 1,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-05-bladed_articles",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "No deliberate",
+        "MG6 may refer",
+        "transcript marker",
+        "Interview recording",
+        "Interview transcript"
+      ],
+      "chargeCount": 0,
+      "findingCount": 2,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-06-affray",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 1,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-07-sexual_assault",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 1,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-08-strangulation_suffocation",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 1,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-09-blackmail",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 1,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-10-drugs_conspiracy_supply",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer",
+        "transcript marker",
+        "Interview recording",
+        "Interview transcript"
+      ],
+      "chargeCount": 1,
+      "findingCount": 2,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-11-social_media_attribution",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer",
+        "Absent masters referred via MG6"
+      ],
+      "chargeCount": 1,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-12-perverting_course_of_justice",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 0,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-13-witness_intimidation",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 0,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-14-contempt",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 0,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-15-prison_offences",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 0,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-16-hearsay_res_gestae",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 0,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-17-corporate_manslaughter",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 0,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-18-conspiracy_to_defraud",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer",
+        "Absent masters referred via MG6"
+      ],
+      "chargeCount": 1,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-19-riot",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 0,
+      "findingCount": 1,
+      "crossExitOk": true
+    },
+    {
+      "caseId": "div3000v211-20-diplomatic_immunity",
+      "ok": true,
+      "productionClass": "genuine_production_builder",
+      "builder": "buildLiveProductionSurfacesFromDocumentUnits",
+      "chaseLabels": [
+        "MG6 may refer"
+      ],
+      "chargeCount": 1,
+      "findingCount": 1,
+      "crossExitOk": true
+    }
+  ]
+}

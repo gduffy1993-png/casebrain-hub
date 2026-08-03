@@ -1,0 +1,271 @@
+{
+  "caseId": "div3000v212-05-bladed_articles",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "purpose": "charge_instrument_particulars",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Written charge / requisition (fictional test)\nMatter family (fictional): bladed articles\n## Written charge / requisition\n## Statement of offence\n## Particulars\nCourt / venue (modelled): Magistrates' Court (modelled)\nDefendant count modelled: 1\nSTATEMENT OF OFFENCE\nCharge wording not pinned — structural only.\nContrary to the modelled statutory provision for this family.\nCharge wording status: structural_only\nPARTICULARS OF OFFENCE\nIt is alleged that within the charged window the defendant(s) committed the offence set out above.\nPlace and date particularised by reference to the served MG5 narrative and witness papers.\nProcedural stage: police investigation.\nDefence position on instructions: section 45 indicator.\nThis instrument is modelled as the charging document for fictional-test purposes only.\nDo not treat this summary as proof of the allegation.\nService: modelled with initial disclosure; return date to be fixed by listing office.\nCertificate of service and administrative endorsement appear on the rendered form.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "b5491a928244bb31fe72e013eb0dd6d88a1c158738e3d5dc22d42602b080d2dc",
+          "headings": [
+            "Written charge / requisition",
+            "Statement of offence",
+            "Particulars"
+          ],
+          "layoutKind": "written_charge"
+        }
+      ],
+      "contentHash": "b5491a928244bb31fe72e013eb0dd6d88a1c158738e3d5dc22d42602b080d2dc",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "written_charge"
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): bladed articles\n## MG5 — Case summary\n## Offence summary\n## Key evidence narrative\nDefendant / matter family: bladed articles\nDefence on instructions: section 45 indicator\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\n\nNARRATIVE\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: bladed articles.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_signed, mg11_draft, cctv_master_referred.\n\nWitness outline: complainant account recorded as allegation only — not proved.\nReliability: MG5 narrative must not be read as establishing guilt.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "e118bebe8c9d69057a34bd929086c5ef0882413fbaea10d37c145e0678568837",
+          "headings": [
+            "MG5 — Case summary",
+            "Offence summary",
+            "Key evidence narrative"
+          ],
+          "layoutKind": "mg05"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): bladed articles\n## Evidence outline\n## Limitations\n## Next action\nEvidence listed is limited to items served or partially served in the pack.\nNo deliberate missing-item markers declared on the completeness contract.\nNext action: reconcile MG5 against MG6 index before any court-facing send.\nDo not quote referred-absent masters as if content were available.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "1f446459557868388fdded156d6b0fd4868598d2af1e75d82e1332b367c31afe",
+          "headings": [
+            "Evidence outline",
+            "Limitations",
+            "Next action"
+          ],
+          "layoutKind": "mg05"
+        }
+      ],
+      "contentHash": "ca13d51f344e15e135e86598aeeb06255d5827e656259d65046d8eeb5cc39b5f",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg05"
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG6 File front sheet / index (fictional test)\nMatter family (fictional): bladed articles\n## MG6 — File front sheet / index\n## Inventory\nSeq | Document | Kind | Status\n--- | -------- | ---- | ------\n1 | Written charge / indictment | instrument | see pack\n2 | MG5 case summary | mg05 | served\n3 | Disclosure / unused | schedule | see schedules\n4 | (no referred-absent masters declared) | — | —\n\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nChase binding: request nil by identity against this MG6 page.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "cdb67bacffc38b3e4a73f5afc7295169991726f861ea07a72507dd38c6a55067",
+          "headings": [
+            "MG6 — File front sheet / index",
+            "Inventory"
+          ],
+          "layoutKind": "mg06"
+        }
+      ],
+      "contentHash": "cdb67bacffc38b3e4a73f5afc7295169991726f861ea07a72507dd38c6a55067",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg06"
+    },
+    {
+      "docId": "MG12_exhibits",
+      "title": "MG12 exhibit list (fictional test)",
+      "kind": "mg12",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG12_exhibits/page/1",
+          "purpose": "exhibit_list_mg12",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG12 exhibit list (fictional test)\nMatter family (fictional): bladed articles\n## Exhibit list (MG12-style)\n## Inventory\nEx# | Description | Recovered by | Location | Continuity\n--- | ----------- | ------------ | -------- | ----------\nEX1 | Sealed bag / device | PC Fictional | Store A | CR-01\nEX2 | Clothing item | CSI Fictional | Store B | CR-02\nEX3 | Phone handset | Digital unit | Faraday | see phone schedule\nContinuity must be checked against continuity record.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "4e0bcaf27e9dff8a49c3eeaf27f79e7ee4dc3a69db865bb1990abe4d17d80d9f",
+          "headings": [
+            "Exhibit list (MG12-style)",
+            "Inventory"
+          ],
+          "layoutKind": "exhibit_schedule"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG12_exhibits/page/2",
+          "purpose": "exhibit_list_further_items",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG12 exhibit list (fictional test)\nMatter family (fictional): bladed articles\n## Further exhibits\nEx# | Description | Note\n--- | ----------- | ----\nEX4 | Swab set | SFR linked\nEX5 | Document bundle | copies served\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "7246b41b3b222b07236a1e3f815366c5cbb03e9592c8a93487c44058959e5833",
+          "headings": [
+            "Further exhibits"
+          ],
+          "layoutKind": "exhibit_schedule"
+        }
+      ],
+      "contentHash": "cb3c32c078532d91f5c342834e50fb7f7deda8468e93aeb161c152d80c0f0d4d",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "exhibit_schedule"
+    },
+    {
+      "docId": "MG15_interview",
+      "title": "MG15 interview record (fictional test)",
+      "kind": "mg15",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG15_interview/page/1",
+          "purpose": "interview_opening_caution",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG15 interview record (fictional test)\nMatter family (fictional): bladed articles\n## Interview record (MG15-style)\n## Identifiers\n## Caution\nInterview URN: FT-INT-MG15INTE\nMatter family: bladed articles\nTape / digital media ref: FT-INT-01 (fictional)\nPersons present: interviewing officer; suspect; solicitor (modelled).\nCaution administered (fictional wording mark only).\nDefence position context: section 45 indicator.\nState: served.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "b106b02c230005c7e63f14633aeed9945086b900e9b80da8d76b3d85223763e1",
+          "headings": [
+            "Interview record (MG15-style)",
+            "Identifiers",
+            "Caution"
+          ],
+          "layoutKind": "interview_record"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG15_interview/page/2",
+          "purpose": "interview_qa_summary",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG15 interview record (fictional test)\nMatter family (fictional): bladed articles\n## Interview summary / Q&A extract\nQ: Account of movements on the material date?\nA: Position on instructions — section 45 indicator.\nQ: Comment on the allegation instrument?\nA: Allegation not admitted as proved; account limited to disclosed papers.\nFICTIONAL TEST MATERIAL\nInterview. Defence section_45_indicator. Incomplete transcript marker: no.\nTranscript status: modelled complete for fictional test.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "22ed7809a5686c5e090197baecbe448c7d33b84a65f99e733d0cc88451ac38e6",
+          "headings": [
+            "Interview summary / Q&A extract"
+          ],
+          "layoutKind": "interview_record"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG15_interview/page/3",
+          "purpose": "interview_exhibits_produced",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG15 interview record (fictional test)\nMatter family (fictional): bladed articles\n## Exhibits produced in interview\nExhibit | Shown | Response noted\n------- | ----- | --------------\nEX1 still | yes | no comment / denial per instructions\nClip schedule ref | yes | continuity to be checked\nEnd of interview / times recorded (fictional).\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "53c3e457ad968e890681cd2720dc6fa7e873d374d5dafafd2638de79ce21cdb8",
+          "headings": [
+            "Exhibits produced in interview"
+          ],
+          "layoutKind": "interview_record"
+        }
+      ],
+      "contentHash": "e37bf8895d3b684273e51ea931b6d8f3f11ebd870c2aae0f17f6c6243b53f233",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "interview_record"
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): bladed articles\n## Defence proof of evidence extract\n## PRIVILEGED\nPRIVILEGED — defence working extract. Not for ordinary copy/export/API send.\nPosition on instructions: section 45 indicator\nIssues to explore: attribution, continuity, missing masters, charge particularity.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "4430c079649eaf43475f7d7d21f2f6a3a02fcc1561d86b8e8053fe2fadbc9a82",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ],
+          "layoutKind": "defence_proof"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "purpose": "defence_issues_and_requests",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): bladed articles\n## Issues list\n## Requests\nMissing/referred chase candidates: nil declared.\nProof extract remains privilege-separated in this fictional pack.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "2593be7a0590f192f9eaf9c2b99a03871c441b36802846cc5c5a3b66a4a4deb7",
+          "headings": [
+            "Issues list",
+            "Requests"
+          ],
+          "layoutKind": "defence_proof"
+        }
+      ],
+      "contentHash": "dcbfaa0726ffaa06d6e96d6b02341f20d2e4bd705e4cc965c3f44dec2fe4f957",
+      "realPaginatedFile": true,
+      "privilegeSeparated": true,
+      "publicTemplateRef": "defence_proof"
+    },
+    {
+      "docId": "defence_statement_draft",
+      "title": "Defence statement draft (fictional test)",
+      "kind": "defence_statement",
+      "state": "draft",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_statement_draft/page/1",
+          "purpose": "witness_statement_opening",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence statement draft (fictional test)\nMatter family (fictional): bladed articles\n## MG11 — Witness statement\n## Declaration\n## Statement\nCriminal Procedure Rules / MG11 declaration (fictional test form):\nThis statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true.\n\nURN / page: defence_statement_draft/page/1\nMatter family: bladed articles\n1. I am the maker of this fictional-test statement.\n2. I give this account concerning the bladed articles allegation under review.\n3. FICTIONAL TEST MATERIAL — draft defence statement structure.\n4. Defence position context recorded elsewhere: section 45 indicator.\nSignature block: ______________________  Date: [fictional]\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "84398f531e10525076cc7920b9f63ed6f4e3e8c74c1d6e1bc24807c622be05d7",
+          "headings": [
+            "MG11 — Witness statement",
+            "Declaration",
+            "Statement"
+          ],
+          "layoutKind": "mg11_statement"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_statement_draft/page/2",
+          "purpose": "witness_statement_continuation_paras_4",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence statement draft (fictional test)\nMatter family (fictional): bladed articles\n## MG11 — Continuation sheet\n## Continuation of defence_statement_draft\nContinues statement defence_statement_draft from page 1 — not a free-standing document.\nURN carry-forward: defence_statement_draft\n4. Further detail of first contact with police (fictional timeline).\n5. Description of location and persons present limited to disclosed papers.\n6. I confirm I have read this continuation and it forms part of my statement.\nNo generic filler: each paragraph advances the account.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "9df48c5dabe3fffab65733d36e19a86ee9622fd47397af28ddd3f0c75186bbaa",
+          "headings": [
+            "MG11 — Continuation sheet",
+            "Continuation of defence_statement_draft"
+          ],
+          "layoutKind": "mg11_continuation"
+        }
+      ],
+      "contentHash": "b5746cb2c80c3e209297e61d2f96e0cbc4fc246cc7951e29dcca4502f87533c7",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg11_statement"
+    },
+    {
+      "docId": "extra_context_2",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_2/page/1",
+          "purpose": "document_specific_body",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Additional context schedule (fictional test)\nMatter family (fictional): bladed articles\n## Additional context schedule (fictional test)\n## Particulars\nKind: context_schedule\nLifecycle state: served\nFamily: bladed articles\nStage: police investigation\nFICTIONAL TEST MATERIAL — additional coherent schedule for bladed_articles emphasising section_45_indicator and written_charge.\nStatus: served.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "d78bc3373f507c39c59d591dc9650c91c796f85d18314df6d0a0f0a7df7eb663",
+          "headings": [
+            "Additional context schedule (fictional test)",
+            "Particulars"
+          ],
+          "layoutKind": "generic_specialist"
+        }
+      ],
+      "contentHash": "d78bc3373f507c39c59d591dc9650c91c796f85d18314df6d0a0f0a7df7eb663",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "generic_specialist"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "lineage": [
+    {
+      "v2CaseId": "div3000v2-0001-common_assault_battery",
+      "v21CaseId": "div3000v21-01-common_assault_battery",
+      "primaryFamily": "common_assault_battery",
+      "tier": "routine_volume",
+      "pilotOrderIndex": 0
+    },
+    {
+      "v2CaseId": "div3000v2-0267-shoplifting_theft",
+      "v21CaseId": "div3000v21-02-shoplifting_theft",
+      "primaryFamily": "shoplifting_theft",
+      "tier": "routine_volume",
+      "pilotOrderIndex": 1
+    },
+    {
+      "v2CaseId": "div3000v2-0533-going_equipped",
+      "v21CaseId": "div3000v21-03-going_equipped",
+      "primaryFamily": "going_equipped",
+      "tier": "routine_volume",
+      "pilotOrderIndex": 2
+    },
+    {
+      "v2CaseId": "div3000v2-0799-twoc",
+      "v21CaseId": "div3000v21-04-twoc",
+      "primaryFamily": "twoc",
+      "tier": "routine_volume",
+      "pilotOrderIndex": 3
+    },
+    {
+      "v2CaseId": "div3000v2-1065-bladed_articles",
+      "v21CaseId": "div3000v21-05-bladed_articles",
+      "primaryFamily": "bladed_articles",
+      "tier": "routine_volume",
+      "pilotOrderIndex": 4
+    },
+    {
+      "v2CaseId": "div3000v2-1331-affray",
+      "v21CaseId": "div3000v21-06-affray",
+      "primaryFamily": "affray",
+      "tier": "routine_volume",
+      "pilotOrderIndex": 5
+    },
+    {
+      "v2CaseId": "div3000v2-2374-sexual_assault",
+      "v21CaseId": "div3000v21-07-sexual_assault",
+      "primaryFamily": "sexual_assault",
+      "tier": "serious_complex_crown",
+      "pilotOrderIndex": 6
+    },
+    {
+      "v2CaseId": "div3000v2-1761-strangulation_suffocation",
+      "v21CaseId": "div3000v21-08-strangulation_suffocation",
+      "primaryFamily": "strangulation_suffocation",
+      "tier": "serious_complex_crown",
+      "pilotOrderIndex": 7
+    },
+    {
+      "v2CaseId": "div3000v2-1921-blackmail",
+      "v21CaseId": "div3000v21-09-blackmail",
+      "primaryFamily": "blackmail",
+      "tier": "serious_complex_crown",
+      "pilotOrderIndex": 8
+    },
+    {
+      "v2CaseId": "div3000v2-2081-drugs_conspiracy_supply",
+      "v21CaseId": "div3000v21-10-drugs_conspiracy_supply",
+      "primaryFamily": "drugs_conspiracy_supply",
+      "tier": "serious_complex_crown",
+      "pilotOrderIndex": 9
+    },
+    {
+      "v2CaseId": "div3000v2-2241-social_media_attribution",
+      "v21CaseId": "div3000v21-11-social_media_attribution",
+      "primaryFamily": "social_media_attribution",
+      "tier": "serious_complex_crown",
+      "pilotOrderIndex": 10
+    },
+    {
+      "v2CaseId": "div3000v2-2401-perverting_course_of_justice",
+      "v21CaseId": "div3000v21-12-perverting_course_of_justice",
+      "primaryFamily": "perverting_course_of_justice",
+      "tier": "procedure_focused",
+      "pilotOrderIndex": 11
+    },
+    {
+      "v2CaseId": "div3000v2-2481-witness_intimidation",
+      "v21CaseId": "div3000v21-13-witness_intimidation",
+      "primaryFamily": "witness_intimidation",
+      "tier": "procedure_focused",
+      "pilotOrderIndex": 12
+    },
+    {
+      "v2CaseId": "div3000v2-2561-contempt",
+      "v21CaseId": "div3000v21-14-contempt",
+      "primaryFamily": "contempt",
+      "tier": "procedure_focused",
+      "pilotOrderIndex": 13
+    },
+    {
+      "v2CaseId": "div3000v2-2641-prison_offences",
+      "v21CaseId": "div3000v21-15-prison_offences",
+      "primaryFamily": "prison_offences",
+      "tier": "procedure_focused",
+      "pilotOrderIndex": 14
+    },
+    {
+      "v2CaseId": "div3000v2-2721-hearsay_res_gestae",
+      "v21CaseId": "div3000v21-16-hearsay_res_gestae",
+      "primaryFamily": "hearsay_res_gestae",
+      "tier": "procedure_focused",
+      "pilotOrderIndex": 15
+    },
+    {
+      "v2CaseId": "div3000v2-2801-corporate_manslaughter",
+      "v21CaseId": "div3000v21-17-corporate_manslaughter",
+      "primaryFamily": "corporate_manslaughter",
+      "tier": "specialist_structural",
+      "pilotOrderIndex": 16
+    },
+    {
+      "v2CaseId": "div3000v2-2851-conspiracy_to_defraud",
+      "v21CaseId": "div3000v21-18-conspiracy_to_defraud",
+      "primaryFamily": "conspiracy_to_defraud",
+      "tier": "specialist_structural",
+      "pilotOrderIndex": 17
+    },
+    {
+      "v2CaseId": "div3000v2-2901-riot",
+      "v21CaseId": "div3000v21-19-riot",
+      "primaryFamily": "riot",
+      "tier": "specialist_structural",
+      "pilotOrderIndex": 18
+    },
+    {
+      "v2CaseId": "div3000v2-2951-diplomatic_immunity",
+      "v21CaseId": "div3000v21-20-diplomatic_immunity",
+      "primaryFamily": "diplomatic_immunity",
+      "tier": "specialist_structural",
+      "pilotOrderIndex": 19
+    }
+  ],
+  "parentV2MembershipSha256": "be4f3bec455c220267aaf3dc265292aa20c1cd763c5d7c5fe5d2df2cb88a25c9"
+}

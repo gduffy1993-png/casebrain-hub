@@ -1,0 +1,282 @@
+{
+  "caseId": "div3000v212-11-social_media_attribution",
+  "documents": [
+    {
+      "docId": "indictment_operative",
+      "title": "Indictment (fictional test — not operative)",
+      "kind": "indictment",
+      "state": "operative",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "indictment_operative/page/1",
+          "purpose": "indictment_count_particulars",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): social media attribution\n## INDICTMENT\n## Count 1 — STATEMENT OF OFFENCE\n## PARTICULARS OF OFFENCE\nIN THE CROWN COURT AT [FICTIONAL VENUE]\nTHE KING v. [FICTIONAL DEFENDANT]\n\nCOUNT 1\nSTATEMENT OF OFFENCE\nCharge wording not pinned — structural only.\nContrary to the modelled statutory provision for this family.\n\nPARTICULARS OF OFFENCE\nThe defendant on a date unknown within the charged window, at a place particularised in the served papers, committed the offence alleged in Count 1.\nThe Crown relies on the served MG5 narrative, witness statements and media schedules listed on the MG6 index.\nLifecycle state: operative.\nModelled as operative indictment for fictional-test purposes only.\nPlea / endorsement: not recorded on Count 1 page — see instrument history where present.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "990d3d120d2f66996897ae093bc4effeea7d7d54d9d84d9db1a0ce25f2b23708",
+          "headings": [
+            "INDICTMENT",
+            "Count 1 — STATEMENT OF OFFENCE",
+            "PARTICULARS OF OFFENCE"
+          ],
+          "layoutKind": "indictment"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "indictment_operative/page/2",
+          "purpose": "indictment_further_counts_or_history",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Indictment (fictional test — not operative)\nMatter family (fictional): social media attribution\n## Further counts / instrument history\nFurther count allocation across 2 defendants — each count remains defendant-specific.\nDefence position on instructions: section 45 indicator.\nProcedure: police investigation.\nEndorsement block: fictional clerk stamp; listing date modelled.\nContinuity: prefer the operative instrument over draft/superseded counterparts when both exist.\nDo not treat indictment endorsement as proof of the allegation.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "67a858267e581b5a2df7e2a4776227e154059f282716b0c0aff56531871c8c88",
+          "headings": [
+            "Further counts / instrument history"
+          ],
+          "layoutKind": "indictment"
+        }
+      ],
+      "contentHash": "5042e290c5a71e3de27645d2b6db3ce766e9a194f7ee46816cb71ca7a331cbf3",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "indictment"
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "purpose": "mg5_case_summary_narrative",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): social media attribution\n## MG5 — Case summary\n## Offence summary\n## Key evidence narrative\nDefendant / matter family: social media attribution\nDefence on instructions: section 45 indicator\nProcedural stage: police investigation\nAllegation under review: Charge wording not pinned — structural only.\n\nNARRATIVE\nFICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: social media attribution.\nDefence position modelled: section 45 indicator.\nProcedural stage: police investigation.\nAllegation instrument: not pinned — structural only.\nEvidence emphasis seed 1: mg11_draft, cctv_clip, cctv_master_referred.\n\nWitness outline: complainant account recorded as allegation only — not proved.\nReliability: MG5 narrative must not be read as establishing guilt.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "b3baee8911a49c2dba3e94d08509c07ebe80c7c14657958fb4f93c4679b4e5a6",
+          "headings": [
+            "MG5 — Case summary",
+            "Offence summary",
+            "Key evidence narrative"
+          ],
+          "layoutKind": "mg05"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "purpose": "mg5_evidence_outline",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG5 Case summary (fictional test)\nMatter family (fictional): social media attribution\n## Evidence outline\n## Limitations\n## Next action\nEvidence listed is limited to items served or partially served in the pack.\nIndex cross-reference (not served here): referred_missing_master.\nNext action: reconcile MG5 against MG6 index before any court-facing send.\nDo not quote referred-absent masters as if content were available.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "d4559b380cad408d4145397d9c57f46f0ed5f18550f14994a4f2856259c5d4b8",
+          "headings": [
+            "Evidence outline",
+            "Limitations",
+            "Next action"
+          ],
+          "layoutKind": "mg05"
+        }
+      ],
+      "contentHash": "641419cb041be2fae84a666dc11b1f5b7d8ce3624b49a565ea8a7a991a7817a2",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg05"
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "purpose": "mg6_file_index",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: MG6 File front sheet / index (fictional test)\nMatter family (fictional): social media attribution\n## MG6 — File front sheet / index\n## Inventory\nSeq | Document | Kind | Status\n--- | -------- | ---- | ------\n1 | Written charge / indictment | instrument | see pack\n2 | MG5 case summary | mg05 | served\n3 | Disclosure / unused | schedule | see schedules\n4 | referred_missing_master | referred | ABSENT — not served\n\nContract: MG6 may refer to an absent master; the master remains absent and has no source pages.\nChase binding: request referred_missing_master by identity against this MG6 page.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "3ea5f5ef645ebfe2f8f3d4ab5800cc4b18379b902ab849dbbc409dc68d8e1188",
+          "headings": [
+            "MG6 — File front sheet / index",
+            "Inventory"
+          ],
+          "layoutKind": "mg06"
+        }
+      ],
+      "contentHash": "3ea5f5ef645ebfe2f8f3d4ab5800cc4b18379b902ab849dbbc409dc68d8e1188",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg06"
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "purpose": "media_clip_schedule_log",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: CCTV / BWV clip schedule (fictional test)\nMatter family (fictional): social media attribution\n## CCTV / BWV clip schedule\n## Served clips\nClip | Source | Start | End | Master | Status\n---- | ------ | ----- | --- | ------ | ------\nC1 | High St cam 3 | 21:02:10 | 21:04:44 | M-HS-3 | clip served\nC2 | BWV PC Fictional | 21:05:01 | 21:07:18 | M-BWV-01 | clip served\nC3 | Store cam | 20:58:00 | 21:01:00 | M-ST-2 | partial\nAbsent masters referred: referred_missing_master.\nDo not treat clip presence as full master continuity.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "c8e1447dfcc922071c05ef7606514da2193b6e7350a72da97aee98fe7fea070b",
+          "headings": [
+            "CCTV / BWV clip schedule",
+            "Served clips"
+          ],
+          "layoutKind": "media_schedule"
+        }
+      ],
+      "contentHash": "c8e1447dfcc922071c05ef7606514da2193b6e7350a72da97aee98fe7fea070b",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "media_schedule"
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "purpose": "media_metadata_only",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Media metadata fixture (native bytes not_exercised)\nMatter family (fictional): social media attribution\n## Media metadata fixture\n## Native bytes not_exercised\nNative video/audio bytes: not_exercised.\npath: /fictional/media/clip_C1.mp4\nsha256: ft-meta-placeholder\ncodec / duration: modelled placeholders only\nCannot summarise native content that was never supplied.\nFICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "cea7fb5c1fa9ea945e183c8c9ea825bbd4207b060792e3442ef7bcc77777e7ce",
+          "headings": [
+            "Media metadata fixture",
+            "Native bytes not_exercised"
+          ],
+          "layoutKind": "metadata_fixture"
+        }
+      ],
+      "contentHash": "cea7fb5c1fa9ea945e183c8c9ea825bbd4207b060792e3442ef7bcc77777e7ce",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "metadata_fixture"
+    },
+    {
+      "docId": "phone_download_schedule",
+      "title": "Phone download / attribution schedule (fictional test)",
+      "kind": "digital_schedule",
+      "state": "incomplete",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "phone_download_schedule/page/1",
+          "purpose": "phone_extraction_schedule",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Phone download / attribution schedule (fictional test)\nMatter family (fictional): social media attribution\n## Phone / download schedule\n## Device & attribution\nDevice | Extraction | User attribution | Limit\n------ | ---------- | ---------------- | -----\nHandset A | logical | disputed | partial\nCloud backup B | export | unknown author | incomplete\n\nMsg# | Direction | Timestamp | Attribution note\n---- | --------- | --------- | -----------------\n1 | inbound | modelled | sender ≠ author caution\n2 | outbound | modelled | device user disputed\nDevice / account / user / sender / author separation required.\nFICTIONAL TEST MATERIAL\nDevice / account / user / sender / author separation required. Partial extraction.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "6eecdecaa879d39191fec94817aece3a30e2db52f300bce368628a9d633cf346",
+          "headings": [
+            "Phone / download schedule",
+            "Device & attribution"
+          ],
+          "layoutKind": "phone_download_schedule"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "phone_download_schedule/page/2",
+          "purpose": "phone_call_and_app_rows",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Phone download / attribution schedule (fictional test)\nMatter family (fictional): social media attribution\n## Calls / apps / attachments\nCall/App | Counterparty | Duration/size | Note\n-------- | ------------ | ------------- | ----\nVoice 1 | unknown | 00:42 | attribution open\nApp chat export | group | 120 KB | attachment schedule separate\nOutstanding digital items: referred_missing_master.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "ddd4fdd7bd06f66a1ee6a2a36b51bc067e974679d3f1618b7094abeb6a4a70fd",
+          "headings": [
+            "Calls / apps / attachments"
+          ],
+          "layoutKind": "phone_download_schedule"
+        }
+      ],
+      "contentHash": "5f7dc9ed7c709de449fa1dc24829f87bb1b1463e4b3d95e0b2cff53a8c7778ca",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "phone_download_schedule"
+    },
+    {
+      "docId": "unused_schedule_mg6c",
+      "title": "Unused material schedule extract (fictional test)",
+      "kind": "disclosure_unused",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "unused_schedule_mg6c/page/1",
+          "purpose": "mg6c_unused_schedule",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Unused material schedule extract (fictional test)\nMatter family (fictional): social media attribution\n## MG6C — Unused material schedule\n## Schedule rows\nSch# | Description | Decision | Notes\n---- | ----------- | -------- | -----\nU1 | Custody CCTV extract log | disclose | clip only\nU2 | Third-party counselling note | withhold review | PII\nU3 | Officer notebook unused pages | disclose | redacted\nOutstanding / absent items to chase: referred_missing_master.\nUpdate chase when service state changes.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "9f778b882e657c51ac8247ffb1cb5836f29cda6365b3c9a87c0159e521043a06",
+          "headings": [
+            "MG6C — Unused material schedule",
+            "Schedule rows"
+          ],
+          "layoutKind": "mg06c"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "unused_schedule_mg6c/page/2",
+          "purpose": "unused_schedule_continuation_decisions",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Unused material schedule extract (fictional test)\nMatter family (fictional): social media attribution\n## Further unused items\n## Sensitivity\nSch# | Description | Decision\n---- | ----------- | --------\nU4 | Call-data print unused numbers | disclose\nU5 | Social-media scrape discarded threads | review\nPII redaction markers present on source export — fictional test only.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "0fcef34bf5d4e992742c0ba176d3f6c8b6fe3460c5704c3605fe8fe828320177",
+          "headings": [
+            "Further unused items",
+            "Sensitivity"
+          ],
+          "layoutKind": "mg06c"
+        }
+      ],
+      "contentHash": "5bc7cd06b573112fc3d27294c11cc0063511bbc6912d9a0f4cdc87dd0b246a69",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "mg06c"
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "purpose": "defence_privileged_extract",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): social media attribution\n## Defence proof of evidence extract\n## PRIVILEGED\nPRIVILEGED — defence working extract. Not for ordinary copy/export/API send.\nPosition on instructions: section 45 indicator\nIssues to explore: attribution, continuity, missing masters, charge particularity.\nDo not merge privileged defence wording into prosecution-facing exits.\nFICTIONAL TEST MATERIAL — privileged defence working extract. Position: section_45_indicator. Not for ordinary copy/export.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "84896938bc002397ea4cbcbba19f54fe6fd560f1290672e63f126c868c45a1fa",
+          "headings": [
+            "Defence proof of evidence extract",
+            "PRIVILEGED"
+          ],
+          "layoutKind": "defence_proof"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "purpose": "defence_issues_and_requests",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nMatter family (fictional): social media attribution\n## Issues list\n## Requests\nMissing/referred chase candidates: referred_missing_master.\nProof extract remains privilege-separated in this fictional pack.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "88ad1102814c9e849f6898583f5c37f3b4cff165eb4fba0484efcffeaf06f15f",
+          "headings": [
+            "Issues list",
+            "Requests"
+          ],
+          "layoutKind": "defence_proof"
+        }
+      ],
+      "contentHash": "a1527829a45e9ad54dbfe5ef738a196c5453ac664827a9c8a3ef276951920ce9",
+      "realPaginatedFile": true,
+      "privilegeSeparated": true,
+      "publicTemplateRef": "defence_proof"
+    },
+    {
+      "docId": "extra_context_8",
+      "title": "Additional context schedule (fictional test)",
+      "kind": "context_schedule",
+      "state": "served",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "extra_context_8/page/1",
+          "purpose": "phone_extraction_schedule",
+          "text": "FICTIONAL TEST — NOT AN OPERATIVE DOCUMENT\nDocument: Additional context schedule (fictional test)\nMatter family (fictional): social media attribution\n## Phone / download schedule\n## Device & attribution\nDevice | Extraction | User attribution | Limit\n------ | ---------- | ---------------- | -----\nHandset A | logical | disputed | partial\nCloud backup B | export | unknown author | incomplete\n\nMsg# | Direction | Timestamp | Attribution note\n---- | --------- | --------- | -----------------\n1 | inbound | modelled | sender ≠ author caution\n2 | outbound | modelled | device user disputed\nDevice / account / user / sender / author separation required.\nFICTIONAL TEST MATERIAL — additional coherent schedule for social_media_attribution emphasising section_45_indicator and indictment.\n\nFictional test material only — not police, CPS, court or solicitor operative paper.",
+          "textHash": "d3464b3210274427fd8d7e1e85b8353294740d50323bf66bc51ff68dd4e06058",
+          "headings": [
+            "Phone / download schedule",
+            "Device & attribution"
+          ],
+          "layoutKind": "phone_download_schedule"
+        }
+      ],
+      "contentHash": "d3464b3210274427fd8d7e1e85b8353294740d50323bf66bc51ff68dd4e06058",
+      "realPaginatedFile": true,
+      "privilegeSeparated": false,
+      "publicTemplateRef": "phone_download_schedule"
+    }
+  ]
+}

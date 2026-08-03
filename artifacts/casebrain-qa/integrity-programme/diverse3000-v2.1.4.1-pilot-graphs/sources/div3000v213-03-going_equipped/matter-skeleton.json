@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "diverse3000-v2-matter@1.0.0",
+  "v1CaseId": "div3000-0533-going_equipped",
+  "caseId": "div3000v213-03-going_equipped",
+  "orderIndex": 532,
+  "primaryFamily": "going_equipped",
+  "tier": "routine_volume",
+  "fictionalBanner": "FICTIONAL TEST MATERIAL",
+  "charge": {
+    "wording": null,
+    "provision": "unpinned:going_equipped",
+    "wordingStatus": "structural_only",
+    "structuralNote": "No pinned current source-supported charge wording in research register for this family — classified structural_only / awaiting qualified review; do not invent operative wording."
+  },
+  "defencePosition": "consent_dispute",
+  "proceduralLifecycle": "police_investigation",
+  "defendantCount": 1,
+  "countAllocation": 1,
+  "evidenceStateGraph": [
+    {
+      "item": "written_charge",
+      "kind": "written_charge",
+      "state": "operative",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "MG05",
+      "kind": "mg05",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 4
+    },
+    {
+      "item": "MG06",
+      "kind": "mg06",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "defence_proof_extract",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "extra_context_1",
+      "kind": "context_schedule",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    }
+  ],
+  "documentRelationshipGraph": {
+    "nodes": [
+      {
+        "id": "written_charge",
+        "kind": "written_charge",
+        "state": "operative"
+      },
+      {
+        "id": "MG05",
+        "kind": "mg05",
+        "state": "served"
+      },
+      {
+        "id": "MG06",
+        "kind": "mg06",
+        "state": "served"
+      },
+      {
+        "id": "defence_proof_extract",
+        "kind": "defence_proof",
+        "state": "privileged"
+      },
+      {
+        "id": "extra_context_1",
+        "kind": "context_schedule",
+        "state": "served"
+      }
+    ],
+    "edges": [
+      {
+        "from": "MG06",
+        "to": "MG05",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG06",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "defence_proof_extract",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "extra_context_1",
+        "relation": "indexes"
+      }
+    ]
+  },
+  "missingMaterialGraph": [],
+  "contradictionTrapGraph": [
+    {
+      "description": "going_equipped trap with consent_dispute at police_investigation",
+      "secondary": "attribution_or_media_partial"
+    }
+  ],
+  "chronology": [
+    {
+      "event": "alleged_incident_window",
+      "detail": "fictional incident window for going_equipped"
+    },
+    {
+      "event": "first_account",
+      "detail": "first account recorded"
+    },
+    {
+      "event": "charge_or_process",
+      "detail": "structural:going_equipped"
+    },
+    {
+      "event": "hearing_marker",
+      "detail": "Manchester Magistrates' Court <DATE>"
+    }
+  ],
+  "sourceCompleteness": "complete_source_packet",
+  "documentCount": 5,
+  "v2CaseId": "div3000v2-0533-going_equipped",
+  "v212CaseId": "div3000v212-03-going_equipped",
+  "v211CaseId": "div3000v211-03-going_equipped",
+  "v21CaseId": "div3000v21-03-going_equipped",
+  "pilotOrderIndex": 2
+}

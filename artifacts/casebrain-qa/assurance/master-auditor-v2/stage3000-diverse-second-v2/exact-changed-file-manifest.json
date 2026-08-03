@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "diverse3000-v2-exact-changed-file-manifest@1.0.0",
+  "generatedAt": "2026-08-02T20:25:23.358Z",
+  "files": [
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/preserve-v1-historical.ts",
+      "sha256": "08cfa553560e626e6f1f6d994fa21d26e720b3365e695ed29eeadd8517b3b742",
+      "byteLength": 9480,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "programme_script"
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/audit-v1-semantic-diversity.ts",
+      "sha256": "c8e61189c9589d657ec29cb7f3bc716cd902a8555992a4a4126fa4e6d24f47a5",
+      "byteLength": 14059,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "programme_script"
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/freeze-v2-research-register.ts",
+      "sha256": "2dfda45c8502d5eb5cbc10733d36f34014d98df3cd4e224380f29fba166521cd",
+      "byteLength": 8075,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "programme_script"
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/build-v2-packs.ts",
+      "sha256": "f0a061720fd25bae95d5359166791e26e9d9ab7adc2115d04ce2d2a5e83f61c2",
+      "byteLength": 33664,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "programme_script"
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2-materialise-and-maa.ts",
+      "sha256": "0f035d9334437e0cd46c21d921773b215fca5ee3e5a9a36165fe0c5d6fddae29",
+      "byteLength": 22539,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "programme_script"
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/finalize-v2-stop.ts",
+      "sha256": "46140238c71eb471498b0f81234b9fbfe93b48bbd0f4fb0bd74b875a01114793",
+      "byteLength": 17141,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "programme_script"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v1/preservation/V1-HASH-LOCK.json",
+      "sha256": "d85d7b88d5b92947e87e961ca21952e8f68c669f27dfd5296f072dde4c3775f0",
+      "byteLength": 5281,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v1/preservation/V1-HONESTY-CORRECTION.json",
+      "sha256": "cbdaca6df42a3693913808617c2cb524e1635b65c16d75b8f620fa102475409f",
+      "byteLength": 2785,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v1/preservation/V1-HONESTY-CORRECTION.md",
+      "sha256": "a64c8f47aaabd2292b83bd07a1828a899554f40193f08b581e9adda34416b128",
+      "byteLength": 485,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v1/semantic-diversity-audit/v1-semantic-cluster-report.json",
+      "sha256": "989dbcd1421f762466d9624be854cac101bcbee86a4216527ffbad53457caaed",
+      "byteLength": 52005,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/STOP-FOR-CODEX-REVIEW.json",
+      "sha256": "221d9091c3b8c63bc62879363123e887fc0dec636f1942fefbda15b9c1f479e9",
+      "byteLength": 1923,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/DECISION-CARD.md",
+      "sha256": "2a3ba4a45b2c7f7b2475d6be5261111af1718056f87f537eba443c0a3ac30a1e",
+      "byteLength": 1401,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/frozen-membership-new3000-v2.json",
+      "sha256": "4fd130054cd45091d3ab2bebb9c6a049356dca3a1483ff9061d87c9a71829259",
+      "byteLength": 2135346,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/v1-to-v2-lineage.json",
+      "sha256": "f053c871787890f26af91ad7a7c5c72880e1fec45084bf36ead08e153f588c72",
+      "byteLength": 301,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/v2-semantic-cluster-report.json",
+      "sha256": "267020898d3c0be4d535c312e8e04759422caf8109d81830a450b9f7234703f8",
+      "byteLength": 1161,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/output-strength-audit.json",
+      "sha256": "01c03743934b4776d5254c3192fd79763a9f9b3fcea6d404f66b6c929b28755c",
+      "byteLength": 1356,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/per-control-exercise-matrix.json",
+      "sha256": "123668c34c47202236353de997ead337e7937f89f6cbbd85e8332fbdb9cdcac0",
+      "byteLength": 93524,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/real-pdf-register.json",
+      "sha256": "524e31f38ea6e911720139ed8b49e7c82602c627c2187efc96886797aac7af94",
+      "byteLength": 246,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/research/official-research-register.json",
+      "sha256": "5121c3cd255858322fbb34e0010fedc7bd175c772576afca159206d97517720e",
+      "byteLength": 8196,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/candidate-freeze-receipt.json",
+      "sha256": "895ea2ae0a8c0f6d5f31accd9fa1e379e7aca49ac8e68af288e6e32335a45527",
+      "byteLength": 373,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/before-after-remediation-map.json",
+      "sha256": "18491cc65715e88e65a5457eff330bb04d892471f83dd7caacaf8c54247d6b15",
+      "byteLength": 488,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/cross-corpus-overlap-report.json",
+      "sha256": "c35c1e1c2e7ce50a87cf478013cae89f1030bf31ea9f7d61dcdc43280d6e3e86",
+      "byteLength": 504,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2/protected-asset-comparison.json",
+      "sha256": "b9d3287ff6c35a7aa91084931101cf2e635e7082a5cf51417c7dec6ebb1a18fd",
+      "byteLength": 2662,
+      "intendedCommit": true,
+      "excludedFromCommit": false,
+      "classification": "assurance_evidence"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-matter-graphs",
+      "sha256": null,
+      "byteLength": null,
+      "intendedCommit": false,
+      "excludedFromCommit": true,
+      "classification": "excluded_bulk_regenerable",
+      "reason": "bulk_source_truth_graphs"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2-solicitor-materialisation/run-v1/surfaces.jsonl",
+      "sha256": null,
+      "byteLength": null,
+      "intendedCommit": false,
+      "excludedFromCommit": true,
+      "classification": "excluded_bulk_regenerable",
+      "reason": "regenerable_surfaces"
+    }
+  ],
+  "intendedCommitCount": 23,
+  "excludedCount": 2
+}

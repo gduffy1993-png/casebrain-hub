@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "diverse3000-v2-output-strength-audit@1.0.0",
+  "genericClustersBySurface": [
+    {
+      "surfaceId": "court_line",
+      "uniqueTemplates": 422,
+      "largestCluster": 128,
+      "casesInLargest": 128
+    },
+    {
+      "surfaceId": "client_summary",
+      "uniqueTemplates": 843,
+      "largestCluster": 23,
+      "casesInLargest": 23
+    },
+    {
+      "surfaceId": "disclosure_chase",
+      "uniqueTemplates": 8,
+      "largestCluster": 1825,
+      "casesInLargest": 1825
+    },
+    {
+      "surfaceId": "export_preview",
+      "uniqueTemplates": 212,
+      "largestCluster": 1825,
+      "casesInLargest": 1825
+    },
+    {
+      "surfaceId": "key_facts",
+      "uniqueTemplates": 2271,
+      "largestCluster": 6,
+      "casesInLargest": 6
+    },
+    {
+      "surfaceId": "evidence_state_map",
+      "uniqueTemplates": 469,
+      "largestCluster": 275,
+      "casesInLargest": 275
+    },
+    {
+      "surfaceId": "do_not_overstate",
+      "uniqueTemplates": 1,
+      "largestCluster": 3000,
+      "casesInLargest": 3000
+    },
+    {
+      "surfaceId": "api_interface_preview",
+      "uniqueTemplates": 15,
+      "largestCluster": 2249,
+      "casesInLargest": 2249
+    }
+  ],
+  "note": "Packet-local projections only. Large clusters indicate generic wording across factually different matters.",
+  "productionExitClaim": false
+}

@@ -1,0 +1,570 @@
+{
+  "schemaVersion": "new3000-composition-allocation@1.0.0",
+  "generatedAt": "2026-08-02T18:24:59.040Z",
+  "tiers": {
+    "routine_volume": 1600,
+    "serious_complex_crown": 800,
+    "procedure_focused": 400,
+    "specialist_structural": 200
+  },
+  "total": 3000,
+  "allocations": [
+    {
+      "familyId": "common_assault_battery",
+      "tier": "routine_volume",
+      "count": 85
+    },
+    {
+      "familyId": "assault_emergency_worker",
+      "tier": "routine_volume",
+      "count": 85
+    },
+    {
+      "familyId": "abh",
+      "tier": "routine_volume",
+      "count": 85
+    },
+    {
+      "familyId": "shoplifting_theft",
+      "tier": "routine_volume",
+      "count": 78
+    },
+    {
+      "familyId": "employee_theft",
+      "tier": "routine_volume",
+      "count": 78
+    },
+    {
+      "familyId": "handling_stolen_goods",
+      "tier": "routine_volume",
+      "count": 78
+    },
+    {
+      "familyId": "going_equipped",
+      "tier": "routine_volume",
+      "count": 71
+    },
+    {
+      "familyId": "burglary_dwelling",
+      "tier": "routine_volume",
+      "count": 71
+    },
+    {
+      "familyId": "burglary_non_dwelling",
+      "tier": "routine_volume",
+      "count": 71
+    },
+    {
+      "familyId": "criminal_damage",
+      "tier": "routine_volume",
+      "count": 64
+    },
+    {
+      "familyId": "twoc",
+      "tier": "routine_volume",
+      "count": 64
+    },
+    {
+      "familyId": "fraud_false_representation",
+      "tier": "routine_volume",
+      "count": 64
+    },
+    {
+      "familyId": "drugs_possession",
+      "tier": "routine_volume",
+      "count": 57
+    },
+    {
+      "familyId": "drugs_pwits",
+      "tier": "routine_volume",
+      "count": 57
+    },
+    {
+      "familyId": "bladed_articles",
+      "tier": "routine_volume",
+      "count": 57
+    },
+    {
+      "familyId": "coercive_control",
+      "tier": "routine_volume",
+      "count": 50
+    },
+    {
+      "familyId": "stalking",
+      "tier": "routine_volume",
+      "count": 50
+    },
+    {
+      "familyId": "harassment",
+      "tier": "routine_volume",
+      "count": 50
+    },
+    {
+      "familyId": "restraining_order_breach",
+      "tier": "routine_volume",
+      "count": 43
+    },
+    {
+      "familyId": "bail_breach",
+      "tier": "routine_volume",
+      "count": 43
+    },
+    {
+      "familyId": "affray",
+      "tier": "routine_volume",
+      "count": 43
+    },
+    {
+      "familyId": "public_order_harassment_fear",
+      "tier": "routine_volume",
+      "count": 36
+    },
+    {
+      "familyId": "malicious_communications",
+      "tier": "routine_volume",
+      "count": 36
+    },
+    {
+      "familyId": "speeding_sjp",
+      "tier": "routine_volume",
+      "count": 36
+    },
+    {
+      "familyId": "section_172",
+      "tier": "routine_volume",
+      "count": 29
+    },
+    {
+      "familyId": "no_insurance_licence",
+      "tier": "routine_volume",
+      "count": 28
+    },
+    {
+      "familyId": "mobile_phone",
+      "tier": "routine_volume",
+      "count": 28
+    },
+    {
+      "familyId": "excess_alcohol",
+      "tier": "routine_volume",
+      "count": 21
+    },
+    {
+      "familyId": "drug_driving",
+      "tier": "routine_volume",
+      "count": 21
+    },
+    {
+      "familyId": "careless_driving",
+      "tier": "routine_volume",
+      "count": 21
+    },
+    {
+      "familyId": "s20_gbh_wounding",
+      "tier": "serious_complex_crown",
+      "count": 57
+    },
+    {
+      "familyId": "s18_gbh_wounding",
+      "tier": "serious_complex_crown",
+      "count": 57
+    },
+    {
+      "familyId": "strangulation_suffocation",
+      "tier": "serious_complex_crown",
+      "count": 57
+    },
+    {
+      "familyId": "aggravated_burglary",
+      "tier": "serious_complex_crown",
+      "count": 57
+    },
+    {
+      "familyId": "robbery",
+      "tier": "serious_complex_crown",
+      "count": 48
+    },
+    {
+      "familyId": "blackmail",
+      "tier": "serious_complex_crown",
+      "count": 48
+    },
+    {
+      "familyId": "arson",
+      "tier": "serious_complex_crown",
+      "count": 48
+    },
+    {
+      "familyId": "fraud_abuse_of_position",
+      "tier": "serious_complex_crown",
+      "count": 48
+    },
+    {
+      "familyId": "drugs_supply",
+      "tier": "serious_complex_crown",
+      "count": 38
+    },
+    {
+      "familyId": "drugs_conspiracy_supply",
+      "tier": "serious_complex_crown",
+      "count": 38
+    },
+    {
+      "familyId": "county_lines",
+      "tier": "serious_complex_crown",
+      "count": 38
+    },
+    {
+      "familyId": "firearm_possession",
+      "tier": "serious_complex_crown",
+      "count": 38
+    },
+    {
+      "familyId": "violent_disorder",
+      "tier": "serious_complex_crown",
+      "count": 29
+    },
+    {
+      "familyId": "cma_unauthorised_access",
+      "tier": "serious_complex_crown",
+      "count": 29
+    },
+    {
+      "familyId": "social_media_attribution",
+      "tier": "serious_complex_crown",
+      "count": 29
+    },
+    {
+      "familyId": "cloud_evidence",
+      "tier": "serious_complex_crown",
+      "count": 29
+    },
+    {
+      "familyId": "dangerous_driving",
+      "tier": "serious_complex_crown",
+      "count": 19
+    },
+    {
+      "familyId": "causing_serious_injury_by_driving",
+      "tier": "serious_complex_crown",
+      "count": 19
+    },
+    {
+      "familyId": "murder",
+      "tier": "serious_complex_crown",
+      "count": 19
+    },
+    {
+      "familyId": "attempted_murder",
+      "tier": "serious_complex_crown",
+      "count": 19
+    },
+    {
+      "familyId": "rape",
+      "tier": "serious_complex_crown",
+      "count": 9
+    },
+    {
+      "familyId": "sexual_assault",
+      "tier": "serious_complex_crown",
+      "count": 9
+    },
+    {
+      "familyId": "historic_sexual",
+      "tier": "serious_complex_crown",
+      "count": 9
+    },
+    {
+      "familyId": "child_sexual_abuse",
+      "tier": "serious_complex_crown",
+      "count": 9
+    },
+    {
+      "familyId": "perverting_course_of_justice",
+      "tier": "procedure_focused",
+      "count": 29
+    },
+    {
+      "familyId": "wasting_police_time",
+      "tier": "procedure_focused",
+      "count": 29
+    },
+    {
+      "familyId": "witness_intimidation",
+      "tier": "procedure_focused",
+      "count": 29
+    },
+    {
+      "familyId": "assisting_offender",
+      "tier": "procedure_focused",
+      "count": 29
+    },
+    {
+      "familyId": "escape_absconding",
+      "tier": "procedure_focused",
+      "count": 25
+    },
+    {
+      "familyId": "contempt",
+      "tier": "procedure_focused",
+      "count": 25
+    },
+    {
+      "familyId": "juror_misconduct",
+      "tier": "procedure_focused",
+      "count": 25
+    },
+    {
+      "familyId": "misconduct_in_public_office",
+      "tier": "procedure_focused",
+      "count": 24
+    },
+    {
+      "familyId": "allegations_against_police",
+      "tier": "procedure_focused",
+      "count": 20
+    },
+    {
+      "familyId": "prison_offences",
+      "tier": "procedure_focused",
+      "count": 20
+    },
+    {
+      "familyId": "prohibited_prison_articles",
+      "tier": "procedure_focused",
+      "count": 20
+    },
+    {
+      "familyId": "immigration_offending",
+      "tier": "procedure_focused",
+      "count": 20
+    },
+    {
+      "familyId": "retraction",
+      "tier": "procedure_focused",
+      "count": 15
+    },
+    {
+      "familyId": "hearsay_res_gestae",
+      "tier": "procedure_focused",
+      "count": 15
+    },
+    {
+      "familyId": "dvpn_dvpo_dapo",
+      "tier": "procedure_focused",
+      "count": 15
+    },
+    {
+      "familyId": "civil_family_criminal_overlap",
+      "tier": "procedure_focused",
+      "count": 15
+    },
+    {
+      "familyId": "interpreter_lifecycle",
+      "tier": "procedure_focused",
+      "count": 10
+    },
+    {
+      "familyId": "discontinuance_victim_non_attendance",
+      "tier": "procedure_focused",
+      "count": 10
+    },
+    {
+      "familyId": "device_account_user_sender_author_separation",
+      "tier": "procedure_focused",
+      "count": 10
+    },
+    {
+      "familyId": "anpr",
+      "tier": "procedure_focused",
+      "count": 10
+    },
+    {
+      "familyId": "statutory_declarations",
+      "tier": "procedure_focused",
+      "count": 5
+    },
+    {
+      "familyId": "corporate_manslaughter",
+      "tier": "specialist_structural",
+      "count": 13
+    },
+    {
+      "familyId": "infanticide",
+      "tier": "specialist_structural",
+      "count": 13
+    },
+    {
+      "familyId": "deaths_in_custody_or_police_contact",
+      "tier": "specialist_structural",
+      "count": 13
+    },
+    {
+      "familyId": "conspiracy_to_defraud",
+      "tier": "specialist_structural",
+      "count": 13
+    },
+    {
+      "familyId": "bribery",
+      "tier": "specialist_structural",
+      "count": 11
+    },
+    {
+      "familyId": "corporate_offending",
+      "tier": "specialist_structural",
+      "count": 11
+    },
+    {
+      "familyId": "firearm_conspiracy",
+      "tier": "specialist_structural",
+      "count": 11
+    },
+    {
+      "familyId": "explosives",
+      "tier": "specialist_structural",
+      "count": 11
+    },
+    {
+      "familyId": "riot",
+      "tier": "specialist_structural",
+      "count": 8
+    },
+    {
+      "familyId": "serious_disruption_orders",
+      "tier": "specialist_structural",
+      "count": 8
+    },
+    {
+      "familyId": "malware_ransomware",
+      "tier": "specialist_structural",
+      "count": 8
+    },
+    {
+      "familyId": "cross_border_jurisdiction",
+      "tier": "specialist_structural",
+      "count": 8
+    },
+    {
+      "familyId": "official_secrets_national_security",
+      "tier": "specialist_structural",
+      "count": 6
+    },
+    {
+      "familyId": "terrorism_structures",
+      "tier": "specialist_structural",
+      "count": 6
+    },
+    {
+      "familyId": "election_offending",
+      "tier": "specialist_structural",
+      "count": 6
+    },
+    {
+      "familyId": "diplomatic_immunity",
+      "tier": "specialist_structural",
+      "count": 6
+    },
+    {
+      "familyId": "international_cooperation",
+      "tier": "specialist_structural",
+      "count": 4
+    },
+    {
+      "familyId": "dangerous_dogs",
+      "tier": "specialist_structural",
+      "count": 4
+    },
+    {
+      "familyId": "animal_offences",
+      "tier": "specialist_structural",
+      "count": 4
+    },
+    {
+      "familyId": "hunting_hare_coursing",
+      "tier": "specialist_structural",
+      "count": 4
+    },
+    {
+      "familyId": "fgm",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "forced_marriage",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "honour_based_abuse",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "prostitution_exploitation",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "obscene_publications",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "media_public_interest",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "private_prosecutions",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "extradition",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "education_prosecutions",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "assisted_suicide",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "corporate_regulatory",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "retrial_after_acquittal",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "abuse_of_process",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "non_jury_trial",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "deceased_suspect",
+      "tier": "specialist_structural",
+      "count": 2
+    },
+    {
+      "familyId": "double_jeopardy_retrial",
+      "tier": "specialist_structural",
+      "count": 2
+    }
+  ],
+  "riskWeighted": true,
+  "equalTenPerChargeForbidden": true
+}

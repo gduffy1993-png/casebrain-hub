@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "diverse3000-v1-honesty-correction@1.0.0",
+  "generatedAt": "2026-08-02T20:15:13.476Z",
+  "membershipAndOriginalReportsRewritten": false,
+  "accurateLabel": "V1 is a synthetic thin-text corpus scaffold with narrow wording/completeness assurance.",
+  "corrections": [
+    {
+      "id": 1,
+      "issue": "3000 unique fingerprint claim is not semantic diversity proof",
+      "fact": "Fingerprints included case IDs, order indexes, dates, names, matter-local salts; uniqueness report states uniqueness was forced",
+      "correctedClaim": "V1 proves identity uniqueness under forced hashing, not substantive semantic diversity"
+    },
+    {
+      "id": 2,
+      "issue": "largestCluster: 1 unsupported",
+      "fact": "Substantive semantic clustering was not performed",
+      "correctedClaim": "largestCluster claim in V1 uniqueness report is not evidence of semantic isolation"
+    },
+    {
+      "id": 3,
+      "issue": "First 500 PDF-marked matters",
+      "fact": "pdfStatus was pending_stratified_render; no rendered PDFs validated",
+      "correctedClaim": "pdf_not_rendered / not_exercised — must not be described as PDF cases"
+    },
+    {
+      "id": 4,
+      "issue": "Four-document skeleton",
+      "fact": "Every source pack used MG05/MG06/charge_instrument/defence_note",
+      "correctedClaim": "Does not prove realistic bundle diversity across offence catalogue"
+    },
+    {
+      "id": 5,
+      "issue": "Generic structural charge wording",
+      "fact": "Many unusual families used FICTIONAL TEST MATERIAL structural charge strings",
+      "correctedClaim": "Not pinned current source-supported charge wording"
+    },
+    {
+      "id": 6,
+      "issue": "Fixed surface pattern / projections",
+      "fact": "Materialiser emitted mostly fixed 7–8 surfaces; several packet_local_projection",
+      "correctedClaim": "Must not describe projections as genuine CaseBrain production exits"
+    },
+    {
+      "id": 7,
+      "issue": "16/361 controls / zero candidates",
+      "fact": "Only wording/completeness lane exercised",
+      "correctedClaim": "Zero-candidate result is narrow-lane only — not a full Master Assurance Auditor result"
+    },
+    {
+      "id": 8,
+      "issue": "ELD/browser/heavy/security/cross-perspective",
+      "fact": "Remain not_exercised",
+      "correctedClaim": "Explicitly not_exercised; unavailable must not become PASS"
+    }
+  ],
+  "v1PathsImmutable": {
+    "assuranceRoot": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v1",
+    "graphsRoot": "artifacts/casebrain-qa/integrity-programme/diverse3000-matter-graphs",
+    "materialisationRoot": "artifacts/casebrain-qa/integrity-programme/diverse3000-solicitor-materialisation"
+  },
+  "nextVersion": "stage3000-diverse-second-v2"
+}

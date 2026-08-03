@@ -1,0 +1,13 @@
+{
+  "files": [
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4/pilot-gate-claim-correction.json",
+    "scripts/assurance/stage3000-diverse-second/v2.1.4-provenance-leaf-classifier.ts",
+    "scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts",
+    "scripts/assurance/stage3000-diverse-second/v2.1.2-structured-maa-output.ts",
+    "scripts/assurance/stage3000-diverse-second/v2.1.4.1-focused-contracts.test.ts",
+    "scripts/assurance/stage3000-diverse-second/build-v2.1.4.1-exact-provenance.ts",
+    "tsconfig.v2141-path-scoped.json",
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.1/",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.4.1-pilot-graphs/"
+  ]
+}

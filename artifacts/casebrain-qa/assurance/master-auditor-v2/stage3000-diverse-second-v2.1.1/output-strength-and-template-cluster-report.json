@@ -1,0 +1,67 @@
+{
+  "population": 20,
+  "clusters": [
+    {
+      "surfaceId": "charges",
+      "uniqueTemplates": 3,
+      "largestCluster": 10
+    },
+    {
+      "surfaceId": "key_facts",
+      "uniqueTemplates": 12,
+      "largestCluster": 6
+    },
+    {
+      "surfaceId": "war_room",
+      "uniqueTemplates": 20,
+      "largestCluster": 1
+    },
+    {
+      "surfaceId": "disclosure_chase",
+      "uniqueTemplates": 20,
+      "largestCluster": 1
+    },
+    {
+      "surfaceId": "control_room",
+      "uniqueTemplates": 20,
+      "largestCluster": 1
+    },
+    {
+      "surfaceId": "five_answers",
+      "uniqueTemplates": 10,
+      "largestCluster": 10
+    },
+    {
+      "surfaceId": "composed_prose_court",
+      "uniqueTemplates": 3,
+      "largestCluster": 18
+    },
+    {
+      "surfaceId": "composed_prose_chase",
+      "uniqueTemplates": 2,
+      "largestCluster": 16
+    },
+    {
+      "surfaceId": "export_pack",
+      "uniqueTemplates": 20,
+      "largestCluster": 1
+    },
+    {
+      "surfaceId": "api",
+      "uniqueTemplates": 14,
+      "largestCluster": 5
+    },
+    {
+      "surfaceId": "pdf_exit",
+      "uniqueTemplates": 5,
+      "largestCluster": 13
+    },
+    {
+      "surfaceId": "copy_lines",
+      "uniqueTemplates": 5,
+      "largestCluster": 13
+    }
+  ],
+  "sourceBackedRequirement": "Substantive analysis must change with facts/evidence/charge/procedure; universal warnings may repeat.",
+  "productionClass": "genuine_production_builder"
+}

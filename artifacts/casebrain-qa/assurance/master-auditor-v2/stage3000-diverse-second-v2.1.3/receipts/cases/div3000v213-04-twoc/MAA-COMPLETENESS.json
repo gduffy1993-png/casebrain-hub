@@ -1,0 +1,335 @@
+{
+  "caseId": "div3000v213-04-twoc",
+  "controlId": "MAA-COMPLETENESS",
+  "handlerModule": "scripts/assurance/stage3000-diverse-second/v2.1.2-named-control-runner.ts",
+  "handlerFunction": "exerciseCompleteness",
+  "handlerId": "professional_wording__MAA-COMPLETENESS",
+  "controlVersion": "1.0.0",
+  "implementationStatus": "implemented",
+  "exerciseStatus": "evaluated",
+  "applicable": true,
+  "applicableUnitCount": 90,
+  "missingPrerequisiteReason": null,
+  "inputFieldRefs": [
+    "/chaseRelationships/0/sendabilityLabel",
+    "/chaseRelationships/1/sendabilityLabel",
+    "/chronologyEvents",
+    "/composedProse/chargeCompleteness/instruments",
+    "/courtNote/blockedReason",
+    "/courtNote/sendabilityLabel",
+    "/courtNote/text",
+    "/disclosureChase/linkedRoutes",
+    "/disclosureChase/sourceTruthGuardian/decisions",
+    "/disclosureChase/sourceTruthGuardian/fingerprint/ledger/defendant/coDefendants",
+    "/disclosureChase/sourceTruthGuardian/fingerprint/ledger/forbiddenClaims/0/relatedMaterialIds",
+    "/disclosureChase/sourceTruthGuardian/fingerprint/ledger/sourceAnchors",
+    "/disclosureChase/sourceTruthGuardian/flags",
+    "/evidenceStates/0/evidenceAnchor",
+    "/evidenceStates/0/label",
+    "/evidenceStates/1/evidenceAnchor",
+    "/evidenceStates/1/label",
+    "/evidenceStates/2/evidenceAnchor",
+    "/evidenceStates/2/existenceLabel",
+    "/evidenceStates/2/label",
+    "/evidenceStates/3/evidenceAnchor",
+    "/evidenceStates/3/label",
+    "/evidenceStates/4/evidenceAnchor",
+    "/evidenceStates/4/label",
+    "/evidenceStates/5/evidenceAnchor",
+    "/evidenceStates/5/existenceLabel",
+    "/evidenceStates/5/label",
+    "/evidenceStates/6/evidenceAnchor",
+    "/evidenceStates/6/existenceLabel",
+    "/evidenceStates/6/label",
+    "/evidenceStates/7/evidenceAnchor",
+    "/evidenceStates/7/existenceLabel",
+    "/evidenceStates/7/label",
+    "/exportVersion/blockedReason",
+    "/exportVersion/reviewFooter",
+    "/fiveAnswersEvidenceRows/0/label",
+    "/fiveAnswersEvidenceRows/0/note",
+    "/fiveAnswersEvidenceRows/1/label",
+    "/fiveAnswersEvidenceRows/1/note",
+    "/fiveAnswersEvidenceRows/2/label",
+    "/fiveAnswersEvidenceRows/2/note",
+    "/fiveAnswersEvidenceRows/3/label",
+    "/fiveAnswersEvidenceRows/3/note",
+    "/pdf/chargeCompleteness/instruments",
+    "/warRoom/evidenceAnchors",
+    "/warRoom/sourceTruthGuardian/fingerprint/ledger/defendant/coDefendants",
+    "/warRoom/sourceTruthGuardian/fingerprint/ledger/forbiddenClaims/0/relatedMaterialIds",
+    "/warRoom/sourceTruthGuardian/fingerprint/ledger/sourceAnchors",
+    "/warningsAndGaps/chaseItems/0/copySuggestion",
+    "/warningsAndGaps/chaseItems/0/label",
+    "/warningsAndGaps/chaseItems/0/sendabilityLabel",
+    "/warningsAndGaps/chaseItems/1/copySuggestion",
+    "/warningsAndGaps/chaseItems/1/label",
+    "/warningsAndGaps/chaseItems/1/sendabilityLabel",
+    "/warningsAndGaps/doNotOverstate/0",
+    "/warningsAndGaps/doNotOverstate/1",
+    "/warningsAndGaps/doNotOverstate/2",
+    "/warningsAndGaps/doNotOverstate/3",
+    "/warningsAndGaps/doNotOverstate/4",
+    "/warningsAndGaps/doNotOverstate/5",
+    "/warningsAndGaps/doNotOverstate/6",
+    "/warningsAndGaps/hardRules/0",
+    "/solicitorFacingSurfaces/charges/recordedOrUnresolved",
+    "/solicitorFacingSurfaces/charges/sourceInstrument",
+    "/solicitorFacingSurfaces/charges/limitation",
+    "/solicitorFacingSurfaces/keyFacts/factLine",
+    "/solicitorFacingSurfaces/keyFacts/limitation",
+    "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+    "/solicitorFacingSurfaces/fiveAnswers/existenceVsReliability",
+    "/solicitorFacingSurfaces/fiveAnswers/provenance",
+    "/solicitorFacingSurfaces/warRoom/issue",
+    "/solicitorFacingSurfaces/warRoom/whyItMatters",
+    "/solicitorFacingSurfaces/warRoom/safePosition",
+    "/solicitorFacingSurfaces/warRoom/nextAction",
+    "/solicitorFacingSurfaces/controlRoom/issue",
+    "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+    "/solicitorFacingSurfaces/controlRoom/safePosition",
+    "/solicitorFacingSurfaces/controlRoom/nextAction",
+    "/solicitorFacingSurfaces/disclosureChase/item",
+    "/solicitorFacingSurfaces/disclosureChase/whyItMatters",
+    "/solicitorFacingSurfaces/disclosureChase/professionalRequest",
+    "/solicitorFacingSurfaces/composedProse/courtLine",
+    "/solicitorFacingSurfaces/composedProse/cpsChase",
+    "/solicitorFacingSurfaces/composedProse/clientDisclaimer",
+    "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+    "/solicitorFacingSurfaces/copyExportApiPdf/chase#copy",
+    "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+    "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+    "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+    "/exportVersion/solicitorVisibleSummary"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "ff95611a9a21bd7cc87c386d8bfd31e3e4bf7a516244bf8aa45a41bc65a0aeef",
+    "findingsSha256": "c023ec7d07583ba5b51209a89e579c89631ed24ebd4028f5f16a0a30e4b7f282"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [
+    "MAA-COMPLETENESS::/chronologyEvents::V1_GENERIC",
+    "MAA-COMPLETENESS::/composedProse/chargeCompleteness/instruments::V1_GENERIC",
+    "MAA-COMPLETENESS::/courtNote/blockedReason::V1_GENERIC",
+    "MAA-COMPLETENESS::/disclosureChase/linkedRoutes::V1_GENERIC",
+    "MAA-COMPLETENESS::/disclosureChase/sourceTruthGuardian/decisions::V1_GENERIC",
+    "MAA-COMPLETENESS::/disclosureChase/sourceTruthGuardian/fingerprint/ledger/defendant/coDefendants::V1_GENERIC",
+    "MAA-COMPLETENESS::/disclosureChase/sourceTruthGuardian/fingerprint/ledger/forbiddenClaims/0/relatedMaterialIds::V1_GENERIC",
+    "MAA-COMPLETENESS::/disclosureChase/sourceTruthGuardian/fingerprint/ledger/sourceAnchors::V1_GENERIC",
+    "MAA-COMPLETENESS::/disclosureChase/sourceTruthGuardian/flags::V1_GENERIC",
+    "MAA-COMPLETENESS::/exportVersion/blockedReason::V1_GENERIC",
+    "MAA-COMPLETENESS::/pdf/chargeCompleteness/instruments::V1_GENERIC",
+    "MAA-COMPLETENESS::/warRoom/evidenceAnchors::V1_GENERIC",
+    "MAA-COMPLETENESS::/warRoom/sourceTruthGuardian/fingerprint/ledger/defendant/coDefendants::V1_GENERIC",
+    "MAA-COMPLETENESS::/warRoom/sourceTruthGuardian/fingerprint/ledger/forbiddenClaims/0/relatedMaterialIds::V1_GENERIC",
+    "MAA-COMPLETENESS::/warRoom/sourceTruthGuardian/fingerprint/ledger/sourceAnchors::V1_GENERIC"
+  ],
+  "findings": [
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/chronologyEvents",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/chronologyEvents"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/composedProse/chargeCompleteness/instruments",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/composedProse/chargeCompleteness/instruments"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/courtNote/blockedReason",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/courtNote/blockedReason"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/disclosureChase/linkedRoutes",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/disclosureChase/linkedRoutes"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/disclosureChase/sourceTruthGuardian/decisions",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/disclosureChase/sourceTruthGuardian/decisions"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/disclosureChase/sourceTruthGuardian/fingerprint/ledger/defendant/coDefendants",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/disclosureChase/sourceTruthGuardian/fingerprint/ledger/defendant/coDefendants"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/disclosureChase/sourceTruthGuardian/fingerprint/ledger/forbiddenClaims/0/relatedMaterialIds",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/disclosureChase/sourceTruthGuardian/fingerprint/ledger/forbiddenClaims/0/relatedMaterialIds"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/disclosureChase/sourceTruthGuardian/fingerprint/ledger/sourceAnchors",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/disclosureChase/sourceTruthGuardian/fingerprint/ledger/sourceAnchors"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/disclosureChase/sourceTruthGuardian/flags",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/disclosureChase/sourceTruthGuardian/flags"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/exportVersion/blockedReason",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/exportVersion/blockedReason"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/pdf/chargeCompleteness/instruments",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/pdf/chargeCompleteness/instruments"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/warRoom/evidenceAnchors",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/warRoom/evidenceAnchors"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/warRoom/sourceTruthGuardian/fingerprint/ledger/defendant/coDefendants",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/warRoom/sourceTruthGuardian/fingerprint/ledger/defendant/coDefendants"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/warRoom/sourceTruthGuardian/fingerprint/ledger/forbiddenClaims/0/relatedMaterialIds",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/warRoom/sourceTruthGuardian/fingerprint/ledger/forbiddenClaims/0/relatedMaterialIds"
+      ]
+    },
+    {
+      "controlId": "MAA-COMPLETENESS",
+      "handlerId": "professional_wording__MAA-COMPLETENESS",
+      "findingCode": "V1_GENERIC",
+      "occurrenceRef": "/warRoom/sourceTruthGuardian/fingerprint/ledger/sourceAnchors",
+      "exactWording": "",
+      "candidateClass": "candidate_defect",
+      "plainEnglish": "Empty solicitor-visible / structural wording leaf.",
+      "evidenceRefs": [
+        "/warRoom/sourceTruthGuardian/fingerprint/ledger/sourceAnchors"
+      ]
+    }
+  ],
+  "contracts": {
+    "positive": "scripts/maa-v2-every-word-foundation-contracts.test.ts#positive",
+    "negative": "scripts/maa-v2-every-word-foundation-contracts.test.ts#negative",
+    "unavailable": null,
+    "mutation": null
+  },
+  "receiptNote": "MAA-COMPLETENESS evaluated; emptyLeaves=15/90."
+}

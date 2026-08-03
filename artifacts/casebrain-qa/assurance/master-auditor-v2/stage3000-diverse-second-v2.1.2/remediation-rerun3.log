@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "orderedMembershipSha256": "c698ce950cb92bbf88faab331cee9b816934e9083753897a2412e87bfa59413c",
+  "pdfs": 20,
+  "pngPages": 232,
+  "missingCorrected": 25,
+  "productionOk": true,
+  "uniqueLayoutKinds": 15,
+  "maxLayoutShare": 0.18867924528301888,
+  "largestSubstantiveCluster": 5,
+  "evaluatedCoreControls": 14,
+  "blockers": [
+    "document_realism_ai_visual_review_failed"
+  ],
+  "gatePass": false,
+  "visualFailedTotal": 0
+}

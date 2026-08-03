@@ -1,0 +1,3274 @@
+{
+  "schemaVersion": "excluded-png-hash-lock@1.0.0",
+  "count": 653,
+  "bytes": 51692792,
+  "aggregateSha256": "4727d9d5ff0e23eb9d9b5a7f61fb0eddcad3c13987c39b2dd6c7e6bb99fcc8e9",
+  "files": [
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/contact-sheet.png",
+      "bytes": 44231,
+      "sha256": "4671ab072dc1ba144299abb860df2162c6a3312a6ba2165d77b2e5265f96844a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-001.png",
+      "bytes": 111764,
+      "sha256": "bb44c83a1198b282eace3585e7a34bb7c440b10f0df97c6bc69bb1f9ab0230de"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-002.png",
+      "bytes": 92138,
+      "sha256": "d9038c65249ecc5baee87ab7067e1b8c3c607172b9a55d6df5d2e845f2fd3aa5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-003.png",
+      "bytes": 124082,
+      "sha256": "a49d8ca833b4a2def5b936f8c747204eea5a3273830b605db066391d851c5d51"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-004.png",
+      "bytes": 97121,
+      "sha256": "9e5ed4615e1180d282a9f15c35655be844c41522f7faca8539af171c6d04546f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-005.png",
+      "bytes": 107888,
+      "sha256": "e68d352f702c13336d26d89fcd878012c21d9cf6a0dd205c707e226c662a80d9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-006.png",
+      "bytes": 99810,
+      "sha256": "6aa25fffe2ba4f1437e8d40e2a3569d2e1b1edf053a87da8cb498edb243a5add"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-007.png",
+      "bytes": 97244,
+      "sha256": "51ea9d8ae9ee6c826333f741a30b0a0567787d590720c47dea1fa96c415419bf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-01-common_assault_battery/page-pngs/page-008.png",
+      "bytes": 104964,
+      "sha256": "0d12e8f9dcea926b128da2b9c67f8e698ca1827e99f66ec93a04effe3665216a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-02-shoplifting_theft/page-pngs/contact-sheet.png",
+      "bytes": 33169,
+      "sha256": "ae005ba550e7e0729f11c76f4a5c721259b24ac2e152130b1cf70d4167897d75"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-02-shoplifting_theft/page-pngs/page-001.png",
+      "bytes": 105976,
+      "sha256": "d38797a659da0ccdf908158dff6b4cdb6804b3f8a99bd9403fce52164a53f0e4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-02-shoplifting_theft/page-pngs/page-002.png",
+      "bytes": 119277,
+      "sha256": "2f426206aa026e56359157240ecbd4bde6269d4c53a4f60ea85ccaf9c66f8b9d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-02-shoplifting_theft/page-pngs/page-003.png",
+      "bytes": 95146,
+      "sha256": "87591d58235f5d1fd5eb8983ed41c772c90548b7fcf641bdbc55ca8a3816a548"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-02-shoplifting_theft/page-pngs/page-004.png",
+      "bytes": 102967,
+      "sha256": "32576bda999e41aab4b7bc219fb39093a81a609e6f018d60a5610719fcfbac96"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-02-shoplifting_theft/page-pngs/page-005.png",
+      "bytes": 101118,
+      "sha256": "bb6af15b481d78f0c89f2d1f463602d4aa23a0af40fb76e948446cf517a7e080"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-02-shoplifting_theft/page-pngs/page-006.png",
+      "bytes": 98043,
+      "sha256": "51979a5c8a2475cb4f87219d1c6d77c2dc60e49bc181713bbfa6b2998bfb6a27"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-03-going_equipped/page-pngs/contact-sheet.png",
+      "bytes": 34081,
+      "sha256": "d0c6a74a78d9d45381ce5e66a62ed9a191ce3541262f02a366026b3d2473e8c5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-03-going_equipped/page-pngs/page-001.png",
+      "bytes": 108988,
+      "sha256": "87de9f524c1c86f6372a7b5a137eb130f412493935e51175b59ed343fe24bb3b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-03-going_equipped/page-pngs/page-002.png",
+      "bytes": 120583,
+      "sha256": "c63c79724ed3b1a7aa845f4da35b0452c93d633ea565d0a1ccef1ec949eabfd8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-03-going_equipped/page-pngs/page-003.png",
+      "bytes": 97048,
+      "sha256": "22304f22a13fa5c8a09a2173b83bf0cd3bc82bce3d3054e9972746c8a2b4c833"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-03-going_equipped/page-pngs/page-004.png",
+      "bytes": 105127,
+      "sha256": "1a9883cb8f2d9dc8a46939e722cb6ae406de978b7747b6b923dc97545865a9b0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-03-going_equipped/page-pngs/page-005.png",
+      "bytes": 105114,
+      "sha256": "09ba366cf5ab35ac3e3293e9dd9e1553ac166c9e53965c7772b1c48735ca73f9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-03-going_equipped/page-pngs/page-006.png",
+      "bytes": 100983,
+      "sha256": "3110e89c933461101619986eeab2b4dfc29ece5c81443cffd0e331622fe4e005"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-04-twoc/page-pngs/contact-sheet.png",
+      "bytes": 33422,
+      "sha256": "2fa30ce1f295f7f177223a15cc0a758987ecae8a1970dcec75f31794e1a1dc0f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-04-twoc/page-pngs/page-001.png",
+      "bytes": 96447,
+      "sha256": "02c42e19a770c116784d117696bc1e63e6fa40e6c3fed5eda749efba3323838e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-04-twoc/page-pngs/page-002.png",
+      "bytes": 114807,
+      "sha256": "707da4640a5a0e5ea8ea758381eae94ed8563acd99c1bd396b78876a902d5df4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-04-twoc/page-pngs/page-003.png",
+      "bytes": 93708,
+      "sha256": "f1b77025218a848feba4612b9ee6c53d579a17c0fd05ddc0303bd2016af5e89c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-04-twoc/page-pngs/page-004.png",
+      "bytes": 101633,
+      "sha256": "d7f842e3c7f76ffb35e05467a965a6d5f97494531657074270cf5f8e2fa971ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-04-twoc/page-pngs/page-005.png",
+      "bytes": 100973,
+      "sha256": "48f7ae40557c41768c4a655ab4929cb7a2136079400065ec94a407d22e8e3da7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-04-twoc/page-pngs/page-006.png",
+      "bytes": 96650,
+      "sha256": "a85033092375f32316fc867596fba9d520a2069336892c5d390a0371a01acaef"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/contact-sheet.png",
+      "bytes": 46314,
+      "sha256": "cb1f7ddfb4a3baef9d195d8ec72ea41a584fc9e19fed902df8ba3513ec213d37"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/page-001.png",
+      "bytes": 108017,
+      "sha256": "18cea4f4292b4e82b21071ebe25769db48c0f9436fcd84ef5f0eaca4707cba4f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/page-002.png",
+      "bytes": 119904,
+      "sha256": "75acc930250951989c3833ac3166a666d723657e85a0e3b8eb469657d22627bf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/page-003.png",
+      "bytes": 96637,
+      "sha256": "8d25e799207b329bc86206aebdbf39f9d130249fcdb6b619a5c42b3a1e9b9fa9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/page-004.png",
+      "bytes": 104797,
+      "sha256": "49bdafdd2f9886ade4c4434d86e2ad418dbcb1cd3ca98dae29e805cf2872470b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/page-005.png",
+      "bytes": 98836,
+      "sha256": "1b8b1cb4fc5769faca3c8be6f81c0b1e5179d4eb29ac54a15c3f138e6678129a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/page-006.png",
+      "bytes": 99120,
+      "sha256": "3d59b004f16dce83297bfb9dfae734e9aa92eac04ea45f89ac0f00b9d4d3edaf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/page-007.png",
+      "bytes": 105266,
+      "sha256": "572e8507653239296389688f294bde24e07cae27f92d6b9a7b72f8d38f56e4bc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/page-008.png",
+      "bytes": 98602,
+      "sha256": "964b2acc65b94cd13f95ebe4cd903a328670d15ae299520a9cbb251e0599a42c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/page-009.png",
+      "bytes": 89765,
+      "sha256": "f7ef0f54bf938117f23dec84d6160a51d47e6d1c96f2b1a2fe3240aba5702409"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-05-bladed_articles/page-pngs/page-010.png",
+      "bytes": 100691,
+      "sha256": "37caa476b4145a187b1914a603d50702465588cf9ad9e39559fa5f4be7d7afcf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-06-affray/page-pngs/contact-sheet.png",
+      "bytes": 41824,
+      "sha256": "8152a26ce9ec1dce4028b084d61a376c8e386d2922d5df4624770e0bc63dec26"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-06-affray/page-pngs/page-001.png",
+      "bytes": 97023,
+      "sha256": "6e65c8ab67457525ed5ba75bf3afeb2b83acfbc535f7770fd226ca8065f9e46d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-06-affray/page-pngs/page-002.png",
+      "bytes": 116680,
+      "sha256": "c81a19edfa6869faa5b1baab9c8d2ba54ed02eba6278178fff5b6519c2c2218b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-06-affray/page-pngs/page-003.png",
+      "bytes": 93983,
+      "sha256": "2f4c3baac2f032406e75d24450949053f61f21ddb6a83ff0e3df721987398669"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-06-affray/page-pngs/page-004.png",
+      "bytes": 105051,
+      "sha256": "20a581edf1fbd61ccf777ad63f6828053025a09eff5442d1818b9f7ef45a4d5e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-06-affray/page-pngs/page-005.png",
+      "bytes": 97246,
+      "sha256": "6183a299782ceed7f0ff5083f399e847dfde1b8170ac1d71862de6c1831458c7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-06-affray/page-pngs/page-006.png",
+      "bytes": 94905,
+      "sha256": "657abf1ba6fa458347d1f6e8e516e68e6d135bf2778fc348d541be4ee356dba7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-06-affray/page-pngs/page-007.png",
+      "bytes": 103161,
+      "sha256": "4f91e674f6bea7f55e841d912d8666ddb54e1fe570c45de5a41e9cae8af49c4c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-06-affray/page-pngs/page-008.png",
+      "bytes": 97714,
+      "sha256": "f08d6da02f6a5fa75fe64ea22b1a895192a67bbc195d4aa5662f1e314e95695d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/contact-sheet.png",
+      "bytes": 23989,
+      "sha256": "5c4d3545763d7835a8988eb3df36009261e527d5d62be9d829bb8a3e92632501"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/page-001.png",
+      "bytes": 97901,
+      "sha256": "c7dc84cf2d860b976fc88992485266e82d81b1d439381f396f914c5ae7a111d2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/page-002.png",
+      "bytes": 117816,
+      "sha256": "12f01c51ced9de7f6335c44ae7adbf628d9692aa7f35421e3d00b8fa1cc6f719"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/page-003.png",
+      "bytes": 95778,
+      "sha256": "11070388e8e565bb79bb14f6c10c566d9455fe76b7eff287eee5c475a2787919"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/page-004.png",
+      "bytes": 112695,
+      "sha256": "1ffd7aa8bfb6cd5da8b20078b52e4b04c67bb1f4f267eb7937cbc27801923924"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/page-005.png",
+      "bytes": 104520,
+      "sha256": "63a49d150e8e499459e6d5969bb6b8c00703f800e3175b6d303760a85d6461e9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/contact-sheet.png",
+      "bytes": 58113,
+      "sha256": "ef045c0ceb496fb9c9b5445e4ad98b89fa581573f4c25bebfea87ed4988f2c57"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-001.png",
+      "bytes": 100939,
+      "sha256": "01d83b538b63b3b72703e2246e35323ad428d951ea04df6e944c0616aab1fac3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-002.png",
+      "bytes": 121555,
+      "sha256": "b11c09663025ea406b03ec546a5dfa365954b1fd2c88abbd4764d2e86da821ce"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-003.png",
+      "bytes": 97548,
+      "sha256": "7c4a95974bed6223b47a23b4f2ddad9be3fa3519bdf1b2799c4e1ca42ada6a95"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-004.png",
+      "bytes": 108201,
+      "sha256": "18fd929eb2af8c72277b323eb3b1a090b07a0e402e8dc31fa96e551561dc112a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-005.png",
+      "bytes": 99199,
+      "sha256": "71dd2fed8fb760c2662aabf05808e07c27700b3c03b99b5221d01db0230de678"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-006.png",
+      "bytes": 104792,
+      "sha256": "1528651604024d2e8a87c0c03a4cf9f9dc1088618a1102804acfaa9ab36b61ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-007.png",
+      "bytes": 94689,
+      "sha256": "4f70547d2ad57ac2cc8b0e542962b757225f9ac778c826a86d87c8033f7958f2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-008.png",
+      "bytes": 99779,
+      "sha256": "a745c60d3784addcb673c47ff37eff7ec6a405782686a0860c35c3043af460b2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-009.png",
+      "bytes": 100302,
+      "sha256": "b29d7435a9d2b6eb4d71c6887e14d55cb15a3654458c7659d484f7bf477e0224"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-010.png",
+      "bytes": 97834,
+      "sha256": "113875119b06ee18d7d370b435bf2e9c618550af35b4f6345b46e838887b2a91"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-011.png",
+      "bytes": 106146,
+      "sha256": "0a532030ec62dc83a55e9bc7bf6f1e888ec79064294d60255c551e59b3e5117a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-08-strangulation_suffocation/page-pngs/page-012.png",
+      "bytes": 102539,
+      "sha256": "582c67b4814b822bb6af254ce33e7a645b91074a4593a93cfa0f3494c7b2b311"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/contact-sheet.png",
+      "bytes": 43474,
+      "sha256": "f28e40f820514deb9914f442b1003f2b1d2003e6d9255a0a15bf7767757f1233"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-001.png",
+      "bytes": 98285,
+      "sha256": "8856a90c43b2237600c1c6800e2ffe6bbe5293e33fb59a032fa276a9bb4466ae"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-002.png",
+      "bytes": 117563,
+      "sha256": "71d48121ed053f841549e11ff6b1c30b3a689270726ef249c00d8f1d6f196d7d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-003.png",
+      "bytes": 94698,
+      "sha256": "6c98905da96ac0ce05777cbaa7bf91b96d98392915a3c03960d3e60d5cab00f2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-004.png",
+      "bytes": 105575,
+      "sha256": "e85d0bfd2e1b592436fbc40b394c431aea8e245c29f3957825e605db22f98621"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-005.png",
+      "bytes": 97794,
+      "sha256": "64e40c8976be904a0e8357f2c9b659c7a68036a19ff4de57b03cfcc9f555676d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-006.png",
+      "bytes": 95448,
+      "sha256": "f5598880e5d497e01a6ad64f678a94c11a48d2ce8b93076b80200ade48b7f4e3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-007.png",
+      "bytes": 102485,
+      "sha256": "e709d6f78c16945cfb3615f949df4d3cf44a9d954d6a23ad0ab83639d30e18c8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-09-blackmail/page-pngs/page-008.png",
+      "bytes": 98218,
+      "sha256": "83065d28233a3c4b9c283c9f739bc6770029bf6272963b1bc9e05ada34d0e8b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/contact-sheet.png",
+      "bytes": 45696,
+      "sha256": "290ba131ceebf3c05938cd7eff65d635be3c635b7214c940cdb388a96e984c4b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/page-001.png",
+      "bytes": 101796,
+      "sha256": "d8b05c7b7ddf5f04fd12be139d071fa9ca6f24a32f0feb4e59ceef93c6889dbb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/page-002.png",
+      "bytes": 122041,
+      "sha256": "4cdd951b15b748832daf5ac50baad1a6287a8e17863cb152d88af89fb12ff903"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/page-003.png",
+      "bytes": 97949,
+      "sha256": "69f9eb0d5720f2c2acf8cf43373b3b501afec5ca9b2f785d06c93c751512d380"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/page-004.png",
+      "bytes": 108560,
+      "sha256": "df7b2af6c875bda6deb90e6a72b05cb80c07b6ac8929d009399f5dc9aa625fe2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/page-005.png",
+      "bytes": 100133,
+      "sha256": "a04d1064d91d6376cb851f272fa54f548a080000b795508ec51240f2f0a868f6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/page-006.png",
+      "bytes": 100175,
+      "sha256": "daffb17540099b482ab50a898f6c917afe0309c88f111cc94e8db6082e4cd473"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/page-007.png",
+      "bytes": 100660,
+      "sha256": "4bfcacb5a9d08f6b0d1b1bcd4ae265357112ff0ca08875902f5ab6f65fcabcc1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/page-008.png",
+      "bytes": 97943,
+      "sha256": "2b80b116285b4adaa71bf5b7fdd408809a8a272476cd2363305f21c60aa30573"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/page-009.png",
+      "bytes": 105936,
+      "sha256": "acc3521011fddad8e9622a4d8708b8702a141ec5b711d3f68d68950fbbd337fe"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-10-drugs_conspiracy_supply/page-pngs/page-010.png",
+      "bytes": 102880,
+      "sha256": "4c33781ce396c1a57068ab2c66785139948bba541de2adc5d6876325db341b97"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/contact-sheet.png",
+      "bytes": 48613,
+      "sha256": "f2bda19e75d29ecd531bdafb32ed3b9c7f71af3a1f1e3bccd4dd20b9af3b3e54"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/page-001.png",
+      "bytes": 100982,
+      "sha256": "54bff8c1fcc0c3daa2ef133b51b45457daf53e46f51a58aff91f9c26d3894b7f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/page-002.png",
+      "bytes": 121585,
+      "sha256": "86668bc7ca9b8d2b1b4533aea54910fdf8998b794b8b18f8366455e23832a833"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/page-003.png",
+      "bytes": 97472,
+      "sha256": "e673f265e1a1d396df0f8843ca29e1bdba8254ee5a3a4551dbb4eed758371f09"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/page-004.png",
+      "bytes": 108187,
+      "sha256": "596a01565372fdd5220e912421721820392bf26b0f9f9952e2b72a52ac11ec3a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/page-005.png",
+      "bytes": 100196,
+      "sha256": "b2c38f99b657d0c8b9d1a9e450d0dff5e0043c2c0eaf485560877a5e19bcf207"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/page-006.png",
+      "bytes": 97644,
+      "sha256": "257884c27c7b4fa8f0f6440871d9b42f479bf36784798a74c153f204c556c4b9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/page-007.png",
+      "bytes": 104073,
+      "sha256": "e73477efe35427a49b53420804872d6f3086c5d17fe811cb68d775b9cdc9ddbf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/page-008.png",
+      "bytes": 101235,
+      "sha256": "80a0723f3efcd4d2e0caecbf1f78c5772b8bbfa69da4ba4f2af025a480f64b79"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/page-009.png",
+      "bytes": 106204,
+      "sha256": "3c4bf8590a1e4f2a446cce67ceb14554897757d31c001fc0825f7f61755fa59e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-11-social_media_attribution/page-pngs/page-010.png",
+      "bytes": 102398,
+      "sha256": "bbfa7be5270d1a87a2d59a132188f4dd76c896c6f1fceefec568e3aa5da4bdb9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/contact-sheet.png",
+      "bytes": 47847,
+      "sha256": "c2674227fb819b5677f1fabd511f0ebfa2321c14afaa2ffd91e8190d3e225e2d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-001.png",
+      "bytes": 110329,
+      "sha256": "55819c236c17cdb63813059fcf47cb15c5564f2ae0b2a9b22099de9ba7238e2c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-002.png",
+      "bytes": 92632,
+      "sha256": "2ec93e5a1d09428ffa671bbf05b48e9fe2c01db3f57734e5c78c6e4126f141a9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-003.png",
+      "bytes": 121602,
+      "sha256": "c2798aceca3d03f5023c75abeeea53744e42f3abb6b718fe5a0e0496513d852d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-004.png",
+      "bytes": 97553,
+      "sha256": "4a8fd24dd23003dd69e410281cd22ac4ee6b5b4c5d437b068384eebb52f47559"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-005.png",
+      "bytes": 108393,
+      "sha256": "7933afefff7dc4df2f4b341a8ffbb6f2c6b7e00702ee4aa0a38f522baddf7a34"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-006.png",
+      "bytes": 100501,
+      "sha256": "4ffd80352c95e974cb11255b9ac2c8576684af18af63172908dc7f3a4a010866"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-007.png",
+      "bytes": 97688,
+      "sha256": "d26ceb249ee7699fdcbdd2c9611117107acab5775ab633787429d7220bc8cc6b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-008.png",
+      "bytes": 105508,
+      "sha256": "2cf9d72e33671925dcf46156982720825c3ca73ef93fbda08c5b8754f930573b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-009.png",
+      "bytes": 102814,
+      "sha256": "69744df43f8947a3639f743503680992b5ecd5de861bbff403f52cdc11ee051c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-12-perverting_course_of_justice/page-pngs/page-010.png",
+      "bytes": 103331,
+      "sha256": "721b55f489c76cf209a7c0e814c869d01928a7f9d17b548aef1ee3cffdb37b8a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/contact-sheet.png",
+      "bytes": 46619,
+      "sha256": "5b3e1ab1d98fd2aeffe7c75ef3117356a079204b21a9ec9a6479cd29df8805f8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-001.png",
+      "bytes": 108208,
+      "sha256": "6f8aab91306b74488b000210c2bc56b11aec8ff752d99159ae8e11e6f2846e0d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-002.png",
+      "bytes": 91594,
+      "sha256": "6f344aa5c96670f2868721793b2b4a34f31d38cc58186379b96df6608f52b95a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-003.png",
+      "bytes": 120330,
+      "sha256": "b1356eca2e74c0fe3ca725775631be9bbf234b2de000d8ece25abe83e7359c47"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-004.png",
+      "bytes": 96286,
+      "sha256": "00acf5063a8c75e7c79f11a10b1814d71b7bcdb2dc206ae0534a97c6eb26cabe"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-005.png",
+      "bytes": 107282,
+      "sha256": "274bae608c5f6a60981761deb3809e483cf60467c7bc502dc0ec831021a8c1c2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-006.png",
+      "bytes": 99456,
+      "sha256": "e39c804e3307779f2d8b47e078d6e46216f17d8f1566f915176362edf813aca0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-007.png",
+      "bytes": 96762,
+      "sha256": "9f0ee8f240181201894a8e54084048022d6c5ea2357dc3829354dfc475e8b9ea"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-008.png",
+      "bytes": 105161,
+      "sha256": "776de4a5ba0ae1dd46c391e494e194de68d149f7fea0e28d250b74b612eddda1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-13-witness_intimidation/page-pngs/page-009.png",
+      "bytes": 101362,
+      "sha256": "c103f72913f4a39da4b086d1b2cbae92c67f241f75053c54f31f88927712712c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-14-contempt/page-pngs/contact-sheet.png",
+      "bytes": 45645,
+      "sha256": "33fdec089af31a38fc9beed718afcded133a6601472ab245867e287921bd1c4d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-14-contempt/page-pngs/page-001.png",
+      "bytes": 105094,
+      "sha256": "e4f551e1e1ea52d3f0343924ca0b95a2f60ebde8abe9501e31c510470d04510a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-14-contempt/page-pngs/page-002.png",
+      "bytes": 89876,
+      "sha256": "18a99c9e5460bdbc1720e109130e4714d02629cbc02135bc0581429b750c7748"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-14-contempt/page-pngs/page-003.png",
+      "bytes": 118017,
+      "sha256": "a361f5739a4a21a3e276404882616ab83f618811a56e6f96368065a0ecd614ae"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-14-contempt/page-pngs/page-004.png",
+      "bytes": 94324,
+      "sha256": "8db9d00020b8f0ebd3acaf8cdb16a0d187eacc414264935137053ece6d37dc84"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-14-contempt/page-pngs/page-005.png",
+      "bytes": 105569,
+      "sha256": "439d2ed7a317b7dbaeedc424b0524a4979d78e952df974457f1fbdf6fcacadda"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-14-contempt/page-pngs/page-006.png",
+      "bytes": 97807,
+      "sha256": "af660c59470422b0f8fdeb586827c2c4e3d008f415833c711d45953b38262c43"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-14-contempt/page-pngs/page-007.png",
+      "bytes": 95348,
+      "sha256": "2f4ab8a03d32c66bb7b354b7d319eb2cb4947e5b280a93de628e9e085be6489a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-14-contempt/page-pngs/page-008.png",
+      "bytes": 102682,
+      "sha256": "8c183e334eeab172029aeb2764faffd861753263a487ff0a2c641f373887d6c1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-14-contempt/page-pngs/page-009.png",
+      "bytes": 98960,
+      "sha256": "528f85e537ea6b31bf27682465b1d177337fed5dc9668cbf9f7ea318e4e58143"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/contact-sheet.png",
+      "bytes": 45926,
+      "sha256": "a525a1b8430bb85e51639cce0ccbc25ac8b0df21c566cdb2055df734ee7ed318"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-001.png",
+      "bytes": 107810,
+      "sha256": "4f1b336a1d0115e255db1cc09b272ed1b1adf3f26886bb89757cbd46b8d44a9b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-002.png",
+      "bytes": 91376,
+      "sha256": "d674bf7caa29a8eeecf98ff54577b48d3737601112d35420e729dfed86772ec7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-003.png",
+      "bytes": 119430,
+      "sha256": "eae15079c8005bc102d47ac3141825d99e5b5c4127ce45dc5357721bc04343f0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-004.png",
+      "bytes": 95786,
+      "sha256": "f3114ead546071eee09422ed0154e5183666db99bf80a5bae96c80f6f033dae4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-005.png",
+      "bytes": 107066,
+      "sha256": "d4eaabb9bb40860025deb01097982dd33dcb11dc365d18920f2d0972f120b881"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-006.png",
+      "bytes": 99187,
+      "sha256": "148f179530fe236f6777a160bcaf6f31cf943ef8e4e5a9576093cdcde6edb347"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-007.png",
+      "bytes": 96559,
+      "sha256": "5a0ada57f0b12a6a2aa1f977cc439ce6270be70884f90b99ecf31f2c2fb42e06"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-008.png",
+      "bytes": 104116,
+      "sha256": "98ee6108041cb3510e18c7557ce2260b32d0116944c1442adb27d875fd392765"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-15-prison_offences/page-pngs/page-009.png",
+      "bytes": 100528,
+      "sha256": "f2f70f73ea2d8ac04d10db750e28570579e1b29ceaa64488f604906ea761a7e0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/contact-sheet.png",
+      "bytes": 46450,
+      "sha256": "6e289200774c755564ecbdd90bd50153239218d8cd5bac2cdd60143d8e678882"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-001.png",
+      "bytes": 109181,
+      "sha256": "8e9738430de16dc0e49f71272be21b35a30f0f335f410dca069a34c1927a40ab"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-002.png",
+      "bytes": 92082,
+      "sha256": "7500888f83713eb2b73670ddc37a22252f1281e3d898bb361d3e9909f67d31f0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-003.png",
+      "bytes": 120922,
+      "sha256": "f19905dd43490aeeb252a13cf4df369bc10a66c6ae5beddc97bba2c8c34ecd0d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-004.png",
+      "bytes": 96636,
+      "sha256": "9a7311713f80997232f9d1add5e9917b0e4439a31f4ea38fd0b7c7cad171ff77"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-005.png",
+      "bytes": 107801,
+      "sha256": "de21cb3e750cee760b836fc1f67b03bfb4c845aa826173e8e4c0c04f1a9d8640"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-006.png",
+      "bytes": 99859,
+      "sha256": "f7852bfdec97323b0c792d7df44eb9b7d4268c897fade5d2f601fe4f3f5aa7de"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-007.png",
+      "bytes": 97181,
+      "sha256": "801aa86de4c260789651cf657fef4166e7a6cdaf4627f5529c48270c81c6e49f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-008.png",
+      "bytes": 105696,
+      "sha256": "cbc75a16a39dcabd5f8aa41c3ede49c3f0f99762f10558e97a628dc8c5ddf05d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-16-hearsay_res_gestae/page-pngs/page-009.png",
+      "bytes": 102687,
+      "sha256": "0f9bb0f62b95ab7e2ac773439cf85aa98625121c5ca37ac3a6fa195c3df771aa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/contact-sheet.png",
+      "bytes": 42366,
+      "sha256": "65aeff160daddd9199107e5a23704b50c5d4004ae8342910c9694bfbef0a423c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-001.png",
+      "bytes": 109505,
+      "sha256": "7638fbe806e7c75f7bc9757ccfff6a9211e5001d8b5fa588e703739a9f3f0c14"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-002.png",
+      "bytes": 92039,
+      "sha256": "e027d1403c7f79bf091b935e8d72cf899dbaa7cf5551fbbdfc215964c131ed35"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-003.png",
+      "bytes": 120864,
+      "sha256": "7e62843e0fa5c5ed7efccf254a4e6a6df9162ff05922e52557a926588ba12886"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-004.png",
+      "bytes": 99411,
+      "sha256": "111fed4dd24468354128ae8ef0ee129a5030c7dbec0830b1b8c661d18ab2cd9c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-005.png",
+      "bytes": 120874,
+      "sha256": "d905c636fd4a6848584d0961774ce208cc0a1597c82e20879a628430fa1ad6c1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-006.png",
+      "bytes": 100053,
+      "sha256": "03672671667052efed2281211e25d31b1bdd7f5f6ceb49744647ad2369227ada"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-007.png",
+      "bytes": 97192,
+      "sha256": "ab8a0fd1992ffa0718cd7ecfc8f4325f6ce6e7f82491e2ec88e034ef49ebfcfd"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-17-corporate_manslaughter/page-pngs/page-008.png",
+      "bytes": 105065,
+      "sha256": "9ef7cb7edca738948c9d240b6930f98ed63f2ea8954be8dec8f3980caffb928a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/contact-sheet.png",
+      "bytes": 47882,
+      "sha256": "00fd625571901f32fb3c7e0f8bb2cfd85a7485dce1dd287cbaa506f4b248f39e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-001.png",
+      "bytes": 99538,
+      "sha256": "ed38cc78c1cac989c111ff804baaad536ab316f6ec0b182556616e9b5f67a68b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-002.png",
+      "bytes": 119028,
+      "sha256": "317a157beef24d0122bfff3957a458a57381df65433efc38bd7828a6a5542f9a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-003.png",
+      "bytes": 98351,
+      "sha256": "4a116865686f440ff3606880960c7d62aa15fd3fff9f9d2827586150ac8b89ee"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-004.png",
+      "bytes": 120032,
+      "sha256": "6d4ce00f783f1ede4af0159a6faf02bbec236fc2bae0bb010ddb262902d38d91"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-005.png",
+      "bytes": 99337,
+      "sha256": "2f8032555a38454fceef7e7b264eab00125d1c6931b9a4f6d2b248e30ed05193"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-006.png",
+      "bytes": 96453,
+      "sha256": "cef96373b75e20d069a5c2fc04b47aa179d8874524a4e751031a99f98c54f762"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-007.png",
+      "bytes": 102609,
+      "sha256": "ad496be759b2c5cbfcc9717933f11c924015f2dd1e8c93df7797633c348c350d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-008.png",
+      "bytes": 99919,
+      "sha256": "d4908b4c7d4e35480d485faecf0105e5e6a20fbafecf6ab5c655e7a850b2f5d5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-18-conspiracy_to_defraud/page-pngs/page-009.png",
+      "bytes": 103484,
+      "sha256": "a487533c3ffc1e15ca36b8f9a9ffb944c9fa9009595919f1a3e02424d379e50f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/contact-sheet.png",
+      "bytes": 47197,
+      "sha256": "f58858d8de51fe7116e56b5aeba6ae96344ebb4516de0857d4243eef09b45877"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-001.png",
+      "bytes": 103901,
+      "sha256": "f5d9068629f1bcca2144de5ec3f7ddd2cfc7de2822081ccbfb935b7dff6b80f8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-002.png",
+      "bytes": 89270,
+      "sha256": "7b2d583fa1371b3a0412e4d07aca4e5948dd858c47fb7aa8c5aa432959c74752"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-003.png",
+      "bytes": 116948,
+      "sha256": "d37cd473aca33ca97ca7506ee803eb906546203ab020ed7fcc2e0397b5adede4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-004.png",
+      "bytes": 96623,
+      "sha256": "7437b645ef28b10a14a5746e7801140526c273ef54efcd021b6541cb98d8f629"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-005.png",
+      "bytes": 118524,
+      "sha256": "3977a7d978a582f3e61ae95fad340d552dcf5520304b2810d0b223faa453e07b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-006.png",
+      "bytes": 97193,
+      "sha256": "00222aa4645eff04860cedae2e0e5170fa3813213f35ebf47720d6364a2825d4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-007.png",
+      "bytes": 94850,
+      "sha256": "99694c99a5abc895fc3088c1adbd51966eb4e2d3aa0bbf88bc197e3d5b7aa7c3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-008.png",
+      "bytes": 102695,
+      "sha256": "6566532d2d03bcb2430e01dbc5e190d444824feb641f380cf579733e133dc677"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-19-riot/page-pngs/page-009.png",
+      "bytes": 98318,
+      "sha256": "fa87fa87e8eef48544cab007c3cdbeb7c17abd41a7e26817e04d4dff9cbc1d51"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/contact-sheet.png",
+      "bytes": 44043,
+      "sha256": "f8782e38a1b865a9b32d7af3450e8bb05d6f2735b4ba98b475ad018b5979e03b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-001.png",
+      "bytes": 99678,
+      "sha256": "eaf3ae239881c3f340a583bcbf60e037e521dcd34575bc42cfb3ccb57debd4ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-002.png",
+      "bytes": 119929,
+      "sha256": "083e1bb182736d41f7c1460418eeff6c7c3bbd1396e320f05b98ddffb419a875"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-003.png",
+      "bytes": 98875,
+      "sha256": "4310c32fa92fcd649f5e01243c72d0e2a1859a1df108b244135cd13f04ed2dae"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-004.png",
+      "bytes": 120433,
+      "sha256": "27c2d24a1548795faa366dc302099497f8cfa0ee3b2713198f96eb7a1740c7fc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-005.png",
+      "bytes": 99554,
+      "sha256": "e33306b140a2b4da0534c81cbe1c8882a97ddbd9a9b5a8a79f3d4876f38c8d85"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-006.png",
+      "bytes": 96826,
+      "sha256": "79e3da0f54ea6ca6947daf64883e725a8c7216809f5bd2bd34d3113e254ba963"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-007.png",
+      "bytes": 105560,
+      "sha256": "3a77b0423cc32852491a0dd6312429460f5570bbf6cb35e2eb7a69a49bd6d337"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-008.png",
+      "bytes": 100683,
+      "sha256": "e287ed518dadf8a99932f7c0eefceebb81c75a9505beae43a13798226516b054"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-01-common_assault_battery/page-pngs/contact-sheet.png",
+      "bytes": 39146,
+      "sha256": "3d8e7560d8a45ea5efeb7e732d6bce39d6c85d850e98d9c358346da01b28eefa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-01-common_assault_battery/page-pngs/page-001.png",
+      "bytes": 154885,
+      "sha256": "dab88daf2ea91a7cdbca562eda7f61ec419c9a47c6aa0df4facc276633b644a5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-01-common_assault_battery/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-01-common_assault_battery/page-pngs/page-003.png",
+      "bytes": 105621,
+      "sha256": "ff5d0ddbf385aac71063ab3572d74834ab4c20c39ef53901dd750979a9dfca08"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-01-common_assault_battery/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-01-common_assault_battery/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-01-common_assault_battery/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-01-common_assault_battery/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-01-common_assault_battery/page-pngs/page-008.png",
+      "bytes": 80011,
+      "sha256": "01e363a9f333f81083fdd38714873b2beb4e3990c34b37da92c5f64d40f066bf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-01-common_assault_battery/page-pngs/page-009.png",
+      "bytes": 67311,
+      "sha256": "6770a1abd0aabe90249415bdc36ddbad19153bc1f15bb3c08d88b8e4a86f8e57"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-02-shoplifting_theft/page-pngs/contact-sheet.png",
+      "bytes": 35993,
+      "sha256": "eb91b02c5520c309b913cac1de798b1370e3504c16c8d71e5ea64823c4f26836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-02-shoplifting_theft/page-pngs/page-001.png",
+      "bytes": 113132,
+      "sha256": "0f5341060c49a632c003e39a16fc06ec1c869efc0556e47587e30a380aa7b227"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-02-shoplifting_theft/page-pngs/page-002.png",
+      "bytes": 127144,
+      "sha256": "5a30ec80cceffd8cb6b2a80a92c90af2e600664689b498bc93a3913c1719c68e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-02-shoplifting_theft/page-pngs/page-003.png",
+      "bytes": 102896,
+      "sha256": "9e1ad968ecb2e9d69b03b214edcd6c1a82a60b15ee8b2574011c3a1c132eb456"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-02-shoplifting_theft/page-pngs/page-004.png",
+      "bytes": 79376,
+      "sha256": "2b8373bd7fa343c3ce5d6b75ad809bd317c94a06b27fef519375698331c7174b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-02-shoplifting_theft/page-pngs/page-005.png",
+      "bytes": 44029,
+      "sha256": "f1ed4ca95c75d7ab68ff07d29ad64bd98c273e4b26b82f3fbc6cbe66545f68eb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-02-shoplifting_theft/page-pngs/page-006.png",
+      "bytes": 79033,
+      "sha256": "9ee203d44b378d1e7f866c41ea395f396d757b51d333deb3090e0d6b061a92d1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-02-shoplifting_theft/page-pngs/page-007.png",
+      "bytes": 66531,
+      "sha256": "ac6564cfde0eea3cf0fa9fdfd415d5c9b6872830e7233026ff355f7779379031"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-02-shoplifting_theft/page-pngs/page-008.png",
+      "bytes": 45707,
+      "sha256": "8bf0fb324bb9262ef453075ade7f72d099eb37136556f3a4b1a16497ee9cfccb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-03-going_equipped/page-pngs/contact-sheet.png",
+      "bytes": 37276,
+      "sha256": "56b2ddf21488389935b8e7cd7542357a0f4d20c444b24a6b058adb86e95bb0ac"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-03-going_equipped/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-03-going_equipped/page-pngs/page-002.png",
+      "bytes": 102763,
+      "sha256": "aa66006be956f0b9b6129bd09bc5dcd8762c25098074364019bd2deb0dd017f2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-03-going_equipped/page-pngs/page-003.png",
+      "bytes": 79408,
+      "sha256": "0c8e0afd4ff8ef1afdc3405c5f1d25227f63c327204a94c9a2efdfc6f711f3f5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-03-going_equipped/page-pngs/page-004.png",
+      "bytes": 44020,
+      "sha256": "98acdbe834291eea19fc3d95420e91956aa1b901efe208442176a1d4c0a37c55"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-03-going_equipped/page-pngs/page-005.png",
+      "bytes": 79998,
+      "sha256": "5d416dd3e5dff08a77a29d0a7517c7b8463d2814c8c5121a898c09e91c2d8309"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-03-going_equipped/page-pngs/page-006.png",
+      "bytes": 66717,
+      "sha256": "82c7224fe6805dc28380d014b9796256b083d8bf8ad9452526ad75a100f71280"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-03-going_equipped/page-pngs/page-007.png",
+      "bytes": 47359,
+      "sha256": "9a50023b8bf2fa11b4bb052dee43cf0a61e8a70679e993a4011094b48af9c3e8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-04-twoc/page-pngs/contact-sheet.png",
+      "bytes": 35647,
+      "sha256": "281f1b083661653693a0ee1a684e14310f6ac7f788be7576f8ff6e38815e5f6f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-04-twoc/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-04-twoc/page-pngs/page-002.png",
+      "bytes": 127529,
+      "sha256": "a73f992e02b4981c57d0e70a0b2ac978a1413ef7992f07faf4ba53745b2e09d5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-04-twoc/page-pngs/page-003.png",
+      "bytes": 100606,
+      "sha256": "7592368f4b122d4010e28bd20a215f5e05ecd83aa67400d1c21d9f66cf82fa4b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-04-twoc/page-pngs/page-004.png",
+      "bytes": 79376,
+      "sha256": "2b8373bd7fa343c3ce5d6b75ad809bd317c94a06b27fef519375698331c7174b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-04-twoc/page-pngs/page-005.png",
+      "bytes": 44029,
+      "sha256": "f1ed4ca95c75d7ab68ff07d29ad64bd98c273e4b26b82f3fbc6cbe66545f68eb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-04-twoc/page-pngs/page-006.png",
+      "bytes": 79209,
+      "sha256": "5afc74bc2b4f36821fa7f6a2691d1799fe099136b1933fab017d4548cae5cd6d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-04-twoc/page-pngs/page-007.png",
+      "bytes": 66003,
+      "sha256": "96cafd8a8bfc25019f3c44cff90eff3bf757af74caa0f58b0e6c3086442152aa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-04-twoc/page-pngs/page-008.png",
+      "bytes": 44329,
+      "sha256": "6321f776cb8c6aae2e773c2ea82fac76ba847d56c594887ad96e7101ede764d3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/contact-sheet.png",
+      "bytes": 58019,
+      "sha256": "d5f724b4cf3768e4614a6702852bfdb8f1946ee13fc1be0f8c41be532c22176e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-002.png",
+      "bytes": 102771,
+      "sha256": "f998c8af74ba5b0c4ef7ae0387237b8c6e7d57ca3dfb86c664171882cb286e16"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-003.png",
+      "bytes": 79408,
+      "sha256": "0c8e0afd4ff8ef1afdc3405c5f1d25227f63c327204a94c9a2efdfc6f711f3f5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-004.png",
+      "bytes": 44020,
+      "sha256": "98acdbe834291eea19fc3d95420e91956aa1b901efe208442176a1d4c0a37c55"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-005.png",
+      "bytes": 35195,
+      "sha256": "909a0585c9ac239654514374091b858d1132fd1fb77700deb239981bea40302c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-006.png",
+      "bytes": 29255,
+      "sha256": "a5d4ab82c173964e9bb5b37f46eb78aa5cc1f0a8310d26d06d621769004004a5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-007.png",
+      "bytes": 79469,
+      "sha256": "8aaf1e57d29605d860266f4074fdaf5ade45dbaa621b18b1361dc1b35452107e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-008.png",
+      "bytes": 70283,
+      "sha256": "3102825455cd794347d07e30a719230937814f9e292621bbee8aa2feb5439126"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-009.png",
+      "bytes": 61872,
+      "sha256": "42cbdd0bce3275f33c415b592559eb3c03e56f2cfb00e479372f3ab895f0006f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-010.png",
+      "bytes": 79893,
+      "sha256": "15f1849340d39ee8f68cc0a3f1699aeea4d924562f13fa6874cf4b3be03872f9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-011.png",
+      "bytes": 66413,
+      "sha256": "c05268d175398391b4bca05eba2d1a9b4027850ca440235f8813d57bb868621b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-012.png",
+      "bytes": 59272,
+      "sha256": "67058a0bfb6cbd02e8171a7639021858de1d1df19718eec1b84f0ad1d23c6c78"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-013.png",
+      "bytes": 51527,
+      "sha256": "02c8d9069bb1fa4576e3970f2602f8846f6130782d6e710307003437457dd43f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-05-bladed_articles/page-pngs/page-014.png",
+      "bytes": 47025,
+      "sha256": "aa2656d5a4eda08f2f2e8be9ca923916a425def203b92b701df03e77012ea44f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/contact-sheet.png",
+      "bytes": 38626,
+      "sha256": "f0b46a067391b5f80ccacef2c0663b7c5333fc8e3a0766ae2a50b0e766665a2b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/page-002.png",
+      "bytes": 127411,
+      "sha256": "55a7fa2c6f4a51e802ad036391fa425a3a9e0ddf3814e5b334030b785363aeb4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/page-003.png",
+      "bytes": 101434,
+      "sha256": "a567dee7ef345dbf95085556b99f74e361e40e8aa9f591642f40894556f779b0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/page-008.png",
+      "bytes": 79852,
+      "sha256": "8c98d987309f6ab419adb88af3bea6314014c91096137a1acce886b86ad25136"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/page-009.png",
+      "bytes": 66543,
+      "sha256": "f2797f50e4540727c964ffdcd0d471114baa6dd0f38cb3d1906c4aed92c5cd8e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-06-affray/page-pngs/page-010.png",
+      "bytes": 44632,
+      "sha256": "353c79b8561e501cb725212a92dc42e1d098b0579a41130c2864a66664157461"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-07-sexual_assault/page-pngs/contact-sheet.png",
+      "bytes": 34422,
+      "sha256": "0433b8f266445d21332ab0803e0c58754127ae528abe9b13d6162d0e762f5dfb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-07-sexual_assault/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-07-sexual_assault/page-pngs/page-002.png",
+      "bytes": 127726,
+      "sha256": "9a871299a669566e8e4f668e5c6d317eff99cd9b7924a86396709cb28e81f550"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-07-sexual_assault/page-pngs/page-003.png",
+      "bytes": 102456,
+      "sha256": "771d8c869b06c38f41ab9f75f040363693e0336f954594f36dcf9e07bc272f41"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-07-sexual_assault/page-pngs/page-004.png",
+      "bytes": 79826,
+      "sha256": "ff04e0ac445e51c846f2ebf64c812fe32e41db9720e76620ec0440e52af4267a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-07-sexual_assault/page-pngs/page-005.png",
+      "bytes": 48943,
+      "sha256": "4d9128785898484f429eb06b726aff21c6943d6b2c921aa8c7551e8e0b5b8e12"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-07-sexual_assault/page-pngs/page-006.png",
+      "bytes": 80637,
+      "sha256": "38e5e64a283304ba6c12ac58fa95bde311594015425454ea7117f78defae4489"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-07-sexual_assault/page-pngs/page-007.png",
+      "bytes": 67924,
+      "sha256": "2a039c0da38f37287c285c68e031db5ee7ca6241c2856998828ae0effb5218b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/contact-sheet.png",
+      "bytes": 58537,
+      "sha256": "6727f9c863228e9028384e39b43ca03f7b1a4a6e6eae415a93cc79d398f2b7fe"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-002.png",
+      "bytes": 128024,
+      "sha256": "3162ef3e3cecd9adcb21f7cfde7a4871255db682a415249b48a78b193331b8fc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-003.png",
+      "bytes": 103552,
+      "sha256": "05b8854d3221e0f538186507d6c158cbdc6f8302d371f5000bec52f339c07a3f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-006.png",
+      "bytes": 63028,
+      "sha256": "3b740c5000eafe447fbd0c93dea7b6bb14f325da832ed2afe86ad1e50bf216f6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-007.png",
+      "bytes": 52172,
+      "sha256": "bf8671ec128f2a650510dca79bdfc5973b93b98de08f83b03d2931e08725f1c3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-008.png",
+      "bytes": 52316,
+      "sha256": "10bf31147b8b2d8e37877b4b393c49aa081c022e959895381bd0dca2761f18d7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-009.png",
+      "bytes": 62100,
+      "sha256": "48a032cd7b3d0e8bac5afb43798b540403401eaef306fb5f5855c121cdcc7da0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-010.png",
+      "bytes": 52058,
+      "sha256": "1f2a47025ed7d0e6459f659211e8439902f9223edd6dea5bcba941430700e07f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-011.png",
+      "bytes": 51933,
+      "sha256": "dd9da398a9dc2df25122329a0596c2e0f7511a937b94193009a99d86f0a55991"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-012.png",
+      "bytes": 56688,
+      "sha256": "063c5a4b3c362752268e253b550e67df6ad6f9f7d648a1f82fbca2735b470662"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-013.png",
+      "bytes": 39404,
+      "sha256": "4675f1d19c389c6af04487de953ba77b90a70e66b402cd80cca11386976e2863"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-014.png",
+      "bytes": 31000,
+      "sha256": "3fc45004aa78d2807d5fbd828c15ffec35da3cb6720b1191a25bcb6e990971b2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-015.png",
+      "bytes": 80065,
+      "sha256": "aaf2fcaa1586b30bfae4417b057408b291bebb74134c1178f019c53f99d4be7a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-016.png",
+      "bytes": 67207,
+      "sha256": "443066759e00e08b2997a849fb79be9f5856db318a50ee0d24a016f907ff07b8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/page-pngs/page-017.png",
+      "bytes": 47470,
+      "sha256": "44f17a27448adaec3132981b47fe1beca142f07226eda528f7d0fd77760c0748"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/contact-sheet.png",
+      "bytes": 38715,
+      "sha256": "1924ced435438152921b04b492c701ce081f3471408b3f121401faa4f6b16dc3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/page-002.png",
+      "bytes": 127927,
+      "sha256": "08f8f917dc5dddd5b57114109d1b13c8b474c2676d4d0569f34021cbfff5f6ea"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/page-003.png",
+      "bytes": 102716,
+      "sha256": "1487d88d2671471bb677de4f2dcb07068fd5f32598f090dc1e5ddf6f7f2fef4a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/page-008.png",
+      "bytes": 79435,
+      "sha256": "7d01ee7dc79e2acb96d200284917a9d36bb989d76ce72698cc075d2daf6123f7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/page-009.png",
+      "bytes": 66682,
+      "sha256": "caea17835f8578a19fbea3e5402b6d0f6b11a32becd48fb74f3664f8d72abb1d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-09-blackmail/page-pngs/page-010.png",
+      "bytes": 45476,
+      "sha256": "af170f0ae4d9469af993353f575bc34197e1ba71b1173ad4f0d44e92016ffc37"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/contact-sheet.png",
+      "bytes": 53331,
+      "sha256": "2e65494e4264e5e2d76253c03693e2e0f39e48c2f13920ff6a5875e90ab34056"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-002.png",
+      "bytes": 127970,
+      "sha256": "a5519175fcc17e0ef9ced06913eab9457185d8cb4813454b35a6685531e657ab"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-003.png",
+      "bytes": 103299,
+      "sha256": "98ffe13293d242b1ab2216a7c1dce198bd2d738f12727286e5ab15f65c65bd0e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-006.png",
+      "bytes": 35210,
+      "sha256": "679c92f44220634d81ecf40049192a3c2bedc4a49bff12eacb9f2cc86e804388"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-007.png",
+      "bytes": 29221,
+      "sha256": "bf8b500a813d5b3c94304cdd47400464f6210ce6b59cd7d0b6ad6fafc309e29e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-008.png",
+      "bytes": 79662,
+      "sha256": "15cf5c80fea7545bdc4f97b2ef4a3bea27fcf52c531b23cc95d184e492c085f5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-009.png",
+      "bytes": 69681,
+      "sha256": "21c3d92e83feed7e5ba3969e6f1d1ad37675c718e0d30401251143d5e1a4e6a3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-010.png",
+      "bytes": 61912,
+      "sha256": "d34a12cd93c0907c8c299f086fae7f53ea2d1bcce9b61a6f5373be29e51f666f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-011.png",
+      "bytes": 39337,
+      "sha256": "214858a6d62c9b14e557fdf2a8c241409c29d4e0a8601cb357cafdc954b2e6a7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-012.png",
+      "bytes": 31023,
+      "sha256": "ecad2c3856320332db9eb1d2227b6ca7df2dddc06757abfade28c9cdfd9513b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-013.png",
+      "bytes": 80318,
+      "sha256": "d4cffadeed32a3c0780aeb548eb0f839980f47f76ae5eb73519e1b12d214c08b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-014.png",
+      "bytes": 67548,
+      "sha256": "56fa22e88a9baa5d66856f4bed686f0b4cc79822affe9107979fa4d9c5b2422e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-10-drugs_conspiracy_supply/page-pngs/page-015.png",
+      "bytes": 48510,
+      "sha256": "d614498a6869651ac24f29484a1216d6855bf756b65a4ec17c819cbedaac8255"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/contact-sheet.png",
+      "bytes": 47162,
+      "sha256": "f2b1bc2d9f89f052bf61ea4b695297dd22b10b0240042ea2f04775a95eb7fada"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-002.png",
+      "bytes": 128024,
+      "sha256": "3162ef3e3cecd9adcb21f7cfde7a4871255db682a415249b48a78b193331b8fc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-003.png",
+      "bytes": 103652,
+      "sha256": "2bdd9ad8fc0fcb5bb3aff213b2498bbc800c446cd8a4f4df3bcbc42338e87628"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-008.png",
+      "bytes": 49948,
+      "sha256": "18997fec264c784775a70a34290d4307f4ed407a6dae7fa7891dfffc8b99f208"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-009.png",
+      "bytes": 36648,
+      "sha256": "157c12b449dfba863de7dc011840b64b2d47527198167125e2308eef09bcb277"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-010.png",
+      "bytes": 41464,
+      "sha256": "82098c06d58fd2e9a34823bf5de6321492c9fd164e4363ad6c4f3d020eceb399"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-011.png",
+      "bytes": 35835,
+      "sha256": "589e38dfcc769fb3fa9d7a25a4c84429e786b3434412ac6dbc322a2c77fdfa32"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-012.png",
+      "bytes": 80229,
+      "sha256": "6e02c6855906331223d295fef0cd3f46fc179353739d8274a4edb52590ee40aa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-013.png",
+      "bytes": 67409,
+      "sha256": "53dd929c11bc6d8ecb505f66dcaae88408ee5f0840de79795532af050e471cf0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-11-social_media_attribution/page-pngs/page-014.png",
+      "bytes": 49479,
+      "sha256": "347a36712cbff8c72231d9fa4c71525e4f6207b0d32a0dae54d84c1f7928b1fe"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/contact-sheet.png",
+      "bytes": 45720,
+      "sha256": "685cf2a7db2fa588a92a42169e37708060b32ac15fdb7da202b3ef9235134ca2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-003.png",
+      "bytes": 103344,
+      "sha256": "cc07ad63489009b5bcbb90beb1ca3863bf204eca270593fe5ccc52e3e3d8e6d8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-008.png",
+      "bytes": 80256,
+      "sha256": "02445b655a00e6bafb8039dd49f96012323b48a46bf35a3a6c4fc6da417a7215"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-009.png",
+      "bytes": 67616,
+      "sha256": "96efd1309f143be74d01600e918dd0c3f93382ab2eea91dca99d092cde46a308"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-010.png",
+      "bytes": 50127,
+      "sha256": "c7a9ea2bd05274dc9777dc18224de53833e0d210b52ad1924e9c2b0b7074b661"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-12-perverting_course_of_justice/page-pngs/page-011.png",
+      "bytes": 48586,
+      "sha256": "5695bd520309899dcc78df32e4d52cd59773f7a40477b5cf7c18630d20a0941e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/contact-sheet.png",
+      "bytes": 40603,
+      "sha256": "62151877cdc0bc5b006371ed796b3228f14e40d562428342d00dba685acef5ab"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/page-003.png",
+      "bytes": 103464,
+      "sha256": "4ce73f0deedbffb6f1a09bfb13751e894592a4d7173d2d58fdf105a6ebcfcc62"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/page-008.png",
+      "bytes": 80016,
+      "sha256": "cc4e659426eefa739738826f37dc44a8ea2bbfb1c2505be2e8b13563127ae37d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/page-009.png",
+      "bytes": 67128,
+      "sha256": "c01c4d29750f268dcbda9c7a598c64c7565e74cc3226c101dd6f51bbcf36a941"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-13-witness_intimidation/page-pngs/page-010.png",
+      "bytes": 47239,
+      "sha256": "fddabe570d6db23bfdb83a6051f3849a1d3cbfef6b783de97856bcd0eda42ca8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/contact-sheet.png",
+      "bytes": 40359,
+      "sha256": "c1df074bad2f24b3cb52e19d1cec10bba4db4dbc69e51824abc43ca1aa4adf27"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/page-003.png",
+      "bytes": 102116,
+      "sha256": "2baab5c33cc5ab48846c33f94f9ec6d8ced6f06cbaeec4b38d12b2832f1125a2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/page-008.png",
+      "bytes": 79644,
+      "sha256": "6f665870a9c1ac2678e1b1e25133ccb754389e08c24e0f8d8d2dbb84bb03cdaa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/page-009.png",
+      "bytes": 66804,
+      "sha256": "cc07e3b4e7dc158a7b2f3f06b5737f41c2b04ae79f9bfc772884d26d360949db"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-14-contempt/page-pngs/page-010.png",
+      "bytes": 46011,
+      "sha256": "9d836e1619b3ebde61cb3fcd79137f8a5fec035b522444a8d21d4efadef42a2f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/contact-sheet.png",
+      "bytes": 40408,
+      "sha256": "759f283bc1ecf9d5569c1b9a2ec3bc0a00ce143514e9c3ef571b39c32bd6b0d9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/page-003.png",
+      "bytes": 102222,
+      "sha256": "37cc4769fd25a61c3ec40674fb6956f68ca9c089cb867b8309f32a54ec8319d9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/page-008.png",
+      "bytes": 79850,
+      "sha256": "486780a8437342c29296c62847389247cecae3f5235aeddf1e7920570c00f6ea"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/page-009.png",
+      "bytes": 67155,
+      "sha256": "2fca0c8b666768119ebe2160de8c452c332f6e6d3ecfe6b2f5ddd9699bdbdec6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-15-prison_offences/page-pngs/page-010.png",
+      "bytes": 46935,
+      "sha256": "2050f920b90d465d2aebc8d126d0274633dc9b1564c9406050b106db32a00434"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/contact-sheet.png",
+      "bytes": 40597,
+      "sha256": "26a130a30f5c354b8be60bae8baff9d7724bb3d2a07fc6488714a666dc67397d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/page-003.png",
+      "bytes": 103503,
+      "sha256": "d2a7aa00d8a232b6b7473c8580707afd80a8b91862a621b26b23e8156c3fed05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/page-008.png",
+      "bytes": 80205,
+      "sha256": "9ed33f7016d8934281194dc706b8fe8883dcb725f9c4d7ae53f73ed9938b62c5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/page-009.png",
+      "bytes": 67363,
+      "sha256": "0f29a5d6b087d0d6d68fefce95d9a370fd64bdd90ae763a722456dab8437bb9c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-16-hearsay_res_gestae/page-pngs/page-010.png",
+      "bytes": 47669,
+      "sha256": "494781b22d83412c4e48045c2b1aee6a221b6ecba3af50f0b7507d4f3aa3925a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-17-corporate_manslaughter/page-pngs/contact-sheet.png",
+      "bytes": 39575,
+      "sha256": "f667113b5604309313d34e2b378ac71758f7c5048baab7fbfb4d4800120de3ce"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-17-corporate_manslaughter/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-17-corporate_manslaughter/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-17-corporate_manslaughter/page-pngs/page-003.png",
+      "bytes": 103511,
+      "sha256": "bdcd6551a32946aa660c48e86e8cf4b62255fbb8355b6de01a2f0937a4555387"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-17-corporate_manslaughter/page-pngs/page-004.png",
+      "bytes": 80330,
+      "sha256": "5fe3b59d35ba9648c0d469e0b2529374a753e8bdc724315bee56238d85bd5393"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-17-corporate_manslaughter/page-pngs/page-005.png",
+      "bytes": 52727,
+      "sha256": "4da167cb6f2fd4537aba34e784b34b1ca7e467b0e7ef3b3127f0c902fd7ac1ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-17-corporate_manslaughter/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-17-corporate_manslaughter/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-17-corporate_manslaughter/page-pngs/page-008.png",
+      "bytes": 80205,
+      "sha256": "bb884c932a5357e48f3df425993227eda31e32cdd8d2e82252340f2a15e09740"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-17-corporate_manslaughter/page-pngs/page-009.png",
+      "bytes": 68949,
+      "sha256": "4192e0483df70314fc2f2770597298edcdb43435cf9700a34fa265a8de192b2b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/contact-sheet.png",
+      "bytes": 46115,
+      "sha256": "cb1e73ce00cf97133472dfc73aa99106a65474fa3aadae8167e824c409046cc2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-002.png",
+      "bytes": 127353,
+      "sha256": "d3b71dfbde430be9d6de2e701690936264adb8aff1213e581885de68ff4799af"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-003.png",
+      "bytes": 102007,
+      "sha256": "be0bfcebdebc716fe12be2d01fca84121291ff5b680e11ff5896abe9bbabbd5a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-004.png",
+      "bytes": 80330,
+      "sha256": "5fe3b59d35ba9648c0d469e0b2529374a753e8bdc724315bee56238d85bd5393"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-005.png",
+      "bytes": 52727,
+      "sha256": "4da167cb6f2fd4537aba34e784b34b1ca7e467b0e7ef3b3127f0c902fd7ac1ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-008.png",
+      "bytes": 49948,
+      "sha256": "18997fec264c784775a70a34290d4307f4ed407a6dae7fa7891dfffc8b99f208"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-009.png",
+      "bytes": 38494,
+      "sha256": "c910cff27e7be1bfe0887cae1a3805c205144daed848295f803c7f7898eae1da"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-010.png",
+      "bytes": 42899,
+      "sha256": "9fd1a95c9776a43f8b586ab0d4f9cd6f17c3cf4e84af04d95b5bd83968a58634"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-011.png",
+      "bytes": 35835,
+      "sha256": "589e38dfcc769fb3fa9d7a25a4c84429e786b3434412ac6dbc322a2c77fdfa32"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-012.png",
+      "bytes": 79950,
+      "sha256": "87b7c027a722f3a7929d9c8c66a43c75efc1d48c0e1ea873f8678766bf20cb4b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-18-conspiracy_to_defraud/page-pngs/page-013.png",
+      "bytes": 68925,
+      "sha256": "9670ce2f41df4d42cc2f2392fd7adf2085e62d8832b098060a87fe8c33a109ec"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/contact-sheet.png",
+      "bytes": 41079,
+      "sha256": "fcd224ee7cdacd24b880c5b01b2ae5195c23d93b7e44c75cb802dc10e37fdda3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/page-003.png",
+      "bytes": 101774,
+      "sha256": "909df9ce5fb78795da59fb3e76229823cf020a98b70c80405ef93f4e083cc447"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/page-004.png",
+      "bytes": 80330,
+      "sha256": "5fe3b59d35ba9648c0d469e0b2529374a753e8bdc724315bee56238d85bd5393"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/page-005.png",
+      "bytes": 52727,
+      "sha256": "4da167cb6f2fd4537aba34e784b34b1ca7e467b0e7ef3b3127f0c902fd7ac1ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/page-008.png",
+      "bytes": 79351,
+      "sha256": "d48d3d1a7943220a861eab5993253bba019a46a67a9946742088f225fca1ae58"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/page-009.png",
+      "bytes": 67952,
+      "sha256": "edf03d38b1f5ea5bf5ad535b3d3cf52a387a8068c9ca8d0780b37c41ead79c17"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-19-riot/page-pngs/page-010.png",
+      "bytes": 44911,
+      "sha256": "2a50f97bef28d6ed589f466e5af36493952d2b3b4e84504ae1b68dc9229d8a49"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/contact-sheet.png",
+      "bytes": 39677,
+      "sha256": "f24f78117cb183c460e77fa5b0ee235920f203aa8938de419cf99356869fa283"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/page-002.png",
+      "bytes": 127411,
+      "sha256": "55a7fa2c6f4a51e802ad036391fa425a3a9e0ddf3814e5b334030b785363aeb4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/page-003.png",
+      "bytes": 102368,
+      "sha256": "fc11d9c6197b1655ceaade49a0ebf953efd76e194bc3efc0b91e3c461b87c48b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/page-004.png",
+      "bytes": 80330,
+      "sha256": "5fe3b59d35ba9648c0d469e0b2529374a753e8bdc724315bee56238d85bd5393"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/page-005.png",
+      "bytes": 52727,
+      "sha256": "4da167cb6f2fd4537aba34e784b34b1ca7e467b0e7ef3b3127f0c902fd7ac1ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/page-008.png",
+      "bytes": 80448,
+      "sha256": "7326214ea7300b3e72b60f30c902672b8440d5119a238ee57d8671d9ff468a34"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/page-009.png",
+      "bytes": 68801,
+      "sha256": "d676e33dfc4b6db2dee0968c54dd86a1e21c99ef79122017160a02776ca7a118"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-20-diplomatic_immunity/page-pngs/page-010.png",
+      "bytes": 47018,
+      "sha256": "d10e2f10d291c501da67957b93dd0384e72d7b07c040287fc1838da5e2f33c3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/contact-sheet.png",
+      "bytes": 39146,
+      "sha256": "3d8e7560d8a45ea5efeb7e732d6bce39d6c85d850e98d9c358346da01b28eefa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/page-001.png",
+      "bytes": 154885,
+      "sha256": "dab88daf2ea91a7cdbca562eda7f61ec419c9a47c6aa0df4facc276633b644a5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/page-003.png",
+      "bytes": 105621,
+      "sha256": "ff5d0ddbf385aac71063ab3572d74834ab4c20c39ef53901dd750979a9dfca08"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/page-008.png",
+      "bytes": 80011,
+      "sha256": "01e363a9f333f81083fdd38714873b2beb4e3990c34b37da92c5f64d40f066bf"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/page-pngs/page-009.png",
+      "bytes": 67311,
+      "sha256": "6770a1abd0aabe90249415bdc36ddbad19153bc1f15bb3c08d88b8e4a86f8e57"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/contact-sheet.png",
+      "bytes": 35993,
+      "sha256": "eb91b02c5520c309b913cac1de798b1370e3504c16c8d71e5ea64823c4f26836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-001.png",
+      "bytes": 113132,
+      "sha256": "0f5341060c49a632c003e39a16fc06ec1c869efc0556e47587e30a380aa7b227"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-002.png",
+      "bytes": 127144,
+      "sha256": "5a30ec80cceffd8cb6b2a80a92c90af2e600664689b498bc93a3913c1719c68e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-003.png",
+      "bytes": 102896,
+      "sha256": "9e1ad968ecb2e9d69b03b214edcd6c1a82a60b15ee8b2574011c3a1c132eb456"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-004.png",
+      "bytes": 79376,
+      "sha256": "2b8373bd7fa343c3ce5d6b75ad809bd317c94a06b27fef519375698331c7174b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-005.png",
+      "bytes": 44029,
+      "sha256": "f1ed4ca95c75d7ab68ff07d29ad64bd98c273e4b26b82f3fbc6cbe66545f68eb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-006.png",
+      "bytes": 79033,
+      "sha256": "9ee203d44b378d1e7f866c41ea395f396d757b51d333deb3090e0d6b061a92d1"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-007.png",
+      "bytes": 66531,
+      "sha256": "ac6564cfde0eea3cf0fa9fdfd415d5c9b6872830e7233026ff355f7779379031"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/page-pngs/page-008.png",
+      "bytes": 45707,
+      "sha256": "8bf0fb324bb9262ef453075ade7f72d099eb37136556f3a4b1a16497ee9cfccb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/page-pngs/contact-sheet.png",
+      "bytes": 37276,
+      "sha256": "56b2ddf21488389935b8e7cd7542357a0f4d20c444b24a6b058adb86e95bb0ac"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/page-pngs/page-002.png",
+      "bytes": 102763,
+      "sha256": "aa66006be956f0b9b6129bd09bc5dcd8762c25098074364019bd2deb0dd017f2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/page-pngs/page-003.png",
+      "bytes": 79408,
+      "sha256": "0c8e0afd4ff8ef1afdc3405c5f1d25227f63c327204a94c9a2efdfc6f711f3f5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/page-pngs/page-004.png",
+      "bytes": 44020,
+      "sha256": "98acdbe834291eea19fc3d95420e91956aa1b901efe208442176a1d4c0a37c55"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/page-pngs/page-005.png",
+      "bytes": 79998,
+      "sha256": "5d416dd3e5dff08a77a29d0a7517c7b8463d2814c8c5121a898c09e91c2d8309"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/page-pngs/page-006.png",
+      "bytes": 66717,
+      "sha256": "82c7224fe6805dc28380d014b9796256b083d8bf8ad9452526ad75a100f71280"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/page-pngs/page-007.png",
+      "bytes": 47359,
+      "sha256": "9a50023b8bf2fa11b4bb052dee43cf0a61e8a70679e993a4011094b48af9c3e8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/page-pngs/contact-sheet.png",
+      "bytes": 35647,
+      "sha256": "281f1b083661653693a0ee1a684e14310f6ac7f788be7576f8ff6e38815e5f6f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/page-pngs/page-002.png",
+      "bytes": 127529,
+      "sha256": "a73f992e02b4981c57d0e70a0b2ac978a1413ef7992f07faf4ba53745b2e09d5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/page-pngs/page-003.png",
+      "bytes": 100606,
+      "sha256": "7592368f4b122d4010e28bd20a215f5e05ecd83aa67400d1c21d9f66cf82fa4b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/page-pngs/page-004.png",
+      "bytes": 79376,
+      "sha256": "2b8373bd7fa343c3ce5d6b75ad809bd317c94a06b27fef519375698331c7174b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/page-pngs/page-005.png",
+      "bytes": 44029,
+      "sha256": "f1ed4ca95c75d7ab68ff07d29ad64bd98c273e4b26b82f3fbc6cbe66545f68eb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/page-pngs/page-006.png",
+      "bytes": 79209,
+      "sha256": "5afc74bc2b4f36821fa7f6a2691d1799fe099136b1933fab017d4548cae5cd6d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/page-pngs/page-007.png",
+      "bytes": 66003,
+      "sha256": "96cafd8a8bfc25019f3c44cff90eff3bf757af74caa0f58b0e6c3086442152aa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/page-pngs/page-008.png",
+      "bytes": 44329,
+      "sha256": "6321f776cb8c6aae2e773c2ea82fac76ba847d56c594887ad96e7101ede764d3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/contact-sheet.png",
+      "bytes": 58019,
+      "sha256": "d5f724b4cf3768e4614a6702852bfdb8f1946ee13fc1be0f8c41be532c22176e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-002.png",
+      "bytes": 102771,
+      "sha256": "f998c8af74ba5b0c4ef7ae0387237b8c6e7d57ca3dfb86c664171882cb286e16"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-003.png",
+      "bytes": 79408,
+      "sha256": "0c8e0afd4ff8ef1afdc3405c5f1d25227f63c327204a94c9a2efdfc6f711f3f5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-004.png",
+      "bytes": 44020,
+      "sha256": "98acdbe834291eea19fc3d95420e91956aa1b901efe208442176a1d4c0a37c55"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-005.png",
+      "bytes": 35195,
+      "sha256": "909a0585c9ac239654514374091b858d1132fd1fb77700deb239981bea40302c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-006.png",
+      "bytes": 29255,
+      "sha256": "a5d4ab82c173964e9bb5b37f46eb78aa5cc1f0a8310d26d06d621769004004a5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-007.png",
+      "bytes": 79469,
+      "sha256": "8aaf1e57d29605d860266f4074fdaf5ade45dbaa621b18b1361dc1b35452107e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-008.png",
+      "bytes": 70283,
+      "sha256": "3102825455cd794347d07e30a719230937814f9e292621bbee8aa2feb5439126"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-009.png",
+      "bytes": 61872,
+      "sha256": "42cbdd0bce3275f33c415b592559eb3c03e56f2cfb00e479372f3ab895f0006f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-010.png",
+      "bytes": 79893,
+      "sha256": "15f1849340d39ee8f68cc0a3f1699aeea4d924562f13fa6874cf4b3be03872f9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-011.png",
+      "bytes": 66413,
+      "sha256": "c05268d175398391b4bca05eba2d1a9b4027850ca440235f8813d57bb868621b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-012.png",
+      "bytes": 59272,
+      "sha256": "67058a0bfb6cbd02e8171a7639021858de1d1df19718eec1b84f0ad1d23c6c78"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-013.png",
+      "bytes": 51527,
+      "sha256": "02c8d9069bb1fa4576e3970f2602f8846f6130782d6e710307003437457dd43f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/page-pngs/page-014.png",
+      "bytes": 47025,
+      "sha256": "aa2656d5a4eda08f2f2e8be9ca923916a425def203b92b701df03e77012ea44f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/contact-sheet.png",
+      "bytes": 38626,
+      "sha256": "f0b46a067391b5f80ccacef2c0663b7c5333fc8e3a0766ae2a50b0e766665a2b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/page-002.png",
+      "bytes": 127411,
+      "sha256": "55a7fa2c6f4a51e802ad036391fa425a3a9e0ddf3814e5b334030b785363aeb4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/page-003.png",
+      "bytes": 101434,
+      "sha256": "a567dee7ef345dbf95085556b99f74e361e40e8aa9f591642f40894556f779b0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/page-008.png",
+      "bytes": 79852,
+      "sha256": "8c98d987309f6ab419adb88af3bea6314014c91096137a1acce886b86ad25136"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/page-009.png",
+      "bytes": 66543,
+      "sha256": "f2797f50e4540727c964ffdcd0d471114baa6dd0f38cb3d1906c4aed92c5cd8e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/page-pngs/page-010.png",
+      "bytes": 44632,
+      "sha256": "353c79b8561e501cb725212a92dc42e1d098b0579a41130c2864a66664157461"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/page-pngs/contact-sheet.png",
+      "bytes": 34422,
+      "sha256": "0433b8f266445d21332ab0803e0c58754127ae528abe9b13d6162d0e762f5dfb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/page-pngs/page-002.png",
+      "bytes": 127726,
+      "sha256": "9a871299a669566e8e4f668e5c6d317eff99cd9b7924a86396709cb28e81f550"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/page-pngs/page-003.png",
+      "bytes": 102456,
+      "sha256": "771d8c869b06c38f41ab9f75f040363693e0336f954594f36dcf9e07bc272f41"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/page-pngs/page-004.png",
+      "bytes": 79826,
+      "sha256": "ff04e0ac445e51c846f2ebf64c812fe32e41db9720e76620ec0440e52af4267a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/page-pngs/page-005.png",
+      "bytes": 48943,
+      "sha256": "4d9128785898484f429eb06b726aff21c6943d6b2c921aa8c7551e8e0b5b8e12"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/page-pngs/page-006.png",
+      "bytes": 80637,
+      "sha256": "38e5e64a283304ba6c12ac58fa95bde311594015425454ea7117f78defae4489"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/page-pngs/page-007.png",
+      "bytes": 67924,
+      "sha256": "2a039c0da38f37287c285c68e031db5ee7ca6241c2856998828ae0effb5218b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/contact-sheet.png",
+      "bytes": 58537,
+      "sha256": "6727f9c863228e9028384e39b43ca03f7b1a4a6e6eae415a93cc79d398f2b7fe"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-002.png",
+      "bytes": 128024,
+      "sha256": "3162ef3e3cecd9adcb21f7cfde7a4871255db682a415249b48a78b193331b8fc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-003.png",
+      "bytes": 103552,
+      "sha256": "05b8854d3221e0f538186507d6c158cbdc6f8302d371f5000bec52f339c07a3f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-006.png",
+      "bytes": 63028,
+      "sha256": "3b740c5000eafe447fbd0c93dea7b6bb14f325da832ed2afe86ad1e50bf216f6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-007.png",
+      "bytes": 52172,
+      "sha256": "bf8671ec128f2a650510dca79bdfc5973b93b98de08f83b03d2931e08725f1c3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-008.png",
+      "bytes": 52316,
+      "sha256": "10bf31147b8b2d8e37877b4b393c49aa081c022e959895381bd0dca2761f18d7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-009.png",
+      "bytes": 62100,
+      "sha256": "48a032cd7b3d0e8bac5afb43798b540403401eaef306fb5f5855c121cdcc7da0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-010.png",
+      "bytes": 52058,
+      "sha256": "1f2a47025ed7d0e6459f659211e8439902f9223edd6dea5bcba941430700e07f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-011.png",
+      "bytes": 51933,
+      "sha256": "dd9da398a9dc2df25122329a0596c2e0f7511a937b94193009a99d86f0a55991"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-012.png",
+      "bytes": 56688,
+      "sha256": "063c5a4b3c362752268e253b550e67df6ad6f9f7d648a1f82fbca2735b470662"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-013.png",
+      "bytes": 39404,
+      "sha256": "4675f1d19c389c6af04487de953ba77b90a70e66b402cd80cca11386976e2863"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-014.png",
+      "bytes": 31000,
+      "sha256": "3fc45004aa78d2807d5fbd828c15ffec35da3cb6720b1191a25bcb6e990971b2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-015.png",
+      "bytes": 80065,
+      "sha256": "aaf2fcaa1586b30bfae4417b057408b291bebb74134c1178f019c53f99d4be7a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-016.png",
+      "bytes": 67207,
+      "sha256": "443066759e00e08b2997a849fb79be9f5856db318a50ee0d24a016f907ff07b8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/page-pngs/page-017.png",
+      "bytes": 47470,
+      "sha256": "44f17a27448adaec3132981b47fe1beca142f07226eda528f7d0fd77760c0748"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/contact-sheet.png",
+      "bytes": 38715,
+      "sha256": "1924ced435438152921b04b492c701ce081f3471408b3f121401faa4f6b16dc3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/page-002.png",
+      "bytes": 127927,
+      "sha256": "08f8f917dc5dddd5b57114109d1b13c8b474c2676d4d0569f34021cbfff5f6ea"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/page-003.png",
+      "bytes": 102716,
+      "sha256": "1487d88d2671471bb677de4f2dcb07068fd5f32598f090dc1e5ddf6f7f2fef4a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/page-008.png",
+      "bytes": 79435,
+      "sha256": "7d01ee7dc79e2acb96d200284917a9d36bb989d76ce72698cc075d2daf6123f7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/page-009.png",
+      "bytes": 66682,
+      "sha256": "caea17835f8578a19fbea3e5402b6d0f6b11a32becd48fb74f3664f8d72abb1d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/page-pngs/page-010.png",
+      "bytes": 45476,
+      "sha256": "af170f0ae4d9469af993353f575bc34197e1ba71b1173ad4f0d44e92016ffc37"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/contact-sheet.png",
+      "bytes": 53331,
+      "sha256": "2e65494e4264e5e2d76253c03693e2e0f39e48c2f13920ff6a5875e90ab34056"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-002.png",
+      "bytes": 127970,
+      "sha256": "a5519175fcc17e0ef9ced06913eab9457185d8cb4813454b35a6685531e657ab"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-003.png",
+      "bytes": 103299,
+      "sha256": "98ffe13293d242b1ab2216a7c1dce198bd2d738f12727286e5ab15f65c65bd0e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-006.png",
+      "bytes": 35210,
+      "sha256": "679c92f44220634d81ecf40049192a3c2bedc4a49bff12eacb9f2cc86e804388"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-007.png",
+      "bytes": 29221,
+      "sha256": "bf8b500a813d5b3c94304cdd47400464f6210ce6b59cd7d0b6ad6fafc309e29e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-008.png",
+      "bytes": 79662,
+      "sha256": "15cf5c80fea7545bdc4f97b2ef4a3bea27fcf52c531b23cc95d184e492c085f5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-009.png",
+      "bytes": 69681,
+      "sha256": "21c3d92e83feed7e5ba3969e6f1d1ad37675c718e0d30401251143d5e1a4e6a3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-010.png",
+      "bytes": 61912,
+      "sha256": "d34a12cd93c0907c8c299f086fae7f53ea2d1bcce9b61a6f5373be29e51f666f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-011.png",
+      "bytes": 39337,
+      "sha256": "214858a6d62c9b14e557fdf2a8c241409c29d4e0a8601cb357cafdc954b2e6a7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-012.png",
+      "bytes": 31023,
+      "sha256": "ecad2c3856320332db9eb1d2227b6ca7df2dddc06757abfade28c9cdfd9513b7"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-013.png",
+      "bytes": 80318,
+      "sha256": "d4cffadeed32a3c0780aeb548eb0f839980f47f76ae5eb73519e1b12d214c08b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-014.png",
+      "bytes": 67548,
+      "sha256": "56fa22e88a9baa5d66856f4bed686f0b4cc79822affe9107979fa4d9c5b2422e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/page-pngs/page-015.png",
+      "bytes": 48510,
+      "sha256": "d614498a6869651ac24f29484a1216d6855bf756b65a4ec17c819cbedaac8255"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/contact-sheet.png",
+      "bytes": 47162,
+      "sha256": "f2b1bc2d9f89f052bf61ea4b695297dd22b10b0240042ea2f04775a95eb7fada"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-002.png",
+      "bytes": 128024,
+      "sha256": "3162ef3e3cecd9adcb21f7cfde7a4871255db682a415249b48a78b193331b8fc"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-003.png",
+      "bytes": 103652,
+      "sha256": "2bdd9ad8fc0fcb5bb3aff213b2498bbc800c446cd8a4f4df3bcbc42338e87628"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-008.png",
+      "bytes": 49948,
+      "sha256": "18997fec264c784775a70a34290d4307f4ed407a6dae7fa7891dfffc8b99f208"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-009.png",
+      "bytes": 36648,
+      "sha256": "157c12b449dfba863de7dc011840b64b2d47527198167125e2308eef09bcb277"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-010.png",
+      "bytes": 41464,
+      "sha256": "82098c06d58fd2e9a34823bf5de6321492c9fd164e4363ad6c4f3d020eceb399"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-011.png",
+      "bytes": 35835,
+      "sha256": "589e38dfcc769fb3fa9d7a25a4c84429e786b3434412ac6dbc322a2c77fdfa32"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-012.png",
+      "bytes": 80229,
+      "sha256": "6e02c6855906331223d295fef0cd3f46fc179353739d8274a4edb52590ee40aa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-013.png",
+      "bytes": 67409,
+      "sha256": "53dd929c11bc6d8ecb505f66dcaae88408ee5f0840de79795532af050e471cf0"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/page-pngs/page-014.png",
+      "bytes": 49479,
+      "sha256": "347a36712cbff8c72231d9fa4c71525e4f6207b0d32a0dae54d84c1f7928b1fe"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/contact-sheet.png",
+      "bytes": 45720,
+      "sha256": "685cf2a7db2fa588a92a42169e37708060b32ac15fdb7da202b3ef9235134ca2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-003.png",
+      "bytes": 103344,
+      "sha256": "cc07ad63489009b5bcbb90beb1ca3863bf204eca270593fe5ccc52e3e3d8e6d8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-008.png",
+      "bytes": 80256,
+      "sha256": "02445b655a00e6bafb8039dd49f96012323b48a46bf35a3a6c4fc6da417a7215"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-009.png",
+      "bytes": 67616,
+      "sha256": "96efd1309f143be74d01600e918dd0c3f93382ab2eea91dca99d092cde46a308"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-010.png",
+      "bytes": 50127,
+      "sha256": "c7a9ea2bd05274dc9777dc18224de53833e0d210b52ad1924e9c2b0b7074b661"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/page-pngs/page-011.png",
+      "bytes": 48586,
+      "sha256": "5695bd520309899dcc78df32e4d52cd59773f7a40477b5cf7c18630d20a0941e"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/contact-sheet.png",
+      "bytes": 40603,
+      "sha256": "62151877cdc0bc5b006371ed796b3228f14e40d562428342d00dba685acef5ab"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/page-003.png",
+      "bytes": 103464,
+      "sha256": "4ce73f0deedbffb6f1a09bfb13751e894592a4d7173d2d58fdf105a6ebcfcc62"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/page-008.png",
+      "bytes": 80016,
+      "sha256": "cc4e659426eefa739738826f37dc44a8ea2bbfb1c2505be2e8b13563127ae37d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/page-009.png",
+      "bytes": 67128,
+      "sha256": "c01c4d29750f268dcbda9c7a598c64c7565e74cc3226c101dd6f51bbcf36a941"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/page-pngs/page-010.png",
+      "bytes": 47239,
+      "sha256": "fddabe570d6db23bfdb83a6051f3849a1d3cbfef6b783de97856bcd0eda42ca8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/contact-sheet.png",
+      "bytes": 40359,
+      "sha256": "c1df074bad2f24b3cb52e19d1cec10bba4db4dbc69e51824abc43ca1aa4adf27"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/page-003.png",
+      "bytes": 102116,
+      "sha256": "2baab5c33cc5ab48846c33f94f9ec6d8ced6f06cbaeec4b38d12b2832f1125a2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/page-008.png",
+      "bytes": 79644,
+      "sha256": "6f665870a9c1ac2678e1b1e25133ccb754389e08c24e0f8d8d2dbb84bb03cdaa"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/page-009.png",
+      "bytes": 66804,
+      "sha256": "cc07e3b4e7dc158a7b2f3f06b5737f41c2b04ae79f9bfc772884d26d360949db"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/page-pngs/page-010.png",
+      "bytes": 46011,
+      "sha256": "9d836e1619b3ebde61cb3fcd79137f8a5fec035b522444a8d21d4efadef42a2f"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/contact-sheet.png",
+      "bytes": 40408,
+      "sha256": "759f283bc1ecf9d5569c1b9a2ec3bc0a00ce143514e9c3ef571b39c32bd6b0d9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/page-003.png",
+      "bytes": 102222,
+      "sha256": "37cc4769fd25a61c3ec40674fb6956f68ca9c089cb867b8309f32a54ec8319d9"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/page-008.png",
+      "bytes": 79850,
+      "sha256": "486780a8437342c29296c62847389247cecae3f5235aeddf1e7920570c00f6ea"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/page-009.png",
+      "bytes": 67155,
+      "sha256": "2fca0c8b666768119ebe2160de8c452c332f6e6d3ecfe6b2f5ddd9699bdbdec6"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/page-pngs/page-010.png",
+      "bytes": 46935,
+      "sha256": "2050f920b90d465d2aebc8d126d0274633dc9b1564c9406050b106db32a00434"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/contact-sheet.png",
+      "bytes": 40597,
+      "sha256": "26a130a30f5c354b8be60bae8baff9d7724bb3d2a07fc6488714a666dc67397d"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-003.png",
+      "bytes": 103503,
+      "sha256": "d2a7aa00d8a232b6b7473c8580707afd80a8b91862a621b26b23e8156c3fed05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-004.png",
+      "bytes": 78953,
+      "sha256": "595113a0284a6e6488bf511c941339f0e5eaa23b2f9170d44d5cbed075374b30"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-005.png",
+      "bytes": 44778,
+      "sha256": "e6dc30d85ec42eb1e3901183acd0b11b053bfb7b6520519fecd42bd2da595ed8"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-008.png",
+      "bytes": 80205,
+      "sha256": "9ed33f7016d8934281194dc706b8fe8883dcb725f9c4d7ae53f73ed9938b62c5"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-009.png",
+      "bytes": 67363,
+      "sha256": "0f29a5d6b087d0d6d68fefce95d9a370fd64bdd90ae763a722456dab8437bb9c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/page-pngs/page-010.png",
+      "bytes": 47669,
+      "sha256": "494781b22d83412c4e48045c2b1aee6a221b6ecba3af50f0b7507d4f3aa3925a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/contact-sheet.png",
+      "bytes": 39575,
+      "sha256": "f667113b5604309313d34e2b378ac71758f7c5048baab7fbfb4d4800120de3ce"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/page-003.png",
+      "bytes": 103511,
+      "sha256": "bdcd6551a32946aa660c48e86e8cf4b62255fbb8355b6de01a2f0937a4555387"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/page-004.png",
+      "bytes": 80330,
+      "sha256": "5fe3b59d35ba9648c0d469e0b2529374a753e8bdc724315bee56238d85bd5393"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/page-005.png",
+      "bytes": 52727,
+      "sha256": "4da167cb6f2fd4537aba34e784b34b1ca7e467b0e7ef3b3127f0c902fd7ac1ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/page-008.png",
+      "bytes": 80205,
+      "sha256": "bb884c932a5357e48f3df425993227eda31e32cdd8d2e82252340f2a15e09740"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/page-pngs/page-009.png",
+      "bytes": 68949,
+      "sha256": "4192e0483df70314fc2f2770597298edcdb43435cf9700a34fa265a8de192b2b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/contact-sheet.png",
+      "bytes": 46115,
+      "sha256": "cb1e73ce00cf97133472dfc73aa99106a65474fa3aadae8167e824c409046cc2"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-002.png",
+      "bytes": 127353,
+      "sha256": "d3b71dfbde430be9d6de2e701690936264adb8aff1213e581885de68ff4799af"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-003.png",
+      "bytes": 102007,
+      "sha256": "be0bfcebdebc716fe12be2d01fca84121291ff5b680e11ff5896abe9bbabbd5a"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-004.png",
+      "bytes": 80330,
+      "sha256": "5fe3b59d35ba9648c0d469e0b2529374a753e8bdc724315bee56238d85bd5393"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-005.png",
+      "bytes": 52727,
+      "sha256": "4da167cb6f2fd4537aba34e784b34b1ca7e467b0e7ef3b3127f0c902fd7ac1ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-008.png",
+      "bytes": 49948,
+      "sha256": "18997fec264c784775a70a34290d4307f4ed407a6dae7fa7891dfffc8b99f208"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-009.png",
+      "bytes": 38494,
+      "sha256": "c910cff27e7be1bfe0887cae1a3805c205144daed848295f803c7f7898eae1da"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-010.png",
+      "bytes": 42899,
+      "sha256": "9fd1a95c9776a43f8b586ab0d4f9cd6f17c3cf4e84af04d95b5bd83968a58634"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-011.png",
+      "bytes": 35835,
+      "sha256": "589e38dfcc769fb3fa9d7a25a4c84429e786b3434412ac6dbc322a2c77fdfa32"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-012.png",
+      "bytes": 79950,
+      "sha256": "87b7c027a722f3a7929d9c8c66a43c75efc1d48c0e1ea873f8678766bf20cb4b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/page-pngs/page-013.png",
+      "bytes": 68925,
+      "sha256": "9670ce2f41df4d42cc2f2392fd7adf2085e62d8832b098060a87fe8c33a109ec"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/contact-sheet.png",
+      "bytes": 41079,
+      "sha256": "fcd224ee7cdacd24b880c5b01b2ae5195c23d93b7e44c75cb802dc10e37fdda3"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/page-001.png",
+      "bytes": 153007,
+      "sha256": "c583d8209b63a6564ed7ea0ded80ce4305909c4b3765abdb3663da3f6c7ec6ba"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/page-002.png",
+      "bytes": 143832,
+      "sha256": "4ce3ce82df323c435511df16fe2ca5975018d008ce3c1c66aefde19333b796cb"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/page-003.png",
+      "bytes": 101774,
+      "sha256": "909df9ce5fb78795da59fb3e76229823cf020a98b70c80405ef93f4e083cc447"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/page-004.png",
+      "bytes": 80330,
+      "sha256": "5fe3b59d35ba9648c0d469e0b2529374a753e8bdc724315bee56238d85bd5393"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/page-005.png",
+      "bytes": 52727,
+      "sha256": "4da167cb6f2fd4537aba34e784b34b1ca7e467b0e7ef3b3127f0c902fd7ac1ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/page-008.png",
+      "bytes": 79351,
+      "sha256": "d48d3d1a7943220a861eab5993253bba019a46a67a9946742088f225fca1ae58"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/page-009.png",
+      "bytes": 67952,
+      "sha256": "edf03d38b1f5ea5bf5ad535b3d3cf52a387a8068c9ca8d0780b37c41ead79c17"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/page-pngs/page-010.png",
+      "bytes": 44911,
+      "sha256": "2a50f97bef28d6ed589f466e5af36493952d2b3b4e84504ae1b68dc9229d8a49"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/contact-sheet.png",
+      "bytes": 39677,
+      "sha256": "f24f78117cb183c460e77fa5b0ee235920f203aa8938de419cf99356869fa283"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/page-001.png",
+      "bytes": 112242,
+      "sha256": "6b4ed3dc9ec888fddf64aac90f6bb5f86546acc59b7e82c6a16aa3a9854aea05"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/page-002.png",
+      "bytes": 127411,
+      "sha256": "55a7fa2c6f4a51e802ad036391fa425a3a9e0ddf3814e5b334030b785363aeb4"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/page-003.png",
+      "bytes": 102368,
+      "sha256": "fc11d9c6197b1655ceaade49a0ebf953efd76e194bc3efc0b91e3c461b87c48b"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/page-004.png",
+      "bytes": 80330,
+      "sha256": "5fe3b59d35ba9648c0d469e0b2529374a753e8bdc724315bee56238d85bd5393"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/page-005.png",
+      "bytes": 52727,
+      "sha256": "4da167cb6f2fd4537aba34e784b34b1ca7e467b0e7ef3b3127f0c902fd7ac1ad"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/page-006.png",
+      "bytes": 39373,
+      "sha256": "b93c3875339582f20eb20fabbfda775c2fff1c0a3392e5b7a3f9dd514e7d4b3c"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/page-007.png",
+      "bytes": 30958,
+      "sha256": "572937fc2f84306f42bb30a6411208a35ddc8a4909ae6f1076c97f6683741836"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/page-008.png",
+      "bytes": 80448,
+      "sha256": "7326214ea7300b3e72b60f30c902672b8440d5119a238ee57d8671d9ff468a34"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/page-009.png",
+      "bytes": 68801,
+      "sha256": "d676e33dfc4b6db2dee0968c54dd86a1e21c99ef79122017160a02776ca7a118"
+    },
+    {
+      "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/page-pngs/page-010.png",
+      "bytes": 47018,
+      "sha256": "d10e2f10d291c501da67957b93dd0384e72d7b07c040287fc1838da5e2f33c3c"
+    }
+  ],
+  "reason": "png_contact_sheets_local_hash_locked_not_committed"
+}

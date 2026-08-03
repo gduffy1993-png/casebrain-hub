@@ -1,0 +1,2539 @@
+{
+  "caseId": "div3000v213-05-bladed_articles",
+  "generatedAt": "2026-08-03T00:33:29.215Z",
+  "source": "v2.1.2-structured-maa-output",
+  "chargeInstruments": [
+    {
+      "instrumentId": "inst-written_charge",
+      "instrumentType": "written_charge",
+      "exactWording": "## Particulars",
+      "count": 1,
+      "defendantAllocation": "defendant_0",
+      "sourceDocument": "written_charge",
+      "sourcePage": "written_charge/page/1",
+      "pageIdentityKnown": true,
+      "status": "operative",
+      "version": "1",
+      "replacesInstrumentId": null,
+      "supersededByInstrumentId": null
+    }
+  ],
+  "evidenceStates": [
+    {
+      "source": "written_charge",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "written_charge/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Written charge / requisition (fictional test) · written_charge/page/1",
+      "label": "written_charge::written_charge/page/1"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "MG05/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/1",
+      "label": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG05",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "MG05/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG5 Case summary (fictional test) · MG05/page/2",
+      "label": "MG05::MG05/page/2"
+    },
+    {
+      "source": "MG06",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG6 File front sheet / index (fictional test) · MG06/page/1",
+      "label": "MG06::MG06/page/1"
+    },
+    {
+      "source": "MG12_exhibits",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "MG12_exhibits/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG12 exhibit list (fictional test) · MG12_exhibits/page/1",
+      "label": "MG12_exhibits",
+      "evidenceUnitId": "eu-MG12_exhibits",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "MG12_exhibits",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "MG12_exhibits/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG12 exhibit list (fictional test) · MG12_exhibits/page/2",
+      "label": "MG12_exhibits::MG12_exhibits/page/2"
+    },
+    {
+      "source": "MG15_interview",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "MG15_interview/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG15 interview record (fictional test) · MG15_interview/page/1",
+      "label": "MG15_interview",
+      "evidenceUnitId": "eu-MG15_interview",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "interview"
+    },
+    {
+      "source": "MG15_interview",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "MG15_interview/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG15 interview record (fictional test) · MG15_interview/page/2",
+      "label": "MG15_interview::MG15_interview/page/2"
+    },
+    {
+      "source": "MG15_interview",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "MG15_interview/page/3",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "MG15 interview record (fictional test) · MG15_interview/page/3",
+      "label": "MG15_interview::MG15_interview/page/3"
+    },
+    {
+      "source": "defence_statement_draft",
+      "sourceDocumentIdentity": "defence_statement_draft",
+      "sourcePage": "defence_statement_draft/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Defence statement draft (fictional test) · defence_statement_draft/page/1",
+      "label": "defence_statement_draft",
+      "evidenceUnitId": "eu-defence_statement_draft",
+      "subjectDefendantId": "defendant_0",
+      "existence": "draft",
+      "inferredSourceState": "draft",
+      "existenceLabel": "draft",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "source": "defence_statement_draft",
+      "sourceDocumentIdentity": "defence_statement_draft",
+      "sourcePage": "defence_statement_draft/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Defence statement draft (fictional test) · defence_statement_draft/page/2",
+      "label": "defence_statement_draft::defence_statement_draft/page/2"
+    },
+    {
+      "source": "extra_context_2",
+      "sourceDocumentIdentity": "extra_context_2",
+      "sourcePage": "extra_context_2/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page",
+      "evidenceAnchor": "Additional context schedule (fictional test) · extra_context_2/page/1",
+      "label": "extra_context_2",
+      "evidenceUnitId": "eu-extra_context_2",
+      "subjectDefendantId": "defendant_0",
+      "existence": "served",
+      "inferredSourceState": "served",
+      "existenceLabel": "served",
+      "evidenceTypeOrModality": "generic"
+    },
+    {
+      "label": "No deliberate",
+      "evidenceUnitId": "eu-chase-57b2a3ba705f",
+      "subjectDefendantId": "defendant_0",
+      "existence": "missing",
+      "inferredSourceState": "missing",
+      "existenceLabel": "missing",
+      "evidenceTypeOrModality": "generic",
+      "source": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "evidenceAnchor": "MG06 · MG06/page/1"
+    },
+    {
+      "label": "MG6 may refer",
+      "evidenceUnitId": "eu-chase-4bef68c96f61",
+      "subjectDefendantId": "defendant_0",
+      "existence": "missing",
+      "inferredSourceState": "missing",
+      "existenceLabel": "missing",
+      "evidenceTypeOrModality": "generic",
+      "source": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "evidenceAnchor": "MG06 · MG06/page/1"
+    },
+    {
+      "label": "transcript marker",
+      "evidenceUnitId": "eu-chase-5a82b3cc5545",
+      "subjectDefendantId": "defendant_0",
+      "existence": "missing",
+      "inferredSourceState": "missing",
+      "existenceLabel": "missing",
+      "evidenceTypeOrModality": "transcript",
+      "source": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "evidenceAnchor": "MG06 · MG06/page/1"
+    },
+    {
+      "label": "Interview recording",
+      "evidenceUnitId": "eu-chase-1392e716ecda",
+      "subjectDefendantId": "defendant_0",
+      "existence": "missing",
+      "inferredSourceState": "missing",
+      "existenceLabel": "missing",
+      "evidenceTypeOrModality": "interview",
+      "source": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "evidenceAnchor": "MG06 · MG06/page/1"
+    },
+    {
+      "label": "Interview transcript",
+      "evidenceUnitId": "eu-chase-c7bd5024642d",
+      "subjectDefendantId": "defendant_0",
+      "existence": "missing",
+      "inferredSourceState": "missing",
+      "existenceLabel": "missing",
+      "evidenceTypeOrModality": "transcript",
+      "source": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "evidenceAnchor": "MG06 · MG06/page/1"
+    }
+  ],
+  "chronologyEvents": [],
+  "provenanceRecords": [
+    {
+      "occurrenceRef": "/evidenceStates/0",
+      "sourceDocumentIdentity": "written_charge",
+      "sourcePage": "written_charge/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/1",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "MG05/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/2",
+      "sourceDocumentIdentity": "MG05",
+      "sourcePage": "MG05/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/3",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/4",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "MG12_exhibits/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/5",
+      "sourceDocumentIdentity": "MG12_exhibits",
+      "sourcePage": "MG12_exhibits/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/6",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "MG15_interview/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/7",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "MG15_interview/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/8",
+      "sourceDocumentIdentity": "MG15_interview",
+      "sourcePage": "MG15_interview/page/3",
+      "compiledPage": "3",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/9",
+      "sourceDocumentIdentity": "defence_statement_draft",
+      "sourcePage": "defence_statement_draft/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/10",
+      "sourceDocumentIdentity": "defence_statement_draft",
+      "sourcePage": "defence_statement_draft/page/2",
+      "compiledPage": "2",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/11",
+      "sourceDocumentIdentity": "extra_context_2",
+      "sourcePage": "extra_context_2/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/12",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/13",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/14",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/15",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    },
+    {
+      "occurrenceRef": "/evidenceStates/16",
+      "sourceDocumentIdentity": "MG06",
+      "sourcePage": "MG06/page/1",
+      "compiledPage": "1",
+      "pageIdentityKnown": true,
+      "pageClass": "exact_source_page"
+    }
+  ],
+  "warningsAndGaps": {
+    "chaseItems": [
+      {
+        "label": "No deliberate",
+        "requestId": "req-chase-1-57b2a3ba",
+        "evidenceUnitId": "eu-chase-57b2a3ba705f",
+        "resolutionState": "outstanding",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Pipeline chaseLabels entry matched for specific-item request.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "warRoom"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Regarding bladed articles: Please provide No deliberate.",
+        "requestedState": "missing",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-57b2a3ba705f",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-chase-57b2a3ba705f",
+        "chase_to_evidence_provenance_link": true
+      },
+      {
+        "label": "MG6 may refer",
+        "requestId": "req-chase-2-4bef68c9",
+        "evidenceUnitId": "eu-chase-4bef68c96f61",
+        "resolutionState": "outstanding",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Pipeline chaseLabels entry matched for specific-item request.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "warRoom"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Regarding bladed articles: Please provide the MG6 index entry that refers to further material.",
+        "requestedState": "missing",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-4bef68c96f61",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-chase-4bef68c96f61",
+        "chase_to_evidence_provenance_link": true
+      },
+      {
+        "label": "transcript marker",
+        "requestId": "req-chase-3-5a82b3cc",
+        "evidenceUnitId": "eu-chase-5a82b3cc5545",
+        "resolutionState": "outstanding",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Pipeline chaseLabels entry matched for specific-item request.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "warRoom"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Regarding bladed articles: Please provide transcript marker.",
+        "requestedState": "missing",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-5a82b3cc5545",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-chase-5a82b3cc5545",
+        "chase_to_evidence_provenance_link": true
+      },
+      {
+        "label": "Interview recording",
+        "requestId": "req-chase-4-1392e716",
+        "evidenceUnitId": "eu-chase-1392e716ecda",
+        "resolutionState": "outstanding",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Pipeline chaseLabels entry matched for specific-item request.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "warRoom"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Regarding bladed articles: Please provide Interview recording.",
+        "requestedState": "missing",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-1392e716ecda",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-chase-1392e716ecda",
+        "chase_to_evidence_provenance_link": true
+      },
+      {
+        "label": "Interview transcript",
+        "requestId": "req-chase-5-c7bd5024",
+        "evidenceUnitId": "eu-chase-c7bd5024642d",
+        "resolutionState": "outstanding",
+        "requestType": "disclosure_specific_item",
+        "supportedReason": "Pipeline chaseLabels entry matched for specific-item request.",
+        "sourceBasis": "MG06/MG06/page/1",
+        "sourcePointer": "MG06/MG06/page/1",
+        "outputSurfaces": [
+          "disclosureChase",
+          "copy",
+          "composed_prose",
+          "warRoom"
+        ],
+        "sendabilityLabel": "Solicitor review required",
+        "copySuggestion": "Regarding bladed articles: Please provide Interview transcript.",
+        "requestedState": "missing",
+        "linkageStatus": "linked",
+        "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-c7bd5024642d",
+        "provenanceSourcePage": "MG06/page/1",
+        "provenanceEvidenceRef": "evidenceUnitId:eu-chase-c7bd5024642d",
+        "chase_to_evidence_provenance_link": true
+      }
+    ],
+    "doNotOverstate": [
+      "Do not import BWV unless the papers support it.",
+      "Do not import custody safeguards unless the papers support it.",
+      "Do not import drugs continuity unless the papers support it.",
+      "Do not import ABE unless the papers support it.",
+      "Do not import phone extraction/metadata unless the papers support it.",
+      "Do not import profile-specific evidence unless the bundle supports it.",
+      "Do not state \"interview confirms\" — Interview material is not fully served",
+      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served"
+    ],
+    "hardRules": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+    ]
+  },
+  "chaseRelationships": [
+    {
+      "label": "No deliberate",
+      "requestId": "req-chase-1-57b2a3ba",
+      "evidenceUnitId": "eu-chase-57b2a3ba705f",
+      "resolutionState": "outstanding",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Pipeline chaseLabels entry matched for specific-item request.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "warRoom"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Regarding bladed articles: Please provide No deliberate.",
+      "requestedState": "missing",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-57b2a3ba705f",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-chase-57b2a3ba705f",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "label": "MG6 may refer",
+      "requestId": "req-chase-2-4bef68c9",
+      "evidenceUnitId": "eu-chase-4bef68c96f61",
+      "resolutionState": "outstanding",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Pipeline chaseLabels entry matched for specific-item request.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "warRoom"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Regarding bladed articles: Please provide the MG6 index entry that refers to further material.",
+      "requestedState": "missing",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-4bef68c96f61",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-chase-4bef68c96f61",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "label": "transcript marker",
+      "requestId": "req-chase-3-5a82b3cc",
+      "evidenceUnitId": "eu-chase-5a82b3cc5545",
+      "resolutionState": "outstanding",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Pipeline chaseLabels entry matched for specific-item request.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "warRoom"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Regarding bladed articles: Please provide transcript marker.",
+      "requestedState": "missing",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-5a82b3cc5545",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-chase-5a82b3cc5545",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "label": "Interview recording",
+      "requestId": "req-chase-4-1392e716",
+      "evidenceUnitId": "eu-chase-1392e716ecda",
+      "resolutionState": "outstanding",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Pipeline chaseLabels entry matched for specific-item request.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "warRoom"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Regarding bladed articles: Please provide Interview recording.",
+      "requestedState": "missing",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-1392e716ecda",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-chase-1392e716ecda",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "label": "Interview transcript",
+      "requestId": "req-chase-5-c7bd5024",
+      "evidenceUnitId": "eu-chase-c7bd5024642d",
+      "resolutionState": "outstanding",
+      "requestType": "disclosure_specific_item",
+      "supportedReason": "Pipeline chaseLabels entry matched for specific-item request.",
+      "sourceBasis": "MG06/MG06/page/1",
+      "sourcePointer": "MG06/MG06/page/1",
+      "outputSurfaces": [
+        "disclosureChase",
+        "copy",
+        "composed_prose",
+        "warRoom"
+      ],
+      "sendabilityLabel": "Solicitor review required",
+      "copySuggestion": "Regarding bladed articles: Please provide Interview transcript.",
+      "requestedState": "missing",
+      "linkageStatus": "linked",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-c7bd5024642d",
+      "provenanceSourcePage": "MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-chase-c7bd5024642d",
+      "chase_to_evidence_provenance_link": true
+    }
+  ],
+  "chaseAuditMetadata": [
+    {
+      "requestId": "req-chase-1-57b2a3ba",
+      "evidenceUnitId": "eu-chase-57b2a3ba705f",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-57b2a3ba705f",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    },
+    {
+      "requestId": "req-chase-2-4bef68c9",
+      "evidenceUnitId": "eu-chase-4bef68c96f61",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-4bef68c96f61",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    },
+    {
+      "requestId": "req-chase-3-5a82b3cc",
+      "evidenceUnitId": "eu-chase-5a82b3cc5545",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-5a82b3cc5545",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    },
+    {
+      "requestId": "req-chase-4-1392e716",
+      "evidenceUnitId": "eu-chase-1392e716ecda",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-1392e716ecda",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    },
+    {
+      "requestId": "req-chase-5-c7bd5024",
+      "evidenceUnitId": "eu-chase-c7bd5024642d",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-c7bd5024642d",
+      "copyable": false,
+      "ordinaryExitExcluded": true
+    }
+  ],
+  "exitPayloadReceipts": {
+    "view": {
+      "payloadIdentity": "sha256:362da4416a9f66c8049cc9786b25eecac5ef3f1b79f4901414cb9687cfb117da",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "view"
+      ],
+      "generatedAt": "2026-08-03T00:33:29.214Z"
+    },
+    "copy": {
+      "payloadIdentity": "sha256:95e570b1c6aa0fc6904a399600702416e7cab5aedae5f241821ade30d51152f9",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "copy"
+      ],
+      "generatedAt": "2026-08-03T00:33:29.214Z"
+    },
+    "export": {
+      "payloadIdentity": "sha256:1936b4261e9da1689f6a18ce54b597ac444e0557e1bdcf8287c723c5fccc99b1",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "export"
+      ],
+      "generatedAt": "2026-08-03T00:33:29.214Z"
+    },
+    "api": {
+      "payloadIdentity": "sha256:5871fbbc43df96afdb8ca897d5cd45b972c69dc9eae8aa7ade154e21d07bced2",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "api"
+      ],
+      "generatedAt": "2026-08-03T00:33:29.214Z"
+    },
+    "pdf": {
+      "payloadIdentity": "sha256:34c90e255862980f47586416f6e791cd74d2ca74d9dd6a2c803fe614dfd849c0",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "pdf"
+      ],
+      "generatedAt": "2026-08-03T00:33:29.214Z"
+    },
+    "composed_prose": {
+      "payloadIdentity": "sha256:52743d68442a31d7df4602c73e88af2b7c3aaf41878dc2751334cc1f96ea1aa5",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "needs_solicitor_review",
+      "unavailableReason": null,
+      "metadataOnly": false,
+      "realExitPayloadPresent": true,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "composed_prose"
+      ],
+      "generatedAt": "2026-08-03T00:33:29.214Z"
+    },
+    "authenticated_browser": {
+      "payloadIdentity": "sha256:55d39dea9bfbd32f75a48e0fa65e5ec239a8e1b5d0863723200541e6a8d0d6ac",
+      "chargeWarningAttached": true,
+      "evidencePartialWarning": true,
+      "quarantineScope": "partial",
+      "sendability": "unavailable",
+      "unavailableReason": "Authenticated browser exit not exercised in Stage-3000 diverse pack.",
+      "metadataOnly": true,
+      "realExitPayloadPresent": false,
+      "payloadSchemaVersion": "diverse3000-v2.1.2-exit@1.0.0",
+      "captureRunId": "run-div3000v213-05-bladed_articles",
+      "surfaceList": [
+        "authenticated_browser"
+      ]
+    }
+  },
+  "courtNote": {
+    "text": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: bladed articles; defence on instructions section 45 indicator.",
+    "sendabilityLabel": "Solicitor review required",
+    "canCopy": true,
+    "blockedReason": null
+  },
+  "exportVersion": {
+    "exportId": "exp-div3000v213-05-bladed_articles",
+    "caseId": "div3000v213-05-bladed_articles",
+    "generatedAt": "2026-08-03T00:33:29.215Z",
+    "exportType": "diverse3000_v2_1_3",
+    "sendability": "needs_solicitor_review",
+    "reviewFooter": "Solicitor review required before send.",
+    "warningCount": 6,
+    "appVersion": "v2.1.3",
+    "bundleVersionLabel": "diverse3000-v2.1.3",
+    "blockedReason": null,
+    "solicitorVisibleSummary": "On bladed articles copy/export/API/PDF exits: charge status operative; defence section 45 indicator. For this bladed articles pack, no referred-absent masters are declared."
+  },
+  "fiveAnswersEvidenceRows": [
+    {
+      "label": "MG05",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG05",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG05",
+      "sourcePage": "MG05/page/1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG5 Case summary (fictional test) · MG05/page/1"
+    },
+    {
+      "label": "MG12_exhibits",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG12_exhibits",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG12_exhibits",
+      "sourcePage": "MG12_exhibits/page/1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG12 exhibit list (fictional test) · MG12_exhibits/page/1"
+    },
+    {
+      "label": "MG15_interview",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-MG15_interview",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG15_interview",
+      "sourcePage": "MG15_interview/page/1",
+      "pageIdentityKnown": true,
+      "modality": "interview",
+      "note": "MG15 interview record (fictional test) · MG15_interview/page/1"
+    },
+    {
+      "label": "defence_statement_draft",
+      "existence": "draft",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-defence_statement_draft",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "defence_statement_draft",
+      "sourcePage": "defence_statement_draft/page/1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "Defence statement draft (fictional test) · defence_statement_draft/page/1"
+    },
+    {
+      "label": "extra_context_2",
+      "existence": "served",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-extra_context_2",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "extra_context_2",
+      "sourcePage": "extra_context_2/page/1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "Additional context schedule (fictional test) · extra_context_2/page/1"
+    },
+    {
+      "label": "No deliberate",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-chase-57b2a3ba705f",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG06 · MG06/page/1"
+    },
+    {
+      "label": "MG6 may refer",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-chase-4bef68c96f61",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "modality": "generic",
+      "note": "MG06 · MG06/page/1"
+    },
+    {
+      "label": "transcript marker",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-chase-5a82b3cc5545",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "modality": "transcript",
+      "note": "MG06 · MG06/page/1"
+    },
+    {
+      "label": "Interview recording",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-chase-1392e716ecda",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "modality": "interview",
+      "note": "MG06 · MG06/page/1"
+    },
+    {
+      "label": "Interview transcript",
+      "existence": "missing",
+      "reliability": "needs_review",
+      "evidenceUnitId": "eu-chase-c7bd5024642d",
+      "subjectDefendantId": "defendant_0",
+      "sourceDocument": "MG06",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "modality": "transcript",
+      "note": "MG06 · MG06/page/1"
+    }
+  ],
+  "attributionGraph": [
+    {
+      "documentId": "written_charge",
+      "evidenceUnitId": "eu-written_charge",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "written_charge/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG05",
+      "evidenceUnitId": "eu-MG05",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG05/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG06",
+      "evidenceUnitId": "eu-chase-57b2a3ba705f",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "MG06/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG12_exhibits",
+      "evidenceUnitId": "eu-MG12_exhibits",
+      "ownerRole": "document_owner",
+      "makerName": "Ownership unclear on papers",
+      "ownershipState": "unclear",
+      "sourcePage": "MG12_exhibits/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "MG15_interview",
+      "evidenceUnitId": "eu-MG15_interview",
+      "ownerRole": "document_owner",
+      "makerName": "Ownership unclear on papers",
+      "ownershipState": "unclear",
+      "sourcePage": "MG15_interview/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "defence_statement_draft",
+      "evidenceUnitId": "eu-defence_statement_draft",
+      "ownerRole": "witness_maker",
+      "makerName": "Witness maker (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "defence_statement_draft/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    },
+    {
+      "documentId": "extra_context_2",
+      "evidenceUnitId": "eu-extra_context_2",
+      "ownerRole": "prosecution_or_court_instrument",
+      "makerName": "Instrument owner (fictional)",
+      "ownershipState": "assigned",
+      "sourcePage": "extra_context_2/page/1",
+      "pageIdentityKnown": true,
+      "attributionGraphField": true
+    }
+  ],
+  "chaseProvenanceLinks": [
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/0",
+      "requestId": "req-chase-1-57b2a3ba",
+      "chaseLabel": "No deliberate",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-57b2a3ba705f",
+      "evidenceUnitId": "eu-chase-57b2a3ba705f",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-chase-57b2a3ba705f",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/1",
+      "requestId": "req-chase-2-4bef68c9",
+      "chaseLabel": "MG6 may refer",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-4bef68c96f61",
+      "evidenceUnitId": "eu-chase-4bef68c96f61",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-chase-4bef68c96f61",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/2",
+      "requestId": "req-chase-3-5a82b3cc",
+      "chaseLabel": "transcript marker",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-5a82b3cc5545",
+      "evidenceUnitId": "eu-chase-5a82b3cc5545",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-chase-5a82b3cc5545",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/3",
+      "requestId": "req-chase-4-1392e716",
+      "chaseLabel": "Interview recording",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-1392e716ecda",
+      "evidenceUnitId": "eu-chase-1392e716ecda",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-chase-1392e716ecda",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    },
+    {
+      "chaseOccurrenceRef": "/warningsAndGaps/chaseItems/4",
+      "requestId": "req-chase-5-c7bd5024",
+      "chaseLabel": "Interview transcript",
+      "linkedEvidenceOccurrenceRef": "evidenceUnitId:eu-chase-c7bd5024642d",
+      "evidenceUnitId": "eu-chase-c7bd5024642d",
+      "provenanceSourcePage": "MG06/MG06/page/1",
+      "provenanceEvidenceRef": "evidenceUnitId:eu-chase-c7bd5024642d",
+      "linkageStatus": "linked",
+      "chase_to_evidence_provenance_link": true
+    }
+  ],
+  "solicitorFacingSurfaces": {
+    "charges": {
+      "recordedOrUnresolved": "For bladed articles: recorded charge position is ## Particulars. Instrument state: operative.",
+      "sourceInstrument": "For bladed articles: source instrument written_charge at written_charge/page/1; status operative.",
+      "limitation": "For bladed articles: allegation recorded on the instrument is not proof of guilt."
+    },
+    "keyFacts": {
+      "factLine": "Matter family bladed articles: defence on instructions is section 45 indicator; procedural stage police investigation; charge status operative.",
+      "limitation": "For this bladed articles pack, no referred-absent masters are declared."
+    },
+    "fiveAnswers": {
+      "whatEvidenceSays": "On bladed articles papers, 10 evidence unit(s) with page identity are present; they do not by themselves establish the allegation against the defendant.",
+      "existenceVsReliability": "For bladed articles: existence labels on the evidence schedule must not be read as reliability or proof.",
+      "provenance": "For bladed articles: provenance for referred-absent items anchors to MG6 page MG06/page/1 without inventing master content."
+    },
+    "warRoom": {
+      "issue": "Case-specific issue for bladed articles: charge status operative; defence section 45 indicator; procedure police investigation.",
+      "whyItMatters": "Why it matters on bladed articles: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+      "safePosition": "Safe current position on bladed articles: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+      "nextAction": "Next action on bladed articles: Regarding bladed articles: Regarding bladed articles: Please provide No deliberate."
+    },
+    "controlRoom": {
+      "issue": "Control focus for bladed articles: disclosure and completeness against charge status operative.",
+      "whyItMatters": "On bladed articles, missing or partial disclosure changes what may safely be said on copy/export/API exits.",
+      "safePosition": "Safe current position for bladed articles: solicitor review required before send; authenticated browser remains not exercised.",
+      "nextAction": "Next action for bladed articles: chase only particularised missing items; keep request identifiers in audit metadata only."
+    },
+    "disclosureChase": {
+      "item": "No deliberate",
+      "whyItMatters": "On bladed articles, the item is referred or outstanding on the papers and cannot be quoted as served content.",
+      "professionalRequest": "Regarding bladed articles: Regarding bladed articles: Please provide No deliberate."
+    },
+    "composedProse": {
+      "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: bladed articles; defence on instructions section 45 indicator.",
+      "cpsChase": "Regarding bladed articles: Regarding bladed articles: Please provide No deliberate.",
+      "clientDisclaimer": "Fictional test material — not legal advice."
+    },
+    "copyExportApiPdf": {
+      "meaning": "On bladed articles copy/export/API/PDF exits: charge status operative; defence section 45 indicator. For this bladed articles pack, no referred-absent masters are declared.",
+      "chase": "Regarding bladed articles: Regarding bladed articles: Please provide No deliberate."
+    }
+  },
+  "composedProse": {
+    "courtLine": "The defence asks the court to record that status: The recorded charge wording appears incomplete and could not be safely completed from the available papers. Action: Check the operative charge sheet or amendment record. remains not safely confirmed on the current papers and should be disclosed on a timetable. Position remains provisional pending solicitor review. Matter family context: bladed articles; defence on instructions section 45 indicator.",
+    "cpsChase": "Regarding bladed articles: Regarding bladed articles: Please provide No deliberate.",
+    "clientDisclaimer": "Fictional test material — not legal advice.",
+    "limitations": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+    ],
+    "allegation": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.\n\nAction: Check the operative charge sheet or amendment record.",
+    "chargeCompleteness": {
+      "sourceChargeText": "",
+      "provenance": "No recorded charge wording on papers.",
+      "instruments": [],
+      "displayedChargeText": "",
+      "completenessStatus": "unresolved",
+      "recoverySource": null,
+      "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+      "requiredAction": "Action: Check the operative charge sheet or amendment record."
+    }
+  },
+  "disclosureChase": {
+    "caseId": "div3000v213-05-bladed_articles",
+    "caseTitle": "Fictional test — bladed_articles",
+    "clientLabel": "Client (fictional)",
+    "allegation": "",
+    "stage": "Case management",
+    "hearingStatus": "Listed",
+    "bundleHealth": "Review papers",
+    "positionStatus": "Provisional",
+    "disclosureSummary": "4 priority chase items — mixed unclear",
+    "safeCourtLine": "The defence asks the court to record that source material must be clarified and timetabled.",
+    "items": [
+      {
+        "id": "ledger-material-CONTRACT MG6 MAY REFER TO AN ABSENT  MASTER THE MASTER REMAINS ABSENT  AND HAS NO SOURCE PAGES|material",
+        "familyId": "cctv_master",
+        "label": "CCTV full window / master footage",
+        "whyItMatters": "This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.",
+        "source": "MG6/MG6C disclosure schedule",
+        "baseStatus": "Outstanding",
+        "urgency": "medium",
+        "deadlineLabel": "Before next hearing",
+        "evidenceAnchor": "Contract: MG6 may refer to an absent — master; the master remains absent — and has no source pages.",
+        "linkedRoute": null,
+        "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available.",
+        "courtLine": "The defence asks the court to record that CCTV full window / master footage appears outstanding on the current file and should be disclosed on a timetable.",
+        "mergedFrom": [
+          "CCTV full window / master footage",
+          "Further papers on the file"
+        ],
+        "provenance": {
+          "sourceDocumentTitle": null,
+          "sourceDocumentType": null,
+          "sourcePage": null,
+          "compiledPage": null,
+          "pageIdentityKnown": true,
+          "evidenceState": "missing",
+          "defendant": null,
+          "countNumber": null,
+          "unresolvedConflictOrLimitation": "Evidence anchor noted (Contract: MG6 may refer to an absent — master; the master remains absent — and has no source pages.); exact document title/type and compiled/source page still required"
+        }
+      },
+      {
+        "id": "chase-family-interview",
+        "familyId": "interview",
+        "label": "Interview recording / transcript",
+        "whyItMatters": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position. [exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding]",
+        "source": "Custody / police interview unit",
+        "baseStatus": "Not safely confirmed",
+        "urgency": "medium",
+        "deadlineLabel": "Before next hearing",
+        "evidenceAnchor": null,
+        "linkedRoute": null,
+        "draftChaseWording": "Please provide interview recording / transcript or confirm in writing why it is not available.",
+        "courtLine": "The defence asks the court to record that interview recording / transcript appears outstanding on the current file and should be disclosed on a timetable.",
+        "mergedFrom": [
+          "Interview recording / transcript",
+          "transcript marker",
+          "Interview recording",
+          "Interview transcript",
+          "## Interview record (MG15-style)",
+          "Interview URN: FT-INT-MG15INTE",
+          "## Interview summary / Q&A extract",
+          "Interview. Defence section_45_indicator. Incomplete transcript marker: no."
+        ],
+        "provenance": {
+          "sourceDocumentTitle": "exact page unavailable (unsplit whole-document text)",
+          "sourceDocumentType": null,
+          "sourcePage": null,
+          "compiledPage": null,
+          "pageIdentityKnown": true,
+          "evidenceState": "missing",
+          "defendant": null,
+          "countNumber": null,
+          "unresolvedConflictOrLimitation": "Recording state not_safely_confirmed; transcript state incomplete."
+        }
+      },
+      {
+        "id": "chase-family-mg6_unused",
+        "familyId": "mg6_unused",
+        "label": "MG6 / unused schedule clarification",
+        "whyItMatters": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.",
+        "source": "CPS / disclosure officer",
+        "baseStatus": "Not safely confirmed",
+        "urgency": "medium",
+        "deadlineLabel": "Before next hearing",
+        "evidenceAnchor": "Next action: reconcile MG5 against MG6 index before any court-facing send.",
+        "linkedRoute": null,
+        "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available.",
+        "courtLine": "The defence asks the court to record that MG6 / unused schedule clarification appears outstanding on the current file and should be disclosed on a timetable.",
+        "mergedFrom": [
+          "MG6 / unused schedule clarification",
+          "MG5/MG6 clarification and source material behind the allegation.",
+          "Next action: reconcile MG5 against MG6 index before any court-facing send."
+        ],
+        "provenance": {
+          "sourceDocumentTitle": null,
+          "sourceDocumentType": null,
+          "sourcePage": null,
+          "compiledPage": null,
+          "pageIdentityKnown": true,
+          "evidenceState": "not_safely_confirmed",
+          "defendant": null,
+          "countNumber": null,
+          "unresolvedConflictOrLimitation": "Evidence anchor noted (Next action: reconcile MG5 against MG6 index before any court-facing send.); exact document title/type and compiled/source page still required"
+        }
+      },
+      {
+        "id": "ledger-material-EX  DESCRIPTION  RECOVERED BY  LOCATION  CONTINUITY|continuity",
+        "familyId": "exhibit_provenance",
+        "label": "Exhibit mapping / provenance",
+        "whyItMatters": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.",
+        "source": "MG6/MG6C disclosure schedule",
+        "baseStatus": "Not safely confirmed",
+        "urgency": "medium",
+        "deadlineLabel": "Before next hearing",
+        "evidenceAnchor": "Ex# | Description | Recovered by | Location | Continuity",
+        "linkedRoute": null,
+        "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available.",
+        "courtLine": "The defence asks the court to record that exhibit mapping / provenance appears outstanding on the current file and should be disclosed on a timetable.",
+        "mergedFrom": [
+          "Exhibit mapping / provenance",
+          "Ex# | Description | Recovered by | Location | Continuity",
+          "Continuity must be checked against continuity record.",
+          "Clip schedule ref | yes | continuity to be checked",
+          "Issues to explore: attribution, continuity, missing masters, charge particularity."
+        ],
+        "provenance": {
+          "sourceDocumentTitle": null,
+          "sourceDocumentType": null,
+          "sourcePage": null,
+          "compiledPage": null,
+          "pageIdentityKnown": true,
+          "evidenceState": "not_safely_confirmed",
+          "defendant": null,
+          "countNumber": null,
+          "unresolvedConflictOrLimitation": "Evidence anchor noted (Ex# | Description | Recovered by | Location | Continuity); exact document title/type and compiled/source page still required"
+        }
+      },
+      {
+        "id": "chase-family-other",
+        "familyId": "other",
+        "label": "Outstanding source material on disclosure schedule",
+        "whyItMatters": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.",
+        "source": "Crown / disclosure officer (confirm on file)",
+        "baseStatus": "Not safely confirmed",
+        "urgency": "medium",
+        "deadlineLabel": "Before next hearing",
+        "evidenceAnchor": "Continues statement defence_statement_draft from page 1 — not a free-standing document.",
+        "linkedRoute": null,
+        "draftChaseWording": "Please provide the outstanding source material identified on the disclosure schedule, including subscriber/account data, message exports, call logs, and any MG11/source material referred to but not served or confirm in writing why it is not available.",
+        "courtLine": "The defence asks the court to record that MG6 / unused schedule clarification appears outstanding on the current file and should be disclosed on a timetable.",
+        "mergedFrom": [
+          "Further papers on the file",
+          "Additional source-material issues (4 on file)",
+          "source material",
+          "Do not quote referred-absent — masters as if content were available.",
+          "No deliberate",
+          "source evidence behind allegation",
+          "Witness outline: complainant account recorded as allegation only — not proved.",
+          "Reliability: MG5 narrative must not be read as establishing guilt.",
+          "This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true.",
+          "6. I confirm I have read this continuation and it forms part of my statement."
+        ],
+        "provenance": {
+          "sourceDocumentTitle": null,
+          "sourceDocumentType": null,
+          "sourcePage": null,
+          "compiledPage": null,
+          "pageIdentityKnown": true,
+          "evidenceState": "not_safely_confirmed",
+          "defendant": null,
+          "countNumber": null,
+          "unresolvedConflictOrLimitation": "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof"
+        }
+      }
+    ],
+    "primaryItems": [
+      {
+        "id": "ledger-material-CONTRACT MG6 MAY REFER TO AN ABSENT  MASTER THE MASTER REMAINS ABSENT  AND HAS NO SOURCE PAGES|material",
+        "familyId": "cctv_master",
+        "label": "CCTV full window / master footage",
+        "whyItMatters": "This material remains outstanding on the papers. Chase or confirm status before fixing hearing position.",
+        "source": "MG6/MG6C disclosure schedule",
+        "baseStatus": "Outstanding",
+        "urgency": "medium",
+        "deadlineLabel": "Before next hearing",
+        "evidenceAnchor": "Contract: MG6 may refer to an absent — master; the master remains absent — and has no source pages.",
+        "linkedRoute": null,
+        "draftChaseWording": "Please provide CCTV full window / master footage or confirm in writing why it is not available.",
+        "courtLine": "The defence asks the court to record that CCTV full window / master footage appears outstanding on the current file and should be disclosed on a timetable.",
+        "mergedFrom": [
+          "CCTV full window / master footage",
+          "Further papers on the file"
+        ],
+        "provenance": {
+          "sourceDocumentTitle": null,
+          "sourceDocumentType": null,
+          "sourcePage": null,
+          "compiledPage": null,
+          "pageIdentityKnown": true,
+          "evidenceState": "missing",
+          "defendant": null,
+          "countNumber": null,
+          "unresolvedConflictOrLimitation": "Evidence anchor noted (Contract: MG6 may refer to an absent — master; the master remains absent — and has no source pages.); exact document title/type and compiled/source page still required"
+        }
+      },
+      {
+        "id": "chase-family-interview",
+        "familyId": "interview",
+        "label": "Interview recording / transcript",
+        "whyItMatters": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position. [exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding]",
+        "source": "Custody / police interview unit",
+        "baseStatus": "Not safely confirmed",
+        "urgency": "medium",
+        "deadlineLabel": "Before next hearing",
+        "evidenceAnchor": null,
+        "linkedRoute": null,
+        "draftChaseWording": "Please provide interview recording / transcript or confirm in writing why it is not available.",
+        "courtLine": "The defence asks the court to record that interview recording / transcript appears outstanding on the current file and should be disclosed on a timetable.",
+        "mergedFrom": [
+          "Interview recording / transcript",
+          "transcript marker",
+          "Interview recording",
+          "Interview transcript",
+          "## Interview record (MG15-style)",
+          "Interview URN: FT-INT-MG15INTE",
+          "## Interview summary / Q&A extract",
+          "Interview. Defence section_45_indicator. Incomplete transcript marker: no."
+        ],
+        "provenance": {
+          "sourceDocumentTitle": "exact page unavailable (unsplit whole-document text)",
+          "sourceDocumentType": null,
+          "sourcePage": null,
+          "compiledPage": null,
+          "pageIdentityKnown": true,
+          "evidenceState": "missing",
+          "defendant": null,
+          "countNumber": null,
+          "unresolvedConflictOrLimitation": "Recording state not_safely_confirmed; transcript state incomplete."
+        }
+      },
+      {
+        "id": "chase-family-mg6_unused",
+        "familyId": "mg6_unused",
+        "label": "MG6 / unused schedule clarification",
+        "whyItMatters": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.",
+        "source": "CPS / disclosure officer",
+        "baseStatus": "Not safely confirmed",
+        "urgency": "medium",
+        "deadlineLabel": "Before next hearing",
+        "evidenceAnchor": "Next action: reconcile MG5 against MG6 index before any court-facing send.",
+        "linkedRoute": null,
+        "draftChaseWording": "Please provide MG6 / unused schedule clarification or confirm in writing why it is not available.",
+        "courtLine": "The defence asks the court to record that MG6 / unused schedule clarification appears outstanding on the current file and should be disclosed on a timetable.",
+        "mergedFrom": [
+          "MG6 / unused schedule clarification",
+          "MG5/MG6 clarification and source material behind the allegation.",
+          "Next action: reconcile MG5 against MG6 index before any court-facing send."
+        ],
+        "provenance": {
+          "sourceDocumentTitle": null,
+          "sourceDocumentType": null,
+          "sourcePage": null,
+          "compiledPage": null,
+          "pageIdentityKnown": true,
+          "evidenceState": "not_safely_confirmed",
+          "defendant": null,
+          "countNumber": null,
+          "unresolvedConflictOrLimitation": "Evidence anchor noted (Next action: reconcile MG5 against MG6 index before any court-facing send.); exact document title/type and compiled/source page still required"
+        }
+      },
+      {
+        "id": "ledger-material-EX  DESCRIPTION  RECOVERED BY  LOCATION  CONTINUITY|continuity",
+        "familyId": "exhibit_provenance",
+        "label": "Exhibit mapping / provenance",
+        "whyItMatters": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.",
+        "source": "MG6/MG6C disclosure schedule",
+        "baseStatus": "Not safely confirmed",
+        "urgency": "medium",
+        "deadlineLabel": "Before next hearing",
+        "evidenceAnchor": "Ex# | Description | Recovered by | Location | Continuity",
+        "linkedRoute": null,
+        "draftChaseWording": "Please provide exhibit mapping / provenance or confirm in writing why it is not available.",
+        "courtLine": "The defence asks the court to record that exhibit mapping / provenance appears outstanding on the current file and should be disclosed on a timetable.",
+        "mergedFrom": [
+          "Exhibit mapping / provenance",
+          "Ex# | Description | Recovered by | Location | Continuity",
+          "Continuity must be checked against continuity record.",
+          "Clip schedule ref | yes | continuity to be checked",
+          "Issues to explore: attribution, continuity, missing masters, charge particularity."
+        ],
+        "provenance": {
+          "sourceDocumentTitle": null,
+          "sourceDocumentType": null,
+          "sourcePage": null,
+          "compiledPage": null,
+          "pageIdentityKnown": true,
+          "evidenceState": "not_safely_confirmed",
+          "defendant": null,
+          "countNumber": null,
+          "unresolvedConflictOrLimitation": "Evidence anchor noted (Ex# | Description | Recovered by | Location | Continuity); exact document title/type and compiled/source page still required"
+        }
+      }
+    ],
+    "additionalItems": [
+      {
+        "id": "chase-family-other",
+        "familyId": "other",
+        "label": "Outstanding source material on disclosure schedule",
+        "whyItMatters": "Further papers appear to be outstanding. Confirm their relevance before fixing the hearing position.",
+        "source": "Crown / disclosure officer (confirm on file)",
+        "baseStatus": "Not safely confirmed",
+        "urgency": "medium",
+        "deadlineLabel": "Before next hearing",
+        "evidenceAnchor": "Continues statement defence_statement_draft from page 1 — not a free-standing document.",
+        "linkedRoute": null,
+        "draftChaseWording": "Please provide the outstanding source material identified on the disclosure schedule, including subscriber/account data, message exports, call logs, and any MG11/source material referred to but not served or confirm in writing why it is not available.",
+        "courtLine": "The defence asks the court to record that MG6 / unused schedule clarification appears outstanding on the current file and should be disclosed on a timetable.",
+        "mergedFrom": [
+          "Further papers on the file",
+          "Additional source-material issues (4 on file)",
+          "source material",
+          "Do not quote referred-absent — masters as if content were available.",
+          "No deliberate",
+          "source evidence behind allegation",
+          "Witness outline: complainant account recorded as allegation only — not proved.",
+          "Reliability: MG5 narrative must not be read as establishing guilt.",
+          "This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true.",
+          "6. I confirm I have read this continuation and it forms part of my statement."
+        ],
+        "provenance": {
+          "sourceDocumentTitle": null,
+          "sourceDocumentType": null,
+          "sourcePage": null,
+          "compiledPage": null,
+          "pageIdentityKnown": true,
+          "evidenceState": "not_safely_confirmed",
+          "defendant": null,
+          "countNumber": null,
+          "unresolvedConflictOrLimitation": "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof"
+        }
+      }
+    ],
+    "linkedRoutes": [],
+    "counters": {
+      "total": 5,
+      "overdue": 0,
+      "dueSoon": 0,
+      "chased": 0,
+      "received": 0,
+      "notStarted": 5
+    },
+    "hearingDeadlineNote": "Hearing date not safely extracted — chase deadlines are provisional.",
+    "sourceTruthGuardian": {
+      "fingerprint": {
+        "profile": "digital",
+        "evidence": {
+          "mg6": "outstanding",
+          "interview": "unclear",
+          "mg11": "unclear"
+        },
+        "ledger": {
+          "version": "bundle-truth-v1",
+          "defendant": {
+            "defendant": "count modelled",
+            "coDefendants": [],
+            "confidence": "high"
+          },
+          "court": "/ venue (modelled): Magistrates'",
+          "hearing": {
+            "rawLiteral": null,
+            "dateIso": null,
+            "timeLiteral": null,
+            "hearingType": null,
+            "sourceAnchor": null,
+            "confidence": "low"
+          },
+          "stage": "police investigation.",
+          "charge": {
+            "wording": null,
+            "countNumber": null,
+            "particulars": null,
+            "sourceAnchor": null,
+            "confidence": "low"
+          },
+          "offenceFamily": {
+            "family": "unknown",
+            "confidence": "provisional",
+            "sourceAnchor": null,
+            "blockedFamilies": [
+              "perverting_justice"
+            ]
+          },
+          "materials": [
+            {
+              "id": " STATEMENT OF OFFENCE|statement",
+              "scheduleRef": null,
+              "label": "## Statement of offence",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "## Statement of offence",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## Statement of offence"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "STATEMENT OF OFFENCE|statement",
+              "scheduleRef": null,
+              "label": "STATEMENT OF OFFENCE",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "STATEMENT OF OFFENCE",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "STATEMENT OF OFFENCE"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "PLACE AND DATE PARTICULARISED BY REFERENCE TO THE SERVED MG5 NARRATIVE AND WITNESS PAPERS|mg5",
+              "scheduleRef": null,
+              "label": "Place and date particularised by reference to the served MG5 narrative and witness papers.",
+              "detail": null,
+              "status": "served",
+              "displayLine": "Place and date particularised by reference to the served MG5 narrative and witness papers.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Place and date particularised by reference to the served MG5 narrative and witness papers."
+              },
+              "confidence": "high"
+            },
+            {
+              "id": " MG5  CASE SUMMARY|mg5",
+              "scheduleRef": null,
+              "label": "## MG5",
+              "detail": "Case summary",
+              "status": "unclear",
+              "displayLine": "## MG5 — Case summary",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## MG5 — Case summary"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "WITNESS OUTLINE COMPLAINANT ACCOUNT RECORDED AS ALLEGATION ONLY  NOT PROVED|witness",
+              "scheduleRef": null,
+              "label": "Witness outline: complainant account recorded as allegation only",
+              "detail": "not proved.",
+              "status": "unclear",
+              "displayLine": "Witness outline: complainant account recorded as allegation only — not proved.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Witness outline: complainant account recorded as allegation only — not proved."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "RELIABILITY MG5 NARRATIVE MUST NOT BE READ AS ESTABLISHING GUILT|mg5",
+              "scheduleRef": null,
+              "label": "Reliability: MG5 narrative must not be read as establishing guilt.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Reliability: MG5 narrative must not be read as establishing guilt.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Reliability: MG5 narrative must not be read as establishing guilt."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "NEXT ACTION RECONCILE MG5 AGAINST MG6 INDEX BEFORE ANY COURTFACING SEND|mg5",
+              "scheduleRef": null,
+              "label": "Next action: reconcile MG5 against MG6 index before any court-facing send.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Next action: reconcile MG5 against MG6 index before any court-facing send.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Next action: reconcile MG5 against MG6 index before any court-facing send."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "DO NOT QUOTE REFERREDABSENT  MASTERS AS IF CONTENT WERE AVAILABLE|material",
+              "scheduleRef": null,
+              "label": "Do not quote referred-absent",
+              "detail": "masters as if content were available.",
+              "status": "outstanding",
+              "displayLine": "Do not quote referred-absent — masters as if content were available.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Do not quote referred-absent — masters as if content were available."
+              },
+              "confidence": "high"
+            },
+            {
+              "id": "1  WRITTEN CHARGE / INDICTMENT  INSTRUMENT  SEE PACK|indictment",
+              "scheduleRef": null,
+              "label": "1 | Written charge / indictment | instrument | see pack",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "1 | Written charge / indictment | instrument | see pack",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "1 | Written charge / indictment | instrument | see pack"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "2  MG5 CASE SUMMARY  MG05  SERVED|mg5",
+              "scheduleRef": null,
+              "label": "2 | MG5 case summary | mg05 | served",
+              "detail": null,
+              "status": "served",
+              "displayLine": "2 | MG5 case summary | mg05 | served",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "2 | MG5 case summary | mg05 | served"
+              },
+              "confidence": "high"
+            },
+            {
+              "id": "4  NO REFERREDABSENT  MASTERS DECLARED    |material",
+              "scheduleRef": null,
+              "label": "4 | (no referred-absent — masters declared) |",
+              "detail": "| —",
+              "status": "outstanding",
+              "displayLine": "4 | (no referred-absent — masters declared) | — | —",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "4 | (no referred-absent — masters declared) | — | —"
+              },
+              "confidence": "high"
+            },
+            {
+              "id": "CONTRACT MG6 MAY REFER TO AN ABSENT  MASTER THE MASTER REMAINS ABSENT  AND HAS NO SOURCE PAGES|material",
+              "scheduleRef": null,
+              "label": "Contract: MG6 may refer to an absent — master; the master remains absent",
+              "detail": "and has no source pages.",
+              "status": "outstanding",
+              "displayLine": "Contract: MG6 may refer to an absent — master; the master remains absent — and has no source pages.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Contract: MG6 may refer to an absent — master; the master remains absent — and has no source pages."
+              },
+              "confidence": "high"
+            },
+            {
+              "id": "EX  DESCRIPTION  RECOVERED BY  LOCATION  CONTINUITY|continuity",
+              "scheduleRef": null,
+              "label": "Ex# | Description | Recovered by | Location | Continuity",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Ex# | Description | Recovered by | Location | Continuity",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Ex# | Description | Recovered by | Location | Continuity"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "CONTINUITY MUST BE CHECKED AGAINST CONTINUITY RECORD|continuity",
+              "scheduleRef": null,
+              "label": "Continuity must be checked against continuity record.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Continuity must be checked against continuity record.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Continuity must be checked against continuity record."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " INTERVIEW RECORD MG15STYLE|interview",
+              "scheduleRef": null,
+              "label": "## Interview record (MG15-style)",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "## Interview record (MG15-style)",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## Interview record (MG15-style)"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "INTERVIEW URN FTINTMG15INTE|interview",
+              "scheduleRef": null,
+              "label": "Interview URN: FT-INT-MG15INTE",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Interview URN: FT-INT-MG15INTE",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Interview URN: FT-INT-MG15INTE"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " INTERVIEW SUMMARY / QA EXTRACT|interview",
+              "scheduleRef": null,
+              "label": "## Interview summary / Q&A extract",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "## Interview summary / Q&A extract",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## Interview summary / Q&A extract"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "INTERVIEW DEFENCE SECTION_45_INDICATOR INCOMPLETE TRANSCRIPT MARKER NO|interview",
+              "scheduleRef": null,
+              "label": "Interview. Defence section_45_indicator. Incomplete transcript marker: no.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Interview. Defence section_45_indicator. Incomplete transcript marker: no.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Interview. Defence section_45_indicator. Incomplete transcript marker: no."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " EXHIBITS PRODUCED IN INTERVIEW|interview",
+              "scheduleRef": null,
+              "label": "## Exhibits produced in interview",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "## Exhibits produced in interview",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## Exhibits produced in interview"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "CLIP SCHEDULE REF  YES  CONTINUITY TO BE CHECKED|continuity",
+              "scheduleRef": null,
+              "label": "Clip schedule ref | yes | continuity to be checked",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Clip schedule ref | yes | continuity to be checked",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Clip schedule ref | yes | continuity to be checked"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "ISSUES TO EXPLORE ATTRIBUTION CONTINUITY MISSING MASTERS CHARGE PARTICULARITY|continuity",
+              "scheduleRef": null,
+              "label": "Issues to explore: attribution, continuity, missing masters, charge particularity.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Issues to explore: attribution, continuity, missing masters, charge particularity.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Issues to explore: attribution, continuity, missing masters, charge particularity."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " MG11  WITNESS STATEMENT|mg11",
+              "scheduleRef": null,
+              "label": "## MG11",
+              "detail": "Witness statement",
+              "status": "unclear",
+              "displayLine": "## MG11 — Witness statement",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## MG11 — Witness statement"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " STATEMENT|statement",
+              "scheduleRef": null,
+              "label": "## Statement",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "## Statement",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## Statement"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "THIS STATEMENT IS TRUE TO THE BEST OF MY KNOWLEDGE AND BELIEF AND I MAKE IT KNOWING THAT IF IT IS TENDERED IN EVIDENCE I|statement",
+              "scheduleRef": null,
+              "label": "This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false "
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " MG11  CONTINUATION SHEET|mg11",
+              "scheduleRef": null,
+              "label": "## MG11",
+              "detail": "Continuation sheet",
+              "status": "unclear",
+              "displayLine": "## MG11 — Continuation sheet",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## MG11 — Continuation sheet"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "CONTINUES STATEMENT DEFENCE_STATEMENT_DRAFT FROM PAGE 1  NOT A FREESTANDING DOCUMENT|statement",
+              "scheduleRef": null,
+              "label": "Continues statement defence_statement_draft from page 1",
+              "detail": "not a free-standing document.",
+              "status": "unclear",
+              "displayLine": "Continues statement defence_statement_draft from page 1 — not a free-standing document.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Continues statement defence_statement_draft from page 1 — not a free-standing document."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "6 I CONFIRM I HAVE READ THIS CONTINUATION AND IT FORMS PART OF MY STATEMENT|statement",
+              "scheduleRef": null,
+              "label": "6. I confirm I have read this continuation and it forms part of my statement.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "6. I confirm I have read this continuation and it forms part of my statement.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "6. I confirm I have read this continuation and it forms part of my statement."
+              },
+              "confidence": "low"
+            }
+          ],
+          "ocrConfidence": "high",
+          "reviewRequired": true,
+          "forbiddenClaims": [
+            {
+              "id": "forbid-interview-confirms",
+              "phrase": "interview confirms",
+              "reason": "Interview material is not fully served",
+              "relatedMaterialIds": [
+                " INTERVIEW RECORD MG15STYLE|interview",
+                "INTERVIEW URN FTINTMG15INTE|interview",
+                " INTERVIEW SUMMARY / QA EXTRACT|interview",
+                "INTERVIEW DEFENCE SECTION_45_INDICATOR INCOMPLETE TRANSCRIPT MARKER NO|interview",
+                " EXHIBITS PRODUCED IN INTERVIEW|interview"
+              ]
+            },
+            {
+              "id": "forbid-cad-supports",
+              "phrase": "CAD/999 timing supports",
+              "reason": "CAD/999 material is not safely on file as served",
+              "relatedMaterialIds": []
+            }
+          ],
+          "sourceAnchors": []
+        }
+      },
+      "decisions": [
+        {
+          "final": null,
+          "surface": "chase",
+          "severity": "minor",
+          "flags": [
+            "truncated"
+          ],
+          "reason": "Line appears truncated."
+        },
+        {
+          "final": null,
+          "surface": "chase",
+          "severity": "minor",
+          "flags": [
+            "truncated"
+          ],
+          "reason": "Line appears truncated."
+        }
+      ],
+      "flags": [
+        "truncated"
+      ],
+      "blockedCount": 2,
+      "rewrittenCount": 0,
+      "fallbackCount": 0
+    },
+    "professionalRequest": "Regarding bladed articles: Regarding bladed articles: Please provide No deliberate.",
+    "item": "No deliberate",
+    "whyItMatters": "On bladed articles, the item is referred or outstanding on the papers and cannot be quoted as served content."
+  },
+  "warRoom": {
+    "caseId": "div3000v213-05-bladed_articles",
+    "caseTitle": "Fictional test — bladed_articles",
+    "clientLabel": "Client (fictional)",
+    "allegation": "",
+    "stage": "Case management",
+    "hearingStatus": "Listed",
+    "bundleHealth": "Review papers",
+    "positionStatus": "Provisional",
+    "readiness": "Needs review",
+    "safePositionToday": "The defence cannot safely fix a final position until the served source material is clarified.",
+    "sayThis": [
+      "The defence cannot safely fix a final position until the served source material is clarified.",
+      "Keep the position provisional and source-linked.",
+      "The defence position remains provisional pending served source material and solicitor instructions.",
+      "The court is asked to record outstanding source material and set a disclosure timetable.",
+      "Timing and sequence remain conditional until served source material and continuity records are reviewed."
+    ],
+    "doNotOverstate": [
+      "Do not import BWV unless the papers support it.",
+      "Do not import custody safeguards unless the papers support it.",
+      "Do not import drugs continuity unless the papers support it.",
+      "Do not import ABE unless the papers support it.",
+      "Do not import phone extraction/metadata unless the papers support it.",
+      "Do not import profile-specific evidence unless the bundle supports it.",
+      "Do not state \"interview confirms\" — Interview material is not fully served",
+      "Do not state \"CAD/999 timing supports\" — CAD/999 material is not safely on file as served"
+    ],
+    "askCourtToRecord": [
+      "Ask the court to record that source material must be clarified and timetabled. remains outstanding and should be disclosed on a timetable.",
+      "Ask the court to record that no deliberate remains outstanding and should be disclosed on a timetable.",
+      "Ask the court to record that mG6 / unused schedule clarification remains outstanding and should be disclosed on a timetable.",
+      "Ask the court to record that transcript marker remains outstanding and should be disclosed on a timetable.",
+      "Ask the court to record that Interview recording remains outstanding and should be disclosed on a timetable.",
+      "Ask the court to record that interview transcript remains outstanding and should be disclosed on a timetable.",
+      "Ask the court to record that do not quote referred-absent — masters as if content were available. remains outstanding and should be disclosed on a timetable.",
+      "Ask the court to record that further papers on the file remains outstanding and should be disclosed on a timetable."
+    ],
+    "instructionsNeeded": [
+      "Record defence position on file before fixing a hearing line.",
+      "Take instructions on timing/sequence — do not fix facts without source material.",
+      "Check whether client account conflicts with served evidence before advancing a positive case.",
+      "Confirm whether any positive defence can safely be advanced today.",
+      "Main issue to check: Source truth and safe provisional positioning."
+    ],
+    "nextHearingMoves": [
+      "Record position (provisional, source-linked).",
+      "Chase outstanding disclosure / source material.",
+      "Ask court to record outstanding source material on the order.",
+      "Seek timetable / review date — avoid open-ended adjournment without dates.",
+      "Avoid committing to final trial strategy until served material is reviewed."
+    ],
+    "evidenceAnchors": [],
+    "collapseRisks": [
+      "Document lifecycle role: Document role operative for \"Additional context schedule (fictional test)\".",
+      "Recording service versus transcript completeness: Recording state not_safely_confirmed; transcript state incomplete."
+    ],
+    "draftWording": {
+      "disclosureTimetable": "The defence asks the court to record that No deliberate; MG6 may refer; transcript marker; Interview recording remains outstanding. The defence invites the court to order disclosure of that material by [date] with a review hearing on [date]. Position remains provisional pending service and instructions.",
+      "adjournment": "The defence position remains provisional pending served source material and instructions. The defence asks the court to adjourn to [date] for disclosure compliance and a further case management hearing — not for final trial strategy to be fixed today.",
+      "clientExplanation": "We are still reviewing the papers in your case. This is early-stage — nothing is final until we have full disclosure and your instructions. Some evidence is still outstanding on the papers, and we will update you when it is served. We are not saying the case is won or lost — we need the full material before giving firm advice."
+    },
+    "sourceTruthGuardian": {
+      "fingerprint": {
+        "profile": "digital",
+        "evidence": {
+          "mg6": "outstanding",
+          "interview": "unclear",
+          "mg11": "unclear"
+        },
+        "ledger": {
+          "version": "bundle-truth-v1",
+          "defendant": {
+            "defendant": "count modelled",
+            "coDefendants": [],
+            "confidence": "high"
+          },
+          "court": "/ venue (modelled): Magistrates'",
+          "hearing": {
+            "rawLiteral": null,
+            "dateIso": null,
+            "timeLiteral": null,
+            "hearingType": null,
+            "sourceAnchor": null,
+            "confidence": "low"
+          },
+          "stage": "police investigation.",
+          "charge": {
+            "wording": null,
+            "countNumber": null,
+            "particulars": null,
+            "sourceAnchor": null,
+            "confidence": "low"
+          },
+          "offenceFamily": {
+            "family": "unknown",
+            "confidence": "provisional",
+            "sourceAnchor": null,
+            "blockedFamilies": [
+              "perverting_justice"
+            ]
+          },
+          "materials": [
+            {
+              "id": " STATEMENT OF OFFENCE|statement",
+              "scheduleRef": null,
+              "label": "## Statement of offence",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "## Statement of offence",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## Statement of offence"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "STATEMENT OF OFFENCE|statement",
+              "scheduleRef": null,
+              "label": "STATEMENT OF OFFENCE",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "STATEMENT OF OFFENCE",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "STATEMENT OF OFFENCE"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "PLACE AND DATE PARTICULARISED BY REFERENCE TO THE SERVED MG5 NARRATIVE AND WITNESS PAPERS|mg5",
+              "scheduleRef": null,
+              "label": "Place and date particularised by reference to the served MG5 narrative and witness papers.",
+              "detail": null,
+              "status": "served",
+              "displayLine": "Place and date particularised by reference to the served MG5 narrative and witness papers.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Place and date particularised by reference to the served MG5 narrative and witness papers."
+              },
+              "confidence": "high"
+            },
+            {
+              "id": " MG5  CASE SUMMARY|mg5",
+              "scheduleRef": null,
+              "label": "## MG5",
+              "detail": "Case summary",
+              "status": "unclear",
+              "displayLine": "## MG5 — Case summary",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## MG5 — Case summary"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "WITNESS OUTLINE COMPLAINANT ACCOUNT RECORDED AS ALLEGATION ONLY  NOT PROVED|witness",
+              "scheduleRef": null,
+              "label": "Witness outline: complainant account recorded as allegation only",
+              "detail": "not proved.",
+              "status": "unclear",
+              "displayLine": "Witness outline: complainant account recorded as allegation only — not proved.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Witness outline: complainant account recorded as allegation only — not proved."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "RELIABILITY MG5 NARRATIVE MUST NOT BE READ AS ESTABLISHING GUILT|mg5",
+              "scheduleRef": null,
+              "label": "Reliability: MG5 narrative must not be read as establishing guilt.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Reliability: MG5 narrative must not be read as establishing guilt.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Reliability: MG5 narrative must not be read as establishing guilt."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "NEXT ACTION RECONCILE MG5 AGAINST MG6 INDEX BEFORE ANY COURTFACING SEND|mg5",
+              "scheduleRef": null,
+              "label": "Next action: reconcile MG5 against MG6 index before any court-facing send.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Next action: reconcile MG5 against MG6 index before any court-facing send.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Next action: reconcile MG5 against MG6 index before any court-facing send."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "DO NOT QUOTE REFERREDABSENT  MASTERS AS IF CONTENT WERE AVAILABLE|material",
+              "scheduleRef": null,
+              "label": "Do not quote referred-absent",
+              "detail": "masters as if content were available.",
+              "status": "outstanding",
+              "displayLine": "Do not quote referred-absent — masters as if content were available.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Do not quote referred-absent — masters as if content were available."
+              },
+              "confidence": "high"
+            },
+            {
+              "id": "1  WRITTEN CHARGE / INDICTMENT  INSTRUMENT  SEE PACK|indictment",
+              "scheduleRef": null,
+              "label": "1 | Written charge / indictment | instrument | see pack",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "1 | Written charge / indictment | instrument | see pack",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "1 | Written charge / indictment | instrument | see pack"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "2  MG5 CASE SUMMARY  MG05  SERVED|mg5",
+              "scheduleRef": null,
+              "label": "2 | MG5 case summary | mg05 | served",
+              "detail": null,
+              "status": "served",
+              "displayLine": "2 | MG5 case summary | mg05 | served",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "2 | MG5 case summary | mg05 | served"
+              },
+              "confidence": "high"
+            },
+            {
+              "id": "4  NO REFERREDABSENT  MASTERS DECLARED    |material",
+              "scheduleRef": null,
+              "label": "4 | (no referred-absent — masters declared) |",
+              "detail": "| —",
+              "status": "outstanding",
+              "displayLine": "4 | (no referred-absent — masters declared) | — | —",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "4 | (no referred-absent — masters declared) | — | —"
+              },
+              "confidence": "high"
+            },
+            {
+              "id": "CONTRACT MG6 MAY REFER TO AN ABSENT  MASTER THE MASTER REMAINS ABSENT  AND HAS NO SOURCE PAGES|material",
+              "scheduleRef": null,
+              "label": "Contract: MG6 may refer to an absent — master; the master remains absent",
+              "detail": "and has no source pages.",
+              "status": "outstanding",
+              "displayLine": "Contract: MG6 may refer to an absent — master; the master remains absent — and has no source pages.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Contract: MG6 may refer to an absent — master; the master remains absent — and has no source pages."
+              },
+              "confidence": "high"
+            },
+            {
+              "id": "EX  DESCRIPTION  RECOVERED BY  LOCATION  CONTINUITY|continuity",
+              "scheduleRef": null,
+              "label": "Ex# | Description | Recovered by | Location | Continuity",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Ex# | Description | Recovered by | Location | Continuity",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Ex# | Description | Recovered by | Location | Continuity"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "CONTINUITY MUST BE CHECKED AGAINST CONTINUITY RECORD|continuity",
+              "scheduleRef": null,
+              "label": "Continuity must be checked against continuity record.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Continuity must be checked against continuity record.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Continuity must be checked against continuity record."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " INTERVIEW RECORD MG15STYLE|interview",
+              "scheduleRef": null,
+              "label": "## Interview record (MG15-style)",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "## Interview record (MG15-style)",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## Interview record (MG15-style)"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "INTERVIEW URN FTINTMG15INTE|interview",
+              "scheduleRef": null,
+              "label": "Interview URN: FT-INT-MG15INTE",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Interview URN: FT-INT-MG15INTE",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Interview URN: FT-INT-MG15INTE"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " INTERVIEW SUMMARY / QA EXTRACT|interview",
+              "scheduleRef": null,
+              "label": "## Interview summary / Q&A extract",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "## Interview summary / Q&A extract",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## Interview summary / Q&A extract"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "INTERVIEW DEFENCE SECTION_45_INDICATOR INCOMPLETE TRANSCRIPT MARKER NO|interview",
+              "scheduleRef": null,
+              "label": "Interview. Defence section_45_indicator. Incomplete transcript marker: no.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Interview. Defence section_45_indicator. Incomplete transcript marker: no.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Interview. Defence section_45_indicator. Incomplete transcript marker: no."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " EXHIBITS PRODUCED IN INTERVIEW|interview",
+              "scheduleRef": null,
+              "label": "## Exhibits produced in interview",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "## Exhibits produced in interview",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## Exhibits produced in interview"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "CLIP SCHEDULE REF  YES  CONTINUITY TO BE CHECKED|continuity",
+              "scheduleRef": null,
+              "label": "Clip schedule ref | yes | continuity to be checked",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Clip schedule ref | yes | continuity to be checked",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Clip schedule ref | yes | continuity to be checked"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "ISSUES TO EXPLORE ATTRIBUTION CONTINUITY MISSING MASTERS CHARGE PARTICULARITY|continuity",
+              "scheduleRef": null,
+              "label": "Issues to explore: attribution, continuity, missing masters, charge particularity.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "Issues to explore: attribution, continuity, missing masters, charge particularity.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Issues to explore: attribution, continuity, missing masters, charge particularity."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " MG11  WITNESS STATEMENT|mg11",
+              "scheduleRef": null,
+              "label": "## MG11",
+              "detail": "Witness statement",
+              "status": "unclear",
+              "displayLine": "## MG11 — Witness statement",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## MG11 — Witness statement"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " STATEMENT|statement",
+              "scheduleRef": null,
+              "label": "## Statement",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "## Statement",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## Statement"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "THIS STATEMENT IS TRUE TO THE BEST OF MY KNOWLEDGE AND BELIEF AND I MAKE IT KNOWING THAT IF IT IS TENDERED IN EVIDENCE I|statement",
+              "scheduleRef": null,
+              "label": "This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "This statement is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false "
+              },
+              "confidence": "low"
+            },
+            {
+              "id": " MG11  CONTINUATION SHEET|mg11",
+              "scheduleRef": null,
+              "label": "## MG11",
+              "detail": "Continuation sheet",
+              "status": "unclear",
+              "displayLine": "## MG11 — Continuation sheet",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "## MG11 — Continuation sheet"
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "CONTINUES STATEMENT DEFENCE_STATEMENT_DRAFT FROM PAGE 1  NOT A FREESTANDING DOCUMENT|statement",
+              "scheduleRef": null,
+              "label": "Continues statement defence_statement_draft from page 1",
+              "detail": "not a free-standing document.",
+              "status": "unclear",
+              "displayLine": "Continues statement defence_statement_draft from page 1 — not a free-standing document.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "Continues statement defence_statement_draft from page 1 — not a free-standing document."
+              },
+              "confidence": "low"
+            },
+            {
+              "id": "6 I CONFIRM I HAVE READ THIS CONTINUATION AND IT FORMS PART OF MY STATEMENT|statement",
+              "scheduleRef": null,
+              "label": "6. I confirm I have read this continuation and it forms part of my statement.",
+              "detail": null,
+              "status": "unclear",
+              "displayLine": "6. I confirm I have read this continuation and it forms part of my statement.",
+              "sourceAnchor": {
+                "documentPriority": "mg6",
+                "sectionLabel": "MG6/MG6C",
+                "excerpt": "6. I confirm I have read this continuation and it forms part of my statement."
+              },
+              "confidence": "low"
+            }
+          ],
+          "ocrConfidence": "high",
+          "reviewRequired": true,
+          "forbiddenClaims": [
+            {
+              "id": "forbid-interview-confirms",
+              "phrase": "interview confirms",
+              "reason": "Interview material is not fully served",
+              "relatedMaterialIds": [
+                " INTERVIEW RECORD MG15STYLE|interview",
+                "INTERVIEW URN FTINTMG15INTE|interview",
+                " INTERVIEW SUMMARY / QA EXTRACT|interview",
+                "INTERVIEW DEFENCE SECTION_45_INDICATOR INCOMPLETE TRANSCRIPT MARKER NO|interview",
+                " EXHIBITS PRODUCED IN INTERVIEW|interview"
+              ]
+            },
+            {
+              "id": "forbid-cad-supports",
+              "phrase": "CAD/999 timing supports",
+              "reason": "CAD/999 material is not safely on file as served",
+              "relatedMaterialIds": []
+            }
+          ],
+          "sourceAnchors": []
+        }
+      },
+      "decisions": [
+        {
+          "final": null,
+          "surface": "today",
+          "severity": "minor",
+          "flags": [
+            "truncated"
+          ],
+          "reason": "Line appears truncated."
+        },
+        {
+          "final": null,
+          "surface": "today",
+          "severity": "minor",
+          "flags": [
+            "truncated"
+          ],
+          "reason": "Line appears truncated."
+        }
+      ],
+      "flags": [
+        "truncated"
+      ],
+      "blockedCount": 2,
+      "rewrittenCount": 0,
+      "fallbackCount": 0
+    },
+    "issue": "Case-specific issue for bladed articles: charge status operative; defence section 45 indicator; procedure police investigation.",
+    "whyItMatters": "Why it matters on bladed articles: incorrect charge/instrument precedence or quoting absent masters would mislead the court-facing position.",
+    "safeCurrentPosition": "Safe current position on bladed articles: treat the allegation as unproved; prefer operative instruments; do not summarise referred-absent masters.",
+    "nextAction": "Next action on bladed articles: Regarding bladed articles: Regarding bladed articles: Please provide No deliberate."
+  },
+  "copyLines": [
+    {
+      "kind": "charge_allegation",
+      "text": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.\n\nAction: Check the operative charge sheet or amendment record.",
+      "canCopy": false,
+      "provenanceLine": "No recorded charge wording on papers."
+    },
+    {
+      "kind": "document_role",
+      "text": "Document role operative for \"Additional context schedule (fictional test)\".\n\n[CaseBrain — court line copy. Evidence state: needs review. Source: Additional context schedule (fictional test). Provenance: state: needs review · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof. Confirm before addressing the court.]",
+      "canCopy": true,
+      "provenanceLine": "Additional context schedule (fictional test) (context_schedule) · p.1 (compiled p.1) · state: served · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof"
+    },
+    {
+      "kind": "recording_vs_transcript",
+      "text": "Recording state not_safely_confirmed; transcript state incomplete.\n\n[CaseBrain — court line copy. Evidence state: needs review. Provenance: state: needs review · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof. Confirm before addressing the court.]",
+      "canCopy": true,
+      "provenanceLine": "exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+    },
+    "On bladed articles copy/export/API/PDF exits: charge status operative; defence section 45 indicator. For this bladed articles pack, no referred-absent masters are declared.",
+    "Regarding bladed articles: Regarding bladed articles: Please provide No deliberate."
+  ],
+  "requiredLimitations": [
+    "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+    "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+  ],
+  "pdf": {
+    "provenanceLines": [
+      "Additional context schedule (fictional test) (context_schedule) · p.1 (compiled p.1) · state: served · limitation: Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "exact page unavailable (unsplit whole-document text) · state: incomplete · limitation: Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+    ],
+    "limitations": [
+      "Exact document title, page, evidence state, and defendant/count provenance not fully available — do not treat filename alone as source proof",
+      "Supporting document is identified but the exact page is unavailable — supplied as unsplit whole-document text, so cite the document rather than a page; No supporting page could be identified for this finding"
+    ],
+    "allegation": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.\n\nAction: Check the operative charge sheet or amendment record.",
+    "chargeCompleteness": {
+      "sourceChargeText": "",
+      "provenance": "No recorded charge wording on papers.",
+      "instruments": [],
+      "displayedChargeText": "",
+      "completenessStatus": "unresolved",
+      "recoverySource": null,
+      "warning": "Status: The recorded charge wording appears incomplete and could not be safely completed from the available papers.",
+      "requiredAction": "Action: Check the operative charge sheet or amendment record."
+    }
+  }
+}

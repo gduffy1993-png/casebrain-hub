@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "native-input-capability-matrix@1.0.0",
+  "supportedInThisRun": [
+    "json_source_pack",
+    "structured_matter_graph",
+    "thin_text_documents"
+  ],
+  "stratifiedPdfRender": "marked_pending_or_thin_only",
+  "unsupportedNativeMarkedNotExercised": true
+}

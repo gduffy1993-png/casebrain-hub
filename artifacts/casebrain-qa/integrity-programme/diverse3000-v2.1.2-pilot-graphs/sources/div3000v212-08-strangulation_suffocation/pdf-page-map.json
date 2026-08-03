@@ -1,0 +1,127 @@
+{
+  "caseId": "div3000v212-08-strangulation_suffocation",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.2-pilot-graphs/sources/div3000v212-08-strangulation_suffocation/bundle-fictional-test.pdf",
+  "sha256": "02b9cef05d6864444b4370f14f28bd8a1bfe3eb9d7b43616a0c78839721fd7d3",
+  "pageCount": 17,
+  "pageMap": [
+    {
+      "pageIdentity": "indictment_operative/page/1",
+      "pdfPageNumber": 1,
+      "docId": "indictment_operative",
+      "purpose": "indictment_count_particulars",
+      "layoutKind": "indictment"
+    },
+    {
+      "pageIdentity": "indictment_operative/page/2",
+      "pdfPageNumber": 2,
+      "docId": "indictment_operative",
+      "purpose": "indictment_further_counts_or_history",
+      "layoutKind": "indictment"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 3,
+      "docId": "MG05",
+      "purpose": "mg5_case_summary_narrative",
+      "layoutKind": "mg05"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 4,
+      "docId": "MG05",
+      "purpose": "mg5_evidence_outline",
+      "layoutKind": "mg05"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 5,
+      "docId": "MG06",
+      "purpose": "mg6_file_index",
+      "layoutKind": "mg06"
+    },
+    {
+      "pageIdentity": "MG11_complainant_signed/page/1",
+      "pdfPageNumber": 6,
+      "docId": "MG11_complainant_signed",
+      "purpose": "witness_statement_opening",
+      "layoutKind": "mg11_statement"
+    },
+    {
+      "pageIdentity": "MG11_complainant_signed/page/2",
+      "pdfPageNumber": 7,
+      "docId": "MG11_complainant_signed",
+      "purpose": "witness_statement_continuation_paras_4",
+      "layoutKind": "mg11_continuation"
+    },
+    {
+      "pageIdentity": "MG11_complainant_signed/page/3",
+      "pdfPageNumber": 8,
+      "docId": "MG11_complainant_signed",
+      "purpose": "witness_statement_continuation_paras_7",
+      "layoutKind": "mg11_continuation"
+    },
+    {
+      "pageIdentity": "MG11_complainant_draft/page/1",
+      "pdfPageNumber": 9,
+      "docId": "MG11_complainant_draft",
+      "purpose": "witness_statement_opening",
+      "layoutKind": "mg11_statement"
+    },
+    {
+      "pageIdentity": "MG11_complainant_draft/page/2",
+      "pdfPageNumber": 10,
+      "docId": "MG11_complainant_draft",
+      "purpose": "witness_statement_continuation_paras_4",
+      "layoutKind": "mg11_continuation"
+    },
+    {
+      "pageIdentity": "MG11_complainant_draft/page/3",
+      "pdfPageNumber": 11,
+      "docId": "MG11_complainant_draft",
+      "purpose": "witness_statement_continuation_paras_7",
+      "layoutKind": "mg11_continuation"
+    },
+    {
+      "pageIdentity": "order_or_bail/page/1",
+      "pdfPageNumber": 12,
+      "docId": "order_or_bail",
+      "purpose": "court_order_operative_paragraphs",
+      "layoutKind": "court_order"
+    },
+    {
+      "pageIdentity": "cctv_clip_schedule/page/1",
+      "pdfPageNumber": 13,
+      "docId": "cctv_clip_schedule",
+      "purpose": "media_clip_schedule_log",
+      "layoutKind": "media_schedule"
+    },
+    {
+      "pageIdentity": "media_metadata/page/1",
+      "pdfPageNumber": 14,
+      "docId": "media_metadata",
+      "purpose": "media_metadata_only",
+      "layoutKind": "metadata_fixture"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 15,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_privileged_extract",
+      "layoutKind": "defence_proof"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/2",
+      "pdfPageNumber": 16,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_issues_and_requests",
+      "layoutKind": "defence_proof"
+    },
+    {
+      "pageIdentity": "extra_context_5/page/1",
+      "pdfPageNumber": 17,
+      "docId": "extra_context_5",
+      "purpose": "document_specific_body",
+      "layoutKind": "generic_specialist"
+    }
+  ]
+}

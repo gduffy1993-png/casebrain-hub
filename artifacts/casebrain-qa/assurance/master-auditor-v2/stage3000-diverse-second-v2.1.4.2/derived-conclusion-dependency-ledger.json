@@ -1,0 +1,2767 @@
+{
+  "schemaVersion": "diverse3000-v2.1.4.2-derived-deps@1.0.0",
+  "rows": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/nextAction",
+      "factIds": "fact:mg5_mg6_reconcile+eu-MG06",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/nextAction",
+      "factIds": "fact:mg5_mg6_reconcile+eu-MG06",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/nextAction",
+      "factIds": "fact:mg5_mg6_reconcile+eu-MG06",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-indictment_operative+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/nextAction",
+      "factIds": "fact:mg5_mg6_reconcile+eu-MG06",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-written_charge+fact:defence_instructions",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-indictment_operative+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-indictment_operative+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-indictment_operative+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-indictment_operative+req-absent-abe_or_special_measures",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-abe_or_special_measures+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-abe_or_special_measures",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "jsonPointer": "/copyLines/1",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-indictment_operative+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-indictment_operative+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-indictment_operative+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-indictment_operative+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-indictment_operative+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-indictment_operative+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-indictment_operative+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-indictment_operative+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-written_charge+req-absent-referred_missing_master",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-referred_missing_master+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-referred_missing_master",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-referred_missing_master",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-written_charge+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-written_charge+req-absent-abe_or_special_measures",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-abe_or_special_measures+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-abe_or_special_measures",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "jsonPointer": "/copyLines/1",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-indictment_operative+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-indictment_operative+req-absent-abe_or_special_measures",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-abe_or_special_measures+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-abe_or_special_measures",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "jsonPointer": "/copyLines/1",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-written_charge+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-written_charge+req-absent-abe_or_special_measures",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-written_charge",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-abe_or_special_measures+inst-written_charge",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-abe_or_special_measures",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-written_charge",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "jsonPointer": "/copyLines/1",
+      "factIds": "inst-written_charge+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/courtNote/text",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/defencePosition",
+      "factIds": "fact:defence_instructions+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#defence",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/keyFacts/proceduralStage",
+      "factIds": "fact:procedural_stage",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#procedure",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/fiveAnswers/whatEvidenceSays",
+      "factIds": "fact:evidence_unit_count+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#whatEvidenceSays",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/issue",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/whyItMatters",
+      "factIds": "inst-indictment_operative+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/warRoom/safePosition",
+      "factIds": "inst-indictment_operative+req-absent-abe_or_special_measures",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#warSafe",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/issue",
+      "factIds": "inst-indictment_operative",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlIssue",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/whyItMatters",
+      "factIds": "req-absent-abe_or_special_measures+inst-indictment_operative",
+      "refCount": 2,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlWhy",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/controlRoom/nextAction",
+      "factIds": "req-absent-abe_or_special_measures",
+      "refCount": 1,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#ctrlNext",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/composedProse/courtLine",
+      "factIds": "fact:defence_instructions+fact:procedural_stage+inst-indictment_operative",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#courtLine",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#export",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#api",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/solicitorFacingSurfaces/copyExportApiPdf/meaning#pdf",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/exportVersion/solicitorVisibleSummary",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/copyLines/0",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "jsonPointer": "/copyLines/1",
+      "factIds": "inst-indictment_operative+fact:defence_instructions+req-absent-abe_or_special_measures",
+      "refCount": 3,
+      "derivationHandlerId": "v2.1.4.2-solicitor-visible-wording@1.0.0#copyMeaning",
+      "ok": true
+    }
+  ],
+  "missingDependencyCount": 0,
+  "pass": true
+}

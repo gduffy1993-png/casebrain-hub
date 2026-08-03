@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "diverse3000-v2.1-truth@1.0.0",
+  "caseId": "div3000v21-15-prison_offences",
+  "sealed": true,
+  "chargeWordingExpected": null,
+  "chargeWordingStatus": "structural_only",
+  "defencePositionExpected": "factual_denial",
+  "missingExpected": [
+    {
+      "item": "media_metadata",
+      "state": "metadata_only",
+      "referredFrom": "MG06"
+    },
+    {
+      "item": "referred_missing_master",
+      "state": "missing",
+      "referredFrom": "MG06"
+    }
+  ],
+  "prohibitedConclusions": [
+    "must_not_state_allegation_as_proved_fact",
+    "must_not_treat_missing_as_served",
+    "must_not_treat_draft_as_operative"
+  ]
+}

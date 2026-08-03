@@ -1,0 +1,11 @@
+{
+  "total": 552,
+  "dispositionCounts": {
+    "expected_control_hit": 22,
+    "detector_false_positive": 521,
+    "duplicate_occurrence": 9
+  },
+  "untriagedCandidateCount": 0,
+  "confirmedApplicationDefects": 0,
+  "note": "552 dispositions preserved from V2.1.4.1 — not re-triaged"
+}

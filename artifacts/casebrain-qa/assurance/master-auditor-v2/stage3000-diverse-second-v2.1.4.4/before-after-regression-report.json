@@ -1,0 +1,27 @@
+{
+  "beforeV2142": {
+    "ordinaryVisibleFailClosedClaimed": 0,
+    "semanticDefectsObservedByCodex": 210,
+    "remainingFailClosedInLedger": 10
+  },
+  "after": {
+    "ordinaryVisibleFailClosed": 0,
+    "findingCounts": {
+      "MAA2-BND-05-MISSING-ATTACHMENTS": 15,
+      "MAA2-ATR-02-DOCUMENT-OWNERSHIP": 7
+    },
+    "leafClassCounts": {
+      "protected_audit_only": 574,
+      "not_exercised": 392,
+      "universal_safety": 252,
+      "substantive_derived_conclusion": 312,
+      "substantive_source_backed": 166,
+      "substantive_explicitly_unresolved": 231
+    },
+    "semanticDefects": 0
+  },
+  "expectedHits": {
+    "BND05": 15,
+    "ATR02": 7
+  }
+}

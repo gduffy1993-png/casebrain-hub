@@ -1,0 +1,43 @@
+{
+  "files": [
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.4.4-ordinary-exit-system-language.ts",
+      "sha256": "6783b487820cc811daae14bbb95f9de9aef284abd99dc95e2cff03f635ec8366",
+      "bytes": 52212
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.2-structured-maa-output.ts",
+      "sha256": "27edf9a499b9dbde0fabe38a9276c09fa2321178c723a0058c87e978de9e79b3",
+      "bytes": 41827
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.4-provenance-leaf-classifier.ts",
+      "sha256": "19fde3718f641578989a9c8b9ee6d709c9e9540c571f6c05835ffeca71570c23",
+      "bytes": 45816
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/v2.1.4.4-focused-contracts.test.ts",
+      "sha256": "4e1c7a4d727bfee498dbf0214918f25ed4536c526c0fa670f461a0e3fbccde15",
+      "bytes": 4661
+    },
+    {
+      "path": "scripts/assurance/stage3000-diverse-second/build-v2.1.4.4-ordinary-exit-system-language.ts",
+      "sha256": "cdcd545f130145266897935f5979af8736e6c64a95b598734198c221a8f2ec78",
+      "bytes": 39062
+    },
+    {
+      "path": "tsconfig.v2144-path-scoped.json",
+      "sha256": "1dbfcfbcb35344e57defbaddc1bab23b0ceb989d0d51015698a8286b4438a3bd",
+      "bytes": 760
+    },
+    {
+      "path": "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.3/pilot-gate-claim-correction.json",
+      "sha256": "9710f1f521079d63c900b9b9ea5fb50855321f85e8330a458c91ae9d4759b14f",
+      "bytes": 1240
+    }
+  ],
+  "artefactRoots": [
+    "artifacts/casebrain-qa/assurance/master-auditor-v2/stage3000-diverse-second-v2.1.4.4/",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.4.4-pilot-graphs/"
+  ]
+}

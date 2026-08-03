@@ -1,0 +1,170 @@
+{
+  "caseId": "div3000v21-01-common_assault_battery",
+  "documents": [
+    {
+      "docId": "written_charge",
+      "title": "Written charge / requisition (fictional test)",
+      "kind": "written_charge",
+      "state": "operative",
+      "contentHash": "1e7870ac860c2a63e14b86c5f992857668886f13bd20aa16448b748efcf990de",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "written_charge/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/1\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL\nBattery, contrary to common law and section 39 of the Criminal Justice Act 1988\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "73c8f50938db6b33c4d3a95fad4ff80d259fbdc547c318d2f530c7d493d3ea41"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "written_charge/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Written charge / requisition (fictional test)\nDocument id: written_charge\nKind: written_charge\nLifecycle state: operative\nPage identity: written_charge/page/2\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for written_charge.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "5520408fa0a7a9618c961fb5d2748c72b340386e5cb69ad58d0b94444040ed58"
+        }
+      ]
+    },
+    {
+      "docId": "MG05",
+      "title": "MG5 Case summary (fictional test)",
+      "kind": "mg05",
+      "state": "served",
+      "contentHash": "2804b80837b3b7a3cb7bef30aa40231ff32de471c172ee9c63417a7c4988b241",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG05/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/1\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL — not an operative police document.\nFamily under review: common assault battery.\nDefence position modelled: factual denial.\nProcedural stage: police investigation.\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nEvidence emphasis seed 1: mg11_draft, cctv_clip, cctv_master_referred.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "21274f8681abdf443c90d396724c629502af4f19d6030a38a3183be359b330fb"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG05/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/2\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "68b820c9fde9a8b7de135ce19c48320e6412401684583aacf6bdc926b20d46df"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "MG05/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/3\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 3 for MG05.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "7e6292c8e8296f0a0f3b5e6039e7b176a4a2f57bba68b72047b79ec5c468d259"
+        },
+        {
+          "pageIndex": 4,
+          "pageIdentity": "MG05/page/4",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG5 Case summary (fictional test)\nDocument id: MG05\nKind: mg05\nLifecycle state: served\nPage identity: MG05/page/4\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 4 for MG05.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "0df44dcdac4da7d8bd3a12e300cfeb15c01374b05df676f1c98f56f54cdb5ea1"
+        }
+      ]
+    },
+    {
+      "docId": "MG06",
+      "title": "MG6 File front sheet / index (fictional test)",
+      "kind": "mg06",
+      "state": "served",
+      "contentHash": "50cfe41d9aee074d34cc5da25b121f2eec784e5453db5bfca379a02fd71edb58",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "MG06/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/1\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL\nIndex entries follow. Gaps and referred-only items are deliberate where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "f7c9d47f19f586fd5f7e357b384d20c854e6ccd3c746c3c26053425194d5edf1"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "MG06/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: MG6 File front sheet / index (fictional test)\nDocument id: MG06\nKind: mg06\nLifecycle state: served\nPage identity: MG06/page/2\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for MG06.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "57c34bf6c00b632ed6b5c0ac3d44e79a1b0f1b763566ccf73b46faa9bd492c40"
+        }
+      ]
+    },
+    {
+      "docId": "cctv_clip_schedule",
+      "title": "CCTV / BWV clip schedule (fictional test)",
+      "kind": "media_schedule",
+      "state": "partial",
+      "contentHash": "89e4256affcd082ccf2f68cd114c6b5ae691b0c499915bb3049aaf4b45e4776c",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "cctv_clip_schedule/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/1\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL\nClip served; master referred-only where marked.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "727ba4ab6ce475cc60b6713f5c4c81ebc2a4d8c4e2f38310ec5109cdf2de0bda"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "cctv_clip_schedule/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: CCTV / BWV clip schedule (fictional test)\nDocument id: cctv_clip_schedule\nKind: media_schedule\nLifecycle state: partial\nPage identity: cctv_clip_schedule/page/2\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for cctv_clip_schedule.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "4ee62b720b6096ad87a5b525641b9959108d4eb56f2651bab87ab512517a8cb3"
+        }
+      ]
+    },
+    {
+      "docId": "media_metadata",
+      "title": "Media metadata fixture (native bytes not_exercised)",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "contentHash": "1fa1780e990328ab846d14c8584f25ef5bf543e7cc99c865652518990d82bffc",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "media_metadata/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/1\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL\nNative video/audio bytes unavailable in this pack — metadata only. native_content=not_exercised.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "cdf1ed9d8a1d1432ced49e11fa71e1b28fa7bc14a114295b9beea9efadc11a75"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "media_metadata/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Media metadata fixture (native bytes not_exercised)\nDocument id: media_metadata\nKind: metadata_fixture\nLifecycle state: metadata_only\nPage identity: media_metadata/page/2\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for media_metadata.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "04153c9cca9a12fec1bc8da0ac1db34888995691a8b5e8e9e062b6eb6344a9bc"
+        }
+      ]
+    },
+    {
+      "docId": "defence_proof_extract",
+      "title": "Defence proof of evidence extract (fictional privileged-structure)",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "contentHash": "57db8de7c7af30e85146392b659c686fa4b80d72898ebc0316c28361d66f754a",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "defence_proof_extract/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/1\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL — privileged defence working extract. Position: factual_denial. Not for ordinary copy/export.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "c3a8a5f7d57ec3a0e5e9a6b7e316c9f0e244e83c6c871fbf64deeb583d6fd336"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "defence_proof_extract/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/2\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for defence_proof_extract.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "f5f8cea84506febf10bedffce5386f758feb6ff158c9118f3184a37a32f2b0b4"
+        },
+        {
+          "pageIndex": 3,
+          "pageIdentity": "defence_proof_extract/page/3",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Defence proof of evidence extract (fictional privileged-structure)\nDocument id: defence_proof_extract\nKind: defence_proof\nLifecycle state: privileged\nPage identity: defence_proof_extract/page/3\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 3 for defence_proof_extract.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "2dd97c2b1cbcb5c8b93e0685008c9ee4b5e8454fa7e7cd5abc5f164340dd5bbd"
+        }
+      ]
+    },
+    {
+      "docId": "referred_missing_master",
+      "title": "Referred master media / full record (missing)",
+      "kind": "missing_referred",
+      "state": "missing",
+      "contentHash": "050e588a0f641b5756bf116853edd06a688fe0505cd55be21edf168ad884f090",
+      "pages": [
+        {
+          "pageIndex": 1,
+          "pageIdentity": "referred_missing_master/page/1",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/1\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nOpening narrative: FICTIONAL TEST MATERIAL — index refers to this item; file absent. Must not treat as served.\nIndex cross-reference: no additional missing markers on this page.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "874b278d95e745f10c506362d17a882df8ef65af2dd44f25100ab5478c5dbfb9"
+        },
+        {
+          "pageIndex": 2,
+          "pageIdentity": "referred_missing_master/page/2",
+          "text": "FICTIONAL TEST MATERIAL — not an operative police, CPS, court or solicitor document.\nDocument: Referred master media / full record (missing)\nDocument id: referred_missing_master\nKind: missing_referred\nLifecycle state: missing\nPage identity: referred_missing_master/page/2\nMatter family under review: common assault battery\nProcedural stage: police investigation\nDefence position on instructions: factual denial\nAllegation instrument: Battery, contrary to common law and section 39 of the Criminal Justice Act 1988\nCharge wording status: pinned_from_corpus_inventory_only\nContinuation page 2 for referred_missing_master.\nIndex cross-reference: the following items are not confirmed as served — media_metadata, referred_missing_master.\nLifecycle warning: treat operative/served status carefully against the full index.\nDefendant count modelled: 3.",
+          "textHash": "2e2865cebb10bc6286ddd407d98c8e126b13805a07c6b90b6ffc5c4fe5d1a8cd"
+        }
+      ]
+    }
+  ]
+}

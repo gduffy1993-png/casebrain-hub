@@ -1,0 +1,146 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/bundle-fictional-test.pdf",
+  "pageCount": 8,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-001.png",
+      "pngSha256": "eaf3ae239881c3f340a583bcbf60e037e521dcd34575bc42cfb3ccb57debd4ad",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1381,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.74,
+        "nonWhiteRatio": 0.0447,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-002.png",
+      "pngSha256": "083e1bb182736d41f7c1460418eeff6c7c3bbd1396e320f05b98ddffb419a875",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1612,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.72,
+        "nonWhiteRatio": 0.052,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-003.png",
+      "pngSha256": "4310c32fa92fcd649f5e01243c72d0e2a1859a1df108b244135cd13f04ed2dae",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1331,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.87,
+        "nonWhiteRatio": 0.0441,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-004.png",
+      "pngSha256": "27c2d24a1548795faa366dc302099497f8cfa0ee3b2713198f96eb7a1740c7fc",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1721,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.31,
+        "nonWhiteRatio": 0.0545,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-005.png",
+      "pngSha256": "e33306b140a2b4da0534c81cbe1c8882a97ddbd9a9b5a8a79f3d4876f38c8d85",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1345,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.79,
+        "nonWhiteRatio": 0.0442,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 6,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-006.png",
+      "pngSha256": "79e3da0f54ea6ca6947daf64883e725a8c7216809f5bd2bd34d3113e254ba963",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1303,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.85,
+        "nonWhiteRatio": 0.0437,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 7,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-007.png",
+      "pngSha256": "3a77b0423cc32852491a0dd6312429460f5570bbf6cb35e2eb7a69a49bd6d337",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1465,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.36,
+        "nonWhiteRatio": 0.0475,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 8,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/page-008.png",
+      "pngSha256": "e287ed518dadf8a99932f7c0eefceebb81c75a9505beae43a13798226516b054",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1377,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.75,
+        "nonWhiteRatio": 0.045,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-20-diplomatic_immunity/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "f8782e38a1b865a9b32d7af3450e8bb05d6f2735b4ba98b475ad018b5979e03b",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

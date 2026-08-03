@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "diverse3000-v2-matter@1.0.0",
+  "v1CaseId": "div3000-2801-corporate_manslaughter",
+  "caseId": "div3000v212-17-corporate_manslaughter",
+  "orderIndex": 2800,
+  "primaryFamily": "corporate_manslaughter",
+  "tier": "specialist_structural",
+  "fictionalBanner": "FICTIONAL TEST MATERIAL",
+  "charge": {
+    "wording": null,
+    "provision": "unpinned:corporate_manslaughter",
+    "wordingStatus": "structural_only",
+    "structuralNote": "No pinned current source-supported charge wording in research register for this family — classified structural_only / awaiting qualified review; do not invent operative wording."
+  },
+  "defencePosition": "consent_dispute",
+  "proceduralLifecycle": "police_investigation",
+  "defendantCount": 2,
+  "countAllocation": 1,
+  "evidenceStateGraph": [
+    {
+      "item": "written_charge",
+      "kind": "written_charge",
+      "state": "operative",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "MG05",
+      "kind": "mg05",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 4
+    },
+    {
+      "item": "MG06",
+      "kind": "mg06",
+      "state": "served",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "cctv_clip_schedule",
+      "kind": "media_schedule",
+      "state": "partial",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "media_metadata",
+      "kind": "metadata_fixture",
+      "state": "metadata_only",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "abe_or_special_measures",
+      "kind": "abe_sm",
+      "state": "referred_only",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "third_party_material_note",
+      "kind": "third_party",
+      "state": "referred_only",
+      "ownerDefendantIndex": 0,
+      "pages": 1
+    },
+    {
+      "item": "defence_proof_extract",
+      "kind": "defence_proof",
+      "state": "privileged",
+      "ownerDefendantIndex": 0,
+      "pages": 2
+    },
+    {
+      "item": "referred_missing_master",
+      "kind": "missing_referred",
+      "state": "missing",
+      "ownerDefendantIndex": 0,
+      "pages": 0
+    }
+  ],
+  "documentRelationshipGraph": {
+    "nodes": [
+      {
+        "id": "written_charge",
+        "kind": "written_charge",
+        "state": "operative"
+      },
+      {
+        "id": "MG05",
+        "kind": "mg05",
+        "state": "served"
+      },
+      {
+        "id": "MG06",
+        "kind": "mg06",
+        "state": "served"
+      },
+      {
+        "id": "cctv_clip_schedule",
+        "kind": "media_schedule",
+        "state": "partial"
+      },
+      {
+        "id": "media_metadata",
+        "kind": "metadata_fixture",
+        "state": "metadata_only"
+      },
+      {
+        "id": "abe_or_special_measures",
+        "kind": "abe_sm",
+        "state": "referred_only"
+      },
+      {
+        "id": "third_party_material_note",
+        "kind": "third_party",
+        "state": "referred_only"
+      },
+      {
+        "id": "defence_proof_extract",
+        "kind": "defence_proof",
+        "state": "privileged"
+      },
+      {
+        "id": "referred_missing_master",
+        "kind": "missing_referred",
+        "state": "missing"
+      }
+    ],
+    "edges": [
+      {
+        "from": "MG06",
+        "to": "MG05",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "MG06",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "cctv_clip_schedule",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "media_metadata",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "abe_or_special_measures",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "third_party_material_note",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "defence_proof_extract",
+        "relation": "indexes"
+      },
+      {
+        "from": "MG06",
+        "to": "referred_missing_master",
+        "relation": "indexes_but_absent"
+      }
+    ]
+  },
+  "missingMaterialGraph": [
+    {
+      "item": "media_metadata",
+      "state": "metadata_only",
+      "referredFrom": "MG06"
+    },
+    {
+      "item": "abe_or_special_measures",
+      "state": "referred_only",
+      "referredFrom": "MG06"
+    },
+    {
+      "item": "third_party_material_note",
+      "state": "referred_only",
+      "referredFrom": "MG06"
+    },
+    {
+      "item": "referred_missing_master",
+      "state": "missing",
+      "referredFrom": "MG06"
+    }
+  ],
+  "contradictionTrapGraph": [
+    {
+      "description": "corporate_manslaughter trap with consent_dispute at police_investigation",
+      "secondary": "missing_referred"
+    }
+  ],
+  "chronology": [
+    {
+      "event": "alleged_incident_window",
+      "detail": "fictional incident window for corporate_manslaughter"
+    },
+    {
+      "event": "first_account",
+      "detail": "first account recorded"
+    },
+    {
+      "event": "charge_or_process",
+      "detail": "structural:corporate_manslaughter"
+    },
+    {
+      "event": "hearing_marker",
+      "detail": "Cardiff Magistrates' Court <DATE>"
+    }
+  ],
+  "sourceCompleteness": "deliberate_truth_keyed_missing_source",
+  "documentCount": 9,
+  "v2CaseId": "div3000v2-2801-corporate_manslaughter",
+  "v211CaseId": "div3000v211-17-corporate_manslaughter",
+  "v21CaseId": "div3000v21-17-corporate_manslaughter",
+  "pilotOrderIndex": 16
+}

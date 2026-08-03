@@ -1,0 +1,37 @@
+{
+  "controlId": "MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "specified_not_implemented",
+  "handlerId": "v2.1.1-pilot-evaluator:MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED",
+  "detectorInvoked": true,
+  "prerequisitesPresent": [
+    "v2.1.1_document_page_units",
+    "v2.1.1_pdf_png_visual_qa",
+    "buildLiveProductionSurfacesFromDocumentUnits",
+    "missing_absence_contracts"
+  ],
+  "prerequisitesSatisfied": true,
+  "applicableUnitCount": 20,
+  "inspectedFieldRefs": [
+    "document-page-units",
+    "source-reading-ledger",
+    "missing-document-correction-ledger",
+    "production-surfaces",
+    "surfaces.jsonl"
+  ],
+  "inspectedHashes": {
+    "surfacesSha256": "5b60b50179d7affc74ffd5136ab76c99eb7238d64ca5f57d48fe9ac9da295866",
+    "sourceReadingRows": 164,
+    "missingLedgerRows": 25,
+    "productionOkCount": 20,
+    "authenticatedBrowser": "not_exercised"
+  },
+  "result": "clean_unavailable_exit_marked_not_exercised",
+  "findingIds": [],
+  "contracts": {
+    "positive": "exercise_MAA2-XEX-08-UNAVAILABLE-EXIT-NOT-EXERCISED_on_pilot20",
+    "negative": "must_not_claim_PASS_without_receipt",
+    "unavailable": "missing_prereq → not_exercised / unresolved — never PASS",
+    "mutation": "rerun_same_v2.1.1_membership"
+  }
+}

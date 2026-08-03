@@ -1,0 +1,95 @@
+{
+  "pdf": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/bundle-fictional-test.pdf",
+  "pageCount": 5,
+  "pages": [
+    {
+      "pdfPageNumber": 1,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/page-001.png",
+      "pngSha256": "c7dc84cf2d860b976fc88992485266e82d81b1d439381f396f914c5ae7a111d2",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1344,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.9,
+        "nonWhiteRatio": 0.0437,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 2,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/page-002.png",
+      "pngSha256": "12f01c51ced9de7f6335c44ae7adbf628d9692aa7f35421e3d00b8fa1cc6f719",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1563,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.87,
+        "nonWhiteRatio": 0.051,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 3,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/page-003.png",
+      "pngSha256": "11070388e8e565bb79bb14f6c10c566d9455fe76b7eff287eee5c475a2787919",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1280,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 249.02,
+        "nonWhiteRatio": 0.0429,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 4,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/page-004.png",
+      "pngSha256": "1ffd7aa8bfb6cd5da8b20078b52e4b04c67bb1f4f267eb7937cbc27801923924",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1597,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 247.8,
+        "nonWhiteRatio": 0.051,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    },
+    {
+      "pdfPageNumber": 5,
+      "pngPath": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/page-005.png",
+      "pngSha256": "63a49d150e8e499459e6d5969bb6b8c00703f800e3175b6d303760a85d6461e9",
+      "width": 893,
+      "height": 1263,
+      "extractedTextLen": 1449,
+      "metrics": {
+        "blankOrNearEmpty": false,
+        "meanLuma": 248.44,
+        "nonWhiteRatio": 0.0473,
+        "edgeContentRatio": 0.0,
+        "marginTight": false
+      },
+      "visualDisposition": "pass",
+      "footerIdentityPresent": true
+    }
+  ],
+  "contactSheet": "C:/Users/gduff/casebrain-hub-wt-s3000-diverse/artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/page-pngs/contact-sheet.png",
+  "contactSheetSha256": "5c4d3545763d7835a8988eb3df36009261e527d5d62be9d829bb8a3e92632501",
+  "duplicatePngHashes": {},
+  "failedPages": []
+}

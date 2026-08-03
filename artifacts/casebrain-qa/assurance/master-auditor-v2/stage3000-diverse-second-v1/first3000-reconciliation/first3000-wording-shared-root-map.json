@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "first3000-wording-shared-root-map@1.0.0",
+  "generatedAt": "2026-08-02T18:24:47.700Z",
+  "roots": [
+    {
+      "rootId": "protected_evidence_acronym_casing_bwv_cctv",
+      "findingCode": "COPY_QUALITY_PROTECTED_ACRONYM_CASING",
+      "occurrenceCount": 390,
+      "uniqueStrings": 2,
+      "surfaces": [
+        "court_line",
+        "evidence_family_quarantine"
+      ],
+      "technicalNote": "Detector flags lowercase evidence acronyms (bwv/cctv). Not raw-enum leakage. Style improvement candidate only; blank human review fields.",
+      "secondCorpusDetectorUse": "Prefer emitting conventional uppercase BWV/CCTV in solicitor-visible prose OR treat mid-sentence lowercase acronyms as non-defect for second-corpus detectors after documented policy."
+    }
+  ]
+}

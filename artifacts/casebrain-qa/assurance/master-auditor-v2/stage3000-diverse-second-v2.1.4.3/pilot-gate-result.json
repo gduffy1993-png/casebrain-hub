@@ -1,0 +1,31 @@
+{
+  "gatePass": true,
+  "scaleRecommended": false,
+  "scaleGateAccepted": false,
+  "status": "PILOT_GATE_PASS_STOP_FOR_CODEX_BEFORE_SCALE",
+  "blockers": [],
+  "checks": {
+    "headingAsCharge": 0,
+    "brokenJoins": 0,
+    "rawEnums": 0,
+    "lowerAcronyms": 0,
+    "vagueDisclosure": 0,
+    "unsupportedStatutory": 0,
+    "ordinaryFailClosed": 0,
+    "derivedMissing": 0,
+    "professionalDefectCount": 0,
+    "bnd05": 15,
+    "atr02": 7,
+    "untriaged": 0,
+    "confirmed": 0,
+    "contractsExit": 0,
+    "tscExit": 0,
+    "npmBuildExit": 0,
+    "pdfNotExercised": true,
+    "browserNotExercised": true,
+    "apiBuilderNotHttp": true
+  },
+  "v213MembershipSha256": "e103baa3e0e53bc0062b36f3446896337b7ba99e7213fe23c4c34426201edfde",
+  "candidateFreezeSha256": "4a788439aa97be17a73c5ccd066be5725805694a9bc1e4922c44673e44abe3a3",
+  "v2142ClaimCorrected": "PILOT_GATE_INCOMPLETE_PENDING_PROFESSIONAL_SEMANTIC_OUTPUT_QUALITY"
+}

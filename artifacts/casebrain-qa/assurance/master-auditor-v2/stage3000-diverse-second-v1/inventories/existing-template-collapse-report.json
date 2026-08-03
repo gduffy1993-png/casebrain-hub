@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "existing-template-collapse-report@1.0.0",
+  "firstFrozenMembershipSha256": "dcf6c382fe1b41ef34624c03764c8dc785de04a13f5344784aee03b9a192d4ae",
+  "populationCount": 3000,
+  "uniqueCaseIds": 3000,
+  "uniqueSourceFingerprints": 3000,
+  "uniqueOutputFingerprints": 3000,
+  "uniqueContentOutputFingerprints": 70,
+  "largestContentCluster": {
+    "contentOutputFingerprint": "a70b70aec2363280a7237dc02f917a1c759ef18fe78d810b98728b4e511a8113",
+    "count": 138
+  },
+  "contentClusters": [
+    {
+      "contentOutputFingerprint": "a70b70aec2363280a7237dc02f917a1c759ef18fe78d810b98728b4e511a8113",
+      "count": 138
+    },
+    {
+      "contentOutputFingerprint": "86185026733996a696dc51144f70f4de4c4a8959bb0dd35e6b7f1ae4e4b6e903",
+      "count": 138
+    },
+    {
+      "contentOutputFingerprint": "00a8db328097d2f73a561029fba4ad365d69470939dff7bc74eb0f4da8d39ba3",
+      "count": 133
+    },
+    {
+      "contentOutputFingerprint": "4d4e3625a76a0cdf612fff4bce54d324ab850421d05f7a418699c4a2569f7ed7",
+      "count": 123
+    },
+    {
+      "contentOutputFingerprint": "cff173d4128330df8cca5f81c762747e6787320a9d23eceed4104b417c9f1301",
+      "count": 118
+    },
+    {
+      "contentOutputFingerprint": "e2c56ab905f354ed0f3aaa5ac8503a3fb4eb724ab249497629d12c2f0fdbad5f",
+      "count": 98
+    },
+    {
+      "contentOutputFingerprint": "4495fa1deb837858e65afc6e2cdb9d7908949121afef7419b518e735e24138f0",
+      "count": 95
+    },
+    {
+      "contentOutputFingerprint": "3f959d6c110f624941e3af4f3eac38ace22da2445ad1e98d9a06eed270ebec98",
+      "count": 93
+    },
+    {
+      "contentOutputFingerprint": "5f945b694d8d074cb2160e2bcbbc5ce5bb712506f5d0a85f6531db243542c93e",
+      "count": 93
+    },
+    {
+      "contentOutputFingerprint": "bd173497abb3d38c7e586c1f76a6168739d06ac909c721028a279c2fdf56544f",
+      "count": 83
+    },
+    {
+      "contentOutputFingerprint": "94347e4764a7d5a8c1a93a08948e9593f11ad0e07b26f6dec2c18155b7b3deca",
+      "count": 78
+    },
+    {
+      "contentOutputFingerprint": "31a404b938ac689cdcdf5e3daa5a7a039f34a285f0d6fb33729c0422993428fc",
+      "count": 78
+    },
+    {
+      "contentOutputFingerprint": "48bfb76c37dfa3976c0c76a82c2bc4586760047cd801bca724c92041e3bd2789",
+      "count": 78
+    },
+    {
+      "contentOutputFingerprint": "edbbaeabb23e88d11629ec7be525984f2d9ddcf80d65295174a64e6c62320ed9",
+      "count": 73
+    },
+    {
+      "contentOutputFingerprint": "0b26b4806562cd61caa4d03def96c7b7c0cb91852f2ef712e45de318d8777924",
+      "count": 73
+    },
+    {
+      "contentOutputFingerprint": "392946f60b402787e68bf0aa3ac742f5fb5a05679af7332c5791e397663cf4f3",
+      "count": 71
+    },
+    {
+      "contentOutputFingerprint": "534b8aabc519069afe1bdaf0b4fa804fa83ebc549947afe5cfd1bad07ad23d06",
+      "count": 63
+    },
+    {
+      "contentOutputFingerprint": "cb7f64120cae0f6427d2f393d060c9cd981a2ec6f5cb297b8c72025d0bcb8009",
+      "count": 63
+    },
+    {
+      "contentOutputFingerprint": "81654484ae4663930e83f86bc57a53a8f7c5072f7cc5ec150a598f121d8c286f",
+      "count": 58
+    },
+    {
+      "contentOutputFingerprint": "7786fe64649d586cb4a51fcaa4ab69f527bb5f0984c1b776d5b8774ce364708d",
+      "count": 58
+    },
+    {
+      "contentOutputFingerprint": "583508ba0ff0c4fe03d89402b6c7f2d1a724c4c8f111a1e3b618ca33b0e7890c",
+      "count": 58
+    },
+    {
+      "contentOutputFingerprint": "2c976a0304c74db87f123874da9edb557ccbc72270e5cb6c697bc93ba5ac2d7a",
+      "count": 53
+    },
+    {
+      "contentOutputFingerprint": "74472d8761d0230abe6627c75442eaf755cd6cac6803db6db66944ffeb3eb723",
+      "count": 53
+    },
+    {
+      "contentOutputFingerprint": "022d3a4e5c3e86c55ecf3d5dc4295c004773708b34c5c69d0bd44404a15a5207",
+      "count": 38
+    },
+    {
+      "contentOutputFingerprint": "28c0e8f4b858028e2edf5f5c63f2a32759799a3b325615f0f5cc73aab68ad805",
+      "count": 38
+    },
+    {
+      "contentOutputFingerprint": "2751c4925eefc2283ec5246e0fd95ef2946ef3c294f82f6e8996b311ac2ef4ef",
+      "count": 38
+    },
+    {
+      "contentOutputFingerprint": "eef9bc85b3188e9550a30affe89cf18cc2edcbeabcc8fb99c1c50f91dffa3074",
+      "count": 38
+    },
+    {
+      "contentOutputFingerprint": "cc161e828881df7ed74d27597e063f341c5e5847332a0c2eade21928be89199f",
+      "count": 33
+    },
+    {
+      "contentOutputFingerprint": "8eb3a722d7e3305255cfd1fdf2ddefc23388c47945fc05ae83b0034706cf472d",
+      "count": 33
+    },
+    {
+      "contentOutputFingerprint": "e06017cc8e846adb7456012168742e0c8f5fe3fcae083584d1d905113cf4da76",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "9cc3256209a3920b6e9554279b2760eb302671db6f41970f6ee8ebf78c0874f6",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "24894cf5197d1e8f7ebe9e95832d52cb2d012471eb7a83264ba57a13e9ee7861",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "864f45a205fea485f850f60fcb79edf46020c8a68956c48a794cf68317a9e831",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "5ae1ffe39b0d86520cdb4b3e1a672d3d75462aba5f8d4149cfd6a475ca3c848a",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "1017e0eca0e4ea18d89c524a50b48ae6079aef807564538b68cd6c573aa59bde",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "1571a69e0790178267698985fe7adb50a60cb86d619d3d940913e88f2251513a",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "fb72dc52d70dcf2970f33940b5f1ff32907d34500058542ce14de2aa4c0d66e1",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "0d21659556bb6c614d2978468c3d99ff5c0b726308e8b132f84e14d3bce25202",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "c14716f4e1bc3a340241e870237e50aa75b1a8fde4a105192b6ede25d954fc8d",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "9ae35746075fb4dad94995f4501a6e79c9fd862c37a7ca6f59cb4f97447586c0",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "1b0d00ca6bef12ef3d8d587140aafa217e1e09597e1c4c2a85e5775abda7222f",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "0428a074285f3728ba9730df496bda6eeb9c527d00fade73eecfcd23552226f0",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "7b772983cf19af270dbd5869b3cf01fc81f4cfcb8964e685bd1f9d672125b15e",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "b7472541d5d4b0b369634102235c80fdc3eb5555efb3897b5b340cabbf197846",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "9ba3b8bc62ff81675ce3747016d96b58acfe20b0716e5e9f8d798303e76d9d20",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "69161217594f2353036bfa2ae037e0fd3d817552598db7f2424171cfca4e9ddc",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "99a3839f6be4076a8c4e024f311d83a917f1abef87a6711367eddf09abfb64b2",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "f9e4c41670db2313d1d7fdb89137ee78c5b6a704ac15200e0713ec3fbb131259",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "ab4f64add359a5377decd8589477e12ca6c6960567f471d8c4e6578b09769220",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "b9448c5bf7d4336649c49c39d56d8f33ff151cfae8936826bb7347612db16980",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "649252916e925596e8f41e93e0caceccf77959b729e892ba24476df3eeceef7c",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "f9687cb48194c0706858a228e490aa6f8c28c0303f88bab8623d95fa9c84868f",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "7787fe28346619f25087bc9de032f4582dc54dc94e9dcba6afeedfd4e5413db6",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "62086141958b9237e4de273fe6c564e11fd32283436a1ae21f051e4c8a0a096e",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "28492be544dd225a2808a875714d453d021bc5e04c0ef835250c91d36a23dff1",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "208bcc21f2aacfc804ae24c7d9c82bbcb6836de90d49dbec4ae8b3149532f864",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "02be662ca82c091ed6f332016c2d05c43c26db7da09b635b8b3307e8fd4129ee",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "b2e28ea1af84f7f8652bcee93cd44f92a741edf484cd9be72ea8c3504c900b89",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "48257111526c1d527a45e5be6848997f6513600cde0226500115892dd0e8b84e",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "2c7a83821793d6fa4b12779a06c54555c09436c7623ebb393d2c640f6f350ec0",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "9fe4ff654fc16cf1ef4cf8185598f970c3c86f22350ea7ec2143fd999e973eb1",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "bc983afe99d5d501f827c2614922d86473f2940764557615156b16277dc255e7",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "6bf67dbce38977c448d95f1e46a0a9a9ec46368518d25898fa30049bc09ac578",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "c0a007161cfb0b20a3c355b0693b472b5857317a0c70af9052df72187f29e371",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "53bc57db6f706c9a2a1a7cdd1ce9468e8011ca61afa27780b87cb27fbabdb92e",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "89b146dcede4f1db600ea77fa72b734a75ef2c3fa0a2f97120f7a104db1a0ed0",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "ab9993dd8b45df3f85a09947eb55c8c9d0c34f7fa5ae195a30ab672a3f77e083",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "226d5b986b0928c6ced6c5c511e3e8949088043acdd71df1b9e855ec2e49c546",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "1d2def255ad3f573df8fca117a791ee2945222a55835614a6ffb07562becc3a8",
+      "count": 20
+    },
+    {
+      "contentOutputFingerprint": "e6833b0a0182329e0c9cd2f9ce1a4f21d54466de27d8663743937bb409e56d38",
+      "count": 13
+    }
+  ],
+  "note": "First census proves scale identity diversity but collapses to ~70 substantive content shapes."
+}

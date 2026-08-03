@@ -1,0 +1,8 @@
+{
+  "schemaVersion": "diverse3000-freeze-receipt@1.0.0",
+  "frozenAt": "2026-08-02T19:08:05.740Z",
+  "orderedMembershipSha256": "273e5f5f3145a8c01be81f8f721dcf7f8e20ea0208b312997f75199276cd69fb",
+  "truthSealedPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-matter-graphs/truth-sealed",
+  "truthInaccessibleToMaterialisation": true,
+  "sourcesPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-matter-graphs/sources"
+}

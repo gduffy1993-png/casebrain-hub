@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "diverse3000-v2-source-reading-honesty@1.0.0",
+  "v2BulkLedger": "ledgers/every-source-reading-ledger.jsonl",
+  "issue": "Ledger listed documents but did not prove detailed reading; numeric pages fields were synthetic lengths",
+  "correction": "Rename synthetic lengths to declaredSyntheticLengthNotActualPages; V2.1 pilot requires real page identities",
+  "v2MembershipMutated": false
+}

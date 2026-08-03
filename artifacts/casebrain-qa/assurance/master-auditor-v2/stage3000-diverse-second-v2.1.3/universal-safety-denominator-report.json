@@ -1,0 +1,5 @@
+{
+  "note": "Universal safety measured separately; pure-banner regex only — does not swallow substantive warning sentences.",
+  "pureUniversalSafetyPattern": "/^(solicitor review required\\.?|fictional test material(?:\\s+only)?[^.]*\\.?|do not overstate\\.?|client disclaimer[:.].*|not legal advice\\.?)$/i",
+  "universalSafetyLeafCount": 333
+}

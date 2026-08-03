@@ -1,0 +1,244 @@
+{
+  "top": [
+    {
+      "key": "21c259bc713bdc1a11584d85a602da6a17e1a713ca5cacf28f385847dd034a6d",
+      "size": 2,
+      "cases": [
+        "div3000-0001-common_assault_battery",
+        "div3000-0061-common_assault_battery"
+      ]
+    },
+    {
+      "key": "d7401a31dc113396e9595b6197bc960877fd34785dbaca2ad1bc59f7aaef14c5",
+      "size": 2,
+      "cases": [
+        "div3000-0005-common_assault_battery",
+        "div3000-0065-common_assault_battery"
+      ]
+    },
+    {
+      "key": "13d55e5a7a3fb9fe49218def0779ddd38ae51961cebbc7ca9568d486a6d4975d",
+      "size": 2,
+      "cases": [
+        "div3000-0006-common_assault_battery",
+        "div3000-0066-common_assault_battery"
+      ]
+    },
+    {
+      "key": "14647a882a48d1f914a3dcb90ddfce72a67a33a60c87b11b3511be09163248fa",
+      "size": 2,
+      "cases": [
+        "div3000-0010-common_assault_battery",
+        "div3000-0070-common_assault_battery"
+      ]
+    },
+    {
+      "key": "8894bb4357815cab874c662da1d6ad70ac9c31136860ebea5db396e0e42321db",
+      "size": 2,
+      "cases": [
+        "div3000-0011-common_assault_battery",
+        "div3000-0071-common_assault_battery"
+      ]
+    },
+    {
+      "key": "00a8bb751a9f548a1230785498c5c3c5ea9a73ecde88a6a29d831217fcbd9a71",
+      "size": 2,
+      "cases": [
+        "div3000-0016-common_assault_battery",
+        "div3000-0076-common_assault_battery"
+      ]
+    },
+    {
+      "key": "bab3ced28cccb470d21a468629faca6df1cefe89150383a77f2e105fbddab6a8",
+      "size": 2,
+      "cases": [
+        "div3000-0020-common_assault_battery",
+        "div3000-0080-common_assault_battery"
+      ]
+    },
+    {
+      "key": "2b2f3bc4e36a7394836f9ef423dd011e2527c33526508532c56b1b505a587ac2",
+      "size": 2,
+      "cases": [
+        "div3000-0021-common_assault_battery",
+        "div3000-0081-common_assault_battery"
+      ]
+    },
+    {
+      "key": "7ba44a03e9ae5aa54818b361da5ea3aaa18100da6f9c889a88532bd2973bc514",
+      "size": 2,
+      "cases": [
+        "div3000-0025-common_assault_battery",
+        "div3000-0085-common_assault_battery"
+      ]
+    },
+    {
+      "key": "af72635b810f3d9df4c0b23a0eb63c106189f7bc313ea6881e01af97bbc3ee94",
+      "size": 2,
+      "cases": [
+        "div3000-0086-assault_emergency_worker",
+        "div3000-0146-assault_emergency_worker"
+      ]
+    },
+    {
+      "key": "b87807d97a0acd49ab0684085172a1f7266d7b5a0f7c748d51e8d577cd2b5b58",
+      "size": 2,
+      "cases": [
+        "div3000-0090-assault_emergency_worker",
+        "div3000-0150-assault_emergency_worker"
+      ]
+    },
+    {
+      "key": "502020ed13e008aca55bf8523a83cdad0e458448dd05fa8a5935adaf3d68bd0e",
+      "size": 2,
+      "cases": [
+        "div3000-0091-assault_emergency_worker",
+        "div3000-0151-assault_emergency_worker"
+      ]
+    },
+    {
+      "key": "f1956a11cf96654b230eb4b6a0611365e50cbf6063c14be29d42b7f6cfeb31a1",
+      "size": 2,
+      "cases": [
+        "div3000-0095-assault_emergency_worker",
+        "div3000-0155-assault_emergency_worker"
+      ]
+    },
+    {
+      "key": "a270332d347fe28022b1f3af231c1398c694ec404e1048eba3cc8b92e6ece78c",
+      "size": 2,
+      "cases": [
+        "div3000-0096-assault_emergency_worker",
+        "div3000-0156-assault_emergency_worker"
+      ]
+    },
+    {
+      "key": "20b2106b4f6086dd917f899fbbf12315e4f21d6ba3d2429670341138a490d5f5",
+      "size": 2,
+      "cases": [
+        "div3000-0100-assault_emergency_worker",
+        "div3000-0160-assault_emergency_worker"
+      ]
+    },
+    {
+      "key": "4ca65796f2ff9f41688b079459b26e03e89a68716fd2b4150759fbcde18fb7ff",
+      "size": 2,
+      "cases": [
+        "div3000-0101-assault_emergency_worker",
+        "div3000-0161-assault_emergency_worker"
+      ]
+    },
+    {
+      "key": "80a7822135ef444d94f437e85204aa358c386807757625a59c4a31cdcc43e9fe",
+      "size": 2,
+      "cases": [
+        "div3000-0105-assault_emergency_worker",
+        "div3000-0165-assault_emergency_worker"
+      ]
+    },
+    {
+      "key": "63db775faf9c8f55b2830f810630c6d3c4a886fd0bad2fb869c64fad9c2142c6",
+      "size": 2,
+      "cases": [
+        "div3000-0106-assault_emergency_worker",
+        "div3000-0166-assault_emergency_worker"
+      ]
+    },
+    {
+      "key": "963120507ea5a71973e74931e80a964c175df2f3365be96a6465a1bc2e30b29d",
+      "size": 2,
+      "cases": [
+        "div3000-0110-assault_emergency_worker",
+        "div3000-0170-assault_emergency_worker"
+      ]
+    },
+    {
+      "key": "d7021b5d19dc2806d35ff5b6b55c9724aa328753aded109e6696521fa029141b",
+      "size": 2,
+      "cases": [
+        "div3000-0171-abh",
+        "div3000-0231-abh"
+      ]
+    },
+    {
+      "key": "d32580fec447eb910cddd131366d5a05ab35657d064c1e17531fe6bcde73d234",
+      "size": 2,
+      "cases": [
+        "div3000-0175-abh",
+        "div3000-0235-abh"
+      ]
+    },
+    {
+      "key": "2b1c694dfcea72654ac05f392f9d6a687f2cf4bff3389f884c98d586b3d01123",
+      "size": 2,
+      "cases": [
+        "div3000-0176-abh",
+        "div3000-0236-abh"
+      ]
+    },
+    {
+      "key": "10bd47247de21d28792d92fb1a85e365fcb8ef637a262df1328751b8ebbcb69c",
+      "size": 2,
+      "cases": [
+        "div3000-0180-abh",
+        "div3000-0240-abh"
+      ]
+    },
+    {
+      "key": "0e470abe214941bc535bcf7b6090f6552ae226476bb2e51762ff998e47c12792",
+      "size": 2,
+      "cases": [
+        "div3000-0181-abh",
+        "div3000-0241-abh"
+      ]
+    },
+    {
+      "key": "03b272ee35b8fa2f49eb6255012123b0405e872001a0ce180868b263d06e7ba1",
+      "size": 2,
+      "cases": [
+        "div3000-0185-abh",
+        "div3000-0245-abh"
+      ]
+    },
+    {
+      "key": "89966c6f07f205de325f9b53080c98b1deb85c7dea84ee88ec673dfc04482448",
+      "size": 2,
+      "cases": [
+        "div3000-0190-abh",
+        "div3000-0250-abh"
+      ]
+    },
+    {
+      "key": "40ded88e79723cfc467c27dacabc468a4202c8bb3e3fc8f5434e76f5e75e9bc6",
+      "size": 2,
+      "cases": [
+        "div3000-0191-abh",
+        "div3000-0251-abh"
+      ]
+    },
+    {
+      "key": "2ae0a006426e266f9c32ea9d356123b4f48858481683210622b289a07fffbfd6",
+      "size": 2,
+      "cases": [
+        "div3000-0195-abh",
+        "div3000-0255-abh"
+      ]
+    },
+    {
+      "key": "c83079067ae6e90a9f32ecc1f6148452b6cffaafdca7484f408556fc7e7247f8",
+      "size": 2,
+      "cases": [
+        "div3000-0256-shoplifting_theft",
+        "div3000-0316-shoplifting_theft"
+      ]
+    },
+    {
+      "key": "cfd05b068e1b9aaac95571519a192e8b8841a82010804d12b8205485427a1943",
+      "size": 2,
+      "cases": [
+        "div3000-0261-shoplifting_theft",
+        "div3000-0321-shoplifting_theft"
+      ]
+    }
+  ]
+}

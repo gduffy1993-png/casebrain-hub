@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "excluded-bulk-hash-lock@1.0.0",
+  "directory": "artifacts/casebrain-qa/integrity-programme/diverse3000-solicitor-materialisation",
+  "fileCount": 6,
+  "bytes": 40518804,
+  "inventorySha256": "a3d14b6cba11b5bd80c3039b48e8a8390f856ab044cf25e4dcba1b7580c566f3",
+  "reason": "bulk_regenerable_local_hash_locked_not_committed",
+  "reproduction": "Retain local tree; regenerate via scripts/assurance/stage3000-diverse-second generators; compare inventorySha256 of path+byte listing",
+  "samplePaths": [
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-solicitor-materialisation/run-v1-pre-remediation-historical/all-exit-audience-capability-matrix.json",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-solicitor-materialisation/run-v1-pre-remediation-historical/materialise-progress.json",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-solicitor-materialisation/run-v1-pre-remediation-historical/surfaces.jsonl",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-solicitor-materialisation/run-v1/all-exit-audience-capability-matrix.json",
+    "artifacts/casebrain-qa/integrity-programme/diverse3000-solicitor-materialisation/run-v1/materialise-progress.json"
+  ]
+}

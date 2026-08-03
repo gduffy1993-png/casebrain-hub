@@ -1,0 +1,88 @@
+{
+  "caseId": "div3000v21-07-sexual_assault",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1-pilot-graphs/sources/div3000v21-07-sexual_assault/bundle-fictional-test.pdf",
+  "sha256": "7dd4c0e8638f6ad018ef5f5af03867dc40cf96b78dfddf74640bd77462463daa",
+  "pageCount": 16,
+  "pageMap": [
+    {
+      "pageIdentity": "indictment_operative/page/1",
+      "pdfPageNumber": 1,
+      "docId": "indictment_operative"
+    },
+    {
+      "pageIdentity": "indictment_operative/page/2",
+      "pdfPageNumber": 2,
+      "docId": "indictment_operative"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 3,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 4,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/3",
+      "pdfPageNumber": 5,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG05/page/4",
+      "pdfPageNumber": 6,
+      "docId": "MG05"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 7,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "MG06/page/2",
+      "pdfPageNumber": 8,
+      "docId": "MG06"
+    },
+    {
+      "pageIdentity": "abe_or_special_measures/page/1",
+      "pdfPageNumber": 9,
+      "docId": "abe_or_special_measures"
+    },
+    {
+      "pageIdentity": "abe_or_special_measures/page/2",
+      "pdfPageNumber": 10,
+      "docId": "abe_or_special_measures"
+    },
+    {
+      "pageIdentity": "abe_or_special_measures/page/3",
+      "pdfPageNumber": 11,
+      "docId": "abe_or_special_measures"
+    },
+    {
+      "pageIdentity": "third_party_material_note/page/1",
+      "pdfPageNumber": 12,
+      "docId": "third_party_material_note"
+    },
+    {
+      "pageIdentity": "third_party_material_note/page/2",
+      "pdfPageNumber": 13,
+      "docId": "third_party_material_note"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 14,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/2",
+      "pdfPageNumber": 15,
+      "docId": "defence_proof_extract"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/3",
+      "pdfPageNumber": 16,
+      "docId": "defence_proof_extract"
+    }
+  ]
+}

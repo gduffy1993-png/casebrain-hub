@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "STOP-FOR-CODEX-REVIEW@1.0.0",
+  "stoppedAt": "2026-08-02T23:00:30.000Z",
+  "reason": "V2.1.2 pilot gate green on same-20 remediation — STOP uncommitted for Codex review before any scale",
+  "gatePass": true,
+  "status": "PILOT_GATE_PASS_STOP_FOR_CODEX_BEFORE_SCALE",
+  "blockers": [],
+  "prohibitions": [
+    "commit",
+    "push",
+    "merge",
+    "deploy",
+    "scale_beyond_20",
+    "corpus_PASS",
+    "stage3000_completion",
+    "programme_PASS"
+  ],
+  "preserved": {
+    "v2": "be4f3bec455c220267aaf3dc265292aa20c1cd763c5d7c5fe5d2df2cb88a25c9",
+    "v21": "1ec51fc426293cb5af5a1b1ed47c4e13cbd578d7438df7086a216c4432b65c2f",
+    "v211": "d109bcd431eede97e8d9fc1fdf260c507453239cdc0af7bb2b3d54c631f69777",
+    "v212": "c698ce950cb92bbf88faab331cee9b816934e9083753897a2412e87bfa59413c"
+  },
+  "v211ClaimCorrected": "PILOT_GATE_INCOMPLETE_PENDING_DOCUMENT_REALISM__GENUINE_CONTROL_EXECUTION__OUTPUT_STRENGTH",
+  "deliverables": {
+    "decisionCard": "DECISION-CARD.json",
+    "beforeAfterGate": "before-after-gate-report.json",
+    "missingDocLedger": "missing-document-correction-ledger.json",
+    "visualQa": "rendered-page-visual-qa-register.json",
+    "aiVisualReview": "document-realism-ai-visual-review.json",
+    "exitMatrix": "genuine-exit-capability-matrix.json",
+    "controlMatrix": "per-control-exercise-matrix.json",
+    "controlReceipts": "receipts/",
+    "outputStrength": "output-strength-and-template-cluster-report.json",
+    "contractsProof": "contracts-proof.json",
+    "publicTemplateMap": "public-template-mapping.json",
+    "buildTscReceipt": "build-and-tsc-receipt.json",
+    "manifest": "CHANGED-FILE-MANIFEST.json",
+    "v211Correction": "../stage3000-diverse-second-v2.1.1/pilot-gate-claim-correction.json"
+  },
+  "honestyNotes": [
+    "V2/V2.1/V2.1.1 preserved byte-for-byte; V2.1.1 PASS claim corrected to PILOT_GATE_INCOMPLETE_PENDING_DOCUMENT_REALISM__GENUINE_CONTROL_EXECUTION__OUTPUT_STRENGTH",
+    "Document-realism AI visual review passed separately from geometry heuristics (realismVisualGatePass=true; visualFailedTotal=0)",
+    "14/15 CORE controls counted evaluated with real handlers; MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE remains not_exercised (no hearing-notice applicable denominator in this 20-pack) — honest, not forced",
+    "ATR-02/CHS-03 use structured evaluators (exerciseAtr02/exerciseChs03) against attributionGraph / chaseProvenanceLinks — not phrase probes or pilot-evaluator receipts",
+    "Largest substantive leaf cluster = 5/20 after universal-safety separation",
+    "npm run build attempted via main-repo next binary; compiled with warnings then EPERM on worktree .next/trace — recorded without claiming green",
+    "Authenticated browser not_exercised",
+    "No corpus / stage3000 / programme PASS claim; no commit / push / merge / deploy / scale"
+  ]
+}

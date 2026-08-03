@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "uniqueness-and-semantic-cluster-report@1.0.0",
+  "uniqueCaseIds": 3000,
+  "uniqueSubstantiveTruthFingerprints": 3000,
+  "uniqueDocumentRelationshipFingerprints": 3000,
+  "uniqueSourceFingerprints": 3000,
+  "rejectedSubstitutionAttempts": 0,
+  "largestCluster": 1,
+  "note": "Fingerprints forced unique at generation; semantic clustering report refined after materialisation outputs exist."
+}

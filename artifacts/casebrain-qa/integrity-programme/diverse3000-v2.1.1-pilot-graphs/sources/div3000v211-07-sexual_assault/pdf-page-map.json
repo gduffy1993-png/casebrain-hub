@@ -1,0 +1,38 @@
+{
+  "caseId": "div3000v211-07-sexual_assault",
+  "pdfPath": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.1-pilot-graphs/sources/div3000v211-07-sexual_assault/bundle-fictional-test.pdf",
+  "sha256": "72aedbb028f34c8483377019b2888f92148b66f2716de5a0ac0e909a279f425d",
+  "pageCount": 5,
+  "pageMap": [
+    {
+      "pageIdentity": "indictment_operative/page/1",
+      "pdfPageNumber": 1,
+      "docId": "indictment_operative",
+      "purpose": "document_specific_body"
+    },
+    {
+      "pageIdentity": "MG05/page/1",
+      "pdfPageNumber": 2,
+      "docId": "MG05",
+      "purpose": "mg5_case_summary_narrative"
+    },
+    {
+      "pageIdentity": "MG05/page/2",
+      "pdfPageNumber": 3,
+      "docId": "MG05",
+      "purpose": "mg5_evidence_outline"
+    },
+    {
+      "pageIdentity": "MG06/page/1",
+      "pdfPageNumber": 4,
+      "docId": "MG06",
+      "purpose": "mg6_file_index"
+    },
+    {
+      "pageIdentity": "defence_proof_extract/page/1",
+      "pdfPageNumber": 5,
+      "docId": "defence_proof_extract",
+      "purpose": "defence_privileged_extract"
+    }
+  ]
+}

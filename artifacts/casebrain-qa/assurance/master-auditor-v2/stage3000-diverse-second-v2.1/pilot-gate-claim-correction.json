@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "diverse3000-v2.1-pilot-gate-claim-correction@1.0.0",
+  "generatedAt": "2026-08-02T21:15:00.000Z",
+  "originalGateReportPreserved": "pilot-gate-result.json",
+  "originalClaim": {
+    "gatePass": true,
+    "unsupported": true
+  },
+  "correctedStatus": "PILOT_GATE_INCOMPLETE_PENDING_SOURCE_AND_VISUAL_REMEDIATION",
+  "gatePass": false,
+  "reasons": [
+    {
+      "id": "pagesOk_not_visual",
+      "detail": "pagesOk was only a source-text/banner check (structural_text_check), not visual QA of rendered page images."
+    },
+    {
+      "id": "no_pdf_page_pngs",
+      "detail": "No PDF pages were rendered to PNG/image files."
+    },
+    {
+      "id": "invented_missing_documents",
+      "detail": "Missing/referred-absent documents were generated as pages and marked read_ok with realPaginatedFile=true."
+    },
+    {
+      "id": "not_complete_production_builders",
+      "detail": "Output lane used custom case composition plus gateSolicitorOutput/preserveProtectedAcronyms safety helpers — not complete CaseBrain production builders via buildLiveProductionSurfacesFromDocumentUnits."
+    },
+    {
+      "id": "insufficient_named_controls",
+      "detail": "Only 2/361 named controls were genuinely receipt-backed exercised; arbitrary 1–10 evaluated PASS rule is withdrawn."
+    }
+  ],
+  "v21MembershipPreserved": "1ec51fc426293cb5af5a1b1ed47c4e13cbd578d7438df7086a216c4432b65c2f",
+  "remediationLineage": "stage3000-diverse-second-v2.1.1",
+  "silentRewriteProhibited": true,
+  "note": "Original pilot-gate-result.json left intact as historical evidence. This corrective report supersedes the PASS claim."
+}

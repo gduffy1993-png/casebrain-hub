@@ -1,0 +1,52 @@
+{
+  "caseId": "div3000v212-13-witness_intimidation",
+  "controlId": "MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+  "handlerModule": "lib/eval/master-assurance-auditor/v2/stage150/batch9/evaluators.ts",
+  "handlerFunction": "evaluateBatch9Control",
+  "handlerId": "b9_chr_05_hearing_notice_lifecycle",
+  "controlVersion": "2.0.0",
+  "implementationStatus": "specified_not_implemented",
+  "exerciseStatus": "not_exercised",
+  "applicable": false,
+  "applicableUnitCount": 0,
+  "missingPrerequisiteReason": "chronology_events adapter not eligible — hearing/notice lifecycle absent",
+  "inputFieldRefs": [
+    "chronologyEvents[eventType=hearing|notice].timestamp"
+  ],
+  "inputHashes": {
+    "inputFieldRefsSha256": "3fdace957b46838385a9af7a595d17d80054b19423d1d1ad4df413377aef6946",
+    "findingsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "sourcePageRefs": [
+    "/evidenceStates/0/sourcePage",
+    "/evidenceStates/1/sourcePage",
+    "/evidenceStates/2/sourcePage",
+    "/evidenceStates/3/sourcePage",
+    "/evidenceStates/4/sourcePage",
+    "/evidenceStates/5/sourcePage",
+    "/evidenceStates/6/sourcePage",
+    "/evidenceStates/7/sourcePage",
+    "/evidenceStates/8/sourcePage",
+    "/evidenceStates/9/sourcePage",
+    "/evidenceStates/10/sourcePage",
+    "/chargeInstruments/0/sourcePage"
+  ],
+  "exitRefs": [
+    "/exitPayloadReceipts/view",
+    "/exitPayloadReceipts/copy",
+    "/exitPayloadReceipts/export",
+    "/exitPayloadReceipts/api",
+    "/exitPayloadReceipts/pdf",
+    "/exitPayloadReceipts/composed_prose",
+    "/exitPayloadReceipts/authenticated_browser"
+  ],
+  "findingIds": [],
+  "findings": [],
+  "contracts": {
+    "positive": "scripts/maa-v2-every-word-foundation-contracts.test.ts#MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+    "negative": "scripts/maa-v2-every-word-foundation-contracts.test.ts#MAA2-CHR-05-HEARING-NOTICE-LIFECYCLE",
+    "unavailable": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr05_unavailable",
+    "mutation": "scripts/maa-v2-stage150-batch9-contracts.test.ts#b9_chr05_mutation"
+  },
+  "receiptNote": "impl=substantive_control_evaluator; availability=unavailable_missing_adapter; namedEvaluator=true; not_exercised (chronology_events adapter not eligible — hearing/notice lifecycle absent). not_exercised without hearing/notice event types."
+}

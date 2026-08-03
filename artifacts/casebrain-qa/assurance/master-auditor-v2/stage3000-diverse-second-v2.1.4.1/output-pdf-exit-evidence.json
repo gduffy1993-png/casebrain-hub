@@ -1,0 +1,308 @@
+{
+  "schemaVersion": "diverse3000-v2.1.4.1-output-pdf-exit@1.0.0",
+  "rule": "Never use source/input PDF to prove CaseBrain PDF output exit",
+  "cases": [
+    {
+      "caseId": "div3000v213-01-common_assault_battery",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-01-common_assault_battery/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-02-shoplifting_theft",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-02-shoplifting_theft/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-03-going_equipped",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-03-going_equipped/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-04-twoc",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-04-twoc/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-05-bladed_articles",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-05-bladed_articles/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-06-affray",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-06-affray/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-07-sexual_assault",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-07-sexual_assault/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-08-strangulation_suffocation",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-08-strangulation_suffocation/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-09-blackmail",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-09-blackmail/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-10-drugs_conspiracy_supply",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-10-drugs_conspiracy_supply/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-11-social_media_attribution",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-11-social_media_attribution/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-12-perverting_course_of_justice",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-12-perverting_course_of_justice/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-13-witness_intimidation",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-13-witness_intimidation/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-14-contempt",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-14-contempt/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-15-prison_offences",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-15-prison_offences/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-16-hearsay_res_gestae",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-16-hearsay_res_gestae/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-17-corporate_manslaughter",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-17-corporate_manslaughter/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-18-conspiracy_to_defraud",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-18-conspiracy_to_defraud/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-19-riot",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-19-riot/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    },
+    {
+      "caseId": "div3000v213-20-diplomatic_immunity",
+      "status": "not_exercised",
+      "outputPdfPath": null,
+      "sha256": null,
+      "bytes": null,
+      "parserResult": null,
+      "renderedPageQa": null,
+      "reason": "No CaseBrain-produced output PDF bytes present. Source pack bundle-fictional-test.pdf is INPUT only and must never prove PDF exit.",
+      "sourceInputPdfSeparated": {
+        "path": "artifacts/casebrain-qa/integrity-programme/diverse3000-v2.1.3-pilot-graphs/sources/div3000v213-20-diplomatic_immunity/bundle-fictional-test.pdf",
+        "role": "source_input_pack_only",
+        "usedAsOutputProof": false
+      }
+    }
+  ],
+  "allNotExercisedOrGenuine": true,
+  "sourcePdfUsedAsOutputProof": 0
+}
