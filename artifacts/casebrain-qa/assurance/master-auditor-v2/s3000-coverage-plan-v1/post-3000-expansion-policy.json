@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "s3000-post-3000-expansion-policy@1.0.0",
+  "locked": true,
+  "casesSelectedOrGenerated": false,
+  "purpose": "Targeted expansion after a future locked 3000 membership exists. This policy does not authorise expansion now.",
+  "preconditionsBeforeAnyExpansion": [
+    "This coverage/shard blueprint accepted by Codex/human review",
+    "Separate authorisation for selection/generation of the 3000",
+    "Membership freeze with uniqueness and quota compliance reports",
+    "Coverage-gap report produced against this schema",
+    "No programme PASS claimed merely because 3000 exists"
+  ],
+  "expansionPrinciples": [
+    "Expand to close measured blocking/major gaps, not to inflate headcount.",
+    "Prefer new semantic uniqueness over remixing existing skeletons.",
+    "Keep denominator separation from first census, diverse-second, 18-core, and sealed holdouts.",
+    "Do not pretend expansion equals universal criminal coverage."
+  ],
+  "priorityOrder": [
+    {
+      "priority": "P0",
+      "focus": "Blocking quota or coupling deficits from the coverage-gap report",
+      "action": "Add minimum unique matters to close blocking cells only"
+    },
+    {
+      "priority": "P1",
+      "focus": "Under-represented hard cells still within claim",
+      "examples": [
+        "homicide_structural_after_qualified_review",
+        "native_financial_schedule_depth",
+        "PII_open_closed_boundary_depth",
+        "Newton_and_appeal_lifecycle_depth",
+        "Welsh_source_plus_certified_translation_pairs"
+      ]
+    },
+    {
+      "priority": "P2",
+      "focus": "Exit and browser lanes",
+      "examples": [
+        "Increase pdf planned_exercise where storage allows",
+        "Authorised browser_declared_available / exercised pairs",
+        "Later-disclosure rerun/diff pairs"
+      ]
+    },
+    {
+      "priority": "P3",
+      "focus": "Deferred specialist domains",
+      "action": "Only after specialist design gates; enter as separately labelled specialist corpora, not silent merges into the 3000 claim"
+    }
+  ],
+  "batchSizing": {
+    "defaultExpansionBatch": 100,
+    "maxExpansionBatchWithoutNewShardPlan": 250,
+    "newShardRequiredAbove": 250,
+    "shardSizeIfExtended": 250,
+    "note": "Expansion beyond 3000 must either amend shard policy expressly or create S13+ under the same envelope rules."
+  },
+  "antiInflationGuards": [
+    "Every expansion candidate must pass prohibited-duplicate rules",
+    "Cosmetic-only variants rejected",
+    "Gap-linked justification required on each added matter",
+    "No equal padding across families to make charts look even"
+  ],
+  "reportingRequiredPerExpansion": [
+    "before_after_gap_delta",
+    "new_membership_sha256",
+    "uniqueness_report",
+    "shard_rebalance_report",
+    "explicit_non_PASS_statement"
+  ],
+  "outOfScopeForPost3000Claim": [
+    "terrorism_national_security",
+    "extradition",
+    "private_prosecutions",
+    "complex_regulatory_crime",
+    "prison_law_parole_recall",
+    "military_service_justice"
+  ],
+  "stopConditions": [
+    "Disk/resource exhaustion",
+    "L1 identity or complete fingerprint duplicate",
+    "Combined semantic signature duplicate after normalisation",
+    "Document/evidence/combined dominance cap breach by stratum",
+    "Cosmetic uniqueness detector hit",
+    "Attempt to close gaps by relabelling without truth support",
+    "Any request to claim programme PASS from expansion alone"
+  ]
+}

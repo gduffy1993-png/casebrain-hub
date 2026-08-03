@@ -1,0 +1,341 @@
+{
+  "schemaVersion": "s3000-semantic-uniqueness-dimensions@1.1.0",
+  "locked": true,
+  "policyRevision": "layered-uniqueness-v1",
+  "supersedes": "s3000-semantic-uniqueness-dimensions@1.0.0",
+  "casesSelectedOrGenerated": false,
+  "purpose": "Layered semantic uniqueness: hard identity uniqueness where required; allow legitimate single-dimension and public-form clustering; forbid manufactured diversity via IDs, salts or cosmetic wording.",
+  "blanketClusterMaxOne": {
+    "status": "withdrawn",
+    "reason": "Too strict; incentivised ID/salt/cosmetic wording churn to force artificial uniqueness."
+  },
+  "layers": {
+    "L1_hardIdentity": {
+      "title": "Hard identity — zero duplicates allowed",
+      "zeroDuplicatesAllowed": [
+        "caseId",
+        "packetHash",
+        "completeSourceFingerprint",
+        "completeOutputFingerprint"
+      ],
+      "note": "These are packet/identity hashes, not semantic similarity scores."
+    },
+    "L2_combinedSemanticSignature": {
+      "title": "Complete combined semantic case signature",
+      "mustNormallyBeUnique": true,
+      "targetUniqueRate": 1.0,
+      "mustNotContributeToUniqueness": [
+        "caseId",
+        "personNames",
+        "dates",
+        "salts",
+        "generatorTokens",
+        "cosmeticWordingVariants",
+        "whitespacePunctuationOnly",
+        "synonymReskinWithoutFactChange"
+      ],
+      "builtFromNormalised": [
+        "factsCore",
+        "partiesAttributionGraph",
+        "evidenceStates",
+        "contradictionsChronology",
+        "documentRelationships",
+        "procedurePrimary",
+        "defencePrimary",
+        "missingMaterialTruthKeyed",
+        "expectedCaseBrainBehaviourContract"
+      ],
+      "exactDuplicateCombinedSignature": "hard_reject",
+      "dominanceCaps": "see dominanceCapsByStratum.combinedSemanticSignature"
+    },
+    "L3_individualDimensionsMayCluster": {
+      "title": "Individual dimensions may legitimately cluster",
+      "mayClusterFreelyOrUnderSoftCaps": [
+        "chargeFamily",
+        "documentLayout",
+        "defencePosition",
+        "proceduralStage",
+        "evidenceState",
+        "publicFormStructure"
+      ],
+      "requiredUnique": false,
+      "note": "Sharing a charge family, layout, defence, stage, evidence-state label, or public form is expected and not a duplicate by itself."
+    },
+    "L4_publicOfficialForms": {
+      "title": "Repeated official/public form structures",
+      "expected": true,
+      "mustNotBeRejected": true,
+      "examples": [
+        "MG05",
+        "MG06",
+        "MG11",
+        "written_charge",
+        "bail_notice",
+        "PTPH_form_structure",
+        "unused_schedule_template"
+      ]
+    },
+    "L5_universalSafetyWording": {
+      "title": "Universal safety wording",
+      "mayRepeat": true,
+      "measuredSeparatelyFromSubstantiveOutput": true,
+      "examples": [
+        "audience_safety_disclaimers",
+        "privilege_withholding_boilerplate",
+        "uncertainty_qualification_stock_phrases",
+        "referral_only_safe_language"
+      ],
+      "reporting": "safetyWordingRepetitionReport — never used as substantive uniqueness credit or debit"
+    },
+    "L6_graphDominanceCaps": {
+      "title": "Document-graph, evidence-graph, combined-signature dominance",
+      "notBlanketMaxOne": true,
+      "caps": "dominanceCapsByStratum"
+    },
+    "L7_meaningfulDistinctness": {
+      "title": "A case counts as meaningfully distinct only via substantive combinations",
+      "requiredCombinationAxes": [
+        "facts",
+        "partiesAttribution",
+        "evidenceStates",
+        "contradictions",
+        "documentRelationships",
+        "procedure",
+        "defence",
+        "missingMaterial",
+        "expectedCaseBrainBehaviour"
+      ],
+      "minimumDistinctAxesVsNearestNeighbour": 2,
+      "note": "At least two of the required axes must differ in a truth-keyed way versus the nearest neighbour after normalisation."
+    }
+  },
+  "normalisationBeforeCombinedSignature": [
+    "lowercase",
+    "strip case IDs and generator salts",
+    "strip dates and order indices",
+    "replace person names with <NAME>",
+    "replace addresses/phones/emails with typed placeholders",
+    "strip cosmetic synonym reskins that do not change facts",
+    "do not treat layout noise alone as signature input unless it creates a truth-keyed evidence-state or absence assertion",
+    "SHA-256 of normalised substantive payload = combinedSemanticSignature"
+  ],
+  "dominanceCapsByStratum": {
+    "unit": "largest_cluster_size / stratum_home_count",
+    "note": "Caps apply inside each primaryStratumHome. Combined-signature target remains full uniqueness; the cap is a fail-closed dominance brake if any collision slips through review.",
+    "routine_volume": {
+      "homeQuota": 600,
+      "documentGraphLargestClusterMaxShare": 0.18,
+      "evidenceGraphLargestClusterMaxShare": 0.15,
+      "combinedSemanticSignatureLargestClusterMaxShare": 0.005,
+      "combinedSemanticSignatureTargetUniqueRate": 1.0,
+      "chargeFamilyLargestClusterMaxShare": 0.35,
+      "publicFormStructureLargestClusterMaxShare": 1.0,
+      "defencePositionLargestClusterMaxShare": 0.45,
+      "proceduralStageLargestClusterMaxShare": 0.4,
+      "documentLayoutLargestClusterMaxShare": 0.35,
+      "evidenceStateLabelLargestClusterMaxShare": 0.4
+    },
+    "serious_violence_sexual": {
+      "homeQuota": 600,
+      "documentGraphLargestClusterMaxShare": 0.12,
+      "evidenceGraphLargestClusterMaxShare": 0.12,
+      "combinedSemanticSignatureLargestClusterMaxShare": 0.005,
+      "combinedSemanticSignatureTargetUniqueRate": 1.0,
+      "chargeFamilyLargestClusterMaxShare": 0.25,
+      "publicFormStructureLargestClusterMaxShare": 1.0,
+      "defencePositionLargestClusterMaxShare": 0.35,
+      "proceduralStageLargestClusterMaxShare": 0.3,
+      "documentLayoutLargestClusterMaxShare": 0.3,
+      "evidenceStateLabelLargestClusterMaxShare": 0.35
+    },
+    "digital_phone_financial_attribution": {
+      "homeQuota": 450,
+      "documentGraphLargestClusterMaxShare": 0.12,
+      "evidenceGraphLargestClusterMaxShare": 0.1,
+      "combinedSemanticSignatureLargestClusterMaxShare": 0.007,
+      "combinedSemanticSignatureTargetUniqueRate": 1.0,
+      "chargeFamilyLargestClusterMaxShare": 0.3,
+      "publicFormStructureLargestClusterMaxShare": 1.0,
+      "defencePositionLargestClusterMaxShare": 0.35,
+      "proceduralStageLargestClusterMaxShare": 0.3,
+      "documentLayoutLargestClusterMaxShare": 0.28,
+      "evidenceStateLabelLargestClusterMaxShare": 0.35
+    },
+    "disclosure_multi_defendant_procedural": {
+      "homeQuota": 450,
+      "documentGraphLargestClusterMaxShare": 0.12,
+      "evidenceGraphLargestClusterMaxShare": 0.1,
+      "combinedSemanticSignatureLargestClusterMaxShare": 0.007,
+      "combinedSemanticSignatureTargetUniqueRate": 1.0,
+      "chargeFamilyLargestClusterMaxShare": 0.28,
+      "publicFormStructureLargestClusterMaxShare": 1.0,
+      "defencePositionLargestClusterMaxShare": 0.35,
+      "proceduralStageLargestClusterMaxShare": 0.32,
+      "documentLayoutLargestClusterMaxShare": 0.28,
+      "evidenceStateLabelLargestClusterMaxShare": 0.35
+    },
+    "youth_mental_health_welsh_interpreter_pii": {
+      "homeQuota": 300,
+      "documentGraphLargestClusterMaxShare": 0.14,
+      "evidenceGraphLargestClusterMaxShare": 0.12,
+      "combinedSemanticSignatureLargestClusterMaxShare": 0.01,
+      "combinedSemanticSignatureTargetUniqueRate": 1.0,
+      "chargeFamilyLargestClusterMaxShare": 0.3,
+      "publicFormStructureLargestClusterMaxShare": 1.0,
+      "defencePositionLargestClusterMaxShare": 0.4,
+      "proceduralStageLargestClusterMaxShare": 0.35,
+      "documentLayoutLargestClusterMaxShare": 0.3,
+      "evidenceStateLabelLargestClusterMaxShare": 0.35
+    },
+    "heavy_ocr_scanned_malformed_encrypted_mixed": {
+      "homeQuota": 300,
+      "documentGraphLargestClusterMaxShare": 0.1,
+      "evidenceGraphLargestClusterMaxShare": 0.1,
+      "combinedSemanticSignatureLargestClusterMaxShare": 0.01,
+      "combinedSemanticSignatureTargetUniqueRate": 1.0,
+      "chargeFamilyLargestClusterMaxShare": 0.3,
+      "publicFormStructureLargestClusterMaxShare": 1.0,
+      "defencePositionLargestClusterMaxShare": 0.4,
+      "proceduralStageLargestClusterMaxShare": 0.35,
+      "documentLayoutLargestClusterMaxShare": 0.25,
+      "evidenceStateLabelLargestClusterMaxShare": 0.35
+    },
+    "bail_sentencing_newton_appeal_unusual": {
+      "homeQuota": 300,
+      "documentGraphLargestClusterMaxShare": 0.14,
+      "evidenceGraphLargestClusterMaxShare": 0.12,
+      "combinedSemanticSignatureLargestClusterMaxShare": 0.01,
+      "combinedSemanticSignatureTargetUniqueRate": 1.0,
+      "chargeFamilyLargestClusterMaxShare": 0.3,
+      "publicFormStructureLargestClusterMaxShare": 1.0,
+      "defencePositionLargestClusterMaxShare": 0.35,
+      "proceduralStageLargestClusterMaxShare": 0.35,
+      "documentLayoutLargestClusterMaxShare": 0.3,
+      "evidenceStateLabelLargestClusterMaxShare": 0.35
+    }
+  },
+  "dimensions": [
+    {
+      "id": "case_identity",
+      "layer": "L1",
+      "requiredUnique": true,
+      "includes": ["caseId", "packetHash"]
+    },
+    {
+      "id": "complete_source_and_output",
+      "layer": "L1",
+      "requiredUnique": true,
+      "includes": ["completeSourceFingerprint", "completeOutputFingerprint"]
+    },
+    {
+      "id": "combined_semantic_signature",
+      "layer": "L2",
+      "requiredUnique": "normally_yes_target_rate_1",
+      "requiredUniqueFalseFor": ["ids", "names", "dates", "salts", "cosmetic_wording"]
+    },
+    {
+      "id": "document_graph",
+      "layer": "L6",
+      "requiredUnique": false,
+      "dominanceCapped": true,
+      "includes": [
+        "which_documents_exist",
+        "missing_referred_partial_edges",
+        "index_vs_body_consistency",
+        "supersession_edges",
+        "exhibit_label_graph",
+        "cross_defendant_document_ownership"
+      ]
+    },
+    {
+      "id": "evidence_graph",
+      "layer": "L6",
+      "requiredUnique": false,
+      "dominanceCapped": true,
+      "includes": [
+        "per_exhibit_service_state",
+        "reliability_contested_flags",
+        "later_disclosure_waves",
+        "truth_keyed_absences"
+      ]
+    },
+    {
+      "id": "charge_family",
+      "layer": "L3",
+      "requiredUnique": false
+    },
+    {
+      "id": "document_layout",
+      "layer": "L3",
+      "requiredUnique": false
+    },
+    {
+      "id": "defence_position",
+      "layer": "L3",
+      "requiredUnique": false
+    },
+    {
+      "id": "procedural_stage",
+      "layer": "L3",
+      "requiredUnique": false
+    },
+    {
+      "id": "evidence_state_label",
+      "layer": "L3",
+      "requiredUnique": false
+    },
+    {
+      "id": "public_form_structure",
+      "layer": "L4",
+      "requiredUnique": false,
+      "mustNotBeRejectedForRepetition": true
+    },
+    {
+      "id": "universal_safety_wording",
+      "layer": "L5",
+      "requiredUnique": false,
+      "measuredSeparately": true
+    },
+    {
+      "id": "primary_stratum_and_complexity_cell",
+      "requiredUnique": false,
+      "note": "Many cases share a stratum×tier cell by design."
+    }
+  ],
+  "clusterRejectionTriggers": [
+    "duplicate caseId, packetHash, completeSourceFingerprint, or completeOutputFingerprint",
+    "identical combinedSemanticSignature after normalisation",
+    "parameter-substitution clone (same substantive combination; only names/dates/IDs/salts differ)",
+    "cosmetic_uniqueness_rejection detector hit",
+    "documentGraph or evidenceGraph dominance share exceeds stratum cap",
+    "combinedSemanticSignature dominance share exceeds stratum cap",
+    "trap-axis remix on an unchanged matter skeleton without new substantive-axis delta",
+    "layout-only mutation that does not change any truth-key, evidence-state, absence, or expected-behaviour assertion"
+  ],
+  "notRejectionTriggers": [
+    "shared charge family",
+    "shared document layout class",
+    "shared defence position",
+    "shared procedural stage",
+    "shared evidence-state label",
+    "repeated official/public form structures",
+    "repeated universal safety wording",
+    "shared document-graph within stratum dominance cap",
+    "shared evidence-graph within stratum dominance cap"
+  ],
+  "cosmeticUniquenessRejectionDetectorRef": "cosmetic-uniqueness-rejection-detector.json",
+  "routine600StructureSharingProofRef": "routine-600-structure-sharing-proof.json",
+  "beforeAfterPolicyRef": "semantic-uniqueness-before-after.json",
+  "validationContractRef": "semantic-uniqueness-validation-contract.json",
+  "reportingRequiredAtFutureSelection": [
+    "L1 uniqueness counts (must equal population)",
+    "combinedSemanticSignature unique rate and largest cluster share by stratum",
+    "documentGraph and evidenceGraph largest cluster shares by stratum",
+    "individual dimension cluster histograms (charge/layout/defence/stage/evidence/form)",
+    "public form repetition counts (informational, not reject)",
+    "safety wording repetition report (separate)",
+    "cosmetic uniqueness rejection detector hits",
+    "rejectedSubstitutionAttempts count",
+    "nearest-neighbour substantive axis delta distribution"
+  ]
+}

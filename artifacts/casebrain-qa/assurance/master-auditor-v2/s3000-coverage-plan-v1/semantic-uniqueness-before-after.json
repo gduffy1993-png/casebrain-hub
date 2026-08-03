@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "s3000-semantic-uniqueness-before-after@1.0.0",
+  "locked": true,
+  "casesSelectedOrGenerated": false,
+  "authorityBaselineCommit": "308b7cb633f83d7c998bc80adf87356de346b3e9",
+  "before": {
+    "policyRef": "s3000-semantic-uniqueness-dimensions@1.0.0",
+    "rules": [
+      "uniqueCaseIds = 3000",
+      "uniqueSubstantiveTruthFingerprints = 3000",
+      "uniqueDocumentRelationshipFingerprints = 3000",
+      "uniqueSourceFingerprints = 3000",
+      "uniqueCaseBoundOutputContractFingerprints = 3000",
+      "largestAllowedExactSemanticCluster = 1",
+      "largestAllowedNearDuplicateClusterAfterNormalisation = 1",
+      "document_relationship requiredUnique = true",
+      "source_fingerprint requiredUnique = true",
+      "PD-10 rejected any normalised near-duplicate cluster > 1"
+    ],
+    "risks": [
+      "Manufactured diversity via case IDs, salts, names, dates",
+      "Cosmetic wording churn to break clusters",
+      "Rejection of legitimate shared public forms / charge families / stages",
+      "Pressure to invent document-graph uniqueness without new assertions"
+    ]
+  },
+  "after": {
+    "policyRef": "s3000-semantic-uniqueness-dimensions@1.1.0",
+    "rules": [
+      "L1: zero duplicates for caseId, packetHash, completeSourceFingerprint, completeOutputFingerprint",
+      "L2: combined semantic signature normally unique; IDs/names/dates/salts/cosmetic wording excluded from uniqueness credit",
+      "L3: charge family, layout, defence, stage, evidence-state label, public form may cluster",
+      "L4: repeated official/public forms expected and not rejected",
+      "L5: universal safety wording may repeat; measured separately",
+      "L6: document-graph, evidence-graph, combined-signature dominance use stratum percentage caps (not blanket max=1)",
+      "L7: meaningful distinctness requires substantive multi-axis combinations (≥2 axis deltas vs nearest neighbour)",
+      "CUR detector rejects cosmetic uniqueness",
+      "routine-600 structure-sharing proof shows shared structures need not collapse combined signatures"
+    ],
+    "withdrawn": [
+      "blanket largestAllowedExactSemanticCluster = 1 for all semantic dimensions",
+      "blanket requiredUnique on document_relationship / source_fingerprint alone",
+      "PD-10 near_duplicate_normalised_cluster_gt_1 as universal hard reject"
+    ]
+  },
+  "deltaTable": [
+    {
+      "topic": "Case ID / packet / complete source-output hashes",
+      "before": "Unique (bundled with semantic max=1 culture)",
+      "after": "L1 hard unique — zero duplicates"
+    },
+    {
+      "topic": "Combined semantic signature",
+      "before": "Implicit via multiple required-unique fingerprints + cluster max=1",
+      "after": "Explicit L2; cosmetics excluded; target unique rate 1.0; stratum dominance cap as brake"
+    },
+    {
+      "topic": "Document graph",
+      "before": "requiredUnique true (3000 unique)",
+      "after": "May cluster; stratum % dominance caps"
+    },
+    {
+      "topic": "Evidence graph",
+      "before": "Folded into required-unique substantive truth",
+      "after": "May cluster; stratum % dominance caps"
+    },
+    {
+      "topic": "Charge / layout / defence / stage / evidence label / public forms",
+      "before": "Near-dup max=1 pressure discouraged sharing",
+      "after": "Explicitly may cluster; public forms must not be rejected for repetition"
+    },
+    {
+      "topic": "Safety wording",
+      "before": "Unspecified; could pollute uniqueness",
+      "after": "May repeat; separate measurement; never axis delta"
+    },
+    {
+      "topic": "Cosmetic clones",
+      "before": "Partially covered by PD-01..10",
+      "after": "Dedicated CUR detector + PD-10 replaced by layered rules"
+    },
+    {
+      "topic": "Routine 600 realism",
+      "before": "No proof that shared structures are allowed",
+      "after": "Combinatorial proof file: shared forms OK; combined signatures remain separable"
+    }
+  ],
+  "humanReadable": "semantic-uniqueness-before-after.md"
+}

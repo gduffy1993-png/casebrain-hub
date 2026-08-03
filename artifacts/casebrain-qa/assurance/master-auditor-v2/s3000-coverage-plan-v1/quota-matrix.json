@@ -1,0 +1,244 @@
+{
+  "schemaVersion": "s3000-quota-matrix@1.0.0",
+  "locked": true,
+  "authorityBaselineCommit": "308b7cb633f83d7c998bc80adf87356de346b3e9",
+  "targetPopulation": 3000,
+  "casesSelectedOrGenerated": false,
+  "quotaKinds": {
+    "homeExclusive": "Must sum exactly to 3000; each case has exactly one value.",
+    "floorMultiTag": "Minimum cases carrying the tag; sum may exceed 3000.",
+    "declarationFloor": "Minimum planned declarations for later exercise; not generation."
+  },
+  "primaryStratumHome": {
+    "kind": "homeExclusive",
+    "sumMustEqual": 3000,
+    "rows": [
+      { "id": "routine_volume", "quota": 600 },
+      { "id": "serious_violence_sexual", "quota": 600 },
+      { "id": "digital_phone_financial_attribution", "quota": 450 },
+      { "id": "disclosure_multi_defendant_procedural", "quota": 450 },
+      { "id": "youth_mental_health_welsh_interpreter_pii", "quota": 300 },
+      { "id": "heavy_ocr_scanned_malformed_encrypted_mixed", "quota": 300 },
+      { "id": "bail_sentencing_newton_appeal_unusual", "quota": 300 }
+    ]
+  },
+  "complexityTier": {
+    "kind": "homeExclusive",
+    "sumMustEqual": 3000,
+    "rows": [
+      { "id": "easy", "quota": 900 },
+      { "id": "moderate", "quota": 1200 },
+      { "id": "complex", "quota": 600 },
+      { "id": "heavy", "quota": 300 }
+    ]
+  },
+  "documentCountBand": {
+    "kind": "homeExclusive",
+    "sumMustEqual": 3000,
+    "rows": [
+      { "id": "docs_1_5", "quota": 600 },
+      { "id": "docs_6_15", "quota": 900 },
+      { "id": "docs_16_40", "quota": 800 },
+      { "id": "docs_41_100", "quota": 500 },
+      { "id": "docs_101_plus", "quota": 200 }
+    ]
+  },
+  "pageVolumeBand": {
+    "kind": "homeExclusive",
+    "sumMustEqual": 3000,
+    "rows": [
+      { "id": "pages_1_20", "quota": 500 },
+      { "id": "pages_21_80", "quota": 900 },
+      { "id": "pages_81_150", "quota": 700 },
+      { "id": "pages_151_300", "quota": 600 },
+      { "id": "pages_301_500", "quota": 200 },
+      { "id": "pages_501_plus", "quota": 100 }
+    ]
+  },
+  "chronologyConflict": {
+    "kind": "homeExclusive",
+    "sumMustEqual": 3000,
+    "rows": [
+      { "id": "chronology_consistent", "quota": 1200 },
+      { "id": "date_or_timestamp_conflict", "quota": 500 },
+      { "id": "custody_clock_conflict", "quota": 300 },
+      { "id": "interview_timing_conflict", "quota": 300 },
+      { "id": "hearing_listing_split", "quota": 400 },
+      { "id": "service_timeline_conflict", "quota": 300 }
+    ]
+  },
+  "defencePosition": {
+    "kind": "homeExclusive",
+    "sumMustEqual": 3000,
+    "rows": [
+      { "id": "deny", "quota": 700 },
+      { "id": "partial_admit", "quota": 400 },
+      { "id": "self_defence_or_defence_of_another", "quota": 250 },
+      { "id": "alibi", "quota": 250 },
+      { "id": "no_comment_or_pace_issue", "quota": 300 },
+      { "id": "abuse_of_process_or_exclusion", "quota": 150 },
+      { "id": "fitness_or_capacity_issue", "quota": 150 },
+      { "id": "nrm_or_s45_indicator_structural", "quota": 100 },
+      { "id": "basis_of_plea_dispute", "quota": 250 },
+      { "id": "neutral_or_undeclared_early", "quota": 450 }
+    ]
+  },
+  "proceduralStage": {
+    "kind": "homeExclusive",
+    "sumMustEqual": 3000,
+    "rows": [
+      { "id": "police_station_pace", "quota": 350 },
+      { "id": "charge_first_hearing", "quota": 400 },
+      { "id": "bail_remand", "quota": 300 },
+      { "id": "ptph_or_bcm", "quota": 400 },
+      { "id": "disclosure_cpiA", "quota": 400 },
+      { "id": "trial_preparation", "quota": 300 },
+      { "id": "sentence_or_newton", "quota": 250 },
+      { "id": "appeal", "quota": 200 },
+      { "id": "unusual_pathway", "quota": 200 },
+      { "id": "multi_stage_lifecycle", "quota": 200 }
+    ]
+  },
+  "chargeInstrumentState": {
+    "kind": "floorMultiTag",
+    "primaryAlsoRequired": true,
+    "rows": [
+      { "id": "charge_only_initial", "floor": 400 },
+      { "id": "amended_instrument", "floor": 500 },
+      { "id": "superseded_history_present", "floor": 350 },
+      { "id": "operative_indictment", "floor": 500 },
+      { "id": "mixed_counts_or_alternatives", "floor": 400 },
+      { "id": "gap_ngap_or_allocation_split", "floor": 350 },
+      { "id": "conflicting_mg5_charge_hearing", "floor": 500 }
+    ]
+  },
+  "evidenceServiceState": {
+    "kind": "floorMultiTag",
+    "primaryAlsoRequired": true,
+    "rows": [
+      { "id": "served_complete", "floor": 800 },
+      { "id": "partial", "floor": 700 },
+      { "id": "missing_truth_keyed", "floor": 500 },
+      { "id": "referred_only", "floor": 500 },
+      { "id": "unreliable_or_contested", "floor": 400 },
+      { "id": "later_disclosure_wave", "floor": 300 }
+    ]
+  },
+  "attributionAndCoDefendantTrap": {
+    "kind": "floorMultiTag",
+    "primaryAlsoRequired": true,
+    "rows": [
+      { "id": "single_defendant_clean_attribution", "floor": 700 },
+      { "id": "wrong_person_phone_or_exhibit", "floor": 250 },
+      { "id": "device_account_user_sender_separation", "floor": 250 },
+      { "id": "co_defendant_bleed", "floor": 300 },
+      { "id": "exhibit_label_collision", "floor": 250 },
+      { "id": "alias_or_aka_collision", "floor": 200 },
+      { "id": "handle_unmapped", "floor": 200 },
+      { "id": "multi_defendant_segregation_required", "floor": 350 },
+      { "id": "joint_enterprise_or_role_dispute", "floor": 200 }
+    ]
+  },
+  "documentLayoutOrNativeFormat": {
+    "kind": "floorMultiTag",
+    "primaryAlsoRequired": true,
+    "rows": [
+      { "id": "born_digital_pdf", "floor": 700 },
+      { "id": "scanned_searchable_ocr", "floor": 500 },
+      { "id": "mixed_born_and_scan", "floor": 400 },
+      { "id": "poor_ocr_rotated_or_duplicate", "floor": 250 },
+      { "id": "table_or_schedule_heavy", "floor": 250 },
+      { "id": "docx_native", "floor": 150 },
+      { "id": "csv_or_xlsx_native", "floor": 150 },
+      { "id": "eml_or_msg", "floor": 150 },
+      { "id": "image_or_screenshot_pack", "floor": 150 },
+      { "id": "encrypted_or_password_protected", "floor": 100 },
+      { "id": "malformed_or_corrupt_recoverable", "floor": 100 },
+      { "id": "unsupported_format_declared", "floor": 100 }
+    ]
+  },
+  "deliberateAbsenceAndUnsupported": {
+    "kind": "floorMultiTag",
+    "rows": [
+      { "id": "truth_keyed_missing_source", "floor": 300 },
+      { "id": "referred_not_served", "floor": 250 },
+      { "id": "index_says_served_body_absent", "floor": 200 },
+      { "id": "unsupported_native_input_not_exercised", "floor": 100 },
+      { "id": "thin_index_only_pack", "floor": 150 },
+      { "id": "encrypted_unread_without_password", "floor": 80 }
+    ]
+  },
+  "productionExits": {
+    "kind": "declarationFloor",
+    "sixProductionExitsRequiredOnEveryCase": [
+      "view",
+      "copy",
+      "export",
+      "api",
+      "pdf",
+      "composed_prose"
+    ],
+    "plannedExerciseFloors": {
+      "view": 3000,
+      "copy": 3000,
+      "export": 2500,
+      "api": 2500,
+      "pdf": 1500,
+      "composed_prose": 2500
+    },
+    "browser": {
+      "declaredAvailableFloor": 50,
+      "defaultStatus": "not_exercised_unless_separately_authorised"
+    }
+  },
+  "crossCuttingCouplingRules": [
+    {
+      "id": "heavy_tier_page_coupling",
+      "rule": "At least 200 of complexityTier=heavy must also be pages_151_300 or higher."
+    },
+    {
+      "id": "heavy_format_home_coupling",
+      "rule": "At least 200 of primaryStratumHome=heavy_ocr_scanned_malformed_encrypted_mixed must be complexityTier=complex or heavy."
+    },
+    {
+      "id": "youth_home_defence_coupling",
+      "rule": "At least 80 of youth_mental_health_welsh_interpreter_pii home cases must carry fitness_or_capacity_issue, intermediary, AA, interpreter, Welsh, or PII tags."
+    },
+    {
+      "id": "digital_home_attribution_coupling",
+      "rule": "At least 300 of digital_phone_financial_attribution home cases must carry a non-clean attribution trap."
+    },
+    {
+      "id": "disclosure_home_evidence_coupling",
+      "rule": "At least 250 of disclosure_multi_defendant_procedural home cases must carry partial, missing_truth_keyed, referred_only, or later_disclosure_wave."
+    },
+    {
+      "id": "pathway_home_stage_coupling",
+      "rule": "At least 220 of bail_sentencing_newton_appeal_unusual home cases must have proceduralStage in {bail_remand, sentence_or_newton, appeal, unusual_pathway}."
+    },
+    {
+      "id": "routine_not_all_easy",
+      "rule": "routine_volume home may be at most 70% easy; at least 180 must be moderate or above."
+    },
+    {
+      "id": "no_mono_format_corpus",
+      "rule": "No single documentLayoutOrNativeFormat primary may exceed 900 cases."
+    }
+  ],
+  "secondaryCoverageTargets": {
+    "note": "Secondary tags demonstrate multidimensionality; they do not create extra homes.",
+    "examples": [
+      "A serious_violence_sexual home case may also tag later_disclosure_wave and poor_ocr.",
+      "A digital home case may also tag multi_defendant_segregation_required.",
+      "A routine_volume home case may also tag encrypted_or_password_protected sparingly."
+    ]
+  },
+  "acceptanceChecksBeforeAnyFutureFreeze": [
+    "All homeExclusive axes sum to 3000.",
+    "All floorMultiTag floors met.",
+    "All crossCuttingCouplingRules satisfied.",
+    "Every case has six exit declarations plus browser status.",
+    "No L1 identity duplicate, combined-signature duplicate, dominance-cap breach, or cosmetic-uniqueness hit accepted into membership.",
+    "Shared single-dimension labels and public forms must not be rejected solely for clustering."
+  ]
+}

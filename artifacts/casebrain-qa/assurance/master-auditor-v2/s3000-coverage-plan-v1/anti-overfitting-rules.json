@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "s3000-anti-overfitting-rules@1.0.0",
+  "locked": true,
+  "casesSelectedOrGenerated": false,
+  "purpose": "Prevent the future 3000-case corpus from becoming a memorisation set or a trap-remix generator.",
+  "rules": [
+    {
+      "id": "AO-01",
+      "title": "No case-ID selectors in product fixes",
+      "rule": "Future remediation must not branch on case ID, gold ID, defendant name, fixture name, exact sentence, freeze hash, or shard-only condition."
+    },
+    {
+      "id": "AO-02",
+      "title": "Shared root-cause routing",
+      "rule": "Defects found on any shard must be traced to shared extraction, classification, evidence-state, provenance, charge, composer, gate, or presentation logic."
+    },
+    {
+      "id": "AO-03",
+      "title": "Generic positive and negative contracts",
+      "rule": "Any authorised fix must add generic contracts that work beyond the triggering matter, plus negative controls."
+    },
+    {
+      "id": "AO-04",
+      "title": "No trap-axis cartesian inflation",
+      "rule": "Do not multiply an unchanged matter skeleton across every trap axis. A new case must add a truth-keyed delta on at least two L7 substantive axes."
+    },
+    {
+      "id": "AO-04b",
+      "title": "No manufactured uniqueness",
+      "rule": "Do not create apparent diversity via case IDs, salts, names, dates, synonym reskins, layout noise, or safety-boilerplate padding. Cosmetic uniqueness rejection detector applies."
+    },
+    {
+      "id": "AO-05",
+      "title": "No equal-ten-per-charge padding",
+      "rule": "Risk-weighted offence distribution is required. Equal allocation across all charge labels is forbidden."
+    },
+    {
+      "id": "AO-06",
+      "title": "Containment is not repair",
+      "rule": "Blocked or hidden unsafe wording must not be counted as substantive pass."
+    },
+    {
+      "id": "AO-07",
+      "title": "Denominator separation",
+      "rule": "Do not mix first frozen census, diverse-second population, 18-core pilots, sealed holdouts, or this planned corpus into one PASS denominator."
+    },
+    {
+      "id": "AO-08",
+      "title": "Shard isolation of overfitting",
+      "rule": "A fix that improves only one shard while regressing others is a failed shared fix."
+    },
+    {
+      "id": "AO-09",
+      "title": "Truth-key before scoring narrative",
+      "rule": "Scoring must use frozen truth keys and source documents, not free-text similarity to a favourite exemplar."
+    },
+    {
+      "id": "AO-10",
+      "title": "Absence and unsupported honesty",
+      "rule": "Deliberate absences and unsupported formats must remain labelled; systems must not invent completeness to score better."
+    },
+    {
+      "id": "AO-11",
+      "title": "Audience/exit invariance of truth",
+      "rule": "Underlying truth must be stable across the six production exits; only safe audience transformation may change surface form."
+    },
+    {
+      "id": "AO-12",
+      "title": "No training on sealed delayed-validation shards without protocol",
+      "rule": "If S11/S12 later become sealed delayed-validation, their truth keys must not train or tune remediation before the agreed unseal procedure."
+    },
+    {
+      "id": "AO-13",
+      "title": "Minimum regression breadth after shared fix",
+      "rule": "After any future authorised shared fix: triggering case, all completed heavy cases in this corpus, affected shards, prior protected corpora as separately reported, and Brain1/Guardian immutability checks."
+    },
+    {
+      "id": "AO-14",
+      "title": "No universal-coverage claim",
+      "rule": "Meeting quotas does not authorise claiming every criminal possibility is covered."
+    }
+  ],
+  "metricsThatMustNotDriveSelection": [
+    "exact_string_match_to_prior_exemplar",
+    "embedding_near_neighbour_without_truth_diff",
+    "pass_rate_maximisation_by_removing_hard_cells",
+    "shard_local_score_without_global_gap_report"
+  ]
+}

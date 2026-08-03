@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "s3000-prohibited-duplicate-cosmetic-rules@1.1.0",
+  "locked": true,
+  "casesSelectedOrGenerated": false,
+  "purpose": "Reject hard duplicates and cosmetic-only variations. Aligned with layered uniqueness @1.1.0 — not blanket semantic cluster max=1.",
+  "alignedUniquenessPolicy": "semantic-uniqueness-dimensions@1.1.0",
+  "hardRejectIf": [
+    {
+      "id": "PD-01",
+      "pattern": "parameter_substitution_clone",
+      "description": "Same combined semantic signature after normalisation; only names, dates, phones, case IDs, or salts differ."
+    },
+    {
+      "id": "PD-02",
+      "pattern": "layout_noise_only_clone",
+      "description": "Same combined signature and evidence states; only rotation, OCR crush, duplicate page, or whitespace noise differs, with no new assertion."
+    },
+    {
+      "id": "PD-03",
+      "pattern": "trap_axis_remix_without_new_assertion",
+      "description": "Base skeleton reused while appending a trap label that does not change any truth-keyed finding, absence, relationship edge, or expected CaseBrain behaviour."
+    },
+    {
+      "id": "PD-04",
+      "pattern": "shard_mirror_clone",
+      "description": "Matter in shard A duplicated into shard B with cosmetic edits to meet local floors."
+    },
+    {
+      "id": "PD-05",
+      "pattern": "exit_declaration_only_diff",
+      "description": "Two matters identical except planned exit flags."
+    },
+    {
+      "id": "PD-06",
+      "pattern": "tier_relabel_only",
+      "description": "Same matter labelled easy vs moderate without document/page/conflict changes that justify the tier."
+    },
+    {
+      "id": "PD-07",
+      "pattern": "family_label_swap_only",
+      "description": "Offence family token changed without charge instrument, facts, or evidence changes."
+    },
+    {
+      "id": "PD-08",
+      "pattern": "prior_corpus_identity_reuse",
+      "description": "Reuse of first-census or diverse-second membership IDs or sealed-holdout identities as if new."
+    },
+    {
+      "id": "PD-09",
+      "pattern": "malik_price_or_core18_blueprint_mutation_as_volume",
+      "description": "Mutating protected heavy-pilot blueprints to inflate volume cases."
+    },
+    {
+      "id": "PD-10",
+      "pattern": "duplicate_combined_semantic_signature",
+      "description": "Identical combined semantic signature after normalisation (cosmetics excluded). Replaces withdrawn blanket near-duplicate cluster max=1."
+    },
+    {
+      "id": "PD-11",
+      "pattern": "duplicate_l1_identity_or_complete_fingerprint",
+      "description": "Duplicate caseId, packetHash, completeSourceFingerprint, or completeOutputFingerprint."
+    },
+    {
+      "id": "PD-12",
+      "pattern": "stratum_dominance_cap_breach",
+      "description": "Document-graph, evidence-graph, or combined-signature largest cluster share exceeds stratum dominance cap."
+    },
+    {
+      "id": "PD-13",
+      "pattern": "cosmetic_uniqueness_detector_hit",
+      "description": "Any CUR-01..CUR-08 hit from cosmetic-uniqueness-rejection-detector.json."
+    }
+  ],
+  "withdrawnHardRejects": [
+    {
+      "id": "PD-10@1.0.0",
+      "pattern": "near_duplicate_normalised_cluster_gt_1",
+      "reason": "Too strict; punished legitimate single-dimension and public-form clustering."
+    }
+  ],
+  "softRejectUnlessNewAssertionDocumented": [
+    {
+      "id": "PD-S1",
+      "pattern": "same_offence_same_stage_same_evidence_state",
+      "requiredDelta": "Must differ on at least two L7 axes: facts, parties/attribution, evidence states, contradictions, document relationships, procedure, defence, missing material, expected CaseBrain behaviour."
+    },
+    {
+      "id": "PD-S2",
+      "pattern": "same_primary_home_and_complexity_and_doc_band",
+      "requiredDelta": "Must differ on at least two L7 axes (not merely layout primary or cosmetic wording)."
+    }
+  ],
+  "allowedSimilarButDistinct": [
+    "Same offence family with different operative counts and different evidence-service graphs",
+    "Same primary home with different complexity justified by page/doc/conflict load",
+    "Same layout class with different truth-keyed absences or attribution edges",
+    "Shared MG/public form structures with different matter facts and relationships",
+    "Shared defence position or procedural stage across many routine matters",
+    "Shared document-graph or evidence-graph within stratum dominance caps",
+    "Repeated universal safety wording measured separately"
+  ],
+  "mustNotRejectSolelyFor": [
+    "shared_charge_family",
+    "shared_document_layout",
+    "shared_defence_position",
+    "shared_procedural_stage",
+    "shared_evidence_state_label",
+    "repeated_official_public_form_structure",
+    "repeated_universal_safety_wording"
+  ],
+  "enforcementAtFutureSelection": {
+    "requiredReports": [
+      "rejected_candidates_log",
+      "combined_semantic_signature_cluster_report",
+      "dimension_cluster_histograms",
+      "dominance_caps_by_stratum",
+      "cosmetic_uniqueness_rejection_report",
+      "parameter_substitution_scan",
+      "safety_wording_repetition_report"
+    ],
+    "failClosed": true
+  }
+}

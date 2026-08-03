@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "s3000-semantic-uniqueness-validation-contract@1.0.0",
+  "locked": true,
+  "casesSelectedOrGenerated": false,
+  "purpose": "Validation contract for future membership checks against layered uniqueness. Not executed in this checkpoint.",
+  "authorityBaselineCommit": "308b7cb633f83d7c998bc80adf87356de346b3e9",
+  "policyRefs": [
+    "semantic-uniqueness-dimensions.json",
+    "cosmetic-uniqueness-rejection-detector.json",
+    "routine-600-structure-sharing-proof.json",
+    "prohibited-duplicate-rules.json",
+    "semantic-uniqueness-before-after.json"
+  ],
+  "preconditions": [
+    "Membership exists under a separately authorised selection/generation step",
+    "This layered policy remains accepted",
+    "No programme PASS inferred from contract presence"
+  ],
+  "checks": [
+    {
+      "id": "VU-L1-01",
+      "layer": "L1",
+      "assert": "count(distinct caseId) == populationCount",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-L1-02",
+      "layer": "L1",
+      "assert": "count(distinct packetHash) == populationCount",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-L1-03",
+      "layer": "L1",
+      "assert": "count(distinct completeSourceFingerprint) == populationCount",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-L1-04",
+      "layer": "L1",
+      "assert": "count(distinct completeOutputFingerprint) == populationCount",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-L2-01",
+      "layer": "L2",
+      "assert": "combinedSemanticSignatureUniqueRate == 1.0",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-L2-02",
+      "layer": "L2",
+      "assert": "combinedSemanticSignature built without ids/names/dates/salts/cosmetic wording features",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-L2-03",
+      "layer": "L2",
+      "assert": "per stratum: largestCombinedSignatureClusterShare <= dominanceCapsByStratum[stratum].combinedSemanticSignatureLargestClusterMaxShare",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-L3-01",
+      "layer": "L3",
+      "assert": "chargeFamily/layout/defence/stage/evidenceState/publicForm clustering is allowed; no reject solely for shared label",
+      "severity": "blocking_if_wrongly_rejected"
+    },
+    {
+      "id": "VU-L4-01",
+      "layer": "L4",
+      "assert": "official/public form structure repetition does not produce reject disposition",
+      "severity": "blocking_if_wrongly_rejected"
+    },
+    {
+      "id": "VU-L5-01",
+      "layer": "L5",
+      "assert": "safetyWordingRepetitionReport emitted separately; safety wording not counted in combined signature or axis deltas",
+      "severity": "major"
+    },
+    {
+      "id": "VU-L6-01",
+      "layer": "L6",
+      "assert": "per stratum: documentGraphLargestClusterShare <= cap",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-L6-02",
+      "layer": "L6",
+      "assert": "per stratum: evidenceGraphLargestClusterShare <= cap",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-L7-01",
+      "layer": "L7",
+      "assert": "every accepted member has >=2 truth-keyed axis deltas vs nearest neighbour among required combination axes",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-CUR-01",
+      "layer": "CUR",
+      "assert": "cosmetic detector hits among accepted members == 0",
+      "severity": "blocking"
+    },
+    {
+      "id": "VU-R600-01",
+      "layer": "routine_proof",
+      "assert": "routine_volume==600 implies public form repetition allowed AND combinedSemanticSignatureUniqueRate==1.0 AND doc/evidence graph shares within routine caps",
+      "severity": "blocking"
+    }
+  ],
+  "requiredReports": [
+    "uniqueness-layer-compliance.json",
+    "dominance-caps-by-stratum.json",
+    "dimension-cluster-histograms.json",
+    "public-form-repetition-informational.json",
+    "safety-wording-repetition-report.json",
+    "cosmetic-uniqueness-rejection-report.json",
+    "nearest-neighbour-axis-delta-distribution.json",
+    "routine-600-structure-sharing-validation.json"
+  ],
+  "failClosed": true,
+  "programmePassSupported": false,
+  "notExecutedInThisCheckpoint": true
+}
