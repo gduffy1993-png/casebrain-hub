@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "stage3000-evidence-index@1.0.0",
+  "runId": "syn-foundation-run-1",
+  "bulkRootRel": "artifacts/casebrain-qa/assurance/stage3000-parallel-audit/fixtures-run/bulk-evidence/syn-foundation-run-1",
+  "indexRootRel": "artifacts/casebrain-qa/assurance/stage3000-parallel-audit/fixtures-run/indexes/syn-foundation-run-1",
+  "entries": [
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/stage3000-parallel-audit/fixtures-run/bulk-evidence/syn-foundation-run-1/checkpoint-ledger.jsonl",
+      "sha256": "cdbd11dbc8eacff475540adaadcb0eac4da499900865f6c91662dffe444b951e",
+      "byteLength": 5183,
+      "regenerable": true,
+      "retainedInGit": false,
+      "kind": "jsonl"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/stage3000-parallel-audit/fixtures-run/bulk-evidence/syn-foundation-run-1/machine-receipts.jsonl",
+      "sha256": "decbbece2db8a4d91649341bf486c782f981e2aa345a899315534e541b3df1c4",
+      "byteLength": 3053,
+      "regenerable": true,
+      "retainedInGit": false,
+      "kind": "jsonl"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/stage3000-parallel-audit/fixtures-run/bulk-evidence/syn-foundation-run-1/evidence-units.jsonl",
+      "sha256": "e7b075f19ecdc045beb9c76037d3e79762558e3432c4e1b8d2796830b1eba13a",
+      "byteLength": 1659,
+      "regenerable": true,
+      "retainedInGit": false,
+      "kind": "jsonl"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/stage3000-parallel-audit/fixtures-run/bulk-evidence/syn-foundation-run-1/candidate-freeze.json",
+      "sha256": "f0e477ca4aebd69d2db19b4e74532ed6599abce97f8274961833f70700c3325f",
+      "byteLength": 1153,
+      "regenerable": true,
+      "retainedInGit": false,
+      "kind": "json"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/stage3000-parallel-audit/fixtures-run/indexes/syn-foundation-run-1/decision-cards.jsonl",
+      "sha256": "32e13d314a1121bb369c0730ff2c3df7c695ee4bd2fc32d4e25fcbfbee846bbb",
+      "byteLength": 1421,
+      "regenerable": false,
+      "retainedInGit": true,
+      "kind": "jsonl"
+    },
+    {
+      "relativePath": "artifacts/casebrain-qa/assurance/stage3000-parallel-audit/fixtures-run/indexes/syn-foundation-run-1/runner-summary.json",
+      "sha256": "521861caa8fbf26379316451108a3c6deb34455e109dbc26d002dfa24c7dc0d7",
+      "byteLength": 1387,
+      "regenerable": false,
+      "retainedInGit": true,
+      "kind": "json"
+    }
+  ]
+}

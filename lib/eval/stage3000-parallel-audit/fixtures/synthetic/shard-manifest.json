@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "stage3000-shard-manifest@1.0.0",
+  "shardId": "shard-syn-tiny-a",
+  "frozenAt": "2026-08-02T00:00:00.000Z",
+  "baselineCommit": "308b7cb633f83d7c998bc80adf87356de346b3e9",
+  "populationTarget": 3000,
+  "shardCaseCount": 2,
+  "orderedMembershipSha256": "449a60ff875d6a7f05883cff75cebcb78e3c27032a628044a0936d568feea53a",
+  "cases": [
+    {
+      "orderIndex": 0,
+      "caseId": "syn-case-001",
+      "shardId": "shard-syn-tiny-a",
+      "packetRelativePath": "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-001/packet.json",
+      "packetSha256": "c0415582c40823ef460a93602f575607dbf5e4c8a2a6e0d2961e5b54039733aa",
+      "sourceRelativePath": "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-001/source.json",
+      "sourceSha256": "1d0d4ffa2c97d0118f62f2fee5f4763f266698a8d391b1962c1df16db9ea1769",
+      "outputRelativePath": "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-001/casebrain-output.json",
+      "outputSha256": "7156f4ec2a455904b27c72860e2e49b99dcb9509dde0dc7bc726aac3e8af6c1b",
+      "truthRelativePath": "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-001/truth-key.json",
+      "truthSha256": "b24ab482ebe7b69709e960800ab76b1abf6d580ba585e6c755c63320e7761e9f",
+      "surfaces": {
+        "view": "available",
+        "copy": "available",
+        "export": "unavailable",
+        "api": "available",
+        "pdf": "unavailable",
+        "composed_prose": "partial",
+        "authenticated_browser": "not_exercised"
+      }
+    },
+    {
+      "orderIndex": 1,
+      "caseId": "syn-case-002",
+      "shardId": "shard-syn-tiny-a",
+      "packetRelativePath": "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-002/packet.json",
+      "packetSha256": "7f5e5f1af01772e03332de0a6b8bb92ccd30b64e1e78daba0edcffe20d694e29",
+      "sourceRelativePath": "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-002/source.json",
+      "sourceSha256": "1b026722875365d36220e079a52b8a664f65f59c57d2d2c5112dd404ccac31e5",
+      "outputRelativePath": "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-002/casebrain-output.json",
+      "outputSha256": "7c2a43865eb8a19f97e440e45785f322f5efdbc989eeb528fa2baffdb4cc8e36",
+      "truthRelativePath": "lib/eval/stage3000-parallel-audit/fixtures/synthetic/cases/syn-case-002/truth-key.json",
+      "truthSha256": "d62caf70ff63e856d46d98d00e08a1454464dbd479be4d1824ab601045e7bd5f",
+      "surfaces": {
+        "view": "available",
+        "copy": "available",
+        "export": "available",
+        "api": "available",
+        "pdf": "unavailable",
+        "composed_prose": "partial",
+        "authenticated_browser": "not_exercised"
+      }
+    }
+  ],
+  "note": "Tiny synthetic shard for Stage-3000 parallel audit foundation contracts only. Not a real corpus."
+}

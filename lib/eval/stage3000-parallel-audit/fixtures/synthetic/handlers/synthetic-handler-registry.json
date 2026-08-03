@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "stage3000-synthetic-handler-registry@1.0.0",
+  "handlers": [
+    {
+      "controlId": "MAA2-SYN-01-ABSOLUTE-PROOF-STUB",
+      "handlerId": "synthetic_absolute_proof_stub",
+      "functionIdentity": "syntheticFixtures#detectAbsoluteProofStub",
+      "engineId": "professional_wording",
+      "findingCodes": [
+        "SYN_ABSOLUTE_PROOF"
+      ],
+      "inputEligibility": "included_solicitor_visible_wording",
+      "requiredInputs": [
+        "packet.json",
+        "casebrain-output.json",
+        "included_solicitor_visible_wording"
+      ],
+      "positiveContract": "scripts/stage3000-parallel-audit-contracts.test.ts#syn_absolute_proof_positive",
+      "negativeContract": "scripts/stage3000-parallel-audit-contracts.test.ts#syn_absolute_proof_negative",
+      "receiptValidator": "stage3000-machine-receipt@1.0.0",
+      "unavailableVerdict": "not_exercised"
+    }
+  ],
+  "registrySha256": "a0a00b7f15b0949689d016a308abe34b05fff9c2587b6e529783f2997be0a5f2"
+}

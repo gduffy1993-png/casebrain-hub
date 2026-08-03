@@ -56,6 +56,15 @@ artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-batch-b-evidence-pro
 artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/sources/
 artifacts/casebrain-qa/assurance/master-auditor-v2/stage300-new-150-control-coverage/candidates/
 
+# Stage-3000 parallel audit/rerun — regenerable bulk evidence (retain indexes/hashes only)
+artifacts/casebrain-qa/assurance/stage3000-parallel-audit/bulk-evidence/
+artifacts/casebrain-qa/assurance/stage3000-parallel-audit/fixtures-run/bulk-evidence/
+artifacts/casebrain-qa/assurance/stage3000-parallel-audit/**/checkpoint-ledger.jsonl
+artifacts/casebrain-qa/assurance/stage3000-parallel-audit/**/machine-receipts.jsonl
+artifacts/casebrain-qa/assurance/stage3000-parallel-audit/**/evidence-units.jsonl
+artifacts/casebrain-qa/assurance/stage3000-parallel-audit/**/candidate-freeze.json
+artifacts/casebrain-qa/assurance/stage3000-parallel-audit/**/candidate-freeze.jsonl
+
 # Local bundle fidelity — real PDFs, client truth keys, pasted bundle text (never commit)
 artifacts/bundle-fidelity-local/
 

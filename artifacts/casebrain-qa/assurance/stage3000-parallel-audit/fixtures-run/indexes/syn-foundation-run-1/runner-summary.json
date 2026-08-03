@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "stage3000-parallel-audit@1.0.0",
+  "runId": "syn-foundation-run-1",
+  "shardId": "shard-syn-tiny-a",
+  "baselineCommit": "308b7cb633f83d7c998bc80adf87356de346b3e9",
+  "phasesCompleted": [
+    "load_shard",
+    "verify_hashes",
+    "fast_deterministic",
+    "handler_invoke",
+    "candidate_freeze",
+    "truth_open",
+    "root_cause_dedupe",
+    "decision_cards",
+    "affected_rerun",
+    "full_regression"
+  ],
+  "casesProcessed": 2,
+  "hashFailures": 0,
+  "fastCheckFailures": 0,
+  "receiptsWritten": 2,
+  "decisionCardsWritten": 2,
+  "candidatesFrozen": 1,
+  "truthOpened": true,
+  "rootCauseClusters": 1,
+  "checkpointRecords": 0,
+  "duplicateLedgerKeysSkipped": 12,
+  "affectedRerunPlan": {
+    "rootCauseId": "rc-999aab659669",
+    "sharedFixId": "fix-syn-absolute-proof-v1",
+    "affectedCaseIds": [
+      "syn-case-001"
+    ],
+    "unaffectedCaseIds": [
+      "syn-case-002"
+    ],
+    "fullRegressionStillMandatory": true,
+    "populationTarget": 3000
+  },
+  "fullRegressionGate": {
+    "populationTarget": 3000,
+    "plannedCaseCount": 3000,
+    "completedCaseCount": 0,
+    "mandatory": true,
+    "status": "not_started",
+    "blockedReason": null
+  },
+  "evidenceIndexRel": "artifacts/casebrain-qa/assurance/stage3000-parallel-audit/fixtures-run/indexes/syn-foundation-run-1/evidence-index.json",
+  "status": "foundation_ok",
+  "blockedReason": null
+}
