@@ -1,0 +1,10 @@
+{
+  "populationId": "synthetic-mini-fixture",
+  "controllerVersion": "s3000-parallel-controller-v0.1.0-foundation",
+  "generatorVersionPin": "SYNTHETIC-FIXTURE-v0",
+  "waveCount": 3,
+  "shardsPerWave": 4,
+  "casesPerShard": 250,
+  "targetSize": 3000,
+  "note": "Documentation fixture only — not a frozen population"
+}

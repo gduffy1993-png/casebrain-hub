@@ -1,0 +1,3 @@
+# Ephemeral controller runs (plan/status/doctor). Keep README + fixtures tracked.
+runs/*
+!runs/README.md
